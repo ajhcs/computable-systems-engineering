@@ -2,7 +2,7 @@
 
 Small, independently invocable skills that help a systems engineer develop a system concept, a concept of operations (CONOPS), or an operational scenario. The engineer directs consequential decisions; the assistant helps investigate, draft, run checks, and revise.
 
-**Status: initial alpha.** Three skills and limited deterministic helpers work today. The next milestone is a small verifier for typed requirements and scenario logic. No formal verifier, FRET integration, protected acceptance service, or modeling-tool exporter is included yet. The source is offered under the [MIT license](LICENSE); publication details are tracked in [the release handoff](docs/release-handoff.md).
+**Status: alpha.** Three skills and their version-1 structural helpers remain available. An opt-in version-2 finite verifier now checks typed declarations, traces, supported requirement consistency, and step scenarios. It does not provide temporal realizability, a protected acceptance service, or a modeling-tool exporter. The source is offered under the [MIT license](LICENSE); publication details are tracked in [the release handoff](docs/release-handoff.md).
 
 | Skill | Useful work unit |
 |---|---|
@@ -21,6 +21,8 @@ python3 scripts/check.py
 python3 skills/develop-conops/scripts/conops.py check examples/workshop/conops.json --review
 python3 skills/develop-operational-scenarios/scripts/conops.py view examples/workshop/conops.json S1
 python3 skills/develop-system-concept/scripts/concept.py --help
+python3 scripts/verify.py examples/verifier/valid.json --review
+python3 scripts/verify.py examples/verifier/valid.json --scenario S1 --review --json --detail
 ```
 
 On systems where Python is named `python`, substitute that executable. See each skill's `references/record.md` for its record and command contract.
@@ -28,6 +30,8 @@ On systems where Python is named `python`, substitute that executable. See each 
 The workshop example is synthetic. Passing its checks establishes only the conditions that the helper actually checks. Textual feasibility assessments, source truth, stakeholder acceptance, and implemented-system behavior are not independently verified.
 
 The [synthetic tool-library example](examples/tool-library/README.md) includes a system-concept record, a human view, and a small reproducible calculation. It illustrates explicit unknowns and engineer decisions without creating a full CONOPS.
+
+The [version-2 contract](docs/verifier-v2.md) and [synthetic fixture](examples/verifier/valid.json) specify the finite semantics. Use `--scenario S1 --view` to retrieve a context slice, while running checks against the full model. The [FHWA slice](docs/fhwa-merge-slice.md) is an unaccepted formalization proposal. [FRET reuse](docs/fret-spike.md), [context measurement](docs/context-measurement.md), and the separate [protected-runner boundary](docs/protected-runner.md) record limits and next work.
 
 ## Use the skills
 
@@ -41,7 +45,7 @@ Example requests:
 
 ## Build the next version
 
-Start with [the first-version brief](docs/first-version-brief.md), [the model and verification design](docs/model-and-verification.md), and [the implementation prompt](docs/kickoff-prompt.md). The brief separates agreed objectives from proposed implementation defaults and defines evidence required for completion.
+Start with [the first-version brief](docs/first-version-brief.md), [the model and verification design](docs/model-and-verification.md), and [the implementation prompt](docs/kickoff-prompt.md). The brief separates agreed objectives from implementation defaults and defines evidence required for completion.
 
 The project uses deterministic program results for computable claims. Broader validation still requires evidence and engineering judgment. JSON is a transport format, not a token-efficiency claim; measure context and repair costs before making such claims.
 

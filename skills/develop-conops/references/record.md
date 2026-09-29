@@ -4,6 +4,8 @@ Use Python 3.10+ and `scripts/conops.py`; it has no third-party dependencies. Pa
 
 Both skills use this version-1 format. Reuse an existing record; standalone scenario work can use `scenarios.json`. Keep engineer decisions and proposed assumptions distinguishable in the relevant `basis`, `assumptions`, or `questions` text. A populated field does not prove an engineer endorsed it.
 
+The repository also offers an opt-in version-2 finite verifier (`scripts/verify.py`, contract in `docs/verifier-v2.md`). This version-1 record has no executable guard/effect semantics and is not implicitly adapted to version 2. Its standalone helper remains the correct checker for this format.
+
 The agent writes this record; people can discuss, sketch, or edit natural-language descriptions. JSON is an interchange format, not a claim that JSON is inherently token-efficient or a new engineering language. Keep descriptive text concise, preserve meaning, and do not copy source documents into the record.
 
 Top-level fields: `version` (1), `system`, `actors`, `needs`, `scenarios`, `criteria`, `questions`, `review_notes`. All except `version` may be omitted while drafting. Each object can carry an optional `extra` object for extensions; other unexpected fields are errors to catch misspellings. Stable IDs are unique across actors, needs, scenarios, and criteria. `system` is reserved for the system of interest.

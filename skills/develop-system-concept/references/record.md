@@ -4,6 +4,8 @@ Use Python 3.10+ and `scripts/concept.py`; no third-party dependencies. `init co
 
 Only `version: 1` is required while drafting. Other top-level fields are below. Record maps use unique stable IDs across all groups: an ASCII letter followed by up to 63 letters, digits, underscores, or hyphens; `framing` is reserved. Missing fields and empty strings/lists are allowed in drafts. An optional `extra` object permits extensions in any schema object; other unknown fields are errors. Extension semantics are unchecked.
 
+The repository's opt-in version-2 finite verifier (`scripts/verify.py`, `docs/verifier-v2.md`) uses a separate model. This version-1 concept record is not implicitly converted; its qualitative assessments retain their current meaning and helper checks.
+
 | Field | Contents |
 |---|---|
 | `framing` | Strings `name`, `problem`, `current_state`, `desired_outcome`, `boundary`, `context`, `timeframe`, `basis`. Explain unknowns instead of inventing dates or observations. |

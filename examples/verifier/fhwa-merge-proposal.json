@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "actors": {"RampVehicle": {}, "MainlineVehicle": {}},
+  "properties": {
+    "cooperation_class": {"type": "enum", "values": ["B", "C"], "owner": "input"},
+    "future_path_horizon": {"type": "int", "min": 0, "max": 30, "unit": "s", "scale": "1", "owner": "controlled"}
+  },
+  "data": {"future_path": {"type": "bool"}},
+  "exchanges": {"PathBroadcast": {"from": "RampVehicle", "to": "MainlineVehicle", "fields": {"future_path": {"type": "bool"}}}},
+  "statements": {
+    "BT_N1_03": {"category": "need", "subject": "RampVehicle", "text": "Gather, process, and disseminate data.", "source": "FHWA-HRT-20-064, Table 7, printed p. 33"},
+    "BT_R1_08_subset": {"category": "requirement", "subject": "RampVehicle", "modality": "shall", "source": "FHWA-HRT-20-064, BT-R1.08, Table 7, printed p. 33; proposed horizon-only translation", "when": {"any": [{"ref": "cooperation_class", "op": "==", "value": "B"}, {"ref": "cooperation_class", "op": "==", "value": "C"}]}, "predicate": {"ref": "future_path_horizon", "op": ">=", "value": 15, "unit": "s"}}
+  },
+  "traces": [{"from": "BT_R1_08_subset", "to": "BT_N1_03", "kind": "justifies"}, {"from": "MergeSlice", "to": "BT_R1_08_subset", "kind": "addresses"}],
+  "scenarios": {
+    "MergeSlice": {
+      "start": "ramp", "initial": {"future_path_horizon": 0}, "terminal": {"finished": "illustrative broadcast sequence ended"}, "completion": ["finished"], "require_completion": true,
+      "steps": {
+        "Broadcast": {"from": "ramp", "to": "notified", "exchange": "PathBroadcast", "effects": {"future_path_horizon": 15}, "produces": ["future_path"]},
+        "Receive": {"from": "notified", "to": "finished", "consumes": ["future_path"]}
+      }
+    }
+  }
+}
