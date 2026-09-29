@@ -1,0 +1,11 @@
+{
+  "model_sha256": "516b4abdef9d6db86b61adc712aed6cfec9909e9ff139be3b40ae5e0dce86c5f",
+  "complete": true,
+  "observed_until": {"time": "3", "unit": "seconds"},
+  "events": [
+    {"event": "EventExample::controller::requestReceived", "time": "0", "unit": "seconds", "correlationId": "A"},
+    {"event": "EventExample::controller::requestReceived", "time": "0.5", "unit": "seconds", "correlationId": "B"},
+    {"event": "EventExample::controller::ackSent", "time": "1", "unit": "second", "correlationId": "B"},
+    {"event": "EventExample::controller::ackSent", "time": "2", "unit": "seconds", "correlationId": "A"}
+  ]
+}

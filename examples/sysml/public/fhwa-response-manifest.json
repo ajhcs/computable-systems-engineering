@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "source_revision": "FHWA-HOP-13-047 section 3.6.2; public candidate, not engineer-accepted",
+  "expected": [
+    {"id": "R_FHWA_TIME", "constraint": "firstByteDeadline", "source": "FHWA_3_6_2"}
+  ]
+}

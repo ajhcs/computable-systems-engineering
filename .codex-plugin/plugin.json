@@ -1,7 +1,7 @@
 {
   "name": "computable-systems-engineering",
-  "version": "0.1.0-alpha.1",
-  "description": "Engineer-directed concept, CONOPS, and scenario skills with deterministic structural checks.",
+  "version": "0.2.0-alpha.1",
+  "description": "Engineer-directed concept, CONOPS, and scenario skills with SysML validation and bounded checks.",
   "author": {
     "name": "ajhcs",
     "url": "https://github.com/ajhcs"
@@ -16,11 +16,12 @@
   "interface": {
     "displayName": "Computable Systems Engineering",
     "shortDescription": "Develop concepts with the engineer in control",
-    "longDescription": "Three independently invocable engineering skills with structured records and limited deterministic checks. Formal logic verification is planned and is not yet implemented.",
+    "longDescription": "Three independently invocable engineering skills for SysML v2 drafting, parser validation, and bounded requirement checks. A concept and CONOPS request can share one model; engineer acceptance and general behavioral verification remain outside this alpha.",
     "developerName": "ajhcs and contributors",
     "category": "Productivity",
     "capabilities": [],
     "defaultPrompt": [
+      "Use the system-concept and CONOPS skills on the material below. Keep my raw materials out of Git.",
       "Help me develop a system concept.",
       "Help me investigate a CONOPS.",
       "Help me develop one operational scenario."

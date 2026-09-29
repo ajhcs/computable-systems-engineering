@@ -1,0 +1,4 @@
+{
+  "version": 1,
+  "required": ["R_ack", "R_inhibit", "R_retain"]
+}

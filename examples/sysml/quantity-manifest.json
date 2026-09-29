@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "source_revision": "synthetic-1",
+  "expected": [
+    {"id": "R_DURATION", "constraint": "responseTime", "source": "SYN-04"}
+  ]
+}

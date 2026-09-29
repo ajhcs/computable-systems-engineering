@@ -1,0 +1,22 @@
+{
+  "language_version": 1,
+  "clock": {"period": "1", "unit": "minutes"},
+  "actors": {"Element": {}},
+  "properties": {
+    "activation_started": {"type": "bool", "owner": "input"},
+    "tli_complete": {"type": "bool", "owner": "input"},
+    "supplementary_power_available": {"type": "bool", "owner": "input"},
+    "low_power": {"type": "bool", "owner": "controlled"}
+  },
+  "requirements": {
+    "N_low_power": "Upon activation_started = true, Element shall until supplementary_power_available = true satisfy low_power = true."
+  },
+  "observations": [
+    {"activation_started": true, "tli_complete": false, "supplementary_power_available": false, "low_power": true},
+    {"activation_started": false, "tli_complete": false, "supplementary_power_available": false, "low_power": true},
+    {"activation_started": false, "tli_complete": true, "supplementary_power_available": false, "low_power": true},
+    {"activation_started": false, "tli_complete": true, "supplementary_power_available": false, "low_power": true},
+    {"activation_started": false, "tli_complete": true, "supplementary_power_available": true, "low_power": false}
+  ],
+  "complete": true
+}

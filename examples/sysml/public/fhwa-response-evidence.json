@@ -1,0 +1,34 @@
+{
+  "model_sha256": "a418d4c9929aeaa90005628d269cd6f0448f5727355d2fe5eba3ce89c29d227d",
+  "complete": true,
+  "observed_until": {
+    "time": "61",
+    "unit": "seconds"
+  },
+  "events": [
+    {
+      "event": "FHWAResponseCandidate::center::requestLastByte",
+      "time": "0",
+      "unit": "seconds",
+      "requestId": "A"
+    },
+    {
+      "event": "FHWAResponseCandidate::center::requestLastByte",
+      "time": "0.5",
+      "unit": "seconds",
+      "requestId": "B"
+    },
+    {
+      "event": "FHWAResponseCandidate::center::responseFirstByte",
+      "time": "1",
+      "unit": "seconds",
+      "requestId": "B"
+    },
+    {
+      "event": "FHWAResponseCandidate::center::responseFirstByte",
+      "time": "60",
+      "unit": "seconds",
+      "requestId": "A"
+    }
+  ]
+}

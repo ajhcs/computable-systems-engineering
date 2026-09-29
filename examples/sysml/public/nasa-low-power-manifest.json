@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "source_revision": "Love and Hill 2015 CONOPS page 9; public candidate, not engineer-accepted",
+  "expected": [
+    {"id": "R_NASA_LOW", "constraint": "holdUntilPower", "source": "NASA_LOVE_HILL_P9"}
+  ]
+}

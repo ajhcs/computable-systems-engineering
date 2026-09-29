@@ -1,8 +1,15 @@
-# Concept record
+# Legacy version-1 concept record
+
+This contract remains for existing `concept.json` files and explicit version-1
+work. New recorded concept work defaults to the authoritative SysML v2 model
+described in [sysml.md](sysml.md). No implicit prose-to-predicate conversion is
+performed.
 
 Use Python 3.10+ and `scripts/concept.py`; no third-party dependencies. `init concept.json` creates a draft without overwriting. The agent maintains JSON; people can work through prose, sketches, or discussion. JSON supplies identifiable data and links, not inherently lower token use. Keep descriptions concise and retrieve relevant slices.
 
 Only `version: 1` is required while drafting. Other top-level fields are below. Record maps use unique stable IDs across all groups: an ASCII letter followed by up to 63 letters, digits, underscores, or hyphens; `framing` is reserved. Missing fields and empty strings/lists are allowed in drafts. An optional `extra` object permits extensions in any schema object; other unknown fields are errors. Extension semantics are unchecked.
+
+The repository's opt-in version-2 finite verifier (`scripts/verify.py`, `docs/verifier-v2.md`) uses a separate model. This version-1 concept record is not implicitly converted; its qualitative assessments retain their current meaning and helper checks.
 
 | Field | Contents |
 |---|---|
@@ -40,7 +47,7 @@ Exit codes: 0 = requested structural/completeness checks pass; 1 = structural er
 
 ## Model, views, and program feedback
 
-This record is the current durable representation of engineering knowledge. Prose fields retain unsettled intent and qualitative evidence; they are not executable predicates. A document, diagram, or machine export is a view with a declared scope and source revision. Reconcile view edits back into the record before relying on a new check. No general SysML, Draw.io, Arcadia, or Cameo adapter is implemented here; a future exporter must expose unsupported or lost meaning.
+For a legacy version-1 workflow, this record is the durable representation of engineering knowledge. Prose fields retain unsettled intent and qualitative evidence; they are not executable predicates. A document or diagram is a view with a declared scope and source revision. Reconcile view edits back into the record before relying on a new check. The separate SysML-first path does not silently convert this record.
 
 Keep stable IDs and shared definitions; use `view` to load relevant dependencies and `diff` for changed records. Token efficiency comes from measured payloads and retrieval, not JSON or cryptic abbreviations by themselves. Preserve enough context to interpret each slice.
 

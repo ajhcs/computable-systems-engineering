@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "actors": {"Driver": {}, "System": {}},
+  "properties": {
+    "mode": {"type": "enum", "values": ["merge", "cruise"], "owner": "input"},
+    "request": {"type": "bool", "owner": "input"},
+    "speed": {"type": "int", "min": 0, "max": 2, "unit": "m/s", "scale": "1", "owner": "controlled"}
+  },
+  "data": {"gap": {"type": "bool"}},
+  "exchanges": {"GapNotice": {"from": "Driver", "to": "System", "fields": {"gap": {"type": "bool"}}}},
+  "statements": {
+    "N1": {"category": "need", "subject": "Driver", "text": "Support a merge request."},
+    "R1": {"category": "requirement", "subject": "System", "modality": "shall", "when": {"ref": "mode", "op": "==", "value": "merge"}, "predicate": {"ref": "speed", "op": ">=", "value": 1, "unit": "m/s"}},
+    "R2": {"category": "requirement", "subject": "System", "modality": "shall", "when": {"ref": "mode", "op": "==", "value": "cruise"}, "predicate": {"ref": "speed", "op": "==", "value": 0, "unit": "m/s"}}
+  },
+  "traces": [{"from": "R1", "to": "N1", "kind": "justifies"}, {"from": "R2", "to": "N1", "kind": "justifies"}, {"from": "S1", "to": "R1", "kind": "addresses"}],
+  "scenarios": {
+    "S1": {
+      "start": "idle", "initial": {"speed": 0}, "external_at": ["idle", "waiting"],
+      "terminal": {"done": "merge request completed"}, "completion": ["done"], "require_completion": true,
+      "steps": {
+        "T1": {"from": "idle", "to": "waiting", "guard": {"ref": "request", "op": "==", "value": true}, "exchange": "GapNotice", "produces": ["gap"]},
+        "T2": {"from": "waiting", "to": "done", "guard": {"ref": "mode", "op": "==", "value": "merge"}, "consumes": ["gap"], "effects": {"speed": 1}}
+      }
+    }
+  }
+}

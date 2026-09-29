@@ -1,5 +1,6 @@
 # Working on this project
 
+- The repository registers its three skills through `.agents/skills/`. For a user request to use the system-concept, CONOPS, or operational-scenarios skills, read the matching local `skills/develop-*/SKILL.md` instructions. Accept natural skill names; do not require exact identifiers. When multiple skills are requested, apply them to one shared model and run each relevant draft-shape check. Concept plus scenario work does not require a complete CONOPS. Handle model files and commands for the engineer.
 - Read `docs/first-version-brief.md` and the relevant skill's record contract before changing semantics. Use `python3 scripts/check.py` for the current regression suite.
 - Preserve engineer authority over accepted intent, obligations, applicability, units, thresholds, and selection. Routine implementation and draft repairs proceed within the requested scope. Surface consequential meaning changes as proposals.
 - Keep the three skills independently invocable. Their existing version-1 records are structural drafting formats; do not claim they already encode executable scenario logic.

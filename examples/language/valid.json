@@ -1,0 +1,28 @@
+{
+  "language_version": 1,
+  "clock": {"period": "500", "unit": "milliseconds"},
+  "actors": {"Controller": {}},
+  "properties": {
+    "mode": {"type": "enum", "values": ["active", "inactive"], "owner": "input"},
+    "inhibited": {"type": "bool", "owner": "input"},
+    "output_enabled": {"type": "bool", "owner": "controlled"},
+    "request": {"type": "bool", "owner": "input"},
+    "acknowledged": {"type": "bool", "owner": "controlled"},
+    "pending": {"type": "bool", "owner": "input"},
+    "released": {"type": "bool", "owner": "input"},
+    "retained": {"type": "bool", "owner": "controlled"}
+  },
+  "requirements": {
+    "R_inhibit": "In mode = active, whenever inhibited = true, Controller shall always satisfy output_enabled = false.",
+    "R_ack": "In mode = active, upon request = true, Controller shall within 2 seconds satisfy acknowledged = true.",
+    "R_retain": "In mode = active, upon pending = true, Controller shall until released = true satisfy retained = true."
+  },
+  "observations": [
+    {"mode": "active", "inhibited": false, "output_enabled": true, "request": false, "acknowledged": false, "pending": false, "released": false, "retained": false},
+    {"mode": "active", "inhibited": true, "output_enabled": false, "request": true, "acknowledged": false, "pending": true, "released": false, "retained": true},
+    {"mode": "active", "inhibited": true, "output_enabled": false, "request": true, "acknowledged": false, "pending": true, "released": false, "retained": true},
+    {"mode": "active", "inhibited": false, "output_enabled": true, "request": true, "acknowledged": true, "pending": true, "released": false, "retained": true},
+    {"mode": "active", "inhibited": false, "output_enabled": true, "request": false, "acknowledged": true, "pending": true, "released": true, "retained": false}
+  ],
+  "complete": true
+}

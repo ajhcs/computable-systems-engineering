@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "source_revision": "synthetic-1",
+  "expected": [
+    {"id": "R_COMPOSED", "constraint": "responseTime", "source": "SYN-03"}
+  ]
+}
