@@ -11,8 +11,9 @@ temporary compiler inputs, not a second saved model.
 The adapter uses the actual [OMG SysML v2 Pilot Implementation](https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation), release `2025-09`, kernel
 `0.52.0`. `python3 scripts/install_sysml_parser.py` downloads a pinned archive,
 verifies its SHA-256, extracts the jar and model libraries into ignored `.cache`,
-and compiles the small Java bridge. It requires Java and `javac` (tested locally
-with Java 26 on Linux). The upstream jar and libraries are not committed here.
+and compiles the small Java bridge for Java 21. It requires Java 21+ and `javac`
+21+ (tested locally with Java 26 on Linux; CI explicitly uses Java 21). The
+upstream jar and libraries are not committed here.
 The adapter checks the compiled bridge against its source hash and requires
 rerunning the installer after bridge changes.
 See the upstream license files in the extracted cache; the pilot repository

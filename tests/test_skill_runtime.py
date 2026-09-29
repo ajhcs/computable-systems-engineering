@@ -1,6 +1,7 @@
 """Real repo skill discovery paths and CLI use from another working directory."""
 
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -16,6 +17,18 @@ PARSER_AVAILABLE = JAR.is_file() and (CLASSES / "SysmlBridge.class").is_file()
 
 
 class RuntimeTests(unittest.TestCase):
+    def test_installer_explains_unsupported_java_before_download_or_compile(self):
+        (ROOT / ".tmp").mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / ".tmp") as directory:
+            java = Path(directory) / "java"
+            java.write_text("#!/bin/sh\nprintf 'openjdk 17.0.9\\n'\n")
+            java.chmod(0o755)
+            result = subprocess.run([sys.executable, "-B", str(ROOT / "scripts/install_sysml_parser.py")],
+                                    env=dict(os.environ, PATH=directory), text=True, capture_output=True)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("requires Java 21+ and javac 21+", result.stderr)
+            self.assertNotIn("bad class file", result.stderr)
+
     def test_repo_skill_links_resolve_to_complete_skills(self):
         for name in SKILLS:
             skill = ROOT / ".agents/skills" / name

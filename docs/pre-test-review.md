@@ -32,17 +32,18 @@ engineer decisions.
   properties, specialized declarations, or native values are not computed.
   Valid SysML syntax remains separately checkable.
 - Required the pinned SysML parser in CI so integration tests cannot disappear
-  behind a missing dependency.
+  behind a missing dependency. CI selects Java 21 explicitly, and the installer
+  checks for Java and javac 21+ before downloading or compiling the parser.
 
 ## Evidence
 
-`python3 scripts/check.py --require-sysml` passed all **173 tests** across 13
+`python3 scripts/check.py --require-sysml` passed all **174 tests** across 13
 suites on Linux. These include the legacy skill helpers, finite JSON verifier,
 controlled grammar/types/units, independent short-trace oracle comparisons,
 missing scope/evidence and analysis limits, correlated deadlines, synthetic
 variable influence, SysML binding and unsupported-feature gates, public-source
-candidate slices, views/diffs, and shared skill launchers. The launcher suite
-was rerun after a final diagnostic wording correction and passed its four tests.
+candidate slices, views/diffs, shared skill launchers, and an unsupported-Java
+prerequisite diagnostic. The launcher/prerequisite suite contains five tests.
 All three skills also passed the skill metadata validator.
 
 A local Codex `skills/list` query reported all three engineering skills as

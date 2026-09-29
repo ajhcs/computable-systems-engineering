@@ -3,6 +3,7 @@
 
 from hashlib import sha256
 from pathlib import Path
+import re
 import subprocess
 import sys
 from urllib.request import urlopen
@@ -30,6 +31,17 @@ def digest(path):
 
 
 def main():
+    # The pinned pilot contains Java 21 class files. Check before downloading.
+    for command in (["java", "--version"], ["javac", "-version"]):
+        try:
+            result = subprocess.run(command, capture_output=True, text=True, timeout=10, check=False)
+        except (OSError, subprocess.TimeoutExpired):
+            print("The SysML parser requires Java 21+ and javac 21+ on PATH.", file=sys.stderr)
+            return 1
+        version = re.search(r'\b(?:openjdk|java|javac) (?:version )?"?(\d+)', result.stdout + result.stderr)
+        if result.returncode or not version or int(version.group(1)) < 21:
+            print("The SysML parser requires Java 21+ and javac 21+ on PATH.", file=sys.stderr)
+            return 1
     CACHE.mkdir(parents=True, exist_ok=True)
     if not ARCHIVE.exists():
         partial = ARCHIVE.with_suffix(".partial")
@@ -56,7 +68,7 @@ def main():
                     return 1
                 archive.extract(member, PILOT)
     CLASSES.mkdir(exist_ok=True)
-    build = subprocess.run(["javac", "-cp", str(JAR), "-d", str(CLASSES), str(SOURCE)], check=False)
+    build = subprocess.run(["javac", "--release", "21", "-cp", str(JAR), "-d", str(CLASSES), str(SOURCE)], check=False)
     if build.returncode:
         return build.returncode
     SOURCE_STAMP.write_text(digest(SOURCE) + "\n")

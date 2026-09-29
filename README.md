@@ -14,7 +14,7 @@ A complete document is optional. Missing information can remain an explicit unkn
 
 ## Try the current helpers
 
-Python 3.10 or newer; the version-1 helpers use only the standard library. SysML validation additionally requires Java, `javac`, and the pinned pilot parser installed into the ignored project cache. Run from this directory:
+Python 3.10 or newer; the version-1 helpers use only the standard library. SysML validation additionally requires Java 21+, `javac` 21+, and the pinned pilot parser installed into the ignored project cache. Run from this directory:
 
 ```bash
 python3 scripts/check.py
