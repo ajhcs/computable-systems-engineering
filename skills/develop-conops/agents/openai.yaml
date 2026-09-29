@@ -1,0 +1,4 @@
+interface:
+  display_name: "Develop a CONOPS"
+  short_description: "Investigate operations with the systems engineer"
+  default_prompt: "Use $develop-conops to help me investigate or develop the requested part of my CONOPS, preserving my decisions and running the available program checks."

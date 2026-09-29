@@ -1,0 +1,26 @@
+Conditional capacity check
+Input basis: ../input.md. Ten arrivals in 30 minutes and three minutes per
+loan/return are volunteer recollections, not measurements.
+Baseline assumption: one transaction per arrival and one continuously available volunteer.
+Recalled peak arrival rate: 20 arrivals/hour.
+Required work: 10 x 1 x 3 = 30 volunteer-minutes in 30 minutes.
+Nominal utilization: 100%.
+Nominal capacity: 20 transactions/hour; 40 transactions in two hours.
+This leaves no nominal time margin for interruptions or reconciliation.
+Forty members does not imply forty transactions in an opening window.
+
+Illustrative sensitivity (hypothetical inputs, not candidate performance predictions):
+minutes/transaction | transactions/arrival | work minutes/30 minutes | nominal load
+                  2 |                    1 |                      20 |          67%
+                  3 |                    1 |                      30 |         100%
+                  4 |                    1 |                      40 |         133%
+                  3 |                    2 |                      60 |         200%
+
+Loads above 100% exceed the interval's service capacity; loads below 100%
+still do not predict waiting, because arrival timing and service variability matter.
+No expected wait, acceptable-wait threshold, or candidate speed improvement is inferred.
+A utilization of 100% is a headroom concern, not proof of observed overload.
+The steady-state queue assumptions needed for a wait formula have not been established.
+
+Checks run: exact arithmetic assertions for recalled baseline and sensitivity rows.
+Result: PASS. This verifies arithmetic only, not the recalled inputs or feasibility.

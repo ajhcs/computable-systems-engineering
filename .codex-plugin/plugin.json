@@ -1,0 +1,32 @@
+{
+  "name": "computable-systems-engineering",
+  "version": "0.1.0-alpha.1",
+  "description": "Engineer-directed concept, CONOPS, and scenario skills with deterministic structural checks.",
+  "author": {
+    "name": "ajhcs",
+    "url": "https://github.com/ajhcs"
+  },
+  "skills": "./skills/",
+  "keywords": [
+    "systems-engineering",
+    "conops",
+    "verification",
+    "conceptual-design"
+  ],
+  "interface": {
+    "displayName": "Computable Systems Engineering",
+    "shortDescription": "Develop concepts with the engineer in control",
+    "longDescription": "Three independently invocable engineering skills with structured records and limited deterministic checks. Formal logic verification is planned and is not yet implemented.",
+    "developerName": "ajhcs and contributors",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Help me develop a system concept.",
+      "Help me investigate a CONOPS.",
+      "Help me develop one operational scenario."
+    ]
+  },
+  "license": "MIT",
+  "repository": "https://github.com/ajhcs/computable-systems-engineering",
+  "homepage": "https://github.com/ajhcs/computable-systems-engineering"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Develop Operational Scenarios"
+  short_description: "Elicit and model scenarios with the engineer"
+  default_prompt: "Use $develop-operational-scenarios to help me investigate or develop one scenario, keeping assumptions visible and running the available program checks."

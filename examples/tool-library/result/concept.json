@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "framing": {
+    "name": "Initial community tool library concept",
+    "problem": "Members find tools marked available already borrowed because the separate board is updated irregularly.",
+    "current_state": "Private paper loan/return ledger and a separate availability board; about 40 members, usually one volunteer, two-hour Saturday opening. An old laptop exists but is unassessed.",
+    "desired_outcome": "Fewer wasted member visits and less volunteer administration; no accepted target magnitude.",
+    "boundary": "Essential functions and two concept candidates for handover, volunteer authorization, records, member availability, reconciliation, and recovery. Detailed scenarios and a complete CONOPS are outside scope. A remote checking channel is not specified.",
+    "context": "Upfront spend must not exceed $200; no recurring software budget. Internet sometimes fails. Member-facing information must not publicly expose other borrowers' identities. Volunteer authorization remains mandatory. Timing and arrival estimates are recollections.",
+    "timeframe": "Opening window is two hours on Saturday. No implementation date, trial length, or outcome assessment timeframe has been agreed.",
+    "basis": "Only the supplied synthetic request in ../input.md. Proposed workflow details, evaluations, and recommendations have not been accepted. No external research or observations."
+  },
+  "needs": {
+    "N_VISITS": {
+      "text": "Members need trustworthy tool availability to reduce wasted visits.",
+      "stakeholder": "Members",
+      "basis": "Supplied problem and desired outcome; location and timing of availability checking remain unknown."
+    },
+    "N_ADMIN": {
+      "text": "Volunteers need less administrative work within the opening window.",
+      "stakeholder": "Volunteers",
+      "basis": "Supplied desired outcome, usually one volunteer and a two-hour opening; no workload or wait threshold accepted."
+    },
+    "N_CONTROL": {
+      "text": "The on-duty volunteer must authorize each loan.",
+      "stakeholder": "Library and on-duty volunteer",
+      "basis": "Explicit existing rule in the supplied request."
+    },
+    "N_PRIVACY": {
+      "text": "Borrower identities must be withheld from public availability information.",
+      "stakeholder": "Borrowers",
+      "basis": "Explicit privacy constraint in the supplied request."
+    },
+    "N_RESOURCES": {
+      "text": "The library needs an approach within its money and support capacity.",
+      "stakeholder": "Library organizers and volunteers",
+      "basis": "Explicit $200 upfront ceiling, no recurring software budget, and unassessed laptop maintenance burden. Support capacity itself is unknown."
+    },
+    "N_CONTINUITY": {
+      "text": "The library needs usable records and availability despite internet interruptions and operational errors.",
+      "stakeholder": "Members and volunteers",
+      "basis": "Inferred from supplied internet outages and record/board inconsistency; recovery expectations remain to be agreed."
+    }
+  },
+  "functions": {
+    "F_AUTHORIZE": {
+      "text": "Obtain the on-duty volunteer's authorization before each loan.",
+      "needs": ["N_CONTROL"],
+      "inputs": ["Member loan request", "Current tool status"],
+      "outputs": ["Volunteer authorization or refusal"]
+    },
+    "F_LOAN": {
+      "text": "Record an authorized tool handover and update its loan status.",
+      "needs": ["N_VISITS", "N_ADMIN", "N_CONTROL"],
+      "inputs": ["Volunteer authorization", "Tool handed to member"],
+      "outputs": ["Private loan record", "Borrowed tool status"]
+    },
+    "F_RETURN": {
+      "text": "Record receipt of a returned tool and update its availability.",
+      "needs": ["N_VISITS", "N_ADMIN"],
+      "inputs": ["Tool received back", "Existing loan record"],
+      "outputs": ["Closed loan", "Updated tool availability"]
+    },
+    "F_PUBLISH": {
+      "text": "Present tool availability to members without public borrower identities.",
+      "needs": ["N_VISITS", "N_PRIVACY"],
+      "inputs": ["Authoritative tool status"],
+      "outputs": ["Member-facing tool/status information"]
+    },
+    "F_RECONCILE": {
+      "text": "Detect and correct discrepancies between records, displayed status, and physical stock.",
+      "needs": ["N_VISITS", "N_ADMIN", "N_CONTINUITY"],
+      "inputs": ["Loan/return record", "Displayed availability", "Physical stock and discrepancy reports"],
+      "outputs": ["Corrected record and availability display", "Unresolved discrepancy for volunteer review"]
+    },
+    "F_RECOVER": {
+      "text": "Preserve operational records and restore a current usable record after disruption.",
+      "needs": ["N_CONTINUITY", "N_RESOURCES", "N_PRIVACY"],
+      "inputs": ["Operational record", "Retained recovery material", "Disruption or record damage"],
+      "outputs": ["Recovered usable record", "Discrepancies requiring reconciliation"]
+    }
+  },
+  "criteria": {
+    "C_BUDGET": {
+      "text": "At most $200 upfront spending and no recurring software cost.",
+      "kind": "constraint",
+      "needs": ["N_RESOURCES"],
+      "basis": "Explicit user constraints; maintenance labor is evaluated separately, not treated as free.",
+      "measure": "Inventory and actual priced upfront total, plus software licensing/subscription terms; neither candidate has been priced."
+    },
+    "C_AUTH": {
+      "text": "Each loan retains on-duty volunteer authorization.",
+      "kind": "constraint",
+      "needs": ["N_CONTROL"],
+      "basis": "Explicit existing rule that the user asked to preserve.",
+      "measure": "Review and rehearse each candidate's loan action for volunteer authorization before handover."
+    },
+    "C_PRIVACY": {
+      "text": "Member-facing information must not publicly display other borrowers' identities.",
+      "kind": "constraint",
+      "needs": ["N_PRIVACY"],
+      "basis": "Explicit supplied privacy constraint.",
+      "measure": "Inspect the public board/view and member access route with dummy borrower records."
+    },
+    "C_CHECK": {
+      "text": "Members can check tool availability.",
+      "kind": "constraint",
+      "needs": ["N_VISITS"],
+      "basis": "Explicit user need; whether this means before travel, on site, or both is unresolved.",
+      "measure": "Member walkthrough of checking location, accessibility, freshness, and meaning of displayed status; no remote channel is yet specified."
+    },
+    "C_VISITS": {
+      "text": "Reduce wasted member visits associated with incorrect availability.",
+      "kind": "goal",
+      "needs": ["N_VISITS"],
+      "basis": "Explicit desired outcome; no accepted reduction target or criterion weight.",
+      "measure": "Compare reasons and counts/rates of wasted visits and false-available displays against a measured baseline, with checking channel and observation exposure recorded."
+    },
+    "C_ADMIN": {
+      "text": "Reduce total volunteer administration, including upkeep and recovery.",
+      "kind": "goal",
+      "needs": ["N_ADMIN", "N_RESOURCES"],
+      "basis": "Explicit desired outcome; no accepted target or criterion weight.",
+      "measure": "Transaction handling, reconciliation, setup/training, troubleshooting, and ongoing upkeep time; distinguish per-session from occasional effort."
+    },
+    "C_RELIABILITY": {
+      "text": "Maintain usable, consistent records through internet outages, interruptions, and recoverable errors.",
+      "kind": "goal",
+      "needs": ["N_CONTINUITY", "N_VISITS"],
+      "basis": "Supplied outage context and inconsistency problem; recovery time, tolerated data loss, and criterion weight are not agreed.",
+      "measure": "Offline and interruption rehearsal, discrepancy frequency, recovery effort, and residual lost/uncertain entries; expectations require engineer agreement."
+    },
+    "C_WAIT": {
+      "text": "Understand member convenience and waiting effects before selecting a concept.",
+      "kind": "goal",
+      "needs": ["N_VISITS", "N_ADMIN"],
+      "basis": "User has not agreed to a maximum acceptable wait or a convenience weight; this is an unweighted comparison dimension, not an accepted service threshold.",
+      "measure": "Observe arrival timing, transaction counts per visit, service-time variation, queues and actual waits; report distributions without a fabricated pass/fail threshold."
+    }
+  },
+  "concepts": {
+    "K_PAPER": {
+      "summary": "Improve the paper ledger/availability-board workflow: private authoritative ledger, tool-only public board, paired updates at every handover, and reconciliation before opening and after a discrepancy. Proposed workflow, not validated.",
+      "functions": ["F_AUTHORIZE", "F_LOAN", "F_RETURN", "F_PUBLISH", "F_RECONCILE", "F_RECOVER"],
+      "allocations": [
+        {"function": "F_AUTHORIZE", "element": "On-duty volunteer"},
+        {"function": "F_LOAN", "element": "Volunteer and private paper ledger"},
+        {"function": "F_RETURN", "element": "Volunteer and private paper ledger"},
+        {"function": "F_PUBLISH", "element": "Volunteer-maintained public tool/status board"},
+        {"function": "F_RECONCILE", "element": "Volunteer comparing ledger, board, and stock"},
+        {"function": "F_RECOVER", "element": "Retained pages/recovery material and volunteer reconciliation; method to agree"}
+      ],
+      "operations": [],
+      "assumptions": [
+        "Tools can be identified consistently in ledger and board; present identifiers are unknown.",
+        "A volunteer can complete paired updates despite interruptions; this is untested and may add time.",
+        "The private ledger can be kept out of public view; actual layout has not been inspected.",
+        "Materials and a workable retention/recovery method can fit the budget; costs are not established.",
+        "The current candidate provides on-site checking only; before-travel checking needs a separate arrangement."
+      ],
+      "assessments": {
+        "C_BUDGET": {"finding": "unknown", "evidence": "analysis", "basis": "No software is proposed, satisfying the recurring-software-cost condition by design. Existing materials and any replacement or recovery materials have not been inventoried or priced; the complete spending constraint is unverified.", "next_check": "Inventory usable materials and price all required additions against $200 before spending."},
+        "C_AUTH": {"finding": "supported", "evidence": "analysis", "basis": "The proposed allocation explicitly retains the on-duty volunteer's authorization before recording/handover. This is a concept-level property, not observed execution.", "next_check": "Walk through a sample loan with a volunteer and confirm the rule is preserved."},
+        "C_PRIVACY": {"finding": "supported", "evidence": "assumption", "basis": "Conditional on a tools/status-only board and a ledger kept with the volunteer. Actual visibility and access have not been checked.", "next_check": "Inspect the intended board and ledger placement using dummy borrower information."},
+        "C_CHECK": {"finding": "unknown", "evidence": "analysis", "basis": "A board enables on-site checking in principle; location, accessibility, and freshness are untested. Before-travel checking is unresolved and is not supplied by an on-site board alone.", "next_check": "Confirm where and when members need to check, then walk through that access route."},
+        "C_VISITS": {"finding": "unknown", "evidence": "analysis", "basis": "Paired updates address the stated missed-update mechanism but still require duplicate entries. No trial or before-travel information path demonstrates fewer wasted trips.", "next_check": "Observe baseline false-available incidents and wasted-visit reasons, then compare an agreed paper trial with checking behavior recorded."},
+        "C_ADMIN": {"finding": "unknown", "evidence": "analysis", "basis": "Consistent board updating/reconciliation adds immediate effort and might reduce later corrections. There is no measured total-effort comparison.", "next_check": "Time handling, reconciliation, and corrections in baseline and paper trial, including interruptions."},
+        "C_RELIABILITY": {"finding": "unknown", "evidence": "analysis", "basis": "Paper operation does not need internet or the old laptop. Missed paired updates, illegibility, lost pages, and a not-yet-defined recovery practice leave overall reliability unverified.", "next_check": "Rehearse an interrupted update and recovery of a damaged/missing record using dummy records; agree retention and recovery expectations."},
+        "C_WAIT": {"finding": "unknown", "evidence": "analysis", "basis": "capacity-check.txt: supplied recollections imply 100% nominal peak utilization if one transaction per arrival. Paper-specific service time and arrival variability are unmeasured; no accepted wait threshold exists.", "next_check": "Measure waits, arrivals, transactions per visit, and service times during the trial; ask the engineer to set any required wait limit."}
+      },
+      "evaluation": {
+        "method": "Proposed baseline observation followed by an agreed paper-workflow trial, plus dummy-record interruption/privacy/recovery walkthroughs; seek member and volunteer feedback. No evaluation has been completed.",
+        "data": "Arrival and transaction timestamps/counts, waits, false-available discrepancies, wasted-visit reasons and checking channel, total administrative time, costs, and recovery effort. Agree observation period and avoid unnecessary borrower identity collection.",
+        "environment": "Actual Saturday opening with usual staffing for agreed observation; prepare a private ledger and tools/status-only board. Use dummy records for disruptive rehearsals."
+      },
+      "comparison": "Recommended first exploration as a baseline because it directly addresses the known coordination failure with low technical dependency. It retains duplicate updates and may increase immediate workload. Recommendation is proposed, with neither cost compliance nor outcome improvement demonstrated."
+    },
+    "K_LAPTOP": {
+      "summary": "Local offline ledger on the existing laptop: volunteer enters authorized loans and returns once; the same stored state generates a separate member-facing tool/status view. No product or application has been chosen.",
+      "functions": ["F_AUTHORIZE", "F_LOAN", "F_RETURN", "F_PUBLISH", "F_RECONCILE", "F_RECOVER"],
+      "allocations": [
+        {"function": "F_AUTHORIZE", "element": "On-duty volunteer"},
+        {"function": "F_LOAN", "element": "Volunteer and private local ledger on laptop"},
+        {"function": "F_RETURN", "element": "Volunteer and private local ledger on laptop"},
+        {"function": "F_PUBLISH", "element": "Separate tools/status-only view derived from the same local data"},
+        {"function": "F_RECONCILE", "element": "Volunteer comparing local records, displayed status, and stock"},
+        {"function": "F_RECOVER", "element": "Recoverable copy plus temporary paper record and reconciliation; owner and method unresolved"}
+      ],
+      "operations": [],
+      "assumptions": [
+        "The old laptop can be made reliable and usable within the upfront ceiling; condition and costs are unknown.",
+        "A suitable ledger can operate locally without a recurring software charge; no software is selected or tested.",
+        "Private records and a member-facing status view can be separated without exposing identities; implementation and shared-device usability are untested.",
+        "Tool identifiers and loan states can be represented consistently; required data has not been inventoried.",
+        "A person can undertake upkeep and record recovery; ownership and effort are unresolved.",
+        "No remote availability publication is included in this candidate."
+      ],
+      "assessments": {
+        "C_BUDGET": {"finding": "unknown", "evidence": "unknown", "basis": "The laptop exists, but condition, repair/storage/recovery provision costs, and suitable software terms are unknown. Existing hardware does not establish zero setup or upkeep cost.", "next_check": "Assess laptop condition and necessary additions; identify an offline ledger with no recurring software charge and price the full upfront package against $200."},
+        "C_AUTH": {"finding": "supported", "evidence": "analysis", "basis": "The proposed ledger remains volunteer-operated; each loan requires the on-duty volunteer's authorization. Automation of public status does not authorize a loan.", "next_check": "Rehearse authorized and refused loans with a volunteer in the proposed interface."},
+        "C_PRIVACY": {"finding": "supported", "evidence": "assumption", "basis": "Conditional on members seeing only a sanitized tool/status view and being unable to enter the private ledger. The actual application and member access route do not yet exist.", "next_check": "Use dummy borrower data to verify visible fields and access separation on the actual shared laptop."},
+        "C_CHECK": {"finding": "unknown", "evidence": "analysis", "basis": "A generated local view could support on-site checks. Shared-laptop access, accessibility, and before-travel checking are unresolved; offline storage alone provides no remote access.", "next_check": "Agree checking location/timing and rehearse member checking while the volunteer is using the ledger."},
+        "C_VISITS": {"finding": "unknown", "evidence": "analysis", "basis": "A generated view could eliminate separate-board update lag, but incorrect/missed transaction entry and physical discrepancies remain. No trial or remote information path shows fewer wasted visits.", "next_check": "Compare discrepancies and member checking behavior against the paper baseline before an outcome claim."},
+        "C_ADMIN": {"finding": "unknown", "evidence": "analysis", "basis": "Single entry may save duplicate updating; entry effort, training, maintenance, and recovery can offset it. No measured comparison or named upkeep owner exists.", "next_check": "Rehearse representative dummy transactions; measure total handling and recovery time and estimate ongoing upkeep with a prospective owner."},
+        "C_RELIABILITY": {"finding": "unknown", "evidence": "analysis", "basis": "Local operation is intended to survive internet loss, but hardware/storage/power failures and software suitability are untested. Recoverable copies and temporary paper reconciliation are proposed, not demonstrated.", "next_check": "Assess hardware, run offline transactions, rehearse interruption/recovery and temporary paper reconciliation, and agree recovery expectations."},
+        "C_WAIT": {"finding": "unknown", "evidence": "analysis", "basis": "capacity-check.txt: baseline recollections imply no nominal spare capacity at the recalled peak. No evidence establishes that laptop entry is faster; one volunteer still authorizes and handles tools. No wait limit is accepted.", "next_check": "Measure laptop handling-time variation and shared-device interference, then combine with observed arrival/transaction data; agree any wait threshold before judging acceptability."}
+      },
+      "evaluation": {
+        "method": "Proposed laptop readiness/cost assessment followed by an offline dummy-data rehearsal comparing entry, status, privacy, interruptions, and recovery against the paper baseline; obtain volunteer/member feedback before any live trial.",
+        "data": "Hardware condition, priced additions, software cost terms, entry times/errors, public-view exposure, shared-device access issues, recovered/lost records, and setup/upkeep effort. No such measurements have been collected.",
+        "environment": "Existing laptop without internet, representative dummy tools/borrowers, and the usual one-volunteer arrangement; prepare a candidate ledger, sanitized view, recoverable copy, and temporary paper record."
+      },
+      "comparison": "Potentially removes duplicate status maintenance, but introduces device, software, privacy-access, training, and recovery work. Keep open as a comparison candidate; no weighted score or final preference has been accepted, and budget/feasibility are unknown."
+    }
+  },
+  "operations": {},
+  "decisions": {
+    "D_RULE": {
+      "text": "Preserve on-duty volunteer authorization for each loan.",
+      "status": "accepted",
+      "by": "User, supplied request in ../input.md",
+      "basis": "The request states: Our existing rule is that the on-duty volunteer authorizes each loan; preserve that rule.",
+      "affects": ["N_CONTROL", "C_AUTH", "F_AUTHORIZE", "F_LOAN", "K_PAPER", "K_LAPTOP"]
+    },
+    "D_SCOPE": {
+      "text": "Limit this session to essential functions and the two supplied concept approaches; no detailed scenarios or complete CONOPS.",
+      "status": "accepted",
+      "by": "User, supplied request in ../input.md",
+      "basis": "The user explicitly scoped the session and excluded detailed operational scenarios and a complete CONOPS.",
+      "affects": ["framing", "K_PAPER", "K_LAPTOP"]
+    },
+    "D_EXPLORE": {
+      "text": "Recommend a paper-workflow baseline trial as the next exploration, keeping the laptop candidate open for readiness assessment and rehearsal.",
+      "status": "proposed",
+      "by": "Assistant recommendation for engineer decision",
+      "basis": "Directly addresses the known missed board-update mechanism with low technical dependency. Unknown costs, workload effects, and checking channel prevent a demonstrated-feasibility or outcome claim.",
+      "affects": ["K_PAPER", "K_LAPTOP", "C_VISITS", "C_ADMIN"]
+    },
+    "D_SELECTION": {
+      "text": "No final concept selection, quantitative criterion weights, maximum wait, or trial duration is recorded; these remain with the engineer.",
+      "status": "deferred",
+      "by": "Unresolved in supplied request; retained for user decision",
+      "basis": "The user wants to decide the direction after this comparison and has not agreed on wait or weights.",
+      "affects": ["K_PAPER", "K_LAPTOP", "C_WAIT", "C_ADMIN", "C_VISITS", "C_RELIABILITY"]
+    }
+  },
+  "questions": [
+    {"text": "Which next exploration does the engineer choose: paper baseline trial as recommended, or laptop readiness assessment and rehearsal? No activity is yet authorized by this recommendation.", "affects": ["D_EXPLORE", "K_PAPER", "K_LAPTOP"], "blocking": false},
+    {"text": "Must members check current availability before travel, on site, or both? Before-travel access would require an additional communication mechanism for either candidate.", "affects": ["N_VISITS", "F_PUBLISH", "C_CHECK", "C_VISITS", "K_PAPER", "K_LAPTOP"], "blocking": false},
+    {"text": "What are measured arrival patterns, transactions per visit, service-time variation, actual waits, administrative effort, and wasted-visit reasons?", "affects": ["C_WAIT", "C_ADMIN", "C_VISITS", "K_PAPER", "K_LAPTOP"], "blocking": false},
+    {"text": "Which tradeoffs and any wait/improvement targets should govern a later decision? No weights or thresholds are invented for this comparison.", "affects": ["D_SELECTION", "C_WAIT", "C_ADMIN", "C_VISITS", "C_RELIABILITY"], "blocking": false},
+    {"text": "Which existing materials are usable, what is the laptop's condition, and what is each candidate's complete upfront cost?", "affects": ["N_RESOURCES", "C_BUDGET", "K_PAPER", "K_LAPTOP"], "blocking": false},
+    {"text": "Who can own upkeep and recovery, and what record loss or recovery delay is acceptable?", "affects": ["F_RECOVER", "C_ADMIN", "C_RELIABILITY", "K_PAPER", "K_LAPTOP"], "blocking": false},
+    {"text": "What trial duration and observation approach will the engineer accept? Open questions do not block this initial comparison, but relevant answers are needed before implementation or outcome validation.", "affects": ["K_PAPER", "K_LAPTOP", "D_EXPLORE"], "blocking": false}
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "system": {
+    "name": "Workshop equipment reservation concept",
+    "purpose": "Let workshop members know whether equipment has been reserved for their requested time.",
+    "boundary": "Inside: reservation coordination. Outside: members, equipment use, and the external availability register. Entire example is synthetic."
+  },
+  "actors": {
+    "member": "Workshop member requesting an equipment reservation",
+    "register": "External equipment availability register"
+  },
+  "needs": {
+    "N1": {
+      "text": "A member can distinguish a confirmed reservation from an unresolved request.",
+      "actor": "member",
+      "basis": "Illustrative need invented for this skill demonstration; not validated with actual members."
+    }
+  },
+  "scenarios": {
+    "S1": {
+      "need": "N1",
+      "kind": "normal",
+      "setting": "The workshop is open and the external availability register responds.",
+      "trigger": "A member requests an available equipment time.",
+      "steps": [
+        {"from": "member", "to": "system", "exchange": "Equipment and requested time"},
+        {"from": "system", "to": "register", "exchange": "Reservation request"},
+        {"from": "register", "to": "system", "exchange": "Reservation acknowledgment and reference"},
+        {"from": "system", "to": "member", "exchange": "Confirmation containing the reservation reference"}
+      ],
+      "outcome": "The member receives a confirmation referring to the register's acknowledgment.",
+      "assumptions": ["The register's acknowledgment represents an actual reservation; that external contract needs separate validation."],
+      "evaluation": {
+        "method": "Replay a request and compare the visible response with the external acknowledgment.",
+        "data": "Synthetic available and occupied equipment slots, request IDs, acknowledgments, and timestamps.",
+        "environment": "A simulated member and availability register; no production system or actual reservations."
+      }
+    }
+  },
+  "criteria": {
+    "C1": {
+      "scenario": "S1",
+      "metric": "Time from received request to visible confirmation under the stated scenario",
+      "op": "<=",
+      "value": 2,
+      "unit": "s",
+      "basis": "An arbitrary assumed threshold for demonstrating numeric comparison; not an accepted user requirement."
+    }
+  },
+  "questions": [
+    {"text": "Which response time matters to actual workshop members?", "affects": ["C1", "N1"], "blocking": false}
+  ],
+  "review_notes": {
+    "stakeholders": "The member and register are represented. Operator and maintainer needs are deferred because this demonstration covers one interaction.",
+    "off_normal": "Register outage, occupied slots, retries, and cancellation remain necessary follow-up scenarios; deliberately deferred from this example.",
+    "lifecycle": "Setup, maintenance, and retirement remain outside this one-scenario demonstration."
+  }
+}
