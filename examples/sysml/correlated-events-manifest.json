@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "source_revision": "synthetic-2",
+  "expected": [
+    {"id": "R_EVENT", "constraint": "responseTime", "source": "SYN-02"}
+  ]
+}

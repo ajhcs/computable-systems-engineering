@@ -1,0 +1,22 @@
+{
+  "model_sha256": "8fd49d3837c51e6af64af0bafec742d44759e9bbf1c3ee1816e2c9dcf2925769",
+  "complete": true,
+  "observations": [
+    {
+      "AckExample::controller::request": false,
+      "AckExample::controller::elapsed": 0
+    },
+    {
+      "AckExample::controller::request": true,
+      "AckExample::controller::elapsed": 3
+    },
+    {
+      "AckExample::controller::request": true,
+      "AckExample::controller::elapsed": 3
+    },
+    {
+      "AckExample::controller::request": true,
+      "AckExample::controller::elapsed": 2
+    }
+  ]
+}

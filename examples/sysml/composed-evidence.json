@@ -1,0 +1,10 @@
+{
+  "model_sha256": "70a5eb62ca710dd68e0b8563fc53e6f5928de9bab7b2f456aaf1fbe0e194291b",
+  "complete": true,
+  "observations": [
+    {"ComposedAck::controller::request": false, "ComposedAck::controller::acknowledged": false},
+    {"ComposedAck::controller::request": true, "ComposedAck::controller::acknowledged": false},
+    {"ComposedAck::controller::request": false, "ComposedAck::controller::acknowledged": false},
+    {"ComposedAck::controller::request": false, "ComposedAck::controller::acknowledged": true}
+  ]
+}

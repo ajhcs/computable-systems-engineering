@@ -12,6 +12,18 @@ Public preparation uses an explicit file selection. It excludes private source s
 
 The local source originals remain preserved. There are no FRET source files or new runtime dependencies in this package.
 
+That sentence describes the initial version-1 release. The later SysML alpha
+adds a separately downloaded, pinned OMG pilot parser and Java bridge; its
+runtime and license boundary are recorded in [the current profile](sysml-v2-profile.md).
+
 ## First finite-verifier increment
 
 Prepared on 2026-09-29 as a candidate update to the already public repository. The version-2 checker, synthetic tests, and attributed FHWA translation proposal are documented in `docs/verifier-v2.md` and `docs/fhwa-merge-slice.md`. The FHWA interpretation is **not** engineer-accepted. The protected runner remains unimplemented; see `docs/protected-runner.md`. The existing MIT choice and public destination remain the recorded release decisions. Publish this increment for review without representing a local pass as acceptance of its engineering meanings.
+
+## SysML-first alpha trial
+
+Release 0.2.0-alpha.1 adds SysML-first authoring, bounded controlled-clause
+computation, and synthetic variable-influence test generation. The skills are
+registered only in this repository, as requested by the engineer. The
+[pre-test review](pre-test-review.md) records the checks and limitations, and
+the [end-user guide](end-user-test.md) describes the intended trial.

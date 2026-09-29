@@ -1,0 +1,10 @@
+{
+  "model_sha256": "09b9b38851ee6b91c7f97de0ecd847f053dc6e12d6721b6b0d713daea2353807",
+  "complete": true,
+  "observations": [
+    {"AckExample::controller::request": false, "AckExample::controller::acknowledged": false},
+    {"AckExample::controller::request": true, "AckExample::controller::acknowledged": false},
+    {"AckExample::controller::request": true, "AckExample::controller::acknowledged": false},
+    {"AckExample::controller::request": true, "AckExample::controller::acknowledged": true}
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "model_sha256": "12aeaf65b69d07f6b9f48fe5786d7c97212de73df8fe28d52dafafa0c2d615b0",
+  "complete": true,
+  "observations": [
+    {
+      "NASALowPowerCandidate::element::transLunarInjectionComplete": false,
+      "NASALowPowerCandidate::element::supplementaryPowerAvailable": false,
+      "NASALowPowerCandidate::element::lowPowerConfiguration": true
+    },
+    {
+      "NASALowPowerCandidate::element::transLunarInjectionComplete": true,
+      "NASALowPowerCandidate::element::supplementaryPowerAvailable": false,
+      "NASALowPowerCandidate::element::lowPowerConfiguration": true
+    },
+    {
+      "NASALowPowerCandidate::element::transLunarInjectionComplete": false,
+      "NASALowPowerCandidate::element::supplementaryPowerAvailable": false,
+      "NASALowPowerCandidate::element::lowPowerConfiguration": true
+    },
+    {
+      "NASALowPowerCandidate::element::transLunarInjectionComplete": false,
+      "NASALowPowerCandidate::element::supplementaryPowerAvailable": true,
+      "NASALowPowerCandidate::element::lowPowerConfiguration": false
+    }
+  ]
+}
