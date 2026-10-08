@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from benchmark_accounting import summarize_events, score_completion, require_equivalent
+from benchmark_accounting import ACCOUNTING_VERSION, summarize_events, score_completion, require_equivalent
 import compare_interface_pilots as comparison
 
 
@@ -31,7 +31,7 @@ class BenchmarkContract(unittest.TestCase):
         self.assertEqual(result["provider_usage"]["input_tokens"], 123)
 
     def test_deterministic_or_self_reported_success_is_not_agentic_success(self):
-        trial = {"returncode": 0, "completed_turns": 1, "claimed_status": "pass", "invalid_event_lines": 0, "transcript_status": "complete"}
+        trial = {"accounting_version": ACCOUNTING_VERSION, "returncode": 0, "completed_turns": 1, "claimed_status": "pass", "invalid_event_lines": 0, "transcript_status": "complete"}
         self.assertEqual(score_completion(trial, {"artifact_check": True}), "unreviewed")
         trial["timed_out"] = True
         self.assertEqual(score_completion(trial, {"artifact_check": True, "semantic_fidelity": True, "independent_review": True}), "incomplete")
@@ -89,10 +89,11 @@ class BenchmarkContract(unittest.TestCase):
         self.assertEqual(report["transcript_status"], "invalid")
         self.assertIsNone(report["tool_calls"])
 
-    def test_unfinished_turn_or_tool_is_incomplete(self):
-        for tail in ('{"type":"turn.started"}', '{"type":"item.started","item":{"id":"2","type":"command_execution"}}'):
+    def test_unfinished_turn_and_late_item_have_distinct_nonpassing_statuses(self):
+        for tail, expected in (('{"type":"turn.started"}', "incomplete"),
+                               ('{"type":"item.started","item":{"id":"2","type":"command_execution"}}', "invalid")):
             report = summarize_events('{"type":"turn.completed","usage":{"input_tokens":1}}\n' + tail)
-            self.assertEqual(report["transcript_status"], "incomplete")
+            self.assertEqual(report["transcript_status"], expected)
             self.assertIsNone(report["provider_usage"])
 
     def test_repeated_turn_start_is_invalid_even_with_later_completion(self):
@@ -101,7 +102,7 @@ class BenchmarkContract(unittest.TestCase):
         self.assertIsNone(report["provider_usage"])
 
     def test_missing_log_validity_never_defaults_to_pass(self):
-        trial = {"returncode": 0, "completed_turns": 1, "invalid_event_lines": 0}
+        trial = {"accounting_version": ACCOUNTING_VERSION, "returncode": 0, "completed_turns": 1, "invalid_event_lines": 0}
         oracle = {"artifact_check": True, "semantic_fidelity": True, "independent_review": True}
         self.assertEqual(score_completion(trial, oracle), "incomplete")
         trial["transcript_status"] = "complete"
@@ -139,6 +140,136 @@ class BenchmarkContract(unittest.TestCase):
         report = summarize_events(raw + '\n{"type":"turn.completed"}\n')
         self.assertEqual(report["transcript_status"], "complete")
         self.assertEqual(report["invalid_event_lines"], 0)
+
+
+class TranscriptStateContract(unittest.TestCase):
+    start = {"type": "turn.started"}
+    done = {"type": "turn.completed", "usage": {"input_tokens": 11, "cached_input_tokens": 3, "output_tokens": 2}}
+    oracle = {"artifact_check": True, "semantic_fidelity": True, "independent_review": True}
+
+    @staticmethod
+    def item(stage, identity="tool1", kind="command_execution", **fields):
+        return {"type": "item." + stage, "item": {"id": identity, "type": kind, **fields}}
+
+    def summarize(self, events):
+        result = summarize_events("\n".join(json.dumps(event) for event in events) + "\n")
+        result.update(returncode=0, timed_out=False)
+        return result
+
+    def assert_nonpassing(self, events, status="invalid"):
+        result = self.summarize(events)
+        self.assertEqual(result["transcript_status"], status)
+        self.assertIsNone(result["provider_usage"])
+        self.assertIsNone(result["tool_calls"])
+        self.assertIsNone(result["logged_command_input_cost"]["all_tools_utf8_bytes"])
+        self.assertEqual(score_completion(result, self.oracle), "incomplete")
+        return result
+
+    def test_duplicate_terminal_never_becomes_a_second_completed_turn(self):
+        for prefix in ([], [self.start]):
+            for duplicate in (self.done, {"type": "turn.completed", "usage": {"input_tokens": 1000}}):
+                with self.subTest(prefix=prefix, duplicate=duplicate):
+                    result = self.assert_nonpassing(prefix + [self.done, duplicate])
+                    self.assertEqual(result["completed_turns"], 1)
+
+    def test_failed_and_successful_terminal_records_cannot_share_one_turn(self):
+        failed = {"type": "turn.failed", "error": {"message": "failed"}}
+        for terminal, duplicate in ((failed, failed), (failed, self.done), (self.done, failed)):
+            with self.subTest(terminal=terminal, duplicate=duplicate):
+                self.assert_nonpassing([self.start, terminal, duplicate])
+
+    def test_independent_lifecycle_contradictions_stay_invalid_after_later_completions(self):
+        cases = {
+            "update after completion": [self.start, self.item("started"), self.item("completed"), self.item("updated"), self.done],
+            "update without terminal": [self.start, self.item("updated"), self.done],
+            "type changes": [self.start, self.item("started"), self.item("completed", kind="file_change"), self.done],
+            "turn closes before tool": [self.start, self.item("started"), self.done, self.item("completed")],
+            "tool after turn": [self.start, self.done, self.item("started"), self.item("completed")],
+            "open tool crosses turn": [self.start, self.item("started"), self.done, self.start, self.item("completed"), self.done],
+        }
+        for label, events in cases.items():
+            for suffix in ([], [self.start, self.done]):
+                with self.subTest(case=label, suffix=suffix):
+                    self.assert_nonpassing(events + suffix)
+
+    def test_item_order_and_identity_apply_to_every_item_type(self):
+        for kind in ("command_execution", "file_change", "agent_message", "reasoning", "todo_list"):
+            for stages in (("completed", "updated"), ("completed", "started"), ("completed", "completed"), ("updated", "started", "completed")):
+                with self.subTest(kind=kind, stages=stages):
+                    self.assert_nonpassing([self.start, *(self.item(stage, kind=kind) for stage in stages), self.done])
+
+    def test_update_type_change_is_invalid_even_if_terminal_reverts_to_original_type(self):
+        self.assert_nonpassing([self.start, self.item("started"), self.item("updated", kind="file_change"), self.item("completed"), self.done])
+
+    def test_initial_completion_only_forms_and_observed_updates_are_supported(self):
+        cases = [[self.done], [self.item("completed"), self.done],
+                 [self.item("started"), self.item("updated"), self.item("completed"), self.done],
+                 [self.item("updated"), self.item("updated"), self.item("completed"), self.done],
+                 [self.start, self.item("completed"), self.done]]
+        for events in cases:
+            with self.subTest(events=events):
+                result = self.summarize(events)
+                self.assertEqual(result["transcript_status"], "complete")
+                self.assertEqual(result["provider_usage"], self.done["usage"])
+                self.assertEqual(score_completion(result, self.oracle), "pass")
+
+    def test_valid_multi_turn_usage_counts_each_explicit_new_turn_once(self):
+        for prefix in ([], [{"type": "thread.started", "thread_id": "thread1"}]):
+            result = self.summarize(prefix + [self.start, self.item("completed", "first"), self.done,
+                                              self.start, self.item("updated", "second"), self.item("completed", "second"), self.done])
+            self.assertEqual(result["transcript_status"], "complete")
+            self.assertEqual(result["completed_turns"], 2)
+            self.assertEqual(result["provider_usage"], {"input_tokens": 22, "cached_input_tokens": 6, "output_tokens": 4})
+            self.assertEqual(result["tool_calls"], 2)
+            self.assertEqual(score_completion(result, self.oracle), "pass")
+
+    def test_initial_implicit_turn_can_be_followed_by_an_explicit_new_turn(self):
+        result = self.summarize([self.item("completed", "first"), self.done, self.start, self.item("completed", "second"), self.done])
+        self.assertEqual(result["transcript_status"], "complete")
+        self.assertEqual(result["completed_turns"], 2)
+
+    def test_item_identity_cannot_be_reused_in_a_later_turn(self):
+        for stage in ("started", "updated", "completed"):
+            with self.subTest(stage=stage):
+                self.assert_nonpassing([self.start, self.item("completed"), self.done, self.start, self.item(stage), self.done])
+
+    def test_unfinished_lifecycles_withhold_all_complete_aggregate_fields(self):
+        for tail in ([self.start], [self.start, self.item("started")], [self.start, self.item("updated")]):
+            with self.subTest(tail=tail):
+                self.assert_nonpassing([self.start, self.done, *tail], status="incomplete")
+
+    def test_failure_remains_nonpassing_after_a_valid_later_turn(self):
+        for event in ({"type": "turn.failed"}, {"type": "error", "message": "failed"}):
+            events = [self.start, event]
+            if event["type"] == "error":
+                events.append(self.done)
+            self.assert_nonpassing(events + [self.start, self.done], status="incomplete")
+
+    def test_supplied_turn_identity_is_bound_across_terminal_and_item_events(self):
+        start = {**self.start, "turn_id": "a"}
+        done = {**self.done, "turn_id": "a"}
+        result = self.summarize([start, self.item("completed", turn_id="a"), done,
+                                 {**self.start, "turn_id": "b"}, {**self.done, "turn_id": "b"}])
+        self.assertEqual(result["transcript_status"], "complete")
+        for events in ([start, {**done, "turn_id": "b"}], [start, self.item("completed", turn_id="b"), done],
+                       [start, done, start, done], [{**self.start, "turn_id": 1}, done],
+                       [start, {**self.item("completed", turn_id="a"), "turn_id": "b"}, done]):
+            with self.subTest(events=events):
+                self.assert_nonpassing(events)
+
+    def test_repeated_or_late_thread_headers_do_not_combine_separate_streams(self):
+        header = {"type": "thread.started", "thread_id": "one"}
+        for events in ([header, header, self.start, self.done], [self.start, header, self.done],
+                       [header, self.start, self.done, {**header, "thread_id": "two"}, self.start, self.done]):
+            with self.subTest(events=events):
+                self.assert_nonpassing(events)
+
+    def test_scoring_requires_current_lifecycle_accounting_not_legacy_complete_flags(self):
+        good = self.summarize([self.start, self.done])
+        for extra in ({"accounting_version": None}, {"accounting_version": "cse-accounting-2"},
+                      {"transcript_errors": [{"line": 1, "detail": "contradiction"}]}, {"completed_turns": True}):
+            with self.subTest(extra=extra):
+                self.assertEqual(score_completion({**good, **extra}, self.oracle), "incomplete")
 
 
 class ComparisonEvidence(unittest.TestCase):
@@ -198,6 +329,17 @@ class ComparisonEvidence(unittest.TestCase):
         before = self.preserved_bytes()
         with self.assertRaisesRegex(ValueError, "cannot be overwritten"):
             self.run_comparison(self.trials / "baseline-1/result.json")
+        self.assertEqual(self.preserved_bytes(), before)
+
+    def test_comparison_rejects_duplicate_terminal_without_overwriting_prior_output(self):
+        events = self.trials / "baseline-1/events.jsonl"
+        duplicate = events.read_text().splitlines()[-1]
+        events.write_text(events.read_text() + duplicate + "\n", encoding="utf-8")
+        before = self.preserved_bytes()
+        self.output.write_text("preserve previous evidence", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "invalid or unfinished"):
+            self.run_comparison()
+        self.assertEqual(self.output.read_text(), "preserve previous evidence")
         self.assertEqual(self.preserved_bytes(), before)
 
 

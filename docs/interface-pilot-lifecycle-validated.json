@@ -1,0 +1,724 @@
+{
+  "baseline": {
+    "directory": "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-context-20261008/.cache/interface-benchmark/trials/baseline-1",
+    "evidence_sha256": {
+      "events.jsonl": "5d4e58b3e66db9959f7c3f8fead5af7979677a3cd05bb9ecf1f1880b44418a15",
+      "result.json": "ff24fb76abe55ae8c79e7b21fb18efc37ea3fdf4a6c9f954b85afdf79828de0a",
+      "run-manifest.json": "f702626b08651cf4e917fa6cf89664583d1cbedeeb95c3954c1ae2666d744d62",
+      "task.txt": "29cefaf670d65e6915869302ff6942a2b0e82dd57630a03ee4e3729e0a65a8f7"
+    },
+    "manifest": {
+      "cli_version": "codex-cli 0.162.0",
+      "command": [
+        "/home/builderbob/.local/bin/codex",
+        "exec",
+        "--ephemeral",
+        "--ignore-user-config",
+        "--strict-config",
+        "--json",
+        "--skip-git-repo-check",
+        "-C",
+        "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-context-20261008/.cache/interface-benchmark/trials/baseline-1",
+        "--sandbox",
+        "workspace-write",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "service_tier=\"default\"",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "-c",
+        "web_search=\"disabled\"",
+        "-c",
+        "approval_policy=\"never\"",
+        "--output-schema",
+        "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-context-20261008/.cache/interface-benchmark/trials/baseline-1/response-schema.json",
+        "-o",
+        "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-context-20261008/.cache/interface-benchmark/trials/baseline-1/final.json",
+        "-"
+      ],
+      "condition": "baseline",
+      "effort": "medium",
+      "model": "gpt-6.1-sol",
+      "parser_sha256": "c2e6ae9a526108d8caf324933ef22f617578e5d8d519870e1f5ff29ab315f517",
+      "replicate": 1,
+      "revision": "b01ef01698450e5a47cc20f957fe93a09e9744b4",
+      "sandbox": "workspace-write",
+      "served_model_and_tier": "CLI events do not expose response routing; requested configuration is recorded",
+      "service_tier": "default",
+      "source_sha256": {
+        "EVSample.sysml": "4834675f798fb275b847887b53661bc351be8094b2f320ee4819d2bb4b71d3db",
+        "JT9D_Model_Dyn.mdl": "8408397b6cdea3e7ec0dd1302154eb64443418be8f385d92ae6bb06a2c0cf8e9",
+        "nasa-jt9d-LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "nasa-jt9d-README.md": "ebcb82d10aa6dc0e37a3d2c6cf66ded3f83e3cf92a3411ff43e6ecd1df012f8e",
+        "sysml-ev-LICENSE": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+        "sysml-ev-README.md": "e86a23b3cefc0835fffc34d2970028ed3e227121f65eab43ad2f314e46a778a7"
+      },
+      "started_utc": "2026-10-08T20:07:33.664314+00:00",
+      "task_payload_bytes": 2703,
+      "task_sha256": "29cefaf670d65e6915869302ff6942a2b0e82dd57630a03ee4e3729e0a65a8f7",
+      "timeout_seconds": 600
+    },
+    "name": "baseline-1",
+    "result": {
+      "accounting_recomputed_from_events": true,
+      "accounting_version": "cse-accounting-3",
+      "completed_turns": 1,
+      "completion": "unreviewed",
+      "domain_question_count": null,
+      "elapsed_seconds": 202.037,
+      "ended_utc": "2026-10-08T20:10:55.701237+00:00",
+      "failure_events": [],
+      "invalid_event_lines": 0,
+      "logged_command_input_cost": {
+        "all_tools_regex_wordpunct_v2": 5480,
+        "all_tools_utf8_bytes": 21029,
+        "known_regex_wordpunct_v2": 5480,
+        "known_tool_inputs": 15,
+        "known_utf8_bytes": 21029,
+        "scope": "Logged command text only, not complete tool arguments or billed tokens",
+        "unknown_tool_inputs": 0
+      },
+      "needless_question_count": null,
+      "observed_tool_calls": 15,
+      "oracle": {
+        "artifact_check": true,
+        "exact_authorized_capacity_edit": true,
+        "independent_parser_rerun": {
+          "claim_scope": "sysml_syntax_and_validation",
+          "findings": [],
+          "model_sha256": "d03b0ccee08a74713ab030236bd3f1205506b61c7e8126e79d33f394e86548fc",
+          "parser_issues": [],
+          "status": "pass"
+        },
+        "independent_review": false,
+        "inputs_preserved": true,
+        "report_exists": true,
+        "scope": "Exact byte edit establishes only preservation outside the authorized literal. Engineering explanation/decomposition/migration judgments need independent review.",
+        "semantic_fidelity": null
+      },
+      "provider_confirmation_count": null,
+      "provider_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 539392,
+        "input_tokens": 610749,
+        "output_tokens": 6709,
+        "reasoning_output_tokens": 548
+      },
+      "question_count_note": "Independent transcript classification required; absence of a count is not zero.",
+      "returncode": 0,
+      "timed_out": false,
+      "tool_calls": 15,
+      "tool_payloads": [
+        {
+          "command_sha256": "7e736f2a2d15dcdad9875bc102a14afb1bfbbfd261fc88beb732889c2c0b2653",
+          "id": "item_1",
+          "input": {
+            "regex_wordpunct_v2": 77,
+            "utf8_bytes": 159
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 195,
+            "utf8_bytes": 746
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "3eed474a05faad453ce7b91502b22796da46179d1379ea99931a953a413054a3",
+          "id": "item_2",
+          "input": {
+            "regex_wordpunct_v2": 46,
+            "utf8_bytes": 161
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 334,
+            "utf8_bytes": 1374
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "53b4d97860b1016a06e6f1e759caee0c19a6befc97efd81b88368120354d33e1",
+          "id": "item_3",
+          "input": {
+            "regex_wordpunct_v2": 64,
+            "utf8_bytes": 179
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 4544,
+            "utf8_bytes": 22378
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "62078c3c88db92370d42ba4c8d6026c2bb931f7652686a5798a122b6813debf7",
+          "id": "item_4",
+          "input": {
+            "regex_wordpunct_v2": 22,
+            "utf8_bytes": 66
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 65,
+            "utf8_bytes": 237
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "3fc55f8de50b4295a69a7b233319f3e1ab0e641f91f7ec60e05cf3c53d079862",
+          "id": "item_5",
+          "input": {
+            "regex_wordpunct_v2": 46,
+            "utf8_bytes": 146
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 5727,
+            "utf8_bytes": 30844
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "9b67019c795b5388b9adcc6d936dfe9e7448dceccbcb8def909ab31e97873aaa",
+          "id": "item_7",
+          "input": {
+            "regex_wordpunct_v2": 106,
+            "utf8_bytes": 354
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 8233,
+            "utf8_bytes": 41395
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "4e4dcfad896fda1744fd8a2b5edad04935be64278ea50cfef282e05a9c1bd827",
+          "id": "item_8",
+          "input": {
+            "regex_wordpunct_v2": 132,
+            "utf8_bytes": 484
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 1326,
+            "utf8_bytes": 7881
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "7129410d1258fe783007a4067cf8072e3d63af7a5114b8d3fba8be4b324dd4ec",
+          "id": "item_9",
+          "input": {
+            "regex_wordpunct_v2": 320,
+            "utf8_bytes": 841
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 103,
+            "utf8_bytes": 395
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "c3706a3fd29b918ab081c4345b74c1ebbaf0887e014b97c0d96951dcf7d3e44a",
+          "id": "item_11",
+          "input": {
+            "regex_wordpunct_v2": 138,
+            "utf8_bytes": 395
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 3458,
+            "utf8_bytes": 20424
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "c3f70445fed183b557703cb4d06918cddc78da7afe94a342d7f5cb0c9a5265f6",
+          "id": "item_10",
+          "input": {
+            "regex_wordpunct_v2": 452,
+            "utf8_bytes": 1144
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 3183,
+            "utf8_bytes": 13016
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "4fc4b3914c0d741720a8696a8d38457c357cf6338494d2eae2bfba6c87a5ccd8",
+          "id": "item_13",
+          "input": {
+            "regex_wordpunct_v2": 247,
+            "utf8_bytes": 736
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 2142,
+            "utf8_bytes": 9775
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "8768369326c4385fad4cef63a711f58c31e923d91e7dbc133618b1a0199b162a",
+          "id": "item_14",
+          "input": {
+            "regex_wordpunct_v2": 108,
+            "utf8_bytes": 328
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 1340,
+            "utf8_bytes": 8570
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "46d71b281eaa8f4ae9c3ea2d50ca1bcfcba1e0a1193fe805126a39e1599c2af4",
+          "id": "item_15",
+          "input": {
+            "regex_wordpunct_v2": 324,
+            "utf8_bytes": 877
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 96,
+            "utf8_bytes": 284
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "8c5f0db75829eaf8d6ba05dd5ee52a84d6e6a0bacf3393f2daf609eb77355d6e",
+          "id": "item_17",
+          "input": {
+            "regex_wordpunct_v2": 563,
+            "utf8_bytes": 1836
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 11,
+            "utf8_bytes": 69
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "edf5d2bad8d0ddbe4414e27b61fe952d08841dfd589d655ec4563dc340baa9f6",
+          "id": "item_18",
+          "input": {
+            "regex_wordpunct_v2": 2835,
+            "utf8_bytes": 13323
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 7,
+            "utf8_bytes": 44
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        }
+      ],
+      "transcript_errors": [],
+      "transcript_status": "complete"
+    }
+  },
+  "conditions_equivalent": true,
+  "deltas": {
+    "cache_write_input_tokens": {
+      "baseline": 0,
+      "change": 0,
+      "optimized": 0
+    },
+    "cached_input_tokens": {
+      "baseline": 539392,
+      "change": -39936,
+      "optimized": 499456
+    },
+    "elapsed_seconds": {
+      "baseline": 202.037,
+      "change": -36.072,
+      "optimized": 165.965
+    },
+    "input_tokens": {
+      "baseline": 610749,
+      "change": -50737,
+      "optimized": 560012
+    },
+    "output_tokens": {
+      "baseline": 6709,
+      "change": -32,
+      "optimized": 6677
+    },
+    "reasoning_output_tokens": {
+      "baseline": 548,
+      "change": -268,
+      "optimized": 280
+    },
+    "tool_calls": {
+      "baseline": 15,
+      "change": 0,
+      "optimized": 15
+    }
+  },
+  "limits": [
+    "Requested model/tier match; provider events do not expose served routing.",
+    "Fixed baseline-first order can confound caching and latency; counterbalanced replication remains necessary.",
+    "Exact-edit and parser oracles are separate from independent engineering fidelity review.",
+    "NASA native numerical and migration oracles are unavailable; no equivalence or simulation success is claimed.",
+    "Missing tool arguments are unknown. Per-tool input estimates measure logged command text only, never complete tool-argument or billed cost."
+  ],
+  "optimized": {
+    "directory": "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-context-20261008/.cache/interface-benchmark/trials/optimized-1",
+    "evidence_sha256": {
+      "events.jsonl": "0ac7a5446621479ba956bc46fd0d113bd5e919bffe9a067a1ee1ce91806ab530",
+      "result.json": "69da7f40922d475415e676a1274bcead39804d7b282dc1027e2466c29aeab700",
+      "run-manifest.json": "3cd18ae20a743a146d1a6b429849970c5457cd767fd7c60d161c225fec54472b",
+      "task.txt": "29cefaf670d65e6915869302ff6942a2b0e82dd57630a03ee4e3729e0a65a8f7"
+    },
+    "manifest": {
+      "cli_version": "codex-cli 0.162.0",
+      "command": [
+        "/home/builderbob/.local/bin/codex",
+        "exec",
+        "--ephemeral",
+        "--ignore-user-config",
+        "--strict-config",
+        "--json",
+        "--skip-git-repo-check",
+        "-C",
+        "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-context-20261008/.cache/interface-benchmark/trials/optimized-1",
+        "--sandbox",
+        "workspace-write",
+        "-m",
+        "gpt-6.1-sol",
+        "-c",
+        "service_tier=\"default\"",
+        "-c",
+        "model_reasoning_effort=\"medium\"",
+        "-c",
+        "web_search=\"disabled\"",
+        "-c",
+        "approval_policy=\"never\"",
+        "--output-schema",
+        "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-context-20261008/.cache/interface-benchmark/trials/optimized-1/response-schema.json",
+        "-o",
+        "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-context-20261008/.cache/interface-benchmark/trials/optimized-1/final.json",
+        "-"
+      ],
+      "condition": "optimized",
+      "effort": "medium",
+      "model": "gpt-6.1-sol",
+      "parser_sha256": "c2e6ae9a526108d8caf324933ef22f617578e5d8d519870e1f5ff29ab315f517",
+      "replicate": 1,
+      "revision": "2e3525cd5042e793d44d2f4bdf9be76dfc4b0895",
+      "sandbox": "workspace-write",
+      "served_model_and_tier": "CLI events do not expose response routing; requested configuration is recorded",
+      "service_tier": "default",
+      "source_sha256": {
+        "EVSample.sysml": "4834675f798fb275b847887b53661bc351be8094b2f320ee4819d2bb4b71d3db",
+        "JT9D_Model_Dyn.mdl": "8408397b6cdea3e7ec0dd1302154eb64443418be8f385d92ae6bb06a2c0cf8e9",
+        "nasa-jt9d-LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "nasa-jt9d-README.md": "ebcb82d10aa6dc0e37a3d2c6cf66ded3f83e3cf92a3411ff43e6ecd1df012f8e",
+        "sysml-ev-LICENSE": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+        "sysml-ev-README.md": "e86a23b3cefc0835fffc34d2970028ed3e227121f65eab43ad2f314e46a778a7"
+      },
+      "started_utc": "2026-10-08T20:12:02.941851+00:00",
+      "task_payload_bytes": 2703,
+      "task_sha256": "29cefaf670d65e6915869302ff6942a2b0e82dd57630a03ee4e3729e0a65a8f7",
+      "timeout_seconds": 600
+    },
+    "name": "optimized-1",
+    "result": {
+      "accounting_recomputed_from_events": true,
+      "accounting_version": "cse-accounting-3",
+      "completed_turns": 1,
+      "completion": "unreviewed",
+      "domain_question_count": null,
+      "elapsed_seconds": 165.965,
+      "ended_utc": "2026-10-08T20:14:48.906960+00:00",
+      "failure_events": [],
+      "invalid_event_lines": 0,
+      "logged_command_input_cost": {
+        "all_tools_regex_wordpunct_v2": null,
+        "all_tools_utf8_bytes": null,
+        "known_regex_wordpunct_v2": 2274,
+        "known_tool_inputs": 13,
+        "known_utf8_bytes": 6384,
+        "scope": "Logged command text only, not complete tool arguments or billed tokens",
+        "unknown_tool_inputs": 2
+      },
+      "needless_question_count": null,
+      "observed_tool_calls": 15,
+      "oracle": {
+        "artifact_check": true,
+        "exact_authorized_capacity_edit": true,
+        "independent_parser_rerun": {
+          "claim_scope": "sysml_syntax_and_validation",
+          "findings": [],
+          "model_sha256": "d03b0ccee08a74713ab030236bd3f1205506b61c7e8126e79d33f394e86548fc",
+          "parser_issues": [],
+          "status": "pass"
+        },
+        "independent_review": false,
+        "inputs_preserved": true,
+        "report_exists": true,
+        "scope": "Exact byte edit establishes only preservation outside the authorized literal. Engineering explanation/decomposition/migration judgments need independent review.",
+        "semantic_fidelity": null
+      },
+      "provider_confirmation_count": null,
+      "provider_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 499456,
+        "input_tokens": 560012,
+        "output_tokens": 6677,
+        "reasoning_output_tokens": 280
+      },
+      "question_count_note": "Independent transcript classification required; absence of a count is not zero.",
+      "returncode": 0,
+      "timed_out": false,
+      "tool_calls": 15,
+      "tool_payloads": [
+        {
+          "command_sha256": "2fd7564c39d4489c3189361ad38d1815625918ac0ab8450ddae7d8ffeed5fe4e",
+          "id": "item_1",
+          "input": {
+            "regex_wordpunct_v2": 31,
+            "utf8_bytes": 96
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 795,
+            "utf8_bytes": 2807
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "6c0f978a27c25206839735f2e2ec53b342e302d7c3a526db887c98f381a6935e",
+          "id": "item_2",
+          "input": {
+            "regex_wordpunct_v2": 30,
+            "utf8_bytes": 80
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 2121,
+            "utf8_bytes": 11729
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "8e315b31d5d469b4632dedf4b2648e12ec834f2dfbdb787427de1956dece34a5",
+          "id": "item_3",
+          "input": {
+            "regex_wordpunct_v2": 52,
+            "utf8_bytes": 153
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 5513,
+            "utf8_bytes": 29302
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "3eb7d2b4ea944a5663f871632e49d79aa144338ffe7528a9ed0c4e7f78419690",
+          "id": "item_4",
+          "input": {
+            "regex_wordpunct_v2": 88,
+            "utf8_bytes": 309
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 3590,
+            "utf8_bytes": 15218
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "c5efe31e202b702de4cc1c5e198545f1db85368801dcb242670748d61f9a7d16",
+          "id": "item_5",
+          "input": {
+            "regex_wordpunct_v2": 150,
+            "utf8_bytes": 485
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 2323,
+            "utf8_bytes": 13581
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "b8a2ed1745b59dc8be270c0a1a5a46422cce2a624ae1b52e60fc142a5ca5638a",
+          "id": "item_6",
+          "input": {
+            "regex_wordpunct_v2": 598,
+            "utf8_bytes": 1485
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 2081,
+            "utf8_bytes": 6553
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "ef7fb5cf73f5a05cffeff5d78ee820b67d14c9ae333997006449d47df7cdbf38",
+          "id": "item_7",
+          "input": {
+            "regex_wordpunct_v2": 124,
+            "utf8_bytes": 459
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 1872,
+            "utf8_bytes": 11098
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "15e8affdb0664a57a600026bc27495420b33b6585e94f5ebcbda95adc1713c7f",
+          "id": "item_9",
+          "input": {
+            "regex_wordpunct_v2": 94,
+            "utf8_bytes": 302
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 671,
+            "utf8_bytes": 4025
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "1e7c8d07177d68609ef07d1dff19f40749b0ef86d862ce2a83f17ded342c4854",
+          "id": "item_10",
+          "input": {
+            "regex_wordpunct_v2": 284,
+            "utf8_bytes": 722
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 434,
+            "utf8_bytes": 1506
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "3dc268ee205250497b988a04f8ad41f5c15b2e2aa6e3b1207834d8bcf951b984",
+          "id": "item_11",
+          "input": {
+            "regex_wordpunct_v2": 56,
+            "utf8_bytes": 176
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 1527,
+            "utf8_bytes": 8348
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": "74ccad4c6c879c8a4dd2952049808cfe905cfcafadd626ef4996d173e697b106",
+          "id": "item_12",
+          "input": {
+            "regex_wordpunct_v2": 342,
+            "utf8_bytes": 885
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 236,
+            "utf8_bytes": 819
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": null,
+          "id": "item_13",
+          "input": null,
+          "input_scope": "unavailable_in_cli_event",
+          "result": {
+            "regex_wordpunct_v2": 87,
+            "utf8_bytes": 249
+          },
+          "result_scope": "logged_completion_event",
+          "type": "file_change"
+        },
+        {
+          "command_sha256": "65ad5320141d40edda2d9b8b2449bbe256d039a1604ba99d7d8f07b95a7236f3",
+          "id": "item_14",
+          "input": {
+            "regex_wordpunct_v2": 338,
+            "utf8_bytes": 935
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 203,
+            "utf8_bytes": 1064
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        },
+        {
+          "command_sha256": null,
+          "id": "item_16",
+          "input": null,
+          "input_scope": "unavailable_in_cli_event",
+          "result": {
+            "regex_wordpunct_v2": 143,
+            "utf8_bytes": 433
+          },
+          "result_scope": "logged_completion_event",
+          "type": "file_change"
+        },
+        {
+          "command_sha256": "5bd4ed540209214b7116fb4689feba5d499ba8871733fcb6af6ff89353c43b75",
+          "id": "item_17",
+          "input": {
+            "regex_wordpunct_v2": 87,
+            "utf8_bytes": 297
+          },
+          "input_scope": "logged_command_text",
+          "result": {
+            "regex_wordpunct_v2": 15,
+            "utf8_bytes": 75
+          },
+          "result_scope": "logged_aggregated_output",
+          "type": "command_execution"
+        }
+      ],
+      "transcript_errors": [],
+      "transcript_status": "complete"
+    }
+  },
+  "sample_size": "one paired pilot; no reliability or causal generalization"
+}

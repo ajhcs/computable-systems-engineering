@@ -1,0 +1,203 @@
+{
+  "after": {
+    "accountant_sha256": "81b2de96c39f0e0a8a1f5bf585052e4f0cb601b5103a3e7b692238fd7f9aac3a",
+    "network_denial": "supplied wrapper verifies IPv4/IPv6 socket creation denied",
+    "new_model_runs": 0,
+    "phase": "final",
+    "product_root": "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-lifecycle-20261008",
+    "results": {
+      "TARGETED_PROBES.original.py": {
+        "driver_sha256": "c307c1953b1b67101dd0fb5b67ef41bf80d23c3cb386b6b47c49b6162432ec08",
+        "failures": [],
+        "matched": 64,
+        "only_output_root_relocated": true,
+        "probes": 64
+      },
+      "comparison_probes.py": {
+        "driver_embedded_commit_is_historical": true,
+        "driver_sha256": "729f38b6a16cf5d8fb46e7f3c991615f87f8a108b40205d1c355d96882b32305",
+        "failures": [],
+        "matched": 6,
+        "probes": 6
+      },
+      "ledger_probes.py": {
+        "driver_embedded_commit_is_historical": true,
+        "driver_sha256": "6dea9ae9fa748231680e1751f364a6ab5b8b7ee0a9f5a3e75bc1475b43dca884",
+        "failures": [],
+        "matched": 50,
+        "probes": 50
+      },
+      "transcript_probes.py": {
+        "driver_embedded_commit_is_historical": true,
+        "driver_sha256": "6386894e652c442199ccc97dac2f45d0cd64d41e612da4e5bcf6397de3d68fd5",
+        "failures": [],
+        "matched": 30,
+        "probes": 30
+      }
+    },
+    "source_parent_commit": "2695544fb3243b11f8e69d524f8b189d2bfa2bd3"
+  },
+  "base_commit": "2695544fb3243b11f8e69d524f8b189d2bfa2bd3",
+  "before": {
+    "accountant_sha256": "02d44fd60d8bbc8d1d7dd7060141b7b2744025641fb34f01885d684f5423e183",
+    "network_denial": "supplied wrapper verifies IPv4/IPv6 socket creation denied",
+    "new_model_runs": 0,
+    "phase": "before",
+    "product_root": "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-reviewfix-20261008",
+    "results": {
+      "transcript_probes.py": {
+        "driver_embedded_commit_is_historical": true,
+        "driver_sha256": "6386894e652c442199ccc97dac2f45d0cd64d41e612da4e5bcf6397de3d68fd5",
+        "failures": [
+          "duplicate_turn_completed",
+          "duplicate_turn_completed_different_usage",
+          "update_after_completion",
+          "update_without_terminal",
+          "item_type_changes_during_lifecycle",
+          "turn_closes_before_tool_finishes",
+          "tool_after_turn_completed",
+          "open_tool_crosses_turn_boundary",
+          "comparison_rejects_duplicate_turn"
+        ],
+        "matched": 21,
+        "probes": 30
+      }
+    },
+    "source_parent_commit": "2695544fb3243b11f8e69d524f8b189d2bfa2bd3"
+  },
+  "branch": "work/cse-interface-lifecycle-20261008",
+  "final_independent_acceptance": "pending",
+  "full_regressions": {
+    "command": [
+      "python3",
+      "-B",
+      "/workspace/worktrees/builderbob/computable-systems-engineering/cse-interface-lifecycle-20261008/.tmp/lifecycle/drivers/network_denied.py",
+      "python3",
+      "-B",
+      "scripts/check.py",
+      "--require-sysml"
+    ],
+    "elapsed_seconds": 121.726,
+    "exit": 0,
+    "log_sha256": "7805e3ef7590b4c69432d26a4573cc814d5785cb75f1b830f95b8529b21ea5c5",
+    "network_denial_verified": true,
+    "new_model_runs": 0,
+    "per_suite_counts": [
+      30,
+      32,
+      27,
+      39,
+      33,
+      15,
+      14,
+      2,
+      6,
+      3,
+      5,
+      19,
+      3,
+      3,
+      5
+    ],
+    "python_sources_sha256": {
+      "cse_interface/__init__.py": "1eabe9a90cf001a427cc306fbbfeb2f928361d1af20ef8bb03954304c1b36a5f",
+      "cse_interface/contracts.py": "0fbdc1f136ba6b850ddb8a01bd2925717b44f50d236f2ee7e16d89f5a10b94b1",
+      "cse_interface/elicitation.py": "1d086ed7b4b758f5f5a30f62b110f245786ba9bb34c6e87dad23fb789bce54d1",
+      "cse_interface/limits.py": "d15ae8a9cddfa4f96ede5608dc2e5fb259860b8e53696de7a26b028f957268d2",
+      "examples/tool-library/result/capacity_check.py": "c09594f4939a1d7cf7d88490e86d3559701efccdfde6b41968dffbe27c173458",
+      "scripts/audit_interface_trial.py": "f07e70d9554fbd76b04315550cb092d380396cec259210272d507f90ff6588ad",
+      "scripts/benchmark_accounting.py": "81b2de96c39f0e0a8a1f5bf585052e4f0cb601b5103a3e7b692238fd7f9aac3a",
+      "scripts/check.py": "3588cce3828960664b8ab6723809bddbd72bf445c2465cdbd96bc5c11b4e7561",
+      "scripts/compare_interface_pilots.py": "f7e2e611e78543b66fd19818f89ddbeff70dd8414f9646995ef0de5652f60cd2",
+      "scripts/install_sysml_parser.py": "7568759e2db292e6a6c1843210b166d8366020b8fad31d5847616403115acd83",
+      "scripts/interface.py": "b59613c32e82b6391a6b1ed3ebd35dc4f5a9de052e70f959bdf7d3af36961580",
+      "scripts/measure_context.py": "6c43d1aca4e814a83771ae8397a6d3f9ce430b4b6ed579809eea69293c8c3bde",
+      "scripts/measure_interface.py": "01f5e46027116a85a9c11c8b14f9a20e91b5474d679968e2525d81cbf6842c68",
+      "scripts/pin_interface_corpus.py": "3d1cdb4bf7a8780941d84bc6442c958152b13a1343823dbe2068508bb5563d6c",
+      "scripts/probe_standard_runner.py": "65f9f51b73eef691677d8ce02b385dece053838264770c121e65f7ace5e5d1ca",
+      "scripts/requirements.py": "56b0b623f97a9c85f83bb124f49049c35e8dc75faba7ed4fa26092bfbc92cf10",
+      "scripts/run_interface_pilot.py": "916d2b34ecfcff662578e8006dbf3f021cb0e519034771098c0344aa3e7c7352",
+      "scripts/sysml.py": "d83a2080d18beb4c389125c2b12bd176aec993075ff1ba6b0fcfcd89079ac513",
+      "scripts/sysml_diff.py": "0706fb2b6b2ef42b333312d02835028cd54e6b0597138394f222d2bd818a8863",
+      "scripts/sysml_testgen.py": "b8522d1c1a25de3287a7289b735091c13f2e661faf5b9560be14bea0f687351e",
+      "scripts/sysml_view.py": "4a2378898567af14814a62007ea93a6883d12424efc181b47bb838ce441e117d",
+      "scripts/verify.py": "5bcf43e968fd02d20387761048824ff4298c8e13bca3bf5eaf487dc20d57db16",
+      "skills/cse/scripts/cse.py": "ef27f8aaae0e577be2143d833ec5417b5ba1a2b9a42172564de828e0f3aa6b4f",
+      "skills/develop-conops/scripts/conops.py": "be4a926b0c03be2796800221346c23d27084bc7f36d30da5751bc330478f9f0f",
+      "skills/develop-conops/scripts/cse.py": "ef27f8aaae0e577be2143d833ec5417b5ba1a2b9a42172564de828e0f3aa6b4f",
+      "skills/develop-operational-scenarios/scripts/conops.py": "be4a926b0c03be2796800221346c23d27084bc7f36d30da5751bc330478f9f0f",
+      "skills/develop-operational-scenarios/scripts/cse.py": "ef27f8aaae0e577be2143d833ec5417b5ba1a2b9a42172564de828e0f3aa6b4f",
+      "skills/develop-system-concept/scripts/concept.py": "f9a8c7d96ee58f375a3f555ce4ef0630d09081b04aa7f0fce98324504f73760d",
+      "skills/develop-system-concept/scripts/cse.py": "ef27f8aaae0e577be2143d833ec5417b5ba1a2b9a42172564de828e0f3aa6b4f",
+      "tests/test_benchmark.py": "7bd8fa1fb03c45f1e142c8cb8b425ae8300678d726eb7b93eb048292d2c0a605",
+      "tests/test_concept.py": "423f2e4f78cf7b8cf45e63d7107e28354be3018d218edfef09f7e047ece0db6b",
+      "tests/test_develop_conops.py": "5e1ec1bf22f7c9e7213ecb52d0a98f8b4ffcdf508602a7f4f840c4304c83742a",
+      "tests/test_events.py": "162a970dfd2bf309472891c4df4f2bed984cc7e6c8f234bbfb9c8ed59e691525",
+      "tests/test_influence.py": "a46d0b4c1241518ba6b7feb3b987b4cd8cddba2eafc95505c910d584a5f25a1b",
+      "tests/test_interface.py": "ec94763866e5c64e4fa0b31ad3a78a579c29ae57169250544c9ee53046b2e885",
+      "tests/test_language.py": "8b2c75cf60dd1bcd9d7f12f3e95cea0d4e26594c83983dcf86253e15cf6a2619",
+      "tests/test_language_oracle.py": "c9c02ec3cc98b8527e7bdf3f6d9acda7292744dcfb196c0becb12fe9255a5e7f",
+      "tests/test_public_language_cases.py": "266a010afef7dfa5354fecff2b8dfb4f7f28312c74473dcbc882a9ebf98614a7",
+      "tests/test_scenario_split.py": "63d8c9df731479c715bd6021bec16e49144bfef316f168148ce3800a4ad81ff2",
+      "tests/test_skill_runtime.py": "57d0df00198837285bc9d80295ecaa50fcab0c3666b7d1f5dc72af0cf96c7a86",
+      "tests/test_sysml.py": "e70a4c829303c7cc6108d8538c72188dde675fd97969423c030210b7b48cc75b",
+      "tests/test_sysml_public.py": "a98e2e864981772dec8bfcfe3914325188555f6ae9e2b38cb3996e7727e8bb0b",
+      "tests/test_sysml_views.py": "77cab5bb03b5a5d85fd21cb3194cf01911c03bfe6d6e1169ab95e5b8bc46ad10",
+      "tests/test_verifier.py": "ae71508f658ac8f22272f7231fa00c13fef5eae515106bb44032251080775997",
+      "verifier/__init__.py": "e9b613e50fdcdfa309ae440af31929c37ef15874c550605a422c9c39688dc48d",
+      "verifier/core.py": "09db25df70ad1524d196db346c5bacbc2feeaccf7f6708d80eca2b9ef3cdc73f",
+      "verifier/events.py": "e1e1a713fdbf1c8b455e2aa3dbcbaaf2b05c908b5e4c74abc4e3d3944139fc17",
+      "verifier/influence.py": "b96d7bc0dac64809ffa3fe941cd387f5861cc3a391014e9171424f494de6421d",
+      "verifier/language.py": "09968dee6646d7913abd5e33718d640368512cafc5a9760a8daadea42fcdc7db",
+      "verifier/sysml.py": "06b069c5410110ee2b6cdab6debd7499e860078d4b6bffecd214296175b2f100",
+      "verifier/views.py": "3a91caa526ddb3128c97284b770a0804ba2c2d56fb18b83ac27898c98fa4ea7a"
+    },
+    "python_sources_unchanged": true,
+    "skip_lines": [],
+    "unittest_suites": 15,
+    "unittest_tests": 236
+  },
+  "historical_reports_unchanged": [
+    "docs/interface-pilot-results.json",
+    "docs/interface-results.md",
+    "docs/interface-context-results.json",
+    "docs/interface-pilot-accounting-corrected.json",
+    "docs/interface-review-fixes.md",
+    "benchmarks/interface/review-fix-evidence.json"
+  ],
+  "independent_retest_evidence_sha256": "3431dc8f83d55b230771362152ca5f76c449ce1298062129bb8c651af13689d2",
+  "new_model_runs": 0,
+  "original_trial_file_pins": {
+    "baseline/events.jsonl": "5d4e58b3e66db9959f7c3f8fead5af7979677a3cd05bb9ecf1f1880b44418a15",
+    "baseline/inputs/EVSample.sysml": "4834675f798fb275b847887b53661bc351be8094b2f320ee4819d2bb4b71d3db",
+    "baseline/inputs/JT9D_Model_Dyn.mdl": "8408397b6cdea3e7ec0dd1302154eb64443418be8f385d92ae6bb06a2c0cf8e9",
+    "baseline/inputs/nasa-jt9d-LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "baseline/inputs/nasa-jt9d-README.md": "ebcb82d10aa6dc0e37a3d2c6cf66ded3f83e3cf92a3411ff43e6ecd1df012f8e",
+    "baseline/inputs/sysml-ev-LICENSE": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+    "baseline/inputs/sysml-ev-README.md": "e86a23b3cefc0835fffc34d2970028ed3e227121f65eab43ad2f314e46a778a7",
+    "baseline/result.json": "ff24fb76abe55ae8c79e7b21fb18efc37ea3fdf4a6c9f954b85afdf79828de0a",
+    "baseline/run-manifest.json": "f702626b08651cf4e917fa6cf89664583d1cbedeeb95c3954c1ae2666d744d62",
+    "baseline/task.txt": "29cefaf670d65e6915869302ff6942a2b0e82dd57630a03ee4e3729e0a65a8f7",
+    "optimized/events.jsonl": "0ac7a5446621479ba956bc46fd0d113bd5e919bffe9a067a1ee1ce91806ab530",
+    "optimized/inputs/EVSample.sysml": "4834675f798fb275b847887b53661bc351be8094b2f320ee4819d2bb4b71d3db",
+    "optimized/inputs/JT9D_Model_Dyn.mdl": "8408397b6cdea3e7ec0dd1302154eb64443418be8f385d92ae6bb06a2c0cf8e9",
+    "optimized/inputs/nasa-jt9d-LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "optimized/inputs/nasa-jt9d-README.md": "ebcb82d10aa6dc0e37a3d2c6cf66ded3f83e3cf92a3411ff43e6ecd1df012f8e",
+    "optimized/inputs/sysml-ev-LICENSE": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+    "optimized/inputs/sysml-ev-README.md": "e86a23b3cefc0835fffc34d2970028ed3e227121f65eab43ad2f314e46a778a7",
+    "optimized/result.json": "69da7f40922d475415e676a1274bcead39804d7b282dc1027e2466c29aeab700",
+    "optimized/run-manifest.json": "3cd18ae20a743a146d1a6b429849970c5457cd767fd7c60d161c225fec54472b",
+    "optimized/task.txt": "29cefaf670d65e6915869302ff6942a2b0e82dd57630a03ee4e3729e0a65a8f7"
+  },
+  "pilot_differs_only_in_accounting_version": true,
+  "preservation": {
+    "original": {
+      "head": "0a4f5dfab7e828e18cc2e0e7b959a576ae3287e8",
+      "status": "clean"
+    },
+    "previous": {
+      "head": "2695544fb3243b11f8e69d524f8b189d2bfa2bd3",
+      "status": "clean"
+    }
+  }
+}
