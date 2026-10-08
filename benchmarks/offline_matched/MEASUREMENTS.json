@@ -1,0 +1,460 @@
+{
+  "agentic_success": null,
+  "aggregates": [
+    {
+      "arm": "semantic_query_replay",
+      "regex_wordpunct_v2": 4523,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "tasks": 6,
+      "tool_calls": 6,
+      "utf8_bytes": 18585
+    },
+    {
+      "arm": "semantic_query_replay",
+      "regex_wordpunct_v2": 4817,
+      "retry_calls": 6,
+      "scenario": "one_forced_retry",
+      "tasks": 6,
+      "tool_calls": 12,
+      "utf8_bytes": 19497
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "regex_wordpunct_v2": 5403,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "tasks": 6,
+      "tool_calls": 6,
+      "utf8_bytes": 22092
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "regex_wordpunct_v2": 5697,
+      "retry_calls": 6,
+      "scenario": "one_forced_retry",
+      "tasks": 6,
+      "tool_calls": 12,
+      "utf8_bytes": 22998
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "regex_wordpunct_v2": 4523,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "tasks": 6,
+      "tool_calls": 6,
+      "utf8_bytes": 18585
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "regex_wordpunct_v2": 4817,
+      "retry_calls": 6,
+      "scenario": "one_forced_retry",
+      "tasks": 6,
+      "tool_calls": 12,
+      "utf8_bytes": 19497
+    }
+  ],
+  "aggregation": "Sum of six independent single-task conditions per arm/schedule, charging bootstrap and task once per condition",
+  "billed_cost": null,
+  "bootstrap": {
+    "regex_wordpunct_v2": 98,
+    "utf8_bytes": 396
+  },
+  "elicitation_observations": {
+    "domain_questions": null,
+    "needless_questions": null,
+    "provider_safety_confirmations": null
+  },
+  "full_model_context_cost": null,
+  "human_runs": 0,
+  "independent_oracle_review": "pending",
+  "limitations": [
+    "This is reference replay, not an authoritative native query implementation.",
+    "Artifact duplication does not incur model context unless those bytes are actually retrieved.",
+    "A real agent may select, batch or deduplicate differently; actual total/retry context must be recorded.",
+    "Initial native discovery/schema cost, provider context and usage remain unavailable.",
+    "These previously exposed EV facts are calibration data, not held-out engineering qualification."
+  ],
+  "method": "regex-wordpunct-v2 on exact UTF-8 protocol bytes; not model tokens or billed cost",
+  "model_runs": 0,
+  "native_acceptances": 0,
+  "native_initial_context": null,
+  "per_condition": [
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
+      "regex_wordpunct_v2": 927,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q01",
+      "tool_calls": 1,
+      "utf8_bytes": 3607
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
+      "regex_wordpunct_v2": 976,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q01",
+      "tool_calls": 2,
+      "utf8_bytes": 3759
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
+      "regex_wordpunct_v2": 1066,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q01",
+      "tool_calls": 1,
+      "utf8_bytes": 4126
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
+      "regex_wordpunct_v2": 1115,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q01",
+      "tool_calls": 2,
+      "utf8_bytes": 4277
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
+      "regex_wordpunct_v2": 927,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q01",
+      "tool_calls": 1,
+      "utf8_bytes": 3607
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
+      "regex_wordpunct_v2": 976,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q01",
+      "tool_calls": 2,
+      "utf8_bytes": 3759
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
+      "regex_wordpunct_v2": 642,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q02",
+      "tool_calls": 1,
+      "utf8_bytes": 2641
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
+      "regex_wordpunct_v2": 691,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q02",
+      "tool_calls": 2,
+      "utf8_bytes": 2793
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
+      "regex_wordpunct_v2": 781,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q02",
+      "tool_calls": 1,
+      "utf8_bytes": 3160
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
+      "regex_wordpunct_v2": 830,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q02",
+      "tool_calls": 2,
+      "utf8_bytes": 3311
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
+      "regex_wordpunct_v2": 642,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q02",
+      "tool_calls": 1,
+      "utf8_bytes": 2641
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
+      "regex_wordpunct_v2": 691,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q02",
+      "tool_calls": 2,
+      "utf8_bytes": 2793
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
+      "regex_wordpunct_v2": 807,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q03",
+      "tool_calls": 1,
+      "utf8_bytes": 3449
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
+      "regex_wordpunct_v2": 856,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q03",
+      "tool_calls": 2,
+      "utf8_bytes": 3601
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
+      "regex_wordpunct_v2": 965,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q03",
+      "tool_calls": 1,
+      "utf8_bytes": 4122
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
+      "regex_wordpunct_v2": 1014,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q03",
+      "tool_calls": 2,
+      "utf8_bytes": 4273
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
+      "regex_wordpunct_v2": 807,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q03",
+      "tool_calls": 1,
+      "utf8_bytes": 3449
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
+      "regex_wordpunct_v2": 856,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q03",
+      "tool_calls": 2,
+      "utf8_bytes": 3601
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
+      "regex_wordpunct_v2": 803,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q04",
+      "tool_calls": 1,
+      "utf8_bytes": 3518
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
+      "regex_wordpunct_v2": 852,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q04",
+      "tool_calls": 2,
+      "utf8_bytes": 3670
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
+      "regex_wordpunct_v2": 951,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q04",
+      "tool_calls": 1,
+      "utf8_bytes": 4193
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
+      "regex_wordpunct_v2": 1000,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q04",
+      "tool_calls": 2,
+      "utf8_bytes": 4344
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
+      "regex_wordpunct_v2": 803,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q04",
+      "tool_calls": 1,
+      "utf8_bytes": 3518
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
+      "regex_wordpunct_v2": 852,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q04",
+      "tool_calls": 2,
+      "utf8_bytes": 3670
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
+      "regex_wordpunct_v2": 682,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q05",
+      "tool_calls": 1,
+      "utf8_bytes": 2765
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
+      "regex_wordpunct_v2": 731,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q05",
+      "tool_calls": 2,
+      "utf8_bytes": 2917
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
+      "regex_wordpunct_v2": 839,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q05",
+      "tool_calls": 1,
+      "utf8_bytes": 3367
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
+      "regex_wordpunct_v2": 888,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q05",
+      "tool_calls": 2,
+      "utf8_bytes": 3518
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
+      "regex_wordpunct_v2": 682,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q05",
+      "tool_calls": 1,
+      "utf8_bytes": 2765
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
+      "regex_wordpunct_v2": 731,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q05",
+      "tool_calls": 2,
+      "utf8_bytes": 2917
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
+      "regex_wordpunct_v2": 662,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q06",
+      "tool_calls": 1,
+      "utf8_bytes": 2605
+    },
+    {
+      "arm": "semantic_query_replay",
+      "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
+      "regex_wordpunct_v2": 711,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q06",
+      "tool_calls": 2,
+      "utf8_bytes": 2757
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
+      "regex_wordpunct_v2": 801,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q06",
+      "tool_calls": 1,
+      "utf8_bytes": 3124
+    },
+    {
+      "arm": "duplicated_artifacts",
+      "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
+      "regex_wordpunct_v2": 850,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q06",
+      "tool_calls": 2,
+      "utf8_bytes": 3275
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
+      "regex_wordpunct_v2": 662,
+      "retry_calls": 0,
+      "scenario": "clean",
+      "task": "Q06",
+      "tool_calls": 1,
+      "utf8_bytes": 2605
+    },
+    {
+      "arm": "deduplicated_artifact",
+      "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
+      "regex_wordpunct_v2": 711,
+      "retry_calls": 1,
+      "scenario": "one_forced_retry",
+      "task": "Q06",
+      "tool_calls": 2,
+      "utf8_bytes": 2757
+    }
+  ],
+  "provider_usage": null,
+  "raw_conditions_recomputed": 36,
+  "raw_report_sha256": "cef10f1f2e151d69ed9d9846a626078dfe6db77632ba9568ba14eecf4cd67ca2",
+  "source": {
+    "bytes": 11002,
+    "exposure": "Previously used public pilot; calibration only, not newly held out",
+    "file": "EVSample.sysml",
+    "license": "EPL-2.0",
+    "license_sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+    "sha256": "4834675f798fb275b847887b53661bc351be8094b2f320ee4819d2bb4b71d3db",
+    "url": "https://github.com/Systems-Modeling/SysML-v2-Release/blob/fb97b754f29588b8e9c7a35f370880cd15eb29e7/sysml/src/examples/State%20Space%20Representation%20Examples/EVSample.sysml"
+  },
+  "status": "offline_scripted_protocol_measurement_only",
+  "tests_passed": 24
+}

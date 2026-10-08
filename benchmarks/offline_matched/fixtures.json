@@ -1,0 +1,350 @@
+{
+  "schema": "offline-matched-source/1",
+  "source": {
+    "file": "EVSample.sysml",
+    "sha256": "4834675f798fb275b847887b53661bc351be8094b2f320ee4819d2bb4b71d3db",
+    "bytes": 11002,
+    "url": "https://github.com/Systems-Modeling/SysML-v2-Release/blob/fb97b754f29588b8e9c7a35f370880cd15eb29e7/sysml/src/examples/State%20Space%20Representation%20Examples/EVSample.sysml",
+    "license": "EPL-2.0",
+    "license_sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+    "exposure": "Previously used public pilot; calibration only, not newly held out"
+  },
+  "authority": "Reference source-anchored snapshot; native semantic authority and independent oracle review pending",
+  "facts": [
+    {
+      "id": "battery_type",
+      "subject_id": "EVSample::vehicle::battery",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_type",
+      "value": {
+        "kind": "qualified_type",
+        "name": "EVSample::Battery"
+      },
+      "quote": "part battery: Battery {"
+    },
+    {
+      "id": "motor_type",
+      "subject_id": "EVSample::vehicle::motor",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_type",
+      "value": {
+        "kind": "qualified_type",
+        "name": "EVSample::Motor"
+      },
+      "quote": "part motor: Motor {"
+    },
+    {
+      "id": "capacity",
+      "subject_id": "EVSample::vehicle::battery::capacity",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_quantity",
+      "value": {
+        "kind": "quantity_literal",
+        "number": "50",
+        "unit": "A⋅h"
+      },
+      "quote": ":>> capacity = 50['A⋅h'];"
+    },
+    {
+      "id": "base_voltage",
+      "subject_id": "EVSample::vehicle::battery::baseVoltage",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_quantity",
+      "value": {
+        "kind": "quantity_literal",
+        "number": "300",
+        "unit": "V"
+      },
+      "quote": ":>> baseVoltage = 300[V];"
+    },
+    {
+      "id": "initial_soc",
+      "subject_id": "EVSample::vehicle::battery::socInit",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_scalar",
+      "value": {
+        "kind": "decimal_literal",
+        "number": "0.8"
+      },
+      "quote": ":>> socInit = 0.8;"
+    },
+    {
+      "id": "resistance",
+      "subject_id": "EVSample::vehicle::battery::internalResistance",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_quantity",
+      "value": {
+        "kind": "quantity_literal",
+        "number": "1.8",
+        "unit": "Ω"
+      },
+      "quote": ":>> internalResistance = 1.8['Ω'];"
+    },
+    {
+      "id": "battery_motor_flow",
+      "subject_id": "EVSample::vehicle",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_flow",
+      "value": {
+        "kind": "directed_flow_declaration",
+        "from": "battery.batteryBehavior.output",
+        "to": "motor.motorBehavior.input"
+      },
+      "quote": "flow battery.batteryBehavior.output to motor.motorBehavior.input;"
+    },
+    {
+      "id": "c1_identity",
+      "subject_id": "EVSample::smallEVRangeContext::rangeRequirementSmall",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_requirement",
+      "value": {
+        "kind": "requirement_declaration",
+        "short_id": "C1",
+        "base_requirement": "smallEVRequirement",
+        "type": "RangeRequirement"
+      },
+      "quote": "requirement <C1> rangeRequirementSmall :> smallEVRequirement : RangeRequirement {"
+    },
+    {
+      "id": "c1_range",
+      "subject_id": "EVSample::smallEVRangeContext::rangeRequirementSmall::requiredRange",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_quantity",
+      "value": {
+        "kind": "quantity_literal",
+        "number": "130",
+        "unit": "km"
+      },
+      "quote": "attribute :>> requiredRange = 130[km];"
+    },
+    {
+      "id": "l1_identity",
+      "subject_id": "EVSample::largeEVRangeContext::rangeRequirementLarge",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_requirement",
+      "value": {
+        "kind": "requirement_declaration",
+        "short_id": "L1",
+        "base_requirement": "largeEVRequirement",
+        "type": "RangeRequirement"
+      },
+      "quote": "requirement <L1> rangeRequirementLarge :> largeEVRequirement : RangeRequirement {"
+    },
+    {
+      "id": "l1_range",
+      "subject_id": "EVSample::largeEVRangeContext::rangeRequirementLarge::requiredRange",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_quantity",
+      "value": {
+        "kind": "quantity_literal",
+        "number": "200",
+        "unit": "km"
+      },
+      "quote": "attribute :>> requiredRange = 200[km];"
+    },
+    {
+      "id": "small_analysis_binding",
+      "subject_id": "EVSample::smallEVRangeContext::rangeAnalysisSmall::rangeRequirement",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_redefinition_binding",
+      "value": {
+        "kind": "requirement_redefinition_binding",
+        "target": "EVSample::smallEVRangeContext::rangeRequirementSmall"
+      },
+      "quote": "requirement :>> rangeRequirement = rangeRequirementSmall;"
+    },
+    {
+      "id": "large_mass_prose",
+      "subject_id": "EVSample::largeEVRangeContext::largeEVRequirement",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "documentation_text",
+      "value": {
+        "kind": "documentation",
+        "text": "The large EVs must be ligher than 900[kg]"
+      },
+      "quote": "doc /* The large EVs must be ligher than 900[kg] */"
+    },
+    {
+      "id": "large_mass_assumption",
+      "subject_id": "EVSample::largeEVRangeContext::largeEVRequirement",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "assumed_constraint",
+      "value": {
+        "kind": "assumed_constraint",
+        "left": "vehicle.mass",
+        "comparator": "<",
+        "number": "1200",
+        "unit": "kg"
+      },
+      "quote": "assume constraint { vehicle.mass < 1200[kg] }"
+    },
+    {
+      "id": "large_vehicle_mass",
+      "subject_id": "EVSample::vehicle_large::mass",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "declared_quantity",
+      "value": {
+        "kind": "quantity_literal",
+        "number": "1100",
+        "unit": "kg"
+      },
+      "quote": "attribute :>> mass = 1100[kg];"
+    },
+    {
+      "id": "range_constraint",
+      "subject_id": "EVSample::RangeRequirement",
+      "subject_id_scheme": "manual_source_qualified_label_not_native_id",
+      "predicate": "required_constraint",
+      "value": {
+        "kind": "constraint_declaration",
+        "left": "actualRange",
+        "comparator": ">=",
+        "right": "requiredRange"
+      },
+      "quote": "require constraint { actualRange >= requiredRange }"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "Q01",
+      "capabilities": [
+        "K01",
+        "K05",
+        "K10"
+      ],
+      "goal": "Report the battery's declared type, capacity, voltage, initial state of charge and resistance, citing source identities and units.",
+      "facts": [
+        "battery_type",
+        "capacity",
+        "base_voltage",
+        "initial_soc",
+        "resistance"
+      ],
+      "evidence_conclusion": "source_declarations_only"
+    },
+    {
+      "id": "Q02",
+      "capabilities": [
+        "K02",
+        "K04",
+        "K05"
+      ],
+      "goal": "Identify the declared battery-to-motor flow and the two part types. State the direction without claiming interface compatibility or execution.",
+      "facts": [
+        "battery_type",
+        "battery_motor_flow",
+        "motor_type"
+      ],
+      "evidence_conclusion": "declared_flow_not_verified_compatibility"
+    },
+    {
+      "id": "Q03",
+      "capabilities": [
+        "K03",
+        "K05"
+      ],
+      "goal": "Distinguish the two requiredRange declarations for C1 and L1 by qualified source identity, literal value and unit.",
+      "facts": [
+        "c1_identity",
+        "c1_range",
+        "l1_identity",
+        "l1_range"
+      ],
+      "evidence_conclusion": "source_declarations_only"
+    },
+    {
+      "id": "Q04",
+      "capabilities": [
+        "K04",
+        "K08",
+        "K10"
+      ],
+      "goal": "Trace the small-range analysis requirement binding to C1 and its declared threshold and comparator. Does the supplied evidence establish successful execution?",
+      "facts": [
+        "small_analysis_binding",
+        "c1_identity",
+        "c1_range",
+        "range_constraint"
+      ],
+      "evidence_conclusion": "execution_not_established"
+    },
+    {
+      "id": "Q05",
+      "capabilities": [
+        "K03",
+        "K08",
+        "K10"
+      ],
+      "goal": "Compare the large-EV mass documentation, formal assumption and declared mass. Report the source discrepancy without choosing an intended limit.",
+      "facts": [
+        "large_mass_prose",
+        "large_mass_assumption",
+        "large_vehicle_mass"
+      ],
+      "evidence_conclusion": "intent_unresolved"
+    },
+    {
+      "id": "Q06",
+      "capabilities": [
+        "K05",
+        "K09",
+        "K10"
+      ],
+      "goal": "Inspect the exact battery capacity and voltage targets for a proposed source-copy change to 60 A⋅h and 310 V; preserve units and unrelated source bytes.",
+      "facts": [
+        "battery_type",
+        "capacity",
+        "base_voltage"
+      ],
+      "evidence_conclusion": "proposal_only_requires_review"
+    }
+  ],
+  "patches": [
+    {
+      "id": "P01",
+      "capabilities": [
+        "K09",
+        "K10"
+      ],
+      "edits": [
+        {
+          "fact_id": "capacity",
+          "before": "50",
+          "after": "60",
+          "unit": "A⋅h"
+        }
+      ],
+      "scope": "single_literal_source_copy"
+    },
+    {
+      "id": "P02",
+      "capabilities": [
+        "K09",
+        "K10"
+      ],
+      "edits": [
+        {
+          "fact_id": "capacity",
+          "before": "50",
+          "after": "60",
+          "unit": "A⋅h"
+        },
+        {
+          "fact_id": "base_voltage",
+          "before": "300",
+          "after": "310",
+          "unit": "V"
+        }
+      ],
+      "scope": "two_literal_atomic_source_copy"
+    }
+  ],
+  "excluded_claims": [
+    "native API acceptance",
+    "full SysML semantics",
+    "real engineering correctness",
+    "model-in-the-loop success",
+    "held-out generalization",
+    "billed cost"
+  ]
+}
