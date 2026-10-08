@@ -5,6 +5,7 @@ import secrets
 from pathlib import Path
 
 from .contracts import InterfaceError, TEXT, PATHS, obj, validate
+from .limits import ANSWER_LIMIT_BYTES, json_bytes
 
 OP = {"enum": ["inspect", "validate", "explain", "edit", "decompose", "migrate", "compare"]}
 QUESTION = obj({"key": {"type": "string", "minLength": 1, "maxLength": 80, "pattern": r"[a-z][a-z0-9_]*"},
@@ -52,6 +53,8 @@ def transition(state, request):
         validate(question, QUESTION, "question")
         if (question["type"] == "choice") != ("choices" in question):
             raise InterfaceError("invalid_choices", "Only choice questions require choices", "Supply 2–6 distinct choices, or use a different type.")
+        if any(len(json_bytes(choice)) > ANSWER_LIMIT_BYTES for choice in question.get("choices", [])):
+            raise InterfaceError("answer_limit", "A choice exceeds the bounded answer size", "Use concise choice labels; no question has been admitted.")
         for item in state.get("questions", []):
             if item["status"] == "pending" and item["revision"] != rev:
                 item["status"] = "stale"
@@ -83,19 +86,25 @@ def transition(state, request):
     if len(matches) != 1 or matches[0]["status"] != "pending":
         raise InterfaceError("inactive_question", "Question is unknown, resolved or stale", "Prepare only the still-missing current decision.")
     item = matches[0]
-    if request["revision"] != item["revision"] or revision(item["context"]) != item["revision"]:
-        raise InterfaceError("stale_question", "The question's source revision has changed", "Prepare a fresh question against current source bytes and facts.")
+    if request["revision"] != item["revision"]:
+        raise InterfaceError("stale_question", "The reply does not match the question revision", "Use the revision returned with this question.")
     if request["outcome"] != "accept":
         if "content" in request:
             raise InterfaceError("unexpected_content", "Cancelled/declined responses cannot carry an answer", "Omit content; no answer will be inferred.")
         item["status"] = request["outcome"]
         return state, {"status": request["outcome"], "applied": False}
+    # Cancellation resolves only the ledger: it must work even if the source
+    # changed or disappeared. Applying an answer still requires current bytes.
+    if revision(item["context"]) != item["revision"]:
+        raise InterfaceError("stale_question", "The question's source revision has changed", "Prepare a fresh question against current source bytes and facts, or cancel this question.")
     if "content" not in request:
         raise InterfaceError("missing_answer", "Accept requires an explicit answer", "Provide content; a displayed default is not a response.")
     question = item["question"]
     schema = {"text": TEXT, "choice": {"enum": question.get("choices", [])},
               "number": {"type": "number"}, "boolean": {"type": "boolean"}}[question["type"]]
     validate(request["content"], schema, "reply.content")
+    if len(json_bytes(request["content"])) > ANSWER_LIMIT_BYTES:
+        raise InterfaceError("answer_limit", "Answer exceeds the reserved serialized size", "Supply a concise answer within the limit, or cancel; the pending question is unchanged.")
     item["status"], item["answer"] = "answered", request["content"]
     return state, {"status": "answered", "key": question["key"], "value": request["content"],
                    "revision": item["revision"], "applied": False, "authority": "domain_clarification_only"}

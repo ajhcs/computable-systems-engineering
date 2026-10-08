@@ -1,5 +1,6 @@
 """Boundary tests for interface contracts and elicitation, not AI task evidence."""
 import copy
+from concurrent.futures import ThreadPoolExecutor
 import importlib.util
 import io
 import json
@@ -8,6 +9,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import threading
 import unittest
 from unittest.mock import patch
 
@@ -15,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from cse_interface.contracts import command, describe, discover, InterfaceError, validate, OPERATIONS
 from cse_interface.elicitation import transition
+from cse_interface.limits import ANSWER_LIMIT_BYTES, RESOLUTION_RESERVE_BYTES, json_bytes
 
 spec = importlib.util.spec_from_file_location("interface_cli", ROOT / "scripts/interface.py")
 cli = importlib.util.module_from_spec(spec)
@@ -72,6 +75,13 @@ class Contracts(unittest.TestCase):
         for raw in ('{"a":1,"a":2}', '{"a":NaN}', '{"a":Infinity}'):
             with self.assertRaises(ValueError):
                 cli.read_json(io.StringIO(raw))
+
+    def test_request_limit_counts_utf8_bytes_at_exact_boundary(self):
+        raw = json.dumps({"text": "é" * 20}, ensure_ascii=False)
+        boundary = len(raw.encode("utf-8"))
+        self.assertEqual(cli.read_json(io.StringIO(raw), limit=boundary)["text"], "é" * 20)
+        with self.assertRaises(InterfaceError):
+            cli.read_json(io.StringIO(raw), limit=boundary - 1)
 
     def test_new_slash_entry_and_independent_launchers(self):
         for name in ("cse", "develop-system-concept", "develop-conops", "develop-operational-scenarios"):
@@ -207,6 +217,163 @@ class Elicitation(unittest.TestCase):
         alias.symlink_to(path)
         with self.assertRaises(InterfaceError):
             cli.elicit(alias, self.request)
+
+    def actual_cli(self, path, request):
+        run = subprocess.run([sys.executable, "-B", str(ROOT / "scripts/interface.py"), "elicit", "--state", str(path)],
+                             input=json.dumps(request), text=True, capture_output=True, timeout=20)
+        self.assertEqual(run.stderr, "", run.stderr)
+        return run.returncode, json.loads(run.stdout)
+
+    def test_independent_two_large_prepares_can_both_be_resolved(self):
+        self.context["known"] = {"reference": "k" * 550000}
+        ledger = Path(self.tmp.name) / "large.cse-questions.json"
+        self.question["key"] = "first"
+        code, first = self.actual_cli(ledger, self.request)
+        self.assertEqual((code, first["status"]), (0, "pending"))
+        self.assertEqual(self.actual_cli(ledger, self.reply(first))[1]["status"], "answered")
+        self.question["key"] = "second"
+        code, second = self.actual_cli(ledger, self.request)
+        self.assertEqual((code, second["status"]), (0, "pending"))
+        self.assertGreater(ledger.stat().st_size, 1000000)
+        pending = ledger.read_bytes()
+        for outcome in ("accept", "cancel", "decline"):
+            branch = ledger.parent / (outcome + ".cse-questions.json")
+            branch.write_bytes(pending)
+            request = self.reply(second, outcome=outcome)
+            if outcome != "accept":
+                request.pop("content")
+            code, result = self.actual_cli(branch, request)
+            self.assertEqual((code, result["status"]), (0, "answered" if outcome == "accept" else outcome))
+            self.assertFalse(result["applied"])
+        self.assertEqual(self.model.read_text(), "package Example {}")
+
+    def test_legacy_serialization_over_request_limit_remains_readable(self):
+        self.context["known"] = {"reference": "k" * 550000}
+        state, first = self.prepare()
+        state, _ = transition(state, self.reply(first))
+        self.question["key"] = "second"
+        state, second = transition(state, self.request)
+        ledger = Path(self.tmp.name) / "legacy.cse-questions.json"
+        ledger.write_text(json.dumps(state, sort_keys=True) + "\n")
+        self.assertGreater(ledger.stat().st_size, 1000000)
+        self.assertEqual(self.actual_cli(ledger, self.reply(second))[1]["status"], "answered")
+
+    def test_pending_admission_reserves_largest_valid_answer(self):
+        self.question["type"] = "text"
+        projected, _ = self.prepare()
+        limit = len(json_bytes(projected)) + RESOLUTION_RESERVE_BYTES
+        ledger = Path(self.tmp.name) / "boundary.cse-questions.json"
+        answer = " " * (ANSWER_LIMIT_BYTES - 4) + "x"
+        self.assertEqual(len(json_bytes(answer)), ANSWER_LIMIT_BYTES)
+        with patch.object(cli, "LEDGER_LIMIT_BYTES", limit):
+            pending = cli.elicit(ledger, self.request)
+            result = cli.elicit(ledger, self.reply(pending, content=answer))
+            self.assertEqual(result["status"], "answered")
+            self.assertLessEqual(ledger.stat().st_size, limit)
+            self.assertEqual(json.loads(ledger.read_text())["questions"][0]["answer"], answer)
+
+    def test_capacity_rejection_is_atomic_and_existing_cancel_still_works(self):
+        ledger = Path(self.tmp.name) / "capacity.cse-questions.json"
+        pending = cli.elicit(ledger, self.request)
+        before = ledger.read_bytes()
+        enlarged = copy.deepcopy(self.request)
+        enlarged["context"]["known"] = {"new_fact": "z" * 1000}
+        with patch.object(cli, "LEDGER_LIMIT_BYTES", len(before) + RESOLUTION_RESERVE_BYTES):
+            with self.assertRaises(InterfaceError) as caught:
+                cli.elicit(ledger, enlarged)
+            self.assertEqual(caught.exception.code, "ledger_capacity")
+            self.assertEqual(ledger.read_bytes(), before)
+            cancel = self.reply(pending, outcome="cancel")
+            cancel.pop("content")
+            self.assertEqual(cli.elicit(ledger, cancel)["status"], "cancel")
+
+    def test_one_byte_below_reservation_rejects_before_pending_is_persisted(self):
+        projected, _ = self.prepare()
+        ledger = Path(self.tmp.name) / "too-small.cse-questions.json"
+        with patch.object(cli, "LEDGER_LIMIT_BYTES", len(json_bytes(projected)) + RESOLUTION_RESERVE_BYTES - 1):
+            with self.assertRaises(InterfaceError) as caught:
+                cli.elicit(ledger, self.request)
+            self.assertEqual(caught.exception.code, "ledger_capacity")
+            self.assertFalse(ledger.exists())
+
+    def test_oversize_answer_or_choice_never_consumes_pending_state(self):
+        self.question["type"] = "text"
+        ledger = Path(self.tmp.name) / "answer-limit.cse-questions.json"
+        pending = cli.elicit(ledger, self.request)
+        before = ledger.read_bytes()
+        value = " " * ANSWER_LIMIT_BYTES + "x"
+        with self.assertRaises(InterfaceError) as caught:
+            cli.elicit(ledger, self.reply(pending, content=value))
+        self.assertEqual(caught.exception.code, "answer_limit")
+        self.assertEqual(ledger.read_bytes(), before)
+        self.question.update(type="choice", choices=[value, "small"])
+        with self.assertRaises(InterfaceError) as caught:
+            self.prepare()
+        self.assertEqual(caught.exception.code, "answer_limit")
+
+    def test_cancel_and_decline_work_after_source_change_or_deletion(self):
+        for change in ("edit", "delete"):
+            for outcome in ("cancel", "decline"):
+                self.model.write_text("package Example {}")
+                ledger = Path(self.tmp.name) / (change + outcome + ".cse-questions.json")
+                pending = cli.elicit(ledger, self.request)
+                if change == "delete":
+                    self.model.unlink()
+                else:
+                    self.model.write_text("package Changed {}")
+                with self.assertRaises(InterfaceError):
+                    cli.elicit(ledger, self.reply(pending))
+                request = self.reply(pending, outcome=outcome)
+                request.pop("content")
+                code, result = self.actual_cli(ledger, request)
+                self.assertEqual((code, result["status"]), (0, outcome))
+                self.assertFalse(result["applied"])
+
+    def test_record_count_bound_never_blocks_last_cancellation(self):
+        state = self.initial
+        for i in range(127):
+            self.question["key"] = f"q{i}"
+            state, pending = transition(state, self.request)
+            state, _ = transition(state, self.reply(pending))
+        ledger = Path(self.tmp.name) / "count-boundary.cse-questions.json"
+        ledger.write_bytes(json_bytes(state))
+        self.question["key"] = "last"
+        pending = cli.elicit(ledger, self.request)
+        cancel = self.reply(pending, outcome="cancel")
+        cancel.pop("content")
+        self.assertEqual(cli.elicit(ledger, cancel)["status"], "cancel")
+        before = ledger.read_bytes()
+        self.question["key"] = "too_many"
+        with self.assertRaises(InterfaceError) as caught:
+            cli.elicit(ledger, self.request)
+        self.assertEqual(caught.exception.code, "ledger_limit")
+        self.assertEqual(ledger.read_bytes(), before)
+        self.assertEqual(len(json.loads(before)["questions"]), 128)
+
+    def concurrent_requests(self, ledger, requests):
+        barrier = threading.Barrier(len(requests))
+        def run(request):
+            barrier.wait(timeout=10)
+            return self.actual_cli(ledger, request)
+        with ThreadPoolExecutor(max_workers=len(requests)) as pool:
+            return list(pool.map(run, requests))
+
+    def test_concurrent_prepare_returns_one_persisted_question(self):
+        ledger = Path(self.tmp.name) / "concurrent-prepare.cse-questions.json"
+        results = self.concurrent_requests(ledger, [self.request, self.request])
+        self.assertTrue(all(code == 0 for code, _ in results), results)
+        self.assertEqual(results[0][1]["id"], results[1][1]["id"])
+        self.assertEqual(len(json.loads(ledger.read_text())["questions"]), 1)
+
+    def test_concurrent_answer_cancel_has_exactly_one_winner(self):
+        ledger = Path(self.tmp.name) / "concurrent-resolve.cse-questions.json"
+        pending = cli.elicit(ledger, self.request)
+        cancel = self.reply(pending, outcome="cancel")
+        cancel.pop("content")
+        results = self.concurrent_requests(ledger, [self.reply(pending), cancel])
+        self.assertEqual(sorted(code for code, _ in results), [0, 2], results)
+        self.assertEqual(next(result for code, result in results if code == 2)["code"], "inactive_question")
+        self.assertIn(json.loads(ledger.read_text())["questions"][0]["status"], ("answered", "cancel"))
 
 
 if __name__ == "__main__":

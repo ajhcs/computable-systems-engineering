@@ -1,0 +1,250 @@
+{
+  "base_commit": "0a4f5dfab7e828e18cc2e0e7b959a576ae3287e8",
+  "branch": "work/cse-interface-reviewfix-20261008",
+  "corrected_pilot_report_sha256": "f271347093647bf8eb49dffd447f09fa40be3834ffc130b29f96e3040dc218f5",
+  "final_independent_acceptance": "pending; original HOLD has not been lifted",
+  "full_regressions": {
+    "command": [
+      "python3",
+      "-B",
+      "scripts/check.py",
+      "--require-sysml"
+    ],
+    "count_method": "Sum Ran counts from 15 PASS suite summary lines; no skipped suite lines",
+    "elapsed_seconds": 113.479,
+    "exit": 0,
+    "log_sha256": "b9614264e6d8213612316eda0d0c01df2a84ad6ad0392ead3b7a4f934c9f4ce5",
+    "new_model_runs": 0,
+    "per_suite_counts": [
+      30,
+      17,
+      27,
+      39,
+      33,
+      15,
+      14,
+      2,
+      6,
+      3,
+      5,
+      19,
+      3,
+      3,
+      5
+    ],
+    "python_sources_sha256": {
+      "cse_interface/__init__.py": "1eabe9a90cf001a427cc306fbbfeb2f928361d1af20ef8bb03954304c1b36a5f",
+      "cse_interface/contracts.py": "0fbdc1f136ba6b850ddb8a01bd2925717b44f50d236f2ee7e16d89f5a10b94b1",
+      "cse_interface/elicitation.py": "1d086ed7b4b758f5f5a30f62b110f245786ba9bb34c6e87dad23fb789bce54d1",
+      "cse_interface/limits.py": "d15ae8a9cddfa4f96ede5608dc2e5fb259860b8e53696de7a26b028f957268d2",
+      "examples/tool-library/result/capacity_check.py": "c09594f4939a1d7cf7d88490e86d3559701efccdfde6b41968dffbe27c173458",
+      "scripts/audit_interface_trial.py": "f07e70d9554fbd76b04315550cb092d380396cec259210272d507f90ff6588ad",
+      "scripts/benchmark_accounting.py": "02d44fd60d8bbc8d1d7dd7060141b7b2744025641fb34f01885d684f5423e183",
+      "scripts/check.py": "3588cce3828960664b8ab6723809bddbd72bf445c2465cdbd96bc5c11b4e7561",
+      "scripts/compare_interface_pilots.py": "f7e2e611e78543b66fd19818f89ddbeff70dd8414f9646995ef0de5652f60cd2",
+      "scripts/install_sysml_parser.py": "7568759e2db292e6a6c1843210b166d8366020b8fad31d5847616403115acd83",
+      "scripts/interface.py": "b59613c32e82b6391a6b1ed3ebd35dc4f5a9de052e70f959bdf7d3af36961580",
+      "scripts/measure_context.py": "6c43d1aca4e814a83771ae8397a6d3f9ce430b4b6ed579809eea69293c8c3bde",
+      "scripts/measure_interface.py": "01f5e46027116a85a9c11c8b14f9a20e91b5474d679968e2525d81cbf6842c68",
+      "scripts/pin_interface_corpus.py": "3d1cdb4bf7a8780941d84bc6442c958152b13a1343823dbe2068508bb5563d6c",
+      "scripts/probe_standard_runner.py": "65f9f51b73eef691677d8ce02b385dece053838264770c121e65f7ace5e5d1ca",
+      "scripts/requirements.py": "56b0b623f97a9c85f83bb124f49049c35e8dc75faba7ed4fa26092bfbc92cf10",
+      "scripts/run_interface_pilot.py": "916d2b34ecfcff662578e8006dbf3f021cb0e519034771098c0344aa3e7c7352",
+      "scripts/sysml.py": "d83a2080d18beb4c389125c2b12bd176aec993075ff1ba6b0fcfcd89079ac513",
+      "scripts/sysml_diff.py": "0706fb2b6b2ef42b333312d02835028cd54e6b0597138394f222d2bd818a8863",
+      "scripts/sysml_testgen.py": "b8522d1c1a25de3287a7289b735091c13f2e661faf5b9560be14bea0f687351e",
+      "scripts/sysml_view.py": "4a2378898567af14814a62007ea93a6883d12424efc181b47bb838ce441e117d",
+      "scripts/verify.py": "5bcf43e968fd02d20387761048824ff4298c8e13bca3bf5eaf487dc20d57db16",
+      "skills/cse/scripts/cse.py": "ef27f8aaae0e577be2143d833ec5417b5ba1a2b9a42172564de828e0f3aa6b4f",
+      "skills/develop-conops/scripts/conops.py": "be4a926b0c03be2796800221346c23d27084bc7f36d30da5751bc330478f9f0f",
+      "skills/develop-conops/scripts/cse.py": "ef27f8aaae0e577be2143d833ec5417b5ba1a2b9a42172564de828e0f3aa6b4f",
+      "skills/develop-operational-scenarios/scripts/conops.py": "be4a926b0c03be2796800221346c23d27084bc7f36d30da5751bc330478f9f0f",
+      "skills/develop-operational-scenarios/scripts/cse.py": "ef27f8aaae0e577be2143d833ec5417b5ba1a2b9a42172564de828e0f3aa6b4f",
+      "skills/develop-system-concept/scripts/concept.py": "f9a8c7d96ee58f375a3f555ce4ef0630d09081b04aa7f0fce98324504f73760d",
+      "skills/develop-system-concept/scripts/cse.py": "ef27f8aaae0e577be2143d833ec5417b5ba1a2b9a42172564de828e0f3aa6b4f",
+      "tests/test_benchmark.py": "861401dbd40785cd0bad19b8148293f36332f570f16de2308d33ac2708914864",
+      "tests/test_concept.py": "423f2e4f78cf7b8cf45e63d7107e28354be3018d218edfef09f7e047ece0db6b",
+      "tests/test_develop_conops.py": "5e1ec1bf22f7c9e7213ecb52d0a98f8b4ffcdf508602a7f4f840c4304c83742a",
+      "tests/test_events.py": "162a970dfd2bf309472891c4df4f2bed984cc7e6c8f234bbfb9c8ed59e691525",
+      "tests/test_influence.py": "a46d0b4c1241518ba6b7feb3b987b4cd8cddba2eafc95505c910d584a5f25a1b",
+      "tests/test_interface.py": "ec94763866e5c64e4fa0b31ad3a78a579c29ae57169250544c9ee53046b2e885",
+      "tests/test_language.py": "8b2c75cf60dd1bcd9d7f12f3e95cea0d4e26594c83983dcf86253e15cf6a2619",
+      "tests/test_language_oracle.py": "c9c02ec3cc98b8527e7bdf3f6d9acda7292744dcfb196c0becb12fe9255a5e7f",
+      "tests/test_public_language_cases.py": "266a010afef7dfa5354fecff2b8dfb4f7f28312c74473dcbc882a9ebf98614a7",
+      "tests/test_scenario_split.py": "63d8c9df731479c715bd6021bec16e49144bfef316f168148ce3800a4ad81ff2",
+      "tests/test_skill_runtime.py": "57d0df00198837285bc9d80295ecaa50fcab0c3666b7d1f5dc72af0cf96c7a86",
+      "tests/test_sysml.py": "e70a4c829303c7cc6108d8538c72188dde675fd97969423c030210b7b48cc75b",
+      "tests/test_sysml_public.py": "a98e2e864981772dec8bfcfe3914325188555f6ae9e2b38cb3996e7727e8bb0b",
+      "tests/test_sysml_views.py": "77cab5bb03b5a5d85fd21cb3194cf01911c03bfe6d6e1169ab95e5b8bc46ad10",
+      "tests/test_verifier.py": "ae71508f658ac8f22272f7231fa00c13fef5eae515106bb44032251080775997",
+      "verifier/__init__.py": "e9b613e50fdcdfa309ae440af31929c37ef15874c550605a422c9c39688dc48d",
+      "verifier/core.py": "09db25df70ad1524d196db346c5bacbc2feeaccf7f6708d80eca2b9ef3cdc73f",
+      "verifier/events.py": "e1e1a713fdbf1c8b455e2aa3dbcbaaf2b05c908b5e4c74abc4e3d3944139fc17",
+      "verifier/influence.py": "b96d7bc0dac64809ffa3fe941cd387f5861cc3a391014e9171424f494de6421d",
+      "verifier/language.py": "09968dee6646d7913abd5e33718d640368512cafc5a9760a8daadea42fcdc7db",
+      "verifier/sysml.py": "06b069c5410110ee2b6cdab6debd7499e860078d4b6bffecd214296175b2f100",
+      "verifier/views.py": "3a91caa526ddb3128c97284b770a0804ba2c2d56fb18b83ac27898c98fa4ea7a"
+    },
+    "python_sources_unchanged": true,
+    "skip_lines": [],
+    "unittest_suites": 15,
+    "unittest_tests": 221
+  },
+  "independent_reproductions": {
+    "exact_legacy_pending_ledger_sha256": "fdb5a41c81fdcd2474fcb7d70005b3461899c34245cdd21ff623c21192a221b6",
+    "exact_small_reply_replays": [
+      {
+        "exit": 0,
+        "outcome": "answer",
+        "request_bytes": 169,
+        "request_sha256": "1c2947e844a6a27ece357350a39d593883b8b85d42808eb5fa14284057c5f350",
+        "response": {
+          "applied": false,
+          "authority": "domain_clarification_only",
+          "key": "second",
+          "revision": "7a6755b3f44283f06f6eba7f041b4965547d80055171aa16f5918712432bee44",
+          "status": "answered",
+          "value": 2
+        },
+        "result_ledger_bytes": 1101304
+      },
+      {
+        "exit": 0,
+        "outcome": "cancel",
+        "request_bytes": 155,
+        "request_sha256": "099db66830a68db21f5b3770c206fb9405d4f16e746e188cbffb414399b7c479",
+        "response": {
+          "applied": false,
+          "status": "cancel"
+        },
+        "result_ledger_bytes": 1101291
+      }
+    ],
+    "independent_targeted_driver_sha256": "c307c1953b1b67101dd0fb5b67ef41bf80d23c3cb386b6b47c49b6162432ec08",
+    "malformed_transcript_reproduction": {
+      "after": {
+        "invalid_event_lines": 1,
+        "provider_usage": null,
+        "score": "incomplete",
+        "transcript_status": "invalid"
+      },
+      "before": {
+        "invalid_event_lines": 1,
+        "provider_usage": {
+          "input_tokens": 1
+        },
+        "score": "pass",
+        "transcript_status": null
+      }
+    },
+    "new_model_runs": 0,
+    "pilot_events_sha256": {
+      "baseline-1": "5d4e58b3e66db9959f7c3f8fead5af7979677a3cd05bb9ecf1f1880b44418a15",
+      "optimized-1": "0ac7a5446621479ba956bc46fd0d113bd5e919bffe9a067a1ee1ce91806ab530"
+    },
+    "preserved_pilot_accounting": {
+      "baseline-1": {
+        "logged_command_input_cost": {
+          "all_tools_regex_wordpunct_v2": 5480,
+          "all_tools_utf8_bytes": 21029,
+          "known_regex_wordpunct_v2": 5480,
+          "known_tool_inputs": 15,
+          "known_utf8_bytes": 21029,
+          "scope": "Logged command text only, not complete tool arguments or billed tokens",
+          "unknown_tool_inputs": 0
+        },
+        "provider_usage": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 539392,
+          "input_tokens": 610749,
+          "output_tokens": 6709,
+          "reasoning_output_tokens": 548
+        },
+        "tool_calls": 15,
+        "unknown_input_ids": []
+      },
+      "optimized-1": {
+        "logged_command_input_cost": {
+          "all_tools_regex_wordpunct_v2": null,
+          "all_tools_utf8_bytes": null,
+          "known_regex_wordpunct_v2": 2274,
+          "known_tool_inputs": 13,
+          "known_utf8_bytes": 6384,
+          "scope": "Logged command text only, not complete tool arguments or billed tokens",
+          "unknown_tool_inputs": 2
+        },
+        "provider_usage": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 499456,
+          "input_tokens": 560012,
+          "output_tokens": 6677,
+          "reasoning_output_tokens": 280
+        },
+        "tool_calls": 15,
+        "unknown_input_ids": [
+          "item_13",
+          "item_16"
+        ]
+      }
+    },
+    "targeted_invariants_passed": 64
+  },
+  "new_model_runs": 0,
+  "preservation_and_context": {
+    "elicit_help": {
+      "frozen": {
+        "regex_wordpunct_v2": 421,
+        "utf8_bytes": 1049
+      },
+      "successor": {
+        "regex_wordpunct_v2": 445,
+        "utf8_bytes": 1150
+      }
+    },
+    "frozen_head": "0a4f5dfab7e828e18cc2e0e7b959a576ae3287e8",
+    "frozen_status": "",
+    "historical_reports_sha256": {
+      "benchmarks/interface/corpus-lock.json": "395d1f051e0b9970802c366811ab83fea4a4ce91efd5a288b30fa6e4bd4f149b",
+      "docs/interface-context-results.json": "64031291b1117d4129d3da8d643a59bbca10d74263910b46a62684e5275c3c0c",
+      "docs/interface-pilot-results.json": "d91aa615fc61ebcc6d9a1d23e8e51d500b360abb6d58a0ea22f3c6bb9f452a60",
+      "docs/interface-results.md": "61f3daed649e9bdabd078c879768355ca6be4f253f93c9645836f49e065a9221"
+    },
+    "measurement_method": "regex-wordpunct-v2 on exact UTF-8 CLI stdout, including final newline; not a model tokenizer or billed cost",
+    "new_model_runs": 0,
+    "original_evidence_digests_match": true,
+    "scope": "Frozen original checkout and named evidence only; no global zero-drift claim for other owners",
+    "trial_files": {
+      "baseline": {
+        "events.jsonl": "5d4e58b3e66db9959f7c3f8fead5af7979677a3cd05bb9ecf1f1880b44418a15",
+        "inputs/EVSample.sysml": "4834675f798fb275b847887b53661bc351be8094b2f320ee4819d2bb4b71d3db",
+        "inputs/JT9D_Model_Dyn.mdl": "8408397b6cdea3e7ec0dd1302154eb64443418be8f385d92ae6bb06a2c0cf8e9",
+        "inputs/nasa-jt9d-LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "inputs/nasa-jt9d-README.md": "ebcb82d10aa6dc0e37a3d2c6cf66ded3f83e3cf92a3411ff43e6ecd1df012f8e",
+        "inputs/sysml-ev-LICENSE": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+        "inputs/sysml-ev-README.md": "e86a23b3cefc0835fffc34d2970028ed3e227121f65eab43ad2f314e46a778a7",
+        "result.json": "ff24fb76abe55ae8c79e7b21fb18efc37ea3fdf4a6c9f954b85afdf79828de0a",
+        "run-manifest.json": "f702626b08651cf4e917fa6cf89664583d1cbedeeb95c3954c1ae2666d744d62",
+        "task.txt": "29cefaf670d65e6915869302ff6942a2b0e82dd57630a03ee4e3729e0a65a8f7"
+      },
+      "optimized": {
+        "events.jsonl": "0ac7a5446621479ba956bc46fd0d113bd5e919bffe9a067a1ee1ce91806ab530",
+        "inputs/EVSample.sysml": "4834675f798fb275b847887b53661bc351be8094b2f320ee4819d2bb4b71d3db",
+        "inputs/JT9D_Model_Dyn.mdl": "8408397b6cdea3e7ec0dd1302154eb64443418be8f385d92ae6bb06a2c0cf8e9",
+        "inputs/nasa-jt9d-LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "inputs/nasa-jt9d-README.md": "ebcb82d10aa6dc0e37a3d2c6cf66ded3f83e3cf92a3411ff43e6ecd1df012f8e",
+        "inputs/sysml-ev-LICENSE": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+        "inputs/sysml-ev-README.md": "e86a23b3cefc0835fffc34d2970028ed3e227121f65eab43ad2f314e46a778a7",
+        "result.json": "69da7f40922d475415e676a1274bcead39804d7b282dc1027e2466c29aeab700",
+        "run-manifest.json": "3cd18ae20a743a146d1a6b429849970c5457cd767fd7c60d161c225fec54472b",
+        "task.txt": "29cefaf670d65e6915869302ff6942a2b0e82dd57630a03ee4e3729e0a65a8f7"
+      }
+    }
+  },
+  "prior_independent_evidence_sha256": "211e98030a9300e61528ed6d7afcf0b88c65e9e2a76ba17f0c44f51ab18b699b",
+  "receipt_sha256": {
+    "full_regressions": "e007966ef1b91eff6438fc6cabbae4fd715bc9e4fa528d394d53e51a82e8b49c",
+    "independent_reproductions": "a2561d7ca83d7445e5f17c0bd730795febcf85e2bd4af6527f427efafd756efd",
+    "preservation_and_context": "fba64f46479768fea6d31e051de213cc1982de2c12ee9b1543cdc0e12cdde279"
+  },
+  "supplied_ledger_driver_sha256": "5420201222855abd59ec481798af0cac5083c59c9b8ff9ea0250240015f1a5d6"
+}

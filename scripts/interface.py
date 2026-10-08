@@ -13,12 +13,18 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from cse_interface.contracts import InterfaceError, command, describe, discover, obj, TEXT, validate
 from cse_interface.elicitation import transition, QUESTION
+from cse_interface.limits import (REQUEST_LIMIT_BYTES, LEDGER_LIMIT_BYTES,
+                                  ANSWER_LIMIT_BYTES, RESOLUTION_RESERVE_BYTES, json_bytes)
 
 
-def read_json(stream):
-    raw = stream.read(1000001)
-    if len(raw) > 1000000:
-        raise InterfaceError("input_limit", "Request exceeds 1 MB", "Supply only the operation arguments.")
+def read_json(stream, *, limit=REQUEST_LIMIT_BYTES, kind="request"):
+    raw = stream.read(limit + 1)
+    size = len(raw) if isinstance(raw, bytes) else len(raw.encode("utf-8"))
+    if size > limit:
+        raise InterfaceError("input_limit" if kind == "request" else "ledger_limit",
+                             f"{kind.capitalize()} exceeds {limit} UTF-8 bytes",
+                             "Supply only the operation arguments." if kind == "request" else
+                             "Retain the existing ledger; no state has been changed.")
     def reject(value):
         raise ValueError(f"Nonfinite JSON value: {value}")
     def unique(pairs):
@@ -80,18 +86,24 @@ def elicit(path, request):
     with open(str(path) + ".lock", "a", encoding="utf-8") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         if path.exists():
-            with path.open(encoding="utf-8") as stream:
-                state = read_json(stream)
+            with path.open("rb") as stream:
+                state = read_json(stream, limit=LEDGER_LIMIT_BYTES, kind="ledger")
             if not isinstance(state, dict) or state.get("format") != "cse-questions-1" or not isinstance(state.get("questions"), list):
                 raise InterfaceError("invalid_ledger", "File is not a CSE question ledger", "Choose a new ledger; retain the existing file.")
         else:
             state = {"format": "cse-questions-1", "questions": []}
         new_state, result = transition(state, request)
+        serialized = json_bytes(new_state)
+        reserve = RESOLUTION_RESERVE_BYTES if any(item["status"] == "pending" for item in new_state["questions"]) else 0
+        if len(serialized) + reserve > LEDGER_LIMIT_BYTES:
+            raise InterfaceError("ledger_capacity", "No question admitted: ledger capacity would be exceeded",
+                                 "Resolve or cancel any existing question; retain this ledger and use a new scoped ledger for further questions.")
         if new_state != state:
-            with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=path.parent, delete=False) as tmp:
+            with tempfile.NamedTemporaryFile("wb", dir=path.parent, delete=False) as tmp:
                 temporary = Path(tmp.name)
-                json.dump(new_state, tmp, sort_keys=True, allow_nan=False)
-                tmp.write("\n")
+                tmp.write(serialized)
+                tmp.flush()
+                os.fsync(tmp.fileno())
             try:
                 os.replace(temporary, path)
             finally:
@@ -116,7 +128,9 @@ def main(argv=None):
         elif args.command == "elicit-help":
             result = {"prepare": {"action": "prepare", "context": {"operation": "edit|decompose|migrate|compare", "models": ["existing file"], "known": {"field": "already supplied value"}}, "question": QUESTION},
                       "answer": {"action": "answer", "id": "returned id", "revision": "returned revision", "outcome": "accept|cancel|decline", "content": "typed answer; accept only"},
-                      "scope": "Domain clarification only; provider safety/permission confirmations remain with the host. No model writes or acceptance."}
+                      "scope": "Domain clarification only; provider safety/permission confirmations remain with the host. No model writes or acceptance.",
+                      "limits": {"request_utf8_bytes": REQUEST_LIMIT_BYTES, "ledger_bytes": LEDGER_LIMIT_BYTES,
+                                 "answer_serialized_json_bytes": ANSWER_LIMIT_BYTES}}
         else:
             if not args.state:
                 raise InterfaceError("ledger_required", "Elicitation requires --state", "Use a private *.cse-questions.json ledger.")
@@ -126,7 +140,7 @@ def main(argv=None):
     except InterfaceError as exc:
         print(json.dumps(exc.report(), sort_keys=True))
         return 2
-    except (OSError, ValueError, TypeError, KeyError) as exc:
+    except (OSError, ValueError, TypeError, KeyError, RecursionError) as exc:
         print(json.dumps({"status": "error", "code": "invalid_input", "message": str(exc)[:1000], "recovery": "Correct the JSON or file input; run describe or elicit-help."}))
         return 2
 
