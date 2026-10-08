@@ -1,7 +1,7 @@
 {
   "name": "computable-systems-engineering",
   "version": "0.2.0-alpha.1",
-  "description": "Engineer-directed concept, CONOPS, and scenario skills with SysML validation and bounded checks.",
+  "description": "Engineer-directed concepts, CONOPS and scenarios with compact command discovery and bounded checks.",
   "author": {
     "name": "ajhcs",
     "url": "https://github.com/ajhcs"
@@ -16,11 +16,12 @@
   "interface": {
     "displayName": "Computable Systems Engineering",
     "shortDescription": "Develop concepts with the engineer in control",
-    "longDescription": "Three independently invocable engineering skills for SysML v2 drafting, parser validation, and bounded requirement checks. A concept and CONOPS request can share one model; engineer acceptance and general behavioral verification remain outside this alpha.",
+    "longDescription": "A compact CSE command entry and three independently invocable engineering skills. Discover only the operation needed; validate typed inputs and domain questions. Parser, bounded checks and engineer acceptance remain distinct.",
     "developerName": "ajhcs and contributors",
     "category": "Productivity",
     "capabilities": [],
     "defaultPrompt": [
+      "Use CSE to inspect this model and explain which checks apply.",
       "Use the system-concept and CONOPS skills on the material below. Keep my raw materials out of Git.",
       "Help me develop a system concept.",
       "Help me investigate a CONOPS.",

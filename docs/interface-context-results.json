@@ -1,0 +1,191 @@
+{
+  "activation": {
+    "develop-conops": {
+      "baseline": {
+        "regex_wordpunct_v2": 1025,
+        "unicode_characters": 5467,
+        "utf8_bytes": 5471
+      },
+      "optimized": {
+        "regex_wordpunct_v2": 426,
+        "unicode_characters": 2173,
+        "utf8_bytes": 2173
+      }
+    },
+    "develop-operational-scenarios": {
+      "baseline": {
+        "regex_wordpunct_v2": 1063,
+        "unicode_characters": 5658,
+        "utf8_bytes": 5662
+      },
+      "optimized": {
+        "regex_wordpunct_v2": 437,
+        "unicode_characters": 2226,
+        "utf8_bytes": 2226
+      }
+    },
+    "develop-system-concept": {
+      "baseline": {
+        "regex_wordpunct_v2": 1165,
+        "unicode_characters": 6432,
+        "utf8_bytes": 6436
+      },
+      "optimized": {
+        "regex_wordpunct_v2": 431,
+        "unicode_characters": 2198,
+        "utf8_bytes": 2198
+      }
+    }
+  },
+  "actual_syntax_operation": {
+    "baseline_response": {
+      "regex_wordpunct_v2": 986,
+      "unicode_characters": 4111,
+      "utf8_bytes": 4111
+    },
+    "claim_scope": "sysml_syntax_and_validation",
+    "fixture": "examples/sysml/ack.sysml (synthetic, not an AI task)",
+    "missing_details": {
+      "inventory": true
+    },
+    "model_sha256": "09b9b38851ee6b91c7f97de0ecd847f053dc6e12d6721b6b0d713daea2353807",
+    "optimized_request": {
+      "regex_wordpunct_v2": 39,
+      "unicode_characters": 98,
+      "utf8_bytes": 98
+    },
+    "optimized_response": {
+      "regex_wordpunct_v2": 310,
+      "unicode_characters": 956,
+      "utf8_bytes": 956
+    },
+    "status": "pass"
+  },
+  "baseline": "b01ef01698450e5a47cc20f957fe93a09e9744b4",
+  "cse_entry": {
+    "regex_wordpunct_v2": 232,
+    "unicode_characters": 1128,
+    "utf8_bytes": 1128
+  },
+  "discovery": {
+    "regex_wordpunct_v2": 109,
+    "unicode_characters": 398,
+    "utf8_bytes": 398
+  },
+  "initial_catalog": {
+    "baseline": {
+      "regex_wordpunct_v2": 127,
+      "unicode_characters": 723,
+      "utf8_bytes": 723
+    },
+    "optimized": {
+      "regex_wordpunct_v2": 107,
+      "unicode_characters": 619,
+      "utf8_bytes": 619
+    }
+  },
+  "manifest": {
+    "baseline": {
+      "regex_wordpunct_v2": 332,
+      "unicode_characters": 1372,
+      "utf8_bytes": 1372
+    },
+    "optimized": {
+      "regex_wordpunct_v2": 342,
+      "unicode_characters": 1416,
+      "utf8_bytes": 1416
+    }
+  },
+  "method": "regex-wordpunct-v2: Unicode word runs or single nonspace punctuation over exact UTF-8 payload; no JSON wrapping. Not a model tokenizer.",
+  "operations": {
+    "diff": {
+      "baseline_concept_entry_and_sysml_guide": {
+        "regex_wordpunct_v2": 2227,
+        "unicode_characters": 11773,
+        "utf8_bytes": 11777
+      },
+      "guide": {
+        "regex_wordpunct_v2": 168,
+        "unicode_characters": 873,
+        "utf8_bytes": 873
+      },
+      "optimized_cold_entry_discover_schema_guide": {
+        "regex_wordpunct_v2": 710,
+        "unicode_characters": 2910,
+        "utf8_bytes": 2910
+      },
+      "schema": {
+        "regex_wordpunct_v2": 201,
+        "unicode_characters": 511,
+        "utf8_bytes": 511
+      }
+    },
+    "inspect": {
+      "baseline_concept_entry_and_sysml_guide": {
+        "regex_wordpunct_v2": 2227,
+        "unicode_characters": 11773,
+        "utf8_bytes": 11777
+      },
+      "guide": {
+        "regex_wordpunct_v2": 168,
+        "unicode_characters": 873,
+        "utf8_bytes": 873
+      },
+      "optimized_cold_entry_discover_schema_guide": {
+        "regex_wordpunct_v2": 677,
+        "unicode_characters": 2823,
+        "utf8_bytes": 2823
+      },
+      "schema": {
+        "regex_wordpunct_v2": 168,
+        "unicode_characters": 424,
+        "utf8_bytes": 424
+      }
+    },
+    "testgen": {
+      "baseline_concept_entry_and_sysml_guide": {
+        "regex_wordpunct_v2": 2227,
+        "unicode_characters": 11773,
+        "utf8_bytes": 11777
+      },
+      "guide": {
+        "regex_wordpunct_v2": 237,
+        "unicode_characters": 1225,
+        "utf8_bytes": 1225
+      },
+      "optimized_cold_entry_discover_schema_guide": {
+        "regex_wordpunct_v2": 795,
+        "unicode_characters": 3309,
+        "utf8_bytes": 3309
+      },
+      "schema": {
+        "regex_wordpunct_v2": 217,
+        "unicode_characters": 558,
+        "utf8_bytes": 558
+      }
+    },
+    "validate": {
+      "baseline_concept_entry_and_sysml_guide": {
+        "regex_wordpunct_v2": 2227,
+        "unicode_characters": 11773,
+        "utf8_bytes": 11777
+      },
+      "guide": {
+        "regex_wordpunct_v2": 237,
+        "unicode_characters": 1225,
+        "utf8_bytes": 1225
+      },
+      "optimized_cold_entry_discover_schema_guide": {
+        "regex_wordpunct_v2": 823,
+        "unicode_characters": 3353,
+        "utf8_bytes": 3353
+      },
+      "schema": {
+        "regex_wordpunct_v2": 245,
+        "unicode_characters": 602,
+        "utf8_bytes": 602
+      }
+    }
+  },
+  "scope": "Repository-controlled payloads only; host/system/catalog wrappers and provider caching excluded."
+}

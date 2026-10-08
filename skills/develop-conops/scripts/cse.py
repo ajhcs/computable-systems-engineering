@@ -9,6 +9,11 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[3]
 COMMANDS = {
+    "discover": "interface.py",
+    "describe": "interface.py",
+    "invoke": "interface.py",
+    "elicit": "interface.py",
+    "elicit-help": "interface.py",
     "check": "sysml.py",
     "testgen": "sysml_testgen.py",
     "view": "sysml_view.py",
@@ -32,6 +37,8 @@ def main():
         print(json.dumps({"runtime_root": str(ROOT),
                           "profile": str(ROOT / "docs/sysml-v2-profile.md")}, sort_keys=True))
         return 0
+    if COMMANDS[args.command] == "interface.py":
+        args.arguments.insert(0, args.command)
     # Keep the caller's working directory: user model paths are not runtime paths.
     try:
         return subprocess.run([sys.executable, "-B", str(ROOT / "scripts" / COMMANDS[args.command]),

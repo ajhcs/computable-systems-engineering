@@ -1,27 +1,31 @@
 ---
 name: develop-operational-scenarios
-description: Help a systems engineer elicit, investigate, draft, or revise a particular operational scenario or set, including normal operation, exceptions, and lifecycle activities.
+description: Develop or revise operational scenarios, including exceptions and lifecycle activities, from known actors and constraints.
 ---
 
-Assist with the engineer's requested scenario question or set. Reuse known needs, actors, boundaries, constraints, and decisions. A clarification, observation plan, or rough sequence can be the whole task. An exception can be explored directly.
+Start from existing work and the current engineering question. Establish the need, setting, actors, trigger and outcome to the requested depth. Draft ordered exchanges across the boundary, keeping implementation open. Explore an exception directly when requested. A generated scenario is a hypothesis, not an observed workflow; overall CONOPS integration is a separate scope choice.
 
-When multiple engineering skills are requested, apply those skills to one shared SysML model or explicitly imported files with common definitions and IDs. Run the draft-shape checks for each requested skill; concept plus scenario work does not require a full CONOPS. Accept natural skill names and handle files, SysML syntax, and commands for the engineer.
+Preserve accepted intent, sources, assumptions, obligations and units. New
+requirements, thresholds and interpretations remain proposals with their basis.
+Ask only for missing intent that affects the current decision; continue useful
+work with explicit unknowns. Routine edits and checks need no domain confirmation.
+Use [domain elicitation](../../docs/interface/elicitation.md) when a consequential
+answer needs validation; host safety confirmations are a separate channel.
 
-Read supplied raw material in place. Keep raw source and private annotations out of Git and generated model/test reports; retain concise derived statements and source references needed for review. Keep user-specific models and reports in the repository's ignored `work/` directory or an approved private location on `/workspace`, and inspect Git status before any commit. If raw material is already tracked, surface that fact instead of silently copying or publishing it.
+For recorded work, read [SysML guidance](references/sysml.md); keep one shared
+model or imported bundle with common IDs across requested skills. Respect
+discussion-only scope. Keep raw/private material out of Git and reports; use
+ignored `work/` for user models. Do not invent semantics to obtain a pass.
 
-The engineer directs scope, interpretation, accepted assumptions, and success criteria. Prepare evidence, examples, alternatives, and recommendations. Preserve prior decisions and differing stakeholder perspectives. Elicit missing intent with targeted questions or a concrete sequence when it affects the current decision. Continue independent work with explicit unknowns; routine edits and checks need no confirmation. Mark inferred needs, new requirements, and thresholds as proposals with their basis.
+Run `python3 <skill-dir>/scripts/cse.py discover`, then `describe OPERATION`
+only for the next operation. The JSON `invoke` adapter returns compact findings;
+`--detail` retrieves complete evidence. Existing direct commands remain available.
+After edits, run `check MODEL.sysml --syntax-only --kind scenario`; run each requested
+skill's shape check. Concept plus scenario work needs no full CONOPS. For supported
+sampled clauses, generate synthetic tests and report coverage and limits.
 
-1. Establish the need, setting, actors, trigger, and observable outcome to the depth needed. Use supplied notes with their linked passages. Where understanding is weak, investigate existing evidence or prepare focused elicitation, observation, or a rough prototype; execute external investigation only within authorization. A generated scenario is a hypothesis, not an observed workflow.
-2. Draft or revise ordered exchanges across the system boundary. Keep implementation open and preserve requested prototype fidelity. For fresh exploration, begin with a useful simple normal case before adding relevant complexity.
-3. Run the available program checks. Investigate reported gaps, unclear intent, and unsupported assumptions. Prepare evaluation data, environments, and stakeholder feedback appropriate to the current question. Qualitative realism and stakeholder intent require evidence or engineer judgment.
-4. Incorporate feedback. Return the useful change, material findings, and any next engineer decision. Stop at that work unit; additional scenarios and overall CONOPS integration are separate scope choices. Omit filler and repeated questionnaires.
-
-For new recorded work, maintain a SysML v2 `.sysml` model as the authoritative scenario artifact; respect discussion-only requests. Read [the SysML record guidance](references/sysml.md) and use [the validated synthetic template](templates/default.sysml) when useful. Keep ordered interactions and unresolved outcomes explicit. Run `python3 <skill-dir>/scripts/cse.py check <model>.sysml --syntax-only --kind scenario` after edits; this launcher resolves the shared engine regardless of the current directory. Compile designated CSE clauses with its `check` command and run `--review` only when independent scope and supplied evidence exist. A narrative use case is not an executable step program.
-
-When a supported sampled requirement is present, run `python3 <skill-dir>/scripts/cse.py testgen <model>.sysml` as part of local draft evaluation and show the synthetic pass/fail variable-influence pairs. If none is present, say what remains qualitative or unsupported without inventing a threshold. Report uncovered variables and search limits; generated tests are not observed behavior evidence or FLIP coverage.
-
-Return a concise engineer-facing ordered scenario view, a link to the saved model, and the actual check findings. Explain assumptions, proposals, and unresolved questions in plain language. Distinguish parser/shape acceptance, controlled-clause compilation, synthetic test coverage, and checks against supplied behavior; avoid a single unqualified “verified” claim. Derive documents and useful diagrams from the shared model, with stable IDs and its revision, rather than maintaining competing engineering records.
-
-For an existing `scenarios.json` or explicit version-1 workflow, read [the legacy record contract](references/record.md), run `python <skill-dir>/scripts/conops.py check <record> --scenario <ID>`, and use its `view`, `diff`, and `--review` modes as appropriate. Do not implicitly convert legacy prose into guards or effects. Read program findings, repair within scope, and rerun. Preserve accepted meanings and review scope; changing either is an engineer decision. Use program results for computable claims, without substituting an LLM verdict. Execute scripts without loading their source. Read [provenance](references/notes.md) when explaining or revising the method.
-
-For a separately authored version-2 finite model in this repository, run `python3 scripts/verify.py <model> --scenario <ID> --review` when its guard/effect semantics are explicitly supported. Scenario work remains independently invocable through this skill's own version-1 helper. Do not infer executable steps from version-1 prose or treat a local verifier pass as engineer acceptance.
+Return useful readable views, saved-model links and actual findings. Keep parser
+acceptance, compilation, synthetic tests, supplied behavior and engineer acceptance
+distinct. Read [detailed workflow](references/workflow.md) for method depth,
+[legacy contract](references/record.md) only for existing v1 JSON, and
+[provenance](references/notes.md) only when explaining or revising the method.

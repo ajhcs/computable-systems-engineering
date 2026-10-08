@@ -40,7 +40,7 @@ def main():
         if len({path.read_bytes() for path in copies}) != 1:
             print(f"FAIL: shared skill copies differ: {relative}", file=sys.stderr)
             return 1
-    suites = ("test_develop_conops.py", "test_scenario_split.py", "test_concept.py", "test_verifier.py",
+    suites = ("test_interface.py", "test_benchmark.py", "test_develop_conops.py", "test_scenario_split.py", "test_concept.py", "test_verifier.py",
               "test_language.py", "test_language_oracle.py", "test_influence.py", "test_events.py",
               "test_public_language_cases.py", "test_sysml.py", "test_sysml_views.py",
               "test_sysml_public.py", "test_skill_runtime.py")
