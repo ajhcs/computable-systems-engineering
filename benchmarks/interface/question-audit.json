@@ -1,0 +1,21 @@
+{
+  "reviewer": "implementation author; independent review pending",
+  "scope": "New baseline-1 and optimized-1 trial messages, final reports and event types only; orchestrator approvals excluded",
+  "baseline": {
+    "events_sha256": "5d4e58b3e66db9959f7c3f8fead5af7979677a3cd05bb9ecf1f1880b44418a15",
+    "blocking_domain_requests": 0,
+    "needless_domain_requests": 0,
+    "provider_confirmation_events": 0,
+    "future_migration_decisions_described": 1,
+    "structured_domain_questions": 0
+  },
+  "optimized": {
+    "events_sha256": "0ac7a5446621479ba956bc46fd0d113bd5e919bffe9a067a1ee1ce91806ab530",
+    "blocking_domain_requests": 0,
+    "needless_domain_requests": 0,
+    "provider_confirmation_events": 0,
+    "future_migration_decisions_described": 1,
+    "structured_domain_questions": 1
+  },
+  "rationale": "Task 6 expressly requests the next engineering decision if migration were requested. Optimized's single structured question is that conditional future decision, not a request blocking the current specified edit. Both reports distinguish unsupported native simulation/migration from syntax acceptance. No provider confirmation events occurred under the same noninteractive never-approval policy; this is not evidence about native approval UI behavior."
+}

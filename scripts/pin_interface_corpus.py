@@ -35,7 +35,7 @@ def main():
         for key, path in (("model", source["path"]), ("license", source["license_path"]), ("readme", "README.md")):
             record[key] = retrieve(base + urllib.parse.quote(path), directory / Path(path).name)
         text = (directory / source["license_path"]).read_text(errors="replace")
-        record["license_identifier"] = "Apache-2.0" if "Apache License" in text else "LGPL-3.0-or-later" if "GNU LESSER GENERAL" in text else "manual-review-required"
+        record["license_identifier"] = "Apache-2.0" if "Apache License" in text else "EPL-2.0" if text.startswith("Eclipse Public License - v 2.0") else "manual-review-required"
         record["oracle_boundary"] = "Upstream source bytes and native declarations; structural parser results when supported. No simulated performance or accepted engineering interpretation."
         records.append(record)
     destination = ROOT / "benchmarks/interface/corpus-lock.json"

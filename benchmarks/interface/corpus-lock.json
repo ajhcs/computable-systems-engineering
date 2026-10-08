@@ -1,0 +1,98 @@
+{
+  "retrieved_utc_date": "2026-10-08",
+  "sources": [
+    {
+      "id": "sysml-ev",
+      "repository": "Systems-Modeling/SysML-v2-Release",
+      "revision": "fb97b754f29588b8e9c7a35f370880cd15eb29e7",
+      "family": "official-sysml-example",
+      "format": "SysML v2",
+      "split": "held-out",
+      "path": "sysml/src/examples/State Space Representation Examples/EVSample.sysml",
+      "license_path": "LICENSE",
+      "native_dependency": "Pinned open SysML v2 parser; no behavior oracle supplied",
+      "model": {
+        "url": "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Release/fb97b754f29588b8e9c7a35f370880cd15eb29e7/sysml/src/examples/State%20Space%20Representation%20Examples/EVSample.sysml",
+        "sha256": "4834675f798fb275b847887b53661bc351be8094b2f320ee4819d2bb4b71d3db",
+        "bytes": 11002,
+        "cache_path": ".cache/interface-benchmark/corpus/sysml-ev/EVSample.sysml"
+      },
+      "license": {
+        "url": "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Release/fb97b754f29588b8e9c7a35f370880cd15eb29e7/LICENSE",
+        "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+        "bytes": 14198,
+        "cache_path": ".cache/interface-benchmark/corpus/sysml-ev/LICENSE"
+      },
+      "readme": {
+        "url": "https://raw.githubusercontent.com/Systems-Modeling/SysML-v2-Release/fb97b754f29588b8e9c7a35f370880cd15eb29e7/README.md",
+        "sha256": "e86a23b3cefc0835fffc34d2970028ed3e227121f65eab43ad2f314e46a778a7",
+        "bytes": 7752,
+        "cache_path": ".cache/interface-benchmark/corpus/sysml-ev/README.md"
+      },
+      "license_identifier": "EPL-2.0",
+      "oracle_boundary": "Upstream source bytes and native declarations; structural parser results when supported. No simulated performance or accepted engineering interpretation."
+    },
+    {
+      "id": "nasa-jt9d",
+      "repository": "nasa/T-MATS",
+      "revision": "ad6e4d5d0d76c229db4eb72ca40ef58d5ddc4014",
+      "family": "NASA-T-MATS",
+      "format": "Simulink MDL",
+      "split": "held-out",
+      "path": "Trunk/TMATS_Examples/Example_JT9D/JT9D_Model_Dyn.mdl",
+      "license_path": "LICENSE",
+      "native_dependency": "MATLAB/Simulink and T-MATS; numerical oracle not generated",
+      "model": {
+        "url": "https://raw.githubusercontent.com/nasa/T-MATS/ad6e4d5d0d76c229db4eb72ca40ef58d5ddc4014/Trunk/TMATS_Examples/Example_JT9D/JT9D_Model_Dyn.mdl",
+        "sha256": "8408397b6cdea3e7ec0dd1302154eb64443418be8f385d92ae6bb06a2c0cf8e9",
+        "bytes": 172639,
+        "cache_path": ".cache/interface-benchmark/corpus/nasa-jt9d/JT9D_Model_Dyn.mdl"
+      },
+      "license": {
+        "url": "https://raw.githubusercontent.com/nasa/T-MATS/ad6e4d5d0d76c229db4eb72ca40ef58d5ddc4014/LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "bytes": 11357,
+        "cache_path": ".cache/interface-benchmark/corpus/nasa-jt9d/LICENSE"
+      },
+      "readme": {
+        "url": "https://raw.githubusercontent.com/nasa/T-MATS/ad6e4d5d0d76c229db4eb72ca40ef58d5ddc4014/README.md",
+        "sha256": "ebcb82d10aa6dc0e37a3d2c6cf66ded3f83e3cf92a3411ff43e6ecd1df012f8e",
+        "bytes": 3347,
+        "cache_path": ".cache/interface-benchmark/corpus/nasa-jt9d/README.md"
+      },
+      "license_identifier": "Apache-2.0",
+      "oracle_boundary": "Upstream source bytes and native declarations; structural parser results when supported. No simulated performance or accepted engineering interpretation."
+    },
+    {
+      "id": "tmt",
+      "repository": "Open-MBEE/TMT-SysML-Model",
+      "revision": "b2a33b71c65678498b538195dcb947a7962ca75b",
+      "family": "Thirty-Meter-Telescope",
+      "format": "MagicDraw SysML v1 archive",
+      "split": "reserved-not-run",
+      "path": "TMT-2024x.mdzip",
+      "license_path": "LICENSE",
+      "native_dependency": "Compatible Cameo/MagicDraw; migration/semantic oracle unavailable",
+      "model": {
+        "url": "https://raw.githubusercontent.com/Open-MBEE/TMT-SysML-Model/b2a33b71c65678498b538195dcb947a7962ca75b/TMT-2024x.mdzip",
+        "sha256": "c25c2dc0fb5e74c22c09fde5fb08645947bacd7c93159209115075c64ae6dd5b",
+        "bytes": 27193371,
+        "cache_path": ".cache/interface-benchmark/corpus/tmt/TMT-2024x.mdzip"
+      },
+      "license": {
+        "url": "https://raw.githubusercontent.com/Open-MBEE/TMT-SysML-Model/b2a33b71c65678498b538195dcb947a7962ca75b/LICENSE",
+        "sha256": "a558c488dd85d2c9b092fac492f182c77e326c3c29d36d145c9670315b0acaa5",
+        "bytes": 11337,
+        "cache_path": ".cache/interface-benchmark/corpus/tmt/LICENSE"
+      },
+      "readme": {
+        "url": "https://raw.githubusercontent.com/Open-MBEE/TMT-SysML-Model/b2a33b71c65678498b538195dcb947a7962ca75b/README.md",
+        "sha256": "7f50e4be62a20380a15145b2d1ddfa4198fd9ef228eb3ab1083afac18e01423f",
+        "bytes": 2558,
+        "cache_path": ".cache/interface-benchmark/corpus/tmt/README.md"
+      },
+      "license_identifier": "Apache-2.0",
+      "oracle_boundary": "Upstream source bytes and native declarations; structural parser results when supported. No simulated performance or accepted engineering interpretation."
+    }
+  ]
+}
