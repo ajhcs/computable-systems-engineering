@@ -5,7 +5,7 @@ from hashlib import sha256
 import json
 from pathlib import Path
 
-from harness import (ARMS, answer_template, check_answer, check_patch, cost_ledger, equal_information,
+from harness import (ARMS, answer_template, check_answer, check_patch, checked_packet_bytes, cost_ledger, equal_information,
                      load_json, patch_reference, response, review_reference, scripted_calls, size, snapshot, wire)
 
 
@@ -41,11 +41,14 @@ def main():
         (args.output / (task["id"] + "-task.json")).write_bytes(task_bytes)
         for packet in packets:
             packet_name = task["id"] + "-" + packet["arm"] + ".json"
-            save(packet_name, packet)
+            (args.output / packet_name).write_bytes(checked_packet_bytes(reference, task, packet))
             roles["per_task_arm_allowlists"].append({"task": task["id"], "arm": packet["arm"],
                 "files": ["bootstrap.json", task["id"] + "-task.json", packet_name]})
             for retry in (False, True):
-                calls = scripted_calls(packet, retry)
+                calls = scripted_calls(packet, retry, reference=reference, task=task)
+                checked_hash = next(row["checked_packet_sha256"] for row in equality if row["arm"] == packet["arm"])
+                if sha256(calls[-1]["result"]).hexdigest() != checked_hash:
+                    raise ValueError("Delivered packet differs from the comparison's checked bytes")
                 receipt = {"task": task["id"], "arm": packet["arm"], "scenario": "one_forced_retry" if retry else "clean",
                            "equality": next(row for row in equality if row["arm"] == packet["arm"]),
                            "task_size": size(task_bytes), "bootstrap_size": size(bootstrap),

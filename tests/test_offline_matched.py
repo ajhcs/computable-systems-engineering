@@ -1,6 +1,7 @@
 """Adversarial offline-harness tests; no native/model/engineering acceptance."""
 from copy import deepcopy
 from hashlib import sha256
+import json
 import os
 from pathlib import Path
 import subprocess
@@ -11,7 +12,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 HARNESS = ROOT / "benchmarks/offline_matched"
 sys.path.insert(0, str(HARNESS))
-from harness import (ARMS, answer_template, check_answer, check_patch, cost_ledger, equal_information,
+from harness import (ARMS, answer_template, check_answer, check_patch, checked_packet_bytes, cost_ledger, equal_information,
                      information, load_json, patch_reference, response, review_reference, scripted_calls, size, snapshot, wire)
 
 
@@ -97,6 +98,143 @@ class OfflineContract(unittest.TestCase):
         self.assertNotEqual(packets[1]["evidence_limits"], packets[0]["evidence_limits"])
         with self.assertRaises(ValueError):
             equal_information(self.reference, task, packets)
+
+    def test_om_f1_hint_in_container_id_fails_for_every_task_and_arm(self):
+        for task in self.fixture["tasks"]:
+            for index, arm in enumerate(ARMS):
+                packets = [response(self.reference, task, name) for name in ARMS]
+                packets[index]["containers"][0]["id"] = "EVALUATOR_ONLY: " + task["evidence_conclusion"]
+                with self.subTest(task=task["id"], arm=arm):
+                    with self.assertRaises(ValueError):
+                        equal_information(self.reference, task, packets)
+                    with self.assertRaises(ValueError):
+                        information(packets[index])
+
+    def test_om_f1_empty_hint_container_fails_for_every_task_and_arm(self):
+        for task in self.fixture["tasks"]:
+            for index, arm in enumerate(ARMS):
+                packets = [response(self.reference, task, name) for name in ARMS]
+                packets[index]["containers"].append({"id": "ORACLE_HINT: " + task["evidence_conclusion"], "records": []})
+                with self.subTest(task=task["id"], arm=arm), self.assertRaises(ValueError):
+                    equal_information(self.reference, task, packets)
+
+    def test_container_ids_reject_text_unicode_aliases_and_json_type_aliases(self):
+        task = self.fixture["tasks"][0]
+        for bad in ("hint", "00", "\uff10", "0\n", 0, 0.0, False, None, [], {}):
+            for arm in ARMS:
+                packet = response(self.reference, task, arm)
+                packet["containers"][0]["id"] = bad
+                with self.subTest(bad=bad, arm=arm):
+                    with self.assertRaises(ValueError):
+                        information(packet)
+                    with self.assertRaises(ValueError):
+                        checked_packet_bytes(self.reference, task, packet)
+
+    def test_container_cardinality_nonempty_records_and_field_set_are_enforced(self):
+        task = self.fixture["tasks"][0]
+        for arm in ARMS:
+            for mutation in ("extra-empty", "extra-full", "missing", "empty-records", "record-type", "extra-field", "container-type"):
+                packet = response(self.reference, task, arm)
+                if mutation == "extra-empty":
+                    packet["containers"].append({"id": str(len(packet["containers"])), "records": []})
+                elif mutation == "extra-full":
+                    packet["containers"].append(deepcopy(packet["containers"][0]))
+                    packet["containers"][-1]["id"] = str(len(packet["containers"]) - 1)
+                elif mutation == "missing":
+                    packet["containers"].pop()
+                elif mutation == "empty-records":
+                    packet["containers"][0]["records"] = []
+                elif mutation == "record-type":
+                    packet["containers"][0]["records"] = {}
+                elif mutation == "extra-field":
+                    packet["containers"][0]["hint"] = "exact answer"
+                else:
+                    packet["containers"][0] = []
+                with self.subTest(arm=arm, mutation=mutation):
+                    with self.assertRaises(ValueError):
+                        information(packet)
+                    with self.assertRaises(ValueError):
+                        checked_packet_bytes(self.reference, task, packet)
+
+    def test_equal_fact_sets_do_not_allow_order_grouping_or_duplicate_channels(self):
+        def fact_map(packet):
+            return {row["id"]: row for container in packet["containers"] for row in container["records"]}
+        for task in self.fixture["tasks"]:
+            for mutation in ("reverse-records", "swap-groups", "move-record", "repeat-record", "remove-shared-copy"):
+                packets = [response(self.reference, task, arm) for arm in ARMS]
+                packet = packets[1]
+                before = wire(fact_map(packet))
+                if mutation == "reverse-records":
+                    packet["containers"][0]["records"].reverse()
+                elif mutation == "swap-groups":
+                    packet["containers"][0]["records"], packet["containers"][1]["records"] = packet["containers"][1]["records"], packet["containers"][0]["records"]
+                elif mutation == "move-record":
+                    packet["containers"][1]["records"].append(packet["containers"][0]["records"].pop())
+                elif mutation == "repeat-record":
+                    packet["containers"][0]["records"].append(deepcopy(packet["containers"][0]["records"][0]))
+                else:
+                    packet["containers"][1]["records"].pop(0)
+                self.assertEqual(wire(fact_map(packet)), before)
+                with self.subTest(task=task["id"], mutation=mutation), self.assertRaises(ValueError):
+                    equal_information(self.reference, task, packets)
+
+    def test_single_container_record_order_is_fixed_for_both_nondduplicated_arms(self):
+        for task in self.fixture["tasks"]:
+            for index in (0, 2):
+                packets = [response(self.reference, task, arm) for arm in ARMS]
+                packets[index]["containers"][0]["records"].reverse()
+                with self.subTest(task=task["id"], arm=ARMS[index]), self.assertRaises(ValueError):
+                    equal_information(self.reference, task, packets)
+
+    def test_object_key_order_is_canonicalized_without_rejecting_valid_arm_differences(self):
+        def reverse_keys(value):
+            if isinstance(value, dict):
+                return {key: reverse_keys(value[key]) for key in reversed(value)}
+            if isinstance(value, list):
+                return [reverse_keys(row) for row in value]
+            return value
+        before = wire(self.reference)
+        for task in self.fixture["tasks"]:
+            packets = [response(self.reference, task, arm) for arm in ARMS]
+            reordered = [reverse_keys(packet) for packet in packets]
+            self.assertEqual(equal_information(self.reference, task, packets), equal_information(self.reference, task, reordered))
+            for packet, changed in zip(packets, reordered):
+                self.assertEqual(checked_packet_bytes(self.reference, task, changed), wire(packet))
+        self.assertEqual(wire(self.reference), before)
+
+    def test_delivery_rechecks_packet_after_a_prior_successful_gate(self):
+        for task in self.fixture["tasks"]:
+            packets = [response(self.reference, task, arm) for arm in ARMS]
+            equal_information(self.reference, task, packets)
+            for packet in packets:
+                packet["containers"][0]["id"] = "post-check evaluator hint"
+                with self.subTest(task=task["id"], arm=packet["arm"]), self.assertRaises(ValueError):
+                    scripted_calls(packet, reference=self.reference, task=task)
+
+    def test_checked_packet_hash_binds_actual_immutable_delivery_in_clean_and_retry_calls(self):
+        for task in self.fixture["tasks"]:
+            packets = [response(self.reference, task, arm) for arm in ARMS]
+            receipts = equal_information(self.reference, task, packets)
+            self.assertEqual(len({row["normalized_information_sha256"] for row in receipts}), 1)
+            self.assertEqual(len({row["checked_packet_sha256"] for row in receipts}), 3)
+            for packet, receipt in zip(packets, receipts):
+                expected = wire(packet)
+                for retry in (False, True):
+                    calls = scripted_calls(packet, retry, reference=self.reference, task=task)
+                    self.assertEqual(calls[-1]["result"], expected)
+                    self.assertEqual(sha256(calls[-1]["result"]).hexdigest(), receipt["checked_packet_sha256"])
+                    self.assertTrue(all(json.loads(call["request"])["arm"] == packet["arm"] for call in calls))
+                packet["containers"][0]["id"] = "changed after serialization"
+                self.assertEqual(calls[-1]["result"], expected)
+
+    def test_delivery_requires_pinned_context_and_rejects_malformed_packet_roots(self):
+        task = self.fixture["tasks"][0]
+        packet = response(self.reference, task, ARMS[0])
+        with self.assertRaises(TypeError):
+            scripted_calls(packet)
+        for bad in (None, [], {}, {**packet, "arm": "unknown"}, {**packet, "arm": []}, {**packet, "hint": float("nan")}):
+            with self.subTest(bad=bad), self.assertRaises(ValueError):
+                checked_packet_bytes(self.reference, task, bad)
 
     def test_correct_reference_answers_do_not_become_agent_success(self):
         for task in self.fixture["tasks"]:
@@ -216,7 +354,7 @@ class OfflineContract(unittest.TestCase):
         for task in self.fixture["tasks"]:
             for retry in (False, True):
                 for arm in ARMS:
-                    calls = scripted_calls(response(self.reference, task, arm), retry)
+                    calls = scripted_calls(response(self.reference, task, arm), retry, reference=self.reference, task=task)
                     result = cost_ledger(b"", b"", calls)
                     self.assertEqual(result["tool_calls"], 2 if retry else 1)
                     self.assertEqual(result["retry_calls"], int(retry))
@@ -260,6 +398,12 @@ class OfflineContract(unittest.TestCase):
             self.assertEqual(readiness["ten_capabilities_accepted"], 0)
             report = load_json(folder / "REPORT.json")
             self.assertTrue(all(value is None for value in report["elicitation_observations"].values()))
+            for row in report["comparisons"]:
+                name = row["task"] + "-" + row["arm"]
+                packet_bytes = (folder / (name + ".json")).read_bytes()
+                calls = load_json(folder / (name + "-" + row["scenario"] + "-calls.json"))
+                self.assertEqual(calls[-1]["result"].encode(), packet_bytes)
+                self.assertEqual(sha256(packet_bytes).hexdigest(), row["equality"]["checked_packet_sha256"])
             pins = load_json(folder / "MANIFEST.json")["sha256"]
             self.assertEqual(set(pins), {path.name for path in folder.iterdir() if path.name != "MANIFEST.json"})
             for name, expected in pins.items():

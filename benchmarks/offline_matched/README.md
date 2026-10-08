@@ -5,6 +5,12 @@ oracles. It does not implement a native semantic API or run an AI or human trial
 No native capability is accepted by these results. The accepted CSE lifecycle
 accountant remains unchanged at base `be800ed4b82d7a68613458cf6a2ca840958365e3`.
 
+The original offline preparation at `3fe4dd75767510436b6bd23e5716c451b963a333`
+received independent HOLD OM-F1 for unchecked actor-visible container metadata.
+This successor fixes that bounded gate and awaits independent retest. See
+[METADATA_REPAIR.md](METADATA_REPAIR.md) for the exact visible-packet contract,
+unchanged probe replay and delivery-byte binding. Prior evidence remains frozen.
+
 ## What the comparison can establish
 
 Three arms contain the same task-selected facts, typed values, source identities,
@@ -20,7 +26,12 @@ All three use one batch read. The retry condition adds the same failed lookup an
 one recovery call in every arm. No arm receives extra evidence or fewer necessary
 constraints. A canonical comparison rejects different values, units, labels,
 citation offsets, revisions, authority/limits, extra assertions and conflicting
-duplicates. The hash identifies the compared bytes; it does not authenticate
+duplicates. It also validates each complete packet against the declared arm's
+fixed mechanical IDs, container count, nonempty record lists, grouping, ordering
+and multiplicity. Object key order is canonicalized; other visible differences
+must match the generated task/arm packet exactly. `checked_packet_sha256` binds
+that canonical packet to the actual prepared tool-result bytes, separately from
+the normalized fact hash. The hash identifies bytes; it does not authenticate
 semantic authority. The manual qualified labels are explicitly not native IDs.
 
 This fixture deliberately controls retrieval. It does not show that real artifact

@@ -62,6 +62,7 @@
     "regex_wordpunct_v2": 98,
     "utf8_bytes": 396
   },
+  "checked_packet_delivery_hashes_verified": 36,
   "elicitation_observations": {
     "domain_questions": null,
     "needless_questions": null,
@@ -70,6 +71,7 @@
   "full_model_context_cost": null,
   "human_runs": 0,
   "independent_oracle_review": "pending",
+  "independent_retest": "pending; unchanged independent probes replayed by repair owner, not a new review decision",
   "limitations": [
     "This is reference replay, not an authoritative native query implementation.",
     "Artifact duplication does not incur model context unless those bytes are actually retrieved.",
@@ -77,6 +79,7 @@
     "Initial native discovery/schema cost, provider context and usage remain unavailable.",
     "These previously exposed EV facts are calibration data, not held-out engineering qualification."
   ],
+  "metadata_contract": "complete_visible_packet_v1",
   "method": "regex-wordpunct-v2 on exact UTF-8 protocol bytes; not model tokens or billed cost",
   "model_runs": 0,
   "native_acceptances": 0,
@@ -84,6 +87,7 @@
   "per_condition": [
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "ad2eaaddfb1caf68c6e5446c667b4b0adce8e44e054388309fd0788de4f631c3",
       "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
       "regex_wordpunct_v2": 927,
       "retry_calls": 0,
@@ -94,6 +98,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "ad2eaaddfb1caf68c6e5446c667b4b0adce8e44e054388309fd0788de4f631c3",
       "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
       "regex_wordpunct_v2": 976,
       "retry_calls": 1,
@@ -104,6 +109,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "57dd0017b7fef317c99332b7de3483d82b8045a33c129bc930d59139a4861eac",
       "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
       "regex_wordpunct_v2": 1066,
       "retry_calls": 0,
@@ -114,6 +120,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "57dd0017b7fef317c99332b7de3483d82b8045a33c129bc930d59139a4861eac",
       "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
       "regex_wordpunct_v2": 1115,
       "retry_calls": 1,
@@ -124,6 +131,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "750bcac84f668d3ab104fcc27894590e06116c91ba2c3986cd6e2277df91654b",
       "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
       "regex_wordpunct_v2": 927,
       "retry_calls": 0,
@@ -134,6 +142,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "750bcac84f668d3ab104fcc27894590e06116c91ba2c3986cd6e2277df91654b",
       "normalized_information_sha256": "d806c4a4603acac32d12ba01c32e06e350a14f0888c37e0f1c38db0a9695b984",
       "regex_wordpunct_v2": 976,
       "retry_calls": 1,
@@ -144,6 +153,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "5f6553af4681ba2c6a18106d4c67de1b5feb6ff5d510f813420d856c21ad4517",
       "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
       "regex_wordpunct_v2": 642,
       "retry_calls": 0,
@@ -154,6 +164,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "5f6553af4681ba2c6a18106d4c67de1b5feb6ff5d510f813420d856c21ad4517",
       "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
       "regex_wordpunct_v2": 691,
       "retry_calls": 1,
@@ -164,6 +175,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "22e2053d6db5b4d913e0f1a48c4827fd8921ebaae12004c1f303e03cb504d0ff",
       "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
       "regex_wordpunct_v2": 781,
       "retry_calls": 0,
@@ -174,6 +186,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "22e2053d6db5b4d913e0f1a48c4827fd8921ebaae12004c1f303e03cb504d0ff",
       "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
       "regex_wordpunct_v2": 830,
       "retry_calls": 1,
@@ -184,6 +197,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "d4219e6c44723ecbd46fac31b575f82f3666143c2887a519f2d4b5a30ad26a97",
       "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
       "regex_wordpunct_v2": 642,
       "retry_calls": 0,
@@ -194,6 +208,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "d4219e6c44723ecbd46fac31b575f82f3666143c2887a519f2d4b5a30ad26a97",
       "normalized_information_sha256": "33bd3fdc853ee5617e44f37065b5f3d2da0e52ac65a49729b791e4aeac4545c0",
       "regex_wordpunct_v2": 691,
       "retry_calls": 1,
@@ -204,6 +219,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "194cc28dc70fd24c0603826f9e7c64985c7e46152e0a407736d188d911e3a94e",
       "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
       "regex_wordpunct_v2": 807,
       "retry_calls": 0,
@@ -214,6 +230,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "194cc28dc70fd24c0603826f9e7c64985c7e46152e0a407736d188d911e3a94e",
       "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
       "regex_wordpunct_v2": 856,
       "retry_calls": 1,
@@ -224,6 +241,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "3615ab9534dcad080df68f167d0f6228b1a1fb4ff5e2c29a6aba21561a66eed5",
       "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
       "regex_wordpunct_v2": 965,
       "retry_calls": 0,
@@ -234,6 +252,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "3615ab9534dcad080df68f167d0f6228b1a1fb4ff5e2c29a6aba21561a66eed5",
       "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
       "regex_wordpunct_v2": 1014,
       "retry_calls": 1,
@@ -244,6 +263,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "d3ad10ad6393f95b100df6ace6d3311fff1ab28a07cdeea7c70ed1bbfeb599be",
       "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
       "regex_wordpunct_v2": 807,
       "retry_calls": 0,
@@ -254,6 +274,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "d3ad10ad6393f95b100df6ace6d3311fff1ab28a07cdeea7c70ed1bbfeb599be",
       "normalized_information_sha256": "9828f3a29b126e1c59c973196d46b7ad58ab3f9cca53444d02d046e3c5ff4db6",
       "regex_wordpunct_v2": 856,
       "retry_calls": 1,
@@ -264,6 +285,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "10c8bc1bc483f9d294e21f19248200294696456952435160a28826b288814571",
       "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
       "regex_wordpunct_v2": 803,
       "retry_calls": 0,
@@ -274,6 +296,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "10c8bc1bc483f9d294e21f19248200294696456952435160a28826b288814571",
       "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
       "regex_wordpunct_v2": 852,
       "retry_calls": 1,
@@ -284,6 +307,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "d4dcf3a06bec1980d21290273f2a223a05494675385f675d436097485cf26fab",
       "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
       "regex_wordpunct_v2": 951,
       "retry_calls": 0,
@@ -294,6 +318,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "d4dcf3a06bec1980d21290273f2a223a05494675385f675d436097485cf26fab",
       "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
       "regex_wordpunct_v2": 1000,
       "retry_calls": 1,
@@ -304,6 +329,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "3333177c6978bc1395801836a1e22892aae81ec97b97990fe6754b4d52770459",
       "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
       "regex_wordpunct_v2": 803,
       "retry_calls": 0,
@@ -314,6 +340,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "3333177c6978bc1395801836a1e22892aae81ec97b97990fe6754b4d52770459",
       "normalized_information_sha256": "a0845cddfe1dac531ac7cc7f9d360ec3ffb56a1dc91c1299ed142491e3a7426c",
       "regex_wordpunct_v2": 852,
       "retry_calls": 1,
@@ -324,6 +351,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "15a23c1870183a211c49e4dd1b128eef664a5babd583c2376950e495f3c2b95b",
       "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
       "regex_wordpunct_v2": 682,
       "retry_calls": 0,
@@ -334,6 +362,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "15a23c1870183a211c49e4dd1b128eef664a5babd583c2376950e495f3c2b95b",
       "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
       "regex_wordpunct_v2": 731,
       "retry_calls": 1,
@@ -344,6 +373,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "0f561feaf0a0a0d4e022a54e841edcb73f1d371ecd801c04951d5f736bf2c9d7",
       "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
       "regex_wordpunct_v2": 839,
       "retry_calls": 0,
@@ -354,6 +384,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "0f561feaf0a0a0d4e022a54e841edcb73f1d371ecd801c04951d5f736bf2c9d7",
       "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
       "regex_wordpunct_v2": 888,
       "retry_calls": 1,
@@ -364,6 +395,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "15b9a2906b87c6121985da35d69bb7a3632ca74e0c93d568f879cee6b9cb4f2f",
       "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
       "regex_wordpunct_v2": 682,
       "retry_calls": 0,
@@ -374,6 +406,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "15b9a2906b87c6121985da35d69bb7a3632ca74e0c93d568f879cee6b9cb4f2f",
       "normalized_information_sha256": "ab5b98ec4425a28f5ddba3456cfc49a6bfb3f6241b3947ab529c75238935cb75",
       "regex_wordpunct_v2": 731,
       "retry_calls": 1,
@@ -384,6 +417,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "7275b8ed5cce6338aa84810bec9fb2098cc8dfd9d28faea9bde12d53127089ed",
       "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
       "regex_wordpunct_v2": 662,
       "retry_calls": 0,
@@ -394,6 +428,7 @@
     },
     {
       "arm": "semantic_query_replay",
+      "checked_packet_sha256": "7275b8ed5cce6338aa84810bec9fb2098cc8dfd9d28faea9bde12d53127089ed",
       "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
       "regex_wordpunct_v2": 711,
       "retry_calls": 1,
@@ -404,6 +439,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "e0061500a88affb31ea61df26c26806b6151f2e39b2cf39efe43ae9773750b0e",
       "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
       "regex_wordpunct_v2": 801,
       "retry_calls": 0,
@@ -414,6 +450,7 @@
     },
     {
       "arm": "duplicated_artifacts",
+      "checked_packet_sha256": "e0061500a88affb31ea61df26c26806b6151f2e39b2cf39efe43ae9773750b0e",
       "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
       "regex_wordpunct_v2": 850,
       "retry_calls": 1,
@@ -424,6 +461,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "13c54abe2102e7b3d5495aff5f81b7e2308cb3b280c6025ca7bb8f62a8e46ff1",
       "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
       "regex_wordpunct_v2": 662,
       "retry_calls": 0,
@@ -434,6 +472,7 @@
     },
     {
       "arm": "deduplicated_artifact",
+      "checked_packet_sha256": "13c54abe2102e7b3d5495aff5f81b7e2308cb3b280c6025ca7bb8f62a8e46ff1",
       "normalized_information_sha256": "92d73f093feed4efc1ea3c4f6a9b66fd9c93581a48b42e44be6961c9ccb6e294",
       "regex_wordpunct_v2": 711,
       "retry_calls": 1,
@@ -445,7 +484,7 @@
   ],
   "provider_usage": null,
   "raw_conditions_recomputed": 36,
-  "raw_report_sha256": "cef10f1f2e151d69ed9d9846a626078dfe6db77632ba9568ba14eecf4cd67ca2",
+  "raw_report_sha256": "8bb090167028d2b6ea4499c6deaad7dcc75e050bf2889ea880372e43b90d1683",
   "source": {
     "bytes": 11002,
     "exposure": "Previously used public pilot; calibration only, not newly held out",
@@ -456,5 +495,5 @@
     "url": "https://github.com/Systems-Modeling/SysML-v2-Release/blob/fb97b754f29588b8e9c7a35f370880cd15eb29e7/sysml/src/examples/State%20Space%20Representation%20Examples/EVSample.sysml"
   },
   "status": "offline_scripted_protocol_measurement_only",
-  "tests_passed": 24
+  "tests_passed": 34
 }
