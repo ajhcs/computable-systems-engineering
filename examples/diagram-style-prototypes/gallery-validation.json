@@ -1,0 +1,342 @@
+[
+  {
+    "view": "01-tmt-maintenance",
+    "treatment": "baseline",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-maintenance.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-maintenance.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/rendered/01-tmt-maintenance.drawio"
+    ]
+  },
+  {
+    "view": "01-tmt-maintenance",
+    "treatment": "technical-ledger",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-maintenance.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-maintenance.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/technical-ledger/01-tmt-maintenance.drawio"
+    ]
+  },
+  {
+    "view": "01-tmt-maintenance",
+    "treatment": "instrument-record",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-maintenance.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-maintenance.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/instrument-record/01-tmt-maintenance.drawio"
+    ]
+  },
+  {
+    "view": "01-tmt-maintenance",
+    "treatment": "quiet-precision",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-maintenance.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-maintenance.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/quiet-precision/01-tmt-maintenance.drawio"
+    ]
+  },
+  {
+    "view": "01-tmt-maintenance",
+    "treatment": "research-folio",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-maintenance.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-maintenance.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/research-folio/01-tmt-maintenance.drawio"
+    ]
+  },
+  {
+    "view": "01-tmt-maintenance",
+    "treatment": "engineering-standard",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-maintenance.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-maintenance.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/engineering-standard/01-tmt-maintenance.drawio"
+    ]
+  },
+  {
+    "view": "01-tmt-maintenance",
+    "treatment": "instrument-record-print",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-maintenance.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-maintenance.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/instrument-record-print/01-tmt-maintenance.drawio"
+    ]
+  },
+  {
+    "view": "02-tmt-timing",
+    "treatment": "baseline",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-timing.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-timing.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/rendered/02-tmt-timing.drawio"
+    ]
+  },
+  {
+    "view": "02-tmt-timing",
+    "treatment": "technical-ledger",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-timing.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-timing.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/technical-ledger/02-tmt-timing.drawio"
+    ]
+  },
+  {
+    "view": "02-tmt-timing",
+    "treatment": "instrument-record",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-timing.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-timing.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/instrument-record/02-tmt-timing.drawio"
+    ]
+  },
+  {
+    "view": "02-tmt-timing",
+    "treatment": "quiet-precision",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-timing.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-timing.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/quiet-precision/02-tmt-timing.drawio"
+    ]
+  },
+  {
+    "view": "02-tmt-timing",
+    "treatment": "research-folio",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-timing.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-timing.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/research-folio/02-tmt-timing.drawio"
+    ]
+  },
+  {
+    "view": "02-tmt-timing",
+    "treatment": "engineering-standard",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-timing.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-timing.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/engineering-standard/02-tmt-timing.drawio"
+    ]
+  },
+  {
+    "view": "02-tmt-timing",
+    "treatment": "instrument-record-print",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/tmt-timing.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/tmt-timing.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/instrument-record-print/02-tmt-timing.drawio"
+    ]
+  },
+  {
+    "view": "03-ape-composition",
+    "treatment": "baseline",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-composition.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-composition.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/rendered/03-ape-composition.drawio"
+    ]
+  },
+  {
+    "view": "03-ape-composition",
+    "treatment": "technical-ledger",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-composition.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-composition.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/technical-ledger/03-ape-composition.drawio"
+    ]
+  },
+  {
+    "view": "03-ape-composition",
+    "treatment": "instrument-record",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-composition.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-composition.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/instrument-record/03-ape-composition.drawio"
+    ]
+  },
+  {
+    "view": "03-ape-composition",
+    "treatment": "quiet-precision",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-composition.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-composition.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/quiet-precision/03-ape-composition.drawio"
+    ]
+  },
+  {
+    "view": "03-ape-composition",
+    "treatment": "research-folio",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-composition.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-composition.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/research-folio/03-ape-composition.drawio"
+    ]
+  },
+  {
+    "view": "03-ape-composition",
+    "treatment": "engineering-standard",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-composition.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-composition.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/engineering-standard/03-ape-composition.drawio"
+    ]
+  },
+  {
+    "view": "03-ape-composition",
+    "treatment": "instrument-record-print",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-composition.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-composition.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/instrument-record-print/03-ape-composition.drawio"
+    ]
+  },
+  {
+    "view": "04-ape-optical",
+    "treatment": "baseline",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-optical.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-optical.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/rendered/04-ape-optical.drawio"
+    ]
+  },
+  {
+    "view": "04-ape-optical",
+    "treatment": "technical-ledger",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-optical.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-optical.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/technical-ledger/04-ape-optical.drawio"
+    ]
+  },
+  {
+    "view": "04-ape-optical",
+    "treatment": "instrument-record",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-optical.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-optical.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/instrument-record/04-ape-optical.drawio"
+    ]
+  },
+  {
+    "view": "04-ape-optical",
+    "treatment": "quiet-precision",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-optical.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-optical.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/quiet-precision/04-ape-optical.drawio"
+    ]
+  },
+  {
+    "view": "04-ape-optical",
+    "treatment": "research-folio",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-optical.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-optical.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/research-folio/04-ape-optical.drawio"
+    ]
+  },
+  {
+    "view": "04-ape-optical",
+    "treatment": "engineering-standard",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-optical.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-optical.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/engineering-standard/04-ape-optical.drawio"
+    ]
+  },
+  {
+    "view": "04-ape-optical",
+    "treatment": "instrument-record-print",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/derived/ape-optical.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference/ape-optical.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/instrument-record-print/04-ape-optical.drawio"
+    ]
+  },
+  {
+    "view": "05-tmt-exposure",
+    "treatment": "baseline",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/derived/tmt-exposure.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/tmt-exposure.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/rendered/05-tmt-exposure.drawio"
+    ]
+  },
+  {
+    "view": "05-tmt-exposure",
+    "treatment": "technical-ledger",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/derived/tmt-exposure.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/tmt-exposure.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/technical-ledger/05-tmt-exposure.drawio"
+    ]
+  },
+  {
+    "view": "05-tmt-exposure",
+    "treatment": "engineering-standard",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/derived/tmt-exposure.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/tmt-exposure.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/engineering-standard/05-tmt-exposure.drawio"
+    ]
+  },
+  {
+    "view": "06-tmt-sequence-order",
+    "treatment": "baseline",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/derived/tmt-sequence-order.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/tmt-sequence-order.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/rendered/06-tmt-sequence-order.drawio"
+    ]
+  },
+  {
+    "view": "06-tmt-sequence-order",
+    "treatment": "technical-ledger",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/derived/tmt-sequence-order.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/tmt-sequence-order.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/technical-ledger/06-tmt-sequence-order.drawio"
+    ]
+  },
+  {
+    "view": "06-tmt-sequence-order",
+    "treatment": "engineering-standard",
+    "diagram_width": 1280,
+    "paths": [
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/derived/tmt-sequence-order.sysml",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/engineering-reference-extension/tmt-sequence-order.md",
+      "file:///workspace/repos/builderbob/computable-systems-engineering/examples/diagram-style-prototypes/engineering-standard/06-tmt-sequence-order.drawio"
+    ]
+  }
+]

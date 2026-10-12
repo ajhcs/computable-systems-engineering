@@ -1,0 +1,15 @@
+{
+  "compared_with": "First actual screenshot copies before broadening to twenty views",
+  "unchanged_pngs": {
+    "technical-ledger/01-tmt-maintenance": "0f079481716f0e8cde79e54f8f30f3295cb0dffd2b969da5a21c0c41c64e2461",
+    "technical-ledger/03-ape-composition": "ea1fb27d416f90bb03cd624974e29d8809178a3dc614989e69de2c31e46f58e8",
+    "instrument-record/01-tmt-maintenance": "1b0415b65ce3b104b50c447fd3bfe48c2489af9eedac5740c3bb9eb38a25f1cc",
+    "instrument-record/03-ape-composition": "7b17d0d113e17abb6c9c60714101000b9fa03d510cf8c558ea9d1ef84baf4074",
+    "quiet-precision/01-tmt-maintenance": "e6b1c4bd629cf3391be422a781063263d1de6c0e4f8ad75d7e5758eb27a8a3a1",
+    "quiet-precision/03-ape-composition": "974bac806c38489c0e490ee6be151cd32186ee8a674da918dcc378a27f421d0f",
+    "research-folio/01-tmt-maintenance": "fa2a9934a4033c3053dbcdb899037ea7f32b6ebad8f2dfc079db1f2098e5eb78",
+    "research-folio/03-ape-composition": "8cad0db6c36186f48d966e59f13d7c56a21372be03795b181ac04bd0b18aacd5",
+    "engineering-standard/01-tmt-maintenance": "069a9832e4e68ffcf9baa04ab72058993694bfaec38f061aa2f8b98aa79466c6",
+    "engineering-standard/03-ape-composition": "ead9680e2c00614340b02a1df8e6c7b8645fd1dbbca7b864af679bd3f8650aba"
+  }
+}

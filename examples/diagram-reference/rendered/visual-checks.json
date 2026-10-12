@@ -1,0 +1,38 @@
+[
+  {
+    "file": "01-context.svg",
+    "width": 1280,
+    "height": 720,
+    "text_labels": 12,
+    "clipped": [],
+    "svg_sha256": "210b807375cf30a98210420e51f43f16911512267adf1a3955fbd78cab0b5980",
+    "png_sha256": "147dee7b01f7afa76402ec1b3edbf6d537c74ce73eea43c0e01ba12a44f8c063"
+  },
+  {
+    "file": "02-actions.svg",
+    "width": 1280,
+    "height": 720,
+    "text_labels": 16,
+    "clipped": [],
+    "svg_sha256": "34fb57fefd3327a2a149aaad54269922e370a4de1339d891783b39464ce5f55c",
+    "png_sha256": "e620b4ed991e64186bc3288355d7b3b73bb0e35d4e6fcb815acc8fae3e6ac24d"
+  },
+  {
+    "file": "03-deadline.svg",
+    "width": 1280,
+    "height": 720,
+    "text_labels": 36,
+    "clipped": [],
+    "svg_sha256": "c1a16d2c9ae8e90f7027ce3973e12a46311f2a73d9ddb08fa1b4ab548596a8af",
+    "png_sha256": "4e325868904ddfbb241577bf8d281332dd4537d89381322f002264da7d2958e0"
+  },
+  {
+    "file": "04-runtime.svg",
+    "width": 1280,
+    "height": 720,
+    "text_labels": 17,
+    "clipped": [],
+    "svg_sha256": "6f343982d90974a9919c3f943f1d85e643893681d6e3f491c1a8b573f8a6ba8e",
+    "png_sha256": "3a10fedf84ad7ac163ec0a1acf222091ab9d2de1f79fbef684d1d19ab74ec8be"
+  }
+]

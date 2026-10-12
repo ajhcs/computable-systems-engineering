@@ -1,0 +1,46 @@
+{
+  "tmt-maintenance": {
+    "source_version": "1.4",
+    "derived_version": "2.0/pilot-2025-09",
+    "changes": [
+      "new layout and selected lifecycle scope",
+      "initial pseudostates transcribed as entry successions",
+      "final state transcribed as built-in enclosing done target",
+      "Maintenance Alignment signal identifier renamed MaintenanceAlignmentSignal",
+      "named action/effect implementations opaque; no code translated or executed",
+      "unnamed initialization logging effect gets new derived identifier InitCompleteEffect; source ID/body retained, implementation remains opaque"
+    ]
+  },
+  "tmt-timing": {
+    "source_version": "1.4",
+    "changes": [
+      "source mathematical <= retained beside strict English <",
+      "v1 Real ports transcribed as v2 Real inputs; units explicitly documented in seconds",
+      "no asserted satisfy/refine link or full requirement acceptance",
+      "selected February class default, not historical instance slots",
+      "v1 class default mapped to overridable initial default := 1800.0 per OMG Transformation 7.7.4.2.10; not fixed = binding"
+    ]
+  },
+  "ape-composition": {
+    "source_version": "1.6",
+    "changes": [
+      "unnamed Mount role gets derived identifier mount",
+      "default multiplicity one made explicit in explanation",
+      "physical values/interfaces omitted",
+      "no actuator-to-segment allocation added",
+      "role names and cardinalities placed at part association ends; child classifiers do not own those roles"
+    ]
+  },
+  "ape-optical": {
+    "source_version": "1.6",
+    "changes": [
+      "source private lg1 and ada members widened to public in derived v2 to resolve nested references",
+      "2023 ape_t name retained, 2011 ape difference documented",
+      "original redefinition documented but not fully transcribed",
+      "inherited omb/object_oif and nested path retained; other inherited members omitted",
+      "original untyped SysML 1.6 ProxyPort applications retained in source trace/XML; plain v2 ports retain endpoint connectivity, omit interface contracts, conjugation and complete proxy-interface semantics",
+      "ut3/ape_t original private visibility retained in owning context",
+      "2011 Figure 20 port arrow glyphs documented but omitted from square glyphs; no directional item flow inferred"
+    ]
+  }
+}

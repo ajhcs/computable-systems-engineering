@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<rect width="1280" height="720" fill="#fff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#16766c"/></marker></defs>
+<text data-cell="title" x="50" y="62" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="32" fill="#16324f">Context: two different items, two directions</text>
+<text data-cell="subtitle" x="50" y="105" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#63758a">Synthetic black-box context | custom SysML v2 item-flow view</text>
+<path data-cell="requestFlow" d="M 400 310 L 820 310" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text data-cell="requestFlow-label" x="610.0" y="287" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="17" fill="#16324f">requestFlow : Request</text>
+<path data-cell="allocationFlow" d="M 820 410 L 400 410" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text data-cell="allocationFlow-label" x="610.0" y="382" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="17" fill="#16324f">allocationFlow : Allocation</text>
+<rect data-cell="borrower" x="70" y="220" width="330" height="250" rx="8" fill="#f0f3f7" stroke="#16766c" stroke-width="2"/>
+<text data-cell="borrower-text" x="235.0" y="260" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">part borrower : Borrower</text>
+<text data-cell="borrower-text" x="235.0" y="290" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">external participant</text>
+<rect data-cell="system" x="820" y="220" width="390" height="250" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="system-text" x="1015.0" y="260" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">part system : ToolLibrary</text>
+<text data-cell="system-text" x="1015.0" y="290" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">system of interest</text>
+<text data-cell="system-text" x="1015.0" y="320" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">internals intentionally omitted</text>
+<text data-cell="claim" x="50" y="583" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">Request flows borrower → system; Allocation flows system → borrower.</text>
+<text data-cell="claim" x="50" y="609" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">No internal design, successful delivery, timing, or stakeholder acceptance is claimed.</text>
+<text data-cell="source" x="50" y="690" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#63758a">context.sysml | SHA-256 38a401410c003f71e47d | generated reference view</text>
+</svg>

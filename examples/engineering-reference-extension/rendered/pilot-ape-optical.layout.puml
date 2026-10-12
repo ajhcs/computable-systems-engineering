@@ -1,0 +1,39 @@
+@startuml
+!pragma layout smetana
+skin sysmlbw
+skinparam monochrome true
+skinparam wrapWidth 300
+hide circle
+skinparam ranksep 10
+skinparam rectangle {
+ backgroundColor<<block>> LightGreen
+}
+
+rec usage "observatoryContext" as E1 [[psysml:e2bc1e41-e937-4af0-ad4e-591b53ab9e9e ]] {
+rec usage "ut3: UnitTelescope" as E2 [[psysml:e2af2f67-67bc-4982-8d67-ef7a46ec02dc ]] {
+rec usage "^ada: NasmythAdapter" as E3 [[psysml:8a528711-4df1-4db7-ab0a-9cb11fe05a62 ]] {
+portout "^FoV_oif  " as E6  <<(T,blue) port>> [[psysml:64fdcda8-8d84-4434-9cb1-263bd4484415 ]] 
+}
+}
+rec usage "ape_t: APE_Telescope" as E7 [[psysml:eb7197b1-5f70-4e10-ae3a-b7689caca97b ]] {
+portin "^object_oif  " as E10  <<(T,blue) port>> [[psysml:ee18c802-1d58-4ffc-8b26-89461ae5ee43 ]] 
+}
+}
+note as E4
+[[psysml:916ebb9c-5d20-487b-a18f-98fb3c5dbd85 @]]Source _15_1_baa02e2_1212914157343_515859_8565. Original visibility private; made public in this derived v2 fragment to resolve its context connector end.
+end note 
+note as E5
+[[psysml:38267dff-a1b0-44ae-b116-4f452d173a60 @]]Source _15_1_baa02e2_1212914971437_912712_9360. Original untyped SysML 1.6 ProxyPort. Derived plain v2 port retains the endpoint identity, not a complete proxy-interface semantic mapping.
+end note 
+note as E8
+[[psysml:c0e1f456-fbd9-41d4-8619-81fc6e857e2f @]]Source _16_5_4_359f051f_1260449554968_992972_24991 redefines the original ape property. The 2011 figure labels this ape.
+end note 
+note as E9
+[[psysml:329b1b91-bd9f-4464-a0fc-d546e1beda6d @]]Source _15_1_bf10301_1210680977392_846759_11441. Original untyped SysML 1.6 ProxyPort; derived plain v2 port omits complete proxy-interface semantics.
+end note 
+E4 .. E3 [[psysml:916ebb9c-5d20-487b-a18f-98fb3c5dbd85 ]] 
+E5 .. E6 [[psysml:38267dff-a1b0-44ae-b116-4f452d173a60 ]] 
+E8 .. E7 [[psysml:c0e1f456-fbd9-41d4-8619-81fc6e857e2f ]] 
+E9 .. E10 [[psysml:329b1b91-bd9f-4464-a0fc-d546e1beda6d ]] 
+E6 -[thickness=3]- E10 [[psysml:5977b8d6-60c2-41a2-b742-d8baab1c4d23 ]] 
+@enduml

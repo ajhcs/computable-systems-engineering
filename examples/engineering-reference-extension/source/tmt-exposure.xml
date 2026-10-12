@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<extracted-source-fragment xmlns:ns0="http://www.omg.org/spec/XMI/20131001" modified="2026-10-02: selected and reserialized; vendor presentation removed; not a standalone native model" archive_sha256="eb54c3105e4d894bb06378476f364bbf5cdb3bfad4cbf55f10fefacf6cad515f">
+  <packagedElement ns0:type="uml:Signal" ns0:id="_17_0_2_3_41e01aa_1377706340501_676597_37166" ns0:uuid="72e04c80-1005-11e3-89cc-859daa8770e5" name="SH_Take_exposure_Cmd">
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_18_0_4_baa02e2_1439589630400_217011_150200" ns0:uuid="128b7950-2857-46e4-9c9a-406b9d3f7992" name="dit" visibility="public">
+      <type href="http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Integer_PackageableElement">
+																				</type>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement ns0:type="uml:Activity" ns0:id="_17_0_2_3_41e01aa_1377716303952_671385_42761" ns0:uuid="b6090a16-1015-11e3-89cc-859daa8770e5" name="Take SH Exposure">
+    <ownedParameter ns0:type="uml:Parameter" ns0:id="_18_0_4_baa02e2_1437598234574_12301_170362" ns0:uuid="5729c809-1fb8-4223-9871-d5007863e36a" name="dit" visibility="public">
+      <type href="http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Integer_PackageableElement">
+																				</type>
+    </ownedParameter>
+    <edge ns0:type="uml:ControlFlow" ns0:id="_17_0_2_3_41e01aa_1383810509352_353468_75620" ns0:uuid="3cb10a4e-4783-11e3-95ab-53ff65a2a797" visibility="public" source="_18_0_5_baa02e2_1457628566053_846606_159260" target="_17_0_2_3_41e01aa_1383810481906_821693_75583">
+      <weight ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_17_0_2_3_41e01aa_1383810509353_514050_75621" ns0:uuid="3cb10a4f-4783-11e3-95ab-53ff65a2a797" value="1" />
+    </edge>
+    <edge ns0:type="uml:ControlFlow" ns0:id="_17_0_2_3_41e01aa_1383810511466_177984_75625" ns0:uuid="3cb10a50-4783-11e3-95ab-53ff65a2a797" visibility="public" source="_18_0_5_baa02e2_1457628566053_846606_159260" target="_17_0_2_3_41e01aa_1383810483618_843330_75595">
+      <weight ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_17_0_2_3_41e01aa_1383810511466_902770_75626" ns0:uuid="3cb10a51-4783-11e3-95ab-53ff65a2a797" value="1" />
+    </edge>
+    <edge ns0:type="uml:ControlFlow" ns0:id="_17_0_2_3_41e01aa_1383810517529_853279_75637" ns0:uuid="3cb10a52-4783-11e3-95ab-53ff65a2a797" visibility="public" source="_18_0_5_baa02e2_1457628574540_652543_159280" target="_17_0_2_3_41e01aa_1382548455558_205728_74434">
+      <weight ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_17_0_2_3_41e01aa_1383810517530_110121_75638" ns0:uuid="3cb10a53-4783-11e3-95ab-53ff65a2a797" value="1" />
+    </edge>
+    <edge ns0:type="uml:ObjectFlow" ns0:id="_18_0_4_baa02e2_1437598422630_384460_170544" ns0:uuid="69b3ec35-4660-4c3c-aa8e-f58c41108826" visibility="public" source="_18_0_4_baa02e2_1437598234583_903659_170363" target="_18_0_4_baa02e2_1437598400072_462138_170530">
+      <weight ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_18_0_4_baa02e2_1437598422631_806478_170545" ns0:uuid="5c13cc2c-8d81-4ed9-8d15-52f95111d744" value="1" />
+    </edge>
+    <edge ns0:type="uml:ControlFlow" ns0:id="_18_0_5_baa02e2_1457628567215_126325_159264" ns0:uuid="a36b81a7-69cb-4ba1-b3e3-60006d642ca0" visibility="public" source="_17_0_2_3_41e01aa_1382548453439_686811_74426" target="_18_0_5_baa02e2_1457628566053_846606_159260">
+      <weight ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_18_0_5_baa02e2_1457628567216_977053_159265" ns0:uuid="459874a6-6474-4d40-86ce-c12c2fab9254" value="1" />
+    </edge>
+    <edge ns0:type="uml:ControlFlow" ns0:id="_18_0_5_baa02e2_1457628575357_814757_159285" ns0:uuid="e24c87de-3e10-4137-9dcb-2535cfedd7c7" visibility="public" source="_17_0_2_3_41e01aa_1383810483618_843330_75595" target="_18_0_5_baa02e2_1457628574540_652543_159280">
+      <weight ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_18_0_5_baa02e2_1457628575357_676591_159286" ns0:uuid="d1cd8d5a-fff0-4ff3-8cb7-bc6417727677" value="1" />
+    </edge>
+    <edge ns0:type="uml:ControlFlow" ns0:id="_18_0_5_baa02e2_1457628578060_400341_159298" ns0:uuid="2e9e3a1f-78df-4f18-9da8-8090b466a340" visibility="public" source="_17_0_2_3_41e01aa_1383810481906_821693_75583" target="_18_0_5_baa02e2_1457628574540_652543_159280">
+      <weight ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_18_0_5_baa02e2_1457628578060_899452_159299" ns0:uuid="7c5e609e-8cbe-4f21-aca0-4c553502d711" value="1" />
+    </edge>
+    <node ns0:type="uml:InitialNode" ns0:id="_17_0_2_3_41e01aa_1382548453439_686811_74426" ns0:uuid="28f75798-3c08-11e3-9c43-61d136f65c7e" visibility="public">
+      <outgoing ns0:idref="_18_0_5_baa02e2_1457628567215_126325_159264" />
+    </node>
+    <node ns0:type="uml:ActivityFinalNode" ns0:id="_17_0_2_3_41e01aa_1382548455558_205728_74434" ns0:uuid="28f75799-3c08-11e3-9c43-61d136f65c7e" visibility="public">
+      <incoming ns0:idref="_17_0_2_3_41e01aa_1383810517529_853279_75637" />
+    </node>
+    <node ns0:type="uml:SendSignalAction" ns0:id="_17_0_2_3_41e01aa_1383810481906_821693_75583" ns0:uuid="3cb10a54-4783-11e3-95ab-53ff65a2a797" visibility="public" onPort="_17_0_2_3_41e01aa_1382548607674_333485_74722" signal="_17_0_2_3_41e01aa_1377706340501_676597_37166">
+      <incoming ns0:idref="_17_0_2_3_41e01aa_1383810509352_353468_75620" />
+      <outgoing ns0:idref="_18_0_5_baa02e2_1457628578060_400341_159298" />
+      <argument ns0:type="uml:InputPin" ns0:id="_18_0_4_baa02e2_1437598400072_462138_170530" ns0:uuid="288a70dc-3444-4c68-ad43-d0600dc2d2b3" name="p" visibility="public">
+        <type href="http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Integer_PackageableElement">
+																					</type>
+        <incoming ns0:idref="_18_0_4_baa02e2_1437598422630_384460_170544" />
+      </argument>
+    </node>
+    <node ns0:type="uml:AcceptEventAction" ns0:id="_17_0_2_3_41e01aa_1383810483618_843330_75595" ns0:uuid="3cb10a55-4783-11e3-95ab-53ff65a2a797" visibility="public">
+      <incoming ns0:idref="_17_0_2_3_41e01aa_1383810511466_177984_75625" />
+      <outgoing ns0:idref="_18_0_5_baa02e2_1457628575357_814757_159285" />
+      <trigger ns0:type="uml:Trigger" ns0:id="_17_0_2_3_41e01aa_1383810507093_538136_75616" ns0:uuid="3cb10a56-4783-11e3-95ab-53ff65a2a797" visibility="public" event="_17_0_2_3_41e01aa_1383810507094_725092_75617" />
+    </node>
+    <node ns0:type="uml:ActivityParameterNode" ns0:id="_18_0_4_baa02e2_1437598234583_903659_170363" ns0:uuid="afdf567d-f423-42b8-832d-3d67db346f80" name="dit" visibility="public" parameter="_18_0_4_baa02e2_1437598234574_12301_170362">
+      <type href="http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Integer_PackageableElement">
+																				</type>
+      <outgoing ns0:idref="_18_0_4_baa02e2_1437598422630_384460_170544" />
+    </node>
+    <node ns0:type="uml:ForkNode" ns0:id="_18_0_5_baa02e2_1457628566053_846606_159260" ns0:uuid="4252afd7-abff-4f35-836f-b22652c12c42" visibility="public">
+      <incoming ns0:idref="_18_0_5_baa02e2_1457628567215_126325_159264" />
+      <outgoing ns0:idref="_17_0_2_3_41e01aa_1383810509352_353468_75620" />
+      <outgoing ns0:idref="_17_0_2_3_41e01aa_1383810511466_177984_75625" />
+    </node>
+    <node ns0:type="uml:JoinNode" ns0:id="_18_0_5_baa02e2_1457628574540_652543_159280" ns0:uuid="36fe9d1a-8cb8-4d32-8843-f16070383f09" visibility="public">
+      <incoming ns0:idref="_18_0_5_baa02e2_1457628575357_814757_159285" />
+      <incoming ns0:idref="_18_0_5_baa02e2_1457628578060_400341_159298" />
+      <outgoing ns0:idref="_17_0_2_3_41e01aa_1383810517529_853279_75637" />
+    </node>
+  </packagedElement>
+  <packagedElement ns0:type="uml:Signal" ns0:id="_17_0_2_3_41e01aa_1378924275075_915265_43256" ns0:uuid="301090d2-1b12-11e3-876e-edae38a307cf" name="SH_Take_exposure_Ack" />
+  <ownedAttribute ns0:type="uml:Port" ns0:id="_17_0_2_3_41e01aa_1382548607674_333485_74722" ns0:uuid="291a2118-3c08-11e3-9c43-61d136f65c7e" name="PEAS2SHOut" visibility="public" aggregation="composite" />
+  <packagedElement ns0:type="uml:SignalEvent" ns0:id="_17_0_2_3_41e01aa_1383810507094_725092_75617" ns0:uuid="3cb3a267-4783-11e3-95ab-53ff65a2a797" signal="_17_0_2_3_41e01aa_1378924275075_915265_43256" />
+</extracted-source-fragment>

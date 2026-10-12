@@ -1,0 +1,638 @@
+{
+  "case": "XPPU-01",
+  "view": "composition-relations",
+  "classification": "Selected source-model explanatory graphics; not claimed formal SysML v2 graphical conformance",
+  "canvas": [
+    1200,
+    1060
+  ],
+  "elements": [
+    {
+      "id": "XPPU-01-composition-relations-1",
+      "kind": "canvas",
+      "sourceIds": [],
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "w": 1200,
+        "h": 1060
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-composition-relations-2",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 25,
+        "w": 1120,
+        "h": 50.550000000000004
+      },
+      "display": [
+        "Recover role, type, and composition"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-3",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 73,
+        "w": 1120,
+        "h": 34.35
+      },
+      "display": [
+        "xPPU Scenario15 \u00b7 seven selected source relationships"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-4",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 106,
+        "w": 1120,
+        "h": 30.3
+      },
+      "display": [
+        "Filled diamond belongs to PPU. Lines show composition, not workpiece flow or sequence."
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-5",
+      "kind": "entity",
+      "sourceIds": [
+        "_2ub-IBHQEeaen93uATCTQQ"
+      ],
+      "geometry": {
+        "x": 55,
+        "y": 173,
+        "w": 280,
+        "h": 767
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-composition-relations-6",
+      "kind": "label",
+      "sourceIds": [
+        "_2ub-IBHQEeaen93uATCTQQ"
+      ],
+      "geometry": {
+        "x": 82,
+        "y": 202,
+        "w": 226,
+        "h": 127.5
+      },
+      "display": [
+        "PPU",
+        "Seven owned",
+        "modules."
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-7",
+      "kind": "label",
+      "sourceIds": [
+        "_2ub-IBHQEeaen93uATCTQQ"
+      ],
+      "geometry": {
+        "x": 82,
+        "y": 398,
+        "w": 226,
+        "h": 213.90000000000003
+      },
+      "display": [
+        "Each relationship",
+        "has multiplicity 1.",
+        "Internal equipment,",
+        "operations and",
+        "state behavior",
+        "remain in the",
+        "original model."
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-8",
+      "kind": "entity",
+      "sourceIds": [
+        "_P1xSIBHVEeaen93uATCTQQ"
+      ],
+      "geometry": {
+        "x": 660,
+        "y": 200,
+        "w": 505,
+        "h": 81
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-composition-relations-9",
+      "kind": "label",
+      "sourceIds": [
+        "_P1xSIBHVEeaen93uATCTQQ"
+      ],
+      "geometry": {
+        "x": 680,
+        "y": 222,
+        "w": 465,
+        "h": 38.400000000000006
+      },
+      "display": [
+        "Stack"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-10",
+      "kind": "connector",
+      "sourceIds": [
+        "_K9YqEhHZEeaIeI6F5gdpJg",
+        "_K9YDABHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "points": [
+          [
+            335,
+            240
+          ],
+          [
+            660,
+            240
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        "_2ub-IBHQEeaen93uATCTQQ",
+        "_P1xSIBHVEeaen93uATCTQQ"
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "XPPU-01-composition-relations-11",
+      "kind": "label",
+      "sourceIds": [
+        "_K9YqEhHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 365,
+        "y": 205,
+        "w": 280,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "stack [1]"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-12",
+      "kind": "entity",
+      "sourceIds": [
+        "_uUK40BHWEeaE9dGXaplL2g"
+      ],
+      "geometry": {
+        "x": 660,
+        "y": 302,
+        "w": 505,
+        "h": 81
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-composition-relations-13",
+      "kind": "label",
+      "sourceIds": [
+        "_uUK40BHWEeaE9dGXaplL2g"
+      ],
+      "geometry": {
+        "x": 680,
+        "y": 324,
+        "w": 465,
+        "h": 38.400000000000006
+      },
+      "display": [
+        "Crane"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-14",
+      "kind": "connector",
+      "sourceIds": [
+        "_MFHHIhHZEeaIeI6F5gdpJg",
+        "_MFGgEBHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "points": [
+          [
+            335,
+            342
+          ],
+          [
+            660,
+            342
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        "_2ub-IBHQEeaen93uATCTQQ",
+        "_uUK40BHWEeaE9dGXaplL2g"
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "XPPU-01-composition-relations-15",
+      "kind": "label",
+      "sourceIds": [
+        "_MFHHIhHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 365,
+        "y": 307,
+        "w": 280,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "crane [1]"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-16",
+      "kind": "entity",
+      "sourceIds": [
+        "_-GUi8BHWEeaE9dGXaplL2g"
+      ],
+      "geometry": {
+        "x": 660,
+        "y": 404,
+        "w": 505,
+        "h": 81
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-composition-relations-17",
+      "kind": "label",
+      "sourceIds": [
+        "_-GUi8BHWEeaE9dGXaplL2g"
+      ],
+      "geometry": {
+        "x": 680,
+        "y": 426,
+        "w": 465,
+        "h": 38.400000000000006
+      },
+      "display": [
+        "Stamp"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-18",
+      "kind": "connector",
+      "sourceIds": [
+        "_N1dDYxHZEeaIeI6F5gdpJg",
+        "_N1dDYBHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "points": [
+          [
+            335,
+            444
+          ],
+          [
+            660,
+            444
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        "_2ub-IBHQEeaen93uATCTQQ",
+        "_-GUi8BHWEeaE9dGXaplL2g"
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "XPPU-01-composition-relations-19",
+      "kind": "label",
+      "sourceIds": [
+        "_N1dDYxHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 365,
+        "y": 409,
+        "w": 280,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "stamp [1]"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-20",
+      "kind": "entity",
+      "sourceIds": [
+        "_RehDsBH4EeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 660,
+        "y": 506,
+        "w": 505,
+        "h": 81
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-composition-relations-21",
+      "kind": "label",
+      "sourceIds": [
+        "_RehDsBH4EeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 680,
+        "y": 528,
+        "w": 465,
+        "h": 38.400000000000006
+      },
+      "display": [
+        "LargeSortingConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-22",
+      "kind": "connector",
+      "sourceIds": [
+        "_cpnDIxH4EeaIeI6F5gdpJg",
+        "_cpnDIBH4EeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "points": [
+          [
+            335,
+            546
+          ],
+          [
+            660,
+            546
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        "_2ub-IBHQEeaen93uATCTQQ",
+        "_RehDsBH4EeaIeI6F5gdpJg"
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "XPPU-01-composition-relations-23",
+      "kind": "label",
+      "sourceIds": [
+        "_cpnDIxH4EeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 365,
+        "y": 511,
+        "w": 280,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "largeSortingConveyor [1]"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-24",
+      "kind": "entity",
+      "sourceIds": [
+        "_5QIQAOcBEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 660,
+        "y": 608,
+        "w": 505,
+        "h": 81
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-composition-relations-25",
+      "kind": "label",
+      "sourceIds": [
+        "_5QIQAOcBEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 680,
+        "y": 630,
+        "w": 465,
+        "h": 38.400000000000006
+      },
+      "display": [
+        "PicAlphaConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-26",
+      "kind": "connector",
+      "sourceIds": [
+        "_NypR0OcCEeayP7zJxSzVpQ",
+        "_NykZUOcCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "points": [
+          [
+            335,
+            648
+          ],
+          [
+            660,
+            648
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        "_2ub-IBHQEeaen93uATCTQQ",
+        "_5QIQAOcBEeayP7zJxSzVpQ"
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "XPPU-01-composition-relations-27",
+      "kind": "label",
+      "sourceIds": [
+        "_NypR0OcCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 365,
+        "y": 613,
+        "w": 280,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "picAlphaConveyor [1]"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-28",
+      "kind": "entity",
+      "sourceIds": [
+        "_-ESikOcBEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 660,
+        "y": 710,
+        "w": 505,
+        "h": 81
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-composition-relations-29",
+      "kind": "label",
+      "sourceIds": [
+        "_-ESikOcBEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 680,
+        "y": 732,
+        "w": 465,
+        "h": 38.400000000000006
+      },
+      "display": [
+        "SmallSortingConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-30",
+      "kind": "connector",
+      "sourceIds": [
+        "_QzKcgucCEeayP7zJxSzVpQ",
+        "_QzJOYOcCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "points": [
+          [
+            335,
+            750
+          ],
+          [
+            660,
+            750
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        "_2ub-IBHQEeaen93uATCTQQ",
+        "_-ESikOcBEeayP7zJxSzVpQ"
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "XPPU-01-composition-relations-31",
+      "kind": "label",
+      "sourceIds": [
+        "_QzKcgucCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 365,
+        "y": 715,
+        "w": 280,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "smallSortingConveyor [1]"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-32",
+      "kind": "entity",
+      "sourceIds": [
+        "_EV7fwOcCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 660,
+        "y": 812,
+        "w": 505,
+        "h": 81
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-composition-relations-33",
+      "kind": "label",
+      "sourceIds": [
+        "_EV7fwOcCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 680,
+        "y": 834,
+        "w": 465,
+        "h": 38.400000000000006
+      },
+      "display": [
+        "RefillConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-34",
+      "kind": "connector",
+      "sourceIds": [
+        "_lWsgEOcEEeayP7zJxSzVpQ",
+        "_lWqD0OcEEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "points": [
+          [
+            335,
+            852
+          ],
+          [
+            660,
+            852
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        "_2ub-IBHQEeaen93uATCTQQ",
+        "_EV7fwOcCEeayP7zJxSzVpQ"
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "XPPU-01-composition-relations-35",
+      "kind": "label",
+      "sourceIds": [
+        "_lWsgEOcEEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 365,
+        "y": 817,
+        "w": 280,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "refillConveyor [1]"
+      ]
+    },
+    {
+      "id": "XPPU-01-composition-relations-36",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 970,
+        "w": 1120,
+        "h": 54.6
+      },
+      "display": [
+        "Role/property and association IDs resolve to the same original Overview diagram.",
+        "GPL-3.0 derivative \u00b7 no complete-class, ISA88 behavior, simulation or formal-v2-graphics claim."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,710 @@
+{
+  "matched_views": 20,
+  "source_extension_views": 4,
+  "light_print_variants": 4,
+  "checks": [
+    {
+      "treatment": "technical-ledger",
+      "print_variant": false,
+      "file": "technical-ledger/01-tmt-maintenance.svg",
+      "source_svg_sha256": "107f140edac91726cc2f2af353783d24d8f133aef6c5c0bbc47d26276471a436",
+      "geometry_sha256": "8c781d9d12abe4d39a21844b3ceabdd7a5c9757053982901a14aaca597f6b4fc",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "technical-ledger",
+      "print_variant": false,
+      "file": "technical-ledger/02-tmt-timing.svg",
+      "source_svg_sha256": "7ab37b1273475ef11160e5a3eb8f7215dce573ac874b88ed523edf9f2cb43cd3",
+      "geometry_sha256": "e4c77070f09bce0a0851ba6a1c7930c446e81230daee3d3884147e37c31c0fea",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "technical-ledger",
+      "print_variant": false,
+      "file": "technical-ledger/03-ape-composition.svg",
+      "source_svg_sha256": "8ed21d64560f5aec5feb34e78373818da5cf0dd0fc88e0d4c6ed3f5c7c9a6c3c",
+      "geometry_sha256": "6c26eddc1a8265ffe28a1edc001b99753b12d18e2659f68efa5cfaa7e600f49c",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "technical-ledger",
+      "print_variant": false,
+      "file": "technical-ledger/04-ape-optical.svg",
+      "source_svg_sha256": "70a7a794976e06411dcf90e4599d273aff019041e3d166c88c7da83ae43c983c",
+      "geometry_sha256": "c3d237d3b3665d7246745197aa5ac9cc80b427012a9e39d4b0c80e0c6bf74da2",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "instrument-record",
+      "print_variant": false,
+      "file": "instrument-record/01-tmt-maintenance.svg",
+      "source_svg_sha256": "107f140edac91726cc2f2af353783d24d8f133aef6c5c0bbc47d26276471a436",
+      "geometry_sha256": "8c781d9d12abe4d39a21844b3ceabdd7a5c9757053982901a14aaca597f6b4fc",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "instrument-record",
+      "print_variant": false,
+      "file": "instrument-record/02-tmt-timing.svg",
+      "source_svg_sha256": "7ab37b1273475ef11160e5a3eb8f7215dce573ac874b88ed523edf9f2cb43cd3",
+      "geometry_sha256": "e4c77070f09bce0a0851ba6a1c7930c446e81230daee3d3884147e37c31c0fea",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "instrument-record",
+      "print_variant": false,
+      "file": "instrument-record/03-ape-composition.svg",
+      "source_svg_sha256": "8ed21d64560f5aec5feb34e78373818da5cf0dd0fc88e0d4c6ed3f5c7c9a6c3c",
+      "geometry_sha256": "6c26eddc1a8265ffe28a1edc001b99753b12d18e2659f68efa5cfaa7e600f49c",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "instrument-record",
+      "print_variant": false,
+      "file": "instrument-record/04-ape-optical.svg",
+      "source_svg_sha256": "70a7a794976e06411dcf90e4599d273aff019041e3d166c88c7da83ae43c983c",
+      "geometry_sha256": "c3d237d3b3665d7246745197aa5ac9cc80b427012a9e39d4b0c80e0c6bf74da2",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "quiet-precision",
+      "print_variant": false,
+      "file": "quiet-precision/01-tmt-maintenance.svg",
+      "source_svg_sha256": "107f140edac91726cc2f2af353783d24d8f133aef6c5c0bbc47d26276471a436",
+      "geometry_sha256": "8c781d9d12abe4d39a21844b3ceabdd7a5c9757053982901a14aaca597f6b4fc",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "quiet-precision",
+      "print_variant": false,
+      "file": "quiet-precision/02-tmt-timing.svg",
+      "source_svg_sha256": "7ab37b1273475ef11160e5a3eb8f7215dce573ac874b88ed523edf9f2cb43cd3",
+      "geometry_sha256": "e4c77070f09bce0a0851ba6a1c7930c446e81230daee3d3884147e37c31c0fea",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "quiet-precision",
+      "print_variant": false,
+      "file": "quiet-precision/03-ape-composition.svg",
+      "source_svg_sha256": "8ed21d64560f5aec5feb34e78373818da5cf0dd0fc88e0d4c6ed3f5c7c9a6c3c",
+      "geometry_sha256": "6c26eddc1a8265ffe28a1edc001b99753b12d18e2659f68efa5cfaa7e600f49c",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "quiet-precision",
+      "print_variant": false,
+      "file": "quiet-precision/04-ape-optical.svg",
+      "source_svg_sha256": "70a7a794976e06411dcf90e4599d273aff019041e3d166c88c7da83ae43c983c",
+      "geometry_sha256": "c3d237d3b3665d7246745197aa5ac9cc80b427012a9e39d4b0c80e0c6bf74da2",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "research-folio",
+      "print_variant": false,
+      "file": "research-folio/01-tmt-maintenance.svg",
+      "source_svg_sha256": "107f140edac91726cc2f2af353783d24d8f133aef6c5c0bbc47d26276471a436",
+      "geometry_sha256": "8c781d9d12abe4d39a21844b3ceabdd7a5c9757053982901a14aaca597f6b4fc",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "research-folio",
+      "print_variant": false,
+      "file": "research-folio/02-tmt-timing.svg",
+      "source_svg_sha256": "7ab37b1273475ef11160e5a3eb8f7215dce573ac874b88ed523edf9f2cb43cd3",
+      "geometry_sha256": "e4c77070f09bce0a0851ba6a1c7930c446e81230daee3d3884147e37c31c0fea",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "research-folio",
+      "print_variant": false,
+      "file": "research-folio/03-ape-composition.svg",
+      "source_svg_sha256": "8ed21d64560f5aec5feb34e78373818da5cf0dd0fc88e0d4c6ed3f5c7c9a6c3c",
+      "geometry_sha256": "6c26eddc1a8265ffe28a1edc001b99753b12d18e2659f68efa5cfaa7e600f49c",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "research-folio",
+      "print_variant": false,
+      "file": "research-folio/04-ape-optical.svg",
+      "source_svg_sha256": "70a7a794976e06411dcf90e4599d273aff019041e3d166c88c7da83ae43c983c",
+      "geometry_sha256": "c3d237d3b3665d7246745197aa5ac9cc80b427012a9e39d4b0c80e0c6bf74da2",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "engineering-standard",
+      "print_variant": false,
+      "file": "engineering-standard/01-tmt-maintenance.svg",
+      "source_svg_sha256": "107f140edac91726cc2f2af353783d24d8f133aef6c5c0bbc47d26276471a436",
+      "geometry_sha256": "8c781d9d12abe4d39a21844b3ceabdd7a5c9757053982901a14aaca597f6b4fc",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "engineering-standard",
+      "print_variant": false,
+      "file": "engineering-standard/02-tmt-timing.svg",
+      "source_svg_sha256": "7ab37b1273475ef11160e5a3eb8f7215dce573ac874b88ed523edf9f2cb43cd3",
+      "geometry_sha256": "e4c77070f09bce0a0851ba6a1c7930c446e81230daee3d3884147e37c31c0fea",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "engineering-standard",
+      "print_variant": false,
+      "file": "engineering-standard/03-ape-composition.svg",
+      "source_svg_sha256": "8ed21d64560f5aec5feb34e78373818da5cf0dd0fc88e0d4c6ed3f5c7c9a6c3c",
+      "geometry_sha256": "6c26eddc1a8265ffe28a1edc001b99753b12d18e2659f68efa5cfaa7e600f49c",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "engineering-standard",
+      "print_variant": false,
+      "file": "engineering-standard/04-ape-optical.svg",
+      "source_svg_sha256": "70a7a794976e06411dcf90e4599d273aff019041e3d166c88c7da83ae43c983c",
+      "geometry_sha256": "c3d237d3b3665d7246745197aa5ac9cc80b427012a9e39d4b0c80e0c6bf74da2",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "instrument-record",
+      "print_variant": true,
+      "file": "instrument-record-print/01-tmt-maintenance.svg",
+      "source_svg_sha256": "107f140edac91726cc2f2af353783d24d8f133aef6c5c0bbc47d26276471a436",
+      "geometry_sha256": "8c781d9d12abe4d39a21844b3ceabdd7a5c9757053982901a14aaca597f6b4fc",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "instrument-record",
+      "print_variant": true,
+      "file": "instrument-record-print/02-tmt-timing.svg",
+      "source_svg_sha256": "7ab37b1273475ef11160e5a3eb8f7215dce573ac874b88ed523edf9f2cb43cd3",
+      "geometry_sha256": "e4c77070f09bce0a0851ba6a1c7930c446e81230daee3d3884147e37c31c0fea",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "instrument-record",
+      "print_variant": true,
+      "file": "instrument-record-print/03-ape-composition.svg",
+      "source_svg_sha256": "8ed21d64560f5aec5feb34e78373818da5cf0dd0fc88e0d4c6ed3f5c7c9a6c3c",
+      "geometry_sha256": "6c26eddc1a8265ffe28a1edc001b99753b12d18e2659f68efa5cfaa7e600f49c",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "instrument-record",
+      "print_variant": true,
+      "file": "instrument-record-print/04-ape-optical.svg",
+      "source_svg_sha256": "70a7a794976e06411dcf90e4599d273aff019041e3d166c88c7da83ae43c983c",
+      "geometry_sha256": "c3d237d3b3665d7246745197aa5ac9cc80b427012a9e39d4b0c80e0c6bf74da2",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "technical-ledger",
+      "print_variant": false,
+      "file": "technical-ledger/05-tmt-exposure.svg",
+      "source_svg_sha256": "27c2e21304184fc4239ac164ff4674dcca85a72dc6cda90779e164072931fe40",
+      "geometry_sha256": "dc646b80fa340b9f9ab1620d1f030b97b67a1f64c529b1b93e60aa26061f8241",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "technical-ledger",
+      "print_variant": false,
+      "file": "technical-ledger/06-tmt-sequence-order.svg",
+      "source_svg_sha256": "a4986bcc2b5c1021d8001f2f046aab308e7a99ff8a9d92e95080d3a3b66eeb3f",
+      "geometry_sha256": "696db917e070e0cdd982615a4fbb11794f3f042487ea1590020925f58f1b2b8f",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "engineering-standard",
+      "print_variant": false,
+      "file": "engineering-standard/05-tmt-exposure.svg",
+      "source_svg_sha256": "27c2e21304184fc4239ac164ff4674dcca85a72dc6cda90779e164072931fe40",
+      "geometry_sha256": "dc646b80fa340b9f9ab1620d1f030b97b67a1f64c529b1b93e60aa26061f8241",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    },
+    {
+      "treatment": "engineering-standard",
+      "print_variant": false,
+      "file": "engineering-standard/06-tmt-sequence-order.svg",
+      "source_svg_sha256": "a4986bcc2b5c1021d8001f2f046aab308e7a99ff8a9d92e95080d3a3b66eeb3f",
+      "geometry_sha256": "696db917e070e0cdd982615a4fbb11794f3f042487ea1590020925f58f1b2b8f",
+      "source_geometry_byte_identical": true,
+      "svg_semantics_equal": true,
+      "drawio_semantics_equal": true
+    }
+  ],
+  "contrast": [
+    {
+      "treatment": "technical-ledger",
+      "role": "ink",
+      "background": "#FAFAF7",
+      "ratio": 16.895,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "secondary",
+      "background": "#FAFAF7",
+      "ratio": 8.697,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "note",
+      "background": "#FAFAF7",
+      "ratio": 7.232,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "line",
+      "background": "#FAFAF7",
+      "ratio": 8.697,
+      "threshold": 3
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "ink",
+      "background": "#F0F1EB",
+      "ratio": 15.552,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "secondary",
+      "background": "#F0F1EB",
+      "ratio": 8.006,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "note",
+      "background": "#F0F1EB",
+      "ratio": 6.657,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "line",
+      "background": "#F0F1EB",
+      "ratio": 8.006,
+      "threshold": 3
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "ink",
+      "background": "#F7F7F2",
+      "ratio": 16.44,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "secondary",
+      "background": "#F7F7F2",
+      "ratio": 8.463,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "note",
+      "background": "#F7F7F2",
+      "ratio": 7.037,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "technical-ledger",
+      "role": "line",
+      "background": "#F7F7F2",
+      "ratio": 8.463,
+      "threshold": 3
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "ink",
+      "background": "#121816",
+      "ratio": 16.165,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "secondary",
+      "background": "#121816",
+      "ratio": 12.029,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "note",
+      "background": "#121816",
+      "ratio": 10.913,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "line",
+      "background": "#121816",
+      "ratio": 8.438,
+      "threshold": 3
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "ink",
+      "background": "#1C2520",
+      "ratio": 14.144,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "secondary",
+      "background": "#1C2520",
+      "ratio": 10.525,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "note",
+      "background": "#1C2520",
+      "ratio": 9.548,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "line",
+      "background": "#1C2520",
+      "ratio": 7.383,
+      "threshold": 3
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "ink",
+      "background": "#273329",
+      "ratio": 11.861,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "secondary",
+      "background": "#273329",
+      "ratio": 8.826,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "note",
+      "background": "#273329",
+      "ratio": 8.007,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "instrument-record",
+      "role": "line",
+      "background": "#273329",
+      "ratio": 6.191,
+      "threshold": 3
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "ink",
+      "background": "#FFFFFF",
+      "ratio": 17.928,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "secondary",
+      "background": "#FFFFFF",
+      "ratio": 7.455,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "note",
+      "background": "#FFFFFF",
+      "ratio": 6.535,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "line",
+      "background": "#FFFFFF",
+      "ratio": 6.193,
+      "threshold": 3
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "ink",
+      "background": "#F5F5F5",
+      "ratio": 16.444,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "secondary",
+      "background": "#F5F5F5",
+      "ratio": 6.838,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "note",
+      "background": "#F5F5F5",
+      "ratio": 5.994,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "line",
+      "background": "#F5F5F5",
+      "ratio": 5.681,
+      "threshold": 3
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "ink",
+      "background": "#FAFAFA",
+      "ratio": 17.176,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "secondary",
+      "background": "#FAFAFA",
+      "ratio": 7.143,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "note",
+      "background": "#FAFAFA",
+      "ratio": 6.261,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "quiet-precision",
+      "role": "line",
+      "background": "#FAFAFA",
+      "ratio": 5.934,
+      "threshold": 3
+    },
+    {
+      "treatment": "research-folio",
+      "role": "ink",
+      "background": "#F8F5ED",
+      "ratio": 14.574,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "research-folio",
+      "role": "secondary",
+      "background": "#F8F5ED",
+      "ratio": 5.799,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "research-folio",
+      "role": "note",
+      "background": "#F8F5ED",
+      "ratio": 5.269,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "research-folio",
+      "role": "line",
+      "background": "#F8F5ED",
+      "ratio": 5.799,
+      "threshold": 3
+    },
+    {
+      "treatment": "research-folio",
+      "role": "ink",
+      "background": "#EEEBDD",
+      "ratio": 13.279,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "research-folio",
+      "role": "secondary",
+      "background": "#EEEBDD",
+      "ratio": 5.284,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "research-folio",
+      "role": "note",
+      "background": "#EEEBDD",
+      "ratio": 4.801,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "research-folio",
+      "role": "line",
+      "background": "#EEEBDD",
+      "ratio": 5.284,
+      "threshold": 3
+    },
+    {
+      "treatment": "research-folio",
+      "role": "ink",
+      "background": "#F4F1E7",
+      "ratio": 14.05,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "research-folio",
+      "role": "secondary",
+      "background": "#F4F1E7",
+      "ratio": 5.591,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "research-folio",
+      "role": "note",
+      "background": "#F4F1E7",
+      "ratio": 5.08,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "research-folio",
+      "role": "line",
+      "background": "#F4F1E7",
+      "ratio": 5.591,
+      "threshold": 3
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "ink",
+      "background": "#FFFFFF",
+      "ratio": 13.735,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "secondary",
+      "background": "#FFFFFF",
+      "ratio": 5.993,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "note",
+      "background": "#FFFFFF",
+      "ratio": 7.621,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "line",
+      "background": "#FFFFFF",
+      "ratio": 5.993,
+      "threshold": 3
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "ink",
+      "background": "#F0F4F7",
+      "ratio": 12.419,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "secondary",
+      "background": "#F0F4F7",
+      "ratio": 5.419,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "note",
+      "background": "#F0F4F7",
+      "ratio": 6.891,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "line",
+      "background": "#F0F4F7",
+      "ratio": 5.419,
+      "threshold": 3
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "ink",
+      "background": "#F7F9FB",
+      "ratio": 13.014,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "secondary",
+      "background": "#F7F9FB",
+      "ratio": 5.678,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "note",
+      "background": "#F7F9FB",
+      "ratio": 7.221,
+      "threshold": 4.5
+    },
+    {
+      "treatment": "engineering-standard",
+      "role": "line",
+      "background": "#F7F9FB",
+      "ratio": 5.678,
+      "threshold": 3
+    }
+  ],
+  "scope": "Fixed-geometry presentation prototypes. No human reading superiority, native editor round-trip or v2 graphical conformance asserted."
+}

@@ -1,0 +1,858 @@
+<?xml version='1.0' encoding='utf-8'?>
+<extracted-source-fragment xmlns:ns0="http://www.omg.org/spec/XMI/20131001" xmlns:ns1="http://www.omg.org/spec/SysML/20181001/SysML" modified="2026-10-01: selected and reserialized; not a complete native model" archive_sha256="66f8b6f9451ec8365d000feed6b0ed7b9141bebb6b24cb5b506724c1963dfcea">
+  <packagedElement ns0:type="uml:Class" ns0:id="_15_0_baa02e2_1202883879567_634876_2995" name="ObservatoryContext">
+    <ownedComment ns0:type="uml:Comment" ns0:id="_15_0_baa02e2_1205618012546_461308_9050" body="We connect directly to the port of a deeply nested structure to avoid cluttering with complex ports.">
+      <annotatedElement ns0:idref="_15_0_baa02e2_1205616720187_709288_8850" />
+    </ownedComment>
+    <ownedComment ns0:type="uml:Comment" ns0:id="_16_6_1_384e0517_1283175787925_978300_71707" body="I cannot show that there is a hub in " />
+    <generalization ns0:type="uml:Generalization" ns0:id="_15_0_baa02e2_1202883900442_293987_3042" general="_15_0_bf10301_1202463963165_479591_4899" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1202884121520_857843_3293" name="ut3" visibility="private" aggregation="composite" type="_15_0_bf10301_1202464003014_225685_4947" association="_15_0_baa02e2_1203492483219_231472_4329" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_5_1_38330510_1222148982530_759279_12384" visibility="private" aggregation="composite" type="_15_5_1_38330510_1222148785952_768925_11696" association="_15_5_1_38330510_1222148982530_25058_12383" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_5_4_359f051f_1260449554968_992972_24991" name="ape_t" visibility="private" aggregation="composite" type="_16_5_4_359f051f_1260448562906_634594_24892" association="_16_5_4_359f051f_1260449554968_497516_24990">
+      <redefinedProperty ns0:idref="_15_0_bf10301_1202464303539_968416_5209" />
+      <defaultValue ns0:type="uml:InstanceValue" ns0:id="_16_6_1_38290507_1263663324953_373340_26937" instance="_16_6_1_38290507_1263663060593_569434_26851" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_3832050d_1263397710890_669671_11846" visibility="private" aggregation="composite" type="_16_5_3_3831050f_1252345535710_107708_16267" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_9_244103e5_1295529873434_715099_32752" name="InterfaceSpecOK" visibility="private" aggregation="composite">
+      <type href="http://www.omg.org/spec/SysML/20181001/SysML.xmi#SysML_dataType.Boolean">
+										</type>
+    </ownedAttribute>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_0_baa02e2_1202998470602_313910_3684" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_0_baa02e2_1202998470602_2036_3685" role="_15_0_bf10301_1202464303539_968416_5209" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_0_baa02e2_1202998470602_199343_3686" role="_15_0_baa02e2_1202998466199_460342_3667" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_0_baa02e2_1203000091795_398695_3798" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_0_baa02e2_1203000091795_460992_3799" role="_15_0_bf10301_1202464303539_968416_5209" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_0_baa02e2_1203000091795_633650_3800" role="_15_0_bf10301_1202464305843_122933_5223" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1212917415171_719887_13246" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1212917415171_725174_13248" role="_15_0_baa02e2_1203450456347_636617_6081" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1212917415171_683047_13249" role="_15_0_baa02e2_1202998466199_460342_3667" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382e050d_1263290442218_499566_11094" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290442218_84364_11095" partWithPort="_16_5_4_359f051f_1260449554968_992972_24991" role="_15_0_baa02e2_1203449187409_474457_5294" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290442218_108124_11096" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1203449139113_176171_5282" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382e050d_1263290485984_205301_11109" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290485984_42540_11110" role="_15_0_bf10301_1202464810289_743739_5754" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290485984_496129_11111" role="_16_5_4_359f051f_1260449554968_992972_24991" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382e050d_1263290489734_579883_11116" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290489734_403146_11117" role="_15_0_bf10301_1202464889178_530185_5882" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290489734_140597_11118" role="_16_5_4_359f051f_1260449554968_992972_24991" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382e050d_1263290577171_708165_11174" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290577171_508595_11175" role="_16_6_1_382e050d_1263290151531_517219_10951" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290577171_961895_11176" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1205163021093_510870_7352" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382e050d_1263290857343_414128_11365" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290857343_704595_11367" partWithPort="_16_5_4_359f051f_1260449554968_992972_24991" role="_15_0_baa02e2_1203448695081_24009_5174" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290857343_381733_11368" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1203448537081_427605_5137" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382e050d_1263290942250_179892_11452" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290942250_995633_11454" partWithPort="_16_5_4_359f051f_1260449554968_992972_24991" role="_15_1_bf10301_1210680977392_846759_11441" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263290942250_446369_11455" partWithPort="_15_1_baa02e2_1212914157343_515859_8565" role="_15_1_baa02e2_1212914971437_912712_9360" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382e050d_1263292395984_364881_20196" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263292395984_45746_20197" role="_16_6_1_3832050e_1262540888590_598080_30024" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263292395984_437304_20198" role="_15_0_baa02e2_1205614076937_217391_8733" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382e050d_1263292399265_808392_20211" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263292399265_373359_20212" role="_16_6_1_3832050e_1262540910247_998295_30062" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263292399265_432527_20213" role="_15_0_baa02e2_1205614076937_217391_8733" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263397836078_101293_11997" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397836078_968141_11998" role="_16_5_3_3831050f_1252347959868_200764_19441" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397836078_70239_11999" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_5_3_3831050f_1252348007923_45713_19480" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263397839562_790883_12019" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397839562_808241_12020" role="_16_5_3_3831050f_1252346014224_965464_16305" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397839562_395230_12021" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_5_3_3831050f_1252345953444_791791_16299" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263397844625_228469_12041" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397844625_922698_12042" role="_16_5_3_3831050f_1252349064002_180093_19909" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397844625_20779_12043" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_5_3_3831050f_1252349179060_177832_20050" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263397849437_766974_12062" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397849437_784243_12063" role="_16_5_3_384e0517_1252391738897_326627_12236" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397849437_144548_12064" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_5_3_384e0517_1252395421108_749529_43962" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263397853359_649113_12083" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397853359_237179_12084" role="_16_5_3_384e0517_1252392914827_22592_43876" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397853359_204575_12085" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_5_3_384e0517_1252393138295_882108_43891" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263397857000_341071_12104" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397857000_832313_12105" role="_16_5_3_3831050f_1252348022639_847574_19501" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397857000_435973_12106" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_5_3_3831050f_1252347997878_380402_19464" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263397867765_417160_12124" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397867765_847936_12125" role="_16_5_3_3831050f_1252346572401_33396_19177" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397867765_556809_12126" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_5_3_3831050f_1252345971772_995314_16302" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263397871218_454140_12144" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397871218_983590_12145" role="_16_5_3_3831050f_1252349281663_188518_20131" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263397871218_441426_12146" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_5_3_3831050f_1252349244909_800044_20078" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263398468546_548926_12968" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263398468546_683491_12969" role="_16_6_1_3832050d_1263398433578_419996_12918" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263398468546_49466_12970" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_6_1_3832050d_1263398367078_924962_12687" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38290507_1263668744078_252052_28811" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38290507_1263668744078_246882_28812" role="_16_6_1_38290507_1263658969375_8259_19150" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38290507_1263668744078_216284_28813" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1203493105844_234670_4538" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38290507_1263668750984_764728_28822" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38290507_1263668750984_286941_28823" role="_16_6_1_38290507_1263658657375_268529_18848" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38290507_1263668750984_736585_28824" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1203493105844_234670_4538" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38290507_1263668758718_372832_28844" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38290507_1263668758718_979354_28845" role="_16_6_1_38290507_1263658668265_857473_18871" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38290507_1263668758718_199765_28846" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1203493105844_234670_4538" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38290507_1263669349656_882574_28866" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38290507_1263669349656_543326_28868" role="_16_6_1_3832050e_1262537800810_422000_27084" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38290507_1263669349656_597501_28869" partWithPort="_15_0_baa02e2_1203449537784_263244_5363" role="_15_0_baa02e2_1205161715765_713769_6661" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265840292615_852715_72919" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840292615_526833_72920" role="_16_6_1_38290507_1263658878437_262155_19077" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840292615_157402_72921" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1205163021093_510870_7352" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265840318913_140620_72930" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840318913_955383_72932" role="_16_6_1_3832050e_1262537805279_52766_27092" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840318913_716130_72933" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1205163021093_510870_7352" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265840323928_535160_72942" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840323928_485098_72944" role="_16_6_1_3832050e_1262537808404_487139_27100" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840323928_259421_72945" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1205163021093_510870_7352" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265840334288_85570_72954" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840334288_232490_72956" role="_16_6_1_3832050e_1262537800810_422000_27084" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840334288_918780_72957" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_15_0_baa02e2_1205163021093_510870_7352" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265840349163_332681_72987" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840349163_664865_72989" role="_16_6_1_38380511_1263474134859_135576_33062" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840349163_468216_72990" role="_15_5_1_38330510_1222148797733_511690_11721" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265840423462_864167_73012" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840423462_503877_73014" role="_16_6_1_3832050e_1262540888590_598080_30024" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840423462_482563_73015" role="_16_6_1_38290507_1263659388546_892076_19544" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265840426493_938084_73022" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840426493_88385_73024" role="_16_6_1_38290507_1263659388546_892076_19544" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840426493_785280_73025" role="_15_0_baa02e2_1202998466199_460342_3667" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265840428508_291167_73032" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840428508_471483_73034" role="_16_6_1_38290507_1263659388546_892076_19544" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840428508_335371_73035" partWithPort="_15_1_baa02e2_1212916074468_418872_12375" role="_15_1_baa02e2_1212916085562_462169_12391" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265840430634_892321_73043" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840430634_717888_73045" role="_16_6_1_38290507_1263659388546_892076_19544" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265840430634_942701_73046" partWithPort="_15_1_baa02e2_1212916252296_966190_12523" role="_15_1_baa02e2_1212916295078_280222_12538" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382c0508_1273343407390_347450_21569" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382c0508_1273343407390_414024_21570" role="_16_6_1_3832050e_1262537800810_422000_27084" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382c0508_1273343407390_359736_21571" partWithPort="_15_0_baa02e2_1205612632703_187577_8725" role="_15_0_baa02e2_1205616930546_180063_8921" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382c0508_1273343440718_693918_21587" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382c0508_1273343440718_98050_21588" role="_16_6_1_3832050e_1262537800810_422000_27084" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382c0508_1273343440718_259300_21589" partWithPort="_15_0_baa02e2_1205612593531_68263_8722" role="_15_0_baa02e2_1205616910578_690155_8918" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382c0508_1273343453546_437836_21605" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382c0508_1273343453546_532219_21606" role="_16_6_1_3832050e_1262537800810_422000_27084" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382c0508_1273343453546_547808_21607" partWithPort="_15_0_baa02e2_1205613899171_380887_8728" role="_15_0_baa02e2_1205616869843_328764_8915" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382c0508_1273344602312_495679_24593" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382c0508_1273344602312_434127_24594" role="_16_6_1_3832050e_1262537800810_422000_27084" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382c0508_1273344602312_111643_24595" partWithPort="_15_0_baa02e2_1202884121520_857843_3293" role="_16_6_1_382c0508_1273344429437_108645_24198" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_384e0517_1283167430769_493044_71017" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_384e0517_1283167430769_480193_71018" role="_16_6_1_38290507_1263658680359_998721_18894" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_384e0517_1283167430769_514210_71019" partWithPort="_15_0_baa02e2_1205610391250_725189_8334" role="_15_0_baa02e2_1205618257093_468210_9061" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_384e0517_1283178181628_441580_72507" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_384e0517_1283178181628_866629_72508" role="_16_6_1_38290507_1263658647125_870453_18825" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_384e0517_1283178181628_372606_72509" role="_16_6_1_384e0517_1283178103675_96938_72463" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_9_244103e5_1295517962108_494553_45187" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295517962108_245655_45188" role="_16_6_1_3832050d_1263398199765_900863_12512" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295517962108_211972_45189" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_6_1_3832050d_1263398292000_266279_12539" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_9_244103e5_1295529913402_241106_32850" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295529913402_10179_32851" partWithPort="_16_6_1_3832050d_1263397710890_669671_11846" role="_16_9_244103e5_1295518203900_10382_45675" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295529913402_5645_32852" role="_16_9_244103e5_1295529873434_715099_32752" />
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement ns0:type="uml:Class" ns0:id="_15_0_baa02e2_1202885375098_361835_4279" name="OptoMechanicalBench">
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210751429857_645147_8610" name="foc" visibility="private" aggregation="composite" type="_15_1_bf10301_1209569928559_936274_8278" association="_15_1_bf10301_1210751429857_46419_8609" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210751447336_449146_8669" name="fs" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203006928189_785835_4566" association="_15_1_bf10301_1210751447336_661774_8668" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752295390_249041_11313" name="derot" visibility="private" aggregation="composite" type="_15_1_bf10301_1209565722776_369786_7254" association="_15_1_bf10301_1210752295390_84923_11312" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752311590_250115_11487" name="lg3" visibility="private" aggregation="composite" type="_15_1_bf10301_1209570673806_519468_8957" association="_15_1_bf10301_1210752311590_210444_11486" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752317586_904790_11545" name="lg4.2" visibility="private" aggregation="composite" type="_15_1_bf10301_1209570742951_136886_8981" association="_15_1_bf10301_1210752317586_738072_11544" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752325935_517859_11603" name="cu" visibility="private" aggregation="composite" type="_15_0_bf10301_1202464944362_564728_6030" association="_15_1_bf10301_1210752325935_406906_11602" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752354575_995151_11663" name="cbs1" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203006741318_785256_4542" association="_15_1_bf10301_1210752354575_61817_11662" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752370672_736728_11723" name="parabolica" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203006720834_485637_4518" association="_15_1_bf10301_1210752370672_176268_11722" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752377699_454588_11784" name="fm1" visibility="private" aggregation="composite" type="_15_1_bf10301_1209570315374_749622_8536" association="_15_1_bf10301_1210752377699_800733_11783" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752380691_83426_11839" name="fm2" visibility="private" aggregation="composite" type="_15_1_bf10301_1209570371981_142089_8615" association="_15_1_bf10301_1210752380691_275820_11838" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752406807_729799_11958" name="cover" visibility="private" aggregation="composite" type="_15_1_bf10301_1210678871830_909680_9715" association="_15_1_bf10301_1210752406807_777497_11957" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1210752414599_892211_12013" name="dummyASM" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202887946801_686109_4638" association="_15_1_bf10301_1210752414599_656195_12012" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1210754400029_69325_7500" name="smpp" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202887804255_386327_4590" association="_15_1_baa02e2_1210754400029_631001_7498" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1210770924232_874354_11057" name="cbs2" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203006741318_785256_4542" association="_15_1_baa02e2_1210770924232_342298_11056" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1210770951544_946179_11113" name="cbs3" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203006741318_785256_4542" association="_15_1_baa02e2_1210770951544_376865_11112" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1210770964388_161945_11168" name="cbs4" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203006741318_785256_4542" association="_15_1_baa02e2_1210770964388_387809_11167" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1210770973450_820176_11223" name="cbs5" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203006741318_785256_4542" association="_15_1_baa02e2_1210770973450_556024_11222" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1210771009044_840871_11279" name="lg4.1" visibility="private" aggregation="composite" type="_15_1_bf10301_1209570742951_136886_8981" association="_15_1_baa02e2_1210771009044_8017_11278" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1210774914160_880510_12061" name="lg1" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203006674929_719130_4458" association="_15_1_baa02e2_1210774914160_537448_12060" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1210775324410_572518_12635" name="lg5" visibility="private" aggregation="composite" type="_15_1_baa02e2_1210775314722_555662_12610" association="_15_1_baa02e2_1210775324410_345986_12634" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1213195290531_709782_12815" name="jb_left" visibility="private" aggregation="composite" type="_15_1_bf10301_1213195274109_271335_12790" association="_15_1_bf10301_1213195290531_244195_12814" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1213257014062_131868_13776" name="TCCDContrPYPS" visibility="private" aggregation="composite" type="_15_0_baa02e2_1204753558765_701617_7754" association="_15_1_bf10301_1213257014062_78587_13775" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1213257018484_716224_13831" name="TCCDContrZEUS" visibility="private" aggregation="composite" type="_15_0_baa02e2_1204753558765_701617_7754" association="_15_1_bf10301_1213257018484_242322_13830" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1213257022625_397790_13886" name="TCCDContrICAM" visibility="private" aggregation="composite" type="_15_0_baa02e2_1204753558765_701617_7754" association="_15_1_bf10301_1213257022625_410310_13885" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1213257027062_882776_13941" name="TCCDContrSHAPS" visibility="private" aggregation="composite" type="_15_0_baa02e2_1204753558765_701617_7754" association="_15_1_bf10301_1213257027062_416097_13940" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1213257031203_851117_13996" name="TCCDContrDIPSI" visibility="private" aggregation="composite" type="_15_0_baa02e2_1204753558765_701617_7754" association="_15_1_bf10301_1213257031203_142675_13995" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_bf10301_1213257035734_543332_14051" name="TCCDContrGCAM" visibility="private" aggregation="composite" type="_15_0_baa02e2_1204753558765_701617_7754" association="_15_1_bf10301_1213257035734_623691_14050" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_5_414f05a5_1221563201441_124235_19038" name="jb_right" visibility="private" aggregation="composite" type="_15_5_414f05a5_1221563185322_256520_19013" association="_15_5_414f05a5_1221563201441_789238_19037" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_384e0517_1262613652879_868513_28337" name="apcfw" visibility="private" aggregation="composite" type="_16_6_1_384e0517_1262613628504_434488_28299" association="_16_6_1_384e0517_1262613652879_216220_28335" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_382a0508_1262815253482_953752_30324" name="apndf" visibility="private" aggregation="composite" type="_16_6_1_382a0508_1262815233185_179747_30300" association="_16_6_1_382a0508_1262815253482_249647_30322" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_38320510_1263551532703_664462_11550" name="bench" visibility="private" aggregation="composite" type="_16_6_1_38320510_1263551510828_651681_11523" association="_16_6_1_38320510_1263551532703_359284_11549" />
+  </packagedElement>
+  <packagedElement ns0:type="uml:Class" ns0:id="_15_0_baa02e2_1203006674929_719130_4458" name="LensGroup1">
+    <generalization ns0:type="uml:Generalization" ns0:id="_16_6_1_244d03ee_1266181371600_650918_110015" general="_16_6_1_244d03ee_1266180799663_244471_74329" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_1_bf10301_1210764986103_615550_6670" name="in_oif" visibility="public" aggregation="composite" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_1_bf10301_1210764997161_508320_6690" name="out_oif" visibility="public" aggregation="composite" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_384e0517_1262615796864_338310_50535" name="lightTransmission" visibility="private" aggregation="composite">
+      <type href="http://www.omg.org/spec/SysML/20181001/SysML.xmi#SysML_dataType.Real">
+									</type>
+      <defaultValue ns0:type="uml:LiteralString" ns0:id="_16_6_1_398f052a_1262710569297_643663_17438" value="0.98" />
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement ns0:type="uml:Class" ns0:id="_15_0_bf10301_1202463993727_990869_4923" name="APE">
+    <ownedComment ns0:type="uml:Comment" ns0:id="_16_6_1_38320510_1263556607093_142758_17911" body="The support structure is redefined in the variants for lab and observatory">
+      <annotatedElement ns0:idref="_16_6_1_382a0508_1262814547522_199420_29498" />
+    </ownedComment>
+    <ownedComment ns0:type="uml:Comment" ns0:id="_16_6_1_38320510_1263556721781_887423_18057" body="The mechanical interface is modeled as a typed standard port and then connected to the real part.">
+      <annotatedElement ns0:idref="_16_6_1_38320510_1263556685218_772720_18000" />
+    </ownedComment>
+    <ownedRule ns0:type="uml:Constraint" ns0:id="_16_6_1_3832050d_1263399544281_707294_17540" name="unnamed22">
+      <constrainedElement ns0:idref="_15_0_bf10301_1202463993727_990869_4923" />
+      <specification ns0:type="uml:OpaqueExpression" ns0:id="_16_6_1_3832050d_1263399544281_797858_17541">
+        <body>focalRatio==F/15</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_3c00182_1203339822317_758186_4853" name="asm" visibility="public" aggregation="composite" type="_15_0_bf10301_1202464929960_949157_5982" association="_15_0_3c00182_1203339822317_186985_4852" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_3c00182_1203339836217_958479_4963" name="omb" visibility="public" aggregation="composite" type="_15_0_baa02e2_1202885375098_361835_4279" association="_15_0_3c00182_1203339836217_255671_4962" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_3c00182_1203339847363_908144_5073" name="dipsi" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202885133286_881262_4105" association="_15_0_3c00182_1203339847363_66810_5072" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_3c00182_1203339850147_913255_5128" name="zeus" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202885173583_387102_4183" association="_15_0_3c00182_1203339850147_484900_5127" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_3c00182_1203339854584_881515_5238" name="pyps" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202885148005_904385_4131" association="_15_0_3c00182_1203339854584_766404_5237" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_3c00182_1203339857288_268046_5293" name="shaps" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202885158489_127379_4155" association="_15_0_3c00182_1203339857288_353233_5292" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_0_baa02e2_1203448695081_24009_5174" name="scp" visibility="public" aggregation="composite" type="_16_6_1_3832050e_1262519806336_345926_11857" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_0_baa02e2_1203449187409_474457_5294" name="nasmythPlatform" visibility="public" aggregation="composite" type="_16_6_1_3832050e_1262519806336_345926_11857" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1203450456347_636617_6081" name="apecs" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203450230988_453400_5878" association="_15_1_bf10301_1209563044738_263654_6131" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_bf10301_1206102976078_683149_9441" name="gcam" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203007088407_992697_4615" association="_15_1_bf10301_1209562765999_474123_5923" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_bf10301_1206102978406_569169_9457" name="icam" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203007014173_755175_4590" association="_15_1_bf10301_1209562768640_292801_5992" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1210307963375_82130_6531" name="im" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202885307755_88784_4232" association="_15_1_baa02e2_1210307963375_766071_6530" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_1_bf10301_1210680977392_846759_11441" name="object_oif" visibility="public" aggregation="composite" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_5_3_3831050f_1252346572401_33396_19177" name="mass" visibility="private" aggregation="composite">
+      <type href="SI ValueType Library.mdzip#_16_6_2104050f_1253865957968_136935_6575">
+							</type>
+      <defaultValue ns0:type="uml:LiteralString" ns0:id="_16_5_3_3831050f_1252346600869_58392_19225" value="5000.0" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_5_3_3831050f_1252348022639_847574_19501" name="volume" visibility="private" aggregation="composite" type="_16_5_3_384e0517_1251205592602_976629_82798">
+      <defaultValue ns0:type="uml:LiteralString" ns0:id="_16_9_244103e5_1295519348009_922995_46666" value="4000.0" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_5_3_3831050f_1252349281663_188518_20131" name="surface" visibility="private" aggregation="composite">
+      <type href="SI ValueType Library.mdzip#_16_6_2104050f_1253865834343_544587_6378">
+							</type>
+      <defaultValue ns0:type="uml:LiteralString" ns0:id="_16_9_244103e5_1295519300543_985229_46665" value="16.0" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_382a0508_1262814547522_199420_29498" name="ss" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202887428958_923016_4508" association="_16_6_1_382a0508_1262814547507_507386_29496" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_3832050d_1263402395859_982090_19770" name="beamToSHAPS" visibility="private" aggregation="composite" type="_16_9_2ee404be_1286081678015_942847_20164" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_3832050d_1263402473984_35998_19779" name="beamIn" visibility="private" aggregation="composite" type="_16_6_1_3832050d_1263401029015_378155_18250" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_3832050d_1263402685171_584632_19971" visibility="private" aggregation="composite" type="_16_6_1_3832050d_1263401407078_779051_18281" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_38290507_1263655304578_138393_12366" name="tempASM" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202888440786_219134_4928" association="_16_6_1_38290507_1263655304578_640414_12365" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_38290507_1263655337828_552143_12382" name="tempBench" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202888440786_219134_4928" association="_16_6_1_38290507_1263655337828_895690_12381" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_38290507_1263655370265_719018_12398" name="tempAsmCabinet" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202888440786_219134_4928" association="_16_6_1_38290507_1263655370265_70341_12397" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_38290507_1263655396406_932417_12414" name="tempMiscCabinet" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202888440786_219134_4928" association="_16_6_1_38290507_1263655396406_454193_12413" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_38290507_1263655411531_185538_12430" name="tempSensorCabinet" visibility="private" aggregation="composite" type="_15_0_baa02e2_1202888440786_219134_4928" association="_16_6_1_38290507_1263655411531_897375_12429" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_9_1d430398_1286080459812_254467_25839" name="beamOK" visibility="private" aggregation="composite">
+      <type href="http://www.omg.org/spec/SysML/20181001/SysML.xmi#SysML_dataType.Boolean">
+							</type>
+    </ownedAttribute>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1210765008423_417819_6710" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765008423_399351_6711" partWithPort="_15_1_bf10301_1210752325935_517859_11603" role="_15_1_bf10301_1210764417264_999364_5858" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765008423_806682_6712" role="_15_1_bf10301_1210764986103_615550_6670" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1210765143530_591568_6882" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765143530_856257_6883" role="_15_1_bf10301_1210764997161_508320_6690" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765143530_423200_6884" partWithPort="_15_1_bf10301_1210752295390_249041_11313" role="_15_1_bf10301_1210765029163_704698_6780" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1210765145955_460497_6934" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765145955_397530_6935" partWithPort="_15_1_bf10301_1210752295390_249041_11313" role="_15_1_bf10301_1210765025659_908796_6762" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765145955_602422_6936" role="_15_1_bf10301_1210765033965_86926_6798" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1210765148770_264202_6986" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765148770_523876_6987" role="_15_1_bf10301_1210765038845_970553_6816" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765148770_453399_6988" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_bf10301_1210765043115_167130_6834" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1210765949226_910034_8747" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765949226_900705_8748" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_bf10301_1210765047353_870547_6852" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765949226_6586_8749" partWithPort="_15_0_3c00182_1203339822317_758186_4853" role="_15_1_bf10301_1210682571958_516046_11942" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1210765955482_167850_8798" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765955482_617704_8799" partWithPort="_15_1_bf10301_1210752311590_250115_11487" role="_15_1_bf10301_1210765180318_76741_7057" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765955482_4443_8800" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1210765962441_427860_8902" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765962441_913945_8903" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1210765962441_987686_8904" partWithPort="_15_0_bf10301_1206102976078_683149_9441" role="_15_1_bf10301_1210682629220_829241_12018" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210771196435_778816_11620" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771196435_853473_11622" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771196435_428182_11623" partWithPort="_15_1_bf10301_1210752317586_904790_11545" role="_15_1_bf10301_1210682752715_387727_12410" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210771236169_680731_11652" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771236169_46019_11654" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771236169_686424_11655" partWithPort="_15_0_3c00182_1203339854584_881515_5238" role="_15_1_bf10301_1210682811977_395071_12562" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210771260638_634851_11698" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771260638_143576_11700" partWithPort="_15_1_bf10301_1210752317586_904790_11545" role="_15_1_bf10301_1210682756044_497392_12429" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771260638_282734_11701" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210771318341_683891_11808" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771318341_176571_11810" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771318341_805241_11811" partWithPort="_15_0_3c00182_1203339847363_908144_5073" role="_15_1_bf10301_1210682840155_731643_12642" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210771369060_298846_11960" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771369060_885429_11962" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682779830_646148_12467" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771369060_203312_11963" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210771371763_260688_11976" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771371763_302526_11978" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682779830_646148_12467" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771371763_160876_11979" partWithPort="_15_0_3c00182_1203339857288_268046_5293" role="_15_1_bf10301_1210682898666_618948_12758" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210771374794_52488_11990" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771374794_330964_11992" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771374794_344095_11993" partWithPort="_15_0_bf10301_1206102978406_569169_9457" role="_15_1_bf10301_1210682893040_479698_12739" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210771407810_982275_12004" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771407810_347810_12006" partWithPort="_15_1_bf10301_1210752317586_904790_11545" role="_15_1_bf10301_1210682756044_497392_12429" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771407810_550261_12007" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210771411529_289648_12020" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771411529_299594_12022" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682779830_646148_12467" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210771411529_269339_12023" partWithPort="_15_1_bf10301_1210752317586_904790_11545" role="_15_1_bf10301_1210682752715_387727_12410" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210774959285_740994_12189" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210774959285_641875_12191" role="_15_1_bf10301_1210680977392_846759_11441" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210774959285_492911_12192" role="_15_1_bf10301_1210764986103_615550_6670" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210775171551_109451_12383" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775171551_942882_12385" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682779830_646148_12467" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775171551_770696_12386" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_baa02e2_1210770234091_618705_10701" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210775245129_981446_12402" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775245129_810832_12403" role="_15_1_baa02e2_1210770254325_594429_10722" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775245129_525019_12404" partWithPort="_15_1_bf10301_1210751447336_449146_8669" role="_15_1_baa02e2_1210775142316_388362_12344" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210775248394_472823_12454" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775248394_333813_12455" partWithPort="_15_1_bf10301_1210751447336_449146_8669" role="_15_1_baa02e2_1210775149363_814490_12365" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775248394_709923_12456" partWithPort="_15_1_baa02e2_1210754400029_69325_7500" role="_15_1_baa02e2_1210770325747_621716_10823" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210775258957_882125_12506" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775258957_361583_12507" partWithPort="_15_1_baa02e2_1210754400029_69325_7500" role="_15_1_baa02e2_1210770329232_105254_10842" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775258957_769440_12508" role="_15_1_baa02e2_1210770318310_904943_10785" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210775263160_984693_12558" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775263160_35278_12559" role="_15_1_baa02e2_1210770321466_67272_10804" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775263160_948856_12560" partWithPort="_15_1_baa02e2_1210770924232_874354_11057" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210775400066_506458_12765" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775400066_209127_12766" partWithPort="_15_1_baa02e2_1210307963375_82130_6531" role="_15_1_baa02e2_1210770378544_416699_10903" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210775400066_745183_12767" partWithPort="_15_1_baa02e2_1210775324410_572518_12635" role="_15_1_baa02e2_1210775364941_711855_12723" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210777613207_365328_9455" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210777613207_558951_9456" partWithPort="_15_1_baa02e2_1210775324410_572518_12635" role="_15_1_baa02e2_1210775368535_809576_12742" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210777613207_483578_9457" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_baa02e2_1210777608941_747337_9439" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210777644644_769975_9517" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210777644644_939489_9518" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_baa02e2_1210777622957_251186_9475" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210777644644_372042_9519" partWithPort="_15_0_3c00182_1203339822317_758186_4853" role="_15_1_baa02e2_1210777634926_168480_9496" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210777797472_526404_9672" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210777797472_895048_9673" partWithPort="_15_1_bf10301_1210752377699_454588_11784" role="_15_1_baa02e2_1210776968316_605197_9577" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210777797472_268205_9674" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_bf10301_1210765043115_167130_6834" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1210777901410_852056_9836" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210777901410_84064_9838" partWithPort="_15_0_3c00182_1203339822317_758186_4853" role="_15_1_baa02e2_1210777004832_293717_9619" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1210777901410_66971_9839" role="_15_1_bf10301_1210682594791_691470_11980" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213191321093_519176_8480" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213191321093_187466_8481" partWithPort="_15_0_3c00182_1203339822317_758186_4853" role="_15_1_bf10301_1210682580976_875184_11961" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213191321093_924066_8482" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_bf10301_1210765043115_167130_6834" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213191325890_532018_8531" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213191325890_31995_8532" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_bf10301_1210765047353_870547_6852" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213191325890_369523_8533" partWithPort="_15_1_bf10301_1210752380691_83426_11839" role="_15_1_baa02e2_1210776986066_505721_9598" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213198443453_22283_15169" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198443453_953719_15170" partWithPort="_15_1_baa02e2_1212956412687_85380_15344" role="_15_1_bf10301_1213196720562_284251_13069" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198443453_141453_15171" role="_15_1_bf10301_1213197722781_797037_13877" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213198449921_785842_15221" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198449921_388445_15222" partWithPort="_15_1_baa02e2_1212956985609_469772_15988" role="_15_1_bf10301_1213196720562_284251_13069" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198449921_605379_15223" role="_15_1_bf10301_1213197864671_535806_13880" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213198455875_511660_15273" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198455875_798893_15274" partWithPort="_15_1_bf10301_1213194672156_995505_12417" role="_15_1_bf10301_1213196720562_284251_13069" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198455875_525032_15275" role="_15_1_bf10301_1213197876781_370304_13885" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213198465593_326258_15325" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198465593_634378_15326" partWithPort="_15_1_bf10301_1213194842125_26327_12627" role="_15_1_bf10301_1213196720562_284251_13069" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198465593_284081_15327" role="_15_1_bf10301_1213197882625_610819_13890" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213198472281_321869_15377" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198472281_155997_15378" partWithPort="_15_1_baa02e2_1212956332468_683802_15329" role="_15_1_bf10301_1213196720562_284251_13069" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198472281_327385_15379" role="_15_1_bf10301_1213197886968_610996_13895" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213198476281_725398_15429" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198476281_132210_15430" partWithPort="_15_1_baa02e2_1212956790250_178500_15711" role="_15_1_bf10301_1213196720562_284251_13069" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198476281_822144_15431" role="_15_1_bf10301_1213197890750_524710_13900" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213198480703_497911_15481" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198480703_931374_15482" partWithPort="_15_1_baa02e2_1212956971609_633362_15964" role="_15_1_bf10301_1213196720562_284251_13069" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213198480703_192726_15483" role="_15_1_bf10301_1213197893906_788716_13905" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213263028109_94145_16609" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213263028125_69003_16610" role="_15_0_baa02e2_1204742690171_119243_7070" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213263028125_663749_16611" partWithPort="_15_1_bf10301_1213257018484_716224_13831" role="_15_0_baa02e2_1204753755234_614549_7811" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213263035890_599799_16661" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213263035890_710589_16662" role="_15_0_baa02e2_1204742706625_59820_7072" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213263035890_398520_16663" partWithPort="_15_1_bf10301_1213257018484_716224_13831" role="_15_0_baa02e2_1204753791125_506975_7813" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213271635640_720708_17116" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213271635640_698094_17118" partWithPort="_15_1_bf10301_1210751429857_645147_8610" role="_15_1_bf10301_1210765038845_970553_6816" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213271635640_713108_17119" partWithPort="_15_1_bf10301_1210752377699_454588_11784" role="_15_1_baa02e2_1210776955066_435413_9556" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_bf10301_1213271642531_394228_17135" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213271642531_42412_17137" partWithPort="_15_1_bf10301_1210752295390_249041_11313" role="_15_1_bf10301_1210765025659_908796_6762" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_bf10301_1213271642531_861354_17138" partWithPort="_15_1_bf10301_1210751429857_645147_8610" role="_15_1_bf10301_1210765033965_86926_6798" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_5_1_414f05a5_1221576512491_919359_14499" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576512491_886638_14500" role="_15_0_baa02e2_1204742690171_119243_7070" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576512491_13975_14501" partWithPort="_15_1_bf10301_1213257014062_131868_13776" role="_15_0_baa02e2_1204753755234_614549_7811" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_5_1_414f05a5_1221576518476_619506_14549" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576518476_3976_14550" role="_15_0_baa02e2_1204742706625_59820_7072" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576518476_40721_14551" partWithPort="_15_1_bf10301_1213257014062_131868_13776" role="_15_0_baa02e2_1204753791125_506975_7813" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_5_1_414f05a5_1221576525615_879290_14599" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576525615_543867_14600" role="_15_0_baa02e2_1204742690171_119243_7070" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576525615_652882_14601" partWithPort="_15_1_bf10301_1213257031203_851117_13996" role="_15_0_baa02e2_1204753755234_614549_7811" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_5_1_414f05a5_1221576530228_785268_14649" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576530228_244082_14650" role="_15_0_baa02e2_1204742706625_59820_7072" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576530228_531722_14651" partWithPort="_15_1_bf10301_1213257031203_851117_13996" role="_15_0_baa02e2_1204753791125_506975_7813" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_5_1_414f05a5_1221576559327_907120_14733" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576559327_497501_14734" role="_15_0_baa02e2_1204742690171_119243_7070" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576559327_498446_14735" partWithPort="_15_1_bf10301_1213257027062_882776_13941" role="_15_0_baa02e2_1204753755234_614549_7811" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_5_1_414f05a5_1221576565577_850974_14783" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576565577_705335_14784" role="_15_0_baa02e2_1204742706625_59820_7072" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_5_1_414f05a5_1221576565577_253221_14785" partWithPort="_15_1_bf10301_1213257027062_882776_13941" role="_15_0_baa02e2_1204753791125_506975_7813" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005487940_347534_23203" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005487940_775537_23204" partWithPort="_15_1_bf10301_1210752295390_249041_11313" role="_15_1_bf10301_1210765025659_908796_6762" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005487940_470205_23205" partWithPort="_15_1_bf10301_1213271449671_33636_17003" role="_15_1_bf10301_1210765033965_86926_6798" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005490565_761646_23221" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005490565_282490_23222" partWithPort="_15_1_bf10301_1213271449671_33636_17003" role="_15_1_bf10301_1210765038845_970553_6816" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005490565_760714_23223" partWithPort="_15_1_bf10301_1210752377699_454588_11784" role="_15_1_baa02e2_1210776955066_435413_9556" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005493722_831906_23239" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005493722_700103_23240" partWithPort="_15_1_bf10301_1210752377699_454588_11784" role="_15_1_baa02e2_1210776968316_605197_9577" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005493722_806014_23241" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_bf10301_1210765043115_167130_6834" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005496487_724971_23256" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005496487_937258_23257" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_bf10301_1210765047353_870547_6852" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005496487_145436_23258" partWithPort="_15_0_3c00182_1203339822317_758186_4853" role="_15_1_bf10301_1210682571958_516046_11942" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005499472_846283_23272" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005499472_891132_23273" partWithPort="_15_0_3c00182_1203339822317_758186_4853" role="_15_1_bf10301_1210682580976_875184_11961" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005499472_395573_23274" partWithPort="_15_1_bf10301_1210752380691_83426_11839" role="_15_1_baa02e2_1210776986066_505721_9598" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005502815_17078_23288" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005502815_373014_23289" partWithPort="_15_1_bf10301_1210752380691_83426_11839" role="_15_1_baa02e2_1210777004832_293717_9619" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005502815_333625_23290" partWithPort="_15_1_bf10301_1210752311590_250115_11487" role="_15_1_bf10301_1210682594791_691470_11980" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005506300_613043_23305" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005506300_605648_23306" partWithPort="_15_1_bf10301_1210752311590_250115_11487" role="_15_1_bf10301_1210765180318_76741_7057" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005506300_17476_23307" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005510190_227287_23322" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005510190_300586_23323" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005510190_783700_23324" partWithPort="_15_0_bf10301_1206102976078_683149_9441" role="_15_1_bf10301_1210682629220_829241_12018" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005526237_400460_23338" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005526237_667015_23339" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682779830_646148_12467" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005526237_47144_23340" role="_15_1_baa02e2_1210770234091_618705_10701" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005533425_486501_23355" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005533425_103502_23356" role="_15_1_baa02e2_1210770254325_594429_10722" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005533425_652499_23357" partWithPort="_15_1_bf10301_1210751447336_449146_8669" role="_15_1_baa02e2_1210775142316_388362_12344" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005537565_939276_23372" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005537565_688286_23373" partWithPort="_15_1_bf10301_1210751447336_449146_8669" role="_15_1_baa02e2_1210775149363_814490_12365" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005537565_542838_23374" partWithPort="_15_1_baa02e2_1210754400029_69325_7500" role="_15_1_baa02e2_1210770325747_621716_10823" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005545815_145650_23389" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005545815_754799_23390" partWithPort="_15_1_baa02e2_1210754400029_69325_7500" role="_15_1_baa02e2_1210770329232_105254_10842" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005545815_456624_23391" role="_15_1_baa02e2_1210770318310_904943_10785" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005549159_343802_23406" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005549159_900574_23407" role="_15_1_baa02e2_1210770321466_67272_10804" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005549159_204332_23408" partWithPort="_15_1_baa02e2_1210770924232_874354_11057" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005574581_886145_23474" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005574581_220182_23475" partWithPort="_15_1_baa02e2_1210770951544_946179_11113" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005574581_298028_23476" partWithPort="_15_0_3c00182_1203339854584_881515_5238" role="_15_1_bf10301_1210682811977_395071_12562" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005577597_638828_23490" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005577597_375748_23491" partWithPort="_15_1_baa02e2_1210770951544_946179_11113" role="_15_1_bf10301_1210682779830_646148_12467" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005577597_199122_23492" partWithPort="_15_1_baa02e2_1210770973450_820176_11223" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005585519_456983_23524" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005585519_631344_23525" partWithPort="_15_1_baa02e2_1210770964388_161945_11168" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005585519_432919_23526" partWithPort="_15_0_3c00182_1203339847363_908144_5073" role="_15_1_bf10301_1210682840155_731643_12642" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005604097_693162_23562" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005604097_745320_23563" partWithPort="_15_1_baa02e2_1210770973450_820176_11223" role="_15_1_bf10301_1210682779830_646148_12467" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005604097_937434_23564" partWithPort="_15_0_bf10301_1206102978406_569169_9457" role="_15_1_bf10301_1210682893040_479698_12739" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005608394_749774_23578" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005608394_334358_23579" partWithPort="_15_1_baa02e2_1210770973450_820176_11223" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005608394_635311_23580" partWithPort="_15_0_3c00182_1203339857288_268046_5293" role="_15_1_bf10301_1210682898666_618948_12758" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005623894_223823_23594" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005623894_327432_23595" partWithPort="_15_1_baa02e2_1210307963375_82130_6531" role="_15_1_baa02e2_1210770378544_416699_10903" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005623894_660185_23596" partWithPort="_15_1_baa02e2_1210775324410_572518_12635" role="_15_1_baa02e2_1210775368535_809576_12742" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005640456_128058_23616" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005640456_942533_23617" partWithPort="_15_1_baa02e2_1210775324410_572518_12635" role="_15_1_baa02e2_1210775364941_711855_12723" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005640456_17459_23618" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_baa02e2_1210777608941_747337_9439" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005920097_289155_23633" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005920097_652763_23634" partWithPort="_15_1_baa02e2_1210770924232_874354_11057" role="_15_1_bf10301_1210682739056_249775_12353" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005920097_172065_23635" partWithPort="_15_1_bf10301_1210752317586_904790_11545" role="_15_1_bf10301_1210682752715_387727_12410" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005926612_303952_23650" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005926612_634007_23651" partWithPort="_15_1_baa02e2_1210770924232_874354_11057" role="_15_1_bf10301_1210682779830_646148_12467" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005926612_936704_23652" partWithPort="_15_1_baa02e2_1210771009044_840871_11279" role="_15_1_bf10301_1210682752715_387727_12410" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005958347_353427_23667" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005958347_427690_23668" partWithPort="_15_1_bf10301_1210752317586_904790_11545" role="_15_1_bf10301_1210682756044_497392_12429" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005958347_916651_23669" partWithPort="_15_1_baa02e2_1210770951544_946179_11113" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_0_1_384e0516_1241005962019_554677_23684" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005962019_812552_23685" partWithPort="_15_1_baa02e2_1210771009044_840871_11279" role="_15_1_bf10301_1210682756044_497392_12429" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_0_1_384e0516_1241005962019_194202_23686" partWithPort="_15_1_baa02e2_1210770964388_161945_11168" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263403108671_258691_20446" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403108671_503663_20447" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_15_1_baa02e2_1210777622957_251186_9475" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403108671_754392_20448" partWithPort="_15_0_3c00182_1203339822317_758186_4853" role="_15_1_baa02e2_1210777634926_168480_9496" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263403296671_94924_20660" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403296671_553298_20661" partWithPort="_16_6_1_384e0517_1262613652879_868513_28337" role="_15_1_baa02e2_1210770254325_594429_10722" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403296671_694374_20662" partWithPort="_15_1_bf10301_1210751447336_449146_8669" role="_15_1_baa02e2_1210775142316_388362_12344" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263403305359_841911_20677" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403305359_135253_20678" partWithPort="_16_6_1_384e0517_1262613652879_868513_28337" role="_15_1_baa02e2_1210770234091_618705_10701" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403305359_203983_20679" partWithPort="_15_1_bf10301_1210752354575_995151_11663" role="_15_1_bf10301_1210682779830_646148_12467" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263403375640_638861_20714" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403375640_336653_20715" partWithPort="_15_1_baa02e2_1210754400029_69325_7500" role="_15_1_baa02e2_1210770329232_105254_10842" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403375640_879943_20716" partWithPort="_16_6_1_382a0508_1262815253482_953752_30324" role="_15_1_baa02e2_1210770318310_904943_10785" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3832050d_1263403382046_486531_20731" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403382046_296727_20732" partWithPort="_16_6_1_382a0508_1262815253482_953752_30324" role="_15_1_baa02e2_1210770321466_67272_10804" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3832050d_1263403382046_7173_20733" partWithPort="_15_1_baa02e2_1210770924232_874354_11057" role="_15_1_bf10301_1210682776861_181775_12448" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263554075687_150966_16092" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263554075687_360233_16093" partWithPort="_16_6_1_38320510_1263553679812_128005_15961" role="_16_6_1_38320510_1263553865578_371016_15993" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263554075687_299866_16094" role="_16_6_1_38320510_1263552923093_474130_15519" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263554084343_251196_16111" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263554084343_701702_16112" partWithPort="_16_6_1_38320510_1263553679812_128005_15961" role="_16_6_1_38320510_1263553824859_210507_15977" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263554084343_63701_16113" role="_16_6_1_38320510_1263552923093_474130_15519" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263554089750_331952_16130" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263554089750_182938_16131" partWithPort="_16_6_1_38320510_1263553679812_128005_15961" role="_16_6_1_38320510_1263553847718_308760_15985" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263554089750_216550_16132" role="_16_6_1_38320510_1263552923093_474130_15519" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263554094390_116355_16149" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263554094390_148762_16150" partWithPort="_16_6_1_38320510_1263553679812_128005_15961" role="_16_6_1_38320510_1263553785265_699268_15969" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263554094390_717627_16151" role="_16_6_1_38320510_1263552923093_474130_15519" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555008156_286311_16421" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555008156_329352_16422" partWithPort="_15_1_bf10301_1213257018484_716224_13831" role="_15_0_baa02e2_1204753755234_614549_7811" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555008156_772674_16423" partWithPort="_16_6_1_38320510_1263551904843_188162_14978" role="_16_6_1_38320510_1263548979562_489075_10948" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555041203_90006_16448" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555041203_430815_16449" partWithPort="_16_6_1_38320510_1263551904843_188162_14978" role="_16_6_1_38320510_1263548991750_721863_10955" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555041203_526818_16450" partWithPort="_15_1_bf10301_1213257018484_716224_13831" role="_15_0_baa02e2_1204753791125_506975_7813" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555135859_440667_16465" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555135859_670935_16466" partWithPort="_15_1_bf10301_1213257018484_716224_13831" role="_15_0_baa02e2_1204753955562_853891_7832" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555135859_163270_16467" role="_15_1_bf10301_1213195290531_709782_12815" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555147218_487807_16481" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555147218_679358_16482" partWithPort="_15_1_bf10301_1213257018484_716224_13831" role="_15_0_baa02e2_1204753944718_936824_7829" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555147234_991188_16483" role="_15_1_bf10301_1213195290531_709782_12815" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555212062_166461_16506" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555212062_274422_16507" partWithPort="_16_6_1_244503e7_1263498345265_894084_20920" role="_15_0_baa02e2_1204753586234_463317_7775" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555212062_656061_16508" role="_15_1_bf10301_1213195290531_709782_12815" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555283437_413256_16523" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555283437_514677_16524" partWithPort="_16_6_1_244503e7_1263498345265_894084_20920" role="_15_0_baa02e2_1204753620671_656171_7778" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555283437_918422_16525" role="_15_1_bf10301_1213195290531_709782_12815" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555526593_505460_16559" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555526593_394265_16560" role="_16_6_1_3832050e_1262537800810_422000_27084" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555526593_882642_16561" role="_16_6_1_38320510_1263555518390_958116_16539" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555564156_790642_16600" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555564156_751066_16601" role="_16_6_1_3832050e_1262537805279_52766_27092" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555564156_806387_16602" role="_16_6_1_38320510_1263555558671_36064_16580" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555580765_579924_16619" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555580765_432043_16620" role="_16_6_1_3832050e_1262537808404_487139_27100" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555580765_710594_16621" role="_15_1_baa02e2_1212956971609_633362_15964" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555665140_900346_16634" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555665140_185743_16635" role="_15_1_baa02e2_1212956971609_633362_15964" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555665140_870693_16636" role="_15_1_bf10301_1213195290531_709782_12815" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263555668468_613413_16649" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555668468_155760_16650" role="_15_1_bf10301_1210690445023_809162_15178" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263555668468_425630_16651" role="_15_1_bf10301_1213195290531_709782_12815" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263556305921_336591_17634" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556305921_369468_17635" role="_16_6_1_38320510_1263551532703_664462_11550" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556305921_611705_17636" partWithPort="_15_0_3c00182_1203339847363_908144_5073" role="_16_0_1_1d180391_1248016356140_932323_18656" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263556485000_28676_17754" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556485000_996486_17755" role="_15_0_3c00182_1203339822317_758186_4853" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556485000_373149_17756" role="_16_6_1_38320510_1263551532703_664462_11550" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263556563250_855677_17857" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556563250_188139_17858" role="_15_1_baa02e2_1210307963375_82130_6531" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556563250_277399_17859" role="_16_6_1_38320510_1263551532703_664462_11550" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263556569093_646498_17881" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556569093_817837_17882" role="_16_6_1_382a0508_1262814547522_199420_29498" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556569093_434879_17883" role="_16_6_1_38320510_1263551532703_664462_11550" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38320510_1263556706031_877318_18035" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556706031_77797_18037" partWithPort="_15_1_bf10301_1210752370672_736728_11723" role="_16_6_1_38320510_1263556685218_772720_18000" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38320510_1263556706031_699625_18038" role="_16_6_1_38320510_1263551532703_664462_11550" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3831050f_1263579847875_719536_11923" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263579847875_392140_11924" partWithPort="_15_1_7d10258_1208106511093_355539_2689" role="_15_1_7d10258_1209655430343_676757_6228" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263579847875_625122_11925" role="_16_6_1_3831050f_1263579598218_849962_11559" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3831050f_1263579860468_216993_11940" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263579860468_919500_11941" partWithPort="_15_1_7d10258_1208106511093_355539_2689" role="_15_1_7d10258_1210262468421_453639_3650" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263579860468_474340_11942" role="_16_6_1_3831050f_1263579607046_123860_11566" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3831050f_1263582590156_406656_18566" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582590156_968803_18567" role="_16_6_1_3832050e_1262537805279_52766_27092" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582590156_368516_18568" role="_15_1_7d10258_1210441120093_881697_5976" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3831050f_1263582740156_792866_18755" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582740156_160470_18756" partWithPort="_16_6_1_38320510_1263554630203_46127_16248" role="_16_6_1_38320510_1263554572265_543730_16230" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582740156_997169_18757" partWithPort="_15_1_7d10258_1210441120093_881697_5976" role="_15_1_7d10258_1209655121328_781805_5798" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3831050f_1263582743515_626087_18774" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582743515_476771_18775" partWithPort="_16_6_1_38320510_1263554630203_46127_16248" role="_16_6_1_38320510_1263554566828_163547_16224" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582743515_590929_18776" partWithPort="_15_1_7d10258_1210441120093_881697_5976" role="_15_1_7d10258_1209655108703_50435_5777" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3831050f_1263582748671_650176_18793" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582748671_937143_18794" partWithPort="_16_6_1_38320510_1263554630203_46127_16248" role="_16_6_1_38320510_1263554560921_433377_16218" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582748671_783776_18795" partWithPort="_15_1_7d10258_1210441120093_881697_5976" role="_15_1_7d10258_1209655096250_235737_5756" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_3831050f_1263582752609_97110_18812" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582752609_857782_18813" partWithPort="_16_6_1_38320510_1263554630203_46127_16248" role="_16_6_1_38320510_1263554555656_533919_16212" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_3831050f_1263582752609_797758_18814" partWithPort="_15_1_7d10258_1210441120093_881697_5976" role="_15_1_7d10258_1209655077328_862722_5735" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38350509_1264806168671_548003_66984" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38350509_1264806168671_417231_66985" role="_15_1_bf10301_1213257018484_716224_13831" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38350509_1264806168671_481287_66986" role="_16_6_1_38320510_1263551532703_664462_11550" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38350509_1264806171812_728760_66999" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38350509_1264806171812_649254_67000" role="_15_1_bf10301_1213257027062_882776_13941" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38350509_1264806171812_810981_67001" role="_16_6_1_38320510_1263551532703_664462_11550" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38350509_1264806338968_836307_67057" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38350509_1264806338968_370879_67058" role="_15_1_bf10301_1210752406807_729799_11958" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38350509_1264806338968_975537_67059" role="_16_6_1_38320510_1263551532703_664462_11550" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265807358918_90381_64842" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265807358918_690077_64843" partWithPort="_15_1_baa02e2_1210770964388_161945_11168" role="_15_1_bf10301_1210682779830_646148_12467" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265807358918_451255_64844" partWithPort="_15_0_3c00182_1203339850147_913255_5128" role="_16_6_1_38390512_1265807245523_967538_64620" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265837753379_195747_68992" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265837753379_271494_68994" partWithPort="_15_0_3c00182_1203339850147_913255_5128" role="_16_6_1_38390512_1265806472282_70305_61939" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265837753379_897553_68995" role="_16_6_1_38320510_1263551532703_664462_11550" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838410532_377436_69845" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838410532_552221_69846" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838410532_364353_69847" partWithPort="_16_6_1_3831050f_1263579401984_369832_11374" role="_16_6_1_3831050f_1263579333093_614483_11341" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838414267_229910_69856" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838414267_1443_69857" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838414267_284519_69858" partWithPort="_16_6_1_3831050f_1263579401984_369832_11374" role="_16_6_1_3831050f_1263579330312_343980_11337" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838418407_684262_69867" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838418407_873257_69868" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838418407_424050_69869" partWithPort="_16_6_1_3831050f_1263579401984_369832_11374" role="_16_6_1_3831050f_1263579332484_517719_11339" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838421001_869340_69878" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838421001_710498_69879" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838421001_162056_69880" partWithPort="_16_6_1_3831050f_1263579401984_369832_11374" role="_16_6_1_3831050f_1263579295609_325082_11332" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838422986_539895_69889" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838422986_998714_69890" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838422986_323645_69891" partWithPort="_16_6_1_3831050f_1263579401984_369832_11374" role="_16_6_1_3831050f_1263579214296_449627_11321" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838424861_718701_69900" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838424861_69957_69901" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838424861_56002_69902" partWithPort="_16_6_1_3831050f_1263579401984_369832_11374" role="_16_6_1_3831050f_1263579145593_35971_11310" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838427095_420110_69911" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838427095_946960_69912" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838427095_210605_69913" partWithPort="_16_6_1_38320510_1263551904843_188162_14978" role="_16_6_1_38320510_1263549056781_770919_10983" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838429298_59650_69922" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838429298_209829_69923" partWithPort="_16_6_1_38320510_1263551904843_188162_14978" role="_16_6_1_38320510_1263549034062_522242_10976" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838429298_728420_69924" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838431095_609201_69933" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838431095_753469_69934" partWithPort="_16_6_1_38320510_1263551904843_188162_14978" role="_16_6_1_38320510_1263549076062_147608_10990" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838431095_597821_69935" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838433017_667988_69944" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838433017_970170_69945" partWithPort="_16_6_1_38320510_1263551904843_188162_14978" role="_16_6_1_38320510_1263549090937_365469_10997" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838433017_686324_69946" partWithPort="_15_5_414f05a5_1221563201441_124235_19038" role="_16_6_1_38390512_1265838333109_176568_69530" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265839287752_533812_71194" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265839287752_719471_71196" role="_15_1_baa02e2_1212956790250_178500_15711" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265839287752_72697_71197" partWithPort="_15_0_baa02e2_1204997513668_221125_9807" role="_16_6_1_38390512_1265839106905_543320_71114" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_244d03ee_1266164791515_540129_62983" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_244d03ee_1266164791515_568259_62984" role="_15_1_bf10301_1210680977392_846759_11441" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_244d03ee_1266164791515_406431_62985" partWithPort="_15_1_baa02e2_1210774914160_880510_12061" role="_15_1_bf10301_1210764986103_615550_6670" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_244d03ee_1266164798265_36951_62996" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_244d03ee_1266164798265_976314_62997" partWithPort="_15_1_bf10301_1210752325935_517859_11603" role="_15_1_bf10301_1210764417264_999364_5858" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_244d03ee_1266164798265_170792_62998" partWithPort="_15_1_baa02e2_1210774914160_880510_12061" role="_15_1_bf10301_1210764986103_615550_6670" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_244d03ee_1266164804437_248658_63013" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_244d03ee_1266164804437_380410_63014" partWithPort="_15_1_baa02e2_1210774914160_880510_12061" role="_15_1_bf10301_1210764997161_508320_6690" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_244d03ee_1266164804437_271481_63015" partWithPort="_15_1_bf10301_1210752295390_249041_11313" role="_15_1_bf10301_1210765029163_704698_6780" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_9_1d430398_1286080474296_215121_25869" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_1d430398_1286080474296_616900_25870" partWithPort="_16_6_1_3832050d_1263402685171_584632_19971" role="_16_9_1d430398_1286078939843_579156_22500" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_1d430398_1286080474296_973149_25871" role="_16_9_1d430398_1286080459812_254467_25839" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_9_244103e5_1295526747263_967401_68854" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295526747263_26970_68855" partWithPort="_16_6_1_3832050d_1263402685171_584632_19971" role="_16_9_244103e5_1295526707280_585241_68720" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295526747263_619776_68856" role="_16_6_1_3832050d_1263401266921_892772_18269" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_9_244103e5_1295526788372_383621_68919" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295526788372_438567_68920" partWithPort="_16_6_1_3832050d_1263402685171_584632_19971" role="_16_9_244103e5_1295526694436_158315_68700" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295526788372_590719_68921" role="_16_6_1_3832050d_1263401266921_892772_18269" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_9_244103e5_1295526796419_275854_68939" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295526796419_898241_68940" partWithPort="_16_6_1_3832050d_1263402685171_584632_19971" role="_16_6_1_3832050d_1263401448203_115139_18304" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295526796419_306664_68941" role="_16_6_1_3832050d_1263401283718_695150_18272" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_9_244103e5_1295526801403_394245_68959" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295526801403_407138_68960" partWithPort="_16_6_1_3832050d_1263402685171_584632_19971" role="_16_6_1_3832050d_1263401520656_481668_18310" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_9_244103e5_1295526801403_746813_68961" role="_16_6_1_3832050d_1263401283718_695150_18272" />
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement ns0:type="uml:Class" ns0:id="_15_0_bf10301_1202464003014_225685_4947" name="UnitTelescope">
+    <ownedComment ns0:type="uml:Comment" ns0:id="_15_0_baa02e2_1205162889687_911135_7132" body="The cabinet is connected to SCP Part A which provides a 3-phase socket and 400VAC.&#10;All interface types are modeled with ports.&#10;In one case the flow port and the connector are related with allocation in the other case with specialization.">
+      <annotatedElement ns0:idref="_15_0_baa02e2_1205161925984_55318_6736" />
+      <annotatedElement ns0:idref="_16_6_1_382e050d_1263292610140_130947_20272" />
+      <annotatedElement ns0:idref="_15_0_baa02e2_1205161749625_794938_6663" />
+    </ownedComment>
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_0_baa02e2_1203448537081_427605_5137" name="scp" visibility="public" aggregation="composite" type="_16_6_1_3832050e_1262519806336_345926_11857" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_0_baa02e2_1203449139113_176171_5282" name="nasmythPlatform" visibility="public" aggregation="composite" type="_16_6_1_3832050e_1262519813320_28510_11959" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_0_baa02e2_1203449537784_263244_5363" name="15-N-A" visibility="public" aggregation="composite" type="_15_0_baa02e2_1205160825843_724991_6055" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1203451425050_540807_3837" name="ms" visibility="private" aggregation="composite" type="_15_0_baa02e2_1203451366894_604640_3757" association="_16_5_3_3831050f_1252345359015_796520_8844" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_0_baa02e2_1203493105844_234670_4538" name="15-N-C" visibility="public" aggregation="composite" type="_15_0_baa02e2_1205161799250_486084_6694" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_0_baa02e2_1205163021093_510870_7352" name="NA" visibility="public" aggregation="composite" type="_15_0_baa02e2_1203451382331_187334_3779" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1205614076937_217391_8733" name="15-N-C" visibility="private" aggregation="composite" type="_15_0_baa02e2_1205161799250_486084_6694" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1205616720187_709288_8850" name="15-N-B" visibility="private" aggregation="composite" type="_15_0_baa02e2_1205161789859_28584_6670" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1212914157343_515859_8565" name="ada" visibility="private" aggregation="composite" type="_15_1_baa02e2_1212911438453_939051_5879" association="_16_5_3_3831050f_1252345350999_7793_8832" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1212914171203_341552_8583" name="adb" visibility="private" aggregation="composite" type="_15_1_baa02e2_1212911438453_939051_5879" association="_16_5_3_3831050f_1252345346796_34166_8801" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1212915227109_228611_9557" name="adc" visibility="private" aggregation="composite" type="_15_1_baa02e2_1212911453093_116066_5881" association="_16_5_3_3831050f_1252345342920_426489_8770" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_1_baa02e2_1212916074468_418872_12375" name="tcs" visibility="private" aggregation="composite" type="_15_1_baa02e2_1212916032937_462555_12297" association="_16_5_3_3831050f_1252345338405_473634_8737" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_5_3_384e0517_1252395873496_179003_44335" visibility="private" aggregation="composite" type="_16_5_3_384e0517_1252395855418_325199_44311" association="_16_5_3_384e0517_1252395873496_692574_44334" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_384e0517_1262615274114_122115_50285" name="lightTransmission" visibility="private" aggregation="composite">
+      <type href="http://www.omg.org/spec/SysML/20181001/SysML.xmi#SysML_dataType.Real">
+											</type>
+      <defaultValue ns0:type="uml:LiteralString" ns0:id="_16_6_1_398f052a_1262860867438_897665_18497" value="0.615" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_382e050d_1263289531328_290822_10599" visibility="private" aggregation="composite" type="_16_6_1_382e050d_1263289499015_994728_10485" association="_16_6_1_382e050d_1263289531328_459159_10598" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_16_6_1_382c0508_1273344429437_108645_24198" name="15-N-B" visibility="public" aggregation="composite" type="_15_0_baa02e2_1205161789859_28584_6670" />
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_0_baa02e2_1205163309718_442844_7421" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_0_baa02e2_1205163309718_155626_7422" role="_15_0_baa02e2_1205163021093_510870_7352" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_0_baa02e2_1205163309718_759193_7423" role="_15_0_baa02e2_1203451431300_412130_3851" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_0_baa02e2_1205618612562_865632_9159" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_0_baa02e2_1205618612562_144203_9160" role="_15_0_baa02e2_1203493105844_234670_4538" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_0_baa02e2_1205618612562_878201_9161" role="_15_0_baa02e2_1205614076937_217391_8733" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1212914182234_239598_8604" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1212914182234_905182_8605" role="_15_1_baa02e2_1212914157343_515859_8565" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1212914182234_365101_8606" role="_15_0_baa02e2_1203451431300_412130_3851" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1212914381671_86191_9111" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1212914381671_90762_9112" role="_15_1_baa02e2_1212914171203_341552_8583" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1212914381671_131545_9113" role="_15_0_baa02e2_1203451433769_891485_3865" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_15_1_baa02e2_1212914401656_191238_9175" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1212914401656_752965_9177" role="_15_0_baa02e2_1203451433769_891485_3865" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_15_1_baa02e2_1212914401656_920602_9178" role="_15_0_baa02e2_1205616720187_709288_8850" />
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement ns0:type="uml:Class" ns0:id="_15_1_baa02e2_1212911438453_939051_5879" name="NasmythAdapter">
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_1_baa02e2_1212914971437_912712_9360" name="FoV_oif" visibility="public" aggregation="composite" />
+  </packagedElement>
+  <ns1:ProxyPort ns0:id="_15_1_baa02e2_1212914971437_912712_9360_application" base_Port="_15_1_baa02e2_1212914971437_912712_9360" />
+  <ns1:ProxyPort ns0:id="_15_1_bf10301_1210680977392_846759_11441_application" base_Port="_15_1_bf10301_1210680977392_846759_11441" />
+  <ns1:ProxyPort ns0:id="_15_1_bf10301_1210764986103_615550_6670_application" base_Port="_15_1_bf10301_1210764986103_615550_6670" />
+  <packagedElement ns0:type="uml:Class" ns0:id="_16_5_4_359f051f_1260448562906_634594_24892" name="APE_Telescope">
+    <generalization ns0:type="uml:Generalization" ns0:id="_16_5_4_359f051f_1260448645890_255328_24920" general="_15_0_bf10301_1202463993727_990869_4923" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_382e050d_1263290151531_517219_10951" name="ss_t" visibility="private" aggregation="composite" type="_16_6_1_382e050d_1263290128812_8102_10925" association="_16_6_1_382e050d_1263290151531_130376_10950">
+      <redefinedProperty ns0:idref="_16_6_1_382a0508_1262814547522_199420_29498" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_3832050d_1263398433578_419996_12918" name="focusAbovePlatform" visibility="private" aggregation="composite" type="_16_0_1_1d180391_1248012513234_515084_15771">
+      <defaultValue ns0:type="uml:LiteralString" ns0:id="_16_9_244103e5_1295519245060_86142_46637" value="2001.0" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_38290507_1263659388546_892076_19544" name="apecs_t" visibility="private" aggregation="composite" type="_16_6_1_38290507_1263659363453_818100_19520" association="_16_6_1_38290507_1263659388546_172814_19543">
+      <redefinedProperty ns0:idref="_15_0_baa02e2_1203450456347_636617_6081" />
+      <defaultValue ns0:type="uml:InstanceValue" ns0:id="_16_6_1_38290507_1263664350718_633933_27045" instance="_16_6_1_38290507_1263663060593_467591_26854" />
+    </ownedAttribute>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_382e050d_1263291033453_363731_11568" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263291033453_38366_11569" role="_15_1_bf10301_1210680977392_846759_11441" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_382e050d_1263291033453_327445_11570" partWithPort="_15_1_baa02e2_1210774914160_880510_12061" role="_15_1_bf10301_1210764986103_615550_6670" />
+    </ownedConnector>
+  </packagedElement>
+  <ns1:NestedConnectorEnd ns0:id="_16_6_1_382e050d_1263290942250_453365_11456" base_ConnectorEnd="_16_6_1_382e050d_1263290942250_995633_11454" propertyPath="_16_5_4_359f051f_1260449554968_992972_24991" />
+  <ns1:NestedConnectorEnd ns0:id="_16_6_1_382e050d_1263290942250_761146_11457" base_ConnectorEnd="_16_6_1_382e050d_1263290942250_446369_11455" propertyPath="_15_0_baa02e2_1202884121520_857843_3293 _15_1_baa02e2_1212914157343_515859_8565" />
+  <ns1:NestedConnectorEnd ns0:id="_16_6_1_382e050d_1263291033578_413964_11573" base_ConnectorEnd="_16_6_1_382e050d_1263291033453_327445_11570" propertyPath="_15_0_3c00182_1203339836217_958479_4963 _15_1_baa02e2_1210774914160_880510_12061" />
+</extracted-source-fragment>

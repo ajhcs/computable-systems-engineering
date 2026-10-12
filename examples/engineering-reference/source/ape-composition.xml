@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<extracted-source-fragment xmlns:ns0="http://www.omg.org/spec/XMI/20131001" modified="2026-10-01: selected and reserialized; not a complete native model" archive_sha256="66f8b6f9451ec8365d000feed6b0ed7b9141bebb6b24cb5b506724c1963dfcea">
+  <packagedElement ns0:type="uml:Class" ns0:id="_15_0_baa02e2_1204997460087_185642_9681" name="Segment">
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_398f052a_1262702150144_621547_19573" name="lightTransmission" visibility="private" aggregation="composite">
+      <type href="http://www.omg.org/spec/SysML/20181001/SysML.xmi#SysML_dataType.Real">
+									</type>
+      <defaultValue ns0:type="uml:LiteralString" ns0:id="_16_6_1_398f052a_1262859622562_640677_12162" value="0.85" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_38390512_1265838992997_670528_71054" name="diameter" visibility="private" aggregation="composite" type="_16_0_1_1d180391_1248012513234_515084_15771">
+      <defaultValue ns0:type="uml:LiteralString" ns0:id="_16_6_1_38390512_1265839013184_677633_71058" value="15.4" />
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement ns0:type="uml:Class" ns0:id="_15_0_baa02e2_1204997471931_475271_9705" name="PositionActuator">
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1204997626268_176853_9944" name="power" visibility="private" aggregation="composite">
+      <type href="SI ValueType Library.mdzip#_16_6_2104050f_1253866251015_714433_7079">
+									</type>
+      <defaultValue ns0:type="uml:LiteralString" ns0:id="_16_6_1_38380511_1263464162062_350628_25464" value="0.1" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1204997715429_109937_9971" name="s" visibility="private" aggregation="composite" type="_16_0_1_1d180391_1248011312687_491795_14434" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_5_3_384e0517_1252410232248_832804_45012" name="bandwidth" visibility="private" aggregation="composite">
+      <type href="SI ValueType Library.mdzip#_16_6_2104050f_1253865840515_890551_6504">
+									</type>
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_5_3_384e0517_1252410259904_243237_45032" name="lag" visibility="private" aggregation="composite">
+      <type href="SI ValueType Library.mdzip#_16_6_2104050f_1253866190015_590196_6911">
+									</type>
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_16_6_1_38390512_1265839106905_543320_71114" name="eif" visibility="public" aggregation="composite" type="_16_6_1_38390512_1265839223673_205374_71141" />
+  </packagedElement>
+  <packagedElement ns0:type="uml:Association" ns0:id="_15_0_baa02e2_1204997510902_954180_9751">
+    <memberEnd ns0:idref="_15_0_baa02e2_1204997510902_964101_9752" />
+    <memberEnd ns0:idref="_15_0_baa02e2_1204997510902_576250_9753" />
+    <ownedEnd ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1204997510902_576250_9753" visibility="private" type="_15_0_bf10301_1202464929960_949157_5982" association="_15_0_baa02e2_1204997510902_954180_9751" />
+  </packagedElement>
+  <packagedElement ns0:type="uml:Association" ns0:id="_15_0_baa02e2_1204997513668_780959_9806">
+    <memberEnd ns0:idref="_15_0_baa02e2_1204997513668_221125_9807" />
+    <memberEnd ns0:idref="_15_0_baa02e2_1204997513668_30157_9808" />
+    <ownedEnd ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1204997513668_30157_9808" visibility="private" type="_15_0_bf10301_1202464929960_949157_5982" association="_15_0_baa02e2_1204997513668_780959_9806" />
+  </packagedElement>
+  <packagedElement ns0:type="uml:Class" ns0:id="_15_0_bf10301_1202464929960_949157_5982" name="ActiveSegmentedMirror">
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1204997510902_964101_9752" name="seg" visibility="private" aggregation="composite" type="_15_0_baa02e2_1204997460087_185642_9681" association="_15_0_baa02e2_1204997510902_954180_9751">
+      <lowerValue ns0:type="uml:LiteralInteger" ns0:id="_15_0_baa02e2_1204997534372_213508_9913" value="61" />
+      <upperValue ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_15_0_baa02e2_1204997534372_627097_9914" value="61" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_15_0_baa02e2_1204997513668_221125_9807" name="pact" visibility="private" aggregation="composite" type="_15_0_baa02e2_1204997471931_475271_9705" association="_15_0_baa02e2_1204997513668_780959_9806">
+      <lowerValue ns0:type="uml:LiteralInteger" ns0:id="_15_0_baa02e2_1204997545967_581735_9915" value="183" />
+      <upperValue ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_15_0_baa02e2_1204997545967_607941_9916" value="183" />
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_1_bf10301_1210682571958_516046_11942" visibility="public" aggregation="composite" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_1_bf10301_1210682580976_875184_11961" visibility="public" aggregation="composite" />
+    <ownedAttribute ns0:type="uml:Port" ns0:id="_15_1_baa02e2_1210777634926_168480_9496" name="im" visibility="public" aggregation="composite" />
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_5_3_384e0517_1252329902935_923951_42170" name="power" visibility="private" aggregation="composite">
+      <type href="SI ValueType Library.mdzip#_16_6_2104050f_1253866251015_714433_7079">
+									</type>
+    </ownedAttribute>
+    <ownedAttribute ns0:type="uml:Property" ns0:id="_16_6_1_38390512_1265838967762_750737_71036" visibility="private" aggregation="composite" type="_16_6_1_38390512_1265838951058_526030_71009" association="_16_6_1_38390512_1265838967762_747028_71035" />
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265838830478_185743_70949" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838830478_816861_70950" role="_15_0_baa02e2_1204997510902_964101_9752">
+									</end>
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265838830478_24101_70951" role="_15_0_baa02e2_1204997513668_221125_9807">
+        <lowerValue ns0:type="uml:LiteralInteger" ns0:id="_16_6_1_38390512_1265838844603_254884_70958" value="3" />
+        <upperValue ns0:type="uml:LiteralUnlimitedNatural" ns0:id="_16_6_1_38390512_1265838844603_347024_70959" value="3" />
+      </end>
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265839056435_751586_71090" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265839056435_803292_71091" role="_15_0_baa02e2_1204997513668_221125_9807" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265839056435_711859_71092" role="_16_6_1_38390512_1265838967762_750737_71036" />
+    </ownedConnector>
+    <ownedConnector ns0:type="uml:Connector" ns0:id="_16_6_1_38390512_1265839059185_66639_71099" visibility="public">
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265839059185_171708_71100" role="_15_0_baa02e2_1204997510902_964101_9752" />
+      <end ns0:type="uml:ConnectorEnd" ns0:id="_16_6_1_38390512_1265839059185_644499_71101" role="_16_6_1_38390512_1265838967762_750737_71036" />
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement ns0:type="uml:Class" ns0:id="_16_6_1_38390512_1265838951058_526030_71009" name="Mount" />
+  <packagedElement ns0:type="uml:Association" ns0:id="_16_6_1_38390512_1265838967762_747028_71035">
+    <memberEnd ns0:idref="_16_6_1_38390512_1265838967762_750737_71036" />
+    <memberEnd ns0:idref="_16_6_1_38390512_1265838967762_288552_71037" />
+    <ownedEnd ns0:type="uml:Property" ns0:id="_16_6_1_38390512_1265838967762_288552_71037" visibility="private" type="_15_0_bf10301_1202464929960_949157_5982" association="_16_6_1_38390512_1265838967762_747028_71035" />
+  </packagedElement>
+</extracted-source-fragment>

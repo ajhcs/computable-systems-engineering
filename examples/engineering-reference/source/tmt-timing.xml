@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<extracted-source-fragment xmlns:ns0="http://www.magicdraw.com/schemas/ReqIF_Profile.xmi" xmlns:ns1="http://www.omg.org/spec/XMI/20131001" xmlns:ns2="http://www.magicdraw.com/schemas/ReqIF_Properties_Profile.xmi" xmlns:ns3="http://www.magicdraw.com/schemas/IMCE_profle_adaption_for_TMT_.xmi" xmlns:ns4="http://www.omg.org/spec/SysML/20131201/SysML" modified="2026-10-01: selected and reserialized; not a complete native model" archive_sha256="eb54c3105e4d894bb06378476f364bbf5cdb3bfad4cbf55f10fefacf6cad515f">
+  <ns0:HierarchyElement ns1:id="_18_0_2_b4c02e1_1422576772205_359791_87185" base_Class="_2ca33d85-e793-40fa-9f3a-b3c90e37fd87__17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb" hierarchyId="5.2.3.2" ReqIf_identifier="_17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb" />
+  <ns2:ObjectProperties ns1:id="_18_0_2_b4c02e1_1422576772205_359791_87185application1" base_Class="_2ca33d85-e793-40fa-9f3a-b3c90e37fd87__17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb" TMT_ID="&lt;html&gt;&lt;body&gt;&#10;&lt;span xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;REQ-2-APS-0017&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;" Target_Parent_Link_s_="6889" Rationale="&lt;html&gt;&lt;body&gt;&#10;&lt;span xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;This allows for a &quot;quick&quot; tune up of the telescope alignment&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;" Paragraph_Style="&lt;Object Text:Requirement&gt;" Overall_Verification_Description="&lt;html&gt;&lt;body&gt;&#10;&lt;span xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;1. Using TMT simulators and internal sources execute simulated alignment before shipment of APS and time. 2. Time how long it takes on sky using star light&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;" ReqIF_ForeignModifiedOn="2016-09-14T00:00:00" Exported_Layout_DXL_TMT_Standard_View_19="&lt;html&gt;&lt;body&gt;&#10;&lt;span xmlns=&quot;http://www.w3.org/1999/xhtml&quot;/&gt;&lt;/body&gt;&lt;/html&gt;" Acceptance_State="Accepted" />
+  <ns3:TMT_Requirement ns1:id="_18_0_2_b4c02e1_1422576772205_359791_87185application2" base_Class="_2ca33d85-e793-40fa-9f3a-b3c90e37fd87__17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb" Id="REQ-2-APS-17" Text="&lt;html&gt;&lt;body&gt;&#10;&lt;span xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;strong&gt;[REQ-2-APS-0017]&lt;/strong&gt; APS shall be able to perform on-axis alignment in less than 30 minutes (at a single elevation angle) when all optics are within the alignment maintenance specifications.&lt;/span&gt;&lt;/body&gt;&lt;/html&gt;" Rationale="This allows for a &quot;quick&quot; tune up of the telescope alignment" Description=" " Key="" Driving="" Overall_Verification_Description="1. Using TMT simulators and internal sources execute simulated alignment before shipment of APS and time. 2. Time how long it takes on sky using star light" SE_Notes=" " Acceptance_State="Accepted" TMT_ID="REQ-2-APS-0017" />
+  <packagedElement ns1:type="uml:Class" ns1:id="_18_0_2_baa02e2_1429562376319_87817_151513" ns1:uuid="36bbe6cd-7913-4d5b-8f5c-10a36875f4b3" name="MaxTimeConstraint">
+    <ownedRule ns1:type="uml:Constraint" ns1:id="_18_0_2_baa02e2_1429562376320_828902_151514" ns1:uuid="74df139d-ea48-404e-b46d-b8b692adfccb" name="unnamed1">
+      <constrainedElement ns1:idref="_18_0_2_baa02e2_1429562376319_87817_151513" />
+      <specification ns1:type="uml:OpaqueExpression" ns1:id="_18_0_2_baa02e2_1429562376321_63722_151517" ns1:uuid="090f97f8-d796-46e1-9391-488e30f283d6">
+        <body>p1&lt;=maxTime</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute ns1:type="uml:Port" ns1:id="_18_0_2_baa02e2_1429562376320_528739_151515" ns1:uuid="b98abdc7-6242-49f0-96fb-ea765a52c425" name="maxTime" visibility="private" aggregation="composite">
+      <type href="http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Real_PackageableElement">
+																				</type>
+    </ownedAttribute>
+    <ownedAttribute ns1:type="uml:Port" ns1:id="_18_0_5_baa02e2_1454126902368_420796_169134" ns1:uuid="7fc07cfd-0ace-4768-8a93-4aeb23ce8702" name="p1" visibility="private" aggregation="composite">
+      <type href="http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Real_PackageableElement">
+																				</type>
+    </ownedAttribute>
+  </packagedElement>
+  <ns4:ConstraintBlock ns1:id="_18_0_2_baa02e2_1429562376321_159065_151516" base_Class="_18_0_2_baa02e2_1429562376319_87817_151513" />
+  <ownedAttribute ns1:type="uml:Property" ns1:id="_18_0_4_baa02e2_1438808102180_452510_161842" ns1:uuid="5181f005-d9b0-4233-8c1e-6a77f644c6a2" name="tFinal" visibility="public" aggregation="composite">
+    <type href="http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Real_PackageableElement">
+																		</type>
+    <defaultValue ns1:type="uml:LiteralString" ns1:id="_18_0_4_baa02e2_1438808114618_723398_161845" ns1:uuid="d4c1305a-5ffc-482b-add3-e1eee10e74b0" value="0" />
+  </ownedAttribute>
+  <packagedElement ns1:type="uml:Class" ns1:id="_18_0_5_c0402fd_1464026223074_50206_149810" ns1:uuid="6a98f4ee-15ef-4c73-b756-6cb702fcd1cc" name="Maintenance Alignment Maximum Time">
+    <ownedAttribute ns1:type="uml:Property" ns1:id="_18_0_5_c0402fd_1464026223153_78622_149833" ns1:uuid="1ba7ebd2-fa92-4823-9b8b-8226649dea7a" name="maintenanceAlignment" visibility="public" aggregation="composite" type="_18_0_2_baa02e2_1429562376319_87817_151513" association="_18_0_6_c0402fd_1476996862463_386961_208252" />
+    <ownedAttribute ns1:type="uml:Property" ns1:id="_18_0_5_c0402fd_1464026223153_484492_149834" ns1:uuid="ca4a68a7-ea16-42a6-8a05-0ded176620ed" name="maintenanceAlignmentTimeLimit" aggregation="composite" type="_18_0_4_baa02e2_1437630044933_330340_146769">
+      <defaultValue ns1:type="uml:LiteralReal" ns1:id="_18_0_5_c0402fd_1464026337420_562585_150021" ns1:uuid="ddd4ccb7-cfbf-47b6-9f49-b2c612908743" value="1800.0" />
+    </ownedAttribute>
+    <ownedConnector ns1:type="uml:Connector" ns1:id="_18_0_5_c0402fd_1464026223152_177814_149832" ns1:uuid="fae955c7-3855-4f82-8e88-7a3da5732ec3" visibility="public">
+      <end ns1:type="uml:ConnectorEnd" ns1:id="_18_0_5_c0402fd_1464026223155_852551_149837" ns1:uuid="82c5b6e6-99e7-4579-a6ce-bace7aaff2a3" partWithPort="_18_0_5_c0402fd_1464026223153_78622_149833" role="_18_0_2_baa02e2_1429562376320_528739_151515" />
+      <end ns1:type="uml:ConnectorEnd" ns1:id="_18_0_5_c0402fd_1464026223155_28025_149838" ns1:uuid="5a515bc6-81da-42a9-9240-b28d7aea25ee" role="_18_0_5_c0402fd_1464026223153_484492_149834" />
+    </ownedConnector>
+  </packagedElement>
+  <ns4:Block ns1:id="_18_0_5_c0402fd_1464026223154_358135_149835" base_Class="_18_0_5_c0402fd_1464026223074_50206_149810" />
+  <ownedConnector ns1:type="uml:Connector" ns1:id="_18_0_5_c0402fd_1464026509327_174724_150238" ns1:uuid="4cbedf23-df1b-4633-8f72-00735a09b115" visibility="public">
+    <end ns1:type="uml:ConnectorEnd" ns1:id="_18_0_5_c0402fd_1464026509327_260313_150239" ns1:uuid="3fbada7d-271d-44e9-8d66-45a4bab28b4a" role="_18_0_4_baa02e2_1438808102180_452510_161842" />
+    <end ns1:type="uml:ConnectorEnd" ns1:id="_18_0_5_c0402fd_1464026509328_861986_150240" ns1:uuid="9950b6db-65a1-4588-a5fe-1f2465d2b886" partWithPort="_18_0_5_c0402fd_1464026223153_78622_149833" role="_18_0_5_baa02e2_1454126902368_420796_169134" />
+  </ownedConnector>
+  <nestedClassifier ns1:type="uml:Class" ns1:id="_2ca33d85-e793-40fa-9f3a-b3c90e37fd87__17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb" ns1:uuid="58f99525-9dbb-40bb-9c09-814f3f6d6c5d" name="Alignment Maintenance time" />
+</extracted-source-fragment>

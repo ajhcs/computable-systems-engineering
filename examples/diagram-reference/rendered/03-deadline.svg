@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<rect width="1280" height="720" fill="#fff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#16766c"/></marker></defs>
+<text data-cell="title" x="50" y="62" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="32" fill="#16324f">Obligation: the same deadline, two verdicts</text>
+<text data-cell="subtitle" x="50" y="105" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#63758a">Synthetic 1-second samples | illustrative timing graph, not a formal SysML diagram</text>
+<rect data-cell="binding" x="50" y="155" width="1180" height="92" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="binding-text" x="640.0" y="194" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#16324f">R_RECORD / responseTime</text>
+<text data-cell="binding-text" x="640.0" y="223" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#16324f">subject unit = system : ToolLibrary</text>
+<rect data-cell="pass-0" x="290" y="280" width="210" height="115" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="pass-0-text" x="395.0" y="316" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">t=0 s</text>
+<text data-cell="pass-0-text" x="395.0" y="342" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">request: false</text>
+<text data-cell="pass-0-text" x="395.0" y="368" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">recorded: false</text>
+<rect data-cell="fail-0" x="290" y="420" width="210" height="115" rx="8" fill="#fff3df" stroke="#16766c" stroke-width="2"/>
+<text data-cell="fail-0-text" x="395.0" y="456" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">t=0 s</text>
+<text data-cell="fail-0-text" x="395.0" y="482" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">request: false</text>
+<text data-cell="fail-0-text" x="395.0" y="508" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">recorded: false</text>
+<rect data-cell="pass-1" x="535" y="280" width="210" height="115" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="pass-1-text" x="640.0" y="316" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">t=1 s</text>
+<text data-cell="pass-1-text" x="640.0" y="342" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">request: true</text>
+<text data-cell="pass-1-text" x="640.0" y="368" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">recorded: false</text>
+<rect data-cell="fail-1" x="535" y="420" width="210" height="115" rx="8" fill="#fff3df" stroke="#16766c" stroke-width="2"/>
+<text data-cell="fail-1-text" x="640.0" y="456" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">t=1 s</text>
+<text data-cell="fail-1-text" x="640.0" y="482" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">request: true</text>
+<text data-cell="fail-1-text" x="640.0" y="508" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">recorded: false</text>
+<rect data-cell="pass-2" x="780" y="280" width="210" height="115" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="pass-2-text" x="885.0" y="316" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">t=2 s</text>
+<text data-cell="pass-2-text" x="885.0" y="342" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">request: true</text>
+<text data-cell="pass-2-text" x="885.0" y="368" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">recorded: false</text>
+<rect data-cell="fail-2" x="780" y="420" width="210" height="115" rx="8" fill="#fff3df" stroke="#16766c" stroke-width="2"/>
+<text data-cell="fail-2-text" x="885.0" y="456" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">t=2 s</text>
+<text data-cell="fail-2-text" x="885.0" y="482" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">request: true</text>
+<text data-cell="fail-2-text" x="885.0" y="508" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">recorded: false</text>
+<rect data-cell="pass-3" x="1025" y="280" width="210" height="115" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="pass-3-text" x="1130.0" y="316" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">t=3 s</text>
+<text data-cell="pass-3-text" x="1130.0" y="342" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">request: true</text>
+<text data-cell="pass-3-text" x="1130.0" y="368" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">recorded: true</text>
+<rect data-cell="fail-3" x="1025" y="420" width="210" height="115" rx="8" fill="#fff3df" stroke="#16766c" stroke-width="2"/>
+<text data-cell="fail-3-text" x="1130.0" y="456" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">t=3 s</text>
+<text data-cell="fail-3-text" x="1130.0" y="482" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">request: true</text>
+<text data-cell="fail-3-text" x="1130.0" y="508" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#16324f">recorded: false</text>
+<rect data-cell="pass-status" x="50" y="280" width="195" height="115" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="pass-status-text" x="147.5" y="319" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#16324f">PASS</text>
+<text data-cell="pass-status-text" x="147.5" y="348" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#16324f">complete trace</text>
+<rect data-cell="fail-status" x="50" y="420" width="195" height="115" rx="8" fill="#fff3df" stroke="#16766c" stroke-width="2"/>
+<text data-cell="fail-status-text" x="147.5" y="459" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#16324f">FAIL</text>
+<text data-cell="fail-status-text" x="147.5" y="488" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="21" fill="#16324f">deadline missed</text>
+<text data-cell="claim" x="50" y="583" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">R_RECORD: Upon request = true, within 2 seconds satisfy recorded = true.</text>
+<text data-cell="claim" x="50" y="609" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">Trigger at t=1; inclusive deadline t=3. Sustained true request is not a fresh rising edge.</text>
+<text data-cell="claim" x="50" y="635" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">Results apply to these complete synthetic traces; no real behavior or acceptance is established.</text>
+<text data-cell="source" x="50" y="690" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#63758a">timed-obligation.sysml | SHA-256 1b199cdaa3bf72bf2ae8 | generated reference view</text>
+</svg>

@@ -1,0 +1,210 @@
+{
+  "checker_version": "sysml-2.0-alpha.2",
+  "claim_scope": "sysml_syntax_and_validation",
+  "coverage": {
+    "compiled": [],
+    "expected": [],
+    "unsupported": []
+  },
+  "findings": [],
+  "inventory": {
+    "actions": [],
+    "attributes": [],
+    "concerns": [],
+    "constraints": [],
+    "documents": [
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1524684598313_160586_16029. Identity-only external type projection. ",
+        "line": 6,
+        "owner": "PharmacySourceDiagramSlices::PuckBaggerSystem",
+        "owner_kind": "PartDefinition",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1524161356878_544194_17936. Identity-only external type projection. ",
+        "line": 7,
+        "owner": "PharmacySourceDiagramSlices::CapWS",
+        "owner_kind": "PartDefinition",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1524161347422_701648_17934. Identity-only external type projection. ",
+        "line": 8,
+        "owner": "PharmacySourceDiagramSlices::ExceptionWS",
+        "owner_kind": "PartDefinition",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3af018f_1571499201272_879613_20106. Identity-only external type projection. ",
+        "line": 9,
+        "owner": "PharmacySourceDiagramSlices::VialDispenseSystem",
+        "owner_kind": "PartDefinition",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1525023159261_238207_20713. Identity-only external type projection. ",
+        "line": 10,
+        "owner": "PharmacySourceDiagramSlices::HSDispenseFinger",
+        "owner_kind": "PartDefinition",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1525023113072_621197_20597. Identity-only external type projection. ",
+        "line": 11,
+        "owner": "PharmacySourceDiagramSlices::PuckConveyorSystem",
+        "owner_kind": "PartDefinition",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1524150634956_746972_14050. Identity-only external type projection. ",
+        "line": 12,
+        "owner": "PharmacySourceDiagramSlices::VTS",
+        "owner_kind": "PartDefinition",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1524683849396_707232_15345. Only 7 direct properties depicted by source diagram _18_5_3_3920140_1531318915516_26898_19112. Bounded view projection; not complete class conversion. ",
+        "line": 14,
+        "owner": "PharmacySourceDiagramSlices::HSFillSystem",
+        "owner_kind": "PartDefinition",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1532524885026_574131_24126. Source role: pBSys; unchanged source role; aggregation composite. ",
+        "line": 16,
+        "owner": "PharmacySourceDiagramSlices::HSFillSystem::pBSys",
+        "owner_kind": "PartUsage",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1550524403060_222373_25314. Source role: capWS; unchanged source role; aggregation composite. ",
+        "line": 19,
+        "owner": "PharmacySourceDiagramSlices::HSFillSystem::capWS",
+        "owner_kind": "PartUsage",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3920140_1550524419700_363709_25344. Source role: xWS; unchanged source role; aggregation composite. ",
+        "line": 22,
+        "owner": "PharmacySourceDiagramSlices::HSFillSystem::xWS",
+        "owner_kind": "PartUsage",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3af018f_1568127163256_528710_28684. Source role: vDWS; unchanged source role; aggregation composite. ",
+        "line": 25,
+        "owner": "PharmacySourceDiagramSlices::HSFillSystem::vDWS",
+        "owner_kind": "PartUsage",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3af018f_1568154046810_693419_33288. Source role: finger; unchanged source role; aggregation composite. ",
+        "line": 28,
+        "owner": "PharmacySourceDiagramSlices::HSFillSystem::finger",
+        "owner_kind": "PartUsage",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3af018f_1570121073930_557791_31648. Source role: (unnamed); derived alias for unnamed native role; aggregation composite. ",
+        "line": 31,
+        "owner": "PharmacySourceDiagramSlices::HSFillSystem::puckConveyor",
+        "owner_kind": "PartUsage",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "body": "SOURCE-ID _18_5_3_3af018f_1571522802951_195557_22823. Source role: VTS; unchanged source role; aggregation none. ",
+        "line": 34,
+        "owner": "PharmacySourceDiagramSlices::HSFillSystem::VTS",
+        "owner_kind": "PartUsage",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      }
+    ],
+    "event_attributes": [],
+    "events": [],
+    "part_definitions": [
+      {
+        "has_specialization": false,
+        "line": 6,
+        "name": "PuckBaggerSystem",
+        "qualified_name": "PharmacySourceDiagramSlices::PuckBaggerSystem",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 7,
+        "name": "CapWS",
+        "qualified_name": "PharmacySourceDiagramSlices::CapWS",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 8,
+        "name": "ExceptionWS",
+        "qualified_name": "PharmacySourceDiagramSlices::ExceptionWS",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 9,
+        "name": "VialDispenseSystem",
+        "qualified_name": "PharmacySourceDiagramSlices::VialDispenseSystem",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 10,
+        "name": "HSDispenseFinger",
+        "qualified_name": "PharmacySourceDiagramSlices::HSDispenseFinger",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 11,
+        "name": "PuckConveyorSystem",
+        "qualified_name": "PharmacySourceDiagramSlices::PuckConveyorSystem",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 12,
+        "name": "VTS",
+        "qualified_name": "PharmacySourceDiagramSlices::VTS",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 13,
+        "name": "HSFillSystem",
+        "qualified_name": "PharmacySourceDiagramSlices::HSFillSystem",
+        "source": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml"
+      }
+    ],
+    "parts": [],
+    "requirements": [],
+    "states": [],
+    "use_cases": []
+  },
+  "limits": {
+    "observation_cap": 10000,
+    "parser_timeout_seconds": 60,
+    "per_clause_work_cap": 1000000
+  },
+  "model_files": [
+    {
+      "path": "work/pressure-test-run-01/round-10/alternatives/real-project-expansion/HSFillSystem-matched/model.sysml",
+      "sha256": "e4e0c7a3e521960ddb2c2dbca1eff7485e758e640a30c10459c755c7b6fdf38b"
+    }
+  ],
+  "model_sha256": "e4e0c7a3e521960ddb2c2dbca1eff7485e758e640a30c10459c755c7b6fdf38b",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "parser_issues": [],
+  "results": {},
+  "shape": {
+    "actions": 0,
+    "concerns": 0,
+    "part_definitions": 8,
+    "states": 0,
+    "use_cases": 0
+  },
+  "status": "pass"
+}

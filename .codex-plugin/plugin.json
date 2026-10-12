@@ -1,7 +1,7 @@
 {
   "name": "computable-systems-engineering",
   "version": "0.2.0-alpha.1",
-  "description": "Engineer-directed concept, CONOPS, and scenario skills with SysML validation and bounded checks.",
+  "description": "Engineer-directed concept, CONOPS and scenario skills plus a source-grounded diagram reference library.",
   "author": {
     "name": "ajhcs",
     "url": "https://github.com/ajhcs"
@@ -16,7 +16,7 @@
   "interface": {
     "displayName": "Computable Systems Engineering",
     "shortDescription": "Develop concepts with the engineer in control",
-    "longDescription": "Three independently invocable engineering skills for SysML v2 drafting, parser validation, and bounded requirement checks. A concept and CONOPS request can share one model; engineer acceptance and general behavioral verification remain outside this alpha.",
+    "longDescription": "Three independently invocable engineering drafting skills plus a diagram-generation reference skill/library. Source-linked diagrams retain engineering meaning and report parser, rendering and fidelity checks separately. New engineering-model creation and acceptance remain with the engineer.",
     "developerName": "ajhcs and contributors",
     "category": "Productivity",
     "capabilities": [],
@@ -24,7 +24,8 @@
       "Use the system-concept and CONOPS skills on the material below. Keep my raw materials out of Git.",
       "Help me develop a system concept.",
       "Help me investigate a CONOPS.",
-      "Help me develop one operational scenario."
+      "Help me develop one operational scenario.",
+      "Use the diagram reference skill to render this accepted model and show its source and validation limits."
     ]
   },
   "license": "MIT",

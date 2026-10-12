@@ -1,0 +1,71 @@
+@startuml
+skin sysmlbw
+skinparam monochrome true
+skinparam wrapWidth 300
+hide circle
+
+rec def "PEASMaintenance" as E1  <<(T,blue) state  def>> [[psysml:8537db88-cde3-4b65-b937-32fa5f0a35ea ]] {
+rec usage "Initializing" as E3  <<(T,blue) state>> [[psysml:99f7739f-4e63-43e0-9984-1aa315e922a7 ]] {
+desc "Initializing" as E3  : **do** InitializePEAS
+}
+
+rec usage "StandBy" as E5  <<(T,blue) state>> [[psysml:09b73506-7eda-4095-b49d-a0b5a648bd5d ]] {
+}
+
+rec usage "Maintenance Alignment" as E7  <<(T,blue) state>> [[psysml:5900d969-ce79-4d0b-a3a1-378684bda44e ]] {
+rec usage "Correcting Rigid Body and Segment Figure" as E9  <<(T,blue) state>> [[psysml:2dd73ec0-1ff1-4831-9a70-40494607574a ]] {
+desc "Correcting Rigid Body and Segment Figure" as E9  : **do** Rigid Body and Segment Figure correction
+}
+
+rec usage "Broad Band Phasing 1um" as E11  <<(T,blue) state>> [[psysml:8fa90304-e8e0-4ffd-bcb8-d3b4068eb734 ]] {
+desc "Broad Band Phasing 1um" as E11  : **do** Broad Band Phasing 1um
+}
+
+rec usage "Narrow Band Phasing" as E13  <<(T,blue) state>> [[psysml:ee7e8e0b-2e00-4b9a-be95-95cef3ed55a5 ]] {
+desc "Narrow Band Phasing" as E13  : **do** Narrow Band Phasing
+}
+
+desc "Maintenance Alignment" as E7  : **entry** initTimer
+[*] --> E9 [[psysml:10781b3e-8c9b-44d7-aa7c-1f24c063726d ]] 
+}
+
+desc "PEASMaintenance" as E1  : **entry** 
+[*] --> E3 [[psysml:ad142104-33fb-45d2-bd81-edce1a4b0b80 ]] 
+E5 --> [*] [[psysml:bbd4b8dd-544c-4ee4-bc80-cfe88811180d ]] : Finished 
+}
+
+note as E2
+[[psysml:6aad3e99-03fc-4b76-b465-8c579f03a917 @]]Source StateMachine _17_0_2_3_41e01aa_1383540424302_365385_58121. Selected lifecycle scope only.
+end note 
+note as E4
+[[psysml:10ec41a6-e0c9-416b-9298-34a0c27a1f9a @]]Source _18_0_4_baa02e2_1432924809533_220506_153469.
+end note 
+note as E6
+[[psysml:c85faeb0-f363-4378-bbbe-d1e84df154d5 @]]Source _17_0_2_3_41e01aa_1383541688252_643738_65387.
+end note 
+note as E8
+[[psysml:be850f2a-c5d9-41b9-8b38-2ea4ce566ada @]]Source _18_0_4_baa02e2_1437066409415_379651_152422. Composite Abort applies to this state, not only to its final substate.
+end note 
+note as E10
+[[psysml:6ea5cdf0-7063-467e-b3e5-a8adfce4bad5 @]]Source _18_0_4_baa02e2_1437066502649_816302_152451.
+end note 
+note as E12
+[[psysml:0fa40a6b-6f08-4130-9b8a-129238a25d84 @]]Source _18_0_4_baa02e2_1437066536103_963725_152466.
+end note 
+note as E14
+[[psysml:1df9e29b-1239-422b-9ef4-02d0728641b9 @]]Source _18_0_4_baa02e2_1437066564616_958435_152481.
+end note 
+E2 .. E1 [[psysml:6aad3e99-03fc-4b76-b465-8c579f03a917 ]] 
+E4 .. E3 [[psysml:10ec41a6-e0c9-416b-9298-34a0c27a1f9a ]] 
+E6 .. E5 [[psysml:c85faeb0-f363-4378-bbbe-d1e84df154d5 ]] 
+E8 .. E7 [[psysml:be850f2a-c5d9-41b9-8b38-2ea4ce566ada ]] 
+E10 .. E9 [[psysml:6ea5cdf0-7063-467e-b3e5-a8adfce4bad5 ]] 
+E12 .. E11 [[psysml:0fa40a6b-6f08-4130-9b8a-129238a25d84 ]] 
+E14 .. E13 [[psysml:1df9e29b-1239-422b-9ef4-02d0728641b9 ]] 
+E9  --> E11 [[psysml:4ce27c26-45a5-4fff-868e-86b520df9de0 ]] : Finished /action diffTime
+E11  --> E13 [[psysml:2b30eeec-a39c-45de-9969-286d6f59a7a6 ]] : Finished /action diffTime
+E3  --> E5 [[psysml:db548773-4391-45f1-b32e-f02a411cde44 ]] : InitComplete /action InitCompleteEffect
+E5  --> E7 [[psysml:d242dd5a-6b9c-4559-b5bd-a8de88079001 ]] : MaintenanceAlignmentSignal 
+E7  --> E5 [[psysml:d0888d94-d51d-46e0-ad8e-355b2dff28e6 ]] : Abort 
+E13  --> E5 [[psysml:68864864-ea50-418a-8a0a-9c4ee8becf85 ]] : Finished /action FinalDiffTime
+@enduml

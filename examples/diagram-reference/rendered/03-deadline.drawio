@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="reference-1">
+  <diagram id="03-deadline" name="Obligation: the same deadline, two verdicts">
+    <mxGraphModel page="1" pageWidth="1280" pageHeight="720">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Obligation: the same deadline, two verdicts" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=32;fontColor=#16324f;spacing=0;" cseRefs="">
+          <mxGeometry as="geometry" x="50" y="30" width="1180" height="48" />
+        </mxCell>
+        <mxCell id="subtitle" value="Synthetic 1-second samples | illustrative timing graph, not a formal SysML diagram" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=19;fontColor=#63758a;spacing=0;" cseRefs="">
+          <mxGeometry as="geometry" x="50" y="86" width="1180" height="35" />
+        </mxCell>
+        <mxCell id="binding" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#eaf5f2;strokeColor=#16766c;strokeWidth=2;" cseRefs="LibraryDeadline::TimelyRecord">
+          <mxGeometry as="geometry" x="50" y="155" width="1180" height="92" />
+        </mxCell>
+        <mxCell id="binding-text" value="R_RECORD / responseTime&#10;subject unit = system : ToolLibrary" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=21;fontColor=#16324f;spacing=0;" cseRefs="LibraryDeadline::TimelyRecord">
+          <mxGeometry as="geometry" x="62" y="173" width="1156" height="66" />
+        </mxCell>
+        <mxCell id="pass-0" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#eaf5f2;strokeColor=#16766c;strokeWidth=2;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="290" y="280" width="210" height="115" />
+        </mxCell>
+        <mxCell id="pass-0-text" value="t=0 s&#10;request: false&#10;recorded: false" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=18;fontColor=#16324f;spacing=0;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="302" y="298" width="186" height="86" />
+        </mxCell>
+        <mxCell id="fail-0" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#fff3df;strokeColor=#16766c;strokeWidth=2;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="290" y="420" width="210" height="115" />
+        </mxCell>
+        <mxCell id="fail-0-text" value="t=0 s&#10;request: false&#10;recorded: false" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=18;fontColor=#16324f;spacing=0;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="302" y="438" width="186" height="86" />
+        </mxCell>
+        <mxCell id="pass-1" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#eaf5f2;strokeColor=#16766c;strokeWidth=2;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="535" y="280" width="210" height="115" />
+        </mxCell>
+        <mxCell id="pass-1-text" value="t=1 s&#10;request: true&#10;recorded: false" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=18;fontColor=#16324f;spacing=0;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="547" y="298" width="186" height="86" />
+        </mxCell>
+        <mxCell id="fail-1" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#fff3df;strokeColor=#16766c;strokeWidth=2;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="535" y="420" width="210" height="115" />
+        </mxCell>
+        <mxCell id="fail-1-text" value="t=1 s&#10;request: true&#10;recorded: false" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=18;fontColor=#16324f;spacing=0;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="547" y="438" width="186" height="86" />
+        </mxCell>
+        <mxCell id="pass-2" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#eaf5f2;strokeColor=#16766c;strokeWidth=2;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="780" y="280" width="210" height="115" />
+        </mxCell>
+        <mxCell id="pass-2-text" value="t=2 s&#10;request: true&#10;recorded: false" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=18;fontColor=#16324f;spacing=0;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="792" y="298" width="186" height="86" />
+        </mxCell>
+        <mxCell id="fail-2" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#fff3df;strokeColor=#16766c;strokeWidth=2;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="780" y="420" width="210" height="115" />
+        </mxCell>
+        <mxCell id="fail-2-text" value="t=2 s&#10;request: true&#10;recorded: false" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=18;fontColor=#16324f;spacing=0;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="792" y="438" width="186" height="86" />
+        </mxCell>
+        <mxCell id="pass-3" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#eaf5f2;strokeColor=#16766c;strokeWidth=2;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="1025" y="280" width="210" height="115" />
+        </mxCell>
+        <mxCell id="pass-3-text" value="t=3 s&#10;request: true&#10;recorded: true" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=18;fontColor=#16324f;spacing=0;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="1037" y="298" width="186" height="86" />
+        </mxCell>
+        <mxCell id="fail-3" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#fff3df;strokeColor=#16766c;strokeWidth=2;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="1025" y="420" width="210" height="115" />
+        </mxCell>
+        <mxCell id="fail-3-text" value="t=3 s&#10;request: true&#10;recorded: false" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=18;fontColor=#16324f;spacing=0;" cseRefs="R_RECORD">
+          <mxGeometry as="geometry" x="1037" y="438" width="186" height="86" />
+        </mxCell>
+        <mxCell id="pass-status" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#eaf5f2;strokeColor=#16766c;strokeWidth=2;" cseRefs="synthetic-pass.json">
+          <mxGeometry as="geometry" x="50" y="280" width="195" height="115" />
+        </mxCell>
+        <mxCell id="pass-status-text" value="PASS&#10;complete trace" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=21;fontColor=#16324f;spacing=0;" cseRefs="synthetic-pass.json">
+          <mxGeometry as="geometry" x="62" y="298" width="171" height="66" />
+        </mxCell>
+        <mxCell id="fail-status" value="" vertex="1" parent="1" style="rounded=1;arcSize=8;fillColor=#fff3df;strokeColor=#16766c;strokeWidth=2;" cseRefs="synthetic-fail.json">
+          <mxGeometry as="geometry" x="50" y="420" width="195" height="115" />
+        </mxCell>
+        <mxCell id="fail-status-text" value="FAIL&#10;deadline missed" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=center;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=21;fontColor=#16324f;spacing=0;" cseRefs="synthetic-fail.json">
+          <mxGeometry as="geometry" x="62" y="438" width="171" height="66" />
+        </mxCell>
+        <mxCell id="claim" value="R_RECORD: Upon request = true, within 2 seconds satisfy recorded = true.&#10;Trigger at t=1; inclusive deadline t=3. Sustained true request is not a fresh rising edge.&#10;Results apply to these complete synthetic traces; no real behavior or acceptance is established." vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=18;fontColor=#63758a;spacing=0;" cseRefs="">
+          <mxGeometry as="geometry" x="50" y="565" width="1180" height="86" />
+        </mxCell>
+        <mxCell id="source" value="timed-obligation.sysml | SHA-256 1b199cdaa3bf72bf2ae8 | generated reference view" vertex="1" parent="1" style="text;html=0;whiteSpace=wrap;align=left;verticalAlign=top;fontFamily=DejaVu Sans;fontSize=15;fontColor=#63758a;spacing=0;" cseRefs="">
+          <mxGeometry as="geometry" x="50" y="675" width="1180" height="31" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,48 @@
+{
+  "schema": "native-v2-composition-media-1",
+  "scope": "private review; screenshot-led; no deployment",
+  "trace": [
+    "original SysML 1.6 slice",
+    "unchanged reviewed v2 derivative",
+    "same-session native TREE and facts",
+    "explicit Smetana layout",
+    "colors-only SVG treatments"
+  ],
+  "media": [
+    {
+      "file": "comparison.png",
+      "role": "hero",
+      "caption": "Actual pinned-tool SysML v2 TREE baseline and five palette treatments; identical native graph."
+    },
+    {
+      "file": "native-browser.png",
+      "role": "before",
+      "caption": "Unstyled actual TREE SVG, browser-rendered at 2x. 61 segments, 183 actuators and implicit-one Mount directly owned by ASM."
+    },
+    {
+      "file": "styled/technical-ledger.png",
+      "role": "after",
+      "caption": "Technical Ledger palette on the actual native-v2 TREE. Native labels, geometry and ownership semantics unchanged."
+    },
+    {
+      "file": "styled/instrument-record.png",
+      "role": "after",
+      "caption": "Instrument Record palette on the actual native-v2 TREE. Native labels, geometry and ownership semantics unchanged."
+    },
+    {
+      "file": "styled/quiet-precision.png",
+      "role": "after",
+      "caption": "Quiet Precision palette on the actual native-v2 TREE. Native labels, geometry and ownership semantics unchanged."
+    },
+    {
+      "file": "styled/research-folio.png",
+      "role": "after",
+      "caption": "Research Folio palette on the actual native-v2 TREE. Native labels, geometry and ownership semantics unchanged."
+    },
+    {
+      "file": "styled/engineering-standard.png",
+      "role": "after",
+      "caption": "Engineering Standard palette on the actual native-v2 TREE. Native labels, geometry and ownership semantics unchanged."
+    }
+  ]
+}

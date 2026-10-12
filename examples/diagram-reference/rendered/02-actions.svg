@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<rect width="1280" height="720" fill="#fff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#16766c"/></marker></defs>
+<text data-cell="title" x="50" y="62" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="32" fill="#16324f">Behavior: order without invented decisions</text>
+<text data-cell="subtitle" x="50" y="105" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#63758a">Synthetic available-tool path | custom SysML v2 action-succession view</text>
+<path data-cell="then-0" d="M 125 337 L 180 337" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path data-cell="then-1" d="M 420 337 L 490 337" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path data-cell="then-2" d="M 730 337 L 800 337" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path data-cell="then-3" d="M 1040 337 L 1100 337" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect data-cell="start" x="45" y="270" width="80" height="135" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="start-text" x="85.0" y="307" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">control</text>
+<text data-cell="start-text" x="85.0" y="334" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">start</text>
+<rect data-cell="receiveRequest" x="180" y="270" width="240" height="135" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="receiveRequest-text" x="300.0" y="307" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">action</text>
+<text data-cell="receiveRequest-text" x="300.0" y="334" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">receiveRequest</text>
+<rect data-cell="assessAvailability" x="490" y="270" width="240" height="135" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="assessAvailability-text" x="610.0" y="307" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">action</text>
+<text data-cell="assessAvailability-text" x="610.0" y="334" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">assessAvailability</text>
+<rect data-cell="recordAllocation" x="800" y="270" width="240" height="135" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="recordAllocation-text" x="920.0" y="307" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">action</text>
+<text data-cell="recordAllocation-text" x="920.0" y="334" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">recordAllocation</text>
+<rect data-cell="done" x="1100" y="270" width="130" height="135" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="done-text" x="1165.0" y="307" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">control</text>
+<text data-cell="done-text" x="1165.0" y="334" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#16324f">done</text>
+<text data-cell="claim" x="50" y="583" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">receiveRequest → assessAvailability → recordAllocation; the selected path ends at done.</text>
+<text data-cell="claim" x="50" y="609" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">Succession is control order. It does not establish item flow, duration, allocation, or reachability proof.</text>
+<text data-cell="claim" x="50" y="635" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">The unavailable-tool outcome remains outside this selected view.</text>
+<text data-cell="source" x="50" y="690" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#63758a">ordered-actions.sysml | SHA-256 81e47434a7f0a2a156aa | generated reference view</text>
+</svg>

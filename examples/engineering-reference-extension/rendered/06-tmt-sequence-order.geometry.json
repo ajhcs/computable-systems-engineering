@@ -1,0 +1,58 @@
+[
+  {
+    "kind": "lifeline",
+    "source_id": "_18_0_5_baa02e2_1458099294143_628657_152079",
+    "represents": "_18_0_5_baa02e2_1454128060627_462855_170075",
+    "name": "analysisDriver",
+    "x": 330,
+    "header_y": 180,
+    "line_top": 260,
+    "line_bottom": 690
+  },
+  {
+    "kind": "lifeline",
+    "source_id": "_18_0_5_baa02e2_1458099294144_32845_152081",
+    "represents": "_17_0_2_3_41e01aa_1389728908413_724070_61695",
+    "name": "peas",
+    "x": 960,
+    "header_y": 180,
+    "line_top": 260,
+    "line_bottom": 690
+  },
+  {
+    "kind": "message",
+    "source_id": "_18_0_5_baa02e2_1458099294136_642396_152078",
+    "sort": "asynchSignal",
+    "signal": "Abort",
+    "send_event": "_18_0_5_baa02e2_1458099294145_560741_152086",
+    "receive_event": "_18_0_5_baa02e2_1458099294146_791176_152087",
+    "source": "_18_0_5_baa02e2_1458099294143_628657_152079",
+    "target": "_18_0_5_baa02e2_1458099294144_32845_152081",
+    "order": 0,
+    "y": 345
+  },
+  {
+    "kind": "message",
+    "source_id": "_18_0_5_baa02e2_1458099294136_802828_152076",
+    "sort": "asynchSignal",
+    "signal": "Maintenance Alignment",
+    "send_event": "_18_0_5_baa02e2_1458099294146_644794_152089",
+    "receive_event": "_18_0_5_baa02e2_1458099294146_530702_152090",
+    "source": "_18_0_5_baa02e2_1458099294143_628657_152079",
+    "target": "_18_0_5_baa02e2_1458099294144_32845_152081",
+    "order": 1,
+    "y": 455
+  },
+  {
+    "kind": "message",
+    "source_id": "_18_0_5_baa02e2_1458099294136_95702_152077",
+    "sort": "asynchSignal",
+    "signal": "Abort",
+    "send_event": "_18_0_5_baa02e2_1458099294147_588842_152092",
+    "receive_event": "_18_0_5_baa02e2_1458099294147_466084_152093",
+    "source": "_18_0_5_baa02e2_1458099294143_628657_152079",
+    "target": "_18_0_5_baa02e2_1458099294144_32845_152081",
+    "order": 2,
+    "y": 565
+  }
+]

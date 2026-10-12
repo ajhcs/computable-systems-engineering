@@ -9,6 +9,7 @@ Small, independently invocable skills that help a systems engineer develop a sys
 | `develop-system-concept` | Frame a problem, identify functions, explore alternatives, and assess evidence for a concept decision. |
 | `develop-conops` | Connect stakeholder needs, boundaries, scenarios, responsibilities, and evaluation plans. |
 | `develop-operational-scenarios` | Develop or investigate one scenario or a selected set. |
+| `generate-engineering-diagrams` | Render existing engineering meaning using matched source references and actual view checks. |
 
 A complete document is optional. Missing information can remain an explicit unknown. The skills use a system-wide SysML model and selected views rather than requiring the entire model in every model context. The [SysML-first profile](docs/sysml-v2-profile.md) defines the supported parser and checker boundary.
 
@@ -45,9 +46,21 @@ The [synthetic tool-library example](examples/tool-library/README.md) includes a
 
 The [version-2 contract](docs/verifier-v2.md) and [synthetic fixture](examples/verifier/valid.json) specify the finite semantics. Use `--scenario S1 --view` to retrieve a context slice, while running checks against the full model. The [FHWA slice](docs/fhwa-merge-slice.md) is an unaccepted formalization proposal. [FRET reuse](docs/fret-spike.md), [context measurement](docs/context-measurement.md), and the separate [protected-runner boundary](docs/protected-runner.md) record limits and next work.
 
+## Rejected experimental diagram draft
+
+The [diagram-reference draft](docs/diagram-reference-draft-status.md) is preserved as experimental history. Cole rejected its source type: the requested professional references require real project SysML, English engineering documentation, diagrams, and provenance. These invented examples are not approved references or rollout material; wait for genuine source bundles before adaptation.
+
+## Real engineering references (local review)
+
+[Four focused TMT/APE readings](examples/engineering-reference/README.md) link genuine original native models, engineering English and diagrams, then provide traced simplified views and separately validated v2 transcriptions. [Selection guidance](docs/engineering-references.md) preserves source versions, provenance and formalization gaps. The previous invented draft remains rejected; no performance or publication approval is transferred to this set.
+
+## Diagram-generation reference library
+
+[Coverage plan](docs/diagram-reference-coverage.md) tracks eight standard view families. The [source-backed Action extension](examples/engineering-reference-extension/README.md) adds fifth and sixth original engineering references and an actual pinned-pilot view with explicit limitations. [Five matched style treatments](examples/diagram-style-prototypes/README.md) compare all four accepted slices, with controls for the Action/Sequence additions. This is a staged reference library; native editor round-trip, complete graphical conformance and behavioral simulation remain unverified. New system-model creation remains engineer-directed.
+
 ## Use the skills
 
-The repository registers its three skills through symlinks under `.agents/skills/`, which Codex discovers when you open this project. They remain independently invocable and are scoped to this repository. Start a new project conversation if the skill selector has not refreshed. [Codex skill discovery](https://learn.chatgpt.com/docs/build-skills) documents repository scope and symlink support.
+The repository registers three engineering drafting skills and one diagram-generation reference skill through symlinks under `.agents/skills/`, which Codex discovers when you open this project. They remain independently invocable and are scoped to this repository. Start a new project conversation if the skill selector has not refreshed. [Codex skill discovery](https://learn.chatgpt.com/docs/build-skills) documents repository scope and symlink support.
 
 Each skill's `scripts/cse.py` launcher finds the shared parser/engine from its real location, so checks work from subdirectories as well as the repository root. The repository also includes a plugin manifest at `.codex-plugin/plugin.json`; installation through a public marketplace remains untested. Copying a skill folder alone preserves its version-1 helper, but does not install the shared SysML engine. Avoid duplicate installations.
 
@@ -69,3 +82,7 @@ The [SysML-first plan](docs/sysml-v2-model-first-plan.md) and [implemented alpha
 The project uses deterministic program results for computable claims. Broader validation still requires evidence and engineering judgment. JSON is a transport format, not a token-efficiency claim; measure context and repair costs before making such claims.
 
 See [public references](docs/references.md) and [contribution guidance](CONTRIBUTING.md). External publications and tools remain under their own terms; none is bundled here.
+
+## Additional engineering research references
+
+[Two xPPU/Wireless reference candidates](examples/industrial-project-reference/README.md) match original native source, author English and diagrams with bounded formal v2 projections and editable modern readings. User acceptance remains pending. The xPPU model-derived subtree uses GPL3; publication figures and NIST derivatives carry their separate source-specific terms. Raw source archives and full publications remain in ignored review work.

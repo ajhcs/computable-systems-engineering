@@ -79,3 +79,7 @@ For an existing version-1 JSON record or an explicit legacy request, read
 `references/record.md` and use its original helper. Do not silently translate
 its prose into executable SysML constraints. Reconcile any migration with the
 engineer and record unsupported or lost meaning.
+
+The [diagram-reference additions are a rejected experimental draft](../../../docs/diagram-reference-draft-status.md). Do not use them as approved professional source references or as the basis for publication or rollout. The rejected examples remain historical only.
+
+For source-grounded diagram work, read one [real engineering reference](../../../docs/engineering-references.md) with its original model, English evidence and diagram. Keep source versions and IDs, distinguish simplified derivatives, and report fidelity/parser/render checks separately from engineering acceptance.

@@ -1,0 +1,551 @@
+{
+  "case": "XPPU-01",
+  "view": "containment",
+  "classification": "Selected source-model explanatory graphics; not claimed formal SysML v2 graphical conformance",
+  "canvas": [
+    1200,
+    1020
+  ],
+  "elements": [
+    {
+      "id": "XPPU-01-containment-1",
+      "kind": "canvas",
+      "sourceIds": [],
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "w": 1200,
+        "h": 1020
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-containment-2",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 25,
+        "w": 1120,
+        "h": 50.550000000000004
+      },
+      "display": [
+        "What does the PPU unit own?"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-3",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 73,
+        "w": 1120,
+        "h": 34.35
+      },
+      "display": [
+        "xPPU Scenario15 \u00b7 selected composition reading"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-4",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 106,
+        "w": 1120,
+        "h": 30.3
+      },
+      "display": [
+        "Seven direct source roles only; operations, flags, nested equipment and all behavior are omitted."
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-5",
+      "kind": "entity",
+      "sourceIds": [
+        "_2ub-IBHQEeaen93uATCTQQ"
+      ],
+      "geometry": {
+        "x": 30,
+        "y": 163,
+        "w": 1140,
+        "h": 753
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-containment-6",
+      "kind": "label",
+      "sourceIds": [
+        "_2ub-IBHQEeaen93uATCTQQ"
+      ],
+      "geometry": {
+        "x": 58,
+        "y": 184,
+        "w": 1084,
+        "h": 46.5
+      },
+      "display": [
+        "PPU \u00b7 seven owned modules \u00b7 count 1 each"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-7",
+      "kind": "entity",
+      "sourceIds": [
+        "_K9YqEhHZEeaIeI6F5gdpJg",
+        "_P1xSIBHVEeaen93uATCTQQ"
+      ],
+      "geometry": {
+        "x": 58,
+        "y": 248,
+        "w": 529,
+        "h": 139
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-containment-8",
+      "kind": "label",
+      "sourceIds": [
+        "_P1xSIBHVEeaen93uATCTQQ"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 263,
+        "w": 489,
+        "h": 39.75
+      },
+      "display": [
+        "Stack"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-9",
+      "kind": "label",
+      "sourceIds": [
+        "_K9YqEhHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 305,
+        "w": 489,
+        "h": 34.35
+      },
+      "display": [
+        "Role: stack"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-10",
+      "kind": "label",
+      "sourceIds": [
+        "_K9YqEhHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 340,
+        "w": 489,
+        "h": 33.0
+      },
+      "display": [
+        "Owned part \u00b7 multiplicity 1..1"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-11",
+      "kind": "entity",
+      "sourceIds": [
+        "_MFHHIhHZEeaIeI6F5gdpJg",
+        "_uUK40BHWEeaE9dGXaplL2g"
+      ],
+      "geometry": {
+        "x": 611,
+        "y": 248,
+        "w": 529,
+        "h": 139
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-containment-12",
+      "kind": "label",
+      "sourceIds": [
+        "_uUK40BHWEeaE9dGXaplL2g"
+      ],
+      "geometry": {
+        "x": 631,
+        "y": 263,
+        "w": 489,
+        "h": 39.75
+      },
+      "display": [
+        "Crane"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-13",
+      "kind": "label",
+      "sourceIds": [
+        "_MFHHIhHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 631,
+        "y": 305,
+        "w": 489,
+        "h": 34.35
+      },
+      "display": [
+        "Role: crane"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-14",
+      "kind": "label",
+      "sourceIds": [
+        "_MFHHIhHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 631,
+        "y": 340,
+        "w": 489,
+        "h": 33.0
+      },
+      "display": [
+        "Owned part \u00b7 multiplicity 1..1"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-15",
+      "kind": "entity",
+      "sourceIds": [
+        "_N1dDYxHZEeaIeI6F5gdpJg",
+        "_-GUi8BHWEeaE9dGXaplL2g"
+      ],
+      "geometry": {
+        "x": 58,
+        "y": 405,
+        "w": 529,
+        "h": 139
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-containment-16",
+      "kind": "label",
+      "sourceIds": [
+        "_-GUi8BHWEeaE9dGXaplL2g"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 420,
+        "w": 489,
+        "h": 39.75
+      },
+      "display": [
+        "Stamp"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-17",
+      "kind": "label",
+      "sourceIds": [
+        "_N1dDYxHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 462,
+        "w": 489,
+        "h": 34.35
+      },
+      "display": [
+        "Role: stamp"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-18",
+      "kind": "label",
+      "sourceIds": [
+        "_N1dDYxHZEeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 497,
+        "w": 489,
+        "h": 33.0
+      },
+      "display": [
+        "Owned part \u00b7 multiplicity 1..1"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-19",
+      "kind": "entity",
+      "sourceIds": [
+        "_cpnDIxH4EeaIeI6F5gdpJg",
+        "_RehDsBH4EeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 611,
+        "y": 405,
+        "w": 529,
+        "h": 139
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-containment-20",
+      "kind": "label",
+      "sourceIds": [
+        "_RehDsBH4EeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 631,
+        "y": 420,
+        "w": 489,
+        "h": 39.75
+      },
+      "display": [
+        "LargeSortingConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-21",
+      "kind": "label",
+      "sourceIds": [
+        "_cpnDIxH4EeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 631,
+        "y": 462,
+        "w": 489,
+        "h": 34.35
+      },
+      "display": [
+        "Role: largeSortingConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-22",
+      "kind": "label",
+      "sourceIds": [
+        "_cpnDIxH4EeaIeI6F5gdpJg"
+      ],
+      "geometry": {
+        "x": 631,
+        "y": 497,
+        "w": 489,
+        "h": 33.0
+      },
+      "display": [
+        "Owned part \u00b7 multiplicity 1..1"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-23",
+      "kind": "entity",
+      "sourceIds": [
+        "_NypR0OcCEeayP7zJxSzVpQ",
+        "_5QIQAOcBEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 58,
+        "y": 562,
+        "w": 529,
+        "h": 139
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-containment-24",
+      "kind": "label",
+      "sourceIds": [
+        "_5QIQAOcBEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 577,
+        "w": 489,
+        "h": 39.75
+      },
+      "display": [
+        "PicAlphaConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-25",
+      "kind": "label",
+      "sourceIds": [
+        "_NypR0OcCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 619,
+        "w": 489,
+        "h": 34.35
+      },
+      "display": [
+        "Role: picAlphaConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-26",
+      "kind": "label",
+      "sourceIds": [
+        "_NypR0OcCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 654,
+        "w": 489,
+        "h": 33.0
+      },
+      "display": [
+        "Owned part \u00b7 multiplicity 1..1"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-27",
+      "kind": "entity",
+      "sourceIds": [
+        "_QzKcgucCEeayP7zJxSzVpQ",
+        "_-ESikOcBEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 611,
+        "y": 562,
+        "w": 529,
+        "h": 139
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-containment-28",
+      "kind": "label",
+      "sourceIds": [
+        "_-ESikOcBEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 631,
+        "y": 577,
+        "w": 489,
+        "h": 39.75
+      },
+      "display": [
+        "SmallSortingConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-29",
+      "kind": "label",
+      "sourceIds": [
+        "_QzKcgucCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 631,
+        "y": 619,
+        "w": 489,
+        "h": 34.35
+      },
+      "display": [
+        "Role: smallSortingConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-30",
+      "kind": "label",
+      "sourceIds": [
+        "_QzKcgucCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 631,
+        "y": 654,
+        "w": 489,
+        "h": 33.0
+      },
+      "display": [
+        "Owned part \u00b7 multiplicity 1..1"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-31",
+      "kind": "entity",
+      "sourceIds": [
+        "_lWsgEOcEEeayP7zJxSzVpQ",
+        "_EV7fwOcCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 58,
+        "y": 719,
+        "w": 529,
+        "h": 139
+      },
+      "display": null
+    },
+    {
+      "id": "XPPU-01-containment-32",
+      "kind": "label",
+      "sourceIds": [
+        "_EV7fwOcCEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 734,
+        "w": 489,
+        "h": 39.75
+      },
+      "display": [
+        "RefillConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-33",
+      "kind": "label",
+      "sourceIds": [
+        "_lWsgEOcEEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 776,
+        "w": 489,
+        "h": 34.35
+      },
+      "display": [
+        "Role: refillConveyor"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-34",
+      "kind": "label",
+      "sourceIds": [
+        "_lWsgEOcEEeayP7zJxSzVpQ"
+      ],
+      "geometry": {
+        "x": 78,
+        "y": 811,
+        "w": 489,
+        "h": 33.0
+      },
+      "display": [
+        "Owned part \u00b7 multiplicity 1..1"
+      ]
+    },
+    {
+      "id": "XPPU-01-containment-35",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 943,
+        "w": 1120,
+        "h": 54.6
+      },
+      "display": [
+        "Source: x-PPU/Models c3aedf66 \u00b7 author Fig. 12.12 \u00b7 GPL-3.0 derivative.",
+        "Selected source meaning; model.sysml and semantic-ledger.json carry trace and limits."
+      ]
+    }
+  ]
+}

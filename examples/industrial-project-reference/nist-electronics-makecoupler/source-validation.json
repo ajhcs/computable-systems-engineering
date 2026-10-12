@@ -1,0 +1,55 @@
+{
+  "pass": true,
+  "sourceXMLWellFormed": true,
+  "nativeSourceSHA256": "f3cacbbde00e5d60d8f5771537d1ad05dd4c4d27f590db9a4ff3831d105ef981",
+  "sourceNodeCount": 19,
+  "inputPins": 33,
+  "outputPins": 25,
+  "ownedParameters": 2,
+  "controlFlows": 16,
+  "objectFlows": 0,
+  "drawioGeometrySourceAndLabelParity": true,
+  "meaningfulNegativeControls": [
+    {
+      "name": "ControlFlow promoted to ObjectFlow",
+      "rejected": true,
+      "reason": "native edge direction/kind/endpoint mismatch"
+    },
+    {
+      "name": "Untyped workOrderIN given invented type",
+      "rejected": true,
+      "reason": "native node/pin/call/owner mismatch"
+    },
+    {
+      "name": "Pin moved to another action owner",
+      "rejected": true,
+      "reason": "native node/pin/call/owner mismatch"
+    },
+    {
+      "name": "Input pin multiplicity altered",
+      "rejected": true,
+      "reason": "native node/pin/call/owner mismatch"
+    },
+    {
+      "name": "Call target replaced by a different behavior",
+      "rejected": true,
+      "reason": "native node/pin/call/owner mismatch"
+    },
+    {
+      "name": "Unconnected activity parameter given invented edge",
+      "rejected": true,
+      "reason": "native edge direction/kind/endpoint mismatch"
+    },
+    {
+      "name": "Editable edge direction removed",
+      "rejected": true,
+      "reason": ""
+    }
+  ],
+  "nativeMagicDrawParserRoundTrip": {
+    "status": "not-run"
+  },
+  "executionEquivalence": {
+    "status": "not-established"
+  }
+}

@@ -1,0 +1,1242 @@
+{
+  "independentSourceChecks": {
+    "status": "PASS bounded source/native/text/diagram consistency",
+    "meaningfulNegativeControls": [
+      {
+        "mutation": "PPU wrong aggregation",
+        "rejected": true
+      },
+      {
+        "mutation": "PPU wrong lower",
+        "rejected": true
+      },
+      {
+        "mutation": "PPU wrong upper",
+        "rejected": true
+      },
+      {
+        "mutation": "PPU wrong typeId",
+        "rejected": true
+      },
+      {
+        "mutation": "PPU wrong ownerId",
+        "rejected": true
+      },
+      {
+        "mutation": "Native v2 PPU composition changed to reference",
+        "rejected": true
+      },
+      {
+        "mutation": "Wireless reference wrong aggregation",
+        "rejected": true
+      },
+      {
+        "mutation": "Wireless reference wrong visibility",
+        "rejected": true
+      },
+      {
+        "mutation": "Wireless reference wrong ownerId",
+        "rejected": true
+      },
+      {
+        "mutation": "Wireless reference wrong upper",
+        "rejected": true
+      },
+      {
+        "mutation": "Wireless lost source proxy stereotype",
+        "rejected": true
+      },
+      {
+        "mutation": "Wireless undirected connector promoted to flow",
+        "rejected": true
+      },
+      {
+        "mutation": "Wireless wrong nested endpoint path",
+        "rejected": true
+      },
+      {
+        "mutation": "Wireless displayed port missing",
+        "rejected": true
+      },
+      {
+        "mutation": "Native v2 private transceiver widened to public",
+        "rejected": true
+      },
+      {
+        "mutation": "Native v2 application reference changed to owned part",
+        "rejected": true
+      }
+    ],
+    "negativeCount": 16,
+    "drawings": [
+      {
+        "case": "XPPU-01",
+        "view": "containment",
+        "primitives": 35,
+        "SVGDrawioSourceIDsTextAndEndpoints": "PASS"
+      },
+      {
+        "case": "XPPU-01",
+        "view": "composition-relations",
+        "primitives": 36,
+        "SVGDrawioSourceIDsTextAndEndpoints": "PASS"
+      },
+      {
+        "case": "WFC-01",
+        "view": "port-topology",
+        "primitives": 49,
+        "SVGDrawioSourceIDsTextAndEndpoints": "PASS"
+      },
+      {
+        "case": "WFC-01",
+        "view": "endpoint-ledger",
+        "primitives": 57,
+        "SVGDrawioSourceIDsTextAndEndpoints": "PASS"
+      }
+    ],
+    "unchangedPinnedAcquisitions": [
+      "ppu-repo.json",
+      "wireless-repo.json",
+      "ppu-official.html",
+      "ppu-chapter12.pdf",
+      "wireless-paper.pdf",
+      "wireless-data-article.pdf",
+      "ppu-scenario15.zip",
+      "ppu-LICENSE.txt",
+      "ppu-README.md",
+      "ppu-chapter4.pdf",
+      "wireless-wireless.xml.zip",
+      "wireless-wireless-v2.xml.zip",
+      "wireless-html-report.zip",
+      "wireless-Combined-PP-with-FT-Limiting.jpg",
+      "wireless-LICENSE.md",
+      "wireless-README.md"
+    ],
+    "xppu": {
+      "selectedCompositions": 7,
+      "nativeParsedPartFacts": 7,
+      "nativeTREE": "Actual pilot renderer; bundled Smetana fallback explicitly recorded",
+      "authorFigureTrace": "Overview notation depicts selected classes/associations; properties resolve through association member ends"
+    },
+    "wireless": {
+      "roles": 7,
+      "ports": 4,
+      "connectors": 7,
+      "nativeLinkedFeatures": 18,
+      "nestedPathsChecked": 7,
+      "constraintsInOriginal": {
+        "ConstraintBlockApplications": 16,
+        "UMLConstraints": 36,
+        "conversionStatus": "Omitted from selected IBD projection; not evaluated"
+      },
+      "referenceOwnedVisibilityAndEndpointProof": "Native linked facts match selected topology; source hierarchy and legacy stereotypes remain in ledger",
+      "v2PrivateInheritedFeatureGap": "Explicit selected-view definition RobotControllerSelectedView lifts the displayed inherited xcvr/ant/DataPort into this view context, preserving private xcvr visibility and topology. Full source inheritance/ownership remains in the original and ledger, not implemented by this view type. Initial direct inherited-private transcription failed linking and is preserved as rejected evidence. No widening to public visibility or creation of an accepted design is claimed."
+    },
+    "limits": [
+      "Original Papyrus external profiles/ALF/Ecore and native MagicDraw/Papyrus editor round-trip unrun.",
+      "No full-model conversion, behavior execution, constraint calculation, full/proxy-port semantic equivalence or commercial deployment claim.",
+      "Actual pixel inspection and Library consumption are recorded separately."
+    ]
+  },
+  "measuredRendering": [
+    {
+      "expectedPrimitives": 35,
+      "actualMatchedPrimitives": 35,
+      "missing": [],
+      "bad": [],
+      "labelCount": 26,
+      "labelOverlaps": [],
+      "lineLabels": [],
+      "labelBounds": [
+        {
+          "id": "XPPU-01-containment-2",
+          "x": 40,
+          "y": 26,
+          "w": 450.0625,
+          "h": 43,
+          "text": "What does the PPU unit own?"
+        },
+        {
+          "id": "XPPU-01-containment-3",
+          "x": 40,
+          "y": 74,
+          "w": 456.796875,
+          "h": 28,
+          "text": "xPPU Scenario15 \u00b7 selected composition reading"
+        },
+        {
+          "id": "XPPU-01-containment-4",
+          "x": 40,
+          "y": 108,
+          "w": 775.921875,
+          "h": 23,
+          "text": "Seven direct source roles only; operations, flags, nested equipment and all behavior are omitted."
+        },
+        {
+          "id": "XPPU-01-containment-6",
+          "x": 58,
+          "y": 185,
+          "w": 594.546875,
+          "h": 39,
+          "text": "PPU \u00b7 seven owned modules \u00b7 count 1 each"
+        },
+        {
+          "id": "XPPU-01-containment-8",
+          "x": 78,
+          "y": 264,
+          "w": 65.390625,
+          "h": 33,
+          "text": "Stack"
+        },
+        {
+          "id": "XPPU-01-containment-9",
+          "x": 78,
+          "y": 306,
+          "w": 103.515625,
+          "h": 28,
+          "text": "Role: stack"
+        },
+        {
+          "id": "XPPU-01-containment-10",
+          "x": 78,
+          "y": 341,
+          "w": 260.75,
+          "h": 27,
+          "text": "Owned part \u00b7 multiplicity 1..1"
+        },
+        {
+          "id": "XPPU-01-containment-12",
+          "x": 631,
+          "y": 264,
+          "w": 68.234375,
+          "h": 33,
+          "text": "Crane"
+        },
+        {
+          "id": "XPPU-01-containment-13",
+          "x": 631,
+          "y": 306,
+          "w": 106.078125,
+          "h": 28,
+          "text": "Role: crane"
+        },
+        {
+          "id": "XPPU-01-containment-14",
+          "x": 631,
+          "y": 341,
+          "w": 260.75,
+          "h": 27,
+          "text": "Owned part \u00b7 multiplicity 1..1"
+        },
+        {
+          "id": "XPPU-01-containment-16",
+          "x": 78,
+          "y": 421,
+          "w": 75.703125,
+          "h": 33,
+          "text": "Stamp"
+        },
+        {
+          "id": "XPPU-01-containment-17",
+          "x": 78,
+          "y": 463,
+          "w": 112.40625,
+          "h": 28,
+          "text": "Role: stamp"
+        },
+        {
+          "id": "XPPU-01-containment-18",
+          "x": 78,
+          "y": 498,
+          "w": 260.75,
+          "h": 27,
+          "text": "Owned part \u00b7 multiplicity 1..1"
+        },
+        {
+          "id": "XPPU-01-containment-20",
+          "x": 631,
+          "y": 421,
+          "w": 255.8509521484375,
+          "h": 33,
+          "text": "LargeSortingConveyor"
+        },
+        {
+          "id": "XPPU-01-containment-21",
+          "x": 631,
+          "y": 463,
+          "w": 255.4208984375,
+          "h": 28,
+          "text": "Role: largeSortingConveyor"
+        },
+        {
+          "id": "XPPU-01-containment-22",
+          "x": 631,
+          "y": 498,
+          "w": 260.75,
+          "h": 27,
+          "text": "Owned part \u00b7 multiplicity 1..1"
+        },
+        {
+          "id": "XPPU-01-containment-24",
+          "x": 78,
+          "y": 578,
+          "w": 212.10076904296875,
+          "h": 33,
+          "text": "PicAlphaConveyor"
+        },
+        {
+          "id": "XPPU-01-containment-25",
+          "x": 78,
+          "y": 620,
+          "w": 224.15206909179688,
+          "h": 28,
+          "text": "Role: picAlphaConveyor"
+        },
+        {
+          "id": "XPPU-01-containment-26",
+          "x": 78,
+          "y": 655,
+          "w": 260.75,
+          "h": 27,
+          "text": "Owned part \u00b7 multiplicity 1..1"
+        },
+        {
+          "id": "XPPU-01-containment-28",
+          "x": 631,
+          "y": 578,
+          "w": 258.17596435546875,
+          "h": 33,
+          "text": "SmallSortingConveyor"
+        },
+        {
+          "id": "XPPU-01-containment-29",
+          "x": 631,
+          "y": 620,
+          "w": 260.0828857421875,
+          "h": 28,
+          "text": "Role: smallSortingConveyor"
+        },
+        {
+          "id": "XPPU-01-containment-30",
+          "x": 631,
+          "y": 655,
+          "w": 260.75,
+          "h": 27,
+          "text": "Owned part \u00b7 multiplicity 1..1"
+        },
+        {
+          "id": "XPPU-01-containment-32",
+          "x": 78,
+          "y": 735,
+          "w": 168.62564086914062,
+          "h": 33,
+          "text": "RefillConveyor"
+        },
+        {
+          "id": "XPPU-01-containment-33",
+          "x": 78,
+          "y": 777,
+          "w": 183.85324096679688,
+          "h": 28,
+          "text": "Role: refillConveyor"
+        },
+        {
+          "id": "XPPU-01-containment-34",
+          "x": 78,
+          "y": 812,
+          "w": 260.75,
+          "h": 27,
+          "text": "Owned part \u00b7 multiplicity 1..1"
+        },
+        {
+          "id": "XPPU-01-containment-35",
+          "x": 40,
+          "y": 945,
+          "w": 702.890625,
+          "h": 47.29998779296875,
+          "text": "Source: x-PPU/Models c3aedf66 \u00b7 author Fig. 12.12 \u00b7 GPL-3.0 derivative.Selected source meaning; model.sysml and semantic-ledger.json carry trace and limits."
+        }
+      ],
+      "fontLoaded": true,
+      "case": "XPPU-01",
+      "view": "containment",
+      "missingSourceGraphicNegativeRejected": true
+    },
+    {
+      "expectedPrimitives": 36,
+      "actualMatchedPrimitives": 36,
+      "missing": [],
+      "bad": [],
+      "labelCount": 20,
+      "labelOverlaps": [],
+      "lineLabels": [],
+      "labelBounds": [
+        {
+          "id": "XPPU-01-composition-relations-2",
+          "x": 40,
+          "y": 26,
+          "w": 546.125,
+          "h": 43,
+          "text": "Recover role, type, and composition"
+        },
+        {
+          "id": "XPPU-01-composition-relations-3",
+          "x": 40,
+          "y": 74,
+          "w": 515.578125,
+          "h": 28,
+          "text": "xPPU Scenario15 \u00b7 seven selected source relationships"
+        },
+        {
+          "id": "XPPU-01-composition-relations-4",
+          "x": 40,
+          "y": 108,
+          "w": 719.171875,
+          "h": 23,
+          "text": "Filled diamond belongs to PPU. Lines show composition, not workpiece flow or sequence."
+        },
+        {
+          "id": "XPPU-01-composition-relations-6",
+          "x": 82,
+          "y": 203,
+          "w": 185.3125,
+          "h": 120,
+          "text": "PPUSeven ownedmodules."
+        },
+        {
+          "id": "XPPU-01-composition-relations-7",
+          "x": 82,
+          "y": 399,
+          "w": 197.59375,
+          "h": 207.20001220703125,
+          "text": "Each relationshiphas multiplicity 1.Internal equipment,operations andstate behaviorremain in theoriginal model."
+        },
+        {
+          "id": "XPPU-01-composition-relations-9",
+          "x": 680,
+          "y": 223,
+          "w": 63.2718505859375,
+          "h": 32,
+          "text": "Stack"
+        },
+        {
+          "id": "XPPU-01-composition-relations-11",
+          "x": 365,
+          "y": 207,
+          "w": 65.71875,
+          "h": 22,
+          "text": "stack [1]"
+        },
+        {
+          "id": "XPPU-01-composition-relations-13",
+          "x": 680,
+          "y": 325,
+          "w": 65.5,
+          "h": 32,
+          "text": "Crane"
+        },
+        {
+          "id": "XPPU-01-composition-relations-15",
+          "x": 365,
+          "y": 309,
+          "w": 67.78125,
+          "h": 22,
+          "text": "crane [1]"
+        },
+        {
+          "id": "XPPU-01-composition-relations-17",
+          "x": 680,
+          "y": 427,
+          "w": 72.671875,
+          "h": 32,
+          "text": "Stamp"
+        },
+        {
+          "id": "XPPU-01-composition-relations-19",
+          "x": 365,
+          "y": 411,
+          "w": 72.90625,
+          "h": 22,
+          "text": "stamp [1]"
+        },
+        {
+          "id": "XPPU-01-composition-relations-21",
+          "x": 680,
+          "y": 529,
+          "w": 245.453125,
+          "h": 32,
+          "text": "LargeSortingConveyor"
+        },
+        {
+          "id": "XPPU-01-composition-relations-23",
+          "x": 365,
+          "y": 513,
+          "w": 188.453125,
+          "h": 22,
+          "text": "largeSortingConveyor [1]"
+        },
+        {
+          "id": "XPPU-01-composition-relations-25",
+          "x": 680,
+          "y": 631,
+          "w": 203.453125,
+          "h": 32,
+          "text": "PicAlphaConveyor"
+        },
+        {
+          "id": "XPPU-01-composition-relations-27",
+          "x": 365,
+          "y": 615,
+          "w": 163.140625,
+          "h": 22,
+          "text": "picAlphaConveyor [1]"
+        },
+        {
+          "id": "XPPU-01-composition-relations-29",
+          "x": 680,
+          "y": 733,
+          "w": 247.6875,
+          "h": 32,
+          "text": "SmallSortingConveyor"
+        },
+        {
+          "id": "XPPU-01-composition-relations-31",
+          "x": 365,
+          "y": 717,
+          "w": 192.21875,
+          "h": 22,
+          "text": "smallSortingConveyor [1]"
+        },
+        {
+          "id": "XPPU-01-composition-relations-33",
+          "x": 680,
+          "y": 835,
+          "w": 161.71875,
+          "h": 32,
+          "text": "RefillConveyor"
+        },
+        {
+          "id": "XPPU-01-composition-relations-35",
+          "x": 365,
+          "y": 819,
+          "w": 130.515625,
+          "h": 22,
+          "text": "refillConveyor [1]"
+        },
+        {
+          "id": "XPPU-01-composition-relations-36",
+          "x": 40,
+          "y": 972,
+          "w": 772.078125,
+          "h": 47.29998779296875,
+          "text": "Role/property and association IDs resolve to the same original Overview diagram.GPL-3.0 derivative \u00b7 no complete-class, ISA88 behavior, simulation or formal-v2-graphics claim."
+        }
+      ],
+      "fontLoaded": true,
+      "case": "XPPU-01",
+      "view": "composition-relations",
+      "missingSourceGraphicNegativeRejected": true
+    },
+    {
+      "expectedPrimitives": 54,
+      "actualMatchedPrimitives": 54,
+      "missing": [],
+      "bad": [],
+      "labelCount": 30,
+      "labelOverlaps": [],
+      "lineLabels": [],
+      "labelBounds": [
+        {
+          "id": "WFC-01-port-topology-2",
+          "x": 40,
+          "y": 26,
+          "w": 636.375,
+          "h": 43,
+          "text": "Applications share a transceiver interface"
+        },
+        {
+          "id": "WFC-01-port-topology-3",
+          "x": 40,
+          "y": 74,
+          "w": 517.828125,
+          "h": 28,
+          "text": "Wireless Factory \u00b7 selected RobotController source IBD"
+        },
+        {
+          "id": "WFC-01-port-topology-4",
+          "x": 40,
+          "y": 108,
+          "w": 773.765625,
+          "h": 23,
+          "text": "Six references, one inherited owned part, four displayed ports and seven undirected connectors."
+        },
+        {
+          "id": "WFC-01-port-topology-6",
+          "x": 52,
+          "y": 174,
+          "w": 513.7186279296875,
+          "h": 32,
+          "text": "RobotController \u00b7 selected native view context"
+        },
+        {
+          "id": "WFC-01-port-topology-8",
+          "x": 765,
+          "y": 278,
+          "w": 235.03125,
+          "h": 84.70001220703125,
+          "text": "xcvr : TransceiverCount 1..* \u00b7 owned partSource visibility: private"
+        },
+        {
+          "id": "WFC-01-port-topology-10",
+          "x": 543,
+          "y": 211,
+          "w": 131.703125,
+          "h": 27,
+          "text": "xcvr : iXcvr [1]"
+        },
+        {
+          "id": "WFC-01-port-topology-13",
+          "x": 88,
+          "y": 240,
+          "w": 80.73580932617188,
+          "h": 32,
+          "text": "rStates"
+        },
+        {
+          "id": "WFC-01-port-topology-14",
+          "x": 88,
+          "y": 275,
+          "w": 273.640625,
+          "h": 28,
+          "text": "Type: StatesPublisherApp [1]"
+        },
+        {
+          "id": "WFC-01-port-topology-16",
+          "x": 520,
+          "y": 242,
+          "w": 23.609375,
+          "h": 24,
+          "text": "C1"
+        },
+        {
+          "id": "WFC-01-port-topology-18",
+          "x": 88,
+          "y": 351,
+          "w": 106.27174377441406,
+          "h": 32,
+          "text": "colDetect"
+        },
+        {
+          "id": "WFC-01-port-topology-19",
+          "x": 88,
+          "y": 386,
+          "w": 268.171875,
+          "h": 28,
+          "text": "Type: CollisionDetectApp [1]"
+        },
+        {
+          "id": "WFC-01-port-topology-21",
+          "x": 520,
+          "y": 353,
+          "w": 23.609375,
+          "h": 24,
+          "text": "C2"
+        },
+        {
+          "id": "WFC-01-port-topology-23",
+          "x": 88,
+          "y": 462,
+          "w": 143.390625,
+          "h": 32,
+          "text": "path Planner"
+        },
+        {
+          "id": "WFC-01-port-topology-24",
+          "x": 88,
+          "y": 497,
+          "w": 240.390625,
+          "h": 28,
+          "text": "Type: PathPlannerApp [1]"
+        },
+        {
+          "id": "WFC-01-port-topology-26",
+          "x": 520,
+          "y": 464,
+          "w": 23.609375,
+          "h": 24,
+          "text": "C3"
+        },
+        {
+          "id": "WFC-01-port-topology-28",
+          "x": 88,
+          "y": 573,
+          "w": 171.46875,
+          "h": 32,
+          "text": "armControlApp"
+        },
+        {
+          "id": "WFC-01-port-topology-29",
+          "x": 88,
+          "y": 608,
+          "w": 234.03125,
+          "h": 28,
+          "text": "Type: ArmControlApp [1]"
+        },
+        {
+          "id": "WFC-01-port-topology-31",
+          "x": 520,
+          "y": 575,
+          "w": 23.609375,
+          "h": 24,
+          "text": "C4"
+        },
+        {
+          "id": "WFC-01-port-topology-33",
+          "x": 88,
+          "y": 684,
+          "w": 155.09375,
+          "h": 32,
+          "text": "eEControlApp"
+        },
+        {
+          "id": "WFC-01-port-topology-34",
+          "x": 88,
+          "y": 719,
+          "w": 219.015625,
+          "h": 28,
+          "text": "Type: EEControlApp [1]"
+        },
+        {
+          "id": "WFC-01-port-topology-36",
+          "x": 520,
+          "y": 686,
+          "w": 23.609375,
+          "h": 24,
+          "text": "C5"
+        },
+        {
+          "id": "WFC-01-port-topology-38",
+          "x": 88,
+          "y": 795,
+          "w": 211.7274169921875,
+          "h": 32,
+          "text": "inverse Kinematics"
+        },
+        {
+          "id": "WFC-01-port-topology-39",
+          "x": 88,
+          "y": 830,
+          "w": 146.859375,
+          "h": 28,
+          "text": "Type: IKApp [1]"
+        },
+        {
+          "id": "WFC-01-port-topology-41",
+          "x": 520,
+          "y": 797,
+          "w": 23.609375,
+          "h": 24,
+          "text": "C6"
+        },
+        {
+          "id": "WFC-01-port-topology-45",
+          "x": 1056,
+          "y": 431,
+          "w": 23.609375,
+          "h": 24,
+          "text": "C7"
+        },
+        {
+          "id": "WFC-01-port-topology-46",
+          "x": 765,
+          "y": 392,
+          "w": 164.62445068359375,
+          "h": 49.649993896484375,
+          "text": "\u00abproxy\u00bb rf : iRF [1]Owner: Transceiver"
+        },
+        {
+          "id": "WFC-01-port-topology-48",
+          "x": 1170,
+          "y": 452,
+          "w": 200.75,
+          "h": 49.649993896484375,
+          "text": "\u00abfull\u00bb ant : iRF [1]Owner: Wireless Device"
+        },
+        {
+          "id": "WFC-01-port-topology-51",
+          "x": 1170,
+          "y": 706,
+          "w": 196.859375,
+          "h": 71.5999755859375,
+          "text": "\u00abfull\u00bb DataPort : iApp [1]Owner: DeviceUnconnected here"
+        },
+        {
+          "id": "WFC-01-port-topology-53",
+          "x": 40,
+          "y": 967,
+          "w": 771.65625,
+          "h": 47.29998779296875,
+          "text": "ant and DataPort are inherited boundary ports; they are outside the transceiver, not owned by it.Thin dotted leaders name ports; they are annotations, not additional system connectors."
+        },
+        {
+          "id": "WFC-01-port-topology-54",
+          "x": 40,
+          "y": 1032,
+          "w": 774.875,
+          "h": 75.300048828125,
+          "text": "Dashed application boxes are references; they are not owned transceiver parts.Legacy full/proxy stereotypes retained. Formal text is an explicit selected-view projection.Source: NIST model 3be053a2 \u00b7 Fig. 12(b) \u00b7 full notice in accompanying NIST-LICENSE.md."
+        }
+      ],
+      "fontLoaded": true,
+      "case": "WFC-01",
+      "view": "port-topology",
+      "missingSourceGraphicNegativeRejected": true
+    },
+    {
+      "expectedPrimitives": 57,
+      "actualMatchedPrimitives": 57,
+      "missing": [],
+      "bad": [],
+      "labelCount": 42,
+      "labelOverlaps": [],
+      "lineLabels": [],
+      "labelBounds": [
+        {
+          "id": "WFC-01-endpoint-ledger-2",
+          "x": 40,
+          "y": 26,
+          "w": 592.984375,
+          "h": 43,
+          "text": "Trace each connection by its endpoints"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-3",
+          "x": 40,
+          "y": 74,
+          "w": 462.96875,
+          "h": 28,
+          "text": "Wireless Factory \u00b7 exact seven-connector reading"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-4",
+          "x": 40,
+          "y": 108,
+          "w": 815.9375,
+          "h": 23,
+          "text": "Repeated endpoint names refer to the same source feature. No flow direction or sequence is inferred."
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-5",
+          "x": 45,
+          "y": 159,
+          "w": 698,
+          "h": 64.39999389648438,
+          "text": "Six referenced applications connect to the same xcvr.xcvr port.xcvr is inherited, private, owned and has multiplicity 1..*."
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-7",
+          "x": 59,
+          "y": 278,
+          "w": 27.328125,
+          "h": 29,
+          "text": "C1"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-8",
+          "x": 158,
+          "y": 260,
+          "w": 77.359375,
+          "h": 30,
+          "text": "rStates"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-9",
+          "x": 158,
+          "y": 297,
+          "w": 221.515625,
+          "h": 22,
+          "text": "Type: StatesPublisherApp [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-11",
+          "x": 746,
+          "y": 260,
+          "w": 95.140625,
+          "h": 30,
+          "text": "xcvr.xcvr"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-12",
+          "x": 746,
+          "y": 297,
+          "w": 108.265625,
+          "h": 22,
+          "text": "Type: iXcvr [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-14",
+          "x": 59,
+          "y": 371,
+          "w": 27.328125,
+          "h": 29,
+          "text": "C2"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-15",
+          "x": 158,
+          "y": 353,
+          "w": 101.828125,
+          "h": 30,
+          "text": "colDetect"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-16",
+          "x": 158,
+          "y": 390,
+          "w": 217.09375,
+          "h": 22,
+          "text": "Type: CollisionDetectApp [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-18",
+          "x": 746,
+          "y": 353,
+          "w": 95.140625,
+          "h": 30,
+          "text": "xcvr.xcvr"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-19",
+          "x": 746,
+          "y": 390,
+          "w": 108.265625,
+          "h": 22,
+          "text": "Type: iXcvr [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-21",
+          "x": 59,
+          "y": 464,
+          "w": 27.328125,
+          "h": 29,
+          "text": "C3"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-22",
+          "x": 158,
+          "y": 446,
+          "w": 137.40625,
+          "h": 30,
+          "text": "path Planner"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-23",
+          "x": 158,
+          "y": 483,
+          "w": 194.609375,
+          "h": 22,
+          "text": "Type: PathPlannerApp [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-25",
+          "x": 746,
+          "y": 446,
+          "w": 95.140625,
+          "h": 30,
+          "text": "xcvr.xcvr"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-26",
+          "x": 746,
+          "y": 483,
+          "w": 108.265625,
+          "h": 22,
+          "text": "Type: iXcvr [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-28",
+          "x": 59,
+          "y": 557,
+          "w": 27.328125,
+          "h": 29,
+          "text": "C4"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-29",
+          "x": 158,
+          "y": 539,
+          "w": 164.3125,
+          "h": 30,
+          "text": "armControlApp"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-30",
+          "x": 158,
+          "y": 576,
+          "w": 189.453125,
+          "h": 22,
+          "text": "Type: ArmControlApp [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-32",
+          "x": 746,
+          "y": 539,
+          "w": 95.140625,
+          "h": 30,
+          "text": "xcvr.xcvr"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-33",
+          "x": 746,
+          "y": 576,
+          "w": 108.265625,
+          "h": 22,
+          "text": "Type: iXcvr [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-35",
+          "x": 59,
+          "y": 650,
+          "w": 27.328125,
+          "h": 29,
+          "text": "C5"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-36",
+          "x": 158,
+          "y": 632,
+          "w": 148.640625,
+          "h": 30,
+          "text": "eEControlApp"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-37",
+          "x": 158,
+          "y": 669,
+          "w": 177.296875,
+          "h": 22,
+          "text": "Type: EEControlApp [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-39",
+          "x": 746,
+          "y": 632,
+          "w": 95.140625,
+          "h": 30,
+          "text": "xcvr.xcvr"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-40",
+          "x": 746,
+          "y": 669,
+          "w": 108.265625,
+          "h": 22,
+          "text": "Type: iXcvr [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-42",
+          "x": 59,
+          "y": 743,
+          "w": 27.328125,
+          "h": 29,
+          "text": "C6"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-43",
+          "x": 158,
+          "y": 725,
+          "w": 202.890625,
+          "h": 30,
+          "text": "inverse Kinematics"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-44",
+          "x": 158,
+          "y": 762,
+          "w": 118.890625,
+          "h": 22,
+          "text": "Type: IKApp [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-46",
+          "x": 746,
+          "y": 725,
+          "w": 95.140625,
+          "h": 30,
+          "text": "xcvr.xcvr"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-47",
+          "x": 746,
+          "y": 762,
+          "w": 108.265625,
+          "h": 22,
+          "text": "Type: iXcvr [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-49",
+          "x": 59,
+          "y": 836,
+          "w": 27.328125,
+          "h": 29,
+          "text": "C7"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-50",
+          "x": 158,
+          "y": 818,
+          "w": 67.359375,
+          "h": 30,
+          "text": "xcvr.rf"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-51",
+          "x": 158,
+          "y": 855,
+          "w": 95.328125,
+          "h": 22,
+          "text": "Type: iRF [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-53",
+          "x": 746,
+          "y": 818,
+          "w": 34.984375,
+          "h": 30,
+          "text": "ant"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-54",
+          "x": 746,
+          "y": 855,
+          "w": 95.328125,
+          "h": 22,
+          "text": "Type: iRF [1]"
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-55",
+          "x": 45,
+          "y": 933,
+          "w": 726.578125,
+          "h": 84.70001220703125,
+          "text": "Port facts: rf is a Transceiver proxy port; ant is a Wireless Device full port.DataPort : iApp is a Device full port and has no connector in this selected IBD.xcvr : iXcvr is a Transceiver UML Port with no full/proxy stereotype applied."
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-56",
+          "x": 45,
+          "y": 1047,
+          "w": 809.890625,
+          "h": 75.300048828125,
+          "text": "Original hierarchy: Device \u2192 Wireless Device \u2192 Controller \u2192 RobotController.The formal SelectedView lifts displayed inherited features; source owners remain in the ledger.Source constraints, algorithm behavior and omitted ports are unconverted; no simulation claim."
+        },
+        {
+          "id": "WFC-01-endpoint-ledger-57",
+          "x": 45,
+          "y": 1157,
+          "w": 828.84375,
+          "h": 23,
+          "text": "NIST source 3be053a2 \u00b7 static diagram ID/author Fig. 12(b) matched \u00b7 notice accompanies derivatives."
+        }
+      ],
+      "fontLoaded": true,
+      "case": "WFC-01",
+      "view": "endpoint-ledger",
+      "missingSourceGraphicNegativeRejected": true
+    }
+  ],
+  "pixelInspection": "Actual originals/native TREE/four modern renderings consumed via supported Library and inspected at full resolution; delivery receipts remain in ignored work.",
+  "nativeEditorRoundTrip": "not_run",
+  "simulation": "not_run",
+  "userAcceptance": "pending",
+  "wirelessOwnershipRepair": {
+    "status": "PASS fresh native ownership, exact7connector/4port topology and SVG/drawio geometry parity",
+    "annotationLeaders": 4,
+    "systemConnectors": 7,
+    "sharedXcvrConnections": 6,
+    "DataPortConnected": false,
+    "negativeControls": [
+      {
+        "mutation": "missing C7",
+        "rejected": true
+      },
+      {
+        "mutation": "ant label moved inside Transceiver",
+        "rejected": true
+      },
+      {
+        "mutation": "DataPort label moved inside Transceiver",
+        "rejected": true
+      },
+      {
+        "mutation": "rf assigned boundary-port owner",
+        "rejected": true
+      },
+      {
+        "mutation": "annotation leader promoted to connector",
+        "rejected": true
+      },
+      {
+        "mutation": "seventh connector relabeled to shared application",
+        "rejected": true
+      }
+    ],
+    "priorFlawedPrimaryPreserved": "round-11/cases/WFC-01/port-topology.*",
+    "scope": "Bounded source structural view. No new design allocation, direction, visibility or multiplicity. Wireless is generic engineering model; no physical installation claim."
+  },
+  "wirelessPngRegions": {
+    "status": "PASS",
+    "PNGDimensions": [
+      1400,
+      1160
+    ],
+    "expectedActualPortLabelsAndC7": [
+      {
+        "id": "WFC-01-port-topology-10",
+        "text": "xcvr : iXcvr [1]",
+        "darkPixels": 838,
+        "targetPortId": "_18_5_3_4100178_1527439336289_370866_51781",
+        "sourceIds": [
+          "_18_5_3_4100178_1527439336289_370866_51781"
+        ]
+      },
+      {
+        "id": "WFC-01-port-topology-45",
+        "text": "C7",
+        "darkPixels": 146,
+        "targetPortId": null,
+        "sourceIds": [
+          "_18_5_3_4100178_1528247576760_386908_20123"
+        ]
+      },
+      {
+        "id": "WFC-01-port-topology-46",
+        "text": "\u00abproxy\u00bb rf : iRF [1]Owner: Transceiver",
+        "darkPixels": 1621,
+        "targetPortId": "_18_5_3_4100178_1527439177867_744395_51342",
+        "sourceIds": [
+          "_18_5_3_4100178_1527439177867_744395_51342"
+        ]
+      },
+      {
+        "id": "WFC-01-port-topology-48",
+        "text": "\u00abfull\u00bb ant : iRF [1]Owner: Wireless Device",
+        "darkPixels": 1823,
+        "targetPortId": "_18_5_3_4100178_1528052652158_864306_44377",
+        "sourceIds": [
+          "_18_5_3_4100178_1528052652158_864306_44377"
+        ]
+      },
+      {
+        "id": "WFC-01-port-topology-51",
+        "text": "\u00abfull\u00bb DataPort : iApp [1]Owner: DeviceUnconnected here",
+        "darkPixels": 2383,
+        "targetPortId": "_18_5_3_4100178_1531347992299_198851_25687",
+        "sourceIds": [
+          "_18_5_3_4100178_1531347992299_198851_25687"
+        ]
+      }
+    ],
+    "scope": "Pixel-content regions supplement independent source owner/endpoint and SVG/drawio geometry checks; no user acceptance claim"
+  },
+  "scopeClarification": "Engineering research references; generic Wireless model, physical xPPU demonstrator; bounded structural slices do not close complex operational breadth"
+}

@@ -1,0 +1,198 @@
+[
+  {
+    "file": "engineering-standard-01-tmt-maintenance-A3.pdf",
+    "pages": 1,
+    "text_spans": 25,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "engineering-standard-02-tmt-timing-A3.pdf",
+    "pages": 1,
+    "text_spans": 33,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "engineering-standard-03-ape-composition-A3.pdf",
+    "pages": 1,
+    "text_spans": 23,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "engineering-standard-04-ape-optical-A3.pdf",
+    "pages": 1,
+    "text_spans": 19,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "engineering-standard-05-tmt-exposure-A3.pdf",
+    "pages": 1,
+    "text_spans": 11,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "engineering-standard-06-tmt-sequence-order-A3.pdf",
+    "pages": 1,
+    "text_spans": 12,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.75
+  },
+  {
+    "file": "instrument-record-01-tmt-maintenance-A3.pdf",
+    "pages": 1,
+    "text_spans": 25,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "instrument-record-02-tmt-timing-A3.pdf",
+    "pages": 1,
+    "text_spans": 33,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "instrument-record-03-ape-composition-A3.pdf",
+    "pages": 1,
+    "text_spans": 23,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "instrument-record-04-ape-optical-A3.pdf",
+    "pages": 1,
+    "text_spans": 19,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "instrument-record-print-01-tmt-maintenance-A3.pdf",
+    "pages": 1,
+    "text_spans": 25,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "instrument-record-print-02-tmt-timing-A3.pdf",
+    "pages": 1,
+    "text_spans": 33,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "instrument-record-print-03-ape-composition-A3.pdf",
+    "pages": 1,
+    "text_spans": 23,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "instrument-record-print-04-ape-optical-A3.pdf",
+    "pages": 1,
+    "text_spans": 19,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "quiet-precision-01-tmt-maintenance-A3.pdf",
+    "pages": 1,
+    "text_spans": 25,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "quiet-precision-02-tmt-timing-A3.pdf",
+    "pages": 1,
+    "text_spans": 33,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "quiet-precision-03-ape-composition-A3.pdf",
+    "pages": 1,
+    "text_spans": 23,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "quiet-precision-04-ape-optical-A3.pdf",
+    "pages": 1,
+    "text_spans": 19,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "research-folio-01-tmt-maintenance-A3.pdf",
+    "pages": 1,
+    "text_spans": 25,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "research-folio-02-tmt-timing-A3.pdf",
+    "pages": 1,
+    "text_spans": 33,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "research-folio-03-ape-composition-A3.pdf",
+    "pages": 1,
+    "text_spans": 23,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "research-folio-04-ape-optical-A3.pdf",
+    "pages": 1,
+    "text_spans": 19,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "technical-ledger-01-tmt-maintenance-A3.pdf",
+    "pages": 1,
+    "text_spans": 25,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "technical-ledger-02-tmt-timing-A3.pdf",
+    "pages": 1,
+    "text_spans": 33,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "technical-ledger-03-ape-composition-A3.pdf",
+    "pages": 1,
+    "text_spans": 23,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 11.25
+  },
+  {
+    "file": "technical-ledger-04-ape-optical-A3.pdf",
+    "pages": 1,
+    "text_spans": 19,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "technical-ledger-05-tmt-exposure-A3.pdf",
+    "pages": 1,
+    "text_spans": 11,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.0
+  },
+  {
+    "file": "technical-ledger-06-tmt-sequence-order-A3.pdf",
+    "pages": 1,
+    "text_spans": 12,
+    "minimum_text_pt": 9.0,
+    "minimum_formal_or_source_text_pt": 12.75
+  }
+]

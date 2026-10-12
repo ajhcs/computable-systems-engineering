@@ -1,0 +1,254 @@
+[
+  {
+    "treatment": "engineering-standard",
+    "file": "01-tmt-maintenance.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "069a9832e4e68ffcf9baa04ab72058993694bfaec38f061aa2f8b98aa79466c6",
+    "labels": 25
+  },
+  {
+    "treatment": "engineering-standard",
+    "file": "02-tmt-timing.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "10dbf71412444511ec17be3f764025fe39d7157824215b77ea7f912ae8d0ce18",
+    "labels": 36
+  },
+  {
+    "treatment": "engineering-standard",
+    "file": "03-ape-composition.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "ead9680e2c00614340b02a1df8e6c7b8645fd1dbbca7b864af679bd3f8650aba",
+    "labels": 23
+  },
+  {
+    "treatment": "engineering-standard",
+    "file": "04-ape-optical.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "58f26c27cac39127e30c7ed4610f3529f8ce382df5c91621cf96c6386cd3f2c9",
+    "labels": 19
+  },
+  {
+    "treatment": "engineering-standard",
+    "file": "05-tmt-exposure.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "43b3ec9e4726568a7bc05b1e07f40a1a8a982a25364383061d0702ff7f4a207f",
+    "labels": 11
+  },
+  {
+    "treatment": "engineering-standard",
+    "file": "06-tmt-sequence-order.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "be87ac182a5fbf16d394e41db0fec592d30a71ffba3b1963785e28e4ec38a837",
+    "labels": 12
+  },
+  {
+    "treatment": "instrument-record",
+    "file": "01-tmt-maintenance.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "1b0415b65ce3b104b50c447fd3bfe48c2489af9eedac5740c3bb9eb38a25f1cc",
+    "labels": 25
+  },
+  {
+    "treatment": "instrument-record",
+    "file": "02-tmt-timing.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "e721218b4e4ba7682a26264fadb01906689a4819d475dd55f49f4227f5fc9d6c",
+    "labels": 36
+  },
+  {
+    "treatment": "instrument-record",
+    "file": "03-ape-composition.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "7b17d0d113e17abb6c9c60714101000b9fa03d510cf8c558ea9d1ef84baf4074",
+    "labels": 23
+  },
+  {
+    "treatment": "instrument-record",
+    "file": "04-ape-optical.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "369533c0ac7c176faa8507302a0a7796a7ce1d5248eb42b71ad205d481a8c531",
+    "labels": 19
+  },
+  {
+    "treatment": "instrument-record-print",
+    "file": "01-tmt-maintenance.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "66b795fd82ef103ce72c88602694fb1c248c425fe7c339e2ea9313b71e01495a",
+    "labels": 25
+  },
+  {
+    "treatment": "instrument-record-print",
+    "file": "02-tmt-timing.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "7f4913d85867212daaad9b98ab0a4d116b6deac6e065e11f352b895be9fcacd7",
+    "labels": 36
+  },
+  {
+    "treatment": "instrument-record-print",
+    "file": "03-ape-composition.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "40bdc405096f60e97e8505b9f3795e1a5bbe7c8956533116e61549f798fad2a1",
+    "labels": 23
+  },
+  {
+    "treatment": "instrument-record-print",
+    "file": "04-ape-optical.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "c8c7a011aee3d642006d12b983c29e3da089dc2dd3178ec7cf7fb3cfa1a5fccb",
+    "labels": 19
+  },
+  {
+    "treatment": "quiet-precision",
+    "file": "01-tmt-maintenance.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "e6b1c4bd629cf3391be422a781063263d1de6c0e4f8ad75d7e5758eb27a8a3a1",
+    "labels": 25
+  },
+  {
+    "treatment": "quiet-precision",
+    "file": "02-tmt-timing.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "c4799ba52845638e093c4bc72f1b5c2e37f023179107e88090cde3e246353715",
+    "labels": 36
+  },
+  {
+    "treatment": "quiet-precision",
+    "file": "03-ape-composition.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "974bac806c38489c0e490ee6be151cd32186ee8a674da918dcc378a27f421d0f",
+    "labels": 23
+  },
+  {
+    "treatment": "quiet-precision",
+    "file": "04-ape-optical.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "20ee5199b47536a4193ae4fbc8d36610ebd18af5b02ea2baa094f653b4dcf7b3",
+    "labels": 19
+  },
+  {
+    "treatment": "research-folio",
+    "file": "01-tmt-maintenance.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "fa2a9934a4033c3053dbcdb899037ea7f32b6ebad8f2dfc079db1f2098e5eb78",
+    "labels": 25
+  },
+  {
+    "treatment": "research-folio",
+    "file": "02-tmt-timing.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "c294d01c10dc91a33746e91fd923d3ccae01e4eead6cf17a8a41ddedb55faea7",
+    "labels": 36
+  },
+  {
+    "treatment": "research-folio",
+    "file": "03-ape-composition.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "8cad0db6c36186f48d966e59f13d7c56a21372be03795b181ac04bd0b18aacd5",
+    "labels": 23
+  },
+  {
+    "treatment": "research-folio",
+    "file": "04-ape-optical.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "c45882840d90f3bc9232389c5e7bb04ab17d608b3b78cf10ab7aef5a11d76b8e",
+    "labels": 19
+  },
+  {
+    "treatment": "technical-ledger",
+    "file": "01-tmt-maintenance.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "0f079481716f0e8cde79e54f8f30f3295cb0dffd2b969da5a21c0c41c64e2461",
+    "labels": 25
+  },
+  {
+    "treatment": "technical-ledger",
+    "file": "02-tmt-timing.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "f8f0c0fc3f0b9f7e4ea61c74473d45c7927fb598b787c66ae9580da233399848",
+    "labels": 36
+  },
+  {
+    "treatment": "technical-ledger",
+    "file": "03-ape-composition.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "ea1fb27d416f90bb03cd624974e29d8809178a3dc614989e69de2c31e46f58e8",
+    "labels": 23
+  },
+  {
+    "treatment": "technical-ledger",
+    "file": "04-ape-optical.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "39d224cf489a6799d750bb5e39c2cdd801249d518b693d193a044a356689679e",
+    "labels": 19
+  },
+  {
+    "treatment": "technical-ledger",
+    "file": "05-tmt-exposure.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "0858624e50b68fd0a0cfac0162a8445553e75f949c91ecf7710c1715919692f0",
+    "labels": 11
+  },
+  {
+    "treatment": "technical-ledger",
+    "file": "06-tmt-sequence-order.svg",
+    "width": 1280,
+    "height": 900,
+    "clipped": [],
+    "png_sha256": "1c8b586d1cc5805b9794baccdbd62fc77f0d3687a5d57f81aa271ffa0f1015e5",
+    "labels": 12
+  }
+]

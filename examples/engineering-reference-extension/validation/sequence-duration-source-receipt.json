@@ -1,0 +1,70 @@
+{
+  "source_archive_sha256": "eb54c3105e4d894bb06378476f364bbf5cdb3bfad4cbf55f10fefacf6cad515f",
+  "source_entry": "com.nomagic.magicdraw.uml_model.model",
+  "source_pin": "87832a1657ccab023a90a6acfd0dff02d60e2b46",
+  "source_fragment_sha256": "f653db948501eb08cf3526567b0976a299067db4d2a92449ac4037ad60e3c847",
+  "retained_original_records": 37,
+  "duration_records": [
+    {
+      "id": "_18_0_5_baa02e2_1458099294150_216568_152103",
+      "role": "max",
+      "original_type": "uml:Duration",
+      "literal_records": [],
+      "original_semantic_sha256": "8c08a9f18e3b8ca62e47200f49ace76ceaa804a90250ae6ea424b07fa4197741"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099294150_583611_152102",
+      "role": "min",
+      "original_type": "uml:Duration",
+      "literal_records": [
+        {
+          "id": "_18_0_5_baa02e2_1458099294207_735736_152116",
+          "type": "uml:LiteralString",
+          "value": "2000s"
+        }
+      ],
+      "original_semantic_sha256": "c562615fae18783efc402333883a1cd2a090ea53fbf6000c6525c684b3d06241"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099294151_159917_152106",
+      "role": "max",
+      "original_type": "uml:Duration",
+      "literal_records": [],
+      "original_semantic_sha256": "9c22d2820f25e41753bbf0ca800b3e5fd87cf4d620fa4df0ecdd3c62c697249a"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099294151_760362_152105",
+      "role": "min",
+      "original_type": "uml:Duration",
+      "literal_records": [
+        {
+          "id": "_18_0_5_baa02e2_1458099294208_108641_152118",
+          "type": "uml:LiteralString",
+          "value": "60s"
+        }
+      ],
+      "original_semantic_sha256": "5cfb38f7cbf649ca01f41f3100e6039ac9c9d667fd3a04efada8e2459027321c"
+    },
+    {
+      "id": "_18_0_6_baa02e2_1469462778437_212536_166164",
+      "role": "min",
+      "original_type": "uml:Duration",
+      "literal_records": [
+        {
+          "id": "_18_0_6_baa02e2_1469462784006_149807_166175",
+          "type": "uml:LiteralString",
+          "value": "60s"
+        }
+      ],
+      "original_semantic_sha256": "e7b9b43bdf20f302938e262f0de5db910e9891fc4aa59e6429983449b897c2f6"
+    },
+    {
+      "id": "_18_0_6_baa02e2_1469462778438_170313_166168",
+      "role": "max",
+      "original_type": "uml:Duration",
+      "literal_records": [],
+      "original_semantic_sha256": "e1fddac9a1efc53c0f42fd09a1631ea7c74dbabe609b4beee6b536475e67b13d"
+    }
+  ],
+  "scope": "Copied exact selected original records; six Duration roots add three owned LiteralString children. Raw strings/empty maxima stay source-only; no timing-equivalence or simulation claim."
+}

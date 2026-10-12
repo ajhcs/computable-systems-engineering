@@ -1,0 +1,663 @@
+{
+  "version": 1,
+  "scope": "four fixed teaching fixtures; not general model equivalence",
+  "syntax": {
+    "context": {
+      "status": "pass",
+      "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+      "sha256": "38a401410c003f71e47dba8f91b44395a5340c9ffc7ebe9c0be4fa49eb7da0c3"
+    },
+    "ordered-actions": {
+      "status": "pass",
+      "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+      "sha256": "81e47434a7f0a2a156aa1baeacd3fcc81112d1233f55cfb05d11d0791edbe078"
+    },
+    "timed-obligation": {
+      "status": "pass",
+      "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+      "sha256": "1b199cdaa3bf72bf2ae82ccc701c69be48a3aa2dda51bfa3ae636cf2f8113bbb"
+    },
+    "runtime": {
+      "status": "pass",
+      "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+      "sha256": "220325832ed669967fd45b58a00a379759de5d4dd116f05629c094c4158504c9"
+    }
+  },
+  "synthetic_review": {
+    "pass": {
+      "status": "pass",
+      "claim_scope": "supplied_behavior_evidence"
+    },
+    "fail": {
+      "status": "fail",
+      "claim_scope": "supplied_behavior_evidence"
+    }
+  },
+  "code_anchors": {
+    "skills/develop-system-concept/scripts/cse.py": {
+      "sha256": "a4d98bf5651a54bbebf3e279be4baa100a2b6bcc56aa2134dde092514f4c64eb",
+      "anchors": [
+        "str(ROOT / \"scripts\" / COMMANDS[args.command])",
+        "subprocess.run"
+      ]
+    },
+    "scripts/sysml.py": {
+      "sha256": "d83a2080d18beb4c389125c2b12bd176aec993075ff1ba6b0fcfcd89079ac513",
+      "anchors": [
+        "from verifier.sysml import check_sysml",
+        "report = check_sysml"
+      ]
+    },
+    "verifier/sysml.py": {
+      "sha256": "06b069c5410110ee2b6cdab6debd7499e860078d4b6bffecd214296175b2f100",
+      "anchors": [
+        "def _parser_output",
+        "subprocess.run(command",
+        "SysmlBridge",
+        "check_document(candidate"
+      ]
+    },
+    "tools/sysml/SysmlBridge.java": {
+      "sha256": "1123660e9c50cf35a57892cef91e598fc9e8a369cf5e8562cbadfc2e886d86f5",
+      "anchors": [
+        "class SysmlBridge"
+      ]
+    },
+    "verifier/language.py": {
+      "sha256": "09968dee6646d7913abd5e33718d640368512cafc5a9760a8daadea42fcdc7db",
+      "anchors": [
+        "def check_document"
+      ]
+    }
+  },
+  "media": [
+    {
+      "id": "01-context",
+      "title": "Context: two different items, two directions",
+      "model": "examples/diagram-reference/context.sysml",
+      "model_sha256": "38a401410c003f71e47dba8f91b44395a5340c9ffc7ebe9c0be4fa49eb7da0c3",
+      "nodes": [
+        {
+          "id": "borrower",
+          "lines": [
+            "part borrower : Borrower",
+            "external participant"
+          ],
+          "x": 70,
+          "y": 220,
+          "w": 330,
+          "h": 250,
+          "fill": "#f0f3f7",
+          "refs": [
+            "LibraryContext::borrower"
+          ],
+          "size": 22
+        },
+        {
+          "id": "system",
+          "lines": [
+            "part system : ToolLibrary",
+            "system of interest",
+            "internals intentionally omitted"
+          ],
+          "x": 820,
+          "y": 220,
+          "w": 390,
+          "h": 250,
+          "fill": "#eaf5f2",
+          "refs": [
+            "LibraryContext::system"
+          ],
+          "size": 22
+        }
+      ],
+      "edges": [
+        {
+          "id": "requestFlow",
+          "source": "borrower",
+          "target": "system",
+          "x1": 400,
+          "y1": 310,
+          "x2": 820,
+          "y2": 310,
+          "lines": [
+            "requestFlow : Request"
+          ],
+          "refs": [
+            "LibraryContext::requestFlow"
+          ],
+          "label_y": 270
+        },
+        {
+          "id": "allocationFlow",
+          "source": "system",
+          "target": "borrower",
+          "x1": 820,
+          "y1": 410,
+          "x2": 400,
+          "y2": 410,
+          "lines": [
+            "allocationFlow : Allocation"
+          ],
+          "refs": [
+            "LibraryContext::allocationFlow"
+          ],
+          "label_y": 365
+        }
+      ],
+      "svg": "01-context.svg",
+      "drawio": "01-context.drawio",
+      "claim": [
+        "Request flows borrower \u2192 system; Allocation flows system \u2192 borrower.",
+        "No internal design, successful delivery, timing, or stakeholder acceptance is claimed."
+      ]
+    },
+    {
+      "id": "02-actions",
+      "title": "Behavior: order without invented decisions",
+      "model": "examples/diagram-reference/ordered-actions.sysml",
+      "model_sha256": "81e47434a7f0a2a156aa1baeacd3fcc81112d1233f55cfb05d11d0791edbe078",
+      "nodes": [
+        {
+          "id": "start",
+          "lines": [
+            "control",
+            "start"
+          ],
+          "x": 45,
+          "y": 270,
+          "w": 80,
+          "h": 135,
+          "fill": "#eaf5f2",
+          "refs": [
+            "LibraryActions::BorrowAvailable::start"
+          ],
+          "size": 19
+        },
+        {
+          "id": "receiveRequest",
+          "lines": [
+            "action",
+            "receiveRequest"
+          ],
+          "x": 180,
+          "y": 270,
+          "w": 240,
+          "h": 135,
+          "fill": "#eaf5f2",
+          "refs": [
+            "LibraryActions::BorrowAvailable::receiveRequest"
+          ],
+          "size": 19
+        },
+        {
+          "id": "assessAvailability",
+          "lines": [
+            "action",
+            "assessAvailability"
+          ],
+          "x": 490,
+          "y": 270,
+          "w": 240,
+          "h": 135,
+          "fill": "#eaf5f2",
+          "refs": [
+            "LibraryActions::BorrowAvailable::assessAvailability"
+          ],
+          "size": 19
+        },
+        {
+          "id": "recordAllocation",
+          "lines": [
+            "action",
+            "recordAllocation"
+          ],
+          "x": 800,
+          "y": 270,
+          "w": 240,
+          "h": 135,
+          "fill": "#eaf5f2",
+          "refs": [
+            "LibraryActions::BorrowAvailable::recordAllocation"
+          ],
+          "size": 19
+        },
+        {
+          "id": "done",
+          "lines": [
+            "control",
+            "done"
+          ],
+          "x": 1100,
+          "y": 270,
+          "w": 130,
+          "h": 135,
+          "fill": "#eaf5f2",
+          "refs": [
+            "LibraryActions::BorrowAvailable::done"
+          ],
+          "size": 19
+        }
+      ],
+      "edges": [
+        {
+          "id": "then-0",
+          "source": "start",
+          "target": "receiveRequest",
+          "x1": 125,
+          "y1": 337,
+          "x2": 180,
+          "y2": 337,
+          "lines": [],
+          "refs": [
+            "LibraryActions::BorrowAvailable succession 0"
+          ],
+          "label_y": 313
+        },
+        {
+          "id": "then-1",
+          "source": "receiveRequest",
+          "target": "assessAvailability",
+          "x1": 420,
+          "y1": 337,
+          "x2": 490,
+          "y2": 337,
+          "lines": [],
+          "refs": [
+            "LibraryActions::BorrowAvailable succession 1"
+          ],
+          "label_y": 313
+        },
+        {
+          "id": "then-2",
+          "source": "assessAvailability",
+          "target": "recordAllocation",
+          "x1": 730,
+          "y1": 337,
+          "x2": 800,
+          "y2": 337,
+          "lines": [],
+          "refs": [
+            "LibraryActions::BorrowAvailable succession 2"
+          ],
+          "label_y": 313
+        },
+        {
+          "id": "then-3",
+          "source": "recordAllocation",
+          "target": "done",
+          "x1": 1040,
+          "y1": 337,
+          "x2": 1100,
+          "y2": 337,
+          "lines": [],
+          "refs": [
+            "LibraryActions::BorrowAvailable succession 3"
+          ],
+          "label_y": 313
+        }
+      ],
+      "svg": "02-actions.svg",
+      "drawio": "02-actions.drawio",
+      "claim": [
+        "receiveRequest \u2192 assessAvailability \u2192 recordAllocation; the selected path ends at done.",
+        "Succession is control order. It does not establish item flow, duration, allocation, or reachability proof.",
+        "The unavailable-tool outcome remains outside this selected view."
+      ]
+    },
+    {
+      "id": "03-deadline",
+      "title": "Obligation: the same deadline, two verdicts",
+      "model": "examples/diagram-reference/timed-obligation.sysml",
+      "model_sha256": "1b199cdaa3bf72bf2ae82ccc701c69be48a3aa2dda51bfa3ae636cf2f8113bbb",
+      "nodes": [
+        {
+          "id": "binding",
+          "lines": [
+            "R_RECORD / responseTime",
+            "subject unit = system : ToolLibrary"
+          ],
+          "x": 50,
+          "y": 155,
+          "w": 1180,
+          "h": 92,
+          "fill": "#eaf5f2",
+          "refs": [
+            "LibraryDeadline::TimelyRecord"
+          ],
+          "size": 21
+        },
+        {
+          "id": "pass-0",
+          "lines": [
+            "t=0 s",
+            "request: false",
+            "recorded: false"
+          ],
+          "x": 290,
+          "y": 280,
+          "w": 210,
+          "h": 115,
+          "fill": "#eaf5f2",
+          "refs": [
+            "R_RECORD"
+          ],
+          "size": 18
+        },
+        {
+          "id": "fail-0",
+          "lines": [
+            "t=0 s",
+            "request: false",
+            "recorded: false"
+          ],
+          "x": 290,
+          "y": 420,
+          "w": 210,
+          "h": 115,
+          "fill": "#fff3df",
+          "refs": [
+            "R_RECORD"
+          ],
+          "size": 18
+        },
+        {
+          "id": "pass-1",
+          "lines": [
+            "t=1 s",
+            "request: true",
+            "recorded: false"
+          ],
+          "x": 535,
+          "y": 280,
+          "w": 210,
+          "h": 115,
+          "fill": "#eaf5f2",
+          "refs": [
+            "R_RECORD"
+          ],
+          "size": 18
+        },
+        {
+          "id": "fail-1",
+          "lines": [
+            "t=1 s",
+            "request: true",
+            "recorded: false"
+          ],
+          "x": 535,
+          "y": 420,
+          "w": 210,
+          "h": 115,
+          "fill": "#fff3df",
+          "refs": [
+            "R_RECORD"
+          ],
+          "size": 18
+        },
+        {
+          "id": "pass-2",
+          "lines": [
+            "t=2 s",
+            "request: true",
+            "recorded: false"
+          ],
+          "x": 780,
+          "y": 280,
+          "w": 210,
+          "h": 115,
+          "fill": "#eaf5f2",
+          "refs": [
+            "R_RECORD"
+          ],
+          "size": 18
+        },
+        {
+          "id": "fail-2",
+          "lines": [
+            "t=2 s",
+            "request: true",
+            "recorded: false"
+          ],
+          "x": 780,
+          "y": 420,
+          "w": 210,
+          "h": 115,
+          "fill": "#fff3df",
+          "refs": [
+            "R_RECORD"
+          ],
+          "size": 18
+        },
+        {
+          "id": "pass-3",
+          "lines": [
+            "t=3 s",
+            "request: true",
+            "recorded: true"
+          ],
+          "x": 1025,
+          "y": 280,
+          "w": 210,
+          "h": 115,
+          "fill": "#eaf5f2",
+          "refs": [
+            "R_RECORD"
+          ],
+          "size": 18
+        },
+        {
+          "id": "fail-3",
+          "lines": [
+            "t=3 s",
+            "request: true",
+            "recorded: false"
+          ],
+          "x": 1025,
+          "y": 420,
+          "w": 210,
+          "h": 115,
+          "fill": "#fff3df",
+          "refs": [
+            "R_RECORD"
+          ],
+          "size": 18
+        },
+        {
+          "id": "pass-status",
+          "lines": [
+            "PASS",
+            "complete trace"
+          ],
+          "x": 50,
+          "y": 280,
+          "w": 195,
+          "h": 115,
+          "fill": "#eaf5f2",
+          "refs": [
+            "synthetic-pass.json"
+          ],
+          "size": 21
+        },
+        {
+          "id": "fail-status",
+          "lines": [
+            "FAIL",
+            "deadline missed"
+          ],
+          "x": 50,
+          "y": 420,
+          "w": 195,
+          "h": 115,
+          "fill": "#fff3df",
+          "refs": [
+            "synthetic-fail.json"
+          ],
+          "size": 21
+        }
+      ],
+      "edges": [],
+      "svg": "03-deadline.svg",
+      "drawio": "03-deadline.drawio",
+      "claim": [
+        "R_RECORD: Upon request = true, within 2 seconds satisfy recorded = true.",
+        "Trigger at t=1; inclusive deadline t=3. Sustained true request is not a fresh rising edge.",
+        "Results apply to these complete synthetic traces; no real behavior or acceptance is established."
+      ]
+    },
+    {
+      "id": "04-runtime",
+      "title": "Real repository: parsing and computation diverge",
+      "model": "examples/diagram-reference/runtime.sysml",
+      "model_sha256": "220325832ed669967fd45b58a00a379759de5d4dd116f05629c094c4158504c9",
+      "nodes": [
+        {
+          "id": "launcher",
+          "lines": [
+            "Skill launcher",
+            "skills/develop-*/",
+            "scripts/cse.py"
+          ],
+          "x": 50,
+          "y": 270,
+          "w": 210,
+          "h": 125,
+          "fill": "#eaf5f2",
+          "refs": [
+            "skills/develop-system-concept/scripts/cse.py"
+          ],
+          "size": 22
+        },
+        {
+          "id": "cli",
+          "lines": [
+            "CLI",
+            "scripts/sysml.py"
+          ],
+          "x": 340,
+          "y": 270,
+          "w": 210,
+          "h": 125,
+          "fill": "#eaf5f2",
+          "refs": [
+            "scripts/sysml.py"
+          ],
+          "size": 22
+        },
+        {
+          "id": "adapter",
+          "lines": [
+            "Adapter",
+            "verifier/sysml.py"
+          ],
+          "x": 630,
+          "y": 270,
+          "w": 235,
+          "h": 125,
+          "fill": "#eaf5f2",
+          "refs": [
+            "verifier/sysml.py"
+          ],
+          "size": 22
+        },
+        {
+          "id": "pilot",
+          "lines": [
+            "Java pilot / bridge",
+            "syntax + references"
+          ],
+          "x": 980,
+          "y": 180,
+          "w": 250,
+          "h": 125,
+          "fill": "#eaf5f2",
+          "refs": [
+            "tools/sysml/SysmlBridge.java"
+          ],
+          "size": 22
+        },
+        {
+          "id": "checker",
+          "lines": [
+            "Bounded checker",
+            "verifier/language.py"
+          ],
+          "x": 980,
+          "y": 420,
+          "w": 250,
+          "h": 125,
+          "fill": "#eaf5f2",
+          "refs": [
+            "verifier/language.py"
+          ],
+          "size": 22
+        }
+      ],
+      "edges": [
+        {
+          "id": "invoke",
+          "source": "launcher",
+          "target": "cli",
+          "x1": 260,
+          "y1": 332,
+          "x2": 340,
+          "y2": 332,
+          "lines": [],
+          "refs": [
+            "cse.py subprocess.run"
+          ],
+          "label_y": 308
+        },
+        {
+          "id": "call",
+          "source": "cli",
+          "target": "adapter",
+          "x1": 550,
+          "y1": 332,
+          "x2": 630,
+          "y2": 332,
+          "lines": [],
+          "refs": [
+            "sysml.py check_sysml"
+          ],
+          "label_y": 308
+        },
+        {
+          "id": "parse",
+          "source": "adapter",
+          "target": "pilot",
+          "x1": 865,
+          "y1": 300,
+          "x2": 980,
+          "y2": 245,
+          "lines": [],
+          "refs": [
+            "sysml.py _parser_output"
+          ],
+          "label_y": 221
+        },
+        {
+          "id": "compute",
+          "source": "adapter",
+          "target": "checker",
+          "x1": 865,
+          "y1": 365,
+          "x2": 980,
+          "y2": 480,
+          "lines": [],
+          "refs": [
+            "sysml.py check_document"
+          ],
+          "label_y": 341
+        }
+      ],
+      "svg": "04-runtime.svg",
+      "drawio": "04-runtime.drawio",
+      "claim": [
+        "launcher \u2192 CLI \u2192 adapter. Adapter invokes the Java pilot and, for supported clauses, the checker.",
+        "Syntax-only ends with parser/shape findings; bounded review also needs manifest and evidence.",
+        "Runtime grouping is abstract. This view does not model production services or engineer acceptance."
+      ]
+    }
+  ]
+}

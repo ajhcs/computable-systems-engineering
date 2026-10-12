@@ -1,0 +1,1568 @@
+{
+  "classification": "Complete selected SysML 1.x source activity; explanatory reading, not a SysML v2 conversion",
+  "size": [
+    1640,
+    2440
+  ],
+  "source": "usnistgov/DiscreteEventLogisticsSystems",
+  "commit": "7b09a59fc7e900177524f06f8a42dcc3d3c1aced",
+  "activityID": "_19_0_2_e190334_1589519283990_647994_284",
+  "diagramID": "_19_0_2_e190334_1589519284709_966967_673",
+  "boxes": [
+    {
+      "id": "parameter-0",
+      "kind": "box",
+      "x": 75,
+      "y": 140,
+      "w": 540,
+      "h": 75,
+      "sourceID": "_19_0_2_e190334_1589519284756_593830_696",
+      "fill": "#e5edf1"
+    },
+    {
+      "id": "parameter-1",
+      "kind": "box",
+      "x": 915,
+      "y": 140,
+      "w": 540,
+      "h": 75,
+      "sourceID": "_19_0_2_e190334_1589519284756_594897_695",
+      "fill": "#e5edf1"
+    },
+    {
+      "id": "call-1",
+      "kind": "box",
+      "x": 75,
+      "y": 260,
+      "w": 540,
+      "h": 330,
+      "sourceID": "_19_0_2_e190334_1589519284771_65514_712",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-2",
+      "kind": "box",
+      "x": 75,
+      "y": 632,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284771_280650_711",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-3",
+      "kind": "box",
+      "x": 75,
+      "y": 849,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284756_944262_697",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-4",
+      "kind": "box",
+      "x": 75,
+      "y": 1066,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284756_737806_698",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-5",
+      "kind": "box",
+      "x": 75,
+      "y": 1283,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284756_923263_699",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-6",
+      "kind": "box",
+      "x": 75,
+      "y": 1500,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284756_356543_700",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-7",
+      "kind": "box",
+      "x": 75,
+      "y": 1717,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284756_468263_701",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-8",
+      "kind": "box",
+      "x": 75,
+      "y": 1934,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284756_314500_702",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-9",
+      "kind": "box",
+      "x": 915,
+      "y": 260,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284771_709354_703",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-10",
+      "kind": "box",
+      "x": 915,
+      "y": 477,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284771_395572_704",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-11",
+      "kind": "box",
+      "x": 915,
+      "y": 694,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284771_861498_705",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-12",
+      "kind": "box",
+      "x": 915,
+      "y": 911,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284771_787019_706",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-13",
+      "kind": "box",
+      "x": 915,
+      "y": 1128,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284771_511338_707",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-14",
+      "kind": "box",
+      "x": 915,
+      "y": 1345,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284771_413013_708",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-15",
+      "kind": "box",
+      "x": 915,
+      "y": 1562,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284771_187736_709",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-16",
+      "kind": "box",
+      "x": 915,
+      "y": 1779,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1589519284771_205786_710",
+      "fill": "#edf5f8"
+    },
+    {
+      "id": "call-17",
+      "kind": "box",
+      "x": 915,
+      "y": 1996,
+      "w": 540,
+      "h": 175,
+      "sourceID": "_19_0_2_e190334_1591112203536_749892_1134",
+      "fill": "#edf5f8"
+    }
+  ],
+  "labels": [
+    {
+      "id": "title",
+      "x": 45,
+      "y": 45,
+      "value": "MakeCoupler: 17 calls, one control sequence",
+      "size": 30,
+      "sourceID": null,
+      "bold": true
+    },
+    {
+      "id": "subtitle",
+      "x": 45,
+      "y": 76,
+      "value": "NIST electronics assembly case \u00b7 Iteration1 \u00b7 complete selected activity",
+      "size": 20,
+      "sourceID": null,
+      "bold": false
+    },
+    {
+      "id": "classification",
+      "x": 45,
+      "y": 106,
+      "value": "Explanatory source reading. Original formal SysML 1.x activity and native model accompany it.",
+      "size": 18,
+      "sourceID": null,
+      "bold": false
+    },
+    {
+      "id": "parameter-label-0",
+      "x": 89,
+      "y": 169,
+      "value": "workOrderIN : untyped [1]",
+      "size": 19,
+      "sourceID": "_19_0_2_e190334_1589519284756_593830_696",
+      "bold": true
+    },
+    {
+      "id": "parameter-limit-0",
+      "x": 89,
+      "y": 195,
+      "value": "Activity parameter node \u00b7 unconnected in source",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519284756_593830_696",
+      "bold": false
+    },
+    {
+      "id": "parameter-label-1",
+      "x": 929,
+      "y": 169,
+      "value": "partOUT : Coupler [1]",
+      "size": 19,
+      "sourceID": "_19_0_2_e190334_1589519284756_594897_695",
+      "bold": true
+    },
+    {
+      "id": "parameter-limit-1",
+      "x": 929,
+      "y": 195,
+      "value": "Activity parameter node \u00b7 unconnected in source",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519284756_594897_695",
+      "bold": false
+    },
+    {
+      "id": "call-name-1",
+      "x": 90,
+      "y": 289,
+      "value": "01  Inputs",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_65514_712",
+      "bold": true
+    },
+    {
+      "id": "behavior-1",
+      "x": 90,
+      "y": 315,
+      "value": "calls GetInputs_Coupler",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284021_714290_312",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-1",
+      "x": 90,
+      "y": 340,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_65514_712",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290682_729641_2123",
+      "x": 90,
+      "y": 363,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290682_729641_2123",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_324795_2114",
+      "x": 90,
+      "y": 384,
+      "value": "out  sensorCard : SensorCard [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_324795_2114",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290682_401373_2115",
+      "x": 90,
+      "y": 405,
+      "value": "out  cca2 : CCA2 [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290682_401373_2115",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290682_891847_2116",
+      "x": 90,
+      "y": 426,
+      "value": "out  cableAssy1 : CableAssembly1 [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290682_891847_2116",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290682_572322_2117",
+      "x": 90,
+      "y": 447,
+      "value": "out  daughterCard : DaughterCard [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290682_572322_2117",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290682_140272_2118",
+      "x": 90,
+      "y": 468,
+      "value": "out  progAssy : ProgrammedAssembly [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290682_140272_2118",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290682_313679_2119",
+      "x": 90,
+      "y": 489,
+      "value": "out  chassisElecEquip : ChassisElectricalEquipment [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290682_313679_2119",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290682_798979_2120",
+      "x": 90,
+      "y": 510,
+      "value": "out  elecAssy : ElectronicAssembly [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290682_798979_2120",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290682_754703_2121",
+      "x": 90,
+      "y": 531,
+      "value": "out  cableAssy3 : CableAssembly3 [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290682_754703_2121",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290682_392855_2122",
+      "x": 90,
+      "y": 552,
+      "value": "out  cableAssy4 : CableAssembly4 [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290682_392855_2122",
+      "bold": false
+    },
+    {
+      "id": "call-name-2",
+      "x": 90,
+      "y": 661,
+      "value": "02  UnitAssembly",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_280650_711",
+      "bold": true
+    },
+    {
+      "id": "behavior-2",
+      "x": 90,
+      "y": 687,
+      "value": "calls Assemble",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284021_491548_319",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-2",
+      "x": 90,
+      "y": 712,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_280650_711",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_946419_2112",
+      "x": 90,
+      "y": 735,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_946419_2112",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_416043_2113",
+      "x": 90,
+      "y": 756,
+      "value": "in  partIN : Part [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_416043_2113",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_950080_2111",
+      "x": 90,
+      "y": 777,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_950080_2111",
+      "bold": false
+    },
+    {
+      "id": "call-name-3",
+      "x": 90,
+      "y": 878,
+      "value": "03  Quality_UnitAssembly",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284756_944262_697",
+      "bold": true
+    },
+    {
+      "id": "behavior-3",
+      "x": 90,
+      "y": 904,
+      "value": "calls ManualInspect",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284053_779231_346",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-3",
+      "x": 90,
+      "y": 929,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284756_944262_697",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_60339_2070",
+      "x": 90,
+      "y": 952,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_60339_2070",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_610434_2071",
+      "x": 90,
+      "y": 973,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_610434_2071",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_542023_2069",
+      "x": 90,
+      "y": 994,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_542023_2069",
+      "bold": false
+    },
+    {
+      "id": "call-name-4",
+      "x": 90,
+      "y": 1095,
+      "value": "04  UnitAssembly_Test",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284756_737806_698",
+      "bold": true
+    },
+    {
+      "id": "behavior-4",
+      "x": 90,
+      "y": 1121,
+      "value": "calls Assemble",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284021_491548_319",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-4",
+      "x": 90,
+      "y": 1146,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284756_737806_698",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_893998_2073",
+      "x": 90,
+      "y": 1169,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_893998_2073",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_206769_2074",
+      "x": 90,
+      "y": 1190,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_206769_2074",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_499598_2072",
+      "x": 90,
+      "y": 1211,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_499598_2072",
+      "bold": false
+    },
+    {
+      "id": "call-name-5",
+      "x": 90,
+      "y": 1312,
+      "value": "05  Quality_UnitAssembly_Test",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284756_923263_699",
+      "bold": true
+    },
+    {
+      "id": "behavior-5",
+      "x": 90,
+      "y": 1338,
+      "value": "calls ManualInspect",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284053_779231_346",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-5",
+      "x": 90,
+      "y": 1363,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284756_923263_699",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_918175_2076",
+      "x": 90,
+      "y": 1386,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_918175_2076",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_728906_2077",
+      "x": 90,
+      "y": 1407,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_728906_2077",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_663267_2075",
+      "x": 90,
+      "y": 1428,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_663267_2075",
+      "bold": false
+    },
+    {
+      "id": "call-name-6",
+      "x": 90,
+      "y": 1529,
+      "value": "06  LeakCheck",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284756_356543_700",
+      "bold": true
+    },
+    {
+      "id": "behavior-6",
+      "x": 90,
+      "y": 1555,
+      "value": "calls Test_LeakCheck",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284021_927400_320",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-6",
+      "x": 90,
+      "y": 1580,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284756_356543_700",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_853905_2079",
+      "x": 90,
+      "y": 1603,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_853905_2079",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_585411_2080",
+      "x": 90,
+      "y": 1624,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_585411_2080",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_868495_2078",
+      "x": 90,
+      "y": 1645,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_868495_2078",
+      "bold": false
+    },
+    {
+      "id": "call-name-7",
+      "x": 90,
+      "y": 1746,
+      "value": "07  Quality_LeakCheck",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284756_468263_701",
+      "bold": true
+    },
+    {
+      "id": "behavior-7",
+      "x": 90,
+      "y": 1772,
+      "value": "calls ManualInspect",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284053_779231_346",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-7",
+      "x": 90,
+      "y": 1797,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284756_468263_701",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_207767_2082",
+      "x": 90,
+      "y": 1820,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_207767_2082",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_97363_2083",
+      "x": 90,
+      "y": 1841,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_97363_2083",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_711083_2081",
+      "x": 90,
+      "y": 1862,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_711083_2081",
+      "bold": false
+    },
+    {
+      "id": "call-name-8",
+      "x": 90,
+      "y": 1963,
+      "value": "08  Test_Preliminary",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284756_314500_702",
+      "bold": true
+    },
+    {
+      "id": "behavior-8",
+      "x": 90,
+      "y": 1989,
+      "value": "calls Test_Functional",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284021_797241_317",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-8",
+      "x": 90,
+      "y": 2014,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284756_314500_702",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_284883_2085",
+      "x": 90,
+      "y": 2037,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_284883_2085",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_653019_2086",
+      "x": 90,
+      "y": 2058,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_653019_2086",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_965661_2084",
+      "x": 90,
+      "y": 2079,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_965661_2084",
+      "bold": false
+    },
+    {
+      "id": "call-name-9",
+      "x": 930,
+      "y": 289,
+      "value": "09  Test_Vibration",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_709354_703",
+      "bold": true
+    },
+    {
+      "id": "behavior-9",
+      "x": 930,
+      "y": 315,
+      "value": "calls Test_Vibration",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284021_403975_323",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-9",
+      "x": 930,
+      "y": 340,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_709354_703",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_94925_2088",
+      "x": 930,
+      "y": 363,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_94925_2088",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_679961_2089",
+      "x": 930,
+      "y": 384,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_679961_2089",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_448701_2087",
+      "x": 930,
+      "y": 405,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_448701_2087",
+      "bold": false
+    },
+    {
+      "id": "call-name-10",
+      "x": 930,
+      "y": 506,
+      "value": "10  Test_Burn-In",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_395572_704",
+      "bold": true
+    },
+    {
+      "id": "behavior-10",
+      "x": 930,
+      "y": 532,
+      "value": "calls Test_BurnIn",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284021_941397_322",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-10",
+      "x": 930,
+      "y": 557,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_395572_704",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_430520_2091",
+      "x": 930,
+      "y": 580,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_430520_2091",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_569552_2092",
+      "x": 930,
+      "y": 601,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_569552_2092",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_170407_2090",
+      "x": 930,
+      "y": 622,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_170407_2090",
+      "bold": false
+    },
+    {
+      "id": "call-name-11",
+      "x": 930,
+      "y": 723,
+      "value": "11  Test_FinalData",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_861498_705",
+      "bold": true
+    },
+    {
+      "id": "behavior-11",
+      "x": 930,
+      "y": 749,
+      "value": "calls Test_FinalData",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284021_113717_321",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-11",
+      "x": 930,
+      "y": 774,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_861498_705",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_329972_2094",
+      "x": 930,
+      "y": 797,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_329972_2094",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_57184_2095",
+      "x": 930,
+      "y": 818,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_57184_2095",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_489839_2093",
+      "x": 930,
+      "y": 839,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_489839_2093",
+      "bold": false
+    },
+    {
+      "id": "call-name-12",
+      "x": 930,
+      "y": 940,
+      "value": "12  Quality_UnitVerification",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_787019_706",
+      "bold": true
+    },
+    {
+      "id": "behavior-12",
+      "x": 930,
+      "y": 966,
+      "value": "calls ManualInspect",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284053_779231_346",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-12",
+      "x": 930,
+      "y": 991,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_787019_706",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_822809_2097",
+      "x": 930,
+      "y": 1014,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_822809_2097",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_645235_2098",
+      "x": 930,
+      "y": 1035,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_645235_2098",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_266112_2096",
+      "x": 930,
+      "y": 1056,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_266112_2096",
+      "bold": false
+    },
+    {
+      "id": "call-name-13",
+      "x": 930,
+      "y": 1157,
+      "value": "13  Nameplate_Laser",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_511338_707",
+      "bold": true
+    },
+    {
+      "id": "behavior-13",
+      "x": 930,
+      "y": 1183,
+      "value": "calls LaserMarking",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284037_268904_330",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-13",
+      "x": 930,
+      "y": 1208,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_511338_707",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_111564_2100",
+      "x": 930,
+      "y": 1231,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_111564_2100",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_486137_2101",
+      "x": 930,
+      "y": 1252,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_486137_2101",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_531842_2099",
+      "x": 930,
+      "y": 1273,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_531842_2099",
+      "bold": false
+    },
+    {
+      "id": "call-name-14",
+      "x": 930,
+      "y": 1374,
+      "value": "14  UnitAssembly_TouchUp",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_413013_708",
+      "bold": true
+    },
+    {
+      "id": "behavior-14",
+      "x": 930,
+      "y": 1400,
+      "value": "calls TouchUp",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284021_714045_324",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-14",
+      "x": 930,
+      "y": 1425,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_413013_708",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_194923_2103",
+      "x": 930,
+      "y": 1448,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_194923_2103",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_989441_2104",
+      "x": 930,
+      "y": 1469,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_989441_2104",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_665977_2102",
+      "x": 930,
+      "y": 1490,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_665977_2102",
+      "bold": false
+    },
+    {
+      "id": "call-name-15",
+      "x": 930,
+      "y": 1591,
+      "value": "15  Quality_FinalSell",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_187736_709",
+      "bold": true
+    },
+    {
+      "id": "behavior-15",
+      "x": 930,
+      "y": 1617,
+      "value": "calls ManualInspect",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284053_779231_346",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-15",
+      "x": 930,
+      "y": 1642,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_187736_709",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_86203_2106",
+      "x": 930,
+      "y": 1665,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_86203_2106",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_936510_2107",
+      "x": 930,
+      "y": 1686,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_936510_2107",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_657702_2105",
+      "x": 930,
+      "y": 1707,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_657702_2105",
+      "bold": false
+    },
+    {
+      "id": "call-name-16",
+      "x": 930,
+      "y": 1808,
+      "value": "16  Quality_FinalSell_2nd",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1589519284771_205786_710",
+      "bold": true
+    },
+    {
+      "id": "behavior-16",
+      "x": 930,
+      "y": 1834,
+      "value": "calls ManualInspect",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1589519284053_779231_346",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-16",
+      "x": 930,
+      "y": 1859,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1589519284771_205786_710",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_23616_2109",
+      "x": 930,
+      "y": 1882,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_23616_2109",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_692757_2110",
+      "x": 930,
+      "y": 1903,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_692757_2110",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1589519290666_915630_2108",
+      "x": 930,
+      "y": 1924,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1589519290666_915630_2108",
+      "bold": false
+    },
+    {
+      "id": "call-name-17",
+      "x": 930,
+      "y": 2025,
+      "value": "17  FinalShipTable",
+      "size": 20,
+      "sourceID": "_19_0_2_e190334_1591112203536_749892_1134",
+      "bold": true
+    },
+    {
+      "id": "behavior-17",
+      "x": 930,
+      "y": 2051,
+      "value": "calls PutOutputs_Coupler",
+      "size": 18,
+      "sourceID": "_19_0_2_e190334_1591111904821_528102_777",
+      "bold": false
+    },
+    {
+      "id": "pin-caption-17",
+      "x": 930,
+      "y": 2076,
+      "value": "Source pins \u00b7 no object-flow wiring",
+      "size": 16,
+      "sourceID": "_19_0_2_e190334_1591112203536_749892_1134",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1591112203553_697581_1146",
+      "x": 930,
+      "y": 2099,
+      "value": "in  workOrderIN : untyped [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1591112203553_697581_1146",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1591112203553_295902_1145",
+      "x": 930,
+      "y": 2120,
+      "value": "in  partIN : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1591112203553_295902_1145",
+      "bold": false
+    },
+    {
+      "id": "pin-_19_0_2_e190334_1591112203557_37454_1151",
+      "x": 930,
+      "y": 2141,
+      "value": "out  partOUT : Coupler [1]",
+      "size": 17,
+      "sourceID": "_19_0_2_e190334_1591112203557_37454_1151",
+      "bold": false
+    },
+    {
+      "id": "footer1",
+      "x": 45,
+      "y": 2302,
+      "value": "16 arrows = native ControlFlow edges. They order calls; they do not carry work orders or parts.",
+      "size": 18,
+      "sourceID": null,
+      "bold": false
+    },
+    {
+      "id": "footer2",
+      "x": 45,
+      "y": 2330,
+      "value": "33 input pins + 25 output pins + 2 activity parameter nodes are retained; untyped means untyped.",
+      "size": 18,
+      "sourceID": null,
+      "bold": false
+    },
+    {
+      "id": "footer3",
+      "x": 45,
+      "y": 2358,
+      "value": "Native called behaviors include placeholders. This drawing does not establish execution or a deployed factory.",
+      "size": 18,
+      "sourceID": null,
+      "bold": false
+    },
+    {
+      "id": "footer4",
+      "x": 45,
+      "y": 2386,
+      "value": "Source: usnistgov/DiscreteEventLogisticsSystems @ 7b09a59f \u00b7 full NIST notice supplied.",
+      "size": 17,
+      "sourceID": null,
+      "bold": false
+    },
+    {
+      "id": "footer5",
+      "x": 45,
+      "y": 2414,
+      "value": "Modern layout modified 2026-10-03; original formal model and author SVG remain unchanged.",
+      "size": 17,
+      "sourceID": null,
+      "bold": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "control-1",
+      "points": [
+        [
+          345.0,
+          590
+        ],
+        [
+          345.0,
+          632
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_525808_727",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-2",
+      "points": [
+        [
+          345.0,
+          807
+        ],
+        [
+          345.0,
+          849
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_72105_726",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-3",
+      "points": [
+        [
+          345.0,
+          1024
+        ],
+        [
+          345.0,
+          1066
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_507184_713",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-4",
+      "points": [
+        [
+          345.0,
+          1241
+        ],
+        [
+          345.0,
+          1283
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_875332_714",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-5",
+      "points": [
+        [
+          345.0,
+          1458
+        ],
+        [
+          345.0,
+          1500
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_896071_715",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-6",
+      "points": [
+        [
+          345.0,
+          1675
+        ],
+        [
+          345.0,
+          1717
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_475119_716",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-7",
+      "points": [
+        [
+          345.0,
+          1892
+        ],
+        [
+          345.0,
+          1934
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_993807_717",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-8",
+      "points": [
+        [
+          345.0,
+          2109
+        ],
+        [
+          345.0,
+          2255
+        ],
+        [
+          800,
+          2255
+        ],
+        [
+          800,
+          235
+        ],
+        [
+          1185.0,
+          235
+        ],
+        [
+          1185.0,
+          260
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_192217_718",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-9",
+      "points": [
+        [
+          1185.0,
+          435
+        ],
+        [
+          1185.0,
+          477
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_899086_719",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-10",
+      "points": [
+        [
+          1185.0,
+          652
+        ],
+        [
+          1185.0,
+          694
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_130042_720",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-11",
+      "points": [
+        [
+          1185.0,
+          869
+        ],
+        [
+          1185.0,
+          911
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_159574_721",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-12",
+      "points": [
+        [
+          1185.0,
+          1086
+        ],
+        [
+          1185.0,
+          1128
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_443181_722",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-13",
+      "points": [
+        [
+          1185.0,
+          1303
+        ],
+        [
+          1185.0,
+          1345
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_259631_723",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-14",
+      "points": [
+        [
+          1185.0,
+          1520
+        ],
+        [
+          1185.0,
+          1562
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_812328_724",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-15",
+      "points": [
+        [
+          1185.0,
+          1737
+        ],
+        [
+          1185.0,
+          1779
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1589519284771_773057_725",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    },
+    {
+      "id": "control-16",
+      "points": [
+        [
+          1185.0,
+          1954
+        ],
+        [
+          1185.0,
+          1996
+        ]
+      ],
+      "sourceID": "_19_0_2_e190334_1591112340524_116146_1336",
+      "kind": "ControlFlow",
+      "direction": "directed"
+    }
+  ]
+}

@@ -1,0 +1,1473 @@
+{
+  "source": "usnistgov/DiscreteEventLogisticsSystems",
+  "commit": "7b09a59fc7e900177524f06f8a42dcc3d3c1aced",
+  "sourceXMLSha256": "f3cacbbde00e5d60d8f5771537d1ad05dd4c4d27f590db9a4ff3831d105ef981",
+  "activityID": "_19_0_2_e190334_1589519283990_647994_284",
+  "diagramID": "_19_0_2_e190334_1589519284709_966967_673",
+  "modelPath": [
+    "ElectronicsAssemblyCaseStudy",
+    "5.0.1 - Make",
+    "Iteration1",
+    "MakeCoupler"
+  ],
+  "classification": "Complete selected SysML 1.x source activity; explanatory reading, not a SysML v2 conversion",
+  "orderedCallIDs": [
+    "_19_0_2_e190334_1589519284771_65514_712",
+    "_19_0_2_e190334_1589519284771_280650_711",
+    "_19_0_2_e190334_1589519284756_944262_697",
+    "_19_0_2_e190334_1589519284756_737806_698",
+    "_19_0_2_e190334_1589519284756_923263_699",
+    "_19_0_2_e190334_1589519284756_356543_700",
+    "_19_0_2_e190334_1589519284756_468263_701",
+    "_19_0_2_e190334_1589519284756_314500_702",
+    "_19_0_2_e190334_1589519284771_709354_703",
+    "_19_0_2_e190334_1589519284771_395572_704",
+    "_19_0_2_e190334_1589519284771_861498_705",
+    "_19_0_2_e190334_1589519284771_787019_706",
+    "_19_0_2_e190334_1589519284771_511338_707",
+    "_19_0_2_e190334_1589519284771_413013_708",
+    "_19_0_2_e190334_1589519284771_187736_709",
+    "_19_0_2_e190334_1589519284771_205786_710",
+    "_19_0_2_e190334_1591112203536_749892_1134"
+  ],
+  "nodes": [
+    {
+      "id": "_19_0_2_e190334_1589519284771_187736_709",
+      "kind": "CallBehaviorAction",
+      "name": "Quality_FinalSell",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284053_779231_346",
+        "name": "ManualInspect",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_86203_2106",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_936510_2107",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_657702_2105",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_395572_704",
+      "kind": "CallBehaviorAction",
+      "name": "Test_Burn-In",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284021_941397_322",
+        "name": "Test_BurnIn",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_430520_2091",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_569552_2092",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_170407_2090",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284756_593830_696",
+      "kind": "ActivityParameterNode",
+      "name": "workOrderIN",
+      "parameter": "_19_0_2_e190334_1589519284256_193663_671",
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": null,
+      "pins": []
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_709354_703",
+      "kind": "CallBehaviorAction",
+      "name": "Test_Vibration",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284021_403975_323",
+        "name": "Test_Vibration",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_94925_2088",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_679961_2089",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_448701_2087",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_65514_712",
+      "kind": "CallBehaviorAction",
+      "name": "Inputs",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284021_714290_312",
+        "name": "GetInputs_Coupler",
+        "nodes": 19,
+        "edges": 0,
+        "parameters": 10
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290682_729641_2123",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_324795_2114",
+          "kind": "OutputPin",
+          "name": "sensorCard",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_517008_34",
+            "name": "SensorCard",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290682_401373_2115",
+          "kind": "OutputPin",
+          "name": "cca2",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279926_159565_53",
+            "name": "CCA2",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290682_891847_2116",
+          "kind": "OutputPin",
+          "name": "cableAssy1",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_131104_33",
+            "name": "CableAssembly1",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290682_572322_2117",
+          "kind": "OutputPin",
+          "name": "daughterCard",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_497810_36",
+            "name": "DaughterCard",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290682_140272_2118",
+          "kind": "OutputPin",
+          "name": "progAssy",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_342250_37",
+            "name": "ProgrammedAssembly",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290682_313679_2119",
+          "kind": "OutputPin",
+          "name": "chassisElecEquip",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_721785_38",
+            "name": "ChassisElectricalEquipment",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290682_798979_2120",
+          "kind": "OutputPin",
+          "name": "elecAssy",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_26805_35",
+            "name": "ElectronicAssembly",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290682_754703_2121",
+          "kind": "OutputPin",
+          "name": "cableAssy3",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_983898_39",
+            "name": "CableAssembly3",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290682_392855_2122",
+          "kind": "OutputPin",
+          "name": "cableAssy4",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279926_228235_52",
+            "name": "CableAssembly4",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_413013_708",
+      "kind": "CallBehaviorAction",
+      "name": "UnitAssembly_TouchUp",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284021_714045_324",
+        "name": "TouchUp",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_194923_2103",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_989441_2104",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_665977_2102",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284756_468263_701",
+      "kind": "CallBehaviorAction",
+      "name": "Quality_LeakCheck",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284053_779231_346",
+        "name": "ManualInspect",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_207767_2082",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_97363_2083",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_711083_2081",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_205786_710",
+      "kind": "CallBehaviorAction",
+      "name": "Quality_FinalSell_2nd",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284053_779231_346",
+        "name": "ManualInspect",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_23616_2109",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_692757_2110",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_915630_2108",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284756_356543_700",
+      "kind": "CallBehaviorAction",
+      "name": "LeakCheck",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284021_927400_320",
+        "name": "Test_LeakCheck",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_853905_2079",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_585411_2080",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_868495_2078",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_280650_711",
+      "kind": "CallBehaviorAction",
+      "name": "UnitAssembly",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284021_491548_319",
+        "name": "Assemble",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_946419_2112",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_416043_2113",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279989_222130_157",
+            "name": "Part",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_950080_2111",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_861498_705",
+      "kind": "CallBehaviorAction",
+      "name": "Test_FinalData",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284021_113717_321",
+        "name": "Test_FinalData",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_329972_2094",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_57184_2095",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_489839_2093",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284756_737806_698",
+      "kind": "CallBehaviorAction",
+      "name": "UnitAssembly_Test",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284021_491548_319",
+        "name": "Assemble",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_893998_2073",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_206769_2074",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_499598_2072",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284756_314500_702",
+      "kind": "CallBehaviorAction",
+      "name": "Test_Preliminary",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284021_797241_317",
+        "name": "Test_Functional",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_284883_2085",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_653019_2086",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_965661_2084",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1591112203536_749892_1134",
+      "kind": "CallBehaviorAction",
+      "name": "FinalShipTable",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1591111904821_528102_777",
+        "name": "PutOutputs_Coupler",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1591112203553_697581_1146",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1591112203553_295902_1145",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1591112203557_37454_1151",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284756_923263_699",
+      "kind": "CallBehaviorAction",
+      "name": "Quality_UnitAssembly_Test",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284053_779231_346",
+        "name": "ManualInspect",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_918175_2076",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_728906_2077",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_663267_2075",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284756_594897_695",
+      "kind": "ActivityParameterNode",
+      "name": "partOUT",
+      "parameter": "_19_0_2_e190334_1589519284256_617540_672",
+      "type": {
+        "id": "_19_0_2_e190334_1589519279910_702508_32",
+        "name": "Coupler",
+        "status": "resolved"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": null,
+      "pins": []
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_511338_707",
+      "kind": "CallBehaviorAction",
+      "name": "Nameplate_Laser",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284037_268904_330",
+        "name": "LaserMarking",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_111564_2100",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_486137_2101",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_531842_2099",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284756_944262_697",
+      "kind": "CallBehaviorAction",
+      "name": "Quality_UnitAssembly",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284053_779231_346",
+        "name": "ManualInspect",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_60339_2070",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_610434_2071",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_542023_2069",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_787019_706",
+      "kind": "CallBehaviorAction",
+      "name": "Quality_UnitVerification",
+      "parameter": null,
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ],
+      "behavior": {
+        "id": "_19_0_2_e190334_1589519284053_779231_346",
+        "name": "ManualInspect",
+        "nodes": 3,
+        "edges": 0,
+        "parameters": 3
+      },
+      "pins": [
+        {
+          "id": "_19_0_2_e190334_1589519290666_822809_2097",
+          "kind": "InputPin",
+          "name": "workOrderIN",
+          "type": {
+            "id": null,
+            "name": null,
+            "status": "untyped"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_645235_2098",
+          "kind": "InputPin",
+          "name": "partIN",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        },
+        {
+          "id": "_19_0_2_e190334_1589519290666_266112_2096",
+          "kind": "OutputPin",
+          "name": "partOUT",
+          "type": {
+            "id": "_19_0_2_e190334_1589519279910_702508_32",
+            "name": "Coupler",
+            "status": "resolved"
+          },
+          "multiplicity": [
+            "1",
+            "1"
+          ]
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "id": "_19_0_2_e190334_1589519284256_193663_671",
+      "name": "workOrderIN",
+      "direction": "in",
+      "type": {
+        "id": null,
+        "name": null,
+        "status": "untyped"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ]
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284256_617540_672",
+      "name": "partOUT",
+      "direction": "out",
+      "type": {
+        "id": "_19_0_2_e190334_1589519279910_702508_32",
+        "name": "Coupler",
+        "status": "resolved"
+      },
+      "multiplicity": [
+        "1",
+        "1"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "_19_0_2_e190334_1589519284771_259631_723",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_511338_707",
+      "target": "_19_0_2_e190334_1589519284771_413013_708",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_159574_721",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_861498_705",
+      "target": "_19_0_2_e190334_1589519284771_787019_706",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_475119_716",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284756_356543_700",
+      "target": "_19_0_2_e190334_1589519284756_468263_701",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_72105_726",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_280650_711",
+      "target": "_19_0_2_e190334_1589519284756_944262_697",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_812328_724",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_413013_708",
+      "target": "_19_0_2_e190334_1589519284771_187736_709",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_507184_713",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284756_944262_697",
+      "target": "_19_0_2_e190334_1589519284756_737806_698",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_192217_718",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284756_314500_702",
+      "target": "_19_0_2_e190334_1589519284771_709354_703",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_993807_717",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284756_468263_701",
+      "target": "_19_0_2_e190334_1589519284756_314500_702",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_443181_722",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_787019_706",
+      "target": "_19_0_2_e190334_1589519284771_511338_707",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_899086_719",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_709354_703",
+      "target": "_19_0_2_e190334_1589519284771_395572_704",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_773057_725",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_187736_709",
+      "target": "_19_0_2_e190334_1589519284771_205786_710",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_896071_715",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284756_923263_699",
+      "target": "_19_0_2_e190334_1589519284756_356543_700",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_875332_714",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284756_737806_698",
+      "target": "_19_0_2_e190334_1589519284756_923263_699",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_525808_727",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_65514_712",
+      "target": "_19_0_2_e190334_1589519284771_280650_711",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1591112340524_116146_1336",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_205786_710",
+      "target": "_19_0_2_e190334_1591112203536_749892_1134",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    },
+    {
+      "id": "_19_0_2_e190334_1589519284771_130042_720",
+      "kind": "ControlFlow",
+      "source": "_19_0_2_e190334_1589519284771_395572_704",
+      "target": "_19_0_2_e190334_1589519284771_861498_705",
+      "name": null,
+      "weight": "1",
+      "guardPresent": false
+    }
+  ],
+  "limits": [
+    "No object flows connect the 58 pins or the two activity parameter nodes in this selected source activity.",
+    "Untyped workOrderIN pins remain untyped.",
+    "Called behaviors are source references, not executable implementations; many have no edges.",
+    "SysML 1.x profile URI 20150709; README says common models SysML 1.4, selected export MagicDraw 19.0 v9. Precise minor version not asserted.",
+    "No native MagicDraw round-trip, execution, capacity analysis or full SysML v2 translation.",
+    "Industry contributors and case study documented by INCOSE IW2021; a deployed physical installation is not established."
+  ]
+}

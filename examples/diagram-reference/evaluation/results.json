@@ -1,0 +1,143 @@
+{
+  "date": "2026-10-01",
+  "baseline": "b01ef01698450e5a47cc20f957fe93a09e9744b4",
+  "harness": "codex-cli 0.160.0",
+  "authentication": "existing ChatGPT",
+  "model": "default resolver; exact model not emitted",
+  "conditions": {
+    "current": {
+      "run": {
+        "exit_code": 0,
+        "seconds": 57.04,
+        "prompt_bytes": 12374,
+        "prompt_words": 1689,
+        "image_inputs": 0
+      },
+      "usage": {
+        "input_tokens": 22445,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1367,
+        "reasoning_output_tokens": 356
+      },
+      "quality": {
+        "parser_and_scenario_shape": false,
+        "supported_clause_compilation": false,
+        "two_boundary_item_flows_only": false,
+        "native_and_view_item_endpoints": true,
+        "selected_action_order": true,
+        "required_short_id": false,
+        "honest_unrun_validation": true
+      },
+      "score": 3,
+      "out_of": 7,
+      "syntax_status": "error",
+      "compilation_status": "error",
+      "parser_issues": [
+        {
+          "severity": "ERROR",
+          "code": "org.eclipse.xtext.diagnostics.Diagnostic.Syntax",
+          "message": "no viable alternative at input 'then'",
+          "line": 41,
+          "column": 9,
+          "source": "current.sysml"
+        },
+        {
+          "severity": "ERROR",
+          "code": "org.eclipse.xtext.diagnostics.Diagnostic.Syntax",
+          "message": "mismatched input 'then' expecting '}'",
+          "line": 42,
+          "column": 9,
+          "source": "current.sysml"
+        },
+        {
+          "severity": "ERROR",
+          "code": "org.eclipse.xtext.diagnostics.Diagnostic.Syntax",
+          "message": "missing EOF at 'then'",
+          "line": 43,
+          "column": 9,
+          "source": "current.sysml"
+        },
+        {
+          "severity": "ERROR",
+          "code": "org.eclipse.xtext.diagnostics.Diagnostic.Linking",
+          "message": "Couldn't resolve reference to Type 'Boolean'.",
+          "line": 17,
+          "column": 32,
+          "source": "current.sysml"
+        },
+        {
+          "severity": "ERROR",
+          "code": "org.eclipse.xtext.diagnostics.Diagnostic.Linking",
+          "message": "Couldn't resolve reference to Type 'Boolean'.",
+          "line": 18,
+          "column": 34,
+          "source": "current.sysml"
+        },
+        {
+          "severity": "ERROR",
+          "code": "validateAttributeUsageType_",
+          "message": "An attribute must be typed by attribute definitions.",
+          "line": 17,
+          "column": 9,
+          "source": "current.sysml"
+        },
+        {
+          "severity": "ERROR",
+          "code": "validateAttributeUsageType_",
+          "message": "An attribute must be typed by attribute definitions.",
+          "line": 18,
+          "column": 9,
+          "source": "current.sysml"
+        }
+      ],
+      "findings": [
+        {
+          "code": "sysml_invalid",
+          "detail": "SysML parser or validator reported errors"
+        }
+      ],
+      "transport_normalization": false,
+      "model_sha256": "8c0f1764985f14e92a14f8524bcb1b75716212c22a2695919022c7c0c83dcb82"
+    },
+    "concise-examples": {
+      "run": {
+        "exit_code": 0,
+        "seconds": 33.76,
+        "prompt_bytes": 4865,
+        "prompt_words": 641,
+        "image_inputs": 1
+      },
+      "usage": {
+        "input_tokens": 17255,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 875,
+        "reasoning_output_tokens": 0
+      },
+      "quality": {
+        "parser_and_scenario_shape": true,
+        "supported_clause_compilation": true,
+        "two_boundary_item_flows_only": true,
+        "native_and_view_item_endpoints": true,
+        "selected_action_order": true,
+        "required_short_id": true,
+        "honest_unrun_validation": true
+      },
+      "score": 7,
+      "out_of": 7,
+      "syntax_status": "pass",
+      "compilation_status": "pass",
+      "parser_issues": [],
+      "findings": [],
+      "transport_normalization": false,
+      "model_sha256": "d7d980cbac7d82089033eddf8ca8b8c21a4940601a64b572440c396286f79dbb"
+    }
+  },
+  "limits": [
+    "one brief, one pair, combined intervention",
+    "first output before repair",
+    "template retrieval not performed",
+    "no named-model comparison"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "source_revision": "synthetic-diagram-1",
+  "expected": [
+    {
+      "id": "R_RECORD",
+      "constraint": "responseTime",
+      "source": "SYN-DIAGRAM-01"
+    }
+  ]
+}

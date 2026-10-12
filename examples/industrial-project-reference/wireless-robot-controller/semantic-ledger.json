@@ -1,0 +1,430 @@
+{
+  "case": "WFC-01",
+  "project": "NIST Wireless Factory research work-cell model",
+  "pin": "3be053a2dcdb3245754739d0440c442a3b617dad",
+  "nativeModel": "/workspace/repos/builderbob/computable-systems-engineering/work/pressure-test-run-01/round-11/sources/wireless-wireless.xml/com.nomagic.magicdraw.uml_model.model",
+  "modelSha256": "7e486e31dfef18fe39baf84638876da929ac49bb71afd7fe973fb804057ec66f",
+  "revision": "wireless.xml.zip; v2 sibling is a file revision, not SysML v2",
+  "sourceModelLanguage": "SysML1.x profile URI20150709 with UML XMI20131001; main exporter19.0v9, selected diagram18.5. Paper cites SysML1.5; exact profile payload and tool-version evidence retained without treating file revision as language version.",
+  "sourceDiagram": {
+    "id": "_18_5_3_6410209_1526678072572_334874_14867",
+    "name": "RobotController",
+    "type": "SysML Internal Block Diagram",
+    "contextId": "_18_5_3_6410209_1524950156311_97515_14137",
+    "nativeLayoutStream": "BINARY-3b6d1e3c-2a81-46aa-94d4-c55500999d21",
+    "nativeLayoutSha256": "0e893838990a94fa3a74465bf4a2bbe4621e539dcf3be45c1c94253f45f4175b",
+    "diagramExporter": "18.5",
+    "authorFigure": "Candell et al., Fig12(b), PDF12",
+    "staticAuthorImage": "wireless-RobotController-author-report.jpg",
+    "staticReportMatch": "Filename equals native diagram ID; actual native geometry/labels and static image compared. Published Fig12b displays the same selected roles/ports/connectivity, not the entire later workcell model."
+  },
+  "scope": "Complete selected RobotController IBD topology: six referenced applications, one inherited owned transceiver, four displayed ports, seven undirected connectors; traced inherited ownership/hierarchy.",
+  "roles": [
+    {
+      "id": "_18_5_3_4100178_1528246125416_795172_18482",
+      "name": "xcvr",
+      "typeId": "_18_5_3_4100178_1527432606832_188165_48224",
+      "typeName": "Transceiver",
+      "ownerId": "_18_5_3_4100178_1528052652125_950868_44290",
+      "ownerName": "Wireless Device",
+      "aggregation": "composite",
+      "visibility": "private",
+      "legacyStereotypes": [
+        "PartProperty"
+      ],
+      "lower": "1",
+      "upper": "*",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_18_5_3_4100178_1530286637762_402623_30319",
+      "name": "inverse Kinematics",
+      "typeId": "_18_5_3_4100178_1530286637742_187262_30316",
+      "typeName": "IKApp",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "aggregation": "none",
+      "visibility": "public",
+      "legacyStereotypes": [
+        "ReferenceProperty"
+      ],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_18_5_3_4100178_1530286663203_516173_30384",
+      "name": "path Planner",
+      "typeId": "_18_5_3_4100178_1530286663159_613364_30381",
+      "typeName": "PathPlannerApp",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "aggregation": "none",
+      "visibility": "public",
+      "legacyStereotypes": [
+        "ReferenceProperty"
+      ],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_18_5_3_4100178_1530286707141_516588_30449",
+      "name": "colDetect",
+      "typeId": "_18_5_3_4100178_1530286707117_776005_30446",
+      "typeName": "CollisionDetectApp",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "aggregation": "none",
+      "visibility": "public",
+      "legacyStereotypes": [
+        "ReferenceProperty"
+      ],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_18_5_3_4100178_1530326212176_39574_17918",
+      "name": "rStates",
+      "typeId": "_18_5_3_4100178_1530326212145_301884_17915",
+      "typeName": "StatesPublisherApp",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "aggregation": "none",
+      "visibility": "public",
+      "legacyStereotypes": [
+        "ReferenceProperty"
+      ],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_18_5_3_4100178_1531610070889_770225_29565",
+      "name": "eEControlApp",
+      "typeId": "_18_5_3_4100178_1531609594857_802529_28663",
+      "typeName": "EEControlApp",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "aggregation": "none",
+      "visibility": "public",
+      "legacyStereotypes": [
+        "ReferenceProperty"
+      ],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_18_5_3_4100178_1531610427908_349019_29907",
+      "name": "armControlApp",
+      "typeId": "_18_5_3_4100178_1531609289390_348707_28131",
+      "typeName": "ArmControlApp",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "aggregation": "none",
+      "visibility": "public",
+      "legacyStereotypes": [
+        "ReferenceProperty"
+      ],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    }
+  ],
+  "ports": [
+    {
+      "id": "_18_5_3_4100178_1527439177867_744395_51342",
+      "name": "rf",
+      "typeId": "_18_5_3_4100178_1528052652156_158134_44356",
+      "typeName": "iRF",
+      "ownerId": "_18_5_3_4100178_1527432606832_188165_48224",
+      "ownerName": "Transceiver",
+      "aggregation": "composite",
+      "visibility": "public",
+      "legacyStereotypes": [
+        "ProxyPort"
+      ],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_18_5_3_4100178_1527439336289_370866_51781",
+      "name": "xcvr",
+      "typeId": "_18_5_3_4100178_1528504660133_155808_30600",
+      "typeName": "iXcvr",
+      "ownerId": "_18_5_3_4100178_1527432606832_188165_48224",
+      "ownerName": "Transceiver",
+      "aggregation": "composite",
+      "visibility": "public",
+      "legacyStereotypes": [],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_18_5_3_4100178_1528052652158_864306_44377",
+      "name": "ant",
+      "typeId": "_18_5_3_4100178_1528052652156_158134_44356",
+      "typeName": "iRF",
+      "ownerId": "_18_5_3_4100178_1528052652125_950868_44290",
+      "ownerName": "Wireless Device",
+      "aggregation": "composite",
+      "visibility": "public",
+      "legacyStereotypes": [
+        "FullPort"
+      ],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_18_5_3_4100178_1531347992299_198851_25687",
+      "name": "DataPort",
+      "typeId": "_18_5_3_4100178_1528591988390_75200_22460",
+      "typeName": "iApp",
+      "ownerId": "_18_5_3_4100178_1528678165070_866630_21052",
+      "ownerName": "Device",
+      "aggregation": "composite",
+      "visibility": "public",
+      "legacyStereotypes": [
+        "FullPort"
+      ],
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    }
+  ],
+  "connectors": [
+    {
+      "id": "_18_5_3_4100178_1528247576760_386908_20123",
+      "ownerId": "_18_5_3_4100178_1528052652125_950868_44290",
+      "ownerName": "Wireless Device",
+      "ends": [
+        {
+          "id": "_18_5_3_4100178_1528247576760_558711_20124",
+          "roleId": "_18_5_3_4100178_1527439177867_744395_51342",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "rf",
+          "ownerName": "Transceiver",
+          "path": "xcvr.rf"
+        },
+        {
+          "id": "_18_5_3_4100178_1528247576760_247746_20125",
+          "roleId": "_18_5_3_4100178_1528052652158_864306_44377",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "ant",
+          "ownerName": "Wireless Device",
+          "path": "ant"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "_18_5_3_4100178_1530326485493_9830_18619",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "ends": [
+        {
+          "id": "_18_5_3_4100178_1530326485493_482708_18620",
+          "roleId": "_18_5_3_4100178_1530326212176_39574_17918",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "rStates",
+          "ownerName": "RobotController",
+          "path": "rStates"
+        },
+        {
+          "id": "_18_5_3_4100178_1530326485493_200608_18621",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "_18_5_3_4100178_1531349792679_717551_26838",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "ends": [
+        {
+          "id": "_18_5_3_4100178_1531349792679_453291_26839",
+          "roleId": "_18_5_3_4100178_1530286707141_516588_30449",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "colDetect",
+          "ownerName": "RobotController",
+          "path": "colDetect"
+        },
+        {
+          "id": "_18_5_3_4100178_1531349792679_270154_26840",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "_18_5_3_4100178_1531611125055_71645_31072",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "ends": [
+        {
+          "id": "_18_5_3_4100178_1531611125055_21731_31073",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        },
+        {
+          "id": "_18_5_3_4100178_1531611125055_651133_31074",
+          "roleId": "_18_5_3_4100178_1530286663203_516173_30384",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "path Planner",
+          "ownerName": "RobotController",
+          "path": "path Planner"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "_18_5_3_4100178_1531611131074_332407_31096",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "ends": [
+        {
+          "id": "_18_5_3_4100178_1531611131074_819529_31097",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        },
+        {
+          "id": "_18_5_3_4100178_1531611131074_803795_31098",
+          "roleId": "_18_5_3_4100178_1531610427908_349019_29907",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "armControlApp",
+          "ownerName": "RobotController",
+          "path": "armControlApp"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "_18_5_3_4100178_1531611138584_840155_31120",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "ends": [
+        {
+          "id": "_18_5_3_4100178_1531611138584_444028_31121",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        },
+        {
+          "id": "_18_5_3_4100178_1531611138585_923622_31122",
+          "roleId": "_18_5_3_4100178_1531610070889_770225_29565",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "eEControlApp",
+          "ownerName": "RobotController",
+          "path": "eEControlApp"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "_18_5_3_4100178_1531611143139_164723_31144",
+      "ownerId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "ownerName": "RobotController",
+      "ends": [
+        {
+          "id": "_18_5_3_4100178_1531611143139_869451_31145",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        },
+        {
+          "id": "_18_5_3_4100178_1531611143139_764447_31146",
+          "roleId": "_18_5_3_4100178_1530286637762_402623_30319",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "inverse Kinematics",
+          "ownerName": "RobotController",
+          "path": "inverse Kinematics"
+        }
+      ],
+      "direction": "undirected"
+    }
+  ],
+  "inheritance": [
+    {
+      "id": "_18_5_3_4100178_1528678196980_540894_21097",
+      "specific": "Wireless Device",
+      "specificId": "_18_5_3_4100178_1528052652125_950868_44290",
+      "general": "Device",
+      "generalId": "_18_5_3_4100178_1528678165070_866630_21052"
+    },
+    {
+      "id": "_18_5_3_4100178_1528595830665_33956_25055",
+      "specific": "Controller",
+      "specificId": "_18_5_3_4100178_1528595804244_905952_25010",
+      "general": "Wireless Device",
+      "generalId": "_18_5_3_4100178_1528052652125_950868_44290"
+    },
+    {
+      "id": "_18_5_3_4100178_1527870062763_957594_17984",
+      "specific": "RobotController",
+      "specificId": "_18_5_3_6410209_1524950156311_97515_14137",
+      "general": "Controller",
+      "generalId": "_18_5_3_4100178_1528595804244_905952_25010"
+    }
+  ],
+  "legacyPortBoundary": "FullPort/ProxyPort and NestedConnectorEnd stereotypes are preserved in labels/ledger and v2 trace comments. Generic v2 port definitions/connect clauses are a structural projection, not a proof of full/proxy port execution equivalence.",
+  "omissions": [
+    "Robot/robotController associations, ctl and IO ports absent from selected IBD, non-depicted inherited memory/processors/program constraints and all behaviors.",
+    "Port-type internals, flow directions, units, control algorithms, latency/loss/constraint calculations and full workcell scenarios are not translated or simulated.",
+    "Fig15 is a broader separate scenario; original supplied but not counted as a completed conversion. Native MagicDraw editor round-trip unrun.",
+    "The v2 selected-view definition flattens source inheritance. It is not the native RobotController class, an allocation decision, or a complete inherited-feature conversion."
+  ],
+  "classification": "Formal SysML v2 textual structural projection with explicit legacy gaps; modern IBD reading is model-derived explanatory graphics.",
+  "v2ProjectionBoundary": "Explicit selected-view definition RobotControllerSelectedView lifts the displayed inherited xcvr/ant/DataPort into this view context, preserving private xcvr visibility and topology. Full source inheritance/ownership remains in the original and ledger, not implemented by this view type. Initial direct inherited-private transcription failed linking and is preserved as rejected evidence. No widening to public visibility or creation of an accepted design is claimed."
+}

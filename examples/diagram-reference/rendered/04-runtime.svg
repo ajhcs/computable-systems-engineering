@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<rect width="1280" height="720" fill="#fff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#16766c"/></marker></defs>
+<text data-cell="title" x="50" y="62" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="32" fill="#16324f">Real repository: parsing and computation diverge</text>
+<text data-cell="subtitle" x="50" y="105" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="19" fill="#63758a">Code-grounded dependency view | illustrative architecture, not a formal SysML diagram</text>
+<path data-cell="invoke" d="M 260 332 L 340 332" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path data-cell="call" d="M 550 332 L 630 332" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path data-cell="parse" d="M 865 300 L 922.5 300 L 922.5 245 L 980 245" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path data-cell="compute" d="M 865 365 L 922.5 365 L 922.5 480 L 980 480" fill="none" stroke="#16766c" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect data-cell="launcher" x="50" y="270" width="210" height="125" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="launcher-text" x="155.0" y="310" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">Skill launcher</text>
+<text data-cell="launcher-text" x="155.0" y="340" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">skills/develop-*/</text>
+<text data-cell="launcher-text" x="155.0" y="370" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">scripts/cse.py</text>
+<rect data-cell="cli" x="340" y="270" width="210" height="125" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="cli-text" x="445.0" y="310" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">CLI</text>
+<text data-cell="cli-text" x="445.0" y="340" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">scripts/sysml.py</text>
+<rect data-cell="adapter" x="630" y="270" width="235" height="125" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="adapter-text" x="747.5" y="310" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">Adapter</text>
+<text data-cell="adapter-text" x="747.5" y="340" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">verifier/sysml.py</text>
+<rect data-cell="pilot" x="980" y="180" width="250" height="125" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="pilot-text" x="1105.0" y="220" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">Java pilot / bridge</text>
+<text data-cell="pilot-text" x="1105.0" y="250" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">syntax + references</text>
+<rect data-cell="checker" x="980" y="420" width="250" height="125" rx="8" fill="#eaf5f2" stroke="#16766c" stroke-width="2"/>
+<text data-cell="checker-text" x="1105.0" y="460" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">Bounded checker</text>
+<text data-cell="checker-text" x="1105.0" y="490" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="22" fill="#16324f">verifier/language.py</text>
+<text data-cell="claim" x="50" y="583" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">launcher → CLI → adapter. Adapter invokes the Java pilot and, for supported clauses, the checker.</text>
+<text data-cell="claim" x="50" y="609" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">Syntax-only ends with parser/shape findings; bounded review also needs manifest and evidence.</text>
+<text data-cell="claim" x="50" y="635" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="18" fill="#63758a">Runtime grouping is abstract. This view does not model production services or engineer acceptance.</text>
+<text data-cell="source" x="50" y="690" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#63758a">runtime.sysml | SHA-256 220325832ed669967fd4 | generated reference view</text>
+</svg>

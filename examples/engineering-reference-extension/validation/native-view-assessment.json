@@ -1,0 +1,88 @@
+{
+  "pilot": "2025-09 / kernel0.52.0",
+  "views": [
+    {
+      "model": "examples/engineering-reference-extension/derived/tmt-exposure.sysml",
+      "sha256": "6bc4e0d726eb27aaa9bcb3c1b12a93eae172d96731276f6023a690a1f32b4efc",
+      "mode": "ACTION",
+      "selected_element": "TMTExposureDerived::PEASContext::takeSHExposure",
+      "actual_render": "rendered/pilot-tmt-exposure.png",
+      "generated_puml_unedited": true,
+      "layout_fallback": "bundled Smetana, explicit layout copy",
+      "inspected_pixels": true,
+      "complete_selected_graphical_fidelity": "partial/fail",
+      "visible_limits": [
+        "via PEAS2SHOut annotation omitted",
+        "dit input glyph visibly unconnected"
+      ]
+    },
+    {
+      "model": "examples/engineering-reference/derived/tmt-maintenance.sysml",
+      "sha256": "a04403d60948b1f643f0fc7b011e19bd47bf2b442ce8e44807b9b43659e75b54",
+      "mode": "STATE",
+      "selected_element": "TMTMaintenanceDerived::PEASMaintenance",
+      "actual_render": "rendered/pilot-tmt-maintenance.png",
+      "generated_puml_unedited": true,
+      "layout_fallback": "bundled Smetana, explicit layout copy",
+      "inspected_pixels": true,
+      "complete_selected_graphical_fidelity": "partial/fail",
+      "visible_limits": [
+        "Abort composite exit absent",
+        "Maintenance entry transition absent",
+        "entry/do behavior annotations omitted"
+      ]
+    },
+    {
+      "model": "examples/engineering-reference/derived/ape-composition.sysml",
+      "sha256": "38ecbf02c701efc20cec920cfc69320f860e87c4d81a8997e69dc90ba5d96763",
+      "mode": "TREE",
+      "selected_element": "APECompositionDerived::ActiveSegmentedMirror",
+      "actual_render": "rendered/pilot-ape-composition.png",
+      "generated_puml_unedited": true,
+      "layout_fallback": "bundled Smetana, explicit layout copy",
+      "inspected_pixels": true,
+      "complete_selected_graphical_fidelity": "selected composition retained; no general conformance claim",
+      "visible_limits": []
+    },
+    {
+      "model": "examples/engineering-reference/derived/ape-optical.sysml",
+      "sha256": "c51b2e4c07cf9a8f64d1f6a6c21a5b8df9e8564bec88e1842aa9dccfa821dfff",
+      "mode": "INTERCONNECTION",
+      "selected_element": "APEOpticalDerived::observatoryContext",
+      "actual_render": "rendered/pilot-ape-optical.png",
+      "generated_puml_unedited": true,
+      "layout_fallback": "bundled Smetana, explicit layout copy",
+      "inspected_pixels": true,
+      "complete_selected_graphical_fidelity": "partial/fail",
+      "visible_limits": [
+        "essential participant and nested part labels absent",
+        "nested lg1.in_oif structure absent",
+        "not a usable complete selected interconnection reference"
+      ]
+    },
+    {
+      "model": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml",
+      "sha256": "40da00b3d7dfbeda3b73616861f2fc63ca0c8b7fef7d9e2120446a4b2f4ab431",
+      "mode": "SEQUENCE",
+      "selected_element": "TMTSequenceOrderDerived::maintenanceMessageOrder",
+      "actual_render": "rendered/pilot-tmt-sequence-order.png",
+      "generated_puml_unedited": true,
+      "layout_fallback": "bundled Smetana, explicit layout copy",
+      "inspected_pixels": true,
+      "complete_selected_graphical_fidelity": "three exchanges retained; labels are derived usage names, not full source signal presentation",
+      "visible_limits": [
+        "source payload signal names omitted from visible labels",
+        "source durations deliberately excluded from this untimed slice"
+      ]
+    }
+  ],
+  "warnings": [
+    "YMirror warnings in bundled layout; Java/logging warnings",
+    "Default SVG returned dot error image; not counted as successful diagram"
+  ],
+  "not_run": [
+    "native SysML editor edit/save/reopen",
+    "draw.io actual edit/save/reopen",
+    "behavior simulation"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema": "source-grounded-sequence-order/1",
+  "source": {
+    "archive": "TMT-2017-02-27.mdzip",
+    "sha256": "eb54c3105e4d894bb06378476f364bbf5cdb3bfad4cbf55f10fefacf6cad515f",
+    "entry": "com.nomagic.magicdraw.uml_model.model",
+    "version": "SysML 1.4 / MagicDraw 18.0",
+    "url": "https://github.com/Open-MBEE/TMT-SysML-Model/blob/87832a1657ccab023a90a6acfd0dff02d60e2b46/TMT.mdzip"
+  },
+  "interaction_id": "_18_0_5_baa02e2_1458099293885_800041_152044",
+  "diagram_id": "_18_0_5_baa02e2_1458099293891_41550_152049",
+  "lifelines": [
+    {
+      "id": "_18_0_5_baa02e2_1458099294143_628657_152079",
+      "represents": "_18_0_5_baa02e2_1454128060627_462855_170075",
+      "name": "analysisDriver",
+      "visibility": "public",
+      "ordered_events": [
+        "_18_0_5_baa02e2_1458099294145_560741_152086",
+        "_18_0_5_baa02e2_1458099294146_644794_152089",
+        "_18_0_5_baa02e2_1458099294147_588842_152092"
+      ],
+      "ordered_messages": [
+        "_18_0_5_baa02e2_1458099294136_642396_152078",
+        "_18_0_5_baa02e2_1458099294136_802828_152076",
+        "_18_0_5_baa02e2_1458099294136_95702_152077"
+      ]
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099294144_32845_152081",
+      "represents": "_17_0_2_3_41e01aa_1389728908413_724070_61695",
+      "name": "peas",
+      "visibility": "private",
+      "ordered_events": [
+        "_18_0_5_baa02e2_1458099294146_791176_152087",
+        "_18_0_5_baa02e2_1458099294146_530702_152090",
+        "_18_0_5_baa02e2_1458099294147_466084_152093"
+      ],
+      "ordered_messages": [
+        "_18_0_5_baa02e2_1458099294136_642396_152078",
+        "_18_0_5_baa02e2_1458099294136_802828_152076",
+        "_18_0_5_baa02e2_1458099294136_95702_152077"
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "_18_0_5_baa02e2_1458099294136_642396_152078",
+      "sort": "asynchSignal",
+      "signature_id": "_18_0_4_baa02e2_1435196367610_837152_180594",
+      "signal": "Abort",
+      "send_event": "_18_0_5_baa02e2_1458099294145_560741_152086",
+      "receive_event": "_18_0_5_baa02e2_1458099294146_791176_152087"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099294136_802828_152076",
+      "sort": "asynchSignal",
+      "signature_id": "_18_0_4_baa02e2_1437066483571_319242_152444",
+      "signal": "Maintenance Alignment",
+      "send_event": "_18_0_5_baa02e2_1458099294146_644794_152089",
+      "receive_event": "_18_0_5_baa02e2_1458099294146_530702_152090"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099294136_95702_152077",
+      "sort": "asynchSignal",
+      "signature_id": "_18_0_4_baa02e2_1435196367610_837152_180594",
+      "signal": "Abort",
+      "send_event": "_18_0_5_baa02e2_1458099294147_588842_152092",
+      "receive_event": "_18_0_5_baa02e2_1458099294147_466084_152093"
+    }
+  ],
+  "duration_constraints": [
+    {
+      "id": "_18_0_5_baa02e2_1458099293890_50791_152047",
+      "kind": "uml:DurationConstraint",
+      "source_xml": "<ownedRule xmlns:ns0=\"http://www.omg.org/spec/XMI/20131001\" ns0:type=\"uml:DurationConstraint\" ns0:id=\"_18_0_5_baa02e2_1458099293890_50791_152047\" ns0:uuid=\"d09553f1-b4fb-4b6a-9dfb-1bb089dd164f\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<constrainedElement ns0:idref=\"_18_0_5_baa02e2_1458099294136_802828_152076\" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<constrainedElement ns0:idref=\"_18_0_5_baa02e2_1458099294136_95702_152077\" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<specification ns0:type=\"uml:DurationInterval\" ns0:id=\"_18_0_5_baa02e2_1458099294149_993211_152101\" ns0:uuid=\"52f30635-b519-4314-9ef8-6220313b54af\" max=\"_18_0_5_baa02e2_1458099294150_216568_152103\" min=\"_18_0_5_baa02e2_1458099294150_583611_152102\" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</ownedRule>",
+      "disposition": "source-only; not transcribed as exact timed assertions"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099293891_105987_152048",
+      "kind": "uml:DurationConstraint",
+      "source_xml": "<ownedRule xmlns:ns0=\"http://www.omg.org/spec/XMI/20131001\" ns0:type=\"uml:DurationConstraint\" ns0:id=\"_18_0_5_baa02e2_1458099293891_105987_152048\" ns0:uuid=\"64b4c6d0-f55e-40e8-a95a-3c6ceac84fe9\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<constrainedElement ns0:idref=\"_18_0_5_baa02e2_1458099294136_642396_152078\" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<specification ns0:type=\"uml:DurationInterval\" ns0:id=\"_18_0_5_baa02e2_1458099294150_257908_152104\" ns0:uuid=\"ab73c666-437b-45f6-b789-ac88edcd55b1\" max=\"_18_0_5_baa02e2_1458099294151_159917_152106\" min=\"_18_0_5_baa02e2_1458099294151_760362_152105\" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</ownedRule>",
+      "disposition": "source-only; not transcribed as exact timed assertions"
+    },
+    {
+      "id": "_18_0_6_baa02e2_1469462778437_445103_166162",
+      "kind": "uml:DurationConstraint",
+      "source_xml": "<ownedRule xmlns:ns0=\"http://www.omg.org/spec/XMI/20131001\" ns0:type=\"uml:DurationConstraint\" ns0:id=\"_18_0_6_baa02e2_1469462778437_445103_166162\" ns0:uuid=\"cdd09747-c4cc-474f-ae61-d33590475fdd\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<constrainedElement ns0:idref=\"_18_0_5_baa02e2_1458099294136_642396_152078\" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<constrainedElement ns0:idref=\"_18_0_5_baa02e2_1458099294136_802828_152076\" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<specification ns0:type=\"uml:DurationInterval\" ns0:id=\"_18_0_6_baa02e2_1469462778437_537819_166163\" ns0:uuid=\"c28e9c5e-43fa-4ff2-b29c-e188b653e4ed\" max=\"_18_0_6_baa02e2_1469462778438_170313_166168\" min=\"_18_0_6_baa02e2_1469462778437_212536_166164\" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</ownedRule>",
+      "disposition": "source-only; not transcribed as exact timed assertions"
+    }
+  ],
+  "selection": "Message endpoints/signal identity and local lifeline order only. Full timed interaction and asynchSignal engine behavior not migrated.",
+  "retained_original_records": 37,
+  "retained_duration_record_ids": [
+    "_18_0_5_baa02e2_1458099294150_216568_152103",
+    "_18_0_5_baa02e2_1458099294150_583611_152102",
+    "_18_0_5_baa02e2_1458099294151_159917_152106",
+    "_18_0_5_baa02e2_1458099294151_760362_152105",
+    "_18_0_6_baa02e2_1469462778437_212536_166164",
+    "_18_0_6_baa02e2_1469462778438_170313_166168"
+  ],
+  "retained_duration_literal_ids": [
+    "_18_0_5_baa02e2_1458099294207_735736_152116",
+    "_18_0_5_baa02e2_1458099294208_108641_152118",
+    "_18_0_6_baa02e2_1469462784006_149807_166175"
+  ],
+  "duration_reference_closure": "Six exact original min/max Duration records, their three owned LiteralString expressions and six in-bundle observation references; source-only, without timing interpretation."
+}

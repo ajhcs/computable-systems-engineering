@@ -1,0 +1,990 @@
+{
+  "schema": "source-grounded-action/1",
+  "source": {
+    "archive": "TMT-2017-02-27.mdzip",
+    "sha256": "eb54c3105e4d894bb06378476f364bbf5cdb3bfad4cbf55f10fefacf6cad515f",
+    "entry": "com.nomagic.magicdraw.uml_model.model",
+    "version": "SysML 1.4 / MagicDraw 18.0",
+    "url": "https://github.com/Open-MBEE/TMT-SysML-Model/blob/87832a1657ccab023a90a6acfd0dff02d60e2b46/TMT.mdzip"
+  },
+  "activity_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+  "diagram_id": "_17_0_2_3_41e01aa_1378924172312_463799_43173",
+  "nodes": [
+    {
+      "id": "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+      "kind": "uml:InitialNode",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1382548455558_205728_74434",
+      "kind": "uml:ActivityFinalNode",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+      "kind": "uml:SendSignalAction",
+      "name": null,
+      "signal": "_17_0_2_3_41e01aa_1377706340501_676597_37166",
+      "onPort": "_17_0_2_3_41e01aa_1382548607674_333485_74722",
+      "parameter": null
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+      "kind": "uml:AcceptEventAction",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    },
+    {
+      "id": "_18_0_4_baa02e2_1437598234583_903659_170363",
+      "kind": "uml:ActivityParameterNode",
+      "name": "dit",
+      "signal": null,
+      "onPort": null,
+      "parameter": "_18_0_4_baa02e2_1437598234574_12301_170362"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628566053_846606_159260",
+      "kind": "uml:ForkNode",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628574540_652543_159280",
+      "kind": "uml:JoinNode",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "_17_0_2_3_41e01aa_1383810509352_353468_75620",
+      "kind": "uml:ControlFlow",
+      "source": "_18_0_5_baa02e2_1457628566053_846606_159260",
+      "target": "_17_0_2_3_41e01aa_1383810481906_821693_75583"
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810511466_177984_75625",
+      "kind": "uml:ControlFlow",
+      "source": "_18_0_5_baa02e2_1457628566053_846606_159260",
+      "target": "_17_0_2_3_41e01aa_1383810483618_843330_75595"
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810517529_853279_75637",
+      "kind": "uml:ControlFlow",
+      "source": "_18_0_5_baa02e2_1457628574540_652543_159280",
+      "target": "_17_0_2_3_41e01aa_1382548455558_205728_74434"
+    },
+    {
+      "id": "_18_0_4_baa02e2_1437598422630_384460_170544",
+      "kind": "uml:ObjectFlow",
+      "source": "_18_0_4_baa02e2_1437598234583_903659_170363",
+      "target": "_18_0_4_baa02e2_1437598400072_462138_170530"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628567215_126325_159264",
+      "kind": "uml:ControlFlow",
+      "source": "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+      "target": "_18_0_5_baa02e2_1457628566053_846606_159260"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628575357_814757_159285",
+      "kind": "uml:ControlFlow",
+      "source": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+      "target": "_18_0_5_baa02e2_1457628574540_652543_159280"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628578060_400341_159298",
+      "kind": "uml:ControlFlow",
+      "source": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+      "target": "_18_0_5_baa02e2_1457628574540_652543_159280"
+    }
+  ],
+  "retained_ids": [
+    "_17_0_2_3_41e01aa_1377706340501_676597_37166",
+    "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+    "_17_0_2_3_41e01aa_1378924275075_915265_43256",
+    "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+    "_17_0_2_3_41e01aa_1382548455558_205728_74434",
+    "_17_0_2_3_41e01aa_1382548607674_333485_74722",
+    "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+    "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+    "_17_0_2_3_41e01aa_1383810507093_538136_75616",
+    "_17_0_2_3_41e01aa_1383810507094_725092_75617",
+    "_17_0_2_3_41e01aa_1383810509352_353468_75620",
+    "_17_0_2_3_41e01aa_1383810509353_514050_75621",
+    "_17_0_2_3_41e01aa_1383810511466_177984_75625",
+    "_17_0_2_3_41e01aa_1383810511466_902770_75626",
+    "_17_0_2_3_41e01aa_1383810517529_853279_75637",
+    "_17_0_2_3_41e01aa_1383810517530_110121_75638",
+    "_18_0_4_baa02e2_1437598234574_12301_170362",
+    "_18_0_4_baa02e2_1437598234583_903659_170363",
+    "_18_0_4_baa02e2_1437598400072_462138_170530",
+    "_18_0_4_baa02e2_1437598422630_384460_170544",
+    "_18_0_4_baa02e2_1437598422631_806478_170545",
+    "_18_0_4_baa02e2_1439589630400_217011_150200",
+    "_18_0_5_baa02e2_1457628566053_846606_159260",
+    "_18_0_5_baa02e2_1457628567215_126325_159264",
+    "_18_0_5_baa02e2_1457628567216_977053_159265",
+    "_18_0_5_baa02e2_1457628574540_652543_159280",
+    "_18_0_5_baa02e2_1457628575357_676591_159286",
+    "_18_0_5_baa02e2_1457628575357_814757_159285",
+    "_18_0_5_baa02e2_1457628578060_400341_159298",
+    "_18_0_5_baa02e2_1457628578060_899452_159299"
+  ],
+  "records": [
+    {
+      "id": "_17_0_2_3_41e01aa_1377706340501_676597_37166",
+      "kind": "uml:Signal",
+      "name": "SH_Take_exposure_Cmd",
+      "parent_id": "_17_0_2_3_41e01aa_1377752928355_604436_49041",
+      "attributes": {
+        "type": "uml:Signal",
+        "id": "_17_0_2_3_41e01aa_1377706340501_676597_37166",
+        "uuid": "72e04c80-1005-11e3-89cc-859daa8770e5",
+        "name": "SH_Take_exposure_Cmd"
+      },
+      "children": [
+        {
+          "kind": "ownedAttribute",
+          "attributes": {
+            "type": "uml:Property",
+            "id": "_18_0_4_baa02e2_1439589630400_217011_150200",
+            "uuid": "128b7950-2857-46e4-9c9a-406b9d3f7992",
+            "name": "dit",
+            "visibility": "public"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "kind": "uml:Activity",
+      "name": "Take SH Exposure",
+      "parent_id": "_18_0_2_baa02e2_1423506718459_119452_157747",
+      "attributes": {
+        "type": "uml:Activity",
+        "id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+        "uuid": "b6090a16-1015-11e3-89cc-859daa8770e5",
+        "name": "Take SH Exposure"
+      },
+      "children": [
+        {
+          "kind": "ownedParameter",
+          "attributes": {
+            "type": "uml:Parameter",
+            "id": "_18_0_4_baa02e2_1437598234574_12301_170362",
+            "uuid": "5729c809-1fb8-4223-9871-d5007863e36a",
+            "name": "dit",
+            "visibility": "public"
+          },
+          "text": null
+        },
+        {
+          "kind": "edge",
+          "attributes": {
+            "type": "uml:ControlFlow",
+            "id": "_17_0_2_3_41e01aa_1383810509352_353468_75620",
+            "uuid": "3cb10a4e-4783-11e3-95ab-53ff65a2a797",
+            "visibility": "public",
+            "source": "_18_0_5_baa02e2_1457628566053_846606_159260",
+            "target": "_17_0_2_3_41e01aa_1383810481906_821693_75583"
+          },
+          "text": null
+        },
+        {
+          "kind": "edge",
+          "attributes": {
+            "type": "uml:ControlFlow",
+            "id": "_17_0_2_3_41e01aa_1383810511466_177984_75625",
+            "uuid": "3cb10a50-4783-11e3-95ab-53ff65a2a797",
+            "visibility": "public",
+            "source": "_18_0_5_baa02e2_1457628566053_846606_159260",
+            "target": "_17_0_2_3_41e01aa_1383810483618_843330_75595"
+          },
+          "text": null
+        },
+        {
+          "kind": "edge",
+          "attributes": {
+            "type": "uml:ControlFlow",
+            "id": "_17_0_2_3_41e01aa_1383810517529_853279_75637",
+            "uuid": "3cb10a52-4783-11e3-95ab-53ff65a2a797",
+            "visibility": "public",
+            "source": "_18_0_5_baa02e2_1457628574540_652543_159280",
+            "target": "_17_0_2_3_41e01aa_1382548455558_205728_74434"
+          },
+          "text": null
+        },
+        {
+          "kind": "edge",
+          "attributes": {
+            "type": "uml:ObjectFlow",
+            "id": "_18_0_4_baa02e2_1437598422630_384460_170544",
+            "uuid": "69b3ec35-4660-4c3c-aa8e-f58c41108826",
+            "visibility": "public",
+            "source": "_18_0_4_baa02e2_1437598234583_903659_170363",
+            "target": "_18_0_4_baa02e2_1437598400072_462138_170530"
+          },
+          "text": null
+        },
+        {
+          "kind": "edge",
+          "attributes": {
+            "type": "uml:ControlFlow",
+            "id": "_18_0_5_baa02e2_1457628567215_126325_159264",
+            "uuid": "a36b81a7-69cb-4ba1-b3e3-60006d642ca0",
+            "visibility": "public",
+            "source": "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+            "target": "_18_0_5_baa02e2_1457628566053_846606_159260"
+          },
+          "text": null
+        },
+        {
+          "kind": "edge",
+          "attributes": {
+            "type": "uml:ControlFlow",
+            "id": "_18_0_5_baa02e2_1457628575357_814757_159285",
+            "uuid": "e24c87de-3e10-4137-9dcb-2535cfedd7c7",
+            "visibility": "public",
+            "source": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+            "target": "_18_0_5_baa02e2_1457628574540_652543_159280"
+          },
+          "text": null
+        },
+        {
+          "kind": "edge",
+          "attributes": {
+            "type": "uml:ControlFlow",
+            "id": "_18_0_5_baa02e2_1457628578060_400341_159298",
+            "uuid": "2e9e3a1f-78df-4f18-9da8-8090b466a340",
+            "visibility": "public",
+            "source": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+            "target": "_18_0_5_baa02e2_1457628574540_652543_159280"
+          },
+          "text": null
+        },
+        {
+          "kind": "node",
+          "attributes": {
+            "type": "uml:InitialNode",
+            "id": "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+            "uuid": "28f75798-3c08-11e3-9c43-61d136f65c7e",
+            "visibility": "public"
+          },
+          "text": null
+        },
+        {
+          "kind": "node",
+          "attributes": {
+            "type": "uml:ActivityFinalNode",
+            "id": "_17_0_2_3_41e01aa_1382548455558_205728_74434",
+            "uuid": "28f75799-3c08-11e3-9c43-61d136f65c7e",
+            "visibility": "public"
+          },
+          "text": null
+        },
+        {
+          "kind": "node",
+          "attributes": {
+            "type": "uml:SendSignalAction",
+            "id": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+            "uuid": "3cb10a54-4783-11e3-95ab-53ff65a2a797",
+            "visibility": "public",
+            "onPort": "_17_0_2_3_41e01aa_1382548607674_333485_74722",
+            "signal": "_17_0_2_3_41e01aa_1377706340501_676597_37166"
+          },
+          "text": null
+        },
+        {
+          "kind": "node",
+          "attributes": {
+            "type": "uml:AcceptEventAction",
+            "id": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+            "uuid": "3cb10a55-4783-11e3-95ab-53ff65a2a797",
+            "visibility": "public"
+          },
+          "text": null
+        },
+        {
+          "kind": "node",
+          "attributes": {
+            "type": "uml:ActivityParameterNode",
+            "id": "_18_0_4_baa02e2_1437598234583_903659_170363",
+            "uuid": "afdf567d-f423-42b8-832d-3d67db346f80",
+            "name": "dit",
+            "visibility": "public",
+            "parameter": "_18_0_4_baa02e2_1437598234574_12301_170362"
+          },
+          "text": null
+        },
+        {
+          "kind": "node",
+          "attributes": {
+            "type": "uml:ForkNode",
+            "id": "_18_0_5_baa02e2_1457628566053_846606_159260",
+            "uuid": "4252afd7-abff-4f35-836f-b22652c12c42",
+            "visibility": "public"
+          },
+          "text": null
+        },
+        {
+          "kind": "node",
+          "attributes": {
+            "type": "uml:JoinNode",
+            "id": "_18_0_5_baa02e2_1457628574540_652543_159280",
+            "uuid": "36fe9d1a-8cb8-4d32-8843-f16070383f09",
+            "visibility": "public"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1378924275075_915265_43256",
+      "kind": "uml:Signal",
+      "name": "SH_Take_exposure_Ack",
+      "parent_id": "_17_0_2_3_41e01aa_1377752928355_604436_49041",
+      "attributes": {
+        "type": "uml:Signal",
+        "id": "_17_0_2_3_41e01aa_1378924275075_915265_43256",
+        "uuid": "301090d2-1b12-11e3-876e-edae38a307cf",
+        "name": "SH_Take_exposure_Ack"
+      },
+      "children": []
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+      "kind": "uml:InitialNode",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:InitialNode",
+        "id": "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+        "uuid": "28f75798-3c08-11e3-9c43-61d136f65c7e",
+        "visibility": "public"
+      },
+      "children": [
+        {
+          "kind": "outgoing",
+          "attributes": {
+            "idref": "_18_0_5_baa02e2_1457628567215_126325_159264"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1382548455558_205728_74434",
+      "kind": "uml:ActivityFinalNode",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ActivityFinalNode",
+        "id": "_17_0_2_3_41e01aa_1382548455558_205728_74434",
+        "uuid": "28f75799-3c08-11e3-9c43-61d136f65c7e",
+        "visibility": "public"
+      },
+      "children": [
+        {
+          "kind": "incoming",
+          "attributes": {
+            "idref": "_17_0_2_3_41e01aa_1383810517529_853279_75637"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1382548607674_333485_74722",
+      "kind": "uml:Port",
+      "name": "PEAS2SHOut",
+      "parent_id": "_17_0_2_3_41e01aa_1382540352291_31499_56367",
+      "attributes": {
+        "type": "uml:Port",
+        "id": "_17_0_2_3_41e01aa_1382548607674_333485_74722",
+        "uuid": "291a2118-3c08-11e3-9c43-61d136f65c7e",
+        "name": "PEAS2SHOut",
+        "visibility": "public",
+        "aggregation": "composite"
+      },
+      "children": []
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+      "kind": "uml:SendSignalAction",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:SendSignalAction",
+        "id": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+        "uuid": "3cb10a54-4783-11e3-95ab-53ff65a2a797",
+        "visibility": "public",
+        "onPort": "_17_0_2_3_41e01aa_1382548607674_333485_74722",
+        "signal": "_17_0_2_3_41e01aa_1377706340501_676597_37166"
+      },
+      "children": [
+        {
+          "kind": "incoming",
+          "attributes": {
+            "idref": "_17_0_2_3_41e01aa_1383810509352_353468_75620"
+          },
+          "text": null
+        },
+        {
+          "kind": "outgoing",
+          "attributes": {
+            "idref": "_18_0_5_baa02e2_1457628578060_400341_159298"
+          },
+          "text": null
+        },
+        {
+          "kind": "argument",
+          "attributes": {
+            "type": "uml:InputPin",
+            "id": "_18_0_4_baa02e2_1437598400072_462138_170530",
+            "uuid": "288a70dc-3444-4c68-ad43-d0600dc2d2b3",
+            "name": "p",
+            "visibility": "public"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+      "kind": "uml:AcceptEventAction",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:AcceptEventAction",
+        "id": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+        "uuid": "3cb10a55-4783-11e3-95ab-53ff65a2a797",
+        "visibility": "public"
+      },
+      "children": [
+        {
+          "kind": "incoming",
+          "attributes": {
+            "idref": "_17_0_2_3_41e01aa_1383810511466_177984_75625"
+          },
+          "text": null
+        },
+        {
+          "kind": "outgoing",
+          "attributes": {
+            "idref": "_18_0_5_baa02e2_1457628575357_814757_159285"
+          },
+          "text": null
+        },
+        {
+          "kind": "trigger",
+          "attributes": {
+            "type": "uml:Trigger",
+            "id": "_17_0_2_3_41e01aa_1383810507093_538136_75616",
+            "uuid": "3cb10a56-4783-11e3-95ab-53ff65a2a797",
+            "visibility": "public",
+            "event": "_17_0_2_3_41e01aa_1383810507094_725092_75617"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810507093_538136_75616",
+      "kind": "uml:Trigger",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+      "attributes": {
+        "type": "uml:Trigger",
+        "id": "_17_0_2_3_41e01aa_1383810507093_538136_75616",
+        "uuid": "3cb10a56-4783-11e3-95ab-53ff65a2a797",
+        "visibility": "public",
+        "event": "_17_0_2_3_41e01aa_1383810507094_725092_75617"
+      },
+      "children": []
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810507094_725092_75617",
+      "kind": "uml:SignalEvent",
+      "name": null,
+      "parent_id": "_18_0_2_baa02e2_1423506718459_119452_157747",
+      "attributes": {
+        "type": "uml:SignalEvent",
+        "id": "_17_0_2_3_41e01aa_1383810507094_725092_75617",
+        "uuid": "3cb3a267-4783-11e3-95ab-53ff65a2a797",
+        "signal": "_17_0_2_3_41e01aa_1378924275075_915265_43256"
+      },
+      "children": []
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810509352_353468_75620",
+      "kind": "uml:ControlFlow",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ControlFlow",
+        "id": "_17_0_2_3_41e01aa_1383810509352_353468_75620",
+        "uuid": "3cb10a4e-4783-11e3-95ab-53ff65a2a797",
+        "visibility": "public",
+        "source": "_18_0_5_baa02e2_1457628566053_846606_159260",
+        "target": "_17_0_2_3_41e01aa_1383810481906_821693_75583"
+      },
+      "children": [
+        {
+          "kind": "weight",
+          "attributes": {
+            "type": "uml:LiteralUnlimitedNatural",
+            "id": "_17_0_2_3_41e01aa_1383810509353_514050_75621",
+            "uuid": "3cb10a4f-4783-11e3-95ab-53ff65a2a797",
+            "value": "1"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810509353_514050_75621",
+      "kind": "uml:LiteralUnlimitedNatural",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1383810509352_353468_75620",
+      "attributes": {
+        "type": "uml:LiteralUnlimitedNatural",
+        "id": "_17_0_2_3_41e01aa_1383810509353_514050_75621",
+        "uuid": "3cb10a4f-4783-11e3-95ab-53ff65a2a797",
+        "value": "1"
+      },
+      "children": []
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810511466_177984_75625",
+      "kind": "uml:ControlFlow",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ControlFlow",
+        "id": "_17_0_2_3_41e01aa_1383810511466_177984_75625",
+        "uuid": "3cb10a50-4783-11e3-95ab-53ff65a2a797",
+        "visibility": "public",
+        "source": "_18_0_5_baa02e2_1457628566053_846606_159260",
+        "target": "_17_0_2_3_41e01aa_1383810483618_843330_75595"
+      },
+      "children": [
+        {
+          "kind": "weight",
+          "attributes": {
+            "type": "uml:LiteralUnlimitedNatural",
+            "id": "_17_0_2_3_41e01aa_1383810511466_902770_75626",
+            "uuid": "3cb10a51-4783-11e3-95ab-53ff65a2a797",
+            "value": "1"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810511466_902770_75626",
+      "kind": "uml:LiteralUnlimitedNatural",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1383810511466_177984_75625",
+      "attributes": {
+        "type": "uml:LiteralUnlimitedNatural",
+        "id": "_17_0_2_3_41e01aa_1383810511466_902770_75626",
+        "uuid": "3cb10a51-4783-11e3-95ab-53ff65a2a797",
+        "value": "1"
+      },
+      "children": []
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810517529_853279_75637",
+      "kind": "uml:ControlFlow",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ControlFlow",
+        "id": "_17_0_2_3_41e01aa_1383810517529_853279_75637",
+        "uuid": "3cb10a52-4783-11e3-95ab-53ff65a2a797",
+        "visibility": "public",
+        "source": "_18_0_5_baa02e2_1457628574540_652543_159280",
+        "target": "_17_0_2_3_41e01aa_1382548455558_205728_74434"
+      },
+      "children": [
+        {
+          "kind": "weight",
+          "attributes": {
+            "type": "uml:LiteralUnlimitedNatural",
+            "id": "_17_0_2_3_41e01aa_1383810517530_110121_75638",
+            "uuid": "3cb10a53-4783-11e3-95ab-53ff65a2a797",
+            "value": "1"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810517530_110121_75638",
+      "kind": "uml:LiteralUnlimitedNatural",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1383810517529_853279_75637",
+      "attributes": {
+        "type": "uml:LiteralUnlimitedNatural",
+        "id": "_17_0_2_3_41e01aa_1383810517530_110121_75638",
+        "uuid": "3cb10a53-4783-11e3-95ab-53ff65a2a797",
+        "value": "1"
+      },
+      "children": []
+    },
+    {
+      "id": "_18_0_4_baa02e2_1437598234574_12301_170362",
+      "kind": "uml:Parameter",
+      "name": "dit",
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:Parameter",
+        "id": "_18_0_4_baa02e2_1437598234574_12301_170362",
+        "uuid": "5729c809-1fb8-4223-9871-d5007863e36a",
+        "name": "dit",
+        "visibility": "public"
+      },
+      "children": [
+        {
+          "kind": "type",
+          "attributes": {
+            "href": "http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Integer_PackageableElement"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_4_baa02e2_1437598234583_903659_170363",
+      "kind": "uml:ActivityParameterNode",
+      "name": "dit",
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ActivityParameterNode",
+        "id": "_18_0_4_baa02e2_1437598234583_903659_170363",
+        "uuid": "afdf567d-f423-42b8-832d-3d67db346f80",
+        "name": "dit",
+        "visibility": "public",
+        "parameter": "_18_0_4_baa02e2_1437598234574_12301_170362"
+      },
+      "children": [
+        {
+          "kind": "type",
+          "attributes": {
+            "href": "http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Integer_PackageableElement"
+          },
+          "text": null
+        },
+        {
+          "kind": "outgoing",
+          "attributes": {
+            "idref": "_18_0_4_baa02e2_1437598422630_384460_170544"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_4_baa02e2_1437598400072_462138_170530",
+      "kind": "uml:InputPin",
+      "name": "p",
+      "parent_id": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+      "attributes": {
+        "type": "uml:InputPin",
+        "id": "_18_0_4_baa02e2_1437598400072_462138_170530",
+        "uuid": "288a70dc-3444-4c68-ad43-d0600dc2d2b3",
+        "name": "p",
+        "visibility": "public"
+      },
+      "children": [
+        {
+          "kind": "type",
+          "attributes": {
+            "href": "http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Integer_PackageableElement"
+          },
+          "text": null
+        },
+        {
+          "kind": "incoming",
+          "attributes": {
+            "idref": "_18_0_4_baa02e2_1437598422630_384460_170544"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_4_baa02e2_1437598422630_384460_170544",
+      "kind": "uml:ObjectFlow",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ObjectFlow",
+        "id": "_18_0_4_baa02e2_1437598422630_384460_170544",
+        "uuid": "69b3ec35-4660-4c3c-aa8e-f58c41108826",
+        "visibility": "public",
+        "source": "_18_0_4_baa02e2_1437598234583_903659_170363",
+        "target": "_18_0_4_baa02e2_1437598400072_462138_170530"
+      },
+      "children": [
+        {
+          "kind": "weight",
+          "attributes": {
+            "type": "uml:LiteralUnlimitedNatural",
+            "id": "_18_0_4_baa02e2_1437598422631_806478_170545",
+            "uuid": "5c13cc2c-8d81-4ed9-8d15-52f95111d744",
+            "value": "1"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_4_baa02e2_1437598422631_806478_170545",
+      "kind": "uml:LiteralUnlimitedNatural",
+      "name": null,
+      "parent_id": "_18_0_4_baa02e2_1437598422630_384460_170544",
+      "attributes": {
+        "type": "uml:LiteralUnlimitedNatural",
+        "id": "_18_0_4_baa02e2_1437598422631_806478_170545",
+        "uuid": "5c13cc2c-8d81-4ed9-8d15-52f95111d744",
+        "value": "1"
+      },
+      "children": []
+    },
+    {
+      "id": "_18_0_4_baa02e2_1439589630400_217011_150200",
+      "kind": "uml:Property",
+      "name": "dit",
+      "parent_id": "_17_0_2_3_41e01aa_1377706340501_676597_37166",
+      "attributes": {
+        "type": "uml:Property",
+        "id": "_18_0_4_baa02e2_1439589630400_217011_150200",
+        "uuid": "128b7950-2857-46e4-9c9a-406b9d3f7992",
+        "name": "dit",
+        "visibility": "public"
+      },
+      "children": [
+        {
+          "kind": "type",
+          "attributes": {
+            "href": "http://www.omg.org/spec/SysML/20120401/SysML.xmi#_SysML_Libraries_PackageableElement-PrimitiveValueTypes_PackageableElement-Integer_PackageableElement"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628566053_846606_159260",
+      "kind": "uml:ForkNode",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ForkNode",
+        "id": "_18_0_5_baa02e2_1457628566053_846606_159260",
+        "uuid": "4252afd7-abff-4f35-836f-b22652c12c42",
+        "visibility": "public"
+      },
+      "children": [
+        {
+          "kind": "incoming",
+          "attributes": {
+            "idref": "_18_0_5_baa02e2_1457628567215_126325_159264"
+          },
+          "text": null
+        },
+        {
+          "kind": "outgoing",
+          "attributes": {
+            "idref": "_17_0_2_3_41e01aa_1383810509352_353468_75620"
+          },
+          "text": null
+        },
+        {
+          "kind": "outgoing",
+          "attributes": {
+            "idref": "_17_0_2_3_41e01aa_1383810511466_177984_75625"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628567215_126325_159264",
+      "kind": "uml:ControlFlow",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ControlFlow",
+        "id": "_18_0_5_baa02e2_1457628567215_126325_159264",
+        "uuid": "a36b81a7-69cb-4ba1-b3e3-60006d642ca0",
+        "visibility": "public",
+        "source": "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+        "target": "_18_0_5_baa02e2_1457628566053_846606_159260"
+      },
+      "children": [
+        {
+          "kind": "weight",
+          "attributes": {
+            "type": "uml:LiteralUnlimitedNatural",
+            "id": "_18_0_5_baa02e2_1457628567216_977053_159265",
+            "uuid": "459874a6-6474-4d40-86ce-c12c2fab9254",
+            "value": "1"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628567216_977053_159265",
+      "kind": "uml:LiteralUnlimitedNatural",
+      "name": null,
+      "parent_id": "_18_0_5_baa02e2_1457628567215_126325_159264",
+      "attributes": {
+        "type": "uml:LiteralUnlimitedNatural",
+        "id": "_18_0_5_baa02e2_1457628567216_977053_159265",
+        "uuid": "459874a6-6474-4d40-86ce-c12c2fab9254",
+        "value": "1"
+      },
+      "children": []
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628574540_652543_159280",
+      "kind": "uml:JoinNode",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:JoinNode",
+        "id": "_18_0_5_baa02e2_1457628574540_652543_159280",
+        "uuid": "36fe9d1a-8cb8-4d32-8843-f16070383f09",
+        "visibility": "public"
+      },
+      "children": [
+        {
+          "kind": "incoming",
+          "attributes": {
+            "idref": "_18_0_5_baa02e2_1457628575357_814757_159285"
+          },
+          "text": null
+        },
+        {
+          "kind": "incoming",
+          "attributes": {
+            "idref": "_18_0_5_baa02e2_1457628578060_400341_159298"
+          },
+          "text": null
+        },
+        {
+          "kind": "outgoing",
+          "attributes": {
+            "idref": "_17_0_2_3_41e01aa_1383810517529_853279_75637"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628575357_676591_159286",
+      "kind": "uml:LiteralUnlimitedNatural",
+      "name": null,
+      "parent_id": "_18_0_5_baa02e2_1457628575357_814757_159285",
+      "attributes": {
+        "type": "uml:LiteralUnlimitedNatural",
+        "id": "_18_0_5_baa02e2_1457628575357_676591_159286",
+        "uuid": "d1cd8d5a-fff0-4ff3-8cb7-bc6417727677",
+        "value": "1"
+      },
+      "children": []
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628575357_814757_159285",
+      "kind": "uml:ControlFlow",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ControlFlow",
+        "id": "_18_0_5_baa02e2_1457628575357_814757_159285",
+        "uuid": "e24c87de-3e10-4137-9dcb-2535cfedd7c7",
+        "visibility": "public",
+        "source": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+        "target": "_18_0_5_baa02e2_1457628574540_652543_159280"
+      },
+      "children": [
+        {
+          "kind": "weight",
+          "attributes": {
+            "type": "uml:LiteralUnlimitedNatural",
+            "id": "_18_0_5_baa02e2_1457628575357_676591_159286",
+            "uuid": "d1cd8d5a-fff0-4ff3-8cb7-bc6417727677",
+            "value": "1"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628578060_400341_159298",
+      "kind": "uml:ControlFlow",
+      "name": null,
+      "parent_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+      "attributes": {
+        "type": "uml:ControlFlow",
+        "id": "_18_0_5_baa02e2_1457628578060_400341_159298",
+        "uuid": "2e9e3a1f-78df-4f18-9da8-8090b466a340",
+        "visibility": "public",
+        "source": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+        "target": "_18_0_5_baa02e2_1457628574540_652543_159280"
+      },
+      "children": [
+        {
+          "kind": "weight",
+          "attributes": {
+            "type": "uml:LiteralUnlimitedNatural",
+            "id": "_18_0_5_baa02e2_1457628578060_899452_159299",
+            "uuid": "7c5e609e-8cbe-4f21-aca0-4c553502d711",
+            "value": "1"
+          },
+          "text": null
+        }
+      ]
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628578060_899452_159299",
+      "kind": "uml:LiteralUnlimitedNatural",
+      "name": null,
+      "parent_id": "_18_0_5_baa02e2_1457628578060_400341_159298",
+      "attributes": {
+        "type": "uml:LiteralUnlimitedNatural",
+        "id": "_18_0_5_baa02e2_1457628578060_899452_159299",
+        "uuid": "7c5e609e-8cbe-4f21-aca0-4c553502d711",
+        "value": "1"
+      },
+      "children": []
+    }
+  ],
+  "omissions": [
+    "Complete PEAS and Cmd_SH ownership hierarchy; external Integer library remains href",
+    "Vendor presentation and other activities/calls",
+    "No image payload field occurs in the selected Ack signal",
+    "Native action execution, event queue/port behavior and complete v1/v2 equivalence unverified"
+  ],
+  "mapping": {
+    "source_activity": "TMTExposureDerived::PEASContext::takeSHExposure",
+    "change": "Reusable original activity becomes nested action usage in a new lexical PEASContext; input object flow becomes constructor argument. Original source XML remains authority.",
+    "port": "original untyped onPort preserved via PEAS2SHOut; no receiving port invented"
+  }
+}

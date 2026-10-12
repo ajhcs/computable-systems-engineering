@@ -1,0 +1,87 @@
+{
+  "schema": "cse-native-composition-1",
+  "view": "TREE",
+  "selected": {
+    "kind": "PartDefinition",
+    "id": "de03a897-fa59-4bdd-ac28-b9ce417b8dda",
+    "qualified": "APECompositionDerived::ActiveSegmentedMirror",
+    "name": "ActiveSegmentedMirror"
+  },
+  "parts": [
+    {
+      "kind": "PartUsage",
+      "id": "3fa02b28-95a5-4dbc-8ac4-492802644edd",
+      "qualified": "APECompositionDerived::ActiveSegmentedMirror::seg",
+      "name": "seg",
+      "owner": "APECompositionDerived::ActiveSegmentedMirror",
+      "owner_id": "de03a897-fa59-4bdd-ac28-b9ce417b8dda",
+      "composite": true,
+      "membership_id": "cb8c4845-781e-46de-b7b2-bbaae4a9672f",
+      "visibility": "private",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "da84a8f3-ae94-43ea-a084-344ee35ff594",
+          "qualified": "APECompositionDerived::Segment",
+          "name": "Segment"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": null,
+      "native_bound_count": 1,
+      "lower": 61,
+      "upper": 61,
+      "multiplicity_origin": "explicit single-bound shorthand [n] means [n..n]"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "68092bc6-618c-4d77-906c-736149b66cee",
+      "qualified": "APECompositionDerived::ActiveSegmentedMirror::pact",
+      "name": "pact",
+      "owner": "APECompositionDerived::ActiveSegmentedMirror",
+      "owner_id": "de03a897-fa59-4bdd-ac28-b9ce417b8dda",
+      "composite": true,
+      "membership_id": "dbe68359-5c94-4152-ba23-52fc4ccdd6c0",
+      "visibility": "private",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "d1d3f664-4332-4d7e-89e3-34c8e65f4d6c",
+          "qualified": "APECompositionDerived::PositionActuator",
+          "name": "PositionActuator"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": null,
+      "native_bound_count": 1,
+      "lower": 183,
+      "upper": 183,
+      "multiplicity_origin": "explicit single-bound shorthand [n] means [n..n]"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "e942988f-1a2c-46ac-b38a-72420b1b54f9",
+      "qualified": "APECompositionDerived::ActiveSegmentedMirror::mount",
+      "name": "mount",
+      "owner": "APECompositionDerived::ActiveSegmentedMirror",
+      "owner_id": "de03a897-fa59-4bdd-ac28-b9ce417b8dda",
+      "composite": true,
+      "membership_id": "f6f8a366-d7c9-4f87-9291-fc5ef8613f41",
+      "visibility": "private",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "aecda311-37ba-449f-a6f3-1506217f3e74",
+          "qualified": "APECompositionDerived::Mount",
+          "name": "Mount"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    }
+  ],
+  "parse_has_errors": false,
+  "parse_issues": ""
+}

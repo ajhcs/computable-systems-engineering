@@ -1,0 +1,5 @@
+# Source and derivative rights
+
+Native model: x-PPU/Models, pinned c3aedf66f3e9695e6a7751ae62d17c64b1bc373c, GNU GPL version3. The bounded model projection, semantic ledger and diagrams derived from it are distributed under GPL-3.0; full license accompanies this directory. This subtree is not relabeled as repository MIT. Original corresponding source archive and exact extracted UML/notation/DI are preserved in the ignored review source pack.
+
+Author figure/English: Bougouffa et al.(2019), Case Studies for the Community, Managed Software Evolution, DOI10.1007/978-3-030-13499-0_12, ©The Authors, [CC BY4.0](https://creativecommons.org/licenses/by/4.0/). Fig12.12 printed360/PDF26 and Fig12.11 printed359/PDF25 show no separate exclusion credit on the inspected pages. Original full-page PNGs are PDF rasterizations; figure view may be cropped/rotated for reading with changes marked. Chapter4 §4.3 is separately CC BY4.0. No endorsement is implied. Author text is linked and paraphrased, not pasted as newly authored engineering.

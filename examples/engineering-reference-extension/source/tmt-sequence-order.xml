@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<extracted-source-fragment xmlns:ns0="http://www.omg.org/spec/XMI/20131001" modified="2026-10-02: selected interaction, referenced properties/signals and exact min/max Duration records; vendor presentation removed; not standalone" archive_sha256="eb54c3105e4d894bb06378476f364bbf5cdb3bfad4cbf55f10fefacf6cad515f">
+  <ownedAttribute ns0:type="uml:Property" ns0:id="_17_0_2_3_41e01aa_1389728908413_724070_61695" ns0:uuid="e2b731bf-7d57-11e3-ace2-0d1d3a0a0dea" name="peas" visibility="private" aggregation="composite" type="_17_0_2_3_41e01aa_1382540352291_31499_56367" association="_18_0_2_baa02e2_1429579514040_335826_172624" />
+  <packagedElement ns0:type="uml:Signal" ns0:id="_18_0_4_baa02e2_1435196367610_837152_180594" ns0:uuid="9ddc9f1c-3469-451c-a8ca-a91293ac3ad0" name="Abort" />
+  <packagedElement ns0:type="uml:Signal" ns0:id="_18_0_4_baa02e2_1437066483571_319242_152444" ns0:uuid="b615fbb8-0da1-457b-b540-9ce23c075a3e" name="Maintenance Alignment" />
+  <ownedAttribute ns0:type="uml:Property" ns0:id="_18_0_5_baa02e2_1454128060627_462855_170075" ns0:uuid="1cc679f6-94b0-4253-b9b8-e1ed015bea58" name="analysisDriver" visibility="public" aggregation="composite" type="_18_0_5_baa02e2_1454128077098_134559_170081" />
+  <ownedBehavior ns0:type="uml:Interaction" ns0:id="_18_0_5_baa02e2_1458099293885_800041_152044" ns0:uuid="adf20167-5d3d-4caf-ac35-141e1a2d748b" name="Maintenance Alignement Duration Scenario">
+    <ownedRule ns0:type="uml:DurationConstraint" ns0:id="_18_0_5_baa02e2_1458099293890_50791_152047" ns0:uuid="d09553f1-b4fb-4b6a-9dfb-1bb089dd164f">
+      <constrainedElement ns0:idref="_18_0_5_baa02e2_1458099294136_802828_152076" />
+      <constrainedElement ns0:idref="_18_0_5_baa02e2_1458099294136_95702_152077" />
+      <specification ns0:type="uml:DurationInterval" ns0:id="_18_0_5_baa02e2_1458099294149_993211_152101" ns0:uuid="52f30635-b519-4314-9ef8-6220313b54af" max="_18_0_5_baa02e2_1458099294150_216568_152103" min="_18_0_5_baa02e2_1458099294150_583611_152102" />
+    </ownedRule>
+    <ownedRule ns0:type="uml:DurationConstraint" ns0:id="_18_0_5_baa02e2_1458099293891_105987_152048" ns0:uuid="64b4c6d0-f55e-40e8-a95a-3c6ceac84fe9">
+      <constrainedElement ns0:idref="_18_0_5_baa02e2_1458099294136_642396_152078" />
+      <specification ns0:type="uml:DurationInterval" ns0:id="_18_0_5_baa02e2_1458099294150_257908_152104" ns0:uuid="ab73c666-437b-45f6-b789-ac88edcd55b1" max="_18_0_5_baa02e2_1458099294151_159917_152106" min="_18_0_5_baa02e2_1458099294151_760362_152105" />
+    </ownedRule>
+    <ownedRule ns0:type="uml:DurationConstraint" ns0:id="_18_0_6_baa02e2_1469462778437_445103_166162" ns0:uuid="cdd09747-c4cc-474f-ae61-d33590475fdd">
+      <constrainedElement ns0:idref="_18_0_5_baa02e2_1458099294136_642396_152078" />
+      <constrainedElement ns0:idref="_18_0_5_baa02e2_1458099294136_802828_152076" />
+      <specification ns0:type="uml:DurationInterval" ns0:id="_18_0_6_baa02e2_1469462778437_537819_166163" ns0:uuid="c28e9c5e-43fa-4ff2-b29c-e188b653e4ed" max="_18_0_6_baa02e2_1469462778438_170313_166168" min="_18_0_6_baa02e2_1469462778437_212536_166164" />
+    </ownedRule>
+    <observation ns0:type="uml:DurationObservation" ns0:id="_18_0_5_baa02e2_1458099294129_879913_152070" ns0:uuid="4f6076d1-e13b-41d9-8cc7-facfa9daef19">
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_802828_152076" />
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_95702_152077" />
+    </observation>
+    <observation ns0:type="uml:DurationObservation" ns0:id="_18_0_5_baa02e2_1458099294129_879022_152071" ns0:uuid="efd0812d-91e9-43d0-b95f-459704998eb0">
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_802828_152076" />
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_95702_152077" />
+    </observation>
+    <observation ns0:type="uml:DurationObservation" ns0:id="_18_0_5_baa02e2_1458099294130_747544_152072" ns0:uuid="c8623519-a0ec-4f59-b8bc-3a3b07c34f43">
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_642396_152078" />
+    </observation>
+    <observation ns0:type="uml:DurationObservation" ns0:id="_18_0_5_baa02e2_1458099294130_69904_152073" ns0:uuid="9ea5e205-3c52-4c21-b247-494585c1ccfd">
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_642396_152078" />
+    </observation>
+    <observation ns0:type="uml:DurationObservation" ns0:id="_18_0_6_baa02e2_1469462778438_84296_166167" ns0:uuid="9b674a36-640d-4c51-b372-42bfe959de12">
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_642396_152078" />
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_802828_152076" />
+    </observation>
+    <observation ns0:type="uml:DurationObservation" ns0:id="_18_0_6_baa02e2_1469462778438_318925_166171" ns0:uuid="9f5b0b94-f62a-4260-ad01-6cb2ee3e4a8d">
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_642396_152078" />
+      <event ns0:idref="_18_0_5_baa02e2_1458099294136_802828_152076" />
+    </observation>
+    <fragment ns0:type="uml:MessageOccurrenceSpecification" ns0:id="_18_0_5_baa02e2_1458099294145_560741_152086" ns0:uuid="7b01cc96-8b3f-41c3-8081-a7b339a20d26" visibility="public" message="_18_0_5_baa02e2_1458099294136_642396_152078">
+      <covered ns0:idref="_18_0_5_baa02e2_1458099294143_628657_152079" />
+    </fragment>
+    <fragment ns0:type="uml:MessageOccurrenceSpecification" ns0:id="_18_0_5_baa02e2_1458099294146_791176_152087" ns0:uuid="5e41743f-0002-460f-89f8-14aec98d0eb0" visibility="public" message="_18_0_5_baa02e2_1458099294136_642396_152078">
+      <covered ns0:idref="_18_0_5_baa02e2_1458099294144_32845_152081" />
+    </fragment>
+    <fragment ns0:type="uml:MessageOccurrenceSpecification" ns0:id="_18_0_5_baa02e2_1458099294146_644794_152089" ns0:uuid="d99ee041-412a-4545-a319-8af127a12b34" visibility="public" message="_18_0_5_baa02e2_1458099294136_802828_152076">
+      <covered ns0:idref="_18_0_5_baa02e2_1458099294143_628657_152079" />
+    </fragment>
+    <fragment ns0:type="uml:MessageOccurrenceSpecification" ns0:id="_18_0_5_baa02e2_1458099294146_530702_152090" ns0:uuid="fcf8ccd5-260c-45c4-8bf3-fbf003f537e7" visibility="public" message="_18_0_5_baa02e2_1458099294136_802828_152076">
+      <covered ns0:idref="_18_0_5_baa02e2_1458099294144_32845_152081" />
+    </fragment>
+    <fragment ns0:type="uml:MessageOccurrenceSpecification" ns0:id="_18_0_5_baa02e2_1458099294147_588842_152092" ns0:uuid="fc57f9da-fe39-48cd-b7e5-f37fd58df5a6" visibility="public" message="_18_0_5_baa02e2_1458099294136_95702_152077">
+      <covered ns0:idref="_18_0_5_baa02e2_1458099294143_628657_152079" />
+    </fragment>
+    <fragment ns0:type="uml:MessageOccurrenceSpecification" ns0:id="_18_0_5_baa02e2_1458099294147_466084_152093" ns0:uuid="efbe4c26-72ef-4561-9170-b97f59438496" visibility="public" message="_18_0_5_baa02e2_1458099294136_95702_152077">
+      <covered ns0:idref="_18_0_5_baa02e2_1458099294144_32845_152081" />
+    </fragment>
+    <lifeline ns0:type="uml:Lifeline" ns0:id="_18_0_5_baa02e2_1458099294143_628657_152079" ns0:uuid="86902efb-6293-48db-869d-9f508f5b696c" visibility="public" represents="_18_0_5_baa02e2_1454128060627_462855_170075">
+      <coveredBy ns0:idref="_18_0_5_baa02e2_1458099294145_560741_152086" />
+      <coveredBy ns0:idref="_18_0_5_baa02e2_1458099294146_644794_152089" />
+      <coveredBy ns0:idref="_18_0_5_baa02e2_1458099294147_588842_152092" />
+    </lifeline>
+    <lifeline ns0:type="uml:Lifeline" ns0:id="_18_0_5_baa02e2_1458099294144_32845_152081" ns0:uuid="8982ef63-da0e-4fdc-b32a-66fd3c14b48f" visibility="public" represents="_17_0_2_3_41e01aa_1389728908413_724070_61695">
+      <coveredBy ns0:idref="_18_0_5_baa02e2_1458099294146_791176_152087" />
+      <coveredBy ns0:idref="_18_0_5_baa02e2_1458099294146_530702_152090" />
+      <coveredBy ns0:idref="_18_0_5_baa02e2_1458099294147_466084_152093" />
+    </lifeline>
+    <message ns0:type="uml:Message" ns0:id="_18_0_5_baa02e2_1458099294136_802828_152076" ns0:uuid="1a94157c-ffe9-4a41-86e9-2616f206811e" visibility="public" messageSort="asynchSignal" receiveEvent="_18_0_5_baa02e2_1458099294146_530702_152090" sendEvent="_18_0_5_baa02e2_1458099294146_644794_152089" signature="_18_0_4_baa02e2_1437066483571_319242_152444">
+																</message>
+    <message ns0:type="uml:Message" ns0:id="_18_0_5_baa02e2_1458099294136_95702_152077" ns0:uuid="3178bb78-9578-4408-9352-11cedff8ec27" visibility="public" messageSort="asynchSignal" receiveEvent="_18_0_5_baa02e2_1458099294147_466084_152093" sendEvent="_18_0_5_baa02e2_1458099294147_588842_152092" signature="_18_0_4_baa02e2_1435196367610_837152_180594">
+																</message>
+    <message ns0:type="uml:Message" ns0:id="_18_0_5_baa02e2_1458099294136_642396_152078" ns0:uuid="3a4c21a5-d641-4c06-bbef-ea2cacef8bed" name="Abort" visibility="public" messageSort="asynchSignal" receiveEvent="_18_0_5_baa02e2_1458099294146_791176_152087" sendEvent="_18_0_5_baa02e2_1458099294145_560741_152086" signature="_18_0_4_baa02e2_1435196367610_837152_180594">
+																</message>
+  </ownedBehavior>
+  <expr ns0:type="uml:Duration" ns0:id="_18_0_5_baa02e2_1458099294150_216568_152103" ns0:uuid="794f6ae0-dde6-48d6-95f1-7fe424441f9f">
+    <observation ns0:idref="_18_0_5_baa02e2_1458099294129_879022_152071" />
+  </expr>
+  <expr ns0:type="uml:Duration" ns0:id="_18_0_5_baa02e2_1458099294150_583611_152102" ns0:uuid="57b364b4-42e4-4f8a-9286-c208d565ef57">
+    <observation ns0:idref="_18_0_5_baa02e2_1458099294129_879913_152070" />
+    <expr ns0:type="uml:LiteralString" ns0:id="_18_0_5_baa02e2_1458099294207_735736_152116" ns0:uuid="00893038-9e7d-4933-b758-69bc6f8b0d9b" value="2000s" />
+  </expr>
+  <expr ns0:type="uml:Duration" ns0:id="_18_0_5_baa02e2_1458099294151_159917_152106" ns0:uuid="33d57047-38b9-46f9-b136-0c1a0b665538">
+    <observation ns0:idref="_18_0_5_baa02e2_1458099294130_69904_152073" />
+  </expr>
+  <expr ns0:type="uml:Duration" ns0:id="_18_0_5_baa02e2_1458099294151_760362_152105" ns0:uuid="ed2879c0-a219-4ef4-80c4-d7ff9be25f19">
+    <observation ns0:idref="_18_0_5_baa02e2_1458099294130_747544_152072" />
+    <expr ns0:type="uml:LiteralString" ns0:id="_18_0_5_baa02e2_1458099294208_108641_152118" ns0:uuid="f07dbc24-f754-4e40-ba58-f1de99ea3073" value="60s" />
+  </expr>
+  <expr ns0:type="uml:Duration" ns0:id="_18_0_6_baa02e2_1469462778437_212536_166164" ns0:uuid="bb277345-72f4-4d4b-926d-db3ce1277f1c">
+    <observation ns0:idref="_18_0_6_baa02e2_1469462778438_84296_166167" />
+    <expr ns0:type="uml:LiteralString" ns0:id="_18_0_6_baa02e2_1469462784006_149807_166175" ns0:uuid="f562cca3-820c-4727-9152-02e081fa4a8c" value="60s" />
+  </expr>
+  <expr ns0:type="uml:Duration" ns0:id="_18_0_6_baa02e2_1469462778438_170313_166168" ns0:uuid="d25a99ca-4ecb-47a3-848a-1c9c83198704">
+    <observation ns0:idref="_18_0_6_baa02e2_1469462778438_318925_166171" />
+  </expr>
+</extracted-source-fragment>

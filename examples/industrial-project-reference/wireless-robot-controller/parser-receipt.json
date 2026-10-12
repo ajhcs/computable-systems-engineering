@@ -1,0 +1,104 @@
+{
+  "checker_version": "sysml-2.0-alpha.2",
+  "claim_scope": "sysml_syntax_and_validation",
+  "coverage": {
+    "compiled": [],
+    "expected": [],
+    "unsupported": []
+  },
+  "findings": [],
+  "inventory": {
+    "actions": [],
+    "attributes": [],
+    "concerns": [],
+    "constraints": [],
+    "documents": [],
+    "event_attributes": [],
+    "events": [],
+    "part_definitions": [
+      {
+        "has_specialization": false,
+        "line": 9,
+        "name": "IKApp",
+        "qualified_name": "WirelessRobotControllerSelected::IKApp",
+        "source": "work/pressure-test-run-01/round-11/cases/WFC-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 11,
+        "name": "PathPlannerApp",
+        "qualified_name": "WirelessRobotControllerSelected::PathPlannerApp",
+        "source": "work/pressure-test-run-01/round-11/cases/WFC-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 13,
+        "name": "CollisionDetectApp",
+        "qualified_name": "WirelessRobotControllerSelected::CollisionDetectApp",
+        "source": "work/pressure-test-run-01/round-11/cases/WFC-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 15,
+        "name": "StatesPublisherApp",
+        "qualified_name": "WirelessRobotControllerSelected::StatesPublisherApp",
+        "source": "work/pressure-test-run-01/round-11/cases/WFC-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 17,
+        "name": "EEControlApp",
+        "qualified_name": "WirelessRobotControllerSelected::EEControlApp",
+        "source": "work/pressure-test-run-01/round-11/cases/WFC-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 19,
+        "name": "ArmControlApp",
+        "qualified_name": "WirelessRobotControllerSelected::ArmControlApp",
+        "source": "work/pressure-test-run-01/round-11/cases/WFC-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 20,
+        "name": "Transceiver",
+        "qualified_name": "WirelessRobotControllerSelected::Transceiver",
+        "source": "work/pressure-test-run-01/round-11/cases/WFC-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 27,
+        "name": "RobotControllerSelectedView",
+        "qualified_name": "WirelessRobotControllerSelected::RobotControllerSelectedView",
+        "source": "work/pressure-test-run-01/round-11/cases/WFC-01/model.sysml"
+      }
+    ],
+    "parts": [],
+    "requirements": [],
+    "states": [],
+    "use_cases": []
+  },
+  "limits": {
+    "observation_cap": 10000,
+    "parser_timeout_seconds": 60,
+    "per_clause_work_cap": 1000000
+  },
+  "model_files": [
+    {
+      "path": "work/pressure-test-run-01/round-11/cases/WFC-01/model.sysml",
+      "sha256": "3459346bf262f10473e7c4cbc8a4b93e372a795b012d355f5adbe688ecf8956d"
+    }
+  ],
+  "model_sha256": "3459346bf262f10473e7c4cbc8a4b93e372a795b012d355f5adbe688ecf8956d",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "parser_issues": [],
+  "results": {},
+  "shape": {
+    "actions": 0,
+    "concerns": 0,
+    "part_definitions": 8,
+    "states": 0,
+    "use_cases": 0
+  },
+  "status": "pass"
+}

@@ -1,0 +1,189 @@
+{
+  "schema": "cse-native-composition-1",
+  "view": "TREE",
+  "selected": {
+    "kind": "PartDefinition",
+    "id": "e22959d8-e265-4ff7-a706-4fd1fc92737f",
+    "qualified": "XPPUScenario15Selected::PPU",
+    "name": "PPU"
+  },
+  "parts": [
+    {
+      "kind": "PartUsage",
+      "id": "647e04a3-4256-4d0d-b39c-94e4154ad181",
+      "qualified": "XPPUScenario15Selected::PPU::stack",
+      "name": "stack",
+      "owner": "XPPUScenario15Selected::PPU",
+      "owner_id": "e22959d8-e265-4ff7-a706-4fd1fc92737f",
+      "composite": true,
+      "membership_id": "1df8c564-0930-49f0-8c88-b0c619e75f29",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "40523d8f-959b-466b-b152-98ec99a7ec9f",
+          "qualified": "XPPUScenario15Selected::Stack",
+          "name": "Stack"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 1,
+      "native_bound_count": 2,
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "a66ca75b-6805-4eb3-94ca-67b7103f048e",
+      "qualified": "XPPUScenario15Selected::PPU::crane",
+      "name": "crane",
+      "owner": "XPPUScenario15Selected::PPU",
+      "owner_id": "e22959d8-e265-4ff7-a706-4fd1fc92737f",
+      "composite": true,
+      "membership_id": "9d8632fa-3079-484c-9dfe-37674f7b95d7",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "2c96c74d-9325-42ed-a820-569770cc35dc",
+          "qualified": "XPPUScenario15Selected::Crane",
+          "name": "Crane"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 1,
+      "native_bound_count": 2,
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "f98060e4-75e9-4ce9-950d-3b9c9f7316da",
+      "qualified": "XPPUScenario15Selected::PPU::stamp",
+      "name": "stamp",
+      "owner": "XPPUScenario15Selected::PPU",
+      "owner_id": "e22959d8-e265-4ff7-a706-4fd1fc92737f",
+      "composite": true,
+      "membership_id": "e17f7895-81dd-41fd-b41d-eae98e54ec2b",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "fa555766-4f3f-42dd-a714-8c1b1cce47a1",
+          "qualified": "XPPUScenario15Selected::Stamp",
+          "name": "Stamp"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 1,
+      "native_bound_count": 2,
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "88f831c9-6399-4a07-ad96-d18451abcfba",
+      "qualified": "XPPUScenario15Selected::PPU::largeSortingConveyor",
+      "name": "largeSortingConveyor",
+      "owner": "XPPUScenario15Selected::PPU",
+      "owner_id": "e22959d8-e265-4ff7-a706-4fd1fc92737f",
+      "composite": true,
+      "membership_id": "66e66cd9-047f-4802-ba3a-5ebcd171dbf2",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "2f853c05-a749-4a65-8f8a-e4effc0da7f9",
+          "qualified": "XPPUScenario15Selected::LargeSortingConveyor",
+          "name": "LargeSortingConveyor"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 1,
+      "native_bound_count": 2,
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "48d351f5-f7af-456d-a64c-7e3b39c03a0e",
+      "qualified": "XPPUScenario15Selected::PPU::picAlphaConveyor",
+      "name": "picAlphaConveyor",
+      "owner": "XPPUScenario15Selected::PPU",
+      "owner_id": "e22959d8-e265-4ff7-a706-4fd1fc92737f",
+      "composite": true,
+      "membership_id": "4e7388d0-6d34-4d50-8e90-b6361f4c4820",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "2c1e1210-e5c3-4051-8b3c-9c40da2735a5",
+          "qualified": "XPPUScenario15Selected::PicAlphaConveyor",
+          "name": "PicAlphaConveyor"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 1,
+      "native_bound_count": 2,
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "4e50da5d-3bb9-46ba-8f74-31b78009926a",
+      "qualified": "XPPUScenario15Selected::PPU::smallSortingConveyor",
+      "name": "smallSortingConveyor",
+      "owner": "XPPUScenario15Selected::PPU",
+      "owner_id": "e22959d8-e265-4ff7-a706-4fd1fc92737f",
+      "composite": true,
+      "membership_id": "eb8e3fea-6771-4c6f-b4da-b43eeb72a2dc",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "4b2bba2a-2498-4c5e-8015-b3045c2e53db",
+          "qualified": "XPPUScenario15Selected::SmallSortingConveyor",
+          "name": "SmallSortingConveyor"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 1,
+      "native_bound_count": 2,
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "3b122ca0-f98a-4ede-a05e-507f5a2e2f34",
+      "qualified": "XPPUScenario15Selected::PPU::refillConveyor",
+      "name": "refillConveyor",
+      "owner": "XPPUScenario15Selected::PPU",
+      "owner_id": "e22959d8-e265-4ff7-a706-4fd1fc92737f",
+      "composite": true,
+      "membership_id": "1d187e2d-4a0d-4e1b-a918-5800630288ac",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "dce22950-0e7f-44b1-87c5-96b83708d268",
+          "qualified": "XPPUScenario15Selected::RefillConveyor",
+          "name": "RefillConveyor"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 1,
+      "native_bound_count": 2,
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "explicit range"
+    }
+  ],
+  "parse_has_errors": false,
+  "parse_issues": ""
+}

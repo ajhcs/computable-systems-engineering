@@ -1,0 +1,254 @@
+{
+  "print": [
+    {
+      "treatment": "engineering-standard",
+      "file": "01-tmt-maintenance.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "engineering-standard",
+      "file": "02-tmt-timing.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "engineering-standard",
+      "file": "03-ape-composition.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "engineering-standard",
+      "file": "04-ape-optical.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "engineering-standard",
+      "file": "05-tmt-exposure.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "engineering-standard",
+      "file": "06-tmt-sequence-order.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 17,
+      "minimum_expected_text_pt": 12.75
+    },
+    {
+      "treatment": "instrument-record",
+      "file": "01-tmt-maintenance.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "instrument-record",
+      "file": "02-tmt-timing.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "instrument-record",
+      "file": "03-ape-composition.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "instrument-record",
+      "file": "04-ape-optical.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "instrument-record-print",
+      "file": "01-tmt-maintenance.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "instrument-record-print",
+      "file": "02-tmt-timing.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "instrument-record-print",
+      "file": "03-ape-composition.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "instrument-record-print",
+      "file": "04-ape-optical.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "quiet-precision",
+      "file": "01-tmt-maintenance.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "quiet-precision",
+      "file": "02-tmt-timing.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "quiet-precision",
+      "file": "03-ape-composition.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "quiet-precision",
+      "file": "04-ape-optical.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "research-folio",
+      "file": "01-tmt-maintenance.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "research-folio",
+      "file": "02-tmt-timing.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "research-folio",
+      "file": "03-ape-composition.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "research-folio",
+      "file": "04-ape-optical.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "technical-ledger",
+      "file": "01-tmt-maintenance.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "technical-ledger",
+      "file": "02-tmt-timing.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "technical-ledger",
+      "file": "03-ape-composition.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 15,
+      "minimum_expected_text_pt": 11.25
+    },
+    {
+      "treatment": "technical-ledger",
+      "file": "04-ape-optical.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "technical-ledger",
+      "file": "05-tmt-exposure.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 16,
+      "minimum_expected_text_pt": 12
+    },
+    {
+      "treatment": "technical-ledger",
+      "file": "06-tmt-sequence-order.svg",
+      "print": "A3 landscape at intrinsic canvas scale",
+      "minimum_source_text_px": 17,
+      "minimum_expected_text_pt": 12.75
+    }
+  ],
+  "viewport": [
+    {
+      "width": 390,
+      "image_width": 1280,
+      "viewport_width": 340,
+      "scroll_width": 1280,
+      "document_scroll_width": 390
+    },
+    {
+      "width": 768,
+      "image_width": 1280,
+      "viewport_width": 718,
+      "scroll_width": 1280,
+      "document_scroll_width": 768
+    },
+    {
+      "width": 1440,
+      "image_width": 1280,
+      "viewport_width": 1280,
+      "scroll_width": 1280,
+      "document_scroll_width": 1440
+    },
+    {
+      "width": 1920,
+      "image_width": 1280,
+      "viewport_width": 1280,
+      "scroll_width": 1280,
+      "document_scroll_width": 1920
+    }
+  ],
+  "extensions": [
+    {
+      "stem": "05-tmt-exposure",
+      "label_count": 10,
+      "clipped": []
+    },
+    {
+      "stem": "06-tmt-sequence-order",
+      "label_count": 11,
+      "clipped": []
+    }
+  ],
+  "actual_color_vision_emulations": [
+    "achromatopsia",
+    "deuteranopia"
+  ],
+  "svg_2x_raster": {
+    "width": 2560,
+    "height": 1800
+  },
+  "limits": [
+    "A3 intrinsic scale checked; A4/Letter fit-to-page is not a readable-print pass",
+    "No human comprehension comparison, style winner, native editor round-trip or full graphical-conformance claim"
+  ]
+}

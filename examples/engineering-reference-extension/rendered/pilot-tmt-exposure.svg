@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="371px" preserveAspectRatio="none" style="width:508px;height:371px;background:#FFFFFF;" version="1.1" viewBox="0 0 508 371" width="508px" zoomAndPan="magnify"><defs/><g><!--MD5=[fbc87193dbaf4d95561dea2c320d4a47]
+cluster E1--><g id="cluster_E1"><a href="psysml:2110dc33-6852-41b1-961a-afd7bb158323" target="_top" title="psysml:2110dc33-6852-41b1-961a-afd7bb158323" xlink:actuate="onRequest" xlink:href="psysml:2110dc33-6852-41b1-961a-afd7bb158323" xlink:show="new" xlink:title="psysml:2110dc33-6852-41b1-961a-afd7bb158323" xlink:type="simple"><rect fill="#FFFFFF" height="360" id="E1" rx="10" ry="10" style="stroke:#383838;stroke-width:1.5;" width="492" x="8" y="5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="53" x="227.5" y="21.1387">«action»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="197" y="36.9639">takeSHExposure</text><line style="stroke:#383838;stroke-width:1.0;" x1="8" x2="500" y1="45.2656" y2="45.2656"/></a></g><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="17" x="398.5" y="32.6982">dit</text><rect fill="#FFFFFF" height="12" style="stroke:#181818;stroke-width:1.5;" width="12" x="401" y="48"/><!--MD5=[a60fb756f580feb9fd8e2cf1329b5c91]
+entity E3--><g id="elem_E3"><a href="psysml:e21245ad-6fe2-4990-aa9e-2d1b564bd6fd" target="_top" title="psysml:e21245ad-6fe2-4990-aa9e-2d1b564bd6fd" xlink:actuate="onRequest" xlink:href="psysml:e21245ad-6fe2-4990-aa9e-2d1b564bd6fd" xlink:show="new" xlink:title="psysml:e21245ad-6fe2-4990-aa9e-2d1b564bd6fd" xlink:type="simple"><polygon fill="#FFFFFF" points="16,168,16,236.8906,260,236.8906,280,202.4453,260,168" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="99" x="91" y="190.9951">«send action»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="106" x="23" y="207.292">sendCommand</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="231" x="27" y="223.5889">new SH_Take_exposure_Cmd(dit)</text></a></g><!--MD5=[961cefdc15414eaa3e87aec9d17c2188]
+entity E4--><g id="elem_E4"><a href="psysml:2150c34a-174e-4268-9ed3-bf73a4aa35de" target="_top" title="psysml:2150c34a-174e-4268-9ed3-bf73a4aa35de" xlink:actuate="onRequest" xlink:href="psysml:2150c34a-174e-4268-9ed3-bf73a4aa35de" xlink:show="new" xlink:title="psysml:2150c34a-174e-4268-9ed3-bf73a4aa35de" xlink:type="simple"><polygon fill="#FFFFFF" points="298.5,168,298.5,236.8906,491.5,236.8906,471.5,202.4453,491.5,168" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="111" x="332" y="190.9951">«accept action»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="305.5" y="207.292">awaitAck</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="164" x="305.5" y="223.5889">SH_Take_exposure_Ack</text></a></g><rect fill="#555555" height="8" style="stroke:none;stroke-width:1.0;" width="80" x="183" y="108"/><rect fill="#555555" height="8" style="stroke:none;stroke-width:1.0;" width="80" x="231" y="273"/><ellipse cx="223" cy="58" fill="#222222" rx="10" ry="10" style="stroke:none;stroke-width:1.0;"/><ellipse cx="271" cy="343" fill="none" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/><ellipse cx="271.5" cy="343.5" fill="#222222" rx="6" ry="6" style="stroke:none;stroke-width:1.0;"/><path d="M223,72.183 C223,82.4535 223,97.5917 223,107.8513 " fill="none" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="223,107.8513,227,98.8513,223,102.8513,219,98.8513,223,107.8513" style="stroke:#181818;stroke-width:1.0;"/><path d="M271,297.183 C271,307.4535 271,322.5917 271,332.8513 " fill="none" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="271,332.8513,275,323.8513,271,327.8513,267,323.8513,271,332.8513" style="stroke:#181818;stroke-width:1.0;"/><path d="M212.5716,132.1932 C203.9581,141.4383 191.2644,155.0628 179.4061,167.7908 " fill="none" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="179.4061,167.7908,188.4678,163.9325,182.8145,164.1325,182.6145,158.4792,179.4061,167.7908" style="stroke:#181818;stroke-width:1.0;"/><path d="M246.5552,132.0244 C266.3363,141.2824 295.6802,155.016 323.0677,167.834 " fill="none" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="323.0677,167.834,316.6119,160.3961,318.5391,165.7145,313.2207,167.6418,323.0677,167.834" style="stroke:#181818;stroke-width:1.0;"/><path d="M199.4504,237.1728 C218.9362,249.9257 239.8055,263.5841 253.9458,272.8385 " fill="none" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="253.9458,272.8385,248.6057,264.5631,249.7622,270.1005,244.2248,271.2569,253.9458,272.8385" style="stroke:#181818;stroke-width:1.0;"/><path d="M343.1313,237.1728 C323.4871,249.9257 302.4482,263.5841 288.1928,272.8385 " fill="none" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="288.1928,272.8385,297.9196,271.2929,292.3866,270.116,293.5635,264.5829,288.1928,272.8385" style="stroke:#181818;stroke-width:1.0;"/><!--MD5=[edf9d986fa277b3afce617a45b0c756d]
+@startuml
+!pragma layout smetana
+skin sysmlbw
+skinparam monochrome true
+skinparam wrapWidth 300
+hide circle
+skinparam ranksep 8
+
+rec usage "takeSHExposure" as E1  <<(T,blue) action>> [[psysml:2110dc33-6852-41b1-961a-afd7bb158323 ]] {
+portin "dit" as E2  [[psysml:7b5e9d16-d62f-4648-a8e5-21c6a7a8e5fa ]] 
+send "sendCommand\n new SH_Take_exposure_Cmd(dit)" as E3  << send action>> [[psysml:e21245ad-6fe2-4990-aa9e-2d1b564bd6fd ]] 
+accept "awaitAck\nSH_Take_exposure_Ack" as E4  << accept action>> [[psysml:2150c34a-174e-4268-9ed3-bf73a4aa35de ]] 
+fork "exposureFork" as E5  [[psysml:c4628881-6a08-4244-b479-3890035eeca9 ]] 
+join "exposureJoin" as E6  [[psysml:ba63eb2d-6fca-42a8-babe-9fabbae4c057 ]] 
+[*] ..> E5 [[psysml:86eec0ac-45c8-4756-8bbd-ac7f481c38dd ]] 
+E6 ..> [*] [[psysml:3969dba2-40e9-4695-834f-91a3fcd5220a ]] 
+}
+
+E5 ..> E3 [[psysml:caebb882-72a3-469e-b7b8-72f203c59839 ]] 
+E5 ..> E4 [[psysml:5dbd79ef-016d-4bf4-94e0-5d86cced3c22 ]] 
+E3 ..> E6 [[psysml:869c5998-9a74-45f7-bd9f-21315f661d60 ]] 
+E4 ..> E6 [[psysml:9d5c6184-bd0f-49c6-8eec-68eccfb33d9a ]] 
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 17:01:30 UTC 2022)
+(EPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,0 +1,1 @@
+National Institute of Standards and Technology is the source. Modern explanatory layout modified 2026-10-03; native XML and author SVG are unchanged. Full NIST notice is reproduced in NIST-LICENSE.md. Embedded IBM Plex Sans is supplied under its OFL notice. No endorsement is implied.

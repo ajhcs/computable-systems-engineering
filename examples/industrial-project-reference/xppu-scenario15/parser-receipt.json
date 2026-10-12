@@ -1,0 +1,104 @@
+{
+  "checker_version": "sysml-2.0-alpha.2",
+  "claim_scope": "sysml_syntax_and_validation",
+  "coverage": {
+    "compiled": [],
+    "expected": [],
+    "unsupported": []
+  },
+  "findings": [],
+  "inventory": {
+    "actions": [],
+    "attributes": [],
+    "concerns": [],
+    "constraints": [],
+    "documents": [],
+    "event_attributes": [],
+    "events": [],
+    "part_definitions": [
+      {
+        "has_specialization": false,
+        "line": 5,
+        "name": "Stack",
+        "qualified_name": "XPPUScenario15Selected::Stack",
+        "source": "work/pressure-test-run-01/round-11/cases/XPPU-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 7,
+        "name": "Crane",
+        "qualified_name": "XPPUScenario15Selected::Crane",
+        "source": "work/pressure-test-run-01/round-11/cases/XPPU-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 9,
+        "name": "Stamp",
+        "qualified_name": "XPPUScenario15Selected::Stamp",
+        "source": "work/pressure-test-run-01/round-11/cases/XPPU-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 11,
+        "name": "LargeSortingConveyor",
+        "qualified_name": "XPPUScenario15Selected::LargeSortingConveyor",
+        "source": "work/pressure-test-run-01/round-11/cases/XPPU-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 13,
+        "name": "PicAlphaConveyor",
+        "qualified_name": "XPPUScenario15Selected::PicAlphaConveyor",
+        "source": "work/pressure-test-run-01/round-11/cases/XPPU-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 15,
+        "name": "SmallSortingConveyor",
+        "qualified_name": "XPPUScenario15Selected::SmallSortingConveyor",
+        "source": "work/pressure-test-run-01/round-11/cases/XPPU-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 17,
+        "name": "RefillConveyor",
+        "qualified_name": "XPPUScenario15Selected::RefillConveyor",
+        "source": "work/pressure-test-run-01/round-11/cases/XPPU-01/model.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 19,
+        "name": "PPU",
+        "qualified_name": "XPPUScenario15Selected::PPU",
+        "source": "work/pressure-test-run-01/round-11/cases/XPPU-01/model.sysml"
+      }
+    ],
+    "parts": [],
+    "requirements": [],
+    "states": [],
+    "use_cases": []
+  },
+  "limits": {
+    "observation_cap": 10000,
+    "parser_timeout_seconds": 60,
+    "per_clause_work_cap": 1000000
+  },
+  "model_files": [
+    {
+      "path": "work/pressure-test-run-01/round-11/cases/XPPU-01/model.sysml",
+      "sha256": "dede98efc85b31b6f08a6e26aff9a237635cef17fa41557496e88fa0305fda2c"
+    }
+  ],
+  "model_sha256": "dede98efc85b31b6f08a6e26aff9a237635cef17fa41557496e88fa0305fda2c",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "parser_issues": [],
+  "results": {},
+  "shape": {
+    "actions": 0,
+    "concerns": 0,
+    "part_definitions": 8,
+    "states": 0,
+    "use_cases": 0
+  },
+  "status": "pass"
+}

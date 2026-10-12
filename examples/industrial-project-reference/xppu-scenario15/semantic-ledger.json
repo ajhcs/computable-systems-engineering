@@ -1,0 +1,114 @@
+{
+  "case": "XPPU-01",
+  "project": "TUM physical xPPU research demonstrator",
+  "pin": "c3aedf66f3e9695e6a7751ae62d17c64b1bc373c",
+  "modelSha256": "444a126a1ab5fa1b07d38afe8394b263b3d4ea5bb8b41d356c06aeb128fe4a29",
+  "nativeModel": "/workspace/repos/builderbob/computable-systems-engineering/work/pressure-test-run-01/round-11/sources/ppu-scenario15/model_Sc15.uml",
+  "sourceModelLanguage": "Papyrus SysML1.x Blocks profile http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks, UML XMI20131001; minor SysML version not asserted",
+  "sourceDiagram": {
+    "id": "_IETdwBHREeaen93uATCTQQ",
+    "name": "Overview",
+    "type": "BlockDefinition",
+    "notationSha256": "764688e6b4fd3facfac30200e9968d1f7f8a80dc290c1f569a14d2cc98ba54fb",
+    "selectedClassesAndAssociationsDepicted": true,
+    "propertyTrace": "Property IDs resolve through the depicted association member ends; they are not directly repeated as notation elements",
+    "authorFigure": "Bougouffa et al.2019 chapter12 Fig12.12 printed360/PDF26"
+  },
+  "scope": "Seven direct composite module roles of PPU shown in native Overview; omit all class compartments/state behavior and nested equipment/control-module decomposition",
+  "owner": {
+    "id": "_2ub-IBHQEeaen93uATCTQQ",
+    "name": "PPU"
+  },
+  "roles": [
+    {
+      "id": "_K9YqEhHZEeaIeI6F5gdpJg",
+      "name": "stack",
+      "typeId": "_P1xSIBHVEeaen93uATCTQQ",
+      "typeName": "Stack",
+      "ownerId": "_2ub-IBHQEeaen93uATCTQQ",
+      "aggregation": "composite",
+      "associationId": "_K9YDABHZEeaIeI6F5gdpJg",
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_MFHHIhHZEeaIeI6F5gdpJg",
+      "name": "crane",
+      "typeId": "_uUK40BHWEeaE9dGXaplL2g",
+      "typeName": "Crane",
+      "ownerId": "_2ub-IBHQEeaen93uATCTQQ",
+      "aggregation": "composite",
+      "associationId": "_MFGgEBHZEeaIeI6F5gdpJg",
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_N1dDYxHZEeaIeI6F5gdpJg",
+      "name": "stamp",
+      "typeId": "_-GUi8BHWEeaE9dGXaplL2g",
+      "typeName": "Stamp",
+      "ownerId": "_2ub-IBHQEeaen93uATCTQQ",
+      "aggregation": "composite",
+      "associationId": "_N1dDYBHZEeaIeI6F5gdpJg",
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_cpnDIxH4EeaIeI6F5gdpJg",
+      "name": "largeSortingConveyor",
+      "typeId": "_RehDsBH4EeaIeI6F5gdpJg",
+      "typeName": "LargeSortingConveyor",
+      "ownerId": "_2ub-IBHQEeaen93uATCTQQ",
+      "aggregation": "composite",
+      "associationId": "_cpnDIBH4EeaIeI6F5gdpJg",
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_NypR0OcCEeayP7zJxSzVpQ",
+      "name": "picAlphaConveyor",
+      "typeId": "_5QIQAOcBEeayP7zJxSzVpQ",
+      "typeName": "PicAlphaConveyor",
+      "ownerId": "_2ub-IBHQEeaen93uATCTQQ",
+      "aggregation": "composite",
+      "associationId": "_NykZUOcCEeayP7zJxSzVpQ",
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_QzKcgucCEeayP7zJxSzVpQ",
+      "name": "smallSortingConveyor",
+      "typeId": "_-ESikOcBEeayP7zJxSzVpQ",
+      "typeName": "SmallSortingConveyor",
+      "ownerId": "_2ub-IBHQEeaen93uATCTQQ",
+      "aggregation": "composite",
+      "associationId": "_QzJOYOcCEeayP7zJxSzVpQ",
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    },
+    {
+      "id": "_lWsgEOcEEeayP7zJxSzVpQ",
+      "name": "refillConveyor",
+      "typeId": "_EV7fwOcCEeayP7zJxSzVpQ",
+      "typeName": "RefillConveyor",
+      "ownerId": "_2ub-IBHQEeaen93uATCTQQ",
+      "aggregation": "composite",
+      "associationId": "_lWqD0OcEEeayP7zJxSzVpQ",
+      "lower": "1",
+      "upper": "1",
+      "origin": "explicit/default UML multiplicity; lower absent defaults1, present LiteralInteger without value defaults0"
+    }
+  ],
+  "omissions": [
+    "Five PPU Boolean flags, all owned operations/61 state machines/625 transitions, module-internal sensors/actuators, action-language bodies, ISA88/OMAC behavior and use-case associations are not translated.",
+    "External Papyrus SysML/ALF/Ecore library references retained in original, not resolved by a native Papyrus session.",
+    "No simulation, commercial deployment, native editor round-trip, or complete v1-to-v2 equivalence claim."
+  ],
+  "classification": "Formal SysML v2 textual structural projection; modern drawings are model-derived explanatory composition readings, not claims of formal v2 graphical conformance."
+}
