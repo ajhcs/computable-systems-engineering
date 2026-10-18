@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "views": [
+    {
+      "id": "FT",
+      "kind": "function_tree",
+      "required_levels": [0, 1, 2],
+      "required_ids": ["F0", "F1", "F2", "F3"],
+      "level_counts": {"1": {"min": 2, "max": 4}},
+      "child_counts": {"F0": {"min": 2, "max": 2}}
+    },
+    {
+      "id": "SQ",
+      "kind": "sequence",
+      "required_ids": ["OP", "ST", "AR", "E1", "E2"],
+      "require_timing": true
+    }
+  ]
+}

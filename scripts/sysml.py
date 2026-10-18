@@ -20,16 +20,20 @@ def main():
     parser.add_argument("--syntax-only", action="store_true", help="check SysML syntax and references without compiling CSE clauses")
     parser.add_argument("--kind", choices=("concept", "conops", "scenario"),
                         help="also check the minimal model shape for this skill")
+    parser.add_argument("--view-profile", help="explicit task requirements for documentary function trees/sequences")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
     try:
+        view_profile = load_json(args.view_profile) if args.view_profile is not None else None
+        if args.view_profile is not None and not isinstance(view_profile, dict):
+            raise ValueError("View profile must be a JSON object, not null or another JSON value")
         manifest = load_json(args.manifest) if args.manifest else None
         evidence = load_json(args.evidence) if args.evidence else None
     except (OSError, ValueError) as exc:
         print(f"Cannot read input: {exc}", file=sys.stderr)
         return 2
     report = check_sysml(args.model, manifest=manifest, evidence=evidence, review=args.review,
-                         syntax_only=args.syntax_only, kind=args.kind)
+                         syntax_only=args.syntax_only, kind=args.kind, view_profile=view_profile)
     if args.json:
         print(json.dumps(report, sort_keys=True, indent=2))
     else:
@@ -42,6 +46,10 @@ def main():
         else:
             description = "supplied behavior evidence"
         print(f"{report['status']}: {description}, {len(report['results'])} compiled obligation(s)")
+        if "view_checks" in report:
+            print(f"  documentary view structure: {report['view_checks']['status']}; action names, exchange meaning, and engineering adequacy need human review")
+            for exception in report['view_checks']['exceptions']:
+                print(f"    exception {exception['view']}/{exception['rule']}/{exception['target']}: {exception['rationale']}")
         issues = report.get("parser_issues", [])
         for issue in issues[:8]:
             print(f"  {issue.get('severity', 'ISSUE')} {issue.get('source')}:{issue.get('line')}: {issue.get('message')}")
