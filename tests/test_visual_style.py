@@ -6,7 +6,7 @@ import unittest
 from copy import deepcopy
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from verifier.visual_style import load_profile, contrast, presentation_style, require_supported_text, font_css, text_width, wrap_text
+from verifier.visual_style import load_profile, contrast, presentation_style, require_supported_text, font_css, text_width, wrap_text, function_tree_roles
 
 class VisualStyleTests(unittest.TestCase):
     def test_palette_and_provisional_scope(self):
@@ -19,6 +19,36 @@ class VisualStyleTests(unittest.TestCase):
             self.assertEqual(s["fill"], expected)
             self.assertGreaterEqual(s["contrast"]["body_text"], 4.5)
             self.assertGreaterEqual(s["contrast"]["accent_text"], 4.5)
+
+    def test_tree_role_catalog_legacy_profiles_and_independent_resolution(self):
+        p=load_profile();saved=deepcopy(p);roles=function_tree_roles(p)
+        self.assertEqual(roles['pairs']['orange_on_violet']['fill_color'],'#e0dae6')
+        self.assertEqual(roles['pairs']['orange_on_violet']['frame_color'],'#894b25')
+        for pair in roles['pairs'].values():
+            self.assertGreaterEqual(pair['contrast']['text'],4.5)
+            self.assertTrue(all(v>=3 for k,v in pair['contrast'].items() if k!='text'))
+        p['function_tree_roles']['pairs']['orange_on_violet']['connector']='blue.shade'
+        changed=function_tree_roles(p)['pairs']['orange_on_violet']
+        self.assertEqual(changed['connector_color'],'#27456f')
+        self.assertEqual(changed['frame_color'],'#894b25')
+        self.assertEqual(changed['fill_color'],'#e0dae6')
+        legacy=deepcopy(saved);legacy.pop('function_tree_roles')
+        self.assertEqual(load_profile(legacy)['function_tree_roles'],saved['function_tree_roles'])
+        tokens=json.loads((ROOT/'assets/diagram-style/design-tokens.json').read_text())
+        self.assertEqual(tokens['function_tree_implementation']['roles'],saved['function_tree_roles'])
+        self.assertEqual(load_profile(),saved)
+
+    def test_tree_role_refusals_prevent_unknown_monochrome_or_low_contrast_pairs(self):
+        for defect in ('unknown_ref','unknown_pair','monochrome','role_tone','css','status','connector_contrast'):
+            p=load_profile();roles=p['function_tree_roles'];pair=roles['pairs']['orange_on_violet']
+            if defect=='unknown_ref':pair['fill']='missing.tint'
+            elif defect=='unknown_pair':roles['root_pair']='missing'
+            elif defect=='monochrome':pair['fill']='tangerine.tint'
+            elif defect=='role_tone':pair['connector']='blue.tint'
+            elif defect=='css':pair['style']='anything'
+            elif defect=='status':roles['status']='universally_accepted'
+            else:p['palette']['families']['green']['shade']='#eeeeea'
+            with self.subTest(defect=defect),self.assertRaises(ValueError):load_profile(p)
 
     def test_absolute_contrast_oracles(self):
         self.assertAlmostEqual(contrast("#000000", "#ffffff"), 21)

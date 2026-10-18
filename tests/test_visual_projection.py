@@ -168,6 +168,29 @@ class ProjectionTests(unittest.TestCase):
                 else:
                     with self.assertRaises(PresentationError): project(nodes, inventory)
 
+    def test_profile_pairs_change_only_colors_without_model_or_geometry_changes(self):
+        nodes,inventory=fixture();projection=project(nodes,inventory);saved=deepcopy(projection)
+        first,ledger=render_function_tree(projection,body='white')
+        p=load_profile();pair=p['function_tree_roles']['pairs']['orange_on_violet']
+        pair['fill']='cyan.tint';pair['connector']='blue.shade'
+        second,changed=render_function_tree(projection,body='white',profile=p)
+        self.assertNotEqual(first,second)
+        def non_color(svg):
+            tree=ET.fromstring(svg)
+            for item in tree.iter():
+                for key in ('fill','stroke'):item.attrib.pop(key,None)
+            return ET.tostring(tree)
+        self.assertEqual(non_color(first),non_color(second))
+        self.assertEqual(ledger['geometry'],changed['geometry'])
+        self.assertEqual(ledger['edges'],changed['edges'])
+        self.assertEqual(projection,saved)
+        root=ET.fromstring(second);ns={'svg':'http://www.w3.org/2000/svg'}
+        frame=root.find("svg:g[@data-id='F0']/svg:rect",ns)
+        self.assertEqual(frame.attrib['fill'],'#d4e3e7')
+        self.assertEqual(frame.attrib['stroke'],'#894b25')
+        drop=root.find("svg:path[@data-child='F1']",ns)
+        self.assertEqual(drop.attrib['stroke'],'#27456f')
+
     def test_shared_parent_trunk_is_single_neutral_route_with_explicit_child_drops(self):
         nodes,inventory=fixture();projection=project(nodes,inventory)
         svg,ledger=render_function_tree(projection)
@@ -367,6 +390,17 @@ class NativePresentationTests(unittest.TestCase):
             self.assertNotEqual(json.loads(path.read_text()),saved)
             for name,digest in report['manifest']['files'].items():
                 self.assertEqual(sha256((temp/'output'/name).read_bytes()).hexdigest(),digest)
+
+    def test_programmatic_legacy_profile_manifest_pins_resolved_role_defaults(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as folder:
+            expected=load_profile();legacy=deepcopy(expected);legacy.pop('function_tree_roles')
+            saved=deepcopy(legacy)
+            report=write_presentation(MODEL,Path(folder)/'resolved',view_id='FT',profile=legacy)
+            self.assertEqual(report['status'],'pass')
+            canonical=json.dumps(expected,sort_keys=True,indent=2,ensure_ascii=False,allow_nan=False)+'\n'
+            self.assertEqual(report['manifest']['style_sha256'],sha256(canonical.encode()).hexdigest())
+            self.assertEqual(legacy,saved)
 
     def test_cli_invalid_view_and_missing_parser_diagnostics(self):
         (ROOT / '.tmp').mkdir(exist_ok=True)

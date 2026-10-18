@@ -10,7 +10,7 @@ import shutil
 
 from .engineering_views import check_views
 from .sysml import check_sysml
-from .visual_style import ASSETS, load_profile, presentation_style, require_supported_text, text_width, wrap_text, contrast
+from .visual_style import ASSETS, load_profile, presentation_style, require_supported_text, text_width, wrap_text, contrast, function_tree_roles
 from .visual_labels import apply_labels, load_labels
 
 VERSION = "cse-visual-presentation-1.0"
@@ -78,7 +78,8 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
         if n['parent'] is not None:
             children[n['parent']].append(n['id'])
     root = next(n['id'] for n in nodes if n['parent'] is None)
-    families, roles = ['blue', 'tangerine', 'green', 'cyan', 'berry', 'amber'], {root: 'violet'}
+    role_profile = function_tree_roles(profile)
+    families, roles = role_profile['branch_pairs'], {root: role_profile['root_pair']}
     def assign(key, family):
         roles[key] = family
         for child in children[key]:
@@ -185,7 +186,7 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
         else:
             first,last = edge_points[kids[0]]['points'],edge_points[kids[-1]]['points']
             segments = [[first[0],first[1],first[2],last[-2]]]
-            color = style['ink'] if parent == root else palette['families'][roles[parent]]['shade']
+            color = style['ink'] if parent == root else role_profile['pairs'][roles[parent]]['connector_color']
         commands = ['M ' + ' L '.join(f'{x:g} {y:g}' for x,y in points) for points in segments]
         svg.append(f'<path data-shared-parent="{escape(parent,quote=True)}" d="{" ".join(commands)}" fill="none" stroke="{color}" stroke-width="{style["stroke_width"]}"/>')
         shared_routes.append({'parent':parent,'segments':segments,'color':color})
@@ -193,13 +194,13 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
         # Shared trunks are painted once; this path is the uniquely owned drop.
         points = edge['points'][-2:]
         path = 'M ' + ' L '.join(f'{x:g} {y:g}' for x,y in points)
-        svg.append(f'<path data-parent="{escape(by_id[key]["parent"],quote=True)}" data-child="{escape(key,quote=True)}" d="{path}" fill="none" stroke="{palette["families"][roles[key]]["shade"]}" stroke-width="{style["stroke_width"]}"/>')
+        svg.append(f'<path data-parent="{escape(by_id[key]["parent"],quote=True)}" data-child="{escape(key,quote=True)}" d="{path}" fill="none" stroke="{role_profile["pairs"][roles[key]]["connector_color"]}" stroke-width="{style["stroke_width"]}"/>')
     geometry = []
     for node in nodes:
         key = node['id']; x,y = positions[key]; b = boxes[key]
-        family = palette['families'][roles[key]]
-        fill = family['tint'] if children[key] else style['fill']
-        border = style['accent'] if key == root else family['shade']
+        pair = role_profile['pairs'][roles[key]]
+        fill = pair['fill_color'] if children[key] else style['fill']
+        border = pair['frame_color']
         if contrast(style['ink'], fill) < 4.5 or min(contrast(border, fill), contrast(border, style['paper'])) < 3:
             raise ValueError('Insufficient contrast for local tree presentation roles')
         attrs = ' '.join(f'data-{k}="{escape(str(node[k]),quote=True)}"' for k in ('id','element','level','parent')) + f' data-native-name="{escape(node["text"],quote=True)}"'
@@ -215,7 +216,7 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
         svg.append('</g>')
         geometry.append({'id':key,'x':x,'y':y,'width':b['width'],'height':b['height'],
                          'label_lines':b['lines'],'label_font_weight':b['weight'],'label_baseline':y+padding+size,
-                         'label_region_height':b['label_height'],'footer_lines':b['footer'],'palette_family':roles[key]})
+                         'label_region_height':b['label_height'],'footer_lines':b['footer']})
     svg.extend([text(['Branch colors identify documentary groups; lines show decomposition.'],48,height-32,18,style['ink'],role='legend'),'</svg>'])
     ledger = {'version':VERSION,'body':body,'target_width':target_width,'canvas_width':width,'canvas_height':height,
               'claim_scope':CLAIM,'show_ids':show_ids,'display':wording,'geometry':geometry,
@@ -224,7 +225,8 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
               'layout':{'kind':'balanced-branches-with-stacked-leaves','padding':padding,'line_height':line_height,
                         'group_gap':48,'leaf_gap':18,'max_label_width':300,
                         'scope':'Measured advance-based wrapping; actual loaded glyph bounds require browser inspection.'},
-              'presentation_roles':{'root':'violet tint with tangerine shade key','branches':'selected palette families repeated within each first-level branch',
+              'presentation_roles':{'root':'profile-selected contrasting pair','branches':'independent fill, frame/accent and connector references',
+                                    'profile':role_profile,'node_pairings':roles,
                                     'meaning':'Local navigation only; no universal engineering or status semantics','body_status':'provisional'},
               'font_metrics_sha256':_digest((ASSETS/'fonts/metrics.json').read_bytes()),'style':style}
     return '\n'.join(svg)+'\n',ledger
@@ -240,7 +242,7 @@ def write_presentation(model_paths, output, *, view_id, profile=None, body="pape
     if report["status"] != "pass":
         return report
     projection = project_function_tree(report["inventory"], view_id)
-    validated_profile = load_profile(profile) if profile is None or isinstance(profile, (str, Path)) else deepcopy(profile)
+    validated_profile = load_profile(profile)
     validated_labels = load_labels(labels)
     svg, presentation = render_function_tree(projection, profile=validated_profile, body=body, target_width=target_width, show_ids=show_ids, labels=validated_labels)
     # Capture source bytes and verify parser pins before creating any output.

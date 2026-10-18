@@ -42,7 +42,7 @@ def load_profile(path=None):
         Path(path or ASSETS / "profile.json").read_text(), object_pairs_hook=_unique,
         parse_constant=lambda value: (_ for _ in ()).throw(ValueError(f"Nonfinite {value}")))
     expected = {"version", "name", "direction_status", "palette", "fonts", "body_variants", "numeric_proposal", "limits"}
-    if not isinstance(data, dict) or set(data) != expected or type(data["version"]) is not int or data["version"] != 1:
+    if not isinstance(data, dict) or not expected <= set(data) or set(data) - expected - {"function_tree_roles"} or type(data["version"]) is not int or data["version"] != 1:
         raise ValueError("Expected visual profile version 1 and exact documented fields")
     palette = data["palette"]
     if not isinstance(palette, dict) or set(palette) != {"paper", "ink", "light", "middle", "families"}:
@@ -75,7 +75,63 @@ def load_profile(path=None):
             raise ValueError("Insufficient text contrast for a body variant")
     if contrast(palette["families"]["tangerine"]["shade"], palette["families"]["violet"]["tint"]) < 4.5:
         raise ValueError("Insufficient orange-on-violet text contrast")
+    if "function_tree_roles" not in data:
+        # Version-1 custom profiles inherit the explicit bundled local defaults.
+        bundled = json.loads((ASSETS / "profile.json").read_text(), object_pairs_hook=_unique)
+        data["function_tree_roles"] = deepcopy(bundled["function_tree_roles"])
+    _tree_roles(data)
     return deepcopy(data)
+
+
+def _palette_reference(palette, reference, tone):
+    if not isinstance(reference, str) or reference.count('.') != 1:
+        raise ValueError('Expected a named palette family/tone reference')
+    family, variant = reference.split('.')
+    if family not in palette['families'] or variant != tone:
+        raise ValueError('Unsupported palette family or role tone')
+    return palette['families'][family][variant]
+
+
+def _tree_roles(data):
+    roles = data['function_tree_roles']
+    if not isinstance(roles, dict) or set(roles) != {'status','root_pair','branch_pairs','shared_fanout','pairs'}:
+        raise ValueError('Expected explicit function-tree role fields')
+    if roles['status'] != 'slice_specific_proposal' or roles['shared_fanout'] != 'ink':
+        raise ValueError('Preserve scoped proposal status and neutral shared fanout')
+    pairs = roles['pairs']
+    if not isinstance(pairs, dict) or not 1 <= len(pairs) <= 8 or any(not isinstance(key,str) or not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,63}',key) for key in pairs):
+        raise ValueError('Expected bounded named presentation pairs')
+    branches = roles['branch_pairs']
+    if not isinstance(branches,list) or not 1 <= len(branches) <= 8 or any(not isinstance(key,str) or key not in pairs for key in branches) or len(branches) != len(set(branches)):
+        raise ValueError('Unknown, repeated or invalid branch presentation pair')
+    if not isinstance(roles['root_pair'],str) or roles['root_pair'] not in pairs:
+        raise ValueError('Unknown root presentation pair')
+    palette = data['palette']
+    resolved = {}
+    for name, pair in pairs.items():
+        if not isinstance(pair,dict) or set(pair) != {'fill','frame','connector'}:
+            raise ValueError('Pair needs independent fill, frame and connector roles')
+        fill = _palette_reference(palette,pair['fill'],'tint')
+        frame = _palette_reference(palette,pair['frame'],'shade')
+        connector = _palette_reference(palette,pair['connector'],'shade')
+        if pair['fill'].split('.')[0] == pair['frame'].split('.')[0]:
+            raise ValueError('Header fill and frame must use contrasting palette families')
+        ratios = {'text':contrast(palette['ink'],fill),'frame_on_header':contrast(frame,fill),
+                  'frame_on_paper':contrast(frame,palette['paper']),'connector_on_paper':contrast(connector,palette['paper'])}
+        if ratios['text'] < 4.5 or min(ratios[k] for k in ratios if k != 'text') < 3:
+            raise ValueError('Insufficient text or nontext contrast for presentation pair')
+        # Light leaf bodies remain independent of the colored header fill.
+        for leaf in (palette['paper'],'#ffffff',_tint(palette['families']['violet']['base'])):
+            if contrast(frame,leaf) < 3:
+                raise ValueError('Insufficient frame contrast on a provisional leaf body')
+        resolved[name] = {**pair,'fill_color':fill,'frame_color':frame,'connector_color':connector,'contrast':ratios}
+    return {'status':roles['status'],'root_pair':roles['root_pair'],'branch_pairs':deepcopy(branches),
+            'shared_fanout_color':palette['ink'],'pairs':resolved}
+
+
+def function_tree_roles(profile=None):
+    """Resolve explicit local role references; never derive engineering categories."""
+    return _tree_roles(load_profile(profile))
 
 
 def _tint(color):
