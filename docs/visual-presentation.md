@@ -12,6 +12,8 @@ Use the CLI help for the current flags. The output directory must be new. The na
 
 Edit the authoritative SysML and regenerate into another new directory. Do not patch exported SVG to change the engineering model. The output includes editable SVG text, an offline HTML reader, a semantic ledger, presentation parameters and a manifest. An actual graphical editor edit/save/reopen is a separate qualification.
 
+The complete [portable design specification](visual-design-spec.md) and `assets/diagram-style/design-tokens.json` preserve broader selected directions, conditional ranges and open choices. They are design inputs, not a runtime support matrix or the smaller `--profile` schema.
+
 ## Selected direction and provisional parameters
 
 The bundled profile retains Graphite and signal palette03 and Inter titles with Space Grotesk body text. Its eight color families and four neutrals are reusable presentation values. They establish no global relation, status, risk, type or acceptance semantics. Orange on violet is an optional scoped presentation pairing, not a semantic classification.
