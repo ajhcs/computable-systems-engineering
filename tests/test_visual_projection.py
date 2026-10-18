@@ -58,7 +58,7 @@ class ProjectionTests(unittest.TestCase):
 
     def test_parsed_svg_preserves_title_body_roles_and_square_containers(self):
         nodes, inventory = fixture()
-        root = ET.fromstring(render_function_tree(project(nodes, inventory))[0])
+        root = ET.fromstring(render_function_tree(project(nodes, inventory), show_ids=True)[0])
         namespace = {'svg': 'http://www.w3.org/2000/svg'}
         title, annotation = root.findall('svg:text', namespace)
         self.assertEqual(title.attrib['font-family'], 'Inter')
@@ -66,7 +66,7 @@ class ProjectionTests(unittest.TestCase):
         groups = root.findall('svg:g', namespace)
         self.assertEqual(len(groups), len(nodes))
         for group in groups:
-            metadata, native_label = group.findall('svg:text', namespace)
+            native_label, metadata = group.findall('svg:text', namespace)
             self.assertIn('level', metadata.text)
             self.assertEqual(metadata.attrib['font-family'], 'Space Grotesk')
             self.assertEqual(native_label.attrib['font-family'], 'Space Grotesk')
@@ -82,7 +82,7 @@ class ProjectionTests(unittest.TestCase):
             with self.subTest(body_size=size):
                 profile = load_profile()
                 profile['numeric_proposal']['body_size'] = size
-                svg, ledger = render_function_tree(projection, profile=profile, target_width=2200)
+                svg, ledger = render_function_tree(projection, profile=profile, target_width=2200, show_ids=True)
                 root = ET.fromstring(svg)
                 boxes = {}
                 for group in root.findall('svg:g', namespace):
@@ -90,8 +90,8 @@ class ProjectionTests(unittest.TestCase):
                     rect = group.find('svg:rect', namespace)
                     box = {k: float(rect.attrib[k]) for k in ('x', 'y', 'width', 'height')}
                     boxes[key] = box
-                    metadata, label = group.findall('svg:text', namespace)
-                    top_baseline, bottom_baseline = float(metadata.attrib['y']), float(label.attrib['y'])
+                    label, metadata = group.findall('svg:text', namespace)
+                    top_baseline, bottom_baseline = float(label.attrib['y']), float(metadata.attrib['y'])
                     self.assertEqual(float(metadata.attrib['font-size']), size)
                     self.assertEqual(float(label.attrib['font-size']), size)
                     self.assertGreaterEqual(bottom_baseline - top_baseline, 1.5 * size)
@@ -128,8 +128,8 @@ class ProjectionTests(unittest.TestCase):
                 profile = load_profile()
                 profile['numeric_proposal'].update(title_size=title_size, body_size=body_size)
                 with self.assertRaisesRegex(ValueError, 'Target too small'):
-                    render_function_tree(projection, profile=profile, target_width=2200)
-                svg, ledger = render_function_tree(projection, profile=profile, target_width=7200)
+                    render_function_tree(projection, profile=profile, target_width=2200, show_ids=True)
+                svg, ledger = render_function_tree(projection, profile=profile, target_width=7200, show_ids=True)
                 tree = ET.fromstring(svg)
                 title = tree.find('{http://www.w3.org/2000/svg}text')
                 self.assertEqual(title.text, view_id + ' - Function decomposition')
@@ -141,6 +141,36 @@ class ProjectionTests(unittest.TestCase):
                         self.assertGreaterEqual(float(rectangle.attrib['width']) - 40,
                                                 len(text.text) * 1.5 * body_size)
                 self.assertIn(view_id, svg)
+
+    def test_default_names_and_opt_in_metadata_preserve_semantics(self):
+        nodes, inventory = fixture()
+        # A legitimate native engineering identifier must not be stripped.
+        inventory['actions'][0]['name'] = 'F0 Pump'
+        projection = project(nodes, inventory)
+        before = deepcopy(projection)
+        ns = {'svg': 'http://www.w3.org/2000/svg'}
+        for show_ids in (False, True):
+            with self.subTest(show_ids=show_ids):
+                svg, ledger = render_function_tree(projection, show_ids=show_ids)
+                tree = ET.fromstring(svg)
+                title, subtitle = tree.findall('svg:text', ns)
+                self.assertEqual(title.text, ('FT - ' if show_ids else '') + 'Function decomposition')
+                self.assertEqual(subtitle.text, 'Documentary function hierarchy')
+                for group, node in zip(tree.findall('svg:g', ns), projection['nodes']):
+                    labels = group.findall('svg:text', ns)
+                    self.assertEqual(labels[0].text, node['text'])
+                    self.assertEqual(len(labels), 2 if show_ids else 1)
+                    if show_ids:
+                        self.assertEqual(labels[1].text, f"{node['id']} · level {node['level']}")
+                    self.assertEqual(group.attrib['data-id'], node['id'])
+                    self.assertEqual(group.attrib['data-level'], str(node['level']))
+                    self.assertEqual(group.attrib['data-element'], node['element'])
+                self.assertEqual(ledger['show_ids'], show_ids)
+                self.assertIn('no behavioral or engineering acceptance claim', ledger['claim_scope'])
+                self.assertEqual(projection, before)
+        for invalid in ('false', 1, None):
+            with self.subTest(invalid=invalid), self.assertRaisesRegex(ValueError, 'boolean'):
+                render_function_tree(projection, show_ids=invalid)
 
     def test_invalid_structure_bindings_and_requested_views_refused(self):
         for defect in ('cycle', 'orphan', 'level', 'binding', 'duplicate', 'missing', 'kind'):
@@ -219,6 +249,33 @@ class NativePresentationTests(unittest.TestCase):
             self.assertNotEqual(failed['status'], 'pass')
             self.assertFalse((temp / 'bad').exists())
 
+    def test_cli_default_and_opt_in_visibility_keep_exact_ledger_and_sources(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            ledgers = []
+            for show_ids in (False, True):
+                output = Path(temp) / str(show_ids)
+                command = [sys.executable, str(ROOT / 'scripts/sysml_present.py'), str(MODEL),
+                           '--view', 'FT', '--output', str(output), '--target-width', '1600']
+                if show_ids:
+                    command.append('--show-ids')
+                result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                tree = ET.parse(output / 'view.svg')
+                texts = [t.text for t in tree.findall('.//{http://www.w3.org/2000/svg}text')]
+                self.assertEqual(texts[:2], [('FT - ' if show_ids else '') + 'Function decomposition',
+                                            'Documentary function hierarchy'])
+                self.assertIn('ProcessSample', texts)
+                self.assertEqual('F0 · level 0' in texts, show_ids)
+                self.assertEqual((output / 'sources/model-1.sysml').read_bytes(), MODEL.read_bytes())
+                ledgers.append((output / 'semantic-ledger.json').read_bytes())
+                manifest = json.loads((output / 'manifest.json').read_text())
+                self.assertEqual(manifest['show_ids'], show_ids)
+                self.assertIn('no behavioral or engineering acceptance claim', manifest['claim_scope'])
+                self.assertIn('no behavioral or engineering acceptance claim',
+                              (output / 'index.html').read_text())
+            self.assertEqual(*ledgers)
+
     def test_native_cli_accepts_nondefault_profile_and_preserves_provisional_status(self):
         (ROOT / '.tmp').mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as temp:
@@ -255,10 +312,10 @@ class NativePresentationTests(unittest.TestCase):
             profile['numeric_proposal'].update(title_size=48, body_size=24)
             small = temp / 'too-small'
             with self.assertRaisesRegex(ValueError, 'Target too small'):
-                write_presentation(source, small, view_id=view_id, profile=profile, target_width=2200)
+                write_presentation(source, small, view_id=view_id, profile=profile, target_width=2200, show_ids=True)
             self.assertFalse(small.exists())
             wide = temp / 'wide'
-            result = write_presentation(source, wide, view_id=view_id, profile=profile, target_width=7200)
+            result = write_presentation(source, wide, view_id=view_id, profile=profile, target_width=7200, show_ids=True)
             self.assertEqual(result['status'], 'pass')
             title = ET.parse(wide / 'view.svg').find('{http://www.w3.org/2000/svg}text')
             self.assertEqual(title.text, view_id + ' - Function decomposition')

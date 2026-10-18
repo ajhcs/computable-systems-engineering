@@ -18,11 +18,12 @@ def main():
     parser.add_argument('--profile', help='validated presentation style JSON')
     parser.add_argument('--body', choices=('paper', 'white', 'tint'), default='paper')
     parser.add_argument('--target-width', type=int, default=1200)
+    parser.add_argument('--show-ids', action='store_true', help='show view ID and node IDs/levels after native names (hidden by default)')
     args = parser.parse_args()
     try:
         report = write_presentation(args.model, args.output, view_id=args.view,
                                     profile=load_profile(args.profile), body=args.body,
-                                    target_width=args.target_width)
+                                    target_width=args.target_width, show_ids=args.show_ids)
     except PresentationError as exc:
         report = exc.report
     except (OSError, ValueError, KeyError) as exc:

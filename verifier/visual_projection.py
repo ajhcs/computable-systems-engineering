@@ -55,8 +55,10 @@ def project_function_tree(inventory, view_id):
             "nodes": nodes, "view_checks": checks}
 
 
-def render_function_tree(projection, *, profile=None, body="paper", target_width=1200):
+def render_function_tree(projection, *, profile=None, body="paper", target_width=1200, show_ids=False):
     """Render an arrow-free indented tree; preserve labels as literal XML text."""
+    if type(show_ids) is not bool:
+        raise ValueError("show_ids must be a boolean")
     if type(target_width) not in (int, float) or not math.isfinite(target_width) or not 320 <= target_width <= 8192:
         raise ValueError("Target width must be between 320 and 8192 pixels")
     # Recheck the public structural contract even when called without project().
@@ -86,12 +88,12 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
     # Qualified printable glyphs get a conservative 1.5-em advance bound;
     # actual loaded glyph bounds remain a separate browser inspection gate.
     style = presentation_style(profile, body=body, target_width=1200, canvas_width=1200)
-    title_text = projection["id"] + " - Function decomposition"
+    title_text = (projection["id"] + " - " if show_ids else "") + "Function decomposition"
     body_advance = 1.5 * style["body_size"]
     title_advance = 1.5 * style["title_size"]
     width = math.ceil(max(1200, 96 + len(title_text) * title_advance,
         *(48 + n["level"] * 48 + 40 + 48 + body_advance * max(
-            len(n["text"]), len(f"{n['id']} · level {n['level']}")) for n in nodes)))
+            len(n["text"]), len(f"{n['id']} · level {n['level']}") if show_ids else 0) for n in nodes)))
     # Reapply the readable-label gate to the complete calculated canvas.
     style = presentation_style(profile, body=body, target_width=target_width, canvas_width=width)
     # Conservative line boxes depend on the qualified profile size. Browser
@@ -105,12 +107,12 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
     height = 112 + len(nodes) * row_stride + 16
     positions = {key: (48 + by_id[key]["level"] * 48, 112 + i * row_stride) for i, key in enumerate(order)}
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{target_width}" height="{height * target_width / width:g}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title description">',
-           f'<title id="title">{escape(projection["id"])} - function decomposition</title>',
+           f'<title id="title">{escape(title_text)}</title>',
            f'<desc id="description">{escape(CLAIM)}</desc>',
            '<style>' + escape(style['font_css']) + '</style>',
            f'<rect width="{width}" height="{height}" fill="{style["paper"]}"/>',
            f'<text x="48" y="48" fill="{style["ink"]}" font-family="Inter" font-size="{style["title_size"]}" font-weight="700">{escape(title_text)}</text>',
-           f'<text x="48" y="78" fill="{style["ink"]}" font-family="Space Grotesk" font-size="16">Documentary parent links · no behavioral or engineering acceptance claim</text>']
+           f'<text x="48" y="78" fill="{style["ink"]}" font-family="Space Grotesk" font-size="16">Documentary function hierarchy</text>']
     for key in order:
         node = by_id[key]
         if node['parent'] is not None:
@@ -124,12 +126,14 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
         box_width = width - x - 48
         attrs = ' '.join(f'data-{k}="{escape(str(node[k]), quote=True)}"' for k in ("id", "element", "level", "parent"))
         svg.extend([f'<g {attrs}>', f'<rect x="{x}" y="{y}" width="{box_width}" height="{node_height}" fill="{style["fill"]}" stroke="{style["ink"]}" stroke-width="{style["stroke_width"]}"/>',
-                    f'<text x="{x+16}" y="{y+first_baseline}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{key} · level {node["level"]}</text>',
-                    f'<text xml:space="preserve" x="{x+16}" y="{y+second_baseline}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{escape(node["text"])}</text>', '</g>'])
+                    f'<text xml:space="preserve" x="{x+16}" y="{y+first_baseline}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{escape(node["text"])}</text>'])
+        if show_ids:
+            svg.append(f'<text x="{x+16}" y="{y+second_baseline}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{escape(key)} · level {node["level"]}</text>')
+        svg.append('</g>')
         geometry.append({"id": key, "x": x, "y": y, "width": box_width, "height": node_height})
     svg.append('</svg>')
     ledger = {"version": VERSION, "body": body, "target_width": target_width, "canvas_width": width,
-              "canvas_height": height, "claim_scope": CLAIM,
+              "canvas_height": height, "claim_scope": CLAIM, "show_ids": show_ids,
               "layout": {"line_height": line_height, "node_height": node_height,
                          "row_stride": row_stride, "padding": padding,
                          "first_baseline": first_baseline, "second_baseline": second_baseline,
@@ -137,7 +141,7 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
     return '\n'.join(svg) + '\n', ledger
 
 
-def write_presentation(model_paths, output, *, view_id, profile=None, body="paper", target_width=1200):
+def write_presentation(model_paths, output, *, view_id, profile=None, body="paper", target_width=1200, show_ids=False):
     """Acquire a native inventory and write a new, independently editable bundle."""
     output = Path(output)
     if output.exists() or output.is_symlink():
@@ -148,7 +152,7 @@ def write_presentation(model_paths, output, *, view_id, profile=None, body="pape
         return report
     projection = project_function_tree(report["inventory"], view_id)
     validated_profile = load_profile(profile) if profile is None or isinstance(profile, (str, Path)) else deepcopy(profile)
-    svg, presentation = render_function_tree(projection, profile=validated_profile, body=body, target_width=target_width)
+    svg, presentation = render_function_tree(projection, profile=validated_profile, body=body, target_width=target_width, show_ids=show_ids)
     # Capture source bytes and verify parser pins before creating any output.
     sources = {}
     for path in paths:
@@ -174,7 +178,7 @@ def write_presentation(model_paths, output, *, view_id, profile=None, body="pape
         companion = f"sources/model-{i+1}.sysml"
         files[companion] = raw
         source_manifest.append({"file": companion, "name": Path(path).name, "sha256": _digest(raw)})
-    manifest = {"version": VERSION, "view_id": view_id, "claim_scope": CLAIM,
+    manifest = {"version": VERSION, "view_id": view_id, "claim_scope": CLAIM, "show_ids": show_ids,
                 "model_sha256": report["model_sha256"], "parser": report["parser"],
                 "checker_version": report["checker_version"], "sources": source_manifest,
                 "style_sha256": _digest(_json(validated_profile).encode()),
