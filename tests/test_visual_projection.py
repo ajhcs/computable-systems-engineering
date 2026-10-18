@@ -173,6 +173,7 @@ class ProjectionTests(unittest.TestCase):
         first,ledger=render_function_tree(projection,body='white')
         p=load_profile();pair=p['function_tree_roles']['pairs']['orange_on_violet']
         pair['fill']='cyan.tint';pair['connector']='blue.shade'
+        p['function_tree_roles']['pairs']['blue_on_blue']['connector']='red.shade'
         second,changed=render_function_tree(projection,body='white',profile=p)
         self.assertNotEqual(first,second)
         def non_color(svg):
@@ -189,7 +190,7 @@ class ProjectionTests(unittest.TestCase):
         self.assertEqual(frame.attrib['fill'],'#d4e3e7')
         self.assertEqual(frame.attrib['stroke'],'#894b25')
         drop=root.find("svg:path[@data-child='F1']",ns)
-        self.assertEqual(drop.attrib['stroke'],'#27456f')
+        self.assertEqual(drop.attrib['stroke'],'#7f362f')
 
     def test_shared_parent_trunk_is_single_neutral_route_with_explicit_child_drops(self):
         nodes,inventory=fixture();projection=project(nodes,inventory)

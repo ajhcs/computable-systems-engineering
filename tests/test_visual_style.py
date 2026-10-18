@@ -24,6 +24,13 @@ class VisualStyleTests(unittest.TestCase):
         p=load_profile();saved=deepcopy(p);roles=function_tree_roles(p)
         self.assertEqual(roles['pairs']['orange_on_violet']['fill_color'],'#e0dae6')
         self.assertEqual(roles['pairs']['orange_on_violet']['frame_color'],'#894b25')
+        self.assertEqual(roles['branch_pairs'],['blue_on_blue','orange_on_orange','green_on_green'])
+        for name,family in [('blue_on_blue','blue'),('orange_on_orange','tangerine'),('green_on_green','green')]:
+            self.assertEqual(roles['pairs'][name]['fill_color'],p['palette']['families'][family]['tint'])
+            self.assertEqual(roles['pairs'][name]['frame_color'],p['palette']['families'][family]['shade'])
+            self.assertEqual(roles['pairs'][name]['connector_color'],p['palette']['families'][family]['shade'])
+        self.assertNotIn('brick_on_cream',roles['branch_pairs'])
+        self.assertNotIn('green_on_cool',roles['branch_pairs'])
         for pair in roles['pairs'].values():
             self.assertGreaterEqual(pair['contrast']['text'],4.5)
             self.assertTrue(all(v>=3 for k,v in pair['contrast'].items() if k!='text'))
@@ -38,12 +45,12 @@ class VisualStyleTests(unittest.TestCase):
         self.assertEqual(tokens['function_tree_implementation']['roles'],saved['function_tree_roles'])
         self.assertEqual(load_profile(),saved)
 
-    def test_tree_role_refusals_prevent_unknown_monochrome_or_low_contrast_pairs(self):
-        for defect in ('unknown_ref','unknown_pair','monochrome','role_tone','css','status','connector_contrast'):
+    def test_tree_role_refusals_prevent_unknown_or_low_contrast_pairs(self):
+        for defect in ('unknown_ref','unknown_pair','header_contrast','role_tone','css','status','connector_contrast'):
             p=load_profile();roles=p['function_tree_roles'];pair=roles['pairs']['orange_on_violet']
             if defect=='unknown_ref':pair['fill']='missing.tint'
             elif defect=='unknown_pair':roles['root_pair']='missing'
-            elif defect=='monochrome':pair['fill']='tangerine.tint'
+            elif defect=='header_contrast':p['palette']['families']['blue']['tint']=p['palette']['families']['blue']['shade']
             elif defect=='role_tone':pair['connector']='blue.tint'
             elif defect=='css':pair['style']='anything'
             elif defect=='status':roles['status']='universally_accepted'

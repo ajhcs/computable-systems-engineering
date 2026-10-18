@@ -114,8 +114,6 @@ def _tree_roles(data):
         fill = _palette_reference(palette,pair['fill'],'tint')
         frame = _palette_reference(palette,pair['frame'],'shade')
         connector = _palette_reference(palette,pair['connector'],'shade')
-        if pair['fill'].split('.')[0] == pair['frame'].split('.')[0]:
-            raise ValueError('Header fill and frame must use contrasting palette families')
         ratios = {'text':contrast(palette['ink'],fill),'frame_on_header':contrast(frame,fill),
                   'frame_on_paper':contrast(frame,palette['paper']),'connector_on_paper':contrast(connector,palette['paper'])}
         if ratios['text'] < 4.5 or min(ratios[k] for k in ratios if k != 'text') < 3:

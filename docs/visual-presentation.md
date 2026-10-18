@@ -29,23 +29,26 @@ Nodes wrap within a measured text region and fit their own content plus padding.
 | --- | --- | --- |
 | Square content-fit framing | Glyph-advance wrapping, bounded padding and height, no canvas-wide bars | Other notation-specific node shapes |
 | Useful partitions and side keys | Derived child-count cell; optional ID/level cell; a single outer frame | Domain-owned compartments |
-| Selected palette shade/tint roles | Explicit orange/violet, brick/cream and green/cool header pairs; readable ink labels | All eight families remain tokens; no universal status meanings |
+| Selected palette shade/tint roles | Orange/violet root; blue, tangerine and green shade/tint branches; readable ink labels | All eight families remain tokens; no universal status meanings |
 | Inter and Space Grotesk | Embedded Inter title and Space Grotesk labels/counts, with pinned measured advances | Wider glyph qualification |
 | Target-scale vector geometry | Editable text/SVG; declared display-pixel strokes; fresh vector raster export | Calibrated print and editor roundtrip |
 | Line and hatch samples | Documentary decomposition routes only; shared trunks have explicit parents | Dashed relation semantics and typed materials/equipment textures |
 | Drafted exterior illustrations | No invented physical geometry in this function view | Source-admitted physical glyph adapters |
 
-White, paper and faint-tint leaf bodies remain provisional choices; the demonstration requests white explicitly. The profile resolves header fill, frame/accent and connector roles independently. Local defaults pair violet tint with tangerine shade, amber tint with brick shade, and cyan tint with green shade. Branch drops and local spines default to the frame/accent shade for traceability, while the shared fan-out stays neutral. These are retained contrasting-pair candidates and scoped implementation defaults, not newly invented universally approved combinations. Branch color is a local navigation role, repeated within each first-level branch. It is neither engineering status nor a selected universal palette mapping. Texture is deliberately absent: this function model declares no material or equipment classes that could give a hatch meaning.
+White, paper and faint-tint leaf bodies remain provisional choices; the demonstration requests white explicitly. The current selected compact-tree treatment restores blue tint/blue shade, tangerine tint/tangerine shade and green tint/green shade branches, with the original orange-on-violet root. Branch drops and local spines match the branch frame/accent, while the shared fan-out stays neutral. This display choice carries no universal engineering or status meaning. Texture is deliberately absent: this function model declares no material or equipment classes that could give a hatch meaning.
 
-`function_tree_roles` is an optional version-1 profile section containing a named pair catalog, `root_pair`, ordered `branch_pairs` and the neutral `shared_fanout` role. Each pair separately references `fill`, `frame` and `connector` as palette family/tone names. Equal frame/connector defaults preserve grouping without coupling their resolution. Header fill and frame must use different families; unknown references, unsupported tones, monochromatic header pairs and insufficient contrast are refused. Legacy version-1 custom profiles inherit the bundled explicit defaults. The resolved roles and per-node pair IDs accompany the output; they do not alter the semantic ledger or geometry.
+`function_tree_roles` is an optional version-1 profile section containing a named pair catalog, `root_pair`, ordered `branch_pairs` and the neutral `shared_fanout` role. Each pair separately references `fill`, `frame` and `connector` as palette family/tone names. Matching frame/connector defaults preserve grouping without coupling their resolution. Same-family and cross-family pairs are both permitted when they pass contrast checks. Unknown references, unsupported tones and insufficient contrast are refused. Legacy version-1 custom profiles inherit the bundled explicit defaults. Resolved roles and per-node pair IDs accompany the output without changing the semantic ledger or geometry.
 
-| Local pair | Header fill | Frame/accent | Connector default |
+| Selected local role | Header fill | Frame/accent | Connector default |
 | --- | --- | --- | --- |
-| Orange on violet | Violet tint `#e0dae6` | Tangerine shade `#894b25` | Tangerine shade `#894b25` |
-| Brick on cream | Amber tint `#ece1ce` | Brick shade `#7f362f` | Brick shade `#7f362f` |
-| Green on cool | Cyan tint `#d4e3e7` | Green shade `#315e43` | Green shade `#315e43` |
+| Root: orange on violet | Violet tint `#e0dae6` | Tangerine shade `#894b25` | Tangerine shade `#894b25` |
+| Blue branch | Blue tint `#d2dae6` | Blue shade `#27456f` | Blue shade `#27456f` |
+| Tangerine branch | Tangerine tint `#eedcd1` | Tangerine shade `#894b25` | Tangerine shade `#894b25` |
+| Green branch | Green tint `#d5e2da` | Green shade `#315e43` | Green shade `#315e43` |
 
-All text fields require at least4.5:1 contrast. Header frames and connectors require at least3:1 against their actual header or paper fields, and frames must also pass on every provisional leaf body. These arithmetic gates supplement actual pixel review of the contrasting pairings; they do not select engineering meanings or guarantee visual acceptance.
+The previous cross-family branch treatment was declined and is not the default. Its brick/cream and green/cool pair definitions remain available as nondefault candidates; the rejected selection also remains in Git history. Their presence in the catalog establishes no visual acceptance.
+
+All text fields require at least 4.5:1 contrast. Header frames and connectors require at least 3:1 against their actual header or paper fields, and frames must also pass on every provisional leaf body. These arithmetic checks remain required for same-family and cross-family treatments. They supplement actual pixel review without selecting engineering meanings or guaranteeing visual acceptance.
 
 Text layout uses `fonts/metrics.json`, measured from the pinned WOFF2 faces with Canvas `measureText` at 1000px and tied to each face SHA-256. Advances scale to the selected font size; normal glyph shapes and spaces are retained. This particular layout disables kerning and ligatures consistently in measurement and SVG, and requests geometric-precision text rendering to retain fractional advances at small sizes. It applies no letter spacing, fitting transforms or character substitution. Soft line breaks concatenate to the exact authored string, including spaces. Actual browser glyph bounds, face identity and target-scale clearance still need checking for each qualified candidate; advance sums alone are not visual acceptance.
 

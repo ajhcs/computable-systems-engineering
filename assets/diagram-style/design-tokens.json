@@ -508,9 +508,9 @@
       "status": "slice_specific_proposal",
       "root_pair": "orange_on_violet",
       "branch_pairs": [
-        "orange_on_violet",
-        "brick_on_cream",
-        "green_on_cool"
+        "blue_on_blue",
+        "orange_on_orange",
+        "green_on_green"
       ],
       "shared_fanout": "ink",
       "pairs": {
@@ -528,9 +528,24 @@
           "fill": "cyan.tint",
           "frame": "green.shade",
           "connector": "green.shade"
+        },
+        "blue_on_blue": {
+          "fill": "blue.tint",
+          "frame": "blue.shade",
+          "connector": "blue.shade"
+        },
+        "orange_on_orange": {
+          "fill": "tangerine.tint",
+          "frame": "tangerine.shade",
+          "connector": "tangerine.shade"
+        },
+        "green_on_green": {
+          "fill": "green.tint",
+          "frame": "green.shade",
+          "connector": "green.shade"
         }
       }
     },
-    "scope": "Independent header fill, frame/accent and connector references. Matching accent/drop defaults preserve branch traceability. Leaf body choices remain provisional."
+    "scope": "Current selected compact tree treatment restores same-family blue, tangerine and green branches with an orange-on-violet root. Independent fill, frame/accent and connector resolution and nondefault pair candidates remain available. No universal engineering meaning; leaf body choices remain provisional."
   }
 }

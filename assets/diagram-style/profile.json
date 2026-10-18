@@ -76,9 +76,9 @@
     "status": "slice_specific_proposal",
     "root_pair": "orange_on_violet",
     "branch_pairs": [
-      "orange_on_violet",
-      "brick_on_cream",
-      "green_on_cool"
+      "blue_on_blue",
+      "orange_on_orange",
+      "green_on_green"
     ],
     "shared_fanout": "ink",
     "pairs": {
@@ -94,6 +94,21 @@
       },
       "green_on_cool": {
         "fill": "cyan.tint",
+        "frame": "green.shade",
+        "connector": "green.shade"
+      },
+      "blue_on_blue": {
+        "fill": "blue.tint",
+        "frame": "blue.shade",
+        "connector": "blue.shade"
+      },
+      "orange_on_orange": {
+        "fill": "tangerine.tint",
+        "frame": "tangerine.shade",
+        "connector": "tangerine.shade"
+      },
+      "green_on_green": {
+        "fill": "green.tint",
         "frame": "green.shade",
         "connector": "green.shade"
       }
