@@ -82,38 +82,58 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
         key = pending.pop()
         order.append(key)
         pending.extend(reversed(children[key]))
-    # Each label has its own row. Horizontal scrolling preserves readable type.
-    # Conservative per-codepoint width prevents clipping without a font renderer dependency.
-    width = max(1200, 96 + (len(projection["id"]) + 25) * 28, max(104 + n["level"] * 48 + max(len(n["text"]), len(n["id"])) * 30 for n in nodes))
-    height = 160 + 104 * len(nodes)
+    # Validate the selected profile before using any numerical layout values.
+    # Qualified printable glyphs get a conservative 1.5-em advance bound;
+    # actual loaded glyph bounds remain a separate browser inspection gate.
+    style = presentation_style(profile, body=body, target_width=1200, canvas_width=1200)
+    title_text = projection["id"] + " - Function decomposition"
+    body_advance = 1.5 * style["body_size"]
+    title_advance = 1.5 * style["title_size"]
+    width = math.ceil(max(1200, 96 + len(title_text) * title_advance,
+        *(48 + n["level"] * 48 + 40 + 48 + body_advance * max(
+            len(n["text"]), len(f"{n['id']} · level {n['level']}")) for n in nodes)))
+    # Reapply the readable-label gate to the complete calculated canvas.
     style = presentation_style(profile, body=body, target_width=target_width, canvas_width=width)
-    positions = {key: (48 + by_id[key]["level"] * 48, 112 + i * 104) for i, key in enumerate(order)}
+    # Conservative line boxes depend on the qualified profile size. Browser
+    # glyph-bounds inspection remains a separate check, not an arithmetic claim.
+    padding = 20
+    line_height = math.ceil(1.5 * style["body_size"])
+    first_baseline = padding + math.ceil(1.2 * style["body_size"])
+    second_baseline = first_baseline + line_height
+    node_height = 2 * line_height + 2 * padding
+    row_stride = node_height + 32
+    height = 112 + len(nodes) * row_stride + 16
+    positions = {key: (48 + by_id[key]["level"] * 48, 112 + i * row_stride) for i, key in enumerate(order)}
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{target_width}" height="{height * target_width / width:g}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title description">',
            f'<title id="title">{escape(projection["id"])} - function decomposition</title>',
            f'<desc id="description">{escape(CLAIM)}</desc>',
            '<style>' + escape(style['font_css']) + '</style>',
            f'<rect width="{width}" height="{height}" fill="{style["paper"]}"/>',
-           f'<text x="48" y="48" fill="{style["ink"]}" font-family="Inter" font-size="{style["title_size"]}" font-weight="700">{escape(projection["id"])} - Function decomposition</text>',
+           f'<text x="48" y="48" fill="{style["ink"]}" font-family="Inter" font-size="{style["title_size"]}" font-weight="700">{escape(title_text)}</text>',
            f'<text x="48" y="78" fill="{style["ink"]}" font-family="Space Grotesk" font-size="16">Documentary parent links · no behavioral or engineering acceptance claim</text>']
     for key in order:
         node = by_id[key]
         if node['parent'] is not None:
             px, py = positions[node['parent']]
             x, y = positions[key]
-            svg.append(f'<path data-parent="{escape(node["parent"], quote=True)}" data-child="{key}" d="M {px+16} {py+72} V {y+36} H {x}" fill="none" stroke="{style["ink"]}" stroke-width="{style["stroke_width"]}"/>')
+            svg.append(f'<path data-parent="{escape(node["parent"], quote=True)}" data-child="{key}" d="M {px+16} {py+node_height} V {y+node_height/2:g} H {x}" fill="none" stroke="{style["ink"]}" stroke-width="{style["stroke_width"]}"/>')
     geometry = []
     for key in order:
         node = by_id[key]
         x, y = positions[key]
         box_width = width - x - 48
         attrs = ' '.join(f'data-{k}="{escape(str(node[k]), quote=True)}"' for k in ("id", "element", "level", "parent"))
-        svg.extend([f'<g {attrs}>', f'<rect x="{x}" y="{y}" width="{box_width}" height="72" fill="{style["fill"]}" stroke="{style["ink"]}" stroke-width="{style["stroke_width"]}"/>',
-                    f'<text x="{x+16}" y="{y+24}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{key} · level {node["level"]}</text>',
-                    f'<text xml:space="preserve" x="{x+16}" y="{y+52}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{escape(node["text"])}</text>', '</g>'])
-        geometry.append({"id": key, "x": x, "y": y, "width": box_width, "height": 72})
+        svg.extend([f'<g {attrs}>', f'<rect x="{x}" y="{y}" width="{box_width}" height="{node_height}" fill="{style["fill"]}" stroke="{style["ink"]}" stroke-width="{style["stroke_width"]}"/>',
+                    f'<text x="{x+16}" y="{y+first_baseline}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{key} · level {node["level"]}</text>',
+                    f'<text xml:space="preserve" x="{x+16}" y="{y+second_baseline}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{escape(node["text"])}</text>', '</g>'])
+        geometry.append({"id": key, "x": x, "y": y, "width": box_width, "height": node_height})
     svg.append('</svg>')
     ledger = {"version": VERSION, "body": body, "target_width": target_width, "canvas_width": width,
-              "canvas_height": height, "claim_scope": CLAIM, "geometry": geometry, "style": style}
+              "canvas_height": height, "claim_scope": CLAIM,
+              "layout": {"line_height": line_height, "node_height": node_height,
+                         "row_stride": row_stride, "padding": padding,
+                         "first_baseline": first_baseline, "second_baseline": second_baseline,
+                         "scope": "Conservative font-size-based spacing; actual loaded glyph bounds require browser inspection."}, "geometry": geometry, "style": style}
     return '\n'.join(svg) + '\n', ledger
 
 

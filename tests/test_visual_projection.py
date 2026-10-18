@@ -2,6 +2,7 @@
 from copy import deepcopy
 from hashlib import sha256
 import json
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -12,6 +13,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from verifier.visual_style import load_profile
 from verifier.sysml import CLASSES, JAR
 from verifier.visual_projection import PresentationError, project_function_tree, render_function_tree, write_presentation
 
@@ -71,6 +73,74 @@ class ProjectionTests(unittest.TestCase):
             rectangle = group.find('svg:rect', namespace)
             self.assertNotIn('rx', rectangle.attrib)
             self.assertNotIn('ry', rectangle.attrib)
+
+    def test_profile_sizes_keep_line_spacing_containment_and_parent_endpoints(self):
+        nodes, inventory = fixture()
+        projection = project(nodes, inventory)
+        namespace = {'svg': 'http://www.w3.org/2000/svg'}
+        for size in (20, 22, 24):
+            with self.subTest(body_size=size):
+                profile = load_profile()
+                profile['numeric_proposal']['body_size'] = size
+                svg, ledger = render_function_tree(projection, profile=profile, target_width=2200)
+                root = ET.fromstring(svg)
+                boxes = {}
+                for group in root.findall('svg:g', namespace):
+                    key = group.attrib['data-id']
+                    rect = group.find('svg:rect', namespace)
+                    box = {k: float(rect.attrib[k]) for k in ('x', 'y', 'width', 'height')}
+                    boxes[key] = box
+                    metadata, label = group.findall('svg:text', namespace)
+                    top_baseline, bottom_baseline = float(metadata.attrib['y']), float(label.attrib['y'])
+                    self.assertEqual(float(metadata.attrib['font-size']), size)
+                    self.assertEqual(float(label.attrib['font-size']), size)
+                    self.assertGreaterEqual(bottom_baseline - top_baseline, 1.5 * size)
+                    self.assertGreaterEqual(top_baseline - size, box['y'] + 20)
+                    self.assertLessEqual(bottom_baseline + size * 0.4, box['y'] + box['height'] - 16)
+                    self.assertLess(box['y'] + box['height'], ledger['canvas_height'])
+                ordered = sorted(boxes.values(), key=lambda box: box['y'])
+                for prior, following in zip(ordered, ordered[1:]):
+                    self.assertGreaterEqual(following['y'] - prior['y'] - prior['height'], 32)
+                for path in root.findall('svg:path', namespace):
+                    parent = boxes[path.attrib['data-parent']]
+                    child = boxes[path.attrib['data-child']]
+                    start_x, start_y, end_y, end_x = map(float, re.findall(r'[0-9]+(?:\.[0-9]+)?', path.attrib['d']))
+                    self.assertTrue(parent['x'] < start_x < parent['x'] + parent['width'])
+                    self.assertEqual(start_y, parent['y'] + parent['height'])
+                    self.assertEqual(end_y, child['y'] + child['height'] / 2)
+                    self.assertEqual(end_x, child['x'])
+                self.assertEqual(ledger['layout']['line_height'], size * 1.5)
+                self.assertIn('require browser inspection', ledger['layout']['scope'])
+                self.assertEqual(projection['nodes'][0]['text'], 'Process item')
+
+    def test_wide_view_and_metadata_ids_use_selected_font_size_bounds(self):
+        nodes, inventory = fixture()
+        nodes[0]['id'] = 'W' * 64
+        nodes[1]['parent'] = nodes[2]['parent'] = nodes[0]['id']
+        project(nodes, inventory)
+        view_id = 'W' * 64
+        data = json.loads(inventory['documents'][0]['body'].split('\n', 1)[1])
+        data['views'][0]['id'] = view_id
+        inventory['documents'][0]['body'] = 'CSE-VIEWS/1.0\n' + json.dumps(data)
+        projection = project_function_tree(inventory, view_id)
+        for title_size, body_size in ((36, 22), (48, 24)):
+            with self.subTest(title_size=title_size, body_size=body_size):
+                profile = load_profile()
+                profile['numeric_proposal'].update(title_size=title_size, body_size=body_size)
+                with self.assertRaisesRegex(ValueError, 'Target too small'):
+                    render_function_tree(projection, profile=profile, target_width=2200)
+                svg, ledger = render_function_tree(projection, profile=profile, target_width=7200)
+                tree = ET.fromstring(svg)
+                title = tree.find('{http://www.w3.org/2000/svg}text')
+                self.assertEqual(title.text, view_id + ' - Function decomposition')
+                self.assertGreaterEqual(ledger['canvas_width'] - float(title.attrib['x']) - 48,
+                                        len(title.text) * 1.5 * title_size)
+                for group in tree.findall('{http://www.w3.org/2000/svg}g'):
+                    rectangle = group.find('{http://www.w3.org/2000/svg}rect')
+                    for text in group.findall('{http://www.w3.org/2000/svg}text'):
+                        self.assertGreaterEqual(float(rectangle.attrib['width']) - 40,
+                                                len(text.text) * 1.5 * body_size)
+                self.assertIn(view_id, svg)
 
     def test_invalid_structure_bindings_and_requested_views_refused(self):
         for defect in ('cycle', 'orphan', 'level', 'binding', 'duplicate', 'missing', 'kind'):
@@ -173,6 +243,28 @@ class NativePresentationTests(unittest.TestCase):
             self.assertTrue(labels)
             self.assertTrue(all(label.attrib['font-size'] == '23' for label in labels))
             self.assertEqual(profile_path.read_text(), json.dumps(profile))
+
+    def test_native_wide_title_refuses_small_target_without_output(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            temp = Path(temp)
+            view_id = 'W' * 64
+            source = temp / 'wide.sysml'
+            source.write_text(MODEL.read_text().replace('"id": "FT"', '"id": "' + view_id + '"'))
+            profile = load_profile()
+            profile['numeric_proposal'].update(title_size=48, body_size=24)
+            small = temp / 'too-small'
+            with self.assertRaisesRegex(ValueError, 'Target too small'):
+                write_presentation(source, small, view_id=view_id, profile=profile, target_width=2200)
+            self.assertFalse(small.exists())
+            wide = temp / 'wide'
+            result = write_presentation(source, wide, view_id=view_id, profile=profile, target_width=7200)
+            self.assertEqual(result['status'], 'pass')
+            title = ET.parse(wide / 'view.svg').find('{http://www.w3.org/2000/svg}text')
+            self.assertEqual(title.text, view_id + ' - Function decomposition')
+            presentation = json.loads((wide / 'presentation.json').read_text())
+            self.assertGreaterEqual(presentation['canvas_width'] - 96, len(title.text) * 1.5 * 48)
+            self.assertEqual((wide / 'sources/model-1.sysml').read_bytes(), source.read_bytes())
 
     def test_cli_invalid_view_and_missing_parser_diagnostics(self):
         (ROOT / '.tmp').mkdir(exist_ok=True)
