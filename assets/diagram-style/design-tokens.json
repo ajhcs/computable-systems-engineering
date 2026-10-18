@@ -1,0 +1,551 @@
+{
+  "schema": "engineering-visual-tokens/1",
+  "status": "SANITIZED DESIGN SPECIFICATION; NOT AN IMPLEMENTATION OR ACCEPTANCE RECORD",
+  "palette": {
+    "status": "SELECTED_COLLECTION",
+    "values": {
+      "id": "03",
+      "name": "Graphite and signal",
+      "paper": "#eeeeea",
+      "ink": "#25282d",
+      "families": [
+        {
+          "name": "Signal blue",
+          "shade": "#27456f",
+          "base": "#32588e",
+          "tint": "#d2dae6"
+        },
+        {
+          "name": "Brick red",
+          "shade": "#7f362f",
+          "base": "#a3453c",
+          "tint": "#ebd6d4"
+        },
+        {
+          "name": "Amber",
+          "shade": "#825d19",
+          "base": "#a77720",
+          "tint": "#ece1ce"
+        },
+        {
+          "name": "Instrument green",
+          "shade": "#315e43",
+          "base": "#3f7956",
+          "tint": "#d5e2da"
+        },
+        {
+          "name": "Cyan blue",
+          "shade": "#2e6371",
+          "base": "#3b7f91",
+          "tint": "#d4e3e7"
+        },
+        {
+          "name": "Violet",
+          "shade": "#58436f",
+          "base": "#71568e",
+          "tint": "#e0dae6"
+        },
+        {
+          "name": "Tangerine",
+          "shade": "#894b25",
+          "base": "#b06030",
+          "tint": "#eedcd1"
+        },
+        {
+          "name": "Berry red",
+          "shade": "#753c53",
+          "base": "#964d6b",
+          "tint": "#e8d8de"
+        }
+      ],
+      "neutrals": [
+        {
+          "name": "Paper",
+          "hex": "#eeeeea"
+        },
+        {
+          "name": "Light neutral",
+          "hex": "#dededb"
+        },
+        {
+          "name": "Middle neutral",
+          "hex": "#b6b7b5"
+        },
+        {
+          "name": "Ink",
+          "hex": "#25282d"
+        }
+      ]
+    },
+    "universal_semantic_roles_selected": false,
+    "scoped_preference": {
+      "foreground": "#894b25",
+      "background": "#e0dae6",
+      "establishes_body_default": false
+    }
+  },
+  "typography": {
+    "status": "SELECTED_FAMILY_ROLES",
+    "roles": {
+      "titles": "Inter",
+      "most_other_text": "Space Grotesk"
+    },
+    "faces": [
+      {
+        "family": "Inter",
+        "weight": 400,
+        "style": "normal",
+        "width": "normal",
+        "format": "woff2",
+        "package": "@fontsource/inter",
+        "package_version": "5.3.0",
+        "metadata_version": "v20",
+        "license": "SIL Open Font License 1.1",
+        "sha256": "8909904ab6c872eb994093482a88a28eca2cd95912d7b6fecd72103b0dc07edc"
+      },
+      {
+        "family": "Inter",
+        "weight": 700,
+        "style": "normal",
+        "width": "normal",
+        "format": "woff2",
+        "package": "@fontsource/inter",
+        "package_version": "5.3.0",
+        "metadata_version": "v20",
+        "license": "SIL Open Font License 1.1",
+        "sha256": "6f56409fd3d64bb85f7d070bce20749db2d66b6d63cec586cc22d1c761be2491"
+      },
+      {
+        "family": "Space Grotesk",
+        "weight": 400,
+        "style": "normal",
+        "width": "normal",
+        "format": "woff2",
+        "package": "@fontsource/space-grotesk",
+        "package_version": "5.3.0",
+        "metadata_version": "v22",
+        "license": "SIL Open Font License 1.1",
+        "sha256": "65fd17fcbd2e2f522940b5f67ead3d23329e02891aa5495e74d11a499c0b0673"
+      },
+      {
+        "family": "Space Grotesk",
+        "weight": 700,
+        "style": "normal",
+        "width": "normal",
+        "format": "woff2",
+        "package": "@fontsource/space-grotesk",
+        "package_version": "5.3.0",
+        "metadata_version": "v22",
+        "license": "SIL Open Font License 1.1",
+        "sha256": "35f8aec56cfd5cbfdb03cc68733a54a0b05bb3617ffcd5fd332badc0b045ca55"
+      }
+    ],
+    "universal_weight_roles_selected": false,
+    "universal_sizes_selected": false,
+    "measurement": "Measure loaded glyphs at the delivered scale; preserve codepoints, subscripts and units. Report unsupported coverage.",
+    "fitting": "Do not force width, stretch, tracking or text-fitting transforms. Wrap or resize the content region. Preserve legitimate notation rotations. Uniform viewer zoom is separate."
+  },
+  "illustration_profiles": {
+    "status": "SELECTED_STYLE_DIRECTION",
+    "selected": "Drafted front, profile and orthographic exterior cues",
+    "unselected_alternatives": [
+      "Oblique relief",
+      "Compact silhouettes"
+    ],
+    "semantic_boundary": "Decorative cues do not establish physical geometry, dimensions, counts, containment or allocation.",
+    "universal_glyph_geometry_selected": false
+  },
+  "containers": {
+    "status": "SELECTED_FORM_DIRECTION",
+    "form": "Square-corner content-fit single frame with useful information partitions",
+    "decorative_nested_frames": false,
+    "notation_precedence": true,
+    "example_geometry": {
+      "status": "ILLUSTRATIVE_NOT_UNIVERSAL",
+      "larger_container": {
+        "width": 420,
+        "height": 240,
+        "border": 2,
+        "side_key": 8,
+        "radius": 0
+      },
+      "smaller_container": {
+        "width": 400,
+        "height": 180,
+        "border": 2,
+        "side_key": 7,
+        "radius": 0
+      },
+      "unit": "CSS px",
+      "useful_divider_proposal": 1.5
+    },
+    "partition_layout": "Header, body and footer cells may share one frame when each carries useful information. They do not create model compartments or containment.",
+    "color_roles_status": "PROPOSED_NOT_UNIVERSALLY_SELECTED",
+    "purple_policy": "Retain a reworked purple option; no universal exclusion."
+  },
+  "body_treatment": {
+    "status": "OPEN",
+    "selected": null,
+    "options": {
+      "white": "#ffffff",
+      "paper": "#eeeeea",
+      "faint": {
+        "violet": "#f6f5f8",
+        "blue": "#f3f5f8",
+        "tangerine": "#faf5f3",
+        "green": "#f3f7f5"
+      }
+    },
+    "faint_formula": {
+      "alpha": 0.06,
+      "background": "#ffffff",
+      "per_sRGB_channel": "floor((1-alpha)*255 + alpha*baseChannel + 0.5)"
+    },
+    "common_quantity_and_index_ink": "#25282d",
+    "policy": "Keep essential text, numbers and symbols visually distinct from the body. These options do not add palette families."
+  },
+  "conditional_profiles": {
+    "general_sheet": {
+      "status": "RECOMMENDED_NOT_SELECTED",
+      "reference_canvas": {
+        "width": 1600,
+        "height": 1100,
+        "unit": "CSS px",
+        "zoom": 1
+      },
+      "ranges": {
+        "page_title": {
+          "min": 32,
+          "max": 48,
+          "default": 40,
+          "unit": "px",
+          "applicability": "1600px native sheet, title",
+          "exceptions": "Content fit and delivery scale"
+        },
+        "node_title": {
+          "min": 24,
+          "max": 32,
+          "default": 28,
+          "unit": "px",
+          "applicability": "Native engineering-node title",
+          "exceptions": "Long labels: wrap/resize, preserve meaning"
+        },
+        "body": {
+          "min": 20,
+          "max": 24,
+          "default": 22,
+          "unit": "px",
+          "applicability": "Native labels and body text",
+          "exceptions": "Narrow screens scroll/reflow; do not silently shrink"
+        },
+        "annotation": {
+          "min": 18,
+          "max": 20,
+          "default": 18,
+          "unit": "px",
+          "applicability": "Secondary nonessential context",
+          "exceptions": "Never hide essential meaning in unreadable text"
+        },
+        "padding": {
+          "min": 20,
+          "max": 32,
+          "default": 24,
+          "unit": "px",
+          "applicability": "Plain presentation box interior",
+          "exceptions": "Ports/labels/notation may need more"
+        },
+        "related_gap": {
+          "min": 12,
+          "max": 24,
+          "default": 16,
+          "unit": "px",
+          "applicability": "Related plain content items",
+          "exceptions": "Measured labels may require larger gaps"
+        },
+        "group_gap": {
+          "min": 32,
+          "max": 64,
+          "default": 40,
+          "unit": "px",
+          "applicability": "Distinct visual groups",
+          "exceptions": "Source routing/containment takes precedence"
+        },
+        "label_clearance": {
+          "min": 8,
+          "max": 16,
+          "default": 12,
+          "unit": "px",
+          "applicability": "Label to essential route/terminal",
+          "exceptions": "Long text, branches, print scale"
+        },
+        "bend_clearance": {
+          "min": 16,
+          "max": 32,
+          "default": 24,
+          "unit": "px",
+          "applicability": "Distance from bends/terminals to nearby obstacles or labels; never a route-to-endpoint gap",
+          "exceptions": "Endpoint connection gap is zero; preserve source attachment side/order and node boundaries"
+        },
+        "container_width": {
+          "min": 320,
+          "max": 560,
+          "default": 400,
+          "unit": "px",
+          "applicability": "Simple untyped presentation container",
+          "exceptions": "Notation-specific nodes and content fit override"
+        },
+        "line_weight": {
+          "min": 1.5,
+          "max": 3,
+          "default": 2,
+          "unit": "px",
+          "applicability": "Opaque essential strokes on native sheets",
+          "exceptions": "Source notation or deliberate emphasis may differ"
+        },
+        "title_leading": {
+          "min": 1.15,
+          "max": 1.3,
+          "default": 1.2,
+          "unit": "ratio",
+          "applicability": "Multiline Inter title",
+          "exceptions": "Glyph/content measurement"
+        },
+        "body_leading": {
+          "min": 1.35,
+          "max": 1.5,
+          "default": 1.4,
+          "unit": "ratio",
+          "applicability": "Multiline Space Grotesk body",
+          "exceptions": "Dense symbolic notation may need an explicit exception"
+        }
+      }
+    },
+    "large_graphic_samples": {
+      "status": "RECOMMENDED_NOT_SELECTED",
+      "reference_width": 1600,
+      "unit": "CSS px",
+      "ranges": {
+        "line_weight": {
+          "min": 3,
+          "max": 6,
+          "default": 4,
+          "unit": "px",
+          "applicability": "Ordinary graphic samples at native 1600 px; source notation prevails",
+          "exceptions": "No automatic style change to typed relations"
+        },
+        "compact_padding": {
+          "min": 12,
+          "max": 16,
+          "default": 14,
+          "unit": "px",
+          "applicability": "Content-fit plain containers",
+          "exceptions": "Source compartments/long labels require measurement"
+        },
+        "standard_padding": {
+          "min": 18,
+          "max": 24,
+          "default": 20,
+          "unit": "px",
+          "applicability": "Plain content-fit containers",
+          "exceptions": "Nested ports and labels may need more space"
+        }
+      },
+      "illustrative_text_sizes": {
+        "titles": [
+          28,
+          32,
+          44
+        ],
+        "body": [
+          20,
+          22,
+          24
+        ]
+      }
+    },
+    "resolution": "Profiles apply to different content and scale conditions. Do not combine them into a universal range. Model notation, content fit and delivery scale take precedence."
+  },
+  "line_and_texture_samples": {
+    "status": "VISUAL_DIRECTION_WITH_UNSELECTED_SEMANTIC_ROLES",
+    "line_samples": [
+      {
+        "name": "Solid",
+        "weight": 4,
+        "dasharray": "",
+        "color": "#27456f"
+      },
+      {
+        "name": "Dash",
+        "weight": 4,
+        "dasharray": "26 12",
+        "color": "#894b25"
+      },
+      {
+        "name": "Dot",
+        "weight": 6,
+        "dasharray": "0 17",
+        "color": "#315e43"
+      },
+      {
+        "name": "Dash-dot",
+        "weight": 4,
+        "dasharray": "26 10 2 10",
+        "color": "#7f362f"
+      },
+      {
+        "name": "Spotted",
+        "weight": null,
+        "dasharray": null,
+        "color": "#27456f"
+      },
+      {
+        "name": "Striped band",
+        "weight": null,
+        "dasharray": null,
+        "color": "#27456f"
+      },
+      {
+        "name": "Color channels",
+        "weight": null,
+        "dasharray": null,
+        "color": "#315e43"
+      }
+    ],
+    "unit": "CSS px at the large graphic reference scale",
+    "universal_relation_mapping_selected": false,
+    "texture_policy": "Exploratory decoration only in nonessential regions. Preserve declared material or equipment hatches and stipple. Decorative patterns do not establish material properties or relation types.",
+    "essential_content": "Use opaque contrasting fields and retain noncolor distinctions."
+  },
+  "diagram_families": {
+    "labels": [
+      "System context and interconnection",
+      "Composition and hierarchy",
+      "Functional flow",
+      "Activity",
+      "State machine",
+      "Sequence",
+      "Electrical and electronic schematic",
+      "Concept illustration",
+      "Traceability matrix",
+      "Physical geometry"
+    ],
+    "status": "DESCRIPTIVE LABELS ONLY; NOT A PRODUCT SUPPORT MATRIX",
+    "support_rule": "Each supported family needs an explicit admitted model contract, notation rules and tests. Unsupported families remain unsupported."
+  },
+  "notation_invariants": [
+    "The authoritative engineering model determines element identity, ownership, type, applicability, units, thresholds and obligations.",
+    "Preserve declared relation direction and kind, port identities, endpoint attachments, side and order, multiplicity and cardinality.",
+    "Keep junctions distinct from independent crossings; do not infer a junction from a visual intersection.",
+    "Use arrowheads only where declared direction or sequence warrants them. Preserve composition-diamond ownership, control versus object flow, fork/join and state-exit semantics.",
+    "Preserve declared resistor, transistor, switch and other specialized notation; a decorative pictogram is not a typed model element.",
+    "Actual connections meet their declared contacts. Clearance applies to labels and obstacles. Preserve explicitly nonattached marks and documented gaps without inventing links.",
+    "Do not create model containment, allocations or counts from boxes, facets, fasteners, icon marks or visual groupings.",
+    "Unknown or ambiguous meaning remains explicit. An illustration does not become a formal systems model through styling."
+  ],
+  "crispness_method": {
+    "goal": "Legible text, deliberate stroke hierarchy and clear separation at the delivery scale",
+    "measurement": [
+      "Compare baseline and candidate at the same canvas, browser renderer, device-pixel ratio and display scale.",
+      "Compute effective painted widths through scene, element, pattern and instance transforms; nominal attributes alone are insufficient.",
+      "Inspect text bounds, clipping, overlaps, arrowheads, dash patterns, hatch density, connections and crossings.",
+      "Preserve editable vectors and text with qualified embedded fonts. Generate higher-resolution rasters by fresh vector rendering.",
+      "Use normal antialiasing for curves and diagonals; do not apply a universal crispEdges override."
+    ],
+    "limits": [
+      "A thicker or thinner stroke does not universally improve sharpness.",
+      "Thumbnail fit factors do not establish equal text size or physical scale.",
+      "Nominal CSS pixels per inch do not calibrate a monitor or printer.",
+      "Visual preference and numerical checks do not establish engineering acceptance or reader comprehension."
+    ]
+  },
+  "acceptance_proposals": {
+    "status": "PROPOSED; EXECUTION AND ENGINEER ACCEPTANCE NOT CLAIMED",
+    "gates": [
+      {
+        "name": "Model projection",
+        "expectation": "Check identity, ownership, endpoint kinds, topology, notation, units, cardinalities and text against the admitted model."
+      },
+      {
+        "name": "Meaningful refusal tests",
+        "expectation": "Use synthetic negative fixtures for wrong endpoints, missing required inputs, altered model inputs and unsupported notation. Required unknown, errored or incomplete checks cannot yield overall success."
+      },
+      {
+        "name": "Typography",
+        "expectation": "Check actual loaded faces, glyph coverage, codepoints, subscripts, metrics, font notices and absence of silent fallback."
+      },
+      {
+        "name": "Layout and contrast",
+        "expectation": "Check clipping, collisions, label and port clearances, contact attachment, arrowheads and measurable contrast at intended scales. Do not use color alone for essential meaning."
+      },
+      {
+        "name": "Artifact generation",
+        "expectation": "Regenerate from trusted model data; inspect native vectors and fresh raster exports. If offline viewing is delivered, test it without network resources and verify saved source identity."
+      },
+      {
+        "name": "Repository integration",
+        "expectation": "Run required scoped and repository regressions on the assigned integration base. Preserve existing public interfaces and reject execution of code embedded in model data."
+      },
+      {
+        "name": "Review and acceptance",
+        "expectation": "Keep semantic review, visual review, engineering acceptance and physical qualification separate. Hashes identify bytes rather than authenticate decisions."
+      },
+      {
+        "name": "Reuse rights",
+        "expectation": "Use synthetic fixtures, original reusable artwork or explicitly permitted attributed derivatives. Include required licenses with redistributed fonts and assets."
+      }
+    ],
+    "additional_qualification": [
+      "Graphical-editor edit, save and reopen where editable delivery is claimed.",
+      "Print, grayscale and monitor-scale qualification for the intended medium.",
+      "Accessibility and representative reader-comprehension evaluation."
+    ]
+  },
+  "delivery_boundary": "This document contains reusable presentation values and proposals only. It embeds no source figures, models, artwork, font binaries or evidence records and grants no rights to omitted material.",
+  "function_tree_implementation": {
+    "status": "SCOPED_LOCAL_DEFAULTS_NOT_UNIVERSAL_SEMANTICS",
+    "profile_field": "function_tree_roles",
+    "roles": {
+      "status": "slice_specific_proposal",
+      "root_pair": "orange_on_violet",
+      "branch_pairs": [
+        "blue_on_blue",
+        "orange_on_orange",
+        "green_on_green"
+      ],
+      "shared_fanout": "ink",
+      "pairs": {
+        "orange_on_violet": {
+          "fill": "violet.tint",
+          "frame": "tangerine.shade",
+          "connector": "tangerine.shade"
+        },
+        "brick_on_cream": {
+          "fill": "amber.tint",
+          "frame": "red.shade",
+          "connector": "red.shade"
+        },
+        "green_on_cool": {
+          "fill": "cyan.tint",
+          "frame": "green.shade",
+          "connector": "green.shade"
+        },
+        "blue_on_blue": {
+          "fill": "blue.tint",
+          "frame": "blue.shade",
+          "connector": "blue.shade"
+        },
+        "orange_on_orange": {
+          "fill": "tangerine.tint",
+          "frame": "tangerine.shade",
+          "connector": "tangerine.shade"
+        },
+        "green_on_green": {
+          "fill": "green.tint",
+          "frame": "green.shade",
+          "connector": "green.shade"
+        }
+      }
+    },
+    "scope": "Current selected compact tree treatment restores same-family blue, tangerine and green branches with an orange-on-violet root. Independent fill, frame/accent and connector resolution and nondefault pair candidates remain available. No universal engineering meaning; leaf body choices remain provisional."
+  }
+}

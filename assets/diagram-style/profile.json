@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "name": "Graphite and signal",
+  "direction_status": "selected_direction",
+  "fonts": {
+    "title": "Inter",
+    "body": "Space Grotesk"
+  },
+  "body_variants": {
+    "status": "provisional",
+    "values": [
+      "paper",
+      "white",
+      "tint"
+    ]
+  },
+  "numeric_proposal": {
+    "status": "slice_specific_proposal",
+    "title_size": 36,
+    "body_size": 22,
+    "stroke_display_px": 2
+  },
+  "limits": {
+    "glyphs": "printable_ascii_plus_middle_dot",
+    "color_semantics": "none"
+  },
+  "palette": {
+    "paper": "#eeeeea",
+    "ink": "#25282d",
+    "light": "#dededb",
+    "middle": "#b6b7b5",
+    "families": {
+      "blue": {
+        "shade": "#27456f",
+        "base": "#32588e",
+        "tint": "#d2dae6"
+      },
+      "red": {
+        "shade": "#7f362f",
+        "base": "#a3453c",
+        "tint": "#ebd6d4"
+      },
+      "amber": {
+        "shade": "#825d19",
+        "base": "#a77720",
+        "tint": "#ece1ce"
+      },
+      "green": {
+        "shade": "#315e43",
+        "base": "#3f7956",
+        "tint": "#d5e2da"
+      },
+      "cyan": {
+        "shade": "#2e6371",
+        "base": "#3b7f91",
+        "tint": "#d4e3e7"
+      },
+      "violet": {
+        "shade": "#58436f",
+        "base": "#71568e",
+        "tint": "#e0dae6"
+      },
+      "tangerine": {
+        "shade": "#894b25",
+        "base": "#b06030",
+        "tint": "#eedcd1"
+      },
+      "berry": {
+        "shade": "#753c53",
+        "base": "#964d6b",
+        "tint": "#e8d8de"
+      }
+    }
+  },
+  "function_tree_roles": {
+    "status": "slice_specific_proposal",
+    "root_pair": "orange_on_violet",
+    "branch_pairs": [
+      "blue_on_blue",
+      "orange_on_orange",
+      "green_on_green"
+    ],
+    "shared_fanout": "ink",
+    "pairs": {
+      "orange_on_violet": {
+        "fill": "violet.tint",
+        "frame": "tangerine.shade",
+        "connector": "tangerine.shade"
+      },
+      "brick_on_cream": {
+        "fill": "amber.tint",
+        "frame": "red.shade",
+        "connector": "red.shade"
+      },
+      "green_on_cool": {
+        "fill": "cyan.tint",
+        "frame": "green.shade",
+        "connector": "green.shade"
+      },
+      "blue_on_blue": {
+        "fill": "blue.tint",
+        "frame": "blue.shade",
+        "connector": "blue.shade"
+      },
+      "orange_on_orange": {
+        "fill": "tangerine.tint",
+        "frame": "tangerine.shade",
+        "connector": "tangerine.shade"
+      },
+      "green_on_green": {
+        "fill": "green.tint",
+        "frame": "green.shade",
+        "connector": "green.shade"
+      }
+    }
+  }
+}
