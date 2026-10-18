@@ -77,3 +77,7 @@ The [SysML-first plan](docs/sysml-v2-model-first-plan.md) and [implemented alpha
 The project uses deterministic program results for computable claims. Broader validation still requires evidence and engineering judgment. JSON is a transport format, not a token-efficiency claim; measure context and repair costs before making such claims.
 
 See [public references](docs/references.md) and [contribution guidance](CONTRIBUTING.md). External publications and tools remain under their own terms; none is bundled here.
+
+## Experimental visual presentation
+
+An opt-in checked documentary function-tree renderer adds palette03, embedded Inter/Space Grotesk fonts and explicit provisional body variants. See [visual presentation](docs/visual-presentation.md) for generation, editable sources, checks and limits. Existing checking defaults remain unchanged.
