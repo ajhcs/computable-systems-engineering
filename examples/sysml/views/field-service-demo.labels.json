@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "view": "FT_DEMO",
+  "title": "Maintain the inspection station",
+  "labels": [
+    {
+      "element": "FieldServiceDemo::MaintainStation",
+      "text": "Maintain the inspection station"
+    },
+    {
+      "element": "FieldServiceDemo::PrepareServiceVisit",
+      "text": "Prepare the service visit and station access"
+    },
+    {
+      "element": "FieldServiceDemo::ReviewServiceRequest",
+      "text": "Review the reported symptoms and service request"
+    },
+    {
+      "element": "FieldServiceDemo::ConfirmAccessReadiness",
+      "text": "Confirm station access and workspace readiness"
+    },
+    {
+      "element": "FieldServiceDemo::GatherServiceResources",
+      "text": "Gather reference information and service tools"
+    },
+    {
+      "element": "FieldServiceDemo::InspectAndRestoreStation",
+      "text": "Inspect the station and restore its working condition"
+    },
+    {
+      "element": "FieldServiceDemo::InspectStationCondition",
+      "text": "Inspect station components and record observations"
+    },
+    {
+      "element": "FieldServiceDemo::InvestigateReportedIssue",
+      "text": "Investigate the reported issue using observed evidence"
+    },
+    {
+      "element": "FieldServiceDemo::RestoreAffectedComponents",
+      "text": "Restore affected components within the service scope"
+    },
+    {
+      "element": "FieldServiceDemo::ReturnStationAndReport",
+      "text": "Return the station and communicate service findings"
+    },
+    {
+      "element": "FieldServiceDemo::ReviewPostServiceCondition",
+      "text": "Review the station condition after the service work"
+    },
+    {
+      "element": "FieldServiceDemo::ReturnStationToCustodian",
+      "text": "Return the station and explain any remaining concerns"
+    },
+    {
+      "element": "FieldServiceDemo::DocumentServiceFindings",
+      "text": "Document completed work and unresolved observations"
+    }
+  ]
+}
