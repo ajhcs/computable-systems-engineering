@@ -94,7 +94,7 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
            '<style>' + escape(style['font_css']) + '</style>',
            f'<rect width="{width}" height="{height}" fill="{style["paper"]}"/>',
            f'<text x="48" y="48" fill="{style["ink"]}" font-family="Inter" font-size="{style["title_size"]}" font-weight="700">{escape(projection["id"])} - Function decomposition</text>',
-           f'<text x="48" y="78" fill="{style["ink"]}" font-family="Inter" font-size="16">Documentary parent links · no behavioral or engineering acceptance claim</text>']
+           f'<text x="48" y="78" fill="{style["ink"]}" font-family="Space Grotesk" font-size="16">Documentary parent links · no behavioral or engineering acceptance claim</text>']
     for key in order:
         node = by_id[key]
         if node['parent'] is not None:
@@ -107,8 +107,8 @@ def render_function_tree(projection, *, profile=None, body="paper", target_width
         x, y = positions[key]
         box_width = width - x - 48
         attrs = ' '.join(f'data-{k}="{escape(str(node[k]), quote=True)}"' for k in ("id", "element", "level", "parent"))
-        svg.extend([f'<g {attrs}>', f'<rect x="{x}" y="{y}" width="{box_width}" height="72" rx="6" fill="{style["fill"]}" stroke="{style["ink"]}" stroke-width="{style["stroke_width"]}"/>',
-                    f'<text x="{x+16}" y="{y+24}" fill="{style["ink"]}" font-family="Inter" font-size="{style["body_size"]}">{key} · level {node["level"]}</text>',
+        svg.extend([f'<g {attrs}>', f'<rect x="{x}" y="{y}" width="{box_width}" height="72" fill="{style["fill"]}" stroke="{style["ink"]}" stroke-width="{style["stroke_width"]}"/>',
+                    f'<text x="{x+16}" y="{y+24}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{key} · level {node["level"]}</text>',
                     f'<text xml:space="preserve" x="{x+16}" y="{y+52}" fill="{style["ink"]}" font-family="Space Grotesk" font-size="{style["body_size"]}">{escape(node["text"])}</text>', '</g>'])
         geometry.append({"id": key, "x": x, "y": y, "width": box_width, "height": 72})
     svg.append('</svg>')
@@ -142,7 +142,7 @@ def write_presentation(model_paths, output, *, view_id, profile=None, body="pape
     files = {"view.svg": svg.encode(), "semantic-ledger.json": _json(projection).encode(),
              "presentation.json": _json(presentation).encode()}
     # Plain offline HTML: exact SVG, embedded fonts, scroll and native browser zoom.
-    html = '<!doctype html>\n<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Function decomposition</title><style>html{background:#fff}body{margin:24px;font-family:Inter,sans-serif}main{overflow:auto}svg{display:block;max-width:none}' + presentation['style']['font_css'] + '</style><p>' + escape(CLAIM) + '</p><p>Scroll to inspect the diagram; use browser zoom to enlarge.</p><main>' + svg + '</main></html>\n'
+    html = '<!doctype html>\n<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Function decomposition</title><style>html{background:#fff}body{margin:24px;font-family:"Space Grotesk",sans-serif}main{overflow:auto}svg{display:block;max-width:none}' + presentation['style']['font_css'] + '</style><p>' + escape(CLAIM) + '</p><p>Scroll to inspect the diagram; use browser zoom to enlarge.</p><main>' + svg + '</main></html>\n'
     files["index.html"] = html.encode()
     font_manifest_raw = (ASSETS / 'fonts/manifest.json').read_bytes()
     font_manifest = json.loads(font_manifest_raw)

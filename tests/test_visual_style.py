@@ -46,6 +46,19 @@ class VisualStyleTests(unittest.TestCase):
                 path = Path(folder) / "profile.json"; path.write_text(json.dumps(p))
                 with self.assertRaises(ValueError): load_profile(path)
 
+    def test_nondefault_profile_dict_and_file_share_strict_validation(self):
+        p = load_profile()
+        p["numeric_proposal"]["body_size"] = 23
+        expected = deepcopy(p)
+        with tempfile.TemporaryDirectory(dir=ROOT / ".tmp") as folder:
+            path = Path(folder) / "profile.json"
+            path.write_text(json.dumps(p))
+            self.assertEqual(presentation_style(load_profile(path))["body_size"], 23)
+            self.assertEqual(presentation_style(path)["body_size"], 23)
+        self.assertEqual(p, expected)
+        p["body_variants"]["status"] = "accepted"
+        with self.assertRaises(ValueError): presentation_style(p)
+
     def test_font_bytes_and_explicit_coverage(self):
         css = font_css()
         self.assertEqual(css.count("@font-face"), 4)

@@ -54,6 +54,24 @@ class ProjectionTests(unittest.TestCase):
         for a, b in zip(ledger['geometry'], ledger['geometry'][1:]):
             self.assertLessEqual(a['y'] + a['height'], b['y'])
 
+    def test_parsed_svg_preserves_title_body_roles_and_square_containers(self):
+        nodes, inventory = fixture()
+        root = ET.fromstring(render_function_tree(project(nodes, inventory))[0])
+        namespace = {'svg': 'http://www.w3.org/2000/svg'}
+        title, annotation = root.findall('svg:text', namespace)
+        self.assertEqual(title.attrib['font-family'], 'Inter')
+        self.assertEqual(annotation.attrib['font-family'], 'Space Grotesk')
+        groups = root.findall('svg:g', namespace)
+        self.assertEqual(len(groups), len(nodes))
+        for group in groups:
+            metadata, native_label = group.findall('svg:text', namespace)
+            self.assertIn('level', metadata.text)
+            self.assertEqual(metadata.attrib['font-family'], 'Space Grotesk')
+            self.assertEqual(native_label.attrib['font-family'], 'Space Grotesk')
+            rectangle = group.find('svg:rect', namespace)
+            self.assertNotIn('rx', rectangle.attrib)
+            self.assertNotIn('ry', rectangle.attrib)
+
     def test_invalid_structure_bindings_and_requested_views_refused(self):
         for defect in ('cycle', 'orphan', 'level', 'binding', 'duplicate', 'missing', 'kind'):
             nodes, inventory = fixture()
@@ -130,6 +148,31 @@ class NativePresentationTests(unittest.TestCase):
             failed = write_presentation(source, temp / 'bad', view_id='FT')
             self.assertNotEqual(failed['status'], 'pass')
             self.assertFalse((temp / 'bad').exists())
+
+    def test_native_cli_accepts_nondefault_profile_and_preserves_provisional_status(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            temp = Path(temp)
+            profile = json.loads((ROOT / 'assets/diagram-style/profile.json').read_text())
+            profile['numeric_proposal']['body_size'] = 23
+            profile_path = temp / 'profile.json'
+            profile_path.write_text(json.dumps(profile))
+            output = temp / 'custom-profile'
+            result = subprocess.run([
+                sys.executable, str(ROOT / 'scripts/sysml_present.py'), str(MODEL),
+                '--view', 'FT', '--output', str(output), '--profile', str(profile_path),
+                '--body', 'tint'], cwd=ROOT, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(json.loads(result.stdout)['status'], 'pass')
+            presentation = json.loads((output / 'presentation.json').read_text())
+            self.assertEqual(presentation['style']['body_size'], 23)
+            self.assertEqual(presentation['style']['body_status'], 'provisional')
+            self.assertEqual(presentation['body'], 'tint')
+            tree = ET.parse(output / 'view.svg')
+            labels = tree.findall('.//{http://www.w3.org/2000/svg}g/{http://www.w3.org/2000/svg}text')
+            self.assertTrue(labels)
+            self.assertTrue(all(label.attrib['font-size'] == '23' for label in labels))
+            self.assertEqual(profile_path.read_text(), json.dumps(profile))
 
     def test_cli_invalid_view_and_missing_parser_diagnostics(self):
         (ROOT / '.tmp').mkdir(exist_ok=True)

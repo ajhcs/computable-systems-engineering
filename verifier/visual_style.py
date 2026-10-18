@@ -37,8 +37,9 @@ def contrast(foreground, background):
 
 
 def load_profile(path=None):
-    data = json.loads(Path(path or ASSETS / "profile.json").read_text(), object_pairs_hook=_unique,
-                      parse_constant=lambda value: (_ for _ in ()).throw(ValueError(f"Nonfinite {value}")))
+    data = deepcopy(path) if isinstance(path, dict) else json.loads(
+        Path(path or ASSETS / "profile.json").read_text(), object_pairs_hook=_unique,
+        parse_constant=lambda value: (_ for _ in ()).throw(ValueError(f"Nonfinite {value}")))
     expected = {"version", "name", "direction_status", "palette", "fonts", "body_variants", "numeric_proposal", "limits"}
     if not isinstance(data, dict) or set(data) != expected or type(data["version"]) is not int or data["version"] != 1:
         raise ValueError("Expected visual profile version 1 and exact documented fields")
@@ -108,7 +109,7 @@ def font_css():
 
 
 def presentation_style(profile=None, *, body="paper", target_width=1200, canvas_width=1200):
-    data = load_profile(profile) if profile is None or isinstance(profile, (str, Path)) else _validated_dict(profile)
+    data = load_profile(profile)
     for value in (target_width, canvas_width):
         if type(value) not in (int, float) or not math.isfinite(value) or not 200 <= value <= 20000:
             raise ValueError("Canvas and target widths need finite values from 200 to 20000")
@@ -126,11 +127,3 @@ def presentation_style(profile=None, *, body="paper", target_width=1200, canvas_
             "font_css": font_css(), "body_status": "provisional",
             "contrast": {"body_text": contrast(palette["ink"], fill),
                          "accent_text": contrast(palette["families"]["tangerine"]["shade"], palette["families"]["violet"]["tint"])}}
-
-
-def _validated_dict(profile):
-    # Same validation for dictionaries without executing or persisting model-supplied code.
-    default = load_profile()
-    if profile != default:
-        raise ValueError("Custom profiles must be supplied as a file for strict validation")
-    return deepcopy(default)
