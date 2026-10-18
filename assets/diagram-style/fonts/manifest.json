@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "license": "OFL-1.1; each original notice retained",
+  "faces": [
+    {
+      "family": "Inter",
+      "weight": 400,
+      "file": "inter-400.woff2",
+      "sha256": "8909904ab6c872eb994093482a88a28eca2cd95912d7b6fecd72103b0dc07edc",
+      "bytes": 23664,
+      "notice": "inter-OFL.txt",
+      "notice_sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+      "package": "@fontsource/inter",
+      "package_version": "5.3.0",
+      "source_file": "files/inter-latin-400-normal.woff2",
+      "unicode_range": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+      "source_url": "https://www.npmjs.com/package/@fontsource/inter/v/5.3.0",
+      "modifications": "none"
+    },
+    {
+      "family": "Inter",
+      "weight": 700,
+      "file": "inter-700.woff2",
+      "sha256": "6f56409fd3d64bb85f7d070bce20749db2d66b6d63cec586cc22d1c761be2491",
+      "bytes": 24356,
+      "notice": "inter-OFL.txt",
+      "notice_sha256": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+      "package": "@fontsource/inter",
+      "package_version": "5.3.0",
+      "source_file": "files/inter-latin-700-normal.woff2",
+      "unicode_range": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+      "source_url": "https://www.npmjs.com/package/@fontsource/inter/v/5.3.0",
+      "modifications": "none"
+    },
+    {
+      "family": "Space Grotesk",
+      "weight": 400,
+      "file": "space-grotesk-400.woff2",
+      "sha256": "65fd17fcbd2e2f522940b5f67ead3d23329e02891aa5495e74d11a499c0b0673",
+      "bytes": 13388,
+      "notice": "space-OFL.txt",
+      "notice_sha256": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943",
+      "package": "@fontsource/space-grotesk",
+      "package_version": "5.3.0",
+      "source_file": "files/space-grotesk-latin-400-normal.woff2",
+      "unicode_range": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+      "source_url": "https://www.npmjs.com/package/@fontsource/space-grotesk/v/5.3.0",
+      "modifications": "none"
+    },
+    {
+      "family": "Space Grotesk",
+      "weight": 700,
+      "file": "space-grotesk-700.woff2",
+      "sha256": "35f8aec56cfd5cbfdb03cc68733a54a0b05bb3617ffcd5fd332badc0b045ca55",
+      "bytes": 12840,
+      "notice": "space-OFL.txt",
+      "notice_sha256": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943",
+      "package": "@fontsource/space-grotesk",
+      "package_version": "5.3.0",
+      "source_file": "files/space-grotesk-latin-700-normal.woff2",
+      "unicode_range": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+      "source_url": "https://www.npmjs.com/package/@fontsource/space-grotesk/v/5.3.0",
+      "modifications": "none"
+    }
+  ],
+  "coverage": "This renderer slice qualifies printable ASCII plus middle dot; broader declared font ranges are not a tested glyph-coverage claim."
+}
