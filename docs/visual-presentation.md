@@ -8,11 +8,36 @@ This experimental slice renders one checked documentary function tree from the e
 python3 scripts/sysml_present.py examples/sysml/views/sample-handling.sysml --view FT --output work/tree-paper --body paper --target-width 1200
 ```
 
-Use the CLI help for the current flags. The output directory must be new. The native parser and view checks must pass before any diagram is emitted. A function tree is an explicit documentary decomposition; it is not an activity sequence, allocation, native port network or simulation. The drawing leads with exact native action names and the human title “Function decomposition”. Internal view/node IDs and level tags are hidden by default; add `--show-ids` to display the view ID and place node metadata after each native name. Legitimate identifiers within native names are retained verbatim. Full IDs, native bindings, levels and exact parent links remain in the semantic ledger, source companions and manifest provenance in either mode. The subtitle “Documentary function hierarchy” labels this simplified presentation; the full claim limits remain in its companions and manifest.
+Use the CLI help for the current flags. The output directory must be new. The native parser and view checks must pass before any diagram is emitted. A function tree is an explicit documentary decomposition; it is not an activity sequence, allocation, native port network or simulation. Without a label companion, the drawing leads with exact native action names and the human title “Function decomposition”. An explicit `--labels` companion supplies separately authored display wording bound to those exact native identities; it never renames the authoritative model. Internal view/node IDs and level tags are hidden by default; add `--show-ids` to display the view ID and place node metadata after each native name. Legitimate identifiers within native names are retained verbatim. Full IDs, native bindings, levels and exact parent links remain in the semantic ledger, source companions and manifest provenance in either mode. The subtitle “Documentary function hierarchy” labels this simplified presentation; the full claim limits remain in its companions and manifest.
 
 Edit the authoritative SysML and regenerate into another new directory. Do not patch exported SVG to change the engineering model. The output includes editable SVG text, an offline HTML reader, a semantic ledger, presentation parameters and a manifest. An actual graphical editor edit/save/reopen is a separate qualification.
 
 The complete [portable design specification](visual-design-spec.md) and `assets/diagram-style/design-tokens.json` preserve broader selected directions, conditional ranges and open choices. They are design inputs, not a runtime support matrix or the smaller `--profile` schema.
+
+
+## Synthetic branching demonstration
+
+```sh
+python3 scripts/sysml_present.py examples/sysml/views/field-service-demo.sysml --view FT_DEMO --labels examples/sysml/views/field-service-demo.labels.json --output work/station-tree --body white --target-width 1600
+```
+
+This owned synthetic example declares one root function, three first-level functions and nine leaf functions. Its decomposition describes a service scope, without prescribing execution order, safety procedures, requirements or real equipment behavior. Its author supplied the readable labels explicitly. The native names, IDs, levels, bindings and parentage remain unchanged in `semantic-ledger.json` and exact SysML companions. The canonical `display-labels.json` companion and `presentation.json` record the separate wording. Unknown bindings, duplicate keys or elements, wrong views and unsupported glyphs are refused before output creation. Omitting a binding retains the exact native name; there is no inferred camel-case splitting.
+
+Nodes wrap within a measured text region and fit their own content plus padding. Branch subtrees are balanced horizontally; leaf siblings stack in compact local groups. Child counts are derived from the documentary tree and occupy a useful separate cell. `--show-ids` adds metadata after the display label. Neither framing nor color creates a model-owned part or compartment.
+
+| Design rule | Integrated behavior in this slice | Available or later work |
+| --- | --- | --- |
+| Square content-fit framing | Glyph-advance wrapping, bounded padding and height, no canvas-wide bars | Other notation-specific node shapes |
+| Useful partitions and side keys | Derived child-count cell; optional ID/level cell; a single outer frame | Domain-owned compartments |
+| Selected palette shade/tint roles | Violet/tangerine root; blue, tangerine and green demo branches; readable ink labels | All eight families remain tokens; no universal status meanings |
+| Inter and Space Grotesk | Embedded Inter title and Space Grotesk labels/counts, with pinned measured advances | Wider glyph qualification |
+| Target-scale vector geometry | Editable text/SVG; declared display-pixel strokes; fresh vector raster export | Calibrated print and editor roundtrip |
+| Line and hatch samples | Documentary decomposition routes only; shared trunks have explicit parents | Dashed relation semantics and typed materials/equipment textures |
+| Drafted exterior illustrations | No invented physical geometry in this function view | Source-admitted physical glyph adapters |
+
+White, paper and faint-tint leaf bodies remain provisional choices; the demonstration requests white explicitly. Branch color is a local navigation role, repeated within each first-level branch. It is neither engineering status nor a selected universal palette mapping. Texture is deliberately absent: this function model declares no material or equipment classes that could give a hatch meaning.
+
+Text layout uses `fonts/metrics.json`, measured from the pinned WOFF2 faces with Canvas `measureText` at 1000px and tied to each face SHA-256. Advances scale to the selected font size; normal glyph shapes and spaces are retained. This particular layout disables kerning and ligatures consistently in measurement and SVG, and requests geometric-precision text rendering to retain fractional advances at small sizes. It applies no letter spacing, fitting transforms or character substitution. Soft line breaks concatenate to the exact authored string, including spaces. Actual browser glyph bounds, face identity and target-scale clearance still need checking for each qualified candidate; advance sums alone are not visual acceptance.
 
 ## Selected direction and provisional parameters
 
@@ -24,7 +49,7 @@ This slice refuses unsupported characters outside printable ASCII plus middle do
 
 ## Reusable boundaries
 
-`verifier.visual_style` validates profile data, embeds exact font bytes/notices, computes opaque-field contrast and converts a proposed display stroke width to native coordinates. `verifier.visual_projection` consumes the published parsed inventory after existing checks, retains model identities and parentage, and emits ordinary vector boxes, exact text and separate parent paths. Shared routes and crossings do not become junctions.
+`verifier.visual_style` validates profile data, embeds exact font bytes/notices, computes opaque-field contrast and converts a proposed display stroke width to native coordinates. `verifier.visual_projection` consumes the published parsed inventory after existing checks, retains model identities and parentage, and emits compact square boxes, losslessly wrapped text and documentary parent routes. A shared route is drawn once only for children with the same explicit parent; unrelated crossings never imply a junction. The common fan-out trunk is neutral, with scoped colored branch drops.
 
 A narrow first slice does not implement physical glyph semantics, RF/data/material hatches, circuit connectivity or formal port notation. Source-qualified line patterns, contact side/order, arrows, texture classes and values stay with their domain adapters. The broader draft-profile and crispness studies are references for later qualification, not permission to infer those relationships from styling. No private worked reference art is shipped as a production renderer.
 

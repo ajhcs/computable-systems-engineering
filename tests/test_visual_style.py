@@ -6,7 +6,7 @@ import unittest
 from copy import deepcopy
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from verifier.visual_style import load_profile, contrast, presentation_style, require_supported_text, font_css
+from verifier.visual_style import load_profile, contrast, presentation_style, require_supported_text, font_css, text_width, wrap_text
 
 class VisualStyleTests(unittest.TestCase):
     def test_palette_and_provisional_scope(self):
@@ -58,6 +58,15 @@ class VisualStyleTests(unittest.TestCase):
         self.assertEqual(p, expected)
         p["body_variants"]["status"] = "accepted"
         with self.assertRaises(ValueError): presentation_style(p)
+
+    def test_measured_wrapping_preserves_text_and_tracks_actual_face(self):
+        self.assertGreater(text_width('WWW',22),text_width('iii',22)*2)
+        self.assertAlmostEqual(text_width('ABC',22),text_width('A',22)+text_width('B',22)+text_width('C',22))
+        for text in ('A long engineering name with all spaces retained', 'W'*64, '  exact  spaces  '):
+            lines=wrap_text(text,150,22)
+            self.assertEqual(''.join(lines),text)
+            self.assertTrue(all(text_width(line,22)<=150 for line in lines))
+        with self.assertRaises(ValueError):wrap_text('W',1,22)
 
     def test_font_bytes_and_explicit_coverage(self):
         css = font_css()

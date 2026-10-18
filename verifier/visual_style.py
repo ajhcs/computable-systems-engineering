@@ -1,6 +1,7 @@
 """Opt-in presentation values; never model meaning or engineering acceptance."""
 import base64
 from copy import deepcopy
+from functools import lru_cache
 from hashlib import sha256
 import json
 import math
@@ -127,3 +128,50 @@ def presentation_style(profile=None, *, body="paper", target_width=1200, canvas_
             "font_css": font_css(), "body_status": "provisional",
             "contrast": {"body_text": contrast(palette["ink"], fill),
                          "accent_text": contrast(palette["families"]["tangerine"]["shade"], palette["families"]["violet"]["tint"])}}
+
+
+def text_width(text, size, family='Space Grotesk', weight=400):
+    """Advance sum from bundled-face measurements; no fitting or text distortion."""
+    require_supported_text(text)
+    metrics = _font_metrics()
+    face = metrics['faces'][f'{family}:{weight}']
+    return sum(face['advances'][char] for char in text) * size / face['units']
+
+
+def wrap_text(text, max_width, size, family='Space Grotesk', weight=400):
+    """Wrap at spaces, then glyph boundaries; concatenated lines retain every character."""
+    require_supported_text(text)
+    lines, start = [], 0
+    while start < len(text):
+        end, last_space, width = start, None, 0
+        while end < len(text):
+            advance = text_width(text[end], size, family, weight)
+            if width + advance > max_width and end > start:
+                break
+            if advance > max_width:
+                raise ValueError('Text region cannot contain one qualified glyph')
+            width += advance
+            end += 1
+            if text[end-1] == ' ':
+                last_space = end
+        if end < len(text) and last_space is not None:
+            end = last_space
+        lines.append(text[start:end])
+        start = end
+    return lines
+
+
+@lru_cache(maxsize=1)
+def _font_metrics():
+    metrics = json.loads((ASSETS / 'fonts/metrics.json').read_text())
+    manifest = json.loads((ASSETS / 'fonts/manifest.json').read_text())
+    expected = {item['family'] + ':' + str(item['weight']): item['sha256'] for item in manifest['faces']}
+    chars = set(chr(i) for i in range(32, 127)) | {'\u00b7'}
+    if metrics.get('version') != 1 or set(metrics.get('faces', {})) != set(expected):
+        raise ValueError('Unsupported qualified font metrics')
+    for key, face in metrics['faces'].items():
+        if face.get('font_sha256') != expected[key] or face.get('units') != 1000 or set(face.get('advances', {})) != chars:
+            raise ValueError('Font metrics do not match bundled face or qualified coverage')
+        if any(type(v) not in (int, float) or not math.isfinite(v) or v <= 0 for v in face['advances'].values()):
+            raise ValueError('Invalid measured glyph advance')
+    return metrics

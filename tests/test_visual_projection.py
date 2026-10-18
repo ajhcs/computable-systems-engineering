@@ -46,27 +46,29 @@ class ProjectionTests(unittest.TestCase):
         svg, ledger = render_function_tree(projection)
         self.assertEqual((svg, ledger), render_function_tree(projection))
         root = ET.fromstring(svg)
-        texts = [item.text for item in root.iter('{http://www.w3.org/2000/svg}text')]
+        texts = [''.join(item.itertext()) for item in root.iter('{http://www.w3.org/2000/svg}text')]
         self.assertIn('Read <tag> & "quote"', texts)
         self.assertNotIn('<tag>', svg)
         self.assertNotIn('marker-end', svg)
         groups = [item for item in root.iter('{http://www.w3.org/2000/svg}g')]
         self.assertEqual([g.attrib['data-element'] for g in groups], [n['element'] for n in nodes])
-        self.assertEqual(len(list(root.iter('{http://www.w3.org/2000/svg}path'))), len(nodes)-1)
+        self.assertEqual(len(root.findall("{http://www.w3.org/2000/svg}path[@data-child]")), len(nodes)-1)
         for a, b in zip(ledger['geometry'], ledger['geometry'][1:]):
-            self.assertLessEqual(a['y'] + a['height'], b['y'])
+            self.assertTrue(a['y'] + a['height'] <= b['y'] or a['x'] + a['width'] <= b['x'] or b['x'] + b['width'] <= a['x'])
 
     def test_parsed_svg_preserves_title_body_roles_and_square_containers(self):
         nodes, inventory = fixture()
         root = ET.fromstring(render_function_tree(project(nodes, inventory), show_ids=True)[0])
         namespace = {'svg': 'http://www.w3.org/2000/svg'}
-        title, annotation = root.findall('svg:text', namespace)
+        title = root.find("svg:text[@data-role='title']",namespace)
+        annotation = root.find("svg:text[@data-role='subtitle']",namespace)
         self.assertEqual(title.attrib['font-family'], 'Inter')
         self.assertEqual(annotation.attrib['font-family'], 'Space Grotesk')
         groups = root.findall('svg:g', namespace)
         self.assertEqual(len(groups), len(nodes))
         for group in groups:
-            native_label, metadata = group.findall('svg:text', namespace)
+            native_label = group.find("svg:text[@data-role='label']", namespace)
+            metadata = group.find("svg:text[@data-role='metadata']", namespace)
             self.assertIn('level', metadata.text)
             self.assertEqual(metadata.attrib['font-family'], 'Space Grotesk')
             self.assertEqual(native_label.attrib['font-family'], 'Space Grotesk')
@@ -74,73 +76,47 @@ class ProjectionTests(unittest.TestCase):
             self.assertNotIn('rx', rectangle.attrib)
             self.assertNotIn('ry', rectangle.attrib)
 
-    def test_profile_sizes_keep_line_spacing_containment_and_parent_endpoints(self):
+    def test_content_fit_wrapping_and_attached_documentary_routes(self):
         nodes, inventory = fixture()
         projection = project(nodes, inventory)
-        namespace = {'svg': 'http://www.w3.org/2000/svg'}
+        ns = {'svg':'http://www.w3.org/2000/svg'}
         for size in (20, 22, 24):
-            with self.subTest(body_size=size):
-                profile = load_profile()
-                profile['numeric_proposal']['body_size'] = size
-                svg, ledger = render_function_tree(projection, profile=profile, target_width=2200, show_ids=True)
-                root = ET.fromstring(svg)
-                boxes = {}
-                for group in root.findall('svg:g', namespace):
-                    key = group.attrib['data-id']
-                    rect = group.find('svg:rect', namespace)
-                    box = {k: float(rect.attrib[k]) for k in ('x', 'y', 'width', 'height')}
-                    boxes[key] = box
-                    label, metadata = group.findall('svg:text', namespace)
-                    top_baseline, bottom_baseline = float(label.attrib['y']), float(metadata.attrib['y'])
-                    self.assertEqual(float(metadata.attrib['font-size']), size)
-                    self.assertEqual(float(label.attrib['font-size']), size)
-                    self.assertGreaterEqual(bottom_baseline - top_baseline, 1.5 * size)
-                    self.assertGreaterEqual(top_baseline - size, box['y'] + 20)
-                    self.assertLessEqual(bottom_baseline + size * 0.4, box['y'] + box['height'] - 16)
-                    self.assertLess(box['y'] + box['height'], ledger['canvas_height'])
-                ordered = sorted(boxes.values(), key=lambda box: box['y'])
-                for prior, following in zip(ordered, ordered[1:]):
-                    self.assertGreaterEqual(following['y'] - prior['y'] - prior['height'], 32)
-                for path in root.findall('svg:path', namespace):
-                    parent = boxes[path.attrib['data-parent']]
-                    child = boxes[path.attrib['data-child']]
-                    start_x, start_y, end_y, end_x = map(float, re.findall(r'[0-9]+(?:\.[0-9]+)?', path.attrib['d']))
-                    self.assertTrue(parent['x'] < start_x < parent['x'] + parent['width'])
-                    self.assertEqual(start_y, parent['y'] + parent['height'])
-                    self.assertEqual(end_y, child['y'] + child['height'] / 2)
-                    self.assertEqual(end_x, child['x'])
-                self.assertEqual(ledger['layout']['line_height'], size * 1.5)
-                self.assertIn('require browser inspection', ledger['layout']['scope'])
-                self.assertEqual(projection['nodes'][0]['text'], 'Process item')
+            profile = load_profile()
+            profile['numeric_proposal']['body_size'] = size
+            svg, ledger = render_function_tree(projection, profile=profile, show_ids=True, target_width=1600)
+            tree = ET.fromstring(svg)
+            boxes = {g.attrib['data-id']:g.find('svg:rect',ns).attrib for g in tree.findall('svg:g',ns)}
+            self.assertEqual({(e['parent'],e['child']) for e in ledger['edges']}, {('F0','F1'),('F0','F2')})
+            for group in tree.findall('svg:g',ns):
+                self.assertLess(float(group.find('svg:rect',ns).attrib['width']), 450)
+                label=group.find("svg:text[@data-role='label']",ns)
+                self.assertEqual(float(label.attrib['font-size']),size)
+            for edge in ledger['edges']:
+                parent,child=boxes[edge['parent']],boxes[edge['child']]
+                start,end=edge['points'][0],edge['points'][-1]
+                self.assertEqual(start[1],float(parent['y'])+float(parent['height']))
+                self.assertEqual(end[0],float(child['x']))
+                self.assertEqual(end[1],float(child['y'])+float(child['height'])/2)
+        projection['nodes'][1]['text']='A long native engineering name ' * 10
+        before=deepcopy(projection)
+        tree=ET.fromstring(render_function_tree(projection,target_width=1600)[0])
+        label=tree.findall('svg:g',ns)[1].find("svg:text[@data-role='label']",ns)
+        self.assertEqual(''.join(label.itertext()),projection['nodes'][1]['text'])
+        self.assertGreater(len(label.findall('svg:tspan',ns)),2)
+        self.assertEqual(projection,before)
 
-    def test_wide_view_and_metadata_ids_use_selected_font_size_bounds(self):
-        nodes, inventory = fixture()
-        nodes[0]['id'] = 'W' * 64
-        nodes[1]['parent'] = nodes[2]['parent'] = nodes[0]['id']
-        project(nodes, inventory)
-        view_id = 'W' * 64
-        data = json.loads(inventory['documents'][0]['body'].split('\n', 1)[1])
-        data['views'][0]['id'] = view_id
-        inventory['documents'][0]['body'] = 'CSE-VIEWS/1.0\n' + json.dumps(data)
-        projection = project_function_tree(inventory, view_id)
-        for title_size, body_size in ((36, 22), (48, 24)):
-            with self.subTest(title_size=title_size, body_size=body_size):
-                profile = load_profile()
-                profile['numeric_proposal'].update(title_size=title_size, body_size=body_size)
-                with self.assertRaisesRegex(ValueError, 'Target too small'):
-                    render_function_tree(projection, profile=profile, target_width=2200, show_ids=True)
-                svg, ledger = render_function_tree(projection, profile=profile, target_width=7200, show_ids=True)
-                tree = ET.fromstring(svg)
-                title = tree.find('{http://www.w3.org/2000/svg}text')
-                self.assertEqual(title.text, view_id + ' - Function decomposition')
-                self.assertGreaterEqual(ledger['canvas_width'] - float(title.attrib['x']) - 48,
-                                        len(title.text) * 1.5 * title_size)
-                for group in tree.findall('{http://www.w3.org/2000/svg}g'):
-                    rectangle = group.find('{http://www.w3.org/2000/svg}rect')
-                    for text in group.findall('{http://www.w3.org/2000/svg}text'):
-                        self.assertGreaterEqual(float(rectangle.attrib['width']) - 40,
-                                                len(text.text) * 1.5 * body_size)
-                self.assertIn(view_id, svg)
+    def test_wide_view_ids_wrap_without_truncation_and_small_targets_refuse(self):
+        nodes,inventory=fixture()
+        projection=project(nodes,inventory)
+        projection['id']='W'*64
+        svg,ledger=render_function_tree(projection,show_ids=True,target_width=1600)
+        tree=ET.fromstring(svg)
+        title=tree.find('{http://www.w3.org/2000/svg}text')
+        self.assertEqual(''.join(title.itertext()),'W'*64+' - Function decomposition')
+        self.assertGreater(len(title),1)
+        for target in (320,400):
+            with self.assertRaisesRegex(ValueError,'Target too small'):
+                render_function_tree(projection,show_ids=True,target_width=target)
 
     def test_default_names_and_opt_in_metadata_preserve_semantics(self):
         nodes, inventory = fixture()
@@ -153,15 +129,17 @@ class ProjectionTests(unittest.TestCase):
             with self.subTest(show_ids=show_ids):
                 svg, ledger = render_function_tree(projection, show_ids=show_ids)
                 tree = ET.fromstring(svg)
-                title, subtitle = tree.findall('svg:text', ns)
-                self.assertEqual(title.text, ('FT - ' if show_ids else '') + 'Function decomposition')
+                title=tree.find("svg:text[@data-role='title']",ns)
+                subtitle=tree.find("svg:text[@data-role='subtitle']",ns)
+                self.assertEqual(''.join(title.itertext()), ('FT - ' if show_ids else '') + 'Function decomposition')
                 self.assertEqual(subtitle.text, 'Documentary function hierarchy')
                 for group, node in zip(tree.findall('svg:g', ns), projection['nodes']):
-                    labels = group.findall('svg:text', ns)
-                    self.assertEqual(labels[0].text, node['text'])
-                    self.assertEqual(len(labels), 2 if show_ids else 1)
+                    labels = group.findall("svg:text[@data-role='label']", ns)
+                    self.assertEqual(''.join(labels[0].itertext()), node['text'])
+                    metadata=group.findall("svg:text[@data-role='metadata']",ns)
+                    self.assertEqual(bool(metadata),show_ids)
                     if show_ids:
-                        self.assertEqual(labels[1].text, f"{node['id']} · level {node['level']}")
+                        self.assertEqual(''.join(t.text or '' for t in metadata), f"{node['id']} · level {node['level']}")
                     self.assertEqual(group.attrib['data-id'], node['id'])
                     self.assertEqual(group.attrib['data-level'], str(node['level']))
                     self.assertEqual(group.attrib['data-element'], node['element'])
@@ -189,6 +167,19 @@ class ProjectionTests(unittest.TestCase):
                     with self.assertRaises(PresentationError): project_function_tree(inventory, 'FT')
                 else:
                     with self.assertRaises(PresentationError): project(nodes, inventory)
+
+    def test_shared_parent_trunk_is_single_neutral_route_with_explicit_child_drops(self):
+        nodes,inventory=fixture();projection=project(nodes,inventory)
+        svg,ledger=render_function_tree(projection)
+        ns={'svg':'http://www.w3.org/2000/svg'};tree=ET.fromstring(svg)
+        trunks=tree.findall("svg:path[@data-shared-parent='F0']",ns)
+        self.assertEqual(len(trunks),1)
+        self.assertEqual(trunks[0].attrib['stroke'],load_profile()['palette']['ink'])
+        drops=tree.findall('svg:path[@data-child]',ns)
+        self.assertEqual({p.attrib['data-child'] for p in drops},{'F1','F2'})
+        self.assertTrue(all(p.attrib['data-parent']=='F0' for p in drops))
+        self.assertEqual({e['child'] for e in ledger['edges']},{'F1','F2'})
+        self.assertEqual(len(ledger['shared_routes']),1)
 
     def test_render_revalidates_direct_projection_and_bounds(self):
         nodes, inventory = fixture()
@@ -296,32 +287,86 @@ class NativePresentationTests(unittest.TestCase):
             self.assertEqual(presentation['style']['body_status'], 'provisional')
             self.assertEqual(presentation['body'], 'tint')
             tree = ET.parse(output / 'view.svg')
-            labels = tree.findall('.//{http://www.w3.org/2000/svg}g/{http://www.w3.org/2000/svg}text')
+            labels = tree.findall(".//{http://www.w3.org/2000/svg}g/{http://www.w3.org/2000/svg}text[@data-role='label']")
             self.assertTrue(labels)
             self.assertTrue(all(label.attrib['font-size'] == '23' for label in labels))
             self.assertEqual(profile_path.read_text(), json.dumps(profile))
 
-    def test_native_wide_title_refuses_small_target_without_output(self):
+    def test_native_wide_title_wraps_and_small_scale_refuses_without_output(self):
         (ROOT / '.tmp').mkdir(exist_ok=True)
-        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as temp:
-            temp = Path(temp)
-            view_id = 'W' * 64
-            source = temp / 'wide.sysml'
-            source.write_text(MODEL.read_text().replace('"id": "FT"', '"id": "' + view_id + '"'))
-            profile = load_profile()
-            profile['numeric_proposal'].update(title_size=48, body_size=24)
-            small = temp / 'too-small'
-            with self.assertRaisesRegex(ValueError, 'Target too small'):
-                write_presentation(source, small, view_id=view_id, profile=profile, target_width=2200, show_ids=True)
-            self.assertFalse(small.exists())
-            wide = temp / 'wide'
-            result = write_presentation(source, wide, view_id=view_id, profile=profile, target_width=7200, show_ids=True)
-            self.assertEqual(result['status'], 'pass')
-            title = ET.parse(wide / 'view.svg').find('{http://www.w3.org/2000/svg}text')
-            self.assertEqual(title.text, view_id + ' - Function decomposition')
-            presentation = json.loads((wide / 'presentation.json').read_text())
-            self.assertGreaterEqual(presentation['canvas_width'] - 96, len(title.text) * 1.5 * 48)
-            self.assertEqual((wide / 'sources/model-1.sysml').read_bytes(), source.read_bytes())
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as folder:
+            temp=Path(folder);view_id='W'*64;source=temp/'wide.sysml'
+            source.write_text(MODEL.read_text().replace('"id": "FT"','"id": "'+view_id+'"'))
+            with self.assertRaisesRegex(ValueError,'Target too small'):
+                write_presentation(source,temp/'small',view_id=view_id,target_width=320,show_ids=True)
+            self.assertFalse((temp/'small').exists())
+            result=write_presentation(source,temp/'wide',view_id=view_id,target_width=1600,show_ids=True)
+            self.assertEqual(result['status'],'pass')
+            title=ET.parse(temp/'wide/view.svg').find('{http://www.w3.org/2000/svg}text')
+            self.assertEqual(''.join(title.itertext()),view_id+' - Function decomposition')
+            self.assertGreater(len(title),1)
+            self.assertEqual((temp/'wide/sources/model-1.sysml').read_bytes(),source.read_bytes())
+
+    def test_explicit_display_label_cli_sources_and_invalid_binding_refusal(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as folder:
+            temp=Path(folder);model=ROOT/'examples/sysml/views/field-service-demo.sysml'
+            labels=json.loads((ROOT/'examples/sysml/views/field-service-demo.labels.json').read_text())
+            source=temp/'owned.sysml';source.write_bytes(model.read_bytes())
+            label_path=temp/'labels.json';label_path.write_text(json.dumps(labels))
+            cmd=[sys.executable,str(ROOT/'scripts/sysml_present.py'),str(source),'--view','FT_DEMO',
+                 '--labels',str(label_path),'--target-width','1600','--output',str(temp/'first')]
+            first=subprocess.run(cmd,cwd=ROOT,capture_output=True,text=True)
+            self.assertEqual(first.returncode,0,first.stdout+first.stderr)
+            ledger=(temp/'first/semantic-ledger.json').read_bytes()
+            native=json.loads(ledger)
+            self.assertIn('MaintainStation',[n['text'] for n in native['nodes']])
+            self.assertNotIn('Maintain the inspection station',[n['text'] for n in native['nodes']])
+            labels['labels'][0]['text']='Maintain the owned inspection station'
+            label_path.write_text(json.dumps(labels));cmd[-1]=str(temp/'wording-edit')
+            edited=subprocess.run(cmd,cwd=ROOT,capture_output=True,text=True)
+            self.assertEqual(edited.returncode,0,edited.stdout)
+            self.assertEqual((temp/'wording-edit/semantic-ledger.json').read_bytes(),ledger)
+            svg=ET.parse(temp/'wording-edit/view.svg')
+            self.assertIn('Maintain the owned inspection station',[''.join(t.itertext()) for t in svg.findall('.//{http://www.w3.org/2000/svg}text')])
+            source.write_text(source.read_text().replace('MaintainStation','MaintainOwnedStation'))
+            cmd[-1]=str(temp/'stale-binding')
+            failed=subprocess.run(cmd,cwd=ROOT,capture_output=True,text=True)
+            self.assertEqual(failed.returncode,1)
+            self.assertIn('outside the selected native view',failed.stdout)
+            self.assertFalse((temp/'stale-binding').exists())
+            labels['labels'][0]['element']='FieldServiceDemo::MaintainOwnedStation'
+            label_path.write_text(json.dumps(labels));cmd[-1]=str(temp/'source-edit')
+            repaired=subprocess.run(cmd,cwd=ROOT,capture_output=True,text=True)
+            self.assertEqual(repaired.returncode,0,repaired.stdout)
+            self.assertNotEqual((temp/'source-edit/semantic-ledger.json').read_bytes(),ledger)
+            self.assertEqual((temp/'source-edit/sources/model-1.sysml').read_bytes(),source.read_bytes())
+            self.assertEqual(json.loads((temp/'source-edit/display-labels.json').read_text()),labels)
+
+    def test_label_file_changes_after_capture_cannot_change_bundle_companion(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as folder:
+            temp=Path(folder);model=ROOT/'examples/sysml/views/field-service-demo.sysml'
+            labels=json.loads((ROOT/'examples/sysml/views/field-service-demo.labels.json').read_text())
+            path=temp/'labels.json';path.write_text(json.dumps(labels))
+            real_render=render_function_tree
+            def changed_after_render(*args,**kwargs):
+                result=real_render(*args,**kwargs)
+                changed=deepcopy(labels);changed['title']='Changed after render'
+                changed['labels'][0]['element']='Unknown::Other'
+                path.write_text(json.dumps(changed))
+                return result
+            with patch('verifier.visual_projection.render_function_tree',side_effect=changed_after_render):
+                report=write_presentation(model,temp/'output',view_id='FT_DEMO',labels=path,target_width=1600)
+            self.assertEqual(report['status'],'pass')
+            saved=json.loads((temp/'output/display-labels.json').read_text())
+            self.assertEqual(saved,labels)
+            shown=json.loads((temp/'output/presentation.json').read_text())
+            self.assertEqual(shown['display']['title'],labels['title'])
+            self.assertEqual(shown['display']['bindings'],labels['labels'])
+            self.assertNotEqual(json.loads(path.read_text()),saved)
+            for name,digest in report['manifest']['files'].items():
+                self.assertEqual(sha256((temp/'output'/name).read_bytes()).hexdigest(),digest)
 
     def test_cli_invalid_view_and_missing_parser_diagnostics(self):
         (ROOT / '.tmp').mkdir(exist_ok=True)
