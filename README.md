@@ -45,6 +45,14 @@ The [synthetic tool-library example](examples/tool-library/README.md) includes a
 
 The [version-2 contract](docs/verifier-v2.md) and [synthetic fixture](examples/verifier/valid.json) specify the finite semantics. Use `--scenario S1 --view` to retrieve a context slice, while running checks against the full model. The [FHWA slice](docs/fhwa-merge-slice.md) is an unaccepted formalization proposal. [FRET reuse](docs/fret-spike.md), [context measurement](docs/context-measurement.md), and the separate [protected-runner boundary](docs/protected-runner.md) record limits and next work.
 
+The optional [engineering view-quality checks](docs/engineering-view-quality.md)
+validate declared function roots/levels/parent links and ordered participant
+exchanges, with task-specific counts, coverage, timing, and justified exceptions.
+The skills assess action meaning and engineering adequacy with the engineer;
+structural acceptance does not establish either. Existing unannotated models
+retain their current checks. Try the neutral fixture with
+`python3 scripts/sysml.py examples/sysml/views/sample-handling.sysml --syntax-only --view-profile examples/sysml/views/task-profile.json`.
+
 ## Use the skills
 
 The repository registers its three skills through symlinks under `.agents/skills/`, which Codex discovers when you open this project. They remain independently invocable and are scoped to this repository. Start a new project conversation if the skill selector has not refreshed. [Codex skill discovery](https://learn.chatgpt.com/docs/build-skills) documents repository scope and symlink support.

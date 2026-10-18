@@ -79,3 +79,42 @@ For an existing version-1 JSON record or an explicit legacy request, read
 `references/record.md` and use its original helper. Do not silently translate
 its prose into executable SysML constraints. Reconcile any migration with the
 engineer and record unsupported or lost meaning.
+
+## Requested function hierarchies and sequences
+
+Functions express actions (verb-object naming recommended), while components
+and actors identify entities. Assess that distinction semantically with the
+engineer; no verb dictionary establishes action meaning. A function tree records
+decomposition with an explicit level-0 root, levels, and parent links. Activity
+diagrams represent control/object flow; sequence diagrams represent participants
+and ordered meaningful exchanges. Do not substitute these views for one another.
+Tailor requested levels, breadth/depth counts, and coverage to the actual task;
+there are no universal mandatory counts. Record justified exceptions explicitly.
+Require timing only when the task calls for it; modeled ranges need finite
+nonnegative numeric min <= max, duration units, and a timing reference/basis.
+
+The shared runtime's `docs/engineering-view-quality.md` defines optional
+`doc cseViews` metadata (`CSE-VIEWS/1.0`) bound by exact qualified names to native
+actions and part usages. It is a documentary view of the model, not native
+ownership, decomposition, allocation, or executable behavior. For requested
+levels/counts/coverage/timing, supply an explicit task profile:
+
+```text
+python3 <skill-dir>/scripts/cse.py check MODEL.sysml --syntax-only --view-profile PROFILE.json
+```
+
+Add the relevant `--kind` as before. The assistant maintains the model/profile,
+runs these checks when those requested views are recorded, repairs ordinary
+structural gaps, and reports remaining human judgments. A tree requires one
+explicit level-0 root and consistent parent levels, without orphans, cycles, or
+duplicate IDs. A sequence requires declared participants and ordered nonempty
+exchanges; whether those messages are meaningful remains a human assessment.
+Missing requested views/levels/coverage/timing cannot produce an overall pass.
+A task profile may carry justified exceptions to its scope/count/timing gaps,
+which are exposed in the report; rationale text does not authenticate approval.
+Do not change accepted scope to make a check pass. Existing unannotated SysML and
+legacy JSON checks preserve their prior semantics. State that those old checks
+do not establish the new view-quality conditions; do not claim all existing
+models were checked for them. See the shared runtime's
+`examples/sysml/views/sample-handling.sysml` and `task-profile.json` for a neutral
+synthetic example. Keep syntax, structure, semantic review, and behavior separate.

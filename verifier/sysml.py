@@ -16,6 +16,7 @@ import time
 from .language import LanguageError, _clock, check_document
 from .events import EventError, _quantity, check_event_trace, parse_event_clause
 from .influence import generate_influence_tests
+from .engineering_views import check_views
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / ".cache" / "sysml"
@@ -188,7 +189,7 @@ def _evidence(value, model_digest):
 
 
 def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only=False,
-                kind=None, generate_tests=False, test_max_rows=16, test_evaluation_cap=2000,
+                kind=None, view_profile=None, generate_tests=False, test_max_rows=16, test_evaluation_cap=2000,
                 parser_timeout=60, observation_cap=10000, work_cap=1000000):
     """Parse one SysML file with the pinned pilot, then check supported clauses."""
     report = {"status": "pass", "checker_version": VERSION, "parser": PARSER, "claim_scope": "sysml_syntax_and_validation" if syntax_only else "supplied_behavior_evidence" if review else "sysml_and_controlled_text_compilation",
@@ -264,6 +265,11 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
                 _problem(report, "shape_gap", f"{kind} draft has no {category.replace('_', ' ')}", status="unknown")
         if syntax_only:
             report["claim_scope"] = f"sysml_syntax_and_{kind}_shape"
+    if view_profile is not None or any(doc.get("name") == "cseViews" for doc in parsed["documents"]):
+        report["view_checks"] = check_views(parsed, view_profile)
+        for finding in report["view_checks"]["findings"]:
+            _problem(report, "view_" + finding["code"], finding["detail"],
+                     owner=finding.get("view"), status=report["view_checks"]["status"])
     if syntax_only:
         report["inventory"] = {key: parsed[key] for key in
                                ("part_definitions", "parts", "concerns", "use_cases", "actions", "states",
