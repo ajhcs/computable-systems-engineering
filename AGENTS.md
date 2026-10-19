@@ -10,3 +10,5 @@
 - Keep private annotations, course materials, credentials, user models, and raw source documents out of Git. Use synthetic tests and small attributed public-source derivatives. Do not claim third-party endorsement.
 - Keep implementation status honest. Hashes identify inputs; they do not authenticate an engineer decision or establish a protected runner. The trusted execution boundary requires independent enforcement and testing.
 - The kickoff prompt authorizes the first verifier increment, not an automatic complete engineering design. Preserve unrelated work and check repository state before commits or publication.
+
+- For relevant user-facing interactions and operational handoffs, follow [the interaction-walkthrough workflow](docs/interaction-walkthroughs.md): inspect professional/UI precedents, draft plain connected low-fidelity wireframes with adjacent engineering mappings, and iterate with user feedback before substantial expansion, polish or implementation. Preserve model authority, explicit unsupported behavior and existing authorization; tailor coverage to the selected scope.
