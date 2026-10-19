@@ -12,6 +12,10 @@ Small, independently invocable skills that help a systems engineer develop a sys
 
 A complete document is optional. Missing information can remain an explicit unknown. The skills use a system-wide SysML model and selected views rather than requiring the entire model in every model context. The [SysML-first profile](docs/sysml-v2-profile.md) defines the supported parser and checker boundary.
 
+## Interaction walkthroughs
+
+When people interact with a proposed system or interpret an operational handoff, inspect relevant professional/UI precedents and use editable connected low-fidelity wireframes to expose consequential fields, options, defaults, actions, states and recovery. Keep source/model/requirement mappings adjacent and iterate with user feedback before substantial expansion, polish or implementation. The [interaction-walkthrough workflow](docs/interaction-walkthroughs.md) defines coverage, research provenance and review boundaries; current alpha limits remain separate from target product needs.
+
 ## Try the current helpers
 
 Python 3.10 or newer; the version-1 helpers use only the standard library. SysML validation additionally requires Java 21+, `javac` 21+, and the pinned pilot parser installed into the ignored project cache. Run from this directory:
