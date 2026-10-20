@@ -4,8 +4,10 @@ The SysML file remains authoritative. The dictionaries assembled here are tempor
 compiler inputs for the existing deterministic language checker.
 """
 
+from contextlib import contextmanager
 from hashlib import sha256
-import fcntl
+import errno
+import os
 import json
 import math
 from pathlib import Path
@@ -119,6 +121,55 @@ def _locate(line, line_ranges):
     return None, line
 
 
+def _try_parser_lock(lock):
+    """Acquire the shared parser lock without waiting or an unlocked fallback."""
+    try:
+        if os.name == "nt":
+            import msvcrt
+            lock.seek(0)
+            msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
+        elif os.name == "posix":
+            import fcntl
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        else:
+            raise RuntimeError("Native parser locking is unsupported on this platform")
+    except OSError as exc:
+        if exc.errno in (errno.EACCES, errno.EAGAIN):
+            return False
+        raise
+    return True
+
+
+def _release_parser_lock(lock):
+    if os.name == "nt":
+        import msvcrt
+        lock.seek(0)
+        msvcrt.locking(lock.fileno(), msvcrt.LK_UNLCK, 1)
+    elif os.name == "posix":
+        import fcntl
+        fcntl.flock(lock, fcntl.LOCK_UN)
+    else:
+        raise RuntimeError("Native parser locking is unsupported on this platform")
+
+
+@contextmanager
+def _parser_lock(path, deadline, command, timeout):
+    # Do not truncate: Windows byte-range locks must coexist with other openers.
+    # Every Windows opener locks byte zero, including on an empty lock file.
+    with path.open("a+b") as lock:
+        while True:
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise subprocess.TimeoutExpired(command, timeout)
+            if _try_parser_lock(lock):
+                break
+            time.sleep(min(0.05, max(0, deadline - time.monotonic())))
+        try:
+            yield
+        finally:
+            _release_parser_lock(lock)
+
+
 def _parser_output(source, timeout):
     if not JAR.is_file() or not LIBRARY.is_dir() or not (CLASSES / "SysmlBridge.class").is_file():
         raise RuntimeError("SysML pilot not installed; run python3 scripts/install_sysml_parser.py")
@@ -127,27 +178,33 @@ def _parser_output(source, timeout):
         raise RuntimeError("SysML bridge source changed; rerun python3 scripts/install_sysml_parser.py")
     if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout <= 0 or timeout > 600:
         raise ValueError("Parser timeout must be between 0 and 600 seconds")
-    command = ["java", "-Xmx1200m", "-cp", f"{CLASSES}:{JAR}", "SysmlBridge",
+    command = ["java", "-Xmx1200m", "-Dstdout.encoding=UTF-8", "-Dstderr.encoding=UTF-8",
+               "-cp", os.pathsep.join((str(CLASSES), str(JAR))), "SysmlBridge",
                str(LIBRARY), "-"]
     CACHE.mkdir(parents=True, exist_ok=True)
     # The pilot may refresh a shared library index; serialize local parser runs.
-    with (CACHE / "parser.lock").open("w") as lock:
-        deadline = time.monotonic() + timeout
-        while True:
-            try:
-                fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-                break
-            except BlockingIOError:
-                if time.monotonic() >= deadline:
-                    raise subprocess.TimeoutExpired(command, timeout)
-                time.sleep(min(0.05, max(0, deadline - time.monotonic())))
-        remaining = max(0.001, deadline - time.monotonic())
-        completed = subprocess.run(command, input=source, capture_output=True, text=True, timeout=remaining,
-                                   check=False)
+    deadline = time.monotonic() + timeout
+    with _parser_lock(CACHE / "parser.lock", deadline, command, timeout):
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise subprocess.TimeoutExpired(command, timeout)
+        # Capture bytes: Windows reader-thread decoding failures can otherwise
+        # leave a pipe as None and bypass the structured parser error report.
+        completed = subprocess.run(command, input=source.encode("utf-8"), capture_output=True,
+                                   timeout=remaining, check=False)
+    streams = {}
+    for name in ("stdout", "stderr"):
+        raw = getattr(completed, name)
+        if not isinstance(raw, bytes):
+            raise RuntimeError(f"SysML parser returned an invalid {name} byte stream")
+        try:
+            streams[name] = raw.decode("utf-8")
+        except UnicodeError as exc:
+            raise RuntimeError(f"SysML parser returned non-UTF-8 {name}") from exc
     if completed.returncode:
-        raise RuntimeError(f"SysML parser exited {completed.returncode}: {completed.stderr[-500:]}")
+        raise RuntimeError(f"SysML parser exited {completed.returncode}: {streams['stderr'][-500:]}")
     try:
-        data = json.loads(completed.stdout)
+        data = json.loads(streams["stdout"])
     except ValueError as exc:
         raise RuntimeError("SysML parser did not return a JSON result") from exc
     if not isinstance(data, dict):

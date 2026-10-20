@@ -61,7 +61,7 @@ retain their current checks. Try the neutral fixture with
 
 The repository registers its three skills through symlinks under `.agents/skills/`, which Codex discovers when you open this project. They remain independently invocable and are scoped to this repository. Start a new project conversation if the skill selector has not refreshed. [Codex skill discovery](https://learn.chatgpt.com/docs/build-skills) documents repository scope and symlink support.
 
-Each skill's `scripts/cse.py` launcher finds the shared parser/engine from its real location, so checks work from subdirectories as well as the repository root. The repository also includes a plugin manifest at `.codex-plugin/plugin.json`; installation through a public marketplace remains untested. Copying a skill folder alone preserves its version-1 helper, but does not install the shared SysML engine. Avoid duplicate installations.
+Each skill's `scripts/cse.py` launcher finds the shared parser/engine from its real location, so checks work from subdirectories as well as the repository root. The repository also includes a plugin manifest at `.codex-plugin/plugin.json`; installation through a public marketplace remains untested. Copying a skill folder alone preserves its version-1 helper, but does not install the shared SysML engine. Avoid duplicate installations. [Windows runtime and installation boundaries](docs/windows-runtime.md) describe platform locking, UTF-8, checkout links, and the separate installed-plugin qualification.
 
 Example requests:
 
