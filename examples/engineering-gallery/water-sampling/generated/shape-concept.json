@@ -245,9 +245,9 @@
         "source": "examples/engineering-gallery/water-sampling/station.sysml"
       },
       {
-        "body": "Lifecycle: declare pause; suspend intake; inspect and restore equipment; record return to service. No physical repair simulation or reliability claim. These are documentary exchanges, not executable SysML guards/effects. ",
+        "body": "Lifecycle: declare pause; suspend intake; inspect and restore equipment; record inspection with return-to-service approval pending. Intake remains suspended at this demonstrated outcome. Operational release is a separate decision; no physical repair simulation or reliability claim. These are documentary exchanges, not executable SysML guards/effects. ",
         "line": 65,
-        "owner": "WaterSampling::RestoreStation",
+        "owner": "WaterSampling::RecordStationInspection",
         "owner_kind": "UseCaseUsage",
         "source": "examples/engineering-gallery/water-sampling/station.sysml"
       },
@@ -309,7 +309,7 @@
         "source": "examples/engineering-gallery/water-sampling/station.sysml"
       },
       {
-        "body": "CSE-VIEWS/1.0\n{\n\"views\": [\n{\n\"id\": \"FT_STATION\",\n\"kind\": \"function_tree\",\n\"nodes\": [\n{\n\"id\": \"F0\",\n\"element\": \"WaterSampling::ManageSampleHandoff\",\n\"level\": 0,\n\"parent\": null\n},\n{\n\"id\": \"F1\",\n\"element\": \"WaterSampling::ReceiveSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F11\",\n\"element\": \"WaterSampling::IdentifyContainer\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F12\",\n\"element\": \"WaterSampling::RecordReceipt\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F2\",\n\"element\": \"WaterSampling::PreserveHandoffRecord\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F21\",\n\"element\": \"WaterSampling::HoldUnidentifiedContainer\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F22\",\n\"element\": \"WaterSampling::ReconcileLabel\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F3\",\n\"element\": \"WaterSampling::ReleaseSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F31\",\n\"element\": \"WaterSampling::MatchCourierManifest\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F32\",\n\"element\": \"WaterSampling::RecordCustodyTransfer\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F4\",\n\"element\": \"WaterSampling::MaintainStation\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F41\",\n\"element\": \"WaterSampling::SuspendIntake\",\n\"level\": 2,\n\"parent\": \"F4\"\n},\n{\n\"id\": \"F42\",\n\"element\": \"WaterSampling::InspectAndRestore\",\n\"level\": 2,\n\"parent\": \"F4\"\n}\n]\n},\n{\n\"id\": \"SQ_NOMINAL\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"courier\",\n\"element\": \"WaterSampling::courier\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_NOMINAL_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present labeled container and sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Return receipt with matching sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E3\",\n\"from\": \"courier\",\n\"to\": \"station\",\n\"message\": \"Present pickup manifest\"\n},\n{\n\"id\": \"SQ_NOMINAL_E4\",\n\"from\": \"station\",\n\"to\": \"courier\",\n\"message\": \"Return custody transfer record\"\n}\n]\n},\n{\n\"id\": \"SQ_RECOVERY\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_RECOVERY_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present container with unreadable label\"\n},\n{\n\"id\": \"SQ_RECOVERY_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Issue hold notice; container remains unreleased\"\n},\n{\n\"id\": \"SQ_RECOVERY_E3\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Supply corrected identification\"\n},\n{\n\"id\": \"SQ_RECOVERY_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Confirm reconciliation and receipt\"\n}\n]\n},\n{\n\"id\": \"SQ_MAINTENANCE\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"custodian\",\n\"element\": \"WaterSampling::custodian\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_MAINTENANCE_E1\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Request maintenance window\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Announce intake suspended\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E3\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Record inspection and restoration\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Announce intake available\"\n}\n]\n}\n]\n}\n",
+        "body": "CSE-VIEWS/1.0\n{\n\"views\": [\n{\n\"id\": \"FT_STATION\",\n\"kind\": \"function_tree\",\n\"nodes\": [\n{\n\"id\": \"F0\",\n\"element\": \"WaterSampling::ManageSampleHandoff\",\n\"level\": 0,\n\"parent\": null\n},\n{\n\"id\": \"F1\",\n\"element\": \"WaterSampling::ReceiveSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F11\",\n\"element\": \"WaterSampling::IdentifyContainer\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F12\",\n\"element\": \"WaterSampling::RecordReceipt\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F2\",\n\"element\": \"WaterSampling::PreserveHandoffRecord\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F21\",\n\"element\": \"WaterSampling::HoldUnidentifiedContainer\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F22\",\n\"element\": \"WaterSampling::ReconcileLabel\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F3\",\n\"element\": \"WaterSampling::ReleaseSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F31\",\n\"element\": \"WaterSampling::MatchCourierManifest\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F32\",\n\"element\": \"WaterSampling::RecordCustodyTransfer\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F4\",\n\"element\": \"WaterSampling::MaintainStation\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F41\",\n\"element\": \"WaterSampling::SuspendIntake\",\n\"level\": 2,\n\"parent\": \"F4\"\n},\n{\n\"id\": \"F42\",\n\"element\": \"WaterSampling::InspectAndRestore\",\n\"level\": 2,\n\"parent\": \"F4\"\n}\n]\n},\n{\n\"id\": \"SQ_NOMINAL\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"courier\",\n\"element\": \"WaterSampling::courier\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_NOMINAL_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present labeled container and sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Return receipt with matching sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E3\",\n\"from\": \"courier\",\n\"to\": \"station\",\n\"message\": \"Present pickup manifest\"\n},\n{\n\"id\": \"SQ_NOMINAL_E4\",\n\"from\": \"station\",\n\"to\": \"courier\",\n\"message\": \"Return custody transfer record\"\n}\n]\n},\n{\n\"id\": \"SQ_RECOVERY\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_RECOVERY_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present container with unreadable label\"\n},\n{\n\"id\": \"SQ_RECOVERY_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Issue hold notice; container remains unreleased\"\n},\n{\n\"id\": \"SQ_RECOVERY_E3\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Supply corrected identification\"\n},\n{\n\"id\": \"SQ_RECOVERY_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Confirm reconciliation and receipt\"\n}\n]\n},\n{\n\"id\": \"SQ_MAINTENANCE\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"custodian\",\n\"element\": \"WaterSampling::custodian\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_MAINTENANCE_E1\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Request maintenance window\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Announce intake suspended\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E3\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Record inspection and restoration\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Inspection recorded; return-to-service approval pending\"\n}\n]\n}\n]\n}\n",
         "line": 75,
         "name": "cseViews",
         "owner": "WaterSampling",
@@ -466,7 +466,7 @@
         "has_non_typing_specialization": false,
         "line": 65,
         "name": "user",
-        "qualified_name": "WaterSampling::RestoreStation::user",
+        "qualified_name": "WaterSampling::RecordStationInspection::user",
         "source": "examples/engineering-gallery/water-sampling/station.sysml"
       }
     ],
@@ -548,8 +548,8 @@
       {
         "id": "UC_MAINTENANCE",
         "line": 65,
-        "name": "RestoreStation",
-        "qualified_name": "WaterSampling::RestoreStation",
+        "name": "RecordStationInspection",
+        "qualified_name": "WaterSampling::RecordStationInspection",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
         "subjects": [
           {
@@ -568,10 +568,10 @@
   "model_files": [
     {
       "path": "examples/engineering-gallery/water-sampling/station.sysml",
-      "sha256": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5"
+      "sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4"
     }
   ],
-  "model_sha256": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5",
+  "model_sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4",
   "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
   "parser_issues": [],
   "results": {},

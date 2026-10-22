@@ -14,7 +14,7 @@
     ],
     "unsupported": []
   },
-  "evidence_sha256": "c0e4f6f6126e518332ee9eaa2fb369308c6a5e39e51cf4dc4d5158a56fa6ad1d",
+  "evidence_sha256": "95c9f90a53bf0beaad23f845de3b3bdb1f34f32a670d5fefe605b13ec4fa8359",
   "findings": [],
   "limits": {
     "observation_cap": 10000,
@@ -25,10 +25,10 @@
   "model_files": [
     {
       "path": "examples/engineering-gallery/water-sampling/station.sysml",
-      "sha256": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5"
+      "sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4"
     }
   ],
-  "model_sha256": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5",
+  "model_sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4",
   "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
   "parser_issues": [],
   "results": {

@@ -129,5 +129,6 @@
       "type": "WaterSampling::HoldingRack",
       "multiplicity": "native implicit default; omitted from presentation"
     }
-  ]
+  ],
+  "maintenance_outcome": "UC_MAINTENANCE / SQ_MAINTENANCE: inspection recorded; return-to-service approval pending. Intake remains suspended. InspectAndRestore is an existing candidate function, not an automatic release decision."
 }

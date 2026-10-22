@@ -68,7 +68,8 @@
       {
         "finite": "FS_MAINTENANCE",
         "kind": "scenario-use-case",
-        "native": "UC_MAINTENANCE"
+        "native": "UC_MAINTENANCE",
+        "shared_outcome": "Inspection recorded; return-to-service approval pending. Intake remains suspended; this mapping does not establish execution equivalence."
       }
     ],
     "version": 1

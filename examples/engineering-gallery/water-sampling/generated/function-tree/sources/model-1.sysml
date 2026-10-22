@@ -62,7 +62,7 @@ package WaterSampling {
     action def InspectAndRestore;
     use case <UC_NOMINAL> TransferLabeledSample { subject unit = station; actor user = operator; doc /* Nominal: present labeled container; record receipt; match pickup manifest; record custody transfer. Success means a documentary transfer record, not analytical sample validity. These are documentary exchanges, not executable SysML guards/effects. */ }
     use case <UC_RECOVERY> RecoverUnidentifiedSample { subject unit = station; actor user = operator; doc /* Exception and recovery: unreadable label leads to hold; operator supplies corrected identity; station records reconciliation before release. Reconciliation authority is fictional and requires real policy work. These are documentary exchanges, not executable SysML guards/effects. */ }
-    use case <UC_MAINTENANCE> RestoreStation { subject unit = station; actor user = custodian; doc /* Lifecycle: declare pause; suspend intake; inspect and restore equipment; record return to service. No physical repair simulation or reliability claim. These are documentary exchanges, not executable SysML guards/effects. */ }
+    use case <UC_MAINTENANCE> RecordStationInspection { subject unit = station; actor user = custodian; doc /* Lifecycle: declare pause; suspend intake; inspect and restore equipment; record inspection with return-to-service approval pending. Intake remains suspended at this demonstrated outcome. Operational release is a separate decision; no physical repair simulation or reliability claim. These are documentary exchanges, not executable SysML guards/effects. */ }
     requirement <R_RECORD> RecordReceiptObligation { doc cseSource /* CSE-SOURCE/2.0
     SYN-WATER-01 */ subject unit = station; require constraint receipt { doc cse /* CSE-REQ/2.0
     Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.receiptRecorded = true. */ } }
@@ -283,7 +283,7 @@ package WaterSampling {
           "id": "SQ_MAINTENANCE_E4",
           "from": "station",
           "to": "operator",
-          "message": "Announce intake available"
+          "message": "Inspection recorded; return-to-service approval pending"
         }
       ]
     }

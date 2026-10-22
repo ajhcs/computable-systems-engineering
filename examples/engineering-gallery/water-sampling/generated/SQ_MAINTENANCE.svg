@@ -25,6 +25,6 @@
 <text x="182" y="420" font-size="17">Record inspection and restoration</text>
 <path d="M170 440H510" stroke="#23374b" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="25" y="508" font-size="14">SQ_MAINTENANCE_E4</text>
-<text x="522" y="535" font-size="17">Announce intake available</text>
+<text x="522" y="535" font-size="17">Inspection recorded; return-to-service approval pending</text>
 <path d="M510 555H850" stroke="#23374b" stroke-width="2" marker-end="url(#arrow)"/>
 </g></svg>
