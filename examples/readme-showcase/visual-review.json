@@ -4,7 +4,7 @@
   "review_type": "Author pixel inspection, not independent engineering or usability acceptance.",
   "natural_width": 800,
   "narrow_viewport": 390,
-  "observed_treatment": "All eight final PNGs were inspected at their natural800px width. Every390px presentation was inspected with800px content retained in a scroll frame, not shrunk. The actual full gallery also supplies wrapping captions/prompts, exact IDs, source links and text alternatives. Dense PNGs scaled to342px are not claimed readable.",
+  "observed_treatment": "All eight final PNGs were inspected at their natural 800px width. Every 390px presentation was inspected with 800px content retained in a scroll frame, not shrunk. The actual full gallery also supplies wrapping captions/prompts, exact IDs, source links and text alternatives. Dense PNGs scaled to 342px are not claimed readable.",
   "findings_resolved": [
     "Receipt timeline headline shortened to preserve the intended margin.",
     "Normal pickup caption changed to normal handoff because the sequence includes intake and later pickup.",
@@ -15,56 +15,56 @@
       "id": "01-normal-handoffs",
       "png_sha256": "e99d27bbb23dfcd0956b6ba2e74d1bc78b2988d2fc45a04cdf25ebe433d52dd4",
       "natural_pixels": "inspected; no clipping, overlap, error placeholder or misleading endpoint found",
-      "narrow_pixels": "inspected; horizontal scroll intentionally crops the800px content until scrolled; text size retained",
+      "narrow_pixels": "inspected; horizontal scroll intentionally crops the 800px content until scrolled; text size retained",
       "independent_acceptance": "not claimed"
     },
     {
       "id": "02-label-recovery",
       "png_sha256": "d6a5ab35dabb02b70df2a6291820667fe75858d8de1253ddd7451ac634c03873",
       "natural_pixels": "inspected; no clipping, overlap, error placeholder or misleading endpoint found",
-      "narrow_pixels": "inspected; horizontal scroll intentionally crops the800px content until scrolled; text size retained",
+      "narrow_pixels": "inspected; horizontal scroll intentionally crops the 800px content until scrolled; text size retained",
       "independent_acceptance": "not claimed"
     },
     {
       "id": "03-responsibilities",
       "png_sha256": "de15241cdf66ef502bfae9690b9d3be73c6989d7e20c7735c33c8fcf53fc9189",
       "natural_pixels": "inspected; no clipping, overlap, error placeholder or misleading endpoint found",
-      "narrow_pixels": "inspected; horizontal scroll intentionally crops the800px content until scrolled; text size retained",
+      "narrow_pixels": "inspected; horizontal scroll intentionally crops the 800px content until scrolled; text size retained",
       "independent_acceptance": "not claimed"
     },
     {
       "id": "04-need-traces",
       "png_sha256": "293ff88fb49d77ecdeed3ebe822467e856cf8caad5ca833b09ea7058f9d61eb2",
       "natural_pixels": "inspected; no clipping, overlap, error placeholder or misleading endpoint found",
-      "narrow_pixels": "inspected; horizontal scroll intentionally crops the800px content until scrolled; text size retained",
+      "narrow_pixels": "inspected; horizontal scroll intentionally crops the 800px content until scrolled; text size retained",
       "independent_acceptance": "not claimed"
     },
     {
       "id": "05-receipt-deadlines",
       "png_sha256": "ea2cdd4cc563ce891a0b16081ae28d96b919dd4e312aebed1d83d2747dbaa6f5",
       "natural_pixels": "inspected; no clipping, overlap, error placeholder or misleading endpoint found",
-      "narrow_pixels": "inspected; horizontal scroll intentionally crops the800px content until scrolled; text size retained",
+      "narrow_pixels": "inspected; horizontal scroll intentionally crops the 800px content until scrolled; text size retained",
       "independent_acceptance": "not claimed"
     },
     {
       "id": "06-quantity-bound",
       "png_sha256": "7efc8a11aa223bda36bf555e012b2ebe48fe127f422e79f8fc5825f97a06b856",
       "natural_pixels": "inspected; no clipping, overlap, error placeholder or misleading endpoint found",
-      "narrow_pixels": "inspected; horizontal scroll intentionally crops the800px content until scrolled; text size retained",
+      "narrow_pixels": "inspected; horizontal scroll intentionally crops the 800px content until scrolled; text size retained",
       "independent_acceptance": "not claimed"
     },
     {
       "id": "07-blocked-handoff",
       "png_sha256": "3ee9df7f0722bdbd3d88e7d8de6f9a03b0af9bc6dd474cc1ebef2e5df8a785cc",
       "natural_pixels": "inspected; no clipping, overlap, error placeholder or misleading endpoint found",
-      "narrow_pixels": "inspected; horizontal scroll intentionally crops the800px content until scrolled; text size retained",
+      "narrow_pixels": "inspected; horizontal scroll intentionally crops the 800px content until scrolled; text size retained",
       "independent_acceptance": "not claimed"
     },
     {
       "id": "08-tool-library",
       "png_sha256": "bb03b4f126c3610343fadb440c6d9a15971e1a420040a1da1b7bbbf1532a3ade",
       "natural_pixels": "inspected; no clipping, overlap, error placeholder or misleading endpoint found",
-      "narrow_pixels": "inspected; horizontal scroll intentionally crops the800px content until scrolled; text size retained",
+      "narrow_pixels": "inspected; horizontal scroll intentionally crops the 800px content until scrolled; text size retained",
       "independent_acceptance": "not claimed"
     }
   ]
