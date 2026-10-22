@@ -19,14 +19,15 @@ The concept considers a staffed local register and an offline station with local
 | [finite-mapping.json](finite-mapping.json) | Checked finite-to-native ID/kind alignment. Additional finite hold/pause obligations elaborate documentary use cases; they do not equal the sampled native deadlines. |
 | [generated/quantity-reading.json](generated/quantity-reading.json) | Exact display arithmetic for declared integer ticks, scale and clock units. No physical model or new arithmetic verifier. |
 
-The native sampled monitor checks a requested intake receipt within two seconds and an elapsed-duration observation of at most four seconds within the same response window. The duration property is a bounded integer domain `0..20`, scale `1`, unit `second`; it is an observation, not an elapsed clock inferred by the model. The event monitor separately correlates overlapping container IDs with receipt IDs within an inclusive two-second deadline. The successful fixture deliberately responds to W002 before W001 and discharges W001 exactly at its deadline. This tests correlation rather than positional pairing.
+The native sampled monitor checks a requested intake receipt within two seconds (`R_RECORD`). Separately, whenever a sampled receipt is recorded, its elapsed-duration observation must be at most four seconds (`R_ELAPSED`); an earlier zero before the receipt cannot discharge this bound. The duration property is a bounded integer domain `0..20`, scale `1`, unit `second`; it is an observation, not an elapsed clock inferred by the model. The event monitor separately correlates overlapping container IDs with receipt IDs within an inclusive two-second deadline. The successful fixture deliberately responds to W002 before W001 and discharges W001 exactly at its deadline. This tests correlation rather than positional pairing.
 
 | Supplied synthetic behavior | Expected result |
 | --- | --- |
 | `evidence-pass.json` | All three native clauses pass within the finite supplied window. |
 | `evidence-late.json` | W001 responds at 2.1 seconds; event deadline fails. |
 | `evidence-incomplete.json` | Incomplete capture returns unknown, never required success. |
-| `evidence-no-receipt.json` | Boolean sampled response remains false; required receipt fails. |
+| `evidence-no-receipt.json` | Boolean sampled response remains false; required receipt fails and the unexercised quantity condition remains unknown. |
+| `evidence-over-limit.json` | Receipt-time duration is the valid domain value 5; only `R_ELAPSED` fails while receipt and event deadlines still pass. |
 
 The finite nominal case produces a typed receipt from available identity data and permits pickup only when the label is readable and service is not requested. The recovery case starts unidentified, enters a hold, allows external label correction at that hold, then produces identity data before recording a receipt. The maintenance case closes intake and requires an inspection record; its terminal state explicitly defers operational release. Data availability is checked, not payload truth or identity correctness. Explicit waits allow input change but promise neither arrival nor fairness. Required progress means some completion path exists from each reachable state, not that every schedule completes. Pointwise requirement consistency remains distinct from scenario execution.
 

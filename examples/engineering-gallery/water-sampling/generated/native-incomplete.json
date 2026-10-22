@@ -14,7 +14,7 @@
     ],
     "unsupported": []
   },
-  "evidence_sha256": "d0cf00156c9070059182841f2858a3eba765353b3fba6d175f91c6fc151a424e",
+  "evidence_sha256": "f8b275490af971fe6a0517890526ea69641378cd70d311601d1707bf51683fb8",
   "findings": [
     {
       "code": "trace_unknown",
@@ -44,10 +44,10 @@
   "model_files": [
     {
       "path": "examples/engineering-gallery/water-sampling/station.sysml",
-      "sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4"
+      "sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99"
     }
   ],
-  "model_sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4",
+  "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
   "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
   "parser_issues": [],
   "results": {
@@ -81,7 +81,7 @@
         "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
       },
       "check": {
-        "artifact_sha256": "f03fee5fe5088bdc08843c235715e3be4f9e2c3af8c715d2679a8b9c3138eaea",
+        "artifact_sha256": "0ed5dc036660e7e5a8802f27f986199daed7e3990d83474078d029f7a9de9b87",
         "checker_version": "language-1.0",
         "claim_scope": "required_sampled_trace",
         "clock_period_ms": "1000",
@@ -92,9 +92,8 @@
         "results": {
           "R_ELAPSED__duration": {
             "coverage": {
-              "triggers": 1
+              "triggers": 2
             },
-            "deadline_ticks": 2,
             "status": "pass"
           }
         },
@@ -109,7 +108,7 @@
         "status": "unknown",
         "work_units_bound": 40
       },
-      "compiled_clause": "Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.processingElapsed <= 4 second.",
+      "compiled_clause": "Whenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second.",
       "source": "SYN-WATER-02",
       "sysml_line": 70,
       "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"

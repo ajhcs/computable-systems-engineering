@@ -1,0 +1,184 @@
+{
+  "checker_version": "sysml-2.0-alpha.2",
+  "claim_scope": "supplied_behavior_evidence",
+  "coverage": {
+    "compiled": [
+      "R_RECORD__receipt",
+      "R_ELAPSED__duration",
+      "R_CORRELATION__correlation"
+    ],
+    "expected": [
+      "R_CORRELATION__correlation",
+      "R_ELAPSED__duration",
+      "R_RECORD__receipt"
+    ],
+    "unsupported": []
+  },
+  "evidence_sha256": "4b849ddc05f947abd8212f1433873e43e8caf6eb21d52cefe35182fee44c11ac",
+  "findings": [
+    {
+      "code": "trace_failure",
+      "detail": "R_ELAPSED__duration failed",
+      "line": 70,
+      "source": "examples/engineering-gallery/water-sampling/station.sysml"
+    }
+  ],
+  "limits": {
+    "observation_cap": 10000,
+    "parser_timeout_seconds": 60,
+    "per_clause_work_cap": 1000000
+  },
+  "manifest_sha256": "284496a9baf715285eab1ee297cd181c3a35a1931dd43f94af9433535b1d33a6",
+  "model_files": [
+    {
+      "path": "examples/engineering-gallery/water-sampling/station.sysml",
+      "sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99"
+    }
+  ],
+  "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "parser_issues": [],
+  "results": {
+    "R_CORRELATION__correlation": {
+      "binding": {
+        "unit.containerPresented": "WaterSampling::station::containerPresented",
+        "unit.receiptIssued": "WaterSampling::station::receiptIssued"
+      },
+      "check": {
+        "claim_scope": "correlated_event_trace",
+        "coverage": {
+          "matched": 2,
+          "triggers": 2,
+          "unmatched_responses": 0
+        },
+        "status": "pass"
+      },
+      "compiled_clause": "Each unit.containerPresented shall within 2 seconds have unit.receiptIssued with matching correlationId.",
+      "deadline_ms": "2000",
+      "source": "SYN-WATER-03",
+      "sysml_line": 73,
+      "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+    },
+    "R_ELAPSED__duration": {
+      "binding": {
+        "unit.intakeRequested": "WaterSampling::station::intakeRequested",
+        "unit.processingElapsed": "WaterSampling::station::processingElapsed",
+        "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
+      },
+      "check": {
+        "artifact_sha256": "88d343120d5cb339f4f100fd8d7045998e5521dfcaea93ee3464b86b625e156e",
+        "checker_version": "language-1.0",
+        "claim_scope": "required_sampled_trace",
+        "clock_period_ms": "1000",
+        "obligations": [
+          "R_ELAPSED__duration"
+        ],
+        "required_review": true,
+        "results": {
+          "R_ELAPSED__duration": {
+            "counterexample": {
+              "index": 3
+            },
+            "coverage": {
+              "triggers": 2
+            },
+            "status": "fail"
+          }
+        },
+        "review": true,
+        "scope": {
+          "missing": [],
+          "required": [
+            "R_ELAPSED__duration"
+          ],
+          "source": "external_manifest"
+        },
+        "status": "fail",
+        "work_units_bound": 40
+      },
+      "compiled_clause": "Whenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second.",
+      "source": "SYN-WATER-02",
+      "sysml_line": 70,
+      "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+    },
+    "R_RECORD__receipt": {
+      "binding": {
+        "unit.intakeRequested": "WaterSampling::station::intakeRequested",
+        "unit.processingElapsed": "WaterSampling::station::processingElapsed",
+        "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
+      },
+      "check": {
+        "artifact_sha256": "e55fdeae7eba89e48f4e8ff381ea621b6de9b27fc2e7826c7aeae2dd854a6ff7",
+        "checker_version": "language-1.0",
+        "claim_scope": "required_sampled_trace",
+        "clock_period_ms": "1000",
+        "obligations": [
+          "R_RECORD__receipt"
+        ],
+        "required_review": true,
+        "results": {
+          "R_RECORD__receipt": {
+            "coverage": {
+              "triggers": 1
+            },
+            "deadline_ticks": 2,
+            "status": "pass"
+          }
+        },
+        "review": true,
+        "scope": {
+          "missing": [],
+          "required": [
+            "R_RECORD__receipt"
+          ],
+          "source": "external_manifest"
+        },
+        "status": "pass",
+        "work_units_bound": 40
+      },
+      "compiled_clause": "Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.receiptRecorded = true.",
+      "source": "SYN-WATER-01",
+      "sysml_line": 67,
+      "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+    }
+  },
+  "shape": {
+    "actions": 13,
+    "concerns": 3,
+    "part_definitions": 7,
+    "states": 0,
+    "use_cases": 3
+  },
+  "source_revision": "fictional-water-station-1",
+  "status": "fail",
+  "view_checks": {
+    "checker_version": "cse-views-1.0",
+    "claim_scope": "documentary_view_structure",
+    "exceptions": [],
+    "findings": [],
+    "human_review": [
+      "Functions express actions; verb-object names are recommended.",
+      "Assess decomposition adequacy and exchange meaning against the task and source.",
+      "Counts, text, bindings, and rationale do not establish completeness, approval, or behavior."
+    ],
+    "status": "pass",
+    "views": [
+      {
+        "id": "FT_STATION",
+        "kind": "function_tree"
+      },
+      {
+        "id": "SQ_NOMINAL",
+        "kind": "sequence"
+      },
+      {
+        "id": "SQ_RECOVERY",
+        "kind": "sequence"
+      },
+      {
+        "id": "SQ_MAINTENANCE",
+        "kind": "sequence"
+      }
+    ]
+  }
+}

@@ -14,12 +14,18 @@
     ],
     "unsupported": []
   },
-  "evidence_sha256": "d19d6b99be1e443b0898d9f00596d8101bc8617a2154a02de39a83d1c1db35ca",
+  "evidence_sha256": "b2f2097e6e2f53ec886afb000b58c1356eac1f08c943e20f682cd02815eb2e23",
   "findings": [
     {
       "code": "trace_failure",
       "detail": "R_RECORD__receipt failed",
       "line": 67,
+      "source": "examples/engineering-gallery/water-sampling/station.sysml"
+    },
+    {
+      "code": "trace_unknown",
+      "detail": "R_ELAPSED__duration could not be completed",
+      "line": 70,
       "source": "examples/engineering-gallery/water-sampling/station.sysml"
     }
   ],
@@ -32,10 +38,10 @@
   "model_files": [
     {
       "path": "examples/engineering-gallery/water-sampling/station.sysml",
-      "sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4"
+      "sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99"
     }
   ],
-  "model_sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4",
+  "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
   "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
   "parser_issues": [],
   "results": {
@@ -66,7 +72,7 @@
         "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
       },
       "check": {
-        "artifact_sha256": "9ec5c02adf7117d23394ab89061de822abc2b9e6842819d9dbe6254f9ec6443e",
+        "artifact_sha256": "5afb6effe52160b6bb8324455cb5b4a25e4a17212b32a76ecb6309b50f60a21b",
         "checker_version": "language-1.0",
         "claim_scope": "required_sampled_trace",
         "clock_period_ms": "1000",
@@ -77,10 +83,10 @@
         "results": {
           "R_ELAPSED__duration": {
             "coverage": {
-              "triggers": 1
+              "triggers": 0
             },
-            "deadline_ticks": 2,
-            "status": "pass"
+            "reason": "No exercised or unambiguously identified condition",
+            "status": "unknown"
           }
         },
         "review": true,
@@ -91,10 +97,10 @@
           ],
           "source": "external_manifest"
         },
-        "status": "pass",
+        "status": "unknown",
         "work_units_bound": 40
       },
-      "compiled_clause": "Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.processingElapsed <= 4 second.",
+      "compiled_clause": "Whenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second.",
       "source": "SYN-WATER-02",
       "sysml_line": 70,
       "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"

@@ -280,7 +280,7 @@
         "source": "examples/engineering-gallery/water-sampling/station.sysml"
       },
       {
-        "body": "CSE-REQ/2.0\nUpon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.processingElapsed <= 4 second. ",
+        "body": "CSE-REQ/2.0\nWhenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second. ",
         "constraint": "WaterSampling::BoundProcessingObservation::duration",
         "line": 70,
         "name": "cse",
@@ -568,10 +568,10 @@
   "model_files": [
     {
       "path": "examples/engineering-gallery/water-sampling/station.sysml",
-      "sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4"
+      "sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99"
     }
   ],
-  "model_sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4",
+  "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
   "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
   "parser_issues": [],
   "results": {},

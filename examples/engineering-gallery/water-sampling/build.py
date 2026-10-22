@@ -83,8 +83,12 @@ def evaluate():
     for kind in ('concept', 'conops', 'scenario'):
         reports['shape-' + kind] = native(syntax_only=True, kind=kind, view_profile=profile)
     scope = read('scope.json')
-    for name in ('pass', 'late', 'incomplete', 'no-receipt'):
+    for name in ('pass', 'late', 'incomplete', 'no-receipt', 'over-limit'):
         reports['native-' + name] = native(evidence=read('evidence-' + name + '.json'), manifest=scope, review=True)
+    over_limit = reports['native-over-limit']['results']
+    for key, expected_status in [('R_ELAPSED__duration', 'fail'), ('R_RECORD__receipt', 'pass'), ('R_CORRELATION__correlation', 'pass')]:
+        if over_limit[key]['check']['status'] != expected_status:
+            raise ValueError('Over-limit fixture did not isolate the receipt-time quantity bound: ' + key)
     reports['influence'] = native(manifest=scope, generate_tests=True)
     inventory = reports['shape-concept']['inventory']
     kinds = {item['id']: group for group in ('concerns', 'requirements', 'use_cases') for item in inventory[group]}
@@ -147,7 +151,7 @@ def evaluate():
         if (finite_kinds.get(item['finite']), kinds.get(item['native'])) != allowed[item['kind']]:
             raise ValueError('Invalid separate-artifact mapping: ' + str(item))
     reports['trace-mapping'] = {'status': 'pass', 'claim_scope': 'typed_ID_alignment_only', 'native_documentary_traces': ledger['typed_traces'], 'separate_artifact_mapping': mapping}
-    expected = {'allocation-invalid-performer': 'fail', 'allocation-invalid-function': 'fail', 'shape-concept': 'pass', 'shape-conops': 'pass', 'shape-scenario': 'pass', 'native-pass': 'pass', 'native-late': 'fail', 'native-incomplete': 'unknown', 'native-no-receipt': 'fail', 'finite-pass': 'pass', 'finite-focused': 'pass', 'finite-wrong-kind-scope': 'fail', 'finite-duplicate-scope': 'error', 'finite-null-scope': 'error', 'finite-cap': 'unknown', 'finite-missing-data': 'fail', 'finite-disabled-release': 'fail', 'finite-deleted-scenario': 'fail', 'finite-unclassified-scenario': 'fail', 'trace-mapping': 'pass'}
+    expected = {'allocation-invalid-performer': 'fail', 'allocation-invalid-function': 'fail', 'shape-concept': 'pass', 'shape-conops': 'pass', 'shape-scenario': 'pass', 'native-pass': 'pass', 'native-late': 'fail', 'native-incomplete': 'unknown', 'native-no-receipt': 'fail', 'native-over-limit': 'fail', 'finite-pass': 'pass', 'finite-focused': 'pass', 'finite-wrong-kind-scope': 'fail', 'finite-duplicate-scope': 'error', 'finite-null-scope': 'error', 'finite-cap': 'unknown', 'finite-missing-data': 'fail', 'finite-disabled-release': 'fail', 'finite-deleted-scenario': 'fail', 'finite-unclassified-scenario': 'fail', 'trace-mapping': 'pass'}
     for name, status in expected.items():
         if reports[name]['status'] != status:
             raise ValueError(f'{name}: expected {status}, got {reports[name]["status"]}')
@@ -216,10 +220,11 @@ def build(output):
         raise ValueError('Unexpected parsed quantity annotation')
     minimum, maximum, scale, unit = match.groups()
     observed_ticks = read('evidence-pass.json')['observations'][3]['WaterSampling::station::processingElapsed']
-    monitor = reports['native-pass']['results']['R_ELAPSED__duration']['check']
-    deadline_ticks = monitor['results']['R_ELAPSED__duration']['deadline_ticks']
+    quantity_clause = reports['native-pass']['results']['R_ELAPSED__duration']['compiled_clause']
+    monitor = reports['native-pass']['results']['R_RECORD__receipt']['check']
+    deadline_ticks = monitor['results']['R_RECORD__receipt']['deadline_ticks']
     deadline_ms = deadline_ticks * Fraction(monitor['clock_period_ms'])
-    put(output / 'quantity-reading.json', {'claim_scope': 'exact_display_arithmetic_only', 'source_attribute': quantity_attribute['qualified_name'], 'source_type': quantity_attribute['type'], 'domain_ticks': [int(minimum), int(maximum)], 'scale': scale, 'unit': unit, 'observed_example_ticks': observed_ticks, 'observed_example_quantity': str(observed_ticks * Fraction(scale)), 'response_deadline_ticks': deadline_ticks, 'clock_period_ms': monitor['clock_period_ms'], 'response_deadline_ms': str(deadline_ms), 'limits': 'Display calculation from parsed type annotation, supplied synthetic ticks and existing monitor deadline; no physical model or new requirement evaluator.'})
+    put(output / 'quantity-reading.json', {'claim_scope': 'exact_display_arithmetic_only', 'source_attribute': quantity_attribute['qualified_name'], 'source_type': quantity_attribute['type'], 'domain_ticks': [int(minimum), int(maximum)], 'scale': scale, 'unit': unit, 'observed_example_ticks': observed_ticks, 'observed_example_quantity': str(observed_ticks * Fraction(scale)), 'quantity_compiled_clause': quantity_clause, 'response_requirement': 'R_RECORD__receipt', 'response_deadline_ticks': deadline_ticks, 'clock_period_ms': monitor['clock_period_ms'], 'response_deadline_ms': str(deadline_ms), 'limits': 'Display calculation from parsed type annotation, supplied synthetic ticks, actual compiled receipt-time quantity condition and R_RECORD response deadline; no physical model or new requirement evaluator.'})
     rows = ''.join(f'<tr><td><a href="{name}.json">{name}</a></td><td>{escape(report["status"])}</td><td>{escape(str(report.get("claim_scope", "finite declared model")))}</td></tr>' for name, report in reports.items())
     body = '<h1>Remote sample station</h1><p class="lede">A wholly synthetic engineering case, from operational intent to bounded checks.</p><p>All thresholds, policies, allocations and components are fictional demonstration choices. This is sample logistics, with no water-treatment, analytical-validity or public-health suitability claim.</p><nav><a href="../station.sysml">Shared SysML source</a> · <a href="../finite-scenarios.json">Separate finite model</a> · <a href="../semantic-ledger.json">Semantic ledger</a> · <a href="../README.md">Reading and reproduction guide</a></nav><h2>Read the operation</h2><p>The operator presents a labeled container. The station records its identity and returns a receipt. The courier reconciles the pickup manifest and obtains a custody record. An unreadable label instead causes a hold; corrected identity precedes a new receipt. A custodian suspends intake for inspection; release back to operation remains a separate decision.</p><h2>Functions, not execution order</h2><p>One root, four branches and two subordinate functions per branch. Parentage and allocation are documentary; components and functions retain distinct types. Open the full-width view and scroll rather than shrink labels.</p><a href="function-tree/index.html">Open editable model-derived function tree</a><div class="diagram"><img src="function-tree/view.svg" alt="Function decomposition: receive sample, preserve handoff record, release sample, maintain station"></div><h2>Ordered exchanges</h2><p>These simplified documentary presentations use parsed participants and ordered exchanges. They are neither native SysML interaction diagrams nor executable activities. No ports, connector topology, timing, containment or ownership follows from these lines.</p>'
     for sid in sequence_ids:

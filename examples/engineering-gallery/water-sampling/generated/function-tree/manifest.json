@@ -9,7 +9,7 @@
     "index.html": "8b6b67cf251d2273c3ece1e25a5bd96cadb7e20b3480d1c6b0737db9b44509d2",
     "presentation.json": "0b7deea259e43cb98f43ac6cb3f1bb2bf23ebf114d6da43f68b9ff2ac8663c04",
     "semantic-ledger.json": "8c8cc5950932f5bcdcc387ba4297511f97e6f7594f8ff0f5e4630e3dc442d417",
-    "sources/model-1.sysml": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4",
+    "sources/model-1.sysml": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
     "view.svg": "f47bb5db27a81164d5254b81272ce6cd1c1efe1b3e041686e5f947e0d7fb2e17"
   },
   "font_manifest_sha256": "76b32ed9cd835a782004864ea3de241d699609c53157e68cbe8e2dde565da573",
@@ -21,14 +21,14 @@
     "verifier/visual_projection.py": "fd54b2d2504a028800eea636971601f10fce40c98619150deb9b701d50149127",
     "verifier/visual_style.py": "87d0c1cdf6304145bbeedfd73bf7aacc87d5ea3ef2503f811c67d0632e65c580"
   },
-  "model_sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4",
+  "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
   "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
   "show_ids": true,
   "sources": [
     {
       "file": "sources/model-1.sysml",
       "name": "station.sysml",
-      "sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4"
+      "sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99"
     }
   ],
   "style_sha256": "27229cff1f147e914cb007dcac09fdf2f1a36db14f5c462bd013736645ff2b93",

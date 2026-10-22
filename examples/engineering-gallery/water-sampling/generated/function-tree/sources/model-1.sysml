@@ -68,7 +68,7 @@ package WaterSampling {
     Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.receiptRecorded = true. */ } }
     requirement <R_ELAPSED> BoundProcessingObservation { doc cseSource /* CSE-SOURCE/2.0
     SYN-WATER-02 */ subject unit = station; require constraint duration { doc cse /* CSE-REQ/2.0
-    Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.processingElapsed <= 4 second. */ } }
+    Whenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second. */ } }
     requirement <R_CORRELATION> MatchEachReceipt { doc cseSource /* CSE-SOURCE/2.0
     SYN-WATER-03 */ subject unit = station; require constraint correlation { doc cse /* CSE-EVENT/2.0
     Each unit.containerPresented shall within 2 seconds have unit.receiptIssued with matching correlationId. */ } }

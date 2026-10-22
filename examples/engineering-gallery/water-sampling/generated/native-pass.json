@@ -14,7 +14,7 @@
     ],
     "unsupported": []
   },
-  "evidence_sha256": "95c9f90a53bf0beaad23f845de3b3bdb1f34f32a670d5fefe605b13ec4fa8359",
+  "evidence_sha256": "25567670ff1a2dcb0885e2035bb1e7c9d4fb1397f2901e7e39660249ebc9d55b",
   "findings": [],
   "limits": {
     "observation_cap": 10000,
@@ -25,10 +25,10 @@
   "model_files": [
     {
       "path": "examples/engineering-gallery/water-sampling/station.sysml",
-      "sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4"
+      "sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99"
     }
   ],
-  "model_sha256": "aaae24cab7a731483203316dad72fa38f1a27d488a33ebe9c9a2df549400a8a4",
+  "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
   "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
   "parser_issues": [],
   "results": {
@@ -59,7 +59,7 @@
         "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
       },
       "check": {
-        "artifact_sha256": "48680b5e9b8b96507823fbeda8dda1932ed70a732413594a758615d5bc7df256",
+        "artifact_sha256": "1f5ac65233684b76936bf7dafb2706ab408849ed7faa4dd562815eebe67f96de",
         "checker_version": "language-1.0",
         "claim_scope": "required_sampled_trace",
         "clock_period_ms": "1000",
@@ -70,9 +70,8 @@
         "results": {
           "R_ELAPSED__duration": {
             "coverage": {
-              "triggers": 1
+              "triggers": 2
             },
-            "deadline_ticks": 2,
             "status": "pass"
           }
         },
@@ -87,7 +86,7 @@
         "status": "pass",
         "work_units_bound": 40
       },
-      "compiled_clause": "Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.processingElapsed <= 4 second.",
+      "compiled_clause": "Whenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second.",
       "source": "SYN-WATER-02",
       "sysml_line": 70,
       "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
