@@ -1,0 +1,37 @@
+{
+  "checker_version": "sysml-2.0-alpha.2",
+  "claim_scope": "Simplified model-derived presentation: documentary decomposition; no behavioral or engineering acceptance claim.",
+  "editable_source": "sources/*.sysml are exact source companions; edit and regenerate with sysml_present.py. No editor roundtrip claim.",
+  "files": {
+    "font-notices/inter-OFL.txt": "3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345",
+    "font-notices/manifest.json": "76b32ed9cd835a782004864ea3de241d699609c53157e68cbe8e2dde565da573",
+    "font-notices/space-OFL.txt": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943",
+    "index.html": "8b6b67cf251d2273c3ece1e25a5bd96cadb7e20b3480d1c6b0737db9b44509d2",
+    "presentation.json": "0b7deea259e43cb98f43ac6cb3f1bb2bf23ebf114d6da43f68b9ff2ac8663c04",
+    "semantic-ledger.json": "8c8cc5950932f5bcdcc387ba4297511f97e6f7594f8ff0f5e4630e3dc442d417",
+    "sources/model-1.sysml": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5",
+    "view.svg": "f47bb5db27a81164d5254b81272ce6cd1c1efe1b3e041686e5f947e0d7fb2e17"
+  },
+  "font_manifest_sha256": "76b32ed9cd835a782004864ea3de241d699609c53157e68cbe8e2dde565da573",
+  "font_metrics_sha256": "186effb8f23838aa4f4b0a4c8d467ec04477aa272b71e1f399efb88f34b7f11e",
+  "implementation_sha256": {
+    "verifier/engineering_views.py": "2ca8ba2ec2a961717ccac8c6b1c2e876d4e8e3deff2f2c8df4deb871e433396a",
+    "verifier/sysml.py": "e8c9422c1493a62886663c8c11bf41fdd70f080c9abefa1da4434b22984a85ce",
+    "verifier/visual_labels.py": "f8c11bce35a16866bda22dee58e39c8b4d48cc7c3b285d16781da8f92e317da3",
+    "verifier/visual_projection.py": "fd54b2d2504a028800eea636971601f10fce40c98619150deb9b701d50149127",
+    "verifier/visual_style.py": "87d0c1cdf6304145bbeedfd73bf7aacc87d5ea3ef2503f811c67d0632e65c580"
+  },
+  "model_sha256": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "show_ids": true,
+  "sources": [
+    {
+      "file": "sources/model-1.sysml",
+      "name": "station.sysml",
+      "sha256": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5"
+    }
+  ],
+  "style_sha256": "27229cff1f147e914cb007dcac09fdf2f1a36db14f5c462bd013736645ff2b93",
+  "version": "cse-visual-presentation-1.0",
+  "view_id": "FT_STATION"
+}

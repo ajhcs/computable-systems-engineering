@@ -1,0 +1,61 @@
+{
+  "model_sha256": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5",
+  "complete": true,
+  "observed_until": {
+    "time": "4",
+    "unit": "seconds"
+  },
+  "observations": [
+    {
+      "WaterSampling::station::intakeRequested": false,
+      "WaterSampling::station::receiptRecorded": false,
+      "WaterSampling::station::processingElapsed": 0
+    },
+    {
+      "WaterSampling::station::intakeRequested": true,
+      "WaterSampling::station::receiptRecorded": false,
+      "WaterSampling::station::processingElapsed": 5
+    },
+    {
+      "WaterSampling::station::intakeRequested": true,
+      "WaterSampling::station::receiptRecorded": false,
+      "WaterSampling::station::processingElapsed": 5
+    },
+    {
+      "WaterSampling::station::intakeRequested": true,
+      "WaterSampling::station::receiptRecorded": true,
+      "WaterSampling::station::processingElapsed": 4
+    },
+    {
+      "WaterSampling::station::intakeRequested": false,
+      "WaterSampling::station::receiptRecorded": true,
+      "WaterSampling::station::processingElapsed": 4
+    }
+  ],
+  "events": [
+    {
+      "event": "WaterSampling::station::containerPresented",
+      "time": "0",
+      "unit": "seconds",
+      "correlationId": "W001"
+    },
+    {
+      "event": "WaterSampling::station::containerPresented",
+      "time": "0.5",
+      "unit": "seconds",
+      "correlationId": "W002"
+    },
+    {
+      "event": "WaterSampling::station::receiptIssued",
+      "time": "1",
+      "unit": "seconds",
+      "correlationId": "W002"
+    },
+    {
+      "event": "WaterSampling::station::receiptIssued",
+      "time": "2.1",
+      "unit": "seconds",
+      "correlationId": "W001"
+    }
+  ]
+}

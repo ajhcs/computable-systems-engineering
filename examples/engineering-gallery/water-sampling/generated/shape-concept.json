@@ -1,0 +1,618 @@
+{
+  "checker_version": "sysml-2.0-alpha.2",
+  "claim_scope": "sysml_syntax_and_concept_shape",
+  "coverage": {
+    "compiled": [],
+    "expected": [],
+    "unsupported": []
+  },
+  "findings": [],
+  "inventory": {
+    "actions": [
+      {
+        "line": 50,
+        "name": "ManageSampleHandoff",
+        "qualified_name": "WaterSampling::ManageSampleHandoff",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 51,
+        "name": "ReceiveSample",
+        "qualified_name": "WaterSampling::ReceiveSample",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 52,
+        "name": "IdentifyContainer",
+        "qualified_name": "WaterSampling::IdentifyContainer",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 53,
+        "name": "RecordReceipt",
+        "qualified_name": "WaterSampling::RecordReceipt",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 54,
+        "name": "PreserveHandoffRecord",
+        "qualified_name": "WaterSampling::PreserveHandoffRecord",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 55,
+        "name": "HoldUnidentifiedContainer",
+        "qualified_name": "WaterSampling::HoldUnidentifiedContainer",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 56,
+        "name": "ReconcileLabel",
+        "qualified_name": "WaterSampling::ReconcileLabel",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 57,
+        "name": "ReleaseSample",
+        "qualified_name": "WaterSampling::ReleaseSample",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 58,
+        "name": "MatchCourierManifest",
+        "qualified_name": "WaterSampling::MatchCourierManifest",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 59,
+        "name": "RecordCustodyTransfer",
+        "qualified_name": "WaterSampling::RecordCustodyTransfer",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 60,
+        "name": "MaintainStation",
+        "qualified_name": "WaterSampling::MaintainStation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 61,
+        "name": "SuspendIntake",
+        "qualified_name": "WaterSampling::SuspendIntake",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "line": 62,
+        "name": "InspectAndRestore",
+        "qualified_name": "WaterSampling::InspectAndRestore",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      }
+    ],
+    "attributes": [
+      {
+        "direction": "in",
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 31,
+        "name": "intakeRequested",
+        "part_definition": "WaterSampling::Station",
+        "qualified_name": "WaterSampling::Station::intakeRequested",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "type": "ScalarValues::Boolean"
+      },
+      {
+        "direction": "out",
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 32,
+        "name": "receiptRecorded",
+        "part_definition": "WaterSampling::Station",
+        "qualified_name": "WaterSampling::Station::receiptRecorded",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "type": "ScalarValues::Boolean"
+      },
+      {
+        "direction": "out",
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 33,
+        "name": "processingElapsed",
+        "part_definition": "WaterSampling::Station",
+        "qualified_name": "WaterSampling::Station::processingElapsed",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "type": "ISQBase::DurationValue"
+      }
+    ],
+    "concerns": [
+      {
+        "id": "N_IDENTITY",
+        "line": 47,
+        "name": "PreserveIdentity",
+        "qualified_name": "WaterSampling::PreserveIdentity",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "id": "N_ACCOUNT",
+        "line": 48,
+        "name": "AccountForContainers",
+        "qualified_name": "WaterSampling::AccountForContainers",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "id": "N_SERVICE",
+        "line": 49,
+        "name": "RecoverService",
+        "qualified_name": "WaterSampling::RecoverService",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      }
+    ],
+    "constraints": [
+      {
+        "has_native_expression": false,
+        "line": 67,
+        "membership_kind": "RequirementConstraintMembership",
+        "name": "receipt",
+        "qualified_name": "WaterSampling::RecordReceiptObligation::receipt",
+        "requirement": "WaterSampling::RecordReceiptObligation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_native_expression": false,
+        "line": 70,
+        "membership_kind": "RequirementConstraintMembership",
+        "name": "duration",
+        "qualified_name": "WaterSampling::BoundProcessingObservation::duration",
+        "requirement": "WaterSampling::BoundProcessingObservation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_native_expression": false,
+        "line": 73,
+        "membership_kind": "RequirementConstraintMembership",
+        "name": "correlation",
+        "qualified_name": "WaterSampling::MatchEachReceipt::correlation",
+        "requirement": "WaterSampling::MatchEachReceipt",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      }
+    ],
+    "documents": [
+      {
+        "body": "SYNTHETIC DEMONSTRATION ONLY. Original fictional water-quality sample\nlogistics station, not a water treatment or public-health decision system.\nEvery need, obligation, threshold, component, allocation and operation is a\nfictional demonstration choice, not real accepted engineering intent.\nBoundary: container intake records, identification holds and custody handoff.\nExcludes collection chemistry, analytical validity, refrigeration, contamination,\nequipment reliability, physical security, clinical and public-health suitability.\nCandidate A: staffed local register; candidate B: offline station with local\nreceipts and later synchronization. B is the demonstrated concept, not a\nreal engineering selection. Offline synchronization remains qualitative.\nOpen questions: real custody policy, label reconciliation authority, storage\nduration, power budget and environmental limits require stakeholder work. ",
+        "line": 5,
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "CSE-CLOCK/2.0\nperiod 1 second ",
+        "line": 17,
+        "name": "cseClock",
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "Fictional candidate components: panel accepts requests; register\npreserves provisional or reconciled receipts; rack holds containers.\nThese declarations establish composition only, not connector topology,\nimplementation or physical capacity. A provisional receipt may state\nHELD with identity unresolved; it never authorizes pickup. ",
+        "line": 23,
+        "owner": "WaterSampling::Station",
+        "owner_kind": "PartDefinition",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "CSE-INT/2.0\nrange 0 20 scale 1 unit second ",
+        "line": 34,
+        "name": "cseType",
+        "owner": "WaterSampling::Station::processingElapsed",
+        "owner_kind": "AttributeUsage",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "Fictional stakeholder need: The operator needs sample identity preserved through custody transfer. ",
+        "line": 47,
+        "owner": "WaterSampling::PreserveIdentity",
+        "owner_kind": "ConcernUsage",
+        "requirement": "WaterSampling::PreserveIdentity",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "Fictional stakeholder need: The courier needs a reconciled record of containers accepted for pickup. ",
+        "line": 48,
+        "owner": "WaterSampling::AccountForContainers",
+        "owner_kind": "ConcernUsage",
+        "requirement": "WaterSampling::AccountForContainers",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "Fictional stakeholder need: The custodian needs a declared intake pause and controlled restoration. ",
+        "line": 49,
+        "owner": "WaterSampling::RecoverService",
+        "owner_kind": "ConcernUsage",
+        "requirement": "WaterSampling::RecoverService",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "Nominal: present labeled container; record receipt; match pickup manifest; record custody transfer. Success means a documentary transfer record, not analytical sample validity. These are documentary exchanges, not executable SysML guards/effects. ",
+        "line": 63,
+        "owner": "WaterSampling::TransferLabeledSample",
+        "owner_kind": "UseCaseUsage",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "Exception and recovery: unreadable label leads to hold; operator supplies corrected identity; station records reconciliation before release. Reconciliation authority is fictional and requires real policy work. These are documentary exchanges, not executable SysML guards/effects. ",
+        "line": 64,
+        "owner": "WaterSampling::RecoverUnidentifiedSample",
+        "owner_kind": "UseCaseUsage",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "Lifecycle: declare pause; suspend intake; inspect and restore equipment; record return to service. No physical repair simulation or reliability claim. These are documentary exchanges, not executable SysML guards/effects. ",
+        "line": 65,
+        "owner": "WaterSampling::RestoreStation",
+        "owner_kind": "UseCaseUsage",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "CSE-SOURCE/2.0\nSYN-WATER-01 ",
+        "line": 66,
+        "name": "cseSource",
+        "owner": "WaterSampling::RecordReceiptObligation",
+        "owner_kind": "RequirementUsage",
+        "requirement": "WaterSampling::RecordReceiptObligation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "CSE-REQ/2.0\nUpon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.receiptRecorded = true. ",
+        "constraint": "WaterSampling::RecordReceiptObligation::receipt",
+        "line": 67,
+        "name": "cse",
+        "owner": "WaterSampling::RecordReceiptObligation::receipt",
+        "owner_kind": "ConstraintUsage",
+        "requirement": "WaterSampling::RecordReceiptObligation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "CSE-SOURCE/2.0\nSYN-WATER-02 ",
+        "line": 69,
+        "name": "cseSource",
+        "owner": "WaterSampling::BoundProcessingObservation",
+        "owner_kind": "RequirementUsage",
+        "requirement": "WaterSampling::BoundProcessingObservation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "CSE-REQ/2.0\nUpon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.processingElapsed <= 4 second. ",
+        "constraint": "WaterSampling::BoundProcessingObservation::duration",
+        "line": 70,
+        "name": "cse",
+        "owner": "WaterSampling::BoundProcessingObservation::duration",
+        "owner_kind": "ConstraintUsage",
+        "requirement": "WaterSampling::BoundProcessingObservation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "CSE-SOURCE/2.0\nSYN-WATER-03 ",
+        "line": 72,
+        "name": "cseSource",
+        "owner": "WaterSampling::MatchEachReceipt",
+        "owner_kind": "RequirementUsage",
+        "requirement": "WaterSampling::MatchEachReceipt",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "CSE-EVENT/2.0\nEach unit.containerPresented shall within 2 seconds have unit.receiptIssued with matching correlationId. ",
+        "constraint": "WaterSampling::MatchEachReceipt::correlation",
+        "line": 73,
+        "name": "cse",
+        "owner": "WaterSampling::MatchEachReceipt::correlation",
+        "owner_kind": "ConstraintUsage",
+        "requirement": "WaterSampling::MatchEachReceipt",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "body": "CSE-VIEWS/1.0\n{\n\"views\": [\n{\n\"id\": \"FT_STATION\",\n\"kind\": \"function_tree\",\n\"nodes\": [\n{\n\"id\": \"F0\",\n\"element\": \"WaterSampling::ManageSampleHandoff\",\n\"level\": 0,\n\"parent\": null\n},\n{\n\"id\": \"F1\",\n\"element\": \"WaterSampling::ReceiveSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F11\",\n\"element\": \"WaterSampling::IdentifyContainer\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F12\",\n\"element\": \"WaterSampling::RecordReceipt\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F2\",\n\"element\": \"WaterSampling::PreserveHandoffRecord\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F21\",\n\"element\": \"WaterSampling::HoldUnidentifiedContainer\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F22\",\n\"element\": \"WaterSampling::ReconcileLabel\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F3\",\n\"element\": \"WaterSampling::ReleaseSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F31\",\n\"element\": \"WaterSampling::MatchCourierManifest\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F32\",\n\"element\": \"WaterSampling::RecordCustodyTransfer\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F4\",\n\"element\": \"WaterSampling::MaintainStation\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F41\",\n\"element\": \"WaterSampling::SuspendIntake\",\n\"level\": 2,\n\"parent\": \"F4\"\n},\n{\n\"id\": \"F42\",\n\"element\": \"WaterSampling::InspectAndRestore\",\n\"level\": 2,\n\"parent\": \"F4\"\n}\n]\n},\n{\n\"id\": \"SQ_NOMINAL\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"courier\",\n\"element\": \"WaterSampling::courier\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_NOMINAL_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present labeled container and sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Return receipt with matching sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E3\",\n\"from\": \"courier\",\n\"to\": \"station\",\n\"message\": \"Present pickup manifest\"\n},\n{\n\"id\": \"SQ_NOMINAL_E4\",\n\"from\": \"station\",\n\"to\": \"courier\",\n\"message\": \"Return custody transfer record\"\n}\n]\n},\n{\n\"id\": \"SQ_RECOVERY\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_RECOVERY_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present container with unreadable label\"\n},\n{\n\"id\": \"SQ_RECOVERY_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Issue hold notice; container remains unreleased\"\n},\n{\n\"id\": \"SQ_RECOVERY_E3\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Supply corrected identification\"\n},\n{\n\"id\": \"SQ_RECOVERY_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Confirm reconciliation and receipt\"\n}\n]\n},\n{\n\"id\": \"SQ_MAINTENANCE\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"custodian\",\n\"element\": \"WaterSampling::custodian\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_MAINTENANCE_E1\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Request maintenance window\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Announce intake suspended\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E3\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Record inspection and restoration\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Announce intake available\"\n}\n]\n}\n]\n}\n",
+        "line": 75,
+        "name": "cseViews",
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      }
+    ],
+    "event_attributes": [
+      {
+        "event": "WaterSampling::Station::containerPresented",
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 37,
+        "name": "correlationId",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "type": "ScalarValues::String"
+      },
+      {
+        "event": "WaterSampling::Station::receiptIssued",
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 38,
+        "name": "correlationId",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "type": "ScalarValues::String"
+      }
+    ],
+    "events": [
+      {
+        "direction": "in",
+        "has_non_typing_specialization": false,
+        "line": 37,
+        "name": "containerPresented",
+        "part_definition": "WaterSampling::Station",
+        "qualified_name": "WaterSampling::Station::containerPresented",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "direction": "out",
+        "has_non_typing_specialization": false,
+        "line": 38,
+        "name": "receiptIssued",
+        "part_definition": "WaterSampling::Station",
+        "qualified_name": "WaterSampling::Station::receiptIssued",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      }
+    ],
+    "part_definitions": [
+      {
+        "has_specialization": false,
+        "line": 19,
+        "name": "IntakePanel",
+        "qualified_name": "WaterSampling::IntakePanel",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 20,
+        "name": "ReceiptRegister",
+        "qualified_name": "WaterSampling::ReceiptRegister",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 21,
+        "name": "HoldingRack",
+        "qualified_name": "WaterSampling::HoldingRack",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 22,
+        "name": "Station",
+        "qualified_name": "WaterSampling::Station",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 40,
+        "name": "Operator",
+        "qualified_name": "WaterSampling::Operator",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 41,
+        "name": "Courier",
+        "qualified_name": "WaterSampling::Courier",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_specialization": false,
+        "line": 42,
+        "name": "Custodian",
+        "qualified_name": "WaterSampling::Custodian",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      }
+    ],
+    "parts": [
+      {
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 43,
+        "name": "operator",
+        "qualified_name": "WaterSampling::operator",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "type": "WaterSampling::Operator"
+      },
+      {
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 44,
+        "name": "station",
+        "qualified_name": "WaterSampling::station",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "type": "WaterSampling::Station"
+      },
+      {
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 45,
+        "name": "courier",
+        "qualified_name": "WaterSampling::courier",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "type": "WaterSampling::Courier"
+      },
+      {
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 46,
+        "name": "custodian",
+        "qualified_name": "WaterSampling::custodian",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "type": "WaterSampling::Custodian"
+      },
+      {
+        "has_native_value": true,
+        "has_non_typing_specialization": false,
+        "line": 63,
+        "name": "user",
+        "qualified_name": "WaterSampling::TransferLabeledSample::user",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_native_value": true,
+        "has_non_typing_specialization": false,
+        "line": 64,
+        "name": "user",
+        "qualified_name": "WaterSampling::RecoverUnidentifiedSample::user",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      },
+      {
+        "has_native_value": true,
+        "has_non_typing_specialization": false,
+        "line": 65,
+        "name": "user",
+        "qualified_name": "WaterSampling::RestoreStation::user",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+      }
+    ],
+    "requirements": [
+      {
+        "has_specialization": false,
+        "id": "R_RECORD",
+        "kind": "RequirementUsage",
+        "line": 66,
+        "name": "RecordReceiptObligation",
+        "qualified_name": "WaterSampling::RecordReceiptObligation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subjects": [
+          {
+            "name": "unit",
+            "target": "WaterSampling::station"
+          }
+        ]
+      },
+      {
+        "has_specialization": false,
+        "id": "R_ELAPSED",
+        "kind": "RequirementUsage",
+        "line": 69,
+        "name": "BoundProcessingObservation",
+        "qualified_name": "WaterSampling::BoundProcessingObservation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subjects": [
+          {
+            "name": "unit",
+            "target": "WaterSampling::station"
+          }
+        ]
+      },
+      {
+        "has_specialization": false,
+        "id": "R_CORRELATION",
+        "kind": "RequirementUsage",
+        "line": 72,
+        "name": "MatchEachReceipt",
+        "qualified_name": "WaterSampling::MatchEachReceipt",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subjects": [
+          {
+            "name": "unit",
+            "target": "WaterSampling::station"
+          }
+        ]
+      }
+    ],
+    "states": [],
+    "use_cases": [
+      {
+        "id": "UC_NOMINAL",
+        "line": 63,
+        "name": "TransferLabeledSample",
+        "qualified_name": "WaterSampling::TransferLabeledSample",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subjects": [
+          {
+            "name": "unit",
+            "target": "WaterSampling::station"
+          }
+        ]
+      },
+      {
+        "id": "UC_RECOVERY",
+        "line": 64,
+        "name": "RecoverUnidentifiedSample",
+        "qualified_name": "WaterSampling::RecoverUnidentifiedSample",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subjects": [
+          {
+            "name": "unit",
+            "target": "WaterSampling::station"
+          }
+        ]
+      },
+      {
+        "id": "UC_MAINTENANCE",
+        "line": 65,
+        "name": "RestoreStation",
+        "qualified_name": "WaterSampling::RestoreStation",
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subjects": [
+          {
+            "name": "unit",
+            "target": "WaterSampling::station"
+          }
+        ]
+      }
+    ]
+  },
+  "limits": {
+    "observation_cap": 10000,
+    "parser_timeout_seconds": 60,
+    "per_clause_work_cap": 1000000
+  },
+  "model_files": [
+    {
+      "path": "examples/engineering-gallery/water-sampling/station.sysml",
+      "sha256": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5"
+    }
+  ],
+  "model_sha256": "f0dcf03178fb1d81d70090ad9c45e3fa966923ed9d9f8b3ed72a2ab5923e0dd5",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "parser_issues": [],
+  "results": {},
+  "shape": {
+    "actions": 13,
+    "concerns": 3,
+    "kind": "concept",
+    "part_definitions": 7,
+    "states": 0,
+    "use_cases": 3
+  },
+  "status": "pass",
+  "view_checks": {
+    "checker_version": "cse-views-1.0",
+    "claim_scope": "documentary_view_structure",
+    "exceptions": [],
+    "findings": [],
+    "human_review": [
+      "Functions express actions; verb-object names are recommended.",
+      "Assess decomposition adequacy and exchange meaning against the task and source.",
+      "Counts, text, bindings, and rationale do not establish completeness, approval, or behavior."
+    ],
+    "profile_sha256": "1630842c0b0e93fcd9b3c9a464635b1e2cb2d4c09fb9d97d69423cce951621bb",
+    "status": "pass",
+    "views": [
+      {
+        "id": "FT_STATION",
+        "kind": "function_tree"
+      },
+      {
+        "id": "SQ_NOMINAL",
+        "kind": "sequence"
+      },
+      {
+        "id": "SQ_RECOVERY",
+        "kind": "sequence"
+      },
+      {
+        "id": "SQ_MAINTENANCE",
+        "kind": "sequence"
+      }
+    ]
+  }
+}

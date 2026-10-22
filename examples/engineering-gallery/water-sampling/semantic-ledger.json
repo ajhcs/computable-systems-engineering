@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "classification": "original synthetic simplified model-derived presentations",
+  "authority": "station.sysml is the shared concept/CONOPS/documentary-scenario source; finite-scenarios.json is separately authored, never converted",
+  "boundary": "sample identity and custody records; no physical/safety validation",
+  "native_part_usages": {
+    "WaterSampling::operator": "Operator",
+    "WaterSampling::station": "Station",
+    "WaterSampling::courier": "Courier",
+    "WaterSampling::custodian": "Custodian"
+  },
+  "ownership_claim": "Station owns three component usages in its definition. External roles are package-owned usages. No ports, connectors, flows or implementation ownership inferred.",
+  "documentary_allocations": [
+    {
+      "function": "F1",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F11",
+      "performer": "WaterSampling::operator",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F12",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F2",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F21",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F22",
+      "performer": "WaterSampling::operator",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F3",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F31",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F32",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F4",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F41",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F42",
+      "performer": "WaterSampling::custodian",
+      "status": "fictional documentary allocation, not native allocation"
+    }
+  ],
+  "typed_traces": [
+    {
+      "from": "R_RECORD",
+      "to": "N_IDENTITY",
+      "kind": "justifies"
+    },
+    {
+      "from": "R_ELAPSED",
+      "to": "N_ACCOUNT",
+      "kind": "justifies"
+    },
+    {
+      "from": "R_CORRELATION",
+      "to": "N_IDENTITY",
+      "kind": "justifies"
+    },
+    {
+      "from": "UC_NOMINAL",
+      "to": "R_RECORD",
+      "kind": "addresses"
+    },
+    {
+      "from": "UC_NOMINAL",
+      "to": "R_CORRELATION",
+      "kind": "addresses"
+    },
+    {
+      "from": "UC_RECOVERY",
+      "to": "R_RECORD",
+      "kind": "addresses"
+    }
+  ],
+  "omitted_semantics": [
+    "No activity flow implied by function parentage",
+    "No timing inferred from sequence layout",
+    "Maintenance and label policy remain documentary in SysML",
+    "Finite counterpart adds explicit invented guard/effect semantics only in its own artifact"
+  ],
+  "native_composition": [
+    {
+      "owner_definition": "WaterSampling::Station",
+      "part": "intakePanel",
+      "type": "WaterSampling::IntakePanel",
+      "multiplicity": "native implicit default; omitted from presentation"
+    },
+    {
+      "owner_definition": "WaterSampling::Station",
+      "part": "receiptRegister",
+      "type": "WaterSampling::ReceiptRegister",
+      "multiplicity": "native implicit default; omitted from presentation"
+    },
+    {
+      "owner_definition": "WaterSampling::Station",
+      "part": "holdingRack",
+      "type": "WaterSampling::HoldingRack",
+      "multiplicity": "native implicit default; omitted from presentation"
+    }
+  ]
+}

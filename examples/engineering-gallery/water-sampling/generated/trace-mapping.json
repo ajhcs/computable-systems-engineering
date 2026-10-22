@@ -1,0 +1,77 @@
+{
+  "claim_scope": "typed_ID_alignment_only",
+  "native_documentary_traces": [
+    {
+      "from": "R_RECORD",
+      "kind": "justifies",
+      "to": "N_IDENTITY"
+    },
+    {
+      "from": "R_ELAPSED",
+      "kind": "justifies",
+      "to": "N_ACCOUNT"
+    },
+    {
+      "from": "R_CORRELATION",
+      "kind": "justifies",
+      "to": "N_IDENTITY"
+    },
+    {
+      "from": "UC_NOMINAL",
+      "kind": "addresses",
+      "to": "R_RECORD"
+    },
+    {
+      "from": "UC_NOMINAL",
+      "kind": "addresses",
+      "to": "R_CORRELATION"
+    },
+    {
+      "from": "UC_RECOVERY",
+      "kind": "addresses",
+      "to": "R_RECORD"
+    }
+  ],
+  "separate_artifact_mapping": {
+    "claim": "ID/trace alignment only, not semantic equivalence, conversion or combined verification",
+    "mappings": [
+      {
+        "finite": "FN_IDENTITY",
+        "kind": "need-concern",
+        "native": "N_IDENTITY"
+      },
+      {
+        "finite": "FN_SERVICE",
+        "kind": "need-concern",
+        "native": "N_SERVICE"
+      },
+      {
+        "finite": "FR_HOLD",
+        "kind": "additional-formalization",
+        "native": "UC_RECOVERY"
+      },
+      {
+        "finite": "FR_PAUSE",
+        "kind": "additional-formalization",
+        "native": "UC_MAINTENANCE"
+      },
+      {
+        "finite": "FS_NOMINAL",
+        "kind": "scenario-use-case",
+        "native": "UC_NOMINAL"
+      },
+      {
+        "finite": "FS_RECOVERY",
+        "kind": "scenario-use-case",
+        "native": "UC_RECOVERY"
+      },
+      {
+        "finite": "FS_MAINTENANCE",
+        "kind": "scenario-use-case",
+        "native": "UC_MAINTENANCE"
+      }
+    ],
+    "version": 1
+  },
+  "status": "pass"
+}

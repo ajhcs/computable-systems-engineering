@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="640" viewBox="0 0 1020 640" role="img" aria-labelledby="title desc">
+<title id="title">SQ_MAINTENANCE documentary exchange sequence</title>
+<desc id="desc">List order and endpoints from parsed cseViews. No native behavior, timing or topology inferred.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#23374b"/></marker></defs>
+<rect width="100%" height="100%" fill="#faf9f5"/>
+<g font-family="sans-serif" fill="#182b3b">
+<text x="25" y="32" font-size="22">SQ_MAINTENANCE · Documentary exchange sequence</text>
+<text x="25" y="60" font-size="15">Synthetic model-derived presentation · no executable timing or native interaction claim</text>
+<rect x="65" y="85" width="210" height="50" rx="4" fill="#e4edf2" stroke="#23374b"/>
+<text x="170" y="116" text-anchor="middle" font-size="18">custodian</text>
+<path d="M170 135V610" stroke="#758391" stroke-dasharray="5 6"/>
+<rect x="405" y="85" width="210" height="50" rx="4" fill="#e4edf2" stroke="#23374b"/>
+<text x="510" y="116" text-anchor="middle" font-size="18">station</text>
+<path d="M510 135V610" stroke="#758391" stroke-dasharray="5 6"/>
+<rect x="745" y="85" width="210" height="50" rx="4" fill="#e4edf2" stroke="#23374b"/>
+<text x="850" y="116" text-anchor="middle" font-size="18">operator</text>
+<path d="M850 135V610" stroke="#758391" stroke-dasharray="5 6"/>
+<text x="25" y="163" font-size="14">SQ_MAINTENANCE_E1</text>
+<text x="182" y="190" font-size="17">Request maintenance window</text>
+<path d="M170 210H510" stroke="#23374b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="25" y="278" font-size="14">SQ_MAINTENANCE_E2</text>
+<text x="522" y="305" font-size="17">Announce intake suspended</text>
+<path d="M510 325H850" stroke="#23374b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="25" y="393" font-size="14">SQ_MAINTENANCE_E3</text>
+<text x="182" y="420" font-size="17">Record inspection and restoration</text>
+<path d="M170 440H510" stroke="#23374b" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="25" y="508" font-size="14">SQ_MAINTENANCE_E4</text>
+<text x="522" y="535" font-size="17">Announce intake available</text>
+<path d="M510 555H850" stroke="#23374b" stroke-width="2" marker-end="url(#arrow)"/>
+</g></svg>

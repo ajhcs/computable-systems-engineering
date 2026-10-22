@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "claim": "ID/trace alignment only, not semantic equivalence, conversion or combined verification",
+  "mappings": [
+    {
+      "finite": "FN_IDENTITY",
+      "native": "N_IDENTITY",
+      "kind": "need-concern"
+    },
+    {
+      "finite": "FN_SERVICE",
+      "native": "N_SERVICE",
+      "kind": "need-concern"
+    },
+    {
+      "finite": "FR_HOLD",
+      "native": "UC_RECOVERY",
+      "kind": "additional-formalization"
+    },
+    {
+      "finite": "FR_PAUSE",
+      "native": "UC_MAINTENANCE",
+      "kind": "additional-formalization"
+    },
+    {
+      "finite": "FS_NOMINAL",
+      "native": "UC_NOMINAL",
+      "kind": "scenario-use-case"
+    },
+    {
+      "finite": "FS_RECOVERY",
+      "native": "UC_RECOVERY",
+      "kind": "scenario-use-case"
+    },
+    {
+      "finite": "FS_MAINTENANCE",
+      "native": "UC_MAINTENANCE",
+      "kind": "scenario-use-case"
+    }
+  ]
+}

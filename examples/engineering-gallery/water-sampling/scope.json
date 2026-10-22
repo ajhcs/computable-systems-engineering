@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "source_revision": "fictional-water-station-1",
+  "expected": [
+    {
+      "id": "R_RECORD",
+      "constraint": "receipt",
+      "source": "SYN-WATER-01"
+    },
+    {
+      "id": "R_ELAPSED",
+      "constraint": "duration",
+      "source": "SYN-WATER-02"
+    },
+    {
+      "id": "R_CORRELATION",
+      "constraint": "correlation",
+      "source": "SYN-WATER-03"
+    }
+  ]
+}

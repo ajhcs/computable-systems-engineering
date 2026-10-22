@@ -1,0 +1,102 @@
+{
+  "analyzed_scenarios": [
+    "FS_MAINTENANCE",
+    "FS_NOMINAL",
+    "FS_RECOVERY"
+  ],
+  "artifact_sha256": "e290cbefe97842f565d868fab6c17a2deca4a36c24dee5d484573e991429d092",
+  "checker_version": "0.1.1",
+  "completed_obligations": [
+    "declarations",
+    "types",
+    "traces",
+    "consistency",
+    "scope"
+  ],
+  "dependencies": {
+    "manifest_sha256": "e2d222e878bd4781bf0b2b5c0f71a3444452634bef8a1a0bce4fd3199f589783"
+  },
+  "expected_obligations": [
+    "declarations",
+    "types",
+    "traces",
+    "consistency",
+    "scenarios",
+    "scope"
+  ],
+  "findings": [
+    {
+      "evidence": {
+        "node": "reconciled",
+        "path": [
+          "FX_HOLD",
+          "FX_CORRECT"
+        ]
+      },
+      "explanation": "Reachable nonterminal state has no transition",
+      "ids": [
+        "FS_RECOVERY"
+      ],
+      "rule": "dead-end",
+      "status": "fail"
+    },
+    {
+      "evidence": {
+        "node": "hold",
+        "path": [
+          "FX_HOLD"
+        ]
+      },
+      "explanation": "Reachable state has no path to completion",
+      "ids": [
+        "FS_RECOVERY"
+      ],
+      "rule": "progress",
+      "status": "fail"
+    },
+    {
+      "explanation": "Required data unavailable",
+      "ids": [
+        "FS_RECOVERY",
+        "FX_RECORD"
+      ],
+      "rule": "step-reachability",
+      "status": "fail"
+    }
+  ],
+  "limits": {
+    "assignment_cap": 100000,
+    "state_cap": 100000
+  },
+  "obligations": {
+    "consistency": "pass",
+    "declarations": "pass",
+    "scenarios": "fail",
+    "scope": "pass",
+    "traces": "pass",
+    "types": "pass"
+  },
+  "profile": "core-v2",
+  "rendered_requirements": {
+    "FR_HOLD": "When labelReadable == false, Station SHALL released == false.",
+    "FR_PAUSE": "When serviceRequested == true, Station SHALL intakeOpen == false."
+  },
+  "review_manifest": {
+    "requirements": [
+      "FR_HOLD",
+      "FR_PAUSE"
+    ],
+    "scenarios": [
+      "FS_NOMINAL",
+      "FS_RECOVERY",
+      "FS_MAINTENANCE"
+    ],
+    "source_revision": "fictional-finite-station-1",
+    "version": 1
+  },
+  "scope": {
+    "review": true,
+    "scenarios": "all"
+  },
+  "status": "fail"
+}
