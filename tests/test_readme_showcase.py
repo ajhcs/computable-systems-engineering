@@ -12,6 +12,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from urllib.parse import unquote, urlsplit
+from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[1]
 HERE = ROOT / 'examples/readme-showcase'
@@ -27,10 +28,12 @@ class Targets(HTMLParser):
         super().__init__()
         self.links = []
         self.ids = set()
+        self.id_list = []
 
     def handle_starttag(self, tag, attrs):
         self.links.extend(value for key, value in attrs if key in ('href', 'src') and value)
         self.ids.update(value for key, value in attrs if key == 'id' and value)
+        self.id_list.extend(value for key, value in attrs if key == 'id' and value)
 
 
 class ReadmeShowcaseTests(unittest.TestCase):
@@ -64,6 +67,24 @@ class ReadmeShowcaseTests(unittest.TestCase):
                 with patch.object(showcase, 'acquire') as acquire, self.assertRaises(ValueError):
                     showcase.check(output)
                 acquire.assert_not_called()
+
+    def test_inline_svg_accessible_names_are_local_and_unique(self):
+        parser = Targets()
+        parser.feed((HERE / 'generated/index.html').read_text(encoding='utf-8'))
+        self.assertEqual(len(parser.id_list), len(parser.ids),
+                         'Duplicate IDs can give later diagrams the first diagram accessible name')
+        images = sorted((HERE / 'generated').glob('*.svg'))
+        self.assertEqual(len(images), 8)
+        titles = set()
+        for path in images:
+            svg = ElementTree.fromstring(path.read_text(encoding='utf-8'))
+            local = {element.attrib['id']: element for element in svg.iter() if 'id' in element.attrib}
+            refs = svg.attrib.get('aria-labelledby', '').split()
+            self.assertEqual(len(refs), 2)
+            for ref in refs:
+                self.assertIn(ref, local, 'Accessible name escapes its diagram')
+            titles.add(local[refs[0]].text)
+        self.assertEqual(len(titles), 8, 'Each selected diagram needs its own descriptive title')
 
     def test_embedded_images_and_relative_reader_links_resolve(self):
         readme = ROOT / 'README.md'
