@@ -13,3 +13,20 @@ Each scenario begins at `start` with all controlled properties assigned in `init
 The report includes a semantic SHA-256 of the candidate, checker version, scope, expected/completed obligations, limits, status, and deterministic findings with IDs. `--evidence FILE` reads a separate JSON object with `model_sha256` and `items`; a mismatch is stale and blocks review. Its digest identifies the evidence file but cannot authenticate the observations. `--review` demands all core obligations (`declarations`, `types`, `traces`, `consistency`, `scenarios`) complete successfully. Without it, the result is a draft check, not acceptance. `--scenario S1 --view` returns a smaller context view with all global declarations, requirements, and traces plus S1; it is not a verification input or result. The complete model remains the input to every check. A local agent can edit the model, checker, or output; this is not a protected runner.
 
 Fixture expectations: [valid.json](../examples/verifier/valid.json) passes a required review, including mutually exclusive requirements, an explicit external wait, and intentional completion. Tests derive variants for undefined entities, type and unit mismatch, broken traces, pairwise and three-way conflicts, missing data, disabled path, and nonterminal dead end. They also cover intentional terminal abort, permitted loop, malformed and unsupported records, stale evidence, and state/assignment limits. These are synthetic semantics, not accepted requirements for a real system.
+
+
+An optional independent finite-review scope manifest is now supported with
+`--manifest FILE`. It contains exactly `version: 1`, a nonblank `source_revision`,
+`requirements: [ID, ...]`, and `scenarios: [ID, ...]`. Both inventories must exactly
+match the whole candidate even under focus; duplicates/malformed IDs are errors,
+and missing, wrong-kind or unclassified IDs fail scope. Without it, legacy review
+retains its existing candidate-derived scope. Reports expose semantic manifest
+identity (and exact file-byte identity in the CLI) plus `analyzed_scenarios`;
+inventory coverage never implies unselected scenario execution. This does not
+authenticate acceptance or detect same-ID meaning changes. See the
+[completion matrix and negative controls](capability-completion.md).
+
+Scenario exploration runs independently of unsupported requirement applicability.
+If a cap truncates exploration after a reachable dead end was fully examined,
+that failure is retained alongside the unknown result for the remaining search.
+Library analysis caps must be positive integers, excluding Boolean values.

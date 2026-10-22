@@ -18,6 +18,7 @@ def main(argv=None):
     parser.add_argument("--assignment-cap", type=int, default=100000)
     parser.add_argument("--state-cap", type=int, default=100000)
     parser.add_argument("--evidence")
+    parser.add_argument("--manifest", help="independent exact requirement/scenario inventory")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--detail", action="store_true")
     parser.add_argument("--view", action="store_true", help="print a context view of selected scenarios; not a verdict")
@@ -30,8 +31,11 @@ def main(argv=None):
             print(json.dumps(focused_view(model, args.scenario), sort_keys=True, indent=2))
             return 0
         evidence = load_json(args.evidence) if args.evidence else None
+        manifest, manifest_file_digest = load_json(args.manifest, include_file_digest=True) if args.manifest else (None, None)
         report = verify(model, review=args.review, selected=args.scenario,
-                        assignment_cap=args.assignment_cap, state_cap=args.state_cap, evidence=evidence)
+                        assignment_cap=args.assignment_cap, state_cap=args.state_cap, evidence=evidence, manifest=manifest)
+        if args.manifest:
+            report["dependencies"]["manifest_file_sha256"] = manifest_file_digest
     except (OSError, ValueError, TypeError) as error:
         print(f"Input error: {error}", file=sys.stderr)
         return 2
