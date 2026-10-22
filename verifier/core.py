@@ -6,7 +6,7 @@ from itertools import product
 import json
 import re
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 OBLIGATIONS = ("declarations", "types", "traces", "consistency", "scenarios")
 ID = re.compile(r"^[A-Za-z][A-Za-z0-9_-]{0,63}$")
 OPS = {"==", "!=", "<", "<=", ">", ">="}
@@ -21,10 +21,14 @@ def _pairs(pairs):
     return obj
 
 
-def load_json(path):
-    with open(path, encoding="utf-8") as stream:
-        return json.load(stream, object_pairs_hook=_pairs,
-                         parse_constant=lambda value: (_ for _ in ()).throw(ValueError(f"nonfinite number: {value}")))
+def load_json(path, *, include_file_digest=False):
+    # Parse and optionally identify one immutable read, avoiding a second file
+    # read that could bind a different revision to the parsed manifest.
+    with open(path, "rb") as stream:
+        raw = stream.read()
+    value = json.loads(raw.decode("utf-8"), object_pairs_hook=_pairs,
+                       parse_constant=lambda value: (_ for _ in ()).throw(ValueError(f"nonfinite number: {value}")))
+    return (value, sha256(raw).hexdigest()) if include_file_digest else value
 
 
 def digest(value):
@@ -398,6 +402,7 @@ def _scenario(key, scenario, groups, domains, cap):
     terminal = scenario.get("terminal", {})
     steps = scenario.get("steps", {})
     transitions = 0
+    results = []
     while queue:
         state = queue.popleft()
         node, control, inp, available = state
@@ -423,9 +428,14 @@ def _scenario(key, scenario, groups, domains, cap):
                 target = (step["to"], tuple(new_control[k] for k in control_names), inp,
                           tuple(k in new_data for k in data_names))
                 successors.append((target, step_id))
+        if node not in terminal and not successors and not results:
+            # A fully examined reachable state is a definite counterexample,
+            # even if exploration of a different branch later hits a limit.
+            results.append(finding("dead-end", "fail", [key], "Reachable nonterminal state has no transition",
+                                   {"node": node, "path": paths[state]}))
         transitions += len(successors)
         if transitions > cap:
-            return [finding("scenario", "unknown", [key], "Transition limit exceeded",
+            return results + [finding("scenario", "unknown", [key], "Transition limit exceeded",
                             {"transitions": transitions, "cap": cap})]
         edges[state] = successors
         for target, label in successors:
@@ -434,19 +444,13 @@ def _scenario(key, scenario, groups, domains, cap):
                 paths[target] = paths[state] + [label]
                 queue.append(target)
                 if len(seen) > cap:
-                    return [finding("scenario", "unknown", [key], "State limit exceeded", {"states": len(seen), "cap": cap})]
-    results = []
+                    return results + [finding("scenario", "unknown", [key], "State limit exceeded", {"states": len(seen), "cap": cap})]
     for step_id in sorted(set(steps) - enabled_steps):
         if any(steps[step_id]["from"] == state[0] for state in seen):
             reason = "Required data unavailable" if any(pair[0] == step_id for pair in blocked_data) else "Guard never enabled"
         else:
             reason = "Source node unreachable"
         results.append(finding("step-reachability", "fail", [key, step_id], reason))
-    for state in sorted(seen):
-        if state[0] not in terminal and not edges[state]:
-            results.append(finding("dead-end", "fail", [key], "Reachable nonterminal state has no transition",
-                                   {"node": state[0], "path": paths[state]}))
-            break
     if scenario.get("require_completion", False):
         reverse = {state: set() for state in seen}
         for state, successors in edges.items():
@@ -465,19 +469,53 @@ def _scenario(key, scenario, groups, domains, cap):
     return results
 
 
-def verify(model, *, review=False, selected=(), assignment_cap=100000, state_cap=100000, evidence=None):
+def _review_scope(manifest, groups):
+    """Check an external inventory, without treating it as accepted authority."""
+    issues = []
+    if not isinstance(manifest, dict):
+        return [finding("review-scope", "error", [], "Manifest must be an object")]
+    if (set(manifest) != {"version", "source_revision", "requirements", "scenarios"}
+            or type(manifest.get("version")) is not int or manifest["version"] != 1
+            or not isinstance(manifest.get("source_revision"), str)
+            or not manifest["source_revision"].strip()):
+        issues.append(finding("review-scope", "error", [], "Manifest needs version 1, source_revision, requirements and scenarios only"))
+    for field in ("requirements", "scenarios"):
+        expected = manifest.get(field)
+        if (not isinstance(expected, list) or any(not isinstance(key, str) or not ID.fullmatch(key) for key in expected)):
+            issues.append(finding("review-scope", "error", [field], "Inventory must be a list of valid IDs"))
+            continue
+        if len(set(expected)) != len(expected):
+            issues.append(finding("review-scope", "error", [field], "Inventory contains duplicate IDs"))
+        if field == "requirements":
+            actual = {key for key, value in groups.get("statements", {}).items()
+                      if isinstance(value, dict) and value.get("category") == "requirement"}
+        else:
+            actual = set(groups.get("scenarios", {}))
+        for key in sorted(set(expected) - actual):
+            issues.append(finding("review-scope", "fail", [field, key], "Expected ID is missing or has the wrong kind"))
+        for key in sorted(actual - set(expected)):
+            issues.append(finding("review-scope", "fail", [field, key], "Model obligation is unclassified by the manifest"))
+    return issues
+
+
+def verify(model, *, review=False, selected=(), assignment_cap=100000, state_cap=100000, evidence=None, manifest=None):
     """Return a deterministic report. This is a local check, not an acceptance receipt."""
     selected = tuple(sorted(set(selected)))
     revision = digest(model)
+    obligations = OBLIGATIONS + (("scope",) if manifest is not None else ())
     result = {"artifact_sha256": revision, "dependencies": {}, "checker_version": VERSION,
               "profile": "core-v2" if review else "draft-v2",
               "scope": {"scenarios": list(selected) if selected else "all", "review": review},
-              "expected_obligations": list(OBLIGATIONS) if review else [],
+              "expected_obligations": list(obligations) if review else [],
               "completed_obligations": [], "limits": {"assignment_cap": assignment_cap, "state_cap": state_cap},
               "status": "unknown", "findings": []}
     issues = []
+    for name, value in (("assignment_cap", assignment_cap), ("state_cap", state_cap)):
+        if type(value) is not int or value < 1:
+            issues.append(finding("limits", "error", [name], "Analysis cap must be a positive integer"))
     try:
-        groups, issues = _validate(model, selected)
+        groups, validation_issues = _validate(model, selected)
+        issues.extend(validation_issues)
     except (TypeError, ValueError, KeyError, AttributeError) as error:
         groups = {}
         issues = [finding("schema", "error", [], f"Malformed record: {type(error).__name__}")]
@@ -487,7 +525,12 @@ def verify(model, *, review=False, selected=(), assignment_cap=100000, state_cap
             issues.append(finding("evidence", "error", [], "Evidence must have an items list"))
         elif evidence.get("model_sha256") != revision:
             issues.append(finding("evidence", "unknown", [], "Evidence revision is stale or malformed"))
-    by_obligation = {name: [] for name in OBLIGATIONS}
+    by_obligation = {name: [] for name in obligations}
+    if manifest is not None:
+        result["dependencies"]["manifest_sha256"] = digest(manifest)
+        result["review_manifest"] = manifest
+        by_obligation["scope"] = _review_scope(manifest, groups)
+    result["analyzed_scenarios"] = []
     for item in issues:
         rule = item["rule"]
         obligation = ("traces" if rule == "trace" else "scenarios" if rule in ("scenario", "scope") else
@@ -504,13 +547,15 @@ def verify(model, *, review=False, selected=(), assignment_cap=100000, state_cap
                  {name for name, spec in props.items() if spec["owner"] == "input"}):
                 by_obligation["consistency"].append(finding("applicability", "unsupported", [key],
                     "Applicability may reference only input properties"))
+        domains = {key: _domain(spec, key, [], owner=key in props) for key, spec in
+                   list(props.items()) + list(groups["data"].items())}
         if not by_obligation["consistency"]:
-            domains = {key: _domain(spec, key, [], owner=key in props) for key, spec in
-                       list(props.items()) + list(groups["data"].items())}
             by_obligation["consistency"] += _consistency(groups, domains, assignment_cap)
-            scenarios = groups["scenarios"]
-            for key in selected or sorted(scenarios):
-                by_obligation["scenarios"] += _scenario(key, scenarios[key], groups, domains, state_cap)
+        # Scenario execution does not depend on requirement applicability.
+        scenarios = groups["scenarios"]
+        for key in selected or sorted(scenarios):
+            result["analyzed_scenarios"].append(key)
+            by_obligation["scenarios"] += _scenario(key, scenarios[key], groups, domains, state_cap)
         traces = model.get("traces", [])
         if review:
             if not any(s["category"] == "requirement" for s in groups["statements"].values()):
@@ -526,18 +571,18 @@ def verify(model, *, review=False, selected=(), assignment_cap=100000, state_cap
     if issues:
         by_obligation["consistency"].append(finding("consistency", "not_run", [], "Blocked by model validation"))
         by_obligation["scenarios"].append(finding("scenario", "not_run", [], "Blocked by model validation"))
-    result["completed_obligations"] = [] if issues else [name for name in OBLIGATIONS if not by_obligation[name]]
+    result["completed_obligations"] = [] if issues else [name for name in obligations if not by_obligation[name]]
     result["obligations"] = {name: ("not_run" if issues and not items else "pass" if not items else
                                     "error" if any(x["status"] == "error" for x in items) else
                                     "fail" if any(x["status"] == "fail" for x in items) else
                                     "unsupported" if any(x["status"] == "unsupported" for x in items) else
                                     "unknown" if any(x["status"] == "unknown" for x in items) else "not_run")
                              for name, items in by_obligation.items()}
-    findings = [item for name in OBLIGATIONS for item in by_obligation[name]]
+    findings = [item for name in obligations for item in by_obligation[name]]
     findings.sort(key=lambda item: (item["rule"], item["ids"], item["status"], item["explanation"]))
     result["findings"] = findings
     statuses = {item["status"] for item in findings}
     result["status"] = ("error" if "error" in statuses else "fail" if "fail" in statuses else
                         "unsupported" if "unsupported" in statuses else "unknown" if "unknown" in statuses else
-                        "pass" if not review or set(result["completed_obligations"]) == set(OBLIGATIONS) else "not_run")
+                        "pass" if not review or set(result["completed_obligations"]) == set(obligations) else "not_run")
     return result

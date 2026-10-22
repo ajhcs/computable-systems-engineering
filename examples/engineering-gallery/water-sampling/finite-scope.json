@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "source_revision": "fictional-finite-station-1",
+  "requirements": [
+    "FR_HOLD",
+    "FR_PAUSE"
+  ],
+  "scenarios": [
+    "FS_NOMINAL",
+    "FS_RECOVERY",
+    "FS_MAINTENANCE"
+  ]
+}

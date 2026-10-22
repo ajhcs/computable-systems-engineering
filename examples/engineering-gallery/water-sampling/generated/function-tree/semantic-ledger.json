@@ -1,0 +1,130 @@
+{
+  "claim_scope": "Simplified model-derived presentation: documentary decomposition; no behavioral or engineering acceptance claim.",
+  "id": "FT_STATION",
+  "kind": "function_tree",
+  "nodes": [
+    {
+      "element": "WaterSampling::ManageSampleHandoff",
+      "id": "F0",
+      "level": 0,
+      "parent": null,
+      "text": "ManageSampleHandoff"
+    },
+    {
+      "element": "WaterSampling::ReceiveSample",
+      "id": "F1",
+      "level": 1,
+      "parent": "F0",
+      "text": "ReceiveSample"
+    },
+    {
+      "element": "WaterSampling::IdentifyContainer",
+      "id": "F11",
+      "level": 2,
+      "parent": "F1",
+      "text": "IdentifyContainer"
+    },
+    {
+      "element": "WaterSampling::RecordReceipt",
+      "id": "F12",
+      "level": 2,
+      "parent": "F1",
+      "text": "RecordReceipt"
+    },
+    {
+      "element": "WaterSampling::PreserveHandoffRecord",
+      "id": "F2",
+      "level": 1,
+      "parent": "F0",
+      "text": "PreserveHandoffRecord"
+    },
+    {
+      "element": "WaterSampling::HoldUnidentifiedContainer",
+      "id": "F21",
+      "level": 2,
+      "parent": "F2",
+      "text": "HoldUnidentifiedContainer"
+    },
+    {
+      "element": "WaterSampling::ReconcileLabel",
+      "id": "F22",
+      "level": 2,
+      "parent": "F2",
+      "text": "ReconcileLabel"
+    },
+    {
+      "element": "WaterSampling::ReleaseSample",
+      "id": "F3",
+      "level": 1,
+      "parent": "F0",
+      "text": "ReleaseSample"
+    },
+    {
+      "element": "WaterSampling::MatchCourierManifest",
+      "id": "F31",
+      "level": 2,
+      "parent": "F3",
+      "text": "MatchCourierManifest"
+    },
+    {
+      "element": "WaterSampling::RecordCustodyTransfer",
+      "id": "F32",
+      "level": 2,
+      "parent": "F3",
+      "text": "RecordCustodyTransfer"
+    },
+    {
+      "element": "WaterSampling::MaintainStation",
+      "id": "F4",
+      "level": 1,
+      "parent": "F0",
+      "text": "MaintainStation"
+    },
+    {
+      "element": "WaterSampling::SuspendIntake",
+      "id": "F41",
+      "level": 2,
+      "parent": "F4",
+      "text": "SuspendIntake"
+    },
+    {
+      "element": "WaterSampling::InspectAndRestore",
+      "id": "F42",
+      "level": 2,
+      "parent": "F4",
+      "text": "InspectAndRestore"
+    }
+  ],
+  "version": "cse-visual-presentation-1.0",
+  "view_checks": {
+    "checker_version": "cse-views-1.0",
+    "claim_scope": "documentary_view_structure",
+    "exceptions": [],
+    "findings": [],
+    "human_review": [
+      "Functions express actions; verb-object names are recommended.",
+      "Assess decomposition adequacy and exchange meaning against the task and source.",
+      "Counts, text, bindings, and rationale do not establish completeness, approval, or behavior."
+    ],
+    "profile_sha256": "2cc00e5befb638019ed8871b80ddf04a4624ba9dfadf0c194b9af5874723e915",
+    "status": "pass",
+    "views": [
+      {
+        "id": "FT_STATION",
+        "kind": "function_tree"
+      },
+      {
+        "id": "SQ_NOMINAL",
+        "kind": "sequence"
+      },
+      {
+        "id": "SQ_RECOVERY",
+        "kind": "sequence"
+      },
+      {
+        "id": "SQ_MAINTENANCE",
+        "kind": "sequence"
+      }
+    ]
+  }
+}

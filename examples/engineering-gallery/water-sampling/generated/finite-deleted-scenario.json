@@ -1,0 +1,72 @@
+{
+  "analyzed_scenarios": [
+    "FS_MAINTENANCE",
+    "FS_NOMINAL"
+  ],
+  "artifact_sha256": "0a4ea9d616a9de8783a18693ba4023d75cf0ef34e579c5a37c2afd9389baa590",
+  "checker_version": "0.1.1",
+  "completed_obligations": [
+    "declarations",
+    "types",
+    "traces",
+    "consistency",
+    "scenarios"
+  ],
+  "dependencies": {
+    "manifest_sha256": "e2d222e878bd4781bf0b2b5c0f71a3444452634bef8a1a0bce4fd3199f589783"
+  },
+  "expected_obligations": [
+    "declarations",
+    "types",
+    "traces",
+    "consistency",
+    "scenarios",
+    "scope"
+  ],
+  "findings": [
+    {
+      "explanation": "Expected ID is missing or has the wrong kind",
+      "ids": [
+        "FS_RECOVERY",
+        "scenarios"
+      ],
+      "rule": "review-scope",
+      "status": "fail"
+    }
+  ],
+  "limits": {
+    "assignment_cap": 100000,
+    "state_cap": 100000
+  },
+  "obligations": {
+    "consistency": "pass",
+    "declarations": "pass",
+    "scenarios": "pass",
+    "scope": "fail",
+    "traces": "pass",
+    "types": "pass"
+  },
+  "profile": "core-v2",
+  "rendered_requirements": {
+    "FR_HOLD": "When labelReadable == false, Station SHALL released == false.",
+    "FR_PAUSE": "When serviceRequested == true, Station SHALL intakeOpen == false."
+  },
+  "review_manifest": {
+    "requirements": [
+      "FR_HOLD",
+      "FR_PAUSE"
+    ],
+    "scenarios": [
+      "FS_NOMINAL",
+      "FS_RECOVERY",
+      "FS_MAINTENANCE"
+    ],
+    "source_revision": "fictional-finite-station-1",
+    "version": 1
+  },
+  "scope": {
+    "review": true,
+    "scenarios": "all"
+  },
+  "status": "fail"
+}

@@ -224,6 +224,10 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
         _problem(report, "input_or_parser", str(exc))
         return report
     report["parser_issues"] = parsed.get("issues", [])
+    if (not isinstance(report["parser_issues"], list)
+            or any(not isinstance(item, dict) for item in report["parser_issues"])):
+        _problem(report, "parser_contract", "SysML adapter returned malformed diagnostics")
+        return report
     for issue in report["parser_issues"]:
         issue["source"], issue["line"] = _locate(issue.get("line"), line_ranges)
     if parsed.get("error") or any(item.get("severity") == "ERROR" for item in report["parser_issues"]):
@@ -232,7 +236,8 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
     record_groups = ("attributes", "events", "event_attributes", "parts", "part_definitions",
                      "concerns", "use_cases", "actions", "states", "requirements",
                      "constraints", "documents")
-    if not all(isinstance(parsed.get(key), list) for key in record_groups):
+    if not all(isinstance(parsed.get(key), list) and all(isinstance(item, dict) for item in parsed[key])
+               for key in record_groups):
         _problem(report, "parser_contract", "SysML adapter omitted required extracted records")
         return report
     for records in (parsed[key] for key in record_groups):
@@ -244,10 +249,14 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
             short_id = item.get("id")
             if not short_id:
                 continue
-            if not ID.fullmatch(short_id):
+            if not isinstance(short_id, str) or not ID.fullmatch(short_id):
                 _problem(report, "identity", f"Invalid short ID {short_id}", line=item.get("line"), source=item.get("source"))
             elif short_id in identified:
                 _problem(report, "identity", f"Duplicate short ID {short_id}", line=item.get("line"), source=item.get("source"))
+            elif not isinstance(item.get("qualified_name"), str) or not item["qualified_name"]:
+                _problem(report, "identity", f"Short ID {short_id} has no resolved qualified name",
+                         line=item.get("line"), source=item.get("source"))
+                return report
             else:
                 identified[short_id] = item["qualified_name"]
     report["shape"] = {"part_definitions": len(parsed["part_definitions"]),
@@ -276,6 +285,13 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
                                 "requirements", "constraints", "attributes", "events",
                                 "event_attributes", "documents")}
         return report
+
+    for category in ("requirements", "parts", "part_definitions", "constraints"):
+        for item in parsed[category]:
+            if not isinstance(item.get("qualified_name"), str) or not item["qualified_name"]:
+                _problem(report, "unresolved_identity", f"{category} record has no resolved qualified name",
+                         status="unsupported", line=item.get("line"), source=item.get("source"))
+                return report
 
     documents = parsed["documents"]
     clock_docs = [item for item in documents if item.get("name") == "cseClock"]

@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "views": [
+    {
+      "id": "FT_STATION",
+      "kind": "function_tree",
+      "required_levels": [
+        0,
+        1,
+        2
+      ],
+      "required_ids": [
+        "F0",
+        "F1",
+        "F11",
+        "F12",
+        "F2",
+        "F21",
+        "F22",
+        "F3",
+        "F31",
+        "F32",
+        "F4",
+        "F41",
+        "F42"
+      ]
+    },
+    {
+      "id": "SQ_NOMINAL",
+      "kind": "sequence",
+      "required_ids": [
+        "SQ_NOMINAL_E1",
+        "SQ_NOMINAL_E2",
+        "SQ_NOMINAL_E3",
+        "SQ_NOMINAL_E4"
+      ]
+    },
+    {
+      "id": "SQ_RECOVERY",
+      "kind": "sequence",
+      "required_ids": [
+        "SQ_RECOVERY_E1",
+        "SQ_RECOVERY_E2",
+        "SQ_RECOVERY_E3",
+        "SQ_RECOVERY_E4"
+      ]
+    },
+    {
+      "id": "SQ_MAINTENANCE",
+      "kind": "sequence",
+      "required_ids": [
+        "SQ_MAINTENANCE_E1",
+        "SQ_MAINTENANCE_E2",
+        "SQ_MAINTENANCE_E3",
+        "SQ_MAINTENANCE_E4"
+      ]
+    }
+  ]
+}

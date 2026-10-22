@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "classification": "original synthetic simplified model-derived presentations",
+  "authority": "station.sysml is the shared concept/CONOPS/documentary-scenario source; finite-scenarios.json is separately authored, never converted",
+  "boundary": "sample identity and custody records; no physical/safety validation",
+  "native_part_usages": {
+    "WaterSampling::operator": "Operator",
+    "WaterSampling::station": "Station",
+    "WaterSampling::courier": "Courier",
+    "WaterSampling::custodian": "Custodian"
+  },
+  "ownership_claim": "Station owns three component usages in its definition. External roles are package-owned usages. No ports, connectors, flows or implementation ownership inferred.",
+  "documentary_allocations": [
+    {
+      "function": "F1",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F11",
+      "performer": "WaterSampling::operator",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F12",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F2",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F21",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F22",
+      "performer": "WaterSampling::operator",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F3",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F31",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F32",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F4",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F41",
+      "performer": "WaterSampling::station",
+      "status": "fictional documentary allocation, not native allocation"
+    },
+    {
+      "function": "F42",
+      "performer": "WaterSampling::custodian",
+      "status": "fictional documentary allocation, not native allocation"
+    }
+  ],
+  "typed_traces": [
+    {
+      "from": "R_RECORD",
+      "to": "N_IDENTITY",
+      "kind": "justifies"
+    },
+    {
+      "from": "R_ELAPSED",
+      "to": "N_ACCOUNT",
+      "kind": "justifies"
+    },
+    {
+      "from": "R_CORRELATION",
+      "to": "N_IDENTITY",
+      "kind": "justifies"
+    },
+    {
+      "from": "UC_NOMINAL",
+      "to": "R_RECORD",
+      "kind": "addresses"
+    },
+    {
+      "from": "UC_NOMINAL",
+      "to": "R_CORRELATION",
+      "kind": "addresses"
+    },
+    {
+      "from": "UC_RECOVERY",
+      "to": "R_RECORD",
+      "kind": "addresses"
+    }
+  ],
+  "omitted_semantics": [
+    "No activity flow implied by function parentage",
+    "No timing inferred from sequence layout",
+    "Maintenance and label policy remain documentary in SysML",
+    "Finite counterpart adds explicit invented guard/effect semantics only in its own artifact"
+  ],
+  "native_composition": [
+    {
+      "owner_definition": "WaterSampling::Station",
+      "part": "intakePanel",
+      "type": "WaterSampling::IntakePanel",
+      "multiplicity": "native implicit default; omitted from presentation"
+    },
+    {
+      "owner_definition": "WaterSampling::Station",
+      "part": "receiptRegister",
+      "type": "WaterSampling::ReceiptRegister",
+      "multiplicity": "native implicit default; omitted from presentation"
+    },
+    {
+      "owner_definition": "WaterSampling::Station",
+      "part": "holdingRack",
+      "type": "WaterSampling::HoldingRack",
+      "multiplicity": "native implicit default; omitted from presentation"
+    }
+  ],
+  "maintenance_outcome": "UC_MAINTENANCE / SQ_MAINTENANCE: inspection recorded; return-to-service approval pending. Intake remains suspended. InspectAndRestore is an existing candidate function, not an automatic release decision.",
+  "interaction_disposition": {
+    "scope": "Physical/manual handoffs and protocol receipt/status exchanges, not a newly designed station UI or accepted GUI field/command set.",
+    "artifact_reader": "Read-only engineering documentation, not a station operational UI.",
+    "wireframe_disposition": "No station wireframe for this bounded model/check question. If UI design is requested, follow current interaction-walkthrough precedents and connected sketches before implementation.",
+    "routes": [
+      {
+        "sequence": "SQ_NOMINAL",
+        "exchanges": [
+          "SQ_NOMINAL_E1",
+          "SQ_NOMINAL_E3"
+        ],
+        "route": "physical/manual container or manifest handoff"
+      },
+      {
+        "sequence": "SQ_RECOVERY",
+        "exchanges": [
+          "SQ_RECOVERY_E1",
+          "SQ_RECOVERY_E3"
+        ],
+        "route": "physical/manual container handoff or documentary corrected identity"
+      },
+      {
+        "sequence": "SQ_MAINTENANCE",
+        "exchanges": [
+          "SQ_MAINTENANCE_E1",
+          "SQ_MAINTENANCE_E3"
+        ],
+        "route": "manual service instruction or documentary inspection evidence"
+      },
+      {
+        "sequence": "SQ_NOMINAL",
+        "exchanges": [
+          "SQ_NOMINAL_E2",
+          "SQ_NOMINAL_E4"
+        ],
+        "route": "protocol/documentary receipt or custody output; medium unspecified"
+      },
+      {
+        "sequence": "SQ_RECOVERY",
+        "exchanges": [
+          "SQ_RECOVERY_E2",
+          "SQ_RECOVERY_E4"
+        ],
+        "route": "protocol/documentary hold or reconciliation output; medium unspecified"
+      },
+      {
+        "sequence": "SQ_MAINTENANCE",
+        "exchanges": [
+          "SQ_MAINTENANCE_E2",
+          "SQ_MAINTENANCE_E4"
+        ],
+        "route": "protocol/documentary suspension or approval-pending status; medium unspecified"
+      }
+    ]
+  }
+}

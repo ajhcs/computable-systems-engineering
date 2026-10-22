@@ -4,6 +4,7 @@ import sys
 import tempfile
 import unittest
 from copy import deepcopy
+from fractions import Fraction
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from verifier.visual_style import load_profile, contrast, presentation_style, require_supported_text, font_css, text_width, wrap_text, function_tree_roles
@@ -61,6 +62,21 @@ class VisualStyleTests(unittest.TestCase):
         self.assertAlmostEqual(contrast("#000000", "#ffffff"), 21)
         self.assertEqual(contrast("#123456", "#123456"), 1)
         with self.assertRaises(ValueError): contrast("transparent", "#ffffff")
+
+    def test_contrast_accumulation_matches_exact_sum_of_float_terms(self):
+        # Exact rational addition independently rounds the weighted float terms
+        # once. Sequential float addition (Python <=3.11 sum) loses a low bit
+        # for these real palette colors and changes serialized report hashes.
+        def luminance(color):
+            channels = [int(color[i:i+2], 16) / 255 for i in (1, 3, 5)]
+            channels = [v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4 for v in channels]
+            terms = [Fraction.from_float(v * weight) for v, weight in zip(channels, (0.2126, 0.7152, 0.0722))]
+            return float(sum(terms, Fraction()))
+        for foreground, background in (('#25282d', '#d5e2da'), ('#315e43', '#d5e2da'),
+                                       ('#7f362f', '#eeeeea'), ('#7f362f', '#ece1ce')):
+            low, high = sorted((luminance(foreground), luminance(background)))
+            with self.subTest(foreground=foreground, background=background):
+                self.assertEqual(contrast(foreground, background), (high + 0.05) / (low + 0.05))
 
     def test_effective_stroke_and_small_target_refusal(self):
         s = presentation_style(target_width=900, canvas_width=1200)

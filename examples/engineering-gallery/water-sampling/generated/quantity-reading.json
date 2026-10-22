@@ -1,0 +1,19 @@
+{
+  "claim_scope": "exact_display_arithmetic_only",
+  "clock_period_ms": "1000",
+  "domain_ticks": [
+    0,
+    20
+  ],
+  "limits": "Display calculation from parsed type annotation, supplied synthetic ticks, actual compiled receipt-time quantity condition and R_RECORD response deadline; no physical model or new requirement evaluator.",
+  "observed_example_quantity": "4",
+  "observed_example_ticks": 4,
+  "quantity_compiled_clause": "Whenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second.",
+  "response_deadline_ms": "2000",
+  "response_deadline_ticks": 2,
+  "response_requirement": "R_RECORD__receipt",
+  "scale": "1",
+  "source_attribute": "WaterSampling::Station::processingElapsed",
+  "source_type": "ISQBase::DurationValue",
+  "unit": "second"
+}

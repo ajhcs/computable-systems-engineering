@@ -1,0 +1,103 @@
+{
+  "claim": "scoped documentary decomposition; source parent edges only",
+  "display_labels": [
+    {
+      "id": "F0",
+      "lines": [
+        "Manage sample handoff"
+      ],
+      "native_element": "WaterSampling::ManageSampleHandoff"
+    },
+    {
+      "id": "F1",
+      "lines": [
+        "Receive sample"
+      ],
+      "native_element": "WaterSampling::ReceiveSample"
+    },
+    {
+      "id": "F2",
+      "lines": [
+        "Preserve handoff",
+        "record"
+      ],
+      "native_element": "WaterSampling::PreserveHandoffRecord"
+    },
+    {
+      "id": "F3",
+      "lines": [
+        "Release sample"
+      ],
+      "native_element": "WaterSampling::ReleaseSample"
+    },
+    {
+      "id": "F4",
+      "lines": [
+        "Maintain station"
+      ],
+      "native_element": "WaterSampling::MaintainStation"
+    }
+  ],
+  "edges": [
+    {
+      "from": "F0",
+      "to": "F1"
+    },
+    {
+      "from": "F0",
+      "to": "F2"
+    },
+    {
+      "from": "F0",
+      "to": "F3"
+    },
+    {
+      "from": "F0",
+      "to": "F4"
+    }
+  ],
+  "included": [
+    {
+      "element": "WaterSampling::ManageSampleHandoff",
+      "id": "F0",
+      "level": 0,
+      "parent": null
+    },
+    {
+      "element": "WaterSampling::ReceiveSample",
+      "id": "F1",
+      "level": 1,
+      "parent": "F0"
+    },
+    {
+      "element": "WaterSampling::PreserveHandoffRecord",
+      "id": "F2",
+      "level": 1,
+      "parent": "F0"
+    },
+    {
+      "element": "WaterSampling::ReleaseSample",
+      "id": "F3",
+      "level": 1,
+      "parent": "F0"
+    },
+    {
+      "element": "WaterSampling::MaintainStation",
+      "id": "F4",
+      "level": 1,
+      "parent": "F0"
+    }
+  ],
+  "omitted_ids": [
+    "F11",
+    "F12",
+    "F21",
+    "F22",
+    "F31",
+    "F32",
+    "F41",
+    "F42"
+  ],
+  "source_model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
+  "view": "FT_STATION"
+}

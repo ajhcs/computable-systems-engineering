@@ -32,7 +32,9 @@ def contrast(foreground, background):
     def luminance(color):
         channels = [int(_color(color)[i:i+2], 16) / 255 for i in (1, 3, 5)]
         channels = [v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4 for v in channels]
-        return sum(v * weight for v, weight in zip(channels, (0.2126, 0.7152, 0.0722)))
+        # Built-in sum(float) changed in Python 3.12. Keep full-precision
+        # contrast reports reproducible across the supported Python versions.
+        return math.fsum(v * weight for v, weight in zip(channels, (0.2126, 0.7152, 0.0722)))
     a, b = sorted((luminance(foreground), luminance(background)))
     return (b + 0.05) / (a + 0.05)
 
