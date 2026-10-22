@@ -65,6 +65,10 @@ def check_allocations(inventory, ledger):
     views = json.loads(documents[0]['body'].split('CSE-VIEWS/1.0', 1)[1])['views']
     functions = {n['id']: n['element'] for v in views if v['kind'] == 'function_tree' for n in v['nodes']}
     actions = {a['qualified_name'] for a in inventory['actions']}
+    sequences = {v['id']: {e['id'] for e in v['exchanges']} for v in views if v['kind'] == 'sequence'}
+    for route in ledger['interaction_disposition']['routes']:
+        if route['sequence'] not in sequences or not set(route['exchanges']).issubset(sequences[route['sequence']]):
+            raise ValueError('Interaction disposition references an unknown exchange')
     for name, typename in ledger['native_part_usages'].items():
         if name not in parts or parts[name].get('type') != 'WaterSampling::' + typename:
             raise ValueError('Native part usage/type mismatch: ' + name)

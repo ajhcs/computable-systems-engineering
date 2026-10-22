@@ -130,5 +130,60 @@
       "multiplicity": "native implicit default; omitted from presentation"
     }
   ],
-  "maintenance_outcome": "UC_MAINTENANCE / SQ_MAINTENANCE: inspection recorded; return-to-service approval pending. Intake remains suspended. InspectAndRestore is an existing candidate function, not an automatic release decision."
+  "maintenance_outcome": "UC_MAINTENANCE / SQ_MAINTENANCE: inspection recorded; return-to-service approval pending. Intake remains suspended. InspectAndRestore is an existing candidate function, not an automatic release decision.",
+  "interaction_disposition": {
+    "scope": "Physical/manual handoffs and protocol receipt/status exchanges, not a newly designed station UI or accepted GUI field/command set.",
+    "artifact_reader": "Read-only engineering documentation, not a station operational UI.",
+    "wireframe_disposition": "No station wireframe for this bounded model/check question. If UI design is requested, follow current interaction-walkthrough precedents and connected sketches before implementation.",
+    "routes": [
+      {
+        "sequence": "SQ_NOMINAL",
+        "exchanges": [
+          "SQ_NOMINAL_E1",
+          "SQ_NOMINAL_E3"
+        ],
+        "route": "physical/manual container or manifest handoff"
+      },
+      {
+        "sequence": "SQ_RECOVERY",
+        "exchanges": [
+          "SQ_RECOVERY_E1",
+          "SQ_RECOVERY_E3"
+        ],
+        "route": "physical/manual container handoff or documentary corrected identity"
+      },
+      {
+        "sequence": "SQ_MAINTENANCE",
+        "exchanges": [
+          "SQ_MAINTENANCE_E1",
+          "SQ_MAINTENANCE_E3"
+        ],
+        "route": "manual service instruction or documentary inspection evidence"
+      },
+      {
+        "sequence": "SQ_NOMINAL",
+        "exchanges": [
+          "SQ_NOMINAL_E2",
+          "SQ_NOMINAL_E4"
+        ],
+        "route": "protocol/documentary receipt or custody output; medium unspecified"
+      },
+      {
+        "sequence": "SQ_RECOVERY",
+        "exchanges": [
+          "SQ_RECOVERY_E2",
+          "SQ_RECOVERY_E4"
+        ],
+        "route": "protocol/documentary hold or reconciliation output; medium unspecified"
+      },
+      {
+        "sequence": "SQ_MAINTENANCE",
+        "exchanges": [
+          "SQ_MAINTENANCE_E2",
+          "SQ_MAINTENANCE_E4"
+        ],
+        "route": "protocol/documentary suspension or approval-pending status; medium unspecified"
+      }
+    ]
+  }
 }

@@ -6,6 +6,16 @@ Open [the offline gallery](generated/index.html), [the compact overview](generat
 
 The operator presents a labeled container to the intake panel. The receipt register records a provisional intake disposition and returns a receipt. A receipt can explicitly state **held, identity unresolved**; it never authorizes release. The operator reconciles an unreadable label before a corrected receipt. A courier later matches the pickup manifest and obtains the custody record. A custodian suspends intake before inspection; equipment repair and authorization to resume operation require separate evidence.
 
+This case demonstrates physical/manual handoffs and protocol receipt/status messages. It does not design a station UI, accepted GUI commands, fields, defaults or controls. The HTML artifact reader is read-only engineering documentation. No station wireframe is created for this bounded model/check question: station UI design is outside scope and, if requested, would follow the current interaction-walkthrough workflow with relevant precedents and connected sketches before implementation.
+
+| Selected operational actions | Route and evidence boundary |
+| --- | --- |
+| Operator presents a labeled or unreadable container (`SQ_NOMINAL_E1`, `SQ_RECOVERY_E1`) | Physical/manual handoff plus identification information; no scanner, form field or UI inferred. |
+| Operator supplies corrected identity (`SQ_RECOVERY_E3`) | Manual/documentary reconciliation input; actual authority and validation policy remain unresolved. |
+| Courier presents pickup manifest (`SQ_NOMINAL_E3`) | Manual/document exchange at pickup; no GUI command set inferred. |
+| Custodian requests a window and records inspection (`SQ_MAINTENANCE_E1`, `SQ_MAINTENANCE_E3`) | Manual service instruction and documentary inspection evidence. |
+| Station returns receipt, custody, hold, reconciliation or service status (all remaining sequence exchanges) | Protocol/documentary output; delivery medium and station UI remain unspecified. Maintenance status reports approval pending, never automatic release. |
+
 The concept considers a staffed local register and an offline station with local receipts and later synchronization. The example explores the second candidate without claiming a real selection. `Station` owns three candidate component usages: intake panel, receipt register and holding rack. No connector topology or item flows are invented. Component sizing, offline synchronization, label-authority policy, refrigeration, power budget and environmental limits remain qualitative gaps.
 
 | Artifact | Meaning and limits |
