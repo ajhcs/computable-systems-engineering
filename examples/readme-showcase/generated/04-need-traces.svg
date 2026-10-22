@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-labelledby="title description">
-<title id="title">Which need does each check support?</title><desc id="description">Read the recorded relationship, including its direction. Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-labelledby="showcase-04-need-traces-title showcase-04-need-traces-description">
+<title id="showcase-04-need-traces-title">Which need does each check support?</title><desc id="showcase-04-need-traces-description">Read the recorded relationship, including its direction. Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>
 <style>/*
 Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter) Inter-Italic[opsz,wght].ttf: Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
 
@@ -202,63 +202,63 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 <text x="32" y="83" font-size="31" font-weight="700" fill="#182b3b">Which need does each check support?</text>
 <text x="32" y="120.0" font-size="22" font-weight="400" fill="#486171">Read the recorded relationship, including its direction.</text>
 <text x="32" y="170" font-size="24" font-weight="700" fill="#182b3b">Requirement to need</text>
-<rect x="32" y="190" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace00from"/>
-<text x="48" y="217" font-size="18" font-weight="400" fill="#486171" data-box="trace00from">R_RECORD</text>
-<text x="48" y="249.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace00from">Record receipt</text>
-<rect x="468" y="190" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace00to"/>
-<text x="484" y="217" font-size="18" font-weight="400" fill="#486171" data-box="trace00to">N_IDENTITY</text>
-<text x="484" y="249.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace00to">Preserve identity</text>
+<rect x="32" y="190" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace00from"/>
+<text x="48" y="217" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace00from">R_RECORD</text>
+<text x="48" y="249.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace00from">Record receipt</text>
+<rect x="468" y="190" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace00to"/>
+<text x="484" y="217" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace00to">N_IDENTITY</text>
+<text x="484" y="249.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace00to">Preserve identity</text>
 <text x="349" y="220" font-size="18" font-weight="400" fill="#486171">justifies</text>
 <path d="M344 249L456 249" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 242L456 249" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 256L456 249" fill="none" stroke="#486171" stroke-width="2"/>
-<rect x="32" y="286" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace01from"/>
-<text x="48" y="313" font-size="18" font-weight="400" fill="#486171" data-box="trace01from">R_ELAPSED</text>
-<text x="48" y="345.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace01from">Limit duration</text>
-<rect x="468" y="286" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace01to"/>
-<text x="484" y="313" font-size="18" font-weight="400" fill="#486171" data-box="trace01to">N_ACCOUNT</text>
-<text x="484" y="345.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace01to">Account for containers</text>
+<rect x="32" y="286" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace01from"/>
+<text x="48" y="313" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace01from">R_ELAPSED</text>
+<text x="48" y="345.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace01from">Limit duration</text>
+<rect x="468" y="286" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace01to"/>
+<text x="484" y="313" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace01to">N_ACCOUNT</text>
+<text x="484" y="345.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace01to">Account for containers</text>
 <text x="349" y="316" font-size="18" font-weight="400" fill="#486171">justifies</text>
 <path d="M344 345L456 345" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 338L456 345" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 352L456 345" fill="none" stroke="#486171" stroke-width="2"/>
-<rect x="32" y="382" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace02from"/>
-<text x="48" y="409" font-size="18" font-weight="400" fill="#486171" data-box="trace02from">R_CORRELATION</text>
-<text x="48" y="441.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace02from">Match each receipt</text>
-<rect x="468" y="382" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace02to"/>
-<text x="484" y="409" font-size="18" font-weight="400" fill="#486171" data-box="trace02to">N_IDENTITY</text>
-<text x="484" y="441.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace02to">Preserve identity</text>
+<rect x="32" y="382" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace02from"/>
+<text x="48" y="409" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace02from">R_CORRELATION</text>
+<text x="48" y="441.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace02from">Match each receipt</text>
+<rect x="468" y="382" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace02to"/>
+<text x="484" y="409" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace02to">N_IDENTITY</text>
+<text x="484" y="441.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace02to">Preserve identity</text>
 <text x="349" y="412" font-size="18" font-weight="400" fill="#486171">justifies</text>
 <path d="M344 441L456 441" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 434L456 441" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 448L456 441" fill="none" stroke="#486171" stroke-width="2"/>
 <text x="32" y="528" font-size="24" font-weight="700" fill="#182b3b">Scenario to requirement</text>
-<rect x="32" y="548" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace10from"/>
-<text x="48" y="575" font-size="18" font-weight="400" fill="#486171" data-box="trace10from">UC_NOMINAL</text>
-<text x="48" y="607.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace10from">Normal handoff</text>
-<rect x="468" y="548" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace10to"/>
-<text x="484" y="575" font-size="18" font-weight="400" fill="#486171" data-box="trace10to">R_RECORD</text>
-<text x="484" y="607.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace10to">Record receipt</text>
+<rect x="32" y="548" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace10from"/>
+<text x="48" y="575" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace10from">UC_NOMINAL</text>
+<text x="48" y="607.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace10from">Normal handoff</text>
+<rect x="468" y="548" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace10to"/>
+<text x="484" y="575" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace10to">R_RECORD</text>
+<text x="484" y="607.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace10to">Record receipt</text>
 <text x="349" y="578" font-size="18" font-weight="400" fill="#486171">addresses</text>
 <path d="M344 607L456 607" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 600L456 607" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 614L456 607" fill="none" stroke="#486171" stroke-width="2"/>
-<rect x="32" y="644" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace11from"/>
-<text x="48" y="671" font-size="18" font-weight="400" fill="#486171" data-box="trace11from">UC_NOMINAL</text>
-<text x="48" y="703.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace11from">Normal handoff</text>
-<rect x="468" y="644" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace11to"/>
-<text x="484" y="671" font-size="18" font-weight="400" fill="#486171" data-box="trace11to">R_CORRELATION</text>
-<text x="484" y="703.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace11to">Match each receipt</text>
+<rect x="32" y="644" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace11from"/>
+<text x="48" y="671" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace11from">UC_NOMINAL</text>
+<text x="48" y="703.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace11from">Normal handoff</text>
+<rect x="468" y="644" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace11to"/>
+<text x="484" y="671" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace11to">R_CORRELATION</text>
+<text x="484" y="703.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace11to">Match each receipt</text>
 <text x="349" y="674" font-size="18" font-weight="400" fill="#486171">addresses</text>
 <path d="M344 703L456 703" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 696L456 703" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 710L456 703" fill="none" stroke="#486171" stroke-width="2"/>
-<rect x="32" y="740" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace12from"/>
-<text x="48" y="767" font-size="18" font-weight="400" fill="#486171" data-box="trace12from">UC_RECOVERY</text>
-<text x="48" y="799.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace12from">Label recovery</text>
-<rect x="468" y="740" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="trace12to"/>
-<text x="484" y="767" font-size="18" font-weight="400" fill="#486171" data-box="trace12to">R_RECORD</text>
-<text x="484" y="799.0" font-size="22" font-weight="400" fill="#182b3b" data-box="trace12to">Record receipt</text>
+<rect x="32" y="740" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace12from"/>
+<text x="48" y="767" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace12from">UC_RECOVERY</text>
+<text x="48" y="799.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace12from">Label recovery</text>
+<rect x="468" y="740" width="300" height="84" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-04-need-traces-trace12to"/>
+<text x="484" y="767" font-size="18" font-weight="400" fill="#486171" data-box="showcase-04-need-traces-trace12to">R_RECORD</text>
+<text x="484" y="799.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-04-need-traces-trace12to">Record receipt</text>
 <text x="349" y="770" font-size="18" font-weight="400" fill="#486171">addresses</text>
 <path d="M344 799L456 799" fill="none" stroke="#486171" stroke-width="2"/>
 <path d="M446 792L456 799" fill="none" stroke="#486171" stroke-width="2"/>

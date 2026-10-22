@@ -50,7 +50,18 @@ const {chromium} = require(process.env.SHOWCASE_PLAYWRIGHT);
  }
  await page.setViewportSize({width:390,height:844});
  await page.goto('file://'+output+'/index.html',{waitUntil:'load'});
- receipt.gallery=await page.evaluate(()=>({viewport:innerWidth,document:document.documentElement.scrollWidth,frames:[...document.querySelectorAll('.diagram')].map(e=>({client:e.clientWidth,scroll:e.scrollWidth})),textAlternatives:document.querySelectorAll('details').length}));
+ receipt.gallery=await page.evaluate(()=>{
+  const ids=[...document.querySelectorAll('[id]')].map(e=>e.id);
+  const labels=[...document.querySelectorAll('svg')].map(svg=>{
+   const refs=(svg.getAttribute('aria-labelledby')||'').split(/\s+/);
+   const nodes=refs.map(id=>document.getElementById(id));
+   return {refs,own:nodes.every(node=>node&&svg.contains(node)),name:nodes.map(node=>node?node.textContent:'').join(' ')};
+  });
+  return {viewport:innerWidth,document:document.documentElement.scrollWidth,frames:[...document.querySelectorAll('.diagram')].map(e=>({client:e.clientWidth,scroll:e.scrollWidth})),textAlternatives:document.querySelectorAll('details').length,duplicateIds:ids.filter((id,i)=>ids.indexOf(id)!==i),labels};
+ });
+ receipt.gallery.ariaSnapshots=[];
+ for(const svg of await page.locator('svg').all())receipt.gallery.ariaSnapshots.push(await svg.ariaSnapshot());
+ if(receipt.gallery.duplicateIds.length||receipt.gallery.labels.some(label=>!label.own)||new Set(receipt.gallery.ariaSnapshots).size!==manifest.views.length)receipt.errors.push('Combined gallery SVG identity or accessible-name collision');
  if(receipt.gallery.document!==390||receipt.gallery.textAlternatives!==manifest.views.length)receipt.errors.push('Narrow full-gallery overflow or missing text alternatives');
  await context.close();
  fs.writeFileSync(output+'/browser-inspection.json',JSON.stringify(receipt,null,2)+'\n');

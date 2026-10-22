@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="740" viewBox="0 0 800 740" role="img" aria-labelledby="title description">
-<title id="title">How does a normal handoff work?</title><desc id="description">Four existing handoffs, in their recorded order. Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="740" viewBox="0 0 800 740" role="img" aria-labelledby="showcase-01-normal-handoffs-title showcase-01-normal-handoffs-description">
+<title id="showcase-01-normal-handoffs-title">How does a normal handoff work?</title><desc id="showcase-01-normal-handoffs-description">Four existing handoffs, in their recorded order. Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>
 <style>/*
 Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter) Inter-Italic[opsz,wght].ttf: Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
 
@@ -201,26 +201,26 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 <text x="32" y="35" font-size="18" font-weight="400" fill="#486171">SYNTHETIC EXAMPLE  /  01</text>
 <text x="32" y="83" font-size="31" font-weight="700" fill="#182b3b">How does a normal handoff work?</text>
 <text x="32" y="120.0" font-size="22" font-weight="400" fill="#486171">Four existing handoffs, in their recorded order.</text>
-<rect x="32" y="170" width="736" height="96" rx="8" fill="#ffffff" stroke="#b4c2cb" id="row0"/>
+<rect x="32" y="170" width="736" height="96" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-01-normal-handoffs-row0"/>
 <circle cx="64" cy="199" r="18" fill="#e4edf2" stroke="#235e7b" stroke-width="2"/>
 <text x="58" y="206" font-size="22" font-weight="700" fill="#182b3b">1</text>
-<text x="101" y="202" font-size="22" font-weight="700" fill="#182b3b" data-box="row0">Operator  to  Station</text>
-<text x="101" y="235.0" font-size="22" font-weight="400" fill="#182b3b" data-box="row0">Present labeled container and sample ID</text>
-<rect x="32" y="282" width="736" height="96" rx="8" fill="#ffffff" stroke="#b4c2cb" id="row1"/>
+<text x="101" y="202" font-size="22" font-weight="700" fill="#182b3b" data-box="showcase-01-normal-handoffs-row0">Operator  to  Station</text>
+<text x="101" y="235.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-01-normal-handoffs-row0">Present labeled container and sample ID</text>
+<rect x="32" y="282" width="736" height="96" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-01-normal-handoffs-row1"/>
 <circle cx="64" cy="311" r="18" fill="#e4edf2" stroke="#235e7b" stroke-width="2"/>
 <text x="58" y="318" font-size="22" font-weight="700" fill="#182b3b">2</text>
-<text x="101" y="314" font-size="22" font-weight="700" fill="#182b3b" data-box="row1">Station  to  Operator</text>
-<text x="101" y="347.0" font-size="22" font-weight="400" fill="#182b3b" data-box="row1">Return receipt with matching sample ID</text>
-<rect x="32" y="394" width="736" height="96" rx="8" fill="#ffffff" stroke="#b4c2cb" id="row2"/>
+<text x="101" y="314" font-size="22" font-weight="700" fill="#182b3b" data-box="showcase-01-normal-handoffs-row1">Station  to  Operator</text>
+<text x="101" y="347.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-01-normal-handoffs-row1">Return receipt with matching sample ID</text>
+<rect x="32" y="394" width="736" height="96" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-01-normal-handoffs-row2"/>
 <circle cx="64" cy="423" r="18" fill="#e4edf2" stroke="#235e7b" stroke-width="2"/>
 <text x="58" y="430" font-size="22" font-weight="700" fill="#182b3b">3</text>
-<text x="101" y="426" font-size="22" font-weight="700" fill="#182b3b" data-box="row2">Courier  to  Station</text>
-<text x="101" y="459.0" font-size="22" font-weight="400" fill="#182b3b" data-box="row2">Present pickup manifest</text>
-<rect x="32" y="506" width="736" height="96" rx="8" fill="#ffffff" stroke="#b4c2cb" id="row3"/>
+<text x="101" y="426" font-size="22" font-weight="700" fill="#182b3b" data-box="showcase-01-normal-handoffs-row2">Courier  to  Station</text>
+<text x="101" y="459.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-01-normal-handoffs-row2">Present pickup manifest</text>
+<rect x="32" y="506" width="736" height="96" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-01-normal-handoffs-row3"/>
 <circle cx="64" cy="535" r="18" fill="#e4edf2" stroke="#235e7b" stroke-width="2"/>
 <text x="58" y="542" font-size="22" font-weight="700" fill="#182b3b">4</text>
-<text x="101" y="538" font-size="22" font-weight="700" fill="#182b3b" data-box="row3">Station  to  Courier</text>
-<text x="101" y="571.0" font-size="22" font-weight="400" fill="#182b3b" data-box="row3">Return custody transfer record</text>
+<text x="101" y="538" font-size="22" font-weight="700" fill="#182b3b" data-box="showcase-01-normal-handoffs-row3">Station  to  Courier</text>
+<text x="101" y="571.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-01-normal-handoffs-row3">Return custody transfer record</text>
 <path d="M32 657L768 657" fill="none" stroke="#b4c2cb" stroke-width="2"/>
 <text x="32" y="687" font-size="18" font-weight="400" fill="#182b3b">SQ_NOMINAL  /  E1 through E4; exact messages in source</text>
 <text x="32" y="715" font-size="18" font-weight="400" fill="#486171">Documentary exchanges; no timing, UI or executable control flow inferred.</text>

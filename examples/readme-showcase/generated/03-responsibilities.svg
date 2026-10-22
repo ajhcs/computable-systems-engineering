@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="760" viewBox="0 0 800 760" role="img" aria-labelledby="title description">
-<title id="title">Who does what?</title><desc id="description">Selected responsibilities, kept distinct from participant names. Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="760" viewBox="0 0 800 760" role="img" aria-labelledby="showcase-03-responsibilities-title showcase-03-responsibilities-description">
+<title id="showcase-03-responsibilities-title">Who does what?</title><desc id="showcase-03-responsibilities-description">Selected responsibilities, kept distinct from participant names. Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>
 <style>/*
 Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter) Inter-Italic[opsz,wght].ttf: Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)
 
@@ -201,30 +201,30 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 <text x="32" y="35" font-size="18" font-weight="400" fill="#486171">SYNTHETIC EXAMPLE  /  03</text>
 <text x="32" y="83" font-size="31" font-weight="700" fill="#182b3b">Who does what?</text>
 <text x="32" y="120.0" font-size="22" font-weight="400" fill="#486171">Selected responsibilities, kept distinct from participant names.</text>
-<rect x="32" y="170" width="352" height="215" rx="8" fill="#ffffff" stroke="#b4c2cb" id="role0"/>
-<text x="52" y="208" font-size="26" font-weight="700" fill="#182b3b" data-box="role0">Operator</text>
-<text x="52" y="247.0" font-size="22" font-weight="400" fill="#182b3b" data-box="role0">Identify container</text>
-<text x="52" y="275.6" font-size="18" font-weight="400" fill="#486171" data-box="role0">F11</text>
-<text x="52" y="311.6" font-size="22" font-weight="400" fill="#182b3b" data-box="role0">Reconcile label</text>
-<text x="52" y="340.2" font-size="18" font-weight="400" fill="#486171" data-box="role0">F22</text>
-<rect x="416" y="170" width="352" height="215" rx="8" fill="#ffffff" stroke="#b4c2cb" id="role1"/>
-<text x="436" y="208" font-size="26" font-weight="700" fill="#182b3b" data-box="role1">Station</text>
-<text x="436" y="247.0" font-size="22" font-weight="400" fill="#182b3b" data-box="role1">Record receipt</text>
-<text x="436" y="275.6" font-size="18" font-weight="400" fill="#486171" data-box="role1">F12</text>
-<text x="436" y="311.6" font-size="22" font-weight="400" fill="#182b3b" data-box="role1">Record custody transfer</text>
-<text x="436" y="340.2" font-size="18" font-weight="400" fill="#486171" data-box="role1">F32</text>
-<rect x="32" y="414" width="352" height="215" rx="8" fill="#ffffff" stroke="#b4c2cb" id="role2"/>
-<text x="52" y="452" font-size="26" font-weight="700" fill="#182b3b" data-box="role2">Custodian</text>
-<text x="52" y="491.0" font-size="22" font-weight="400" fill="#182b3b" data-box="role2">Inspect and restore</text>
-<text x="52" y="519.6" font-size="18" font-weight="400" fill="#486171" data-box="role2">F42</text>
-<text x="52" y="559.0" font-size="18" font-weight="400" fill="#182b3b" data-box="role2">Operational release remains a</text>
-<text x="52" y="582.4" font-size="18" font-weight="400" fill="#182b3b" data-box="role2">separate decision.</text>
-<rect x="416" y="414" width="352" height="215" rx="8" fill="#ffffff" stroke="#b4c2cb" id="role3"/>
-<text x="436" y="452" font-size="26" font-weight="700" fill="#182b3b" data-box="role3">Courier</text>
-<text x="436" y="494.0" font-size="22" font-weight="400" fill="#182b3b" data-box="role3">Pickup participant; no</text>
-<text x="436" y="522.6" font-size="22" font-weight="400" fill="#182b3b" data-box="role3">function allocation is</text>
-<text x="436" y="551.2" font-size="22" font-weight="400" fill="#182b3b" data-box="role3">recorded.</text>
-<text x="436" y="597" font-size="18" font-weight="400" fill="#486171" data-box="role3">SQ_NOMINAL</text>
+<rect x="32" y="170" width="352" height="215" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-03-responsibilities-role0"/>
+<text x="52" y="208" font-size="26" font-weight="700" fill="#182b3b" data-box="showcase-03-responsibilities-role0">Operator</text>
+<text x="52" y="247.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role0">Identify container</text>
+<text x="52" y="275.6" font-size="18" font-weight="400" fill="#486171" data-box="showcase-03-responsibilities-role0">F11</text>
+<text x="52" y="311.6" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role0">Reconcile label</text>
+<text x="52" y="340.2" font-size="18" font-weight="400" fill="#486171" data-box="showcase-03-responsibilities-role0">F22</text>
+<rect x="416" y="170" width="352" height="215" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-03-responsibilities-role1"/>
+<text x="436" y="208" font-size="26" font-weight="700" fill="#182b3b" data-box="showcase-03-responsibilities-role1">Station</text>
+<text x="436" y="247.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role1">Record receipt</text>
+<text x="436" y="275.6" font-size="18" font-weight="400" fill="#486171" data-box="showcase-03-responsibilities-role1">F12</text>
+<text x="436" y="311.6" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role1">Record custody transfer</text>
+<text x="436" y="340.2" font-size="18" font-weight="400" fill="#486171" data-box="showcase-03-responsibilities-role1">F32</text>
+<rect x="32" y="414" width="352" height="215" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-03-responsibilities-role2"/>
+<text x="52" y="452" font-size="26" font-weight="700" fill="#182b3b" data-box="showcase-03-responsibilities-role2">Custodian</text>
+<text x="52" y="491.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role2">Inspect and restore</text>
+<text x="52" y="519.6" font-size="18" font-weight="400" fill="#486171" data-box="showcase-03-responsibilities-role2">F42</text>
+<text x="52" y="559.0" font-size="18" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role2">Operational release remains a</text>
+<text x="52" y="582.4" font-size="18" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role2">separate decision.</text>
+<rect x="416" y="414" width="352" height="215" rx="8" fill="#ffffff" stroke="#b4c2cb" id="showcase-03-responsibilities-role3"/>
+<text x="436" y="452" font-size="26" font-weight="700" fill="#182b3b" data-box="showcase-03-responsibilities-role3">Courier</text>
+<text x="436" y="494.0" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role3">Pickup participant; no</text>
+<text x="436" y="522.6" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role3">function allocation is</text>
+<text x="436" y="551.2" font-size="22" font-weight="400" fill="#182b3b" data-box="showcase-03-responsibilities-role3">recorded.</text>
+<text x="436" y="597" font-size="18" font-weight="400" fill="#486171" data-box="showcase-03-responsibilities-role3">SQ_NOMINAL</text>
 <path d="M32 677L768 677" fill="none" stroke="#b4c2cb" stroke-width="2"/>
 <text x="32" y="707" font-size="18" font-weight="400" fill="#182b3b">Five of twelve documentary allocations shown; full ledger is linked.</text>
 <text x="32" y="735" font-size="18" font-weight="400" fill="#486171">Assignments are fictional illustrations, not native allocations or proof.</text>

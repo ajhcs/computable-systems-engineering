@@ -94,13 +94,14 @@ def acquire():
 class Drawing:
     def __init__(self, key, title, subtitle, height):
         self.key, self.height = key, height
-        self.parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="800" height="{height}" viewBox="0 0 800 {height}" role="img" aria-labelledby="title description">', f'<title id="title">{escape(title)}</title><desc id="description">{escape(subtitle)} Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>', '<style>' + font_css() + '</style>', '<rect width="800" height="100%" fill="#faf9f5"/>', '<g font-family="Space Grotesk" fill="#182b3b">']
+        self.prefix = 'showcase-' + key
+        self.parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="800" height="{height}" viewBox="0 0 800 {height}" role="img" aria-labelledby="{self.prefix}-title {self.prefix}-description">', f'<title id="{self.prefix}-title">{escape(title)}</title><desc id="{self.prefix}-description">{escape(subtitle)} Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>', '<style>' + font_css() + '</style>', '<rect width="800" height="100%" fill="#faf9f5"/>', '<g font-family="Space Grotesk" fill="#182b3b">']
         self.text('SYNTHETIC EXAMPLE  /  ' + key[:2], 32, 35, 18, color='#486171')
         self.text(title, 32, 83, 31, weight=700)
         self.lines(subtitle, 32, 120, 22, 736, color='#486171')
         self.text_bounds = []
     def text(self, text, x, y, size=22, weight=400, color='#182b3b', box=None):
-        attrs = f' data-box="{box}"' if box else ''
+        attrs = f' data-box="{self.prefix}-{box}"' if box else ''
         self.parts.append(f'<text x="{x}" y="{y}" font-size="{size}" font-weight="{weight}" fill="{color}"{attrs}>{escape(str(text))}</text>')
     def lines(self, value, x, y, size=22, width=700, weight=400, color='#182b3b', box=None, leading=None):
         lines = wrap_text(value, width, size, 'Space Grotesk', weight)
@@ -108,7 +109,7 @@ class Drawing:
             self.text(line.rstrip(), x, y + i * (leading or size * 1.3), size, weight, color, box)
         return len(lines) * (leading or size * 1.3)
     def box(self, x, y, w, h, fill='#ffffff', stroke='#b4c2cb', key=None):
-        attr = f' id="{key}"' if key else ''
+        attr = f' id="{self.prefix}-{key}"' if key else ''
         self.parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" fill="{fill}" stroke="{stroke}"{attr}/>')
     def line(self, x1, y1, x2, y2, color='#486171', dash=None, width=2):
         attr = f' stroke-dasharray="{dash}"' if dash else ''
