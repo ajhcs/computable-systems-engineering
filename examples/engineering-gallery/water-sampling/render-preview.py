@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import tempfile
 
 
 def digest(p):
@@ -23,11 +24,18 @@ def main():
     env = os.environ.copy()
     if args.library_path:
         env['LD_LIBRARY_PATH'] = args.library_path
-    command = [str(args.browser), '--headless', '--no-sandbox', '--disable-gpu', '--allow-file-access-from-files', '--force-device-scale-factor=1', '--window-size=1200,420', '--screenshot=' + str(png), svg.as_uri()]
-    result = subprocess.run(command, env=env, capture_output=True, text=True, timeout=60)
+    root = Path(__file__).resolve().parent.parents[2]
+    cache = root / '.cache'
+    cache.mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='gallery-browser-', dir=cache) as temporary:
+        for name in ('TMPDIR', 'TMP', 'TEMP'):
+            env[name] = temporary
+        profile = Path(temporary) / 'profile'
+        command = [str(args.browser), '--headless', '--no-sandbox', '--disable-gpu', '--allow-file-access-from-files', '--force-device-scale-factor=1', '--user-data-dir=' + str(profile), '--window-size=1200,420', '--screenshot=' + str(png), svg.as_uri()]
+        result = subprocess.run(command, env=env, capture_output=True, text=True, timeout=60)
     if result.returncode or not png.is_file():
         raise SystemExit('Browser preview failed: ' + result.stderr[-600:])
-    receipt = {'claim': 'actual installed browser rasterization only; independent visual acceptance remains separate', 'browser': str(args.browser), 'browser_sha256': digest(args.browser), 'library_path': args.library_path, 'viewport': [1200, 420], 'svg_sha256': digest(svg), 'png_sha256': digest(png), 'command_template': 'BROWSER --headless --no-sandbox --disable-gpu --allow-file-access-from-files --force-device-scale-factor=1 --window-size=1200,420 --screenshot=OUTPUT/overview.png file:///OUTPUT/overview.svg'}
+    receipt = {'claim': 'actual installed browser rasterization only; independent visual acceptance remains separate', 'browser': str(args.browser), 'browser_sha256': digest(args.browser), 'library_path': args.library_path, 'working_data': 'isolated temporary directory under repository .cache on /workspace; process-local TMPDIR/TMP/TEMP and explicit user-data-dir; HOME/CODEX_HOME unchanged', 'viewport': [1200, 420], 'svg_sha256': digest(svg), 'png_sha256': digest(png), 'command_template': 'BROWSER --headless --no-sandbox --disable-gpu --allow-file-access-from-files --force-device-scale-factor=1 --user-data-dir=OWNED_WORKSPACE_TEMP/profile --window-size=1200,420 --screenshot=OUTPUT/overview.png file:///OUTPUT/overview.svg'}
     (output / 'preview-receipt.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
     path = output / 'build-manifest.json'
     manifest = json.loads(path.read_text())
