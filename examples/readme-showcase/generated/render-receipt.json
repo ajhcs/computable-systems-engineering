@@ -11,35 +11,35 @@
   "views": {
     "01-normal-handoffs": {
       "png_sha256": "e99d27bbb23dfcd0956b6ba2e74d1bc78b2988d2fc45a04cdf25ebe433d52dd4",
-      "svg_sha256": "116fd151bdcddf250444bc4ee269f165b6aaf521021216d02b634d8cac984789"
+      "svg_sha256": "674d992930e1ef59dfeff01e88952ae02d6fcb856742593166a52c3768182e84"
     },
     "02-label-recovery": {
       "png_sha256": "d6a5ab35dabb02b70df2a6291820667fe75858d8de1253ddd7451ac634c03873",
-      "svg_sha256": "8c121da8e852b639baafd37726a621908892888f56f35fba9042d6a07a05fbb9"
+      "svg_sha256": "27679c1dcd0e7c781c7662fee9aca85c07bca111a1fa61f038cdf699d511e204"
     },
     "03-responsibilities": {
       "png_sha256": "de15241cdf66ef502bfae9690b9d3be73c6989d7e20c7735c33c8fcf53fc9189",
-      "svg_sha256": "84d956da077e0c7ef67676214c84d9f4c0fce1959951b68f35d37d037a59ad8c"
+      "svg_sha256": "3681628b1b44aea2d51083af13cbfaa851cca469cd9eaef638965ca8d9454be8"
     },
     "04-need-traces": {
       "png_sha256": "293ff88fb49d77ecdeed3ebe822467e856cf8caad5ca833b09ea7058f9d61eb2",
-      "svg_sha256": "50e0c29a1f9f282eca9d68e1679cd94ab5076584f983dc2a3d0cb3592711bdf6"
+      "svg_sha256": "dc9c68f77987e9caee0cf16a56075c78a8a23c00e1d200995a2de14b3fc6aa1e"
     },
     "05-receipt-deadlines": {
       "png_sha256": "ea2cdd4cc563ce891a0b16081ae28d96b919dd4e312aebed1d83d2747dbaa6f5",
-      "svg_sha256": "e82b70a469fe155dc553bd6a0309d1a1d8ac436fd57ff145f5b55b020ecd7cd0"
+      "svg_sha256": "d3605ddba75d0f8fc77aa4b9a63e5128ba0280f5e01629e71b130745d47b3b5b"
     },
     "06-quantity-bound": {
       "png_sha256": "7efc8a11aa223bda36bf555e012b2ebe48fe127f422e79f8fc5825f97a06b856",
-      "svg_sha256": "c754340a543ba2133b9ab78ca02ffb4de7f56c5244d9d6c8b55b8b9dad484c36"
+      "svg_sha256": "7afd17567c5cf0a4084ef6706fab01149810aad1fd3c15c943be3ed726c22894"
     },
     "07-blocked-handoff": {
       "png_sha256": "3ee9df7f0722bdbd3d88e7d8de6f9a03b0af9bc6dd474cc1ebef2e5df8a785cc",
-      "svg_sha256": "e8c0fed0191c9c9802eb4b68fb26fb082bbe44b80e0ee87715803b6c9329d0f0"
+      "svg_sha256": "082b76086de4b351e9b2befed92026768b864f82ce733c0fc2bb5444ba0ac088"
     },
     "08-tool-library": {
       "png_sha256": "bb03b4f126c3610343fadb440c6d9a15971e1a420040a1da1b7bbbf1532a3ade",
-      "svg_sha256": "8da704a1211e4dfeab0d89acdd39287af4913c677078ca80dc18ba3e8b033fdb"
+      "svg_sha256": "e578136703678e1dbb14da5e6ff2fc00cbea0f9f9f0205a24876e20e2d4e8e75"
     }
   }
 }

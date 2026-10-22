@@ -11,6 +11,7 @@ import re
 import subprocess
 import sys
 import tempfile
+from xml.etree import ElementTree
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -95,7 +96,7 @@ class Drawing:
     def __init__(self, key, title, subtitle, height):
         self.key, self.height = key, height
         self.prefix = 'showcase-' + key
-        self.parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="800" height="{height}" viewBox="0 0 800 {height}" role="img" aria-labelledby="{self.prefix}-title {self.prefix}-description">', f'<title id="{self.prefix}-title">{escape(title)}</title><desc id="{self.prefix}-description">{escape(subtitle)} Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>', '<style>' + font_css() + '</style>', '<rect width="800" height="100%" fill="#faf9f5"/>', '<g font-family="Space Grotesk" fill="#182b3b">']
+        self.parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="800" height="{height}" viewBox="0 0 800 {height}" role="img" aria-labelledby="{self.prefix}-title {self.prefix}-description">', f'<title id="{self.prefix}-title">{escape(title)}</title><desc id="{self.prefix}-description">{escape(subtitle)} Source-bound synthetic explanatory presentation, not a native SysML graphical view.</desc>', '<style><![CDATA[' + font_css() + ']]></style>', '<rect width="800" height="100%" fill="#faf9f5"/>', '<g font-family="Space Grotesk" fill="#182b3b">']
         self.text('SYNTHETIC EXAMPLE  /  ' + key[:2], 32, 35, 18, color='#486171')
         self.text(title, 32, 83, 31, weight=700)
         self.lines(subtitle, 32, 120, 22, 736, color='#486171')
@@ -396,7 +397,9 @@ def build(output, only=None):
     put(output / 'blocked-handoff-result.json',facts['blocked_report'])
     put(output / 'legacy-structural-review.json',facts['legacy_report'])
     for selection in selected:
-        (output / (selection['id'] + '.svg')).write_text(RENDERERS[selection['id']](facts, selection), encoding='utf-8')
+        svg = RENDERERS[selection['id']](facts, selection)
+        ElementTree.fromstring(svg)  # Standalone SVG links must be valid XML too.
+        (output / (selection['id'] + '.svg')).write_text(svg, encoding='utf-8')
     notices=output/'font-notices';notices.mkdir()
     for name in ('inter-OFL.txt','space-OFL.txt','manifest.json'):
         (notices/name).write_bytes((ROOT/'assets/diagram-style/fonts'/name).read_bytes())
