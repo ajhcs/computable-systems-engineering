@@ -134,6 +134,22 @@ class ScopeManifestTests(unittest.TestCase):
         report = verify(model, review=True, selected=['S1'], manifest=manifest)
         self.assertEqual(report['obligations']['scope'], 'fail')
 
+    def test_cli_provided_nonobject_manifest_cannot_disable_scope(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            path = Path(directory) / 'manifest.json'
+            command = [sys.executable, '-B', str(ROOT / 'scripts/verify.py'),
+                       str(ROOT / 'examples/verifier/valid.json'), '--manifest', str(path), '--review', '--json']
+            for value in (None, [], False, 'scope', 1):
+                with self.subTest(value=value):
+                    path.write_text(json.dumps(value), encoding='utf-8')
+                    result = subprocess.run(command, text=True, capture_output=True)
+                    self.assertEqual(result.returncode, 2)
+                    self.assertEqual(result.stdout, '')
+                    self.assertIn('Provided manifest must be a JSON object', result.stderr)
+        # The deliberate library compatibility default remains available.
+        self.assertEqual(verify(self.model(), review=True, manifest=None)['status'], 'pass')
+
     def test_scope_and_digest_are_order_independent_but_cli_binds_bytes(self):
         model = self.model()
         (ROOT / '.tmp').mkdir(exist_ok=True)

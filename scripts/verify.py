@@ -32,6 +32,8 @@ def main(argv=None):
             return 0
         evidence = load_json(args.evidence) if args.evidence else None
         manifest, manifest_file_digest = load_json(args.manifest, include_file_digest=True) if args.manifest else (None, None)
+        if args.manifest and not isinstance(manifest, dict):
+            raise ValueError("Provided manifest must be a JSON object; null cannot disable review scope")
         report = verify(model, review=args.review, selected=args.scenario,
                         assignment_cap=args.assignment_cap, state_cap=args.state_cap, evidence=evidence, manifest=manifest)
         if args.manifest:
