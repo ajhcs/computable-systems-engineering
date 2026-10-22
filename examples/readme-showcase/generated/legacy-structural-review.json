@@ -1,0 +1,115 @@
+{
+  "concerns": [
+    "K_LAPTOP/C_PRIVACY: support rests on assumption, not independently established evidence",
+    "K_PAPER/C_PRIVACY: support rests on assumption, not independently established evidence"
+  ],
+  "decision_authenticity": "not_evaluated",
+  "declared_findings": [
+    {
+      "concept": "K_LAPTOP",
+      "criterion": "C_BUDGET",
+      "evidence": "unknown",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_LAPTOP",
+      "criterion": "C_AUTH",
+      "evidence": "analysis",
+      "finding": "supported"
+    },
+    {
+      "concept": "K_LAPTOP",
+      "criterion": "C_PRIVACY",
+      "evidence": "assumption",
+      "finding": "supported"
+    },
+    {
+      "concept": "K_LAPTOP",
+      "criterion": "C_CHECK",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_LAPTOP",
+      "criterion": "C_VISITS",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_LAPTOP",
+      "criterion": "C_ADMIN",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_LAPTOP",
+      "criterion": "C_RELIABILITY",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_LAPTOP",
+      "criterion": "C_WAIT",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_PAPER",
+      "criterion": "C_BUDGET",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_PAPER",
+      "criterion": "C_AUTH",
+      "evidence": "analysis",
+      "finding": "supported"
+    },
+    {
+      "concept": "K_PAPER",
+      "criterion": "C_PRIVACY",
+      "evidence": "assumption",
+      "finding": "supported"
+    },
+    {
+      "concept": "K_PAPER",
+      "criterion": "C_CHECK",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_PAPER",
+      "criterion": "C_VISITS",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_PAPER",
+      "criterion": "C_ADMIN",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_PAPER",
+      "criterion": "C_RELIABILITY",
+      "evidence": "analysis",
+      "finding": "unknown"
+    },
+    {
+      "concept": "K_PAPER",
+      "criterion": "C_WAIT",
+      "evidence": "analysis",
+      "finding": "unknown"
+    }
+  ],
+  "errors": [],
+  "feasibility": "not_independently_evaluated",
+  "implementation": "not_evaluated",
+  "model_sha256": "a0c244bc2e5d3b960f1edb0b800ad4fa3571c47eaaf9a57e59f0760b092424b0",
+  "operation_links": {},
+  "review_completeness": "pass",
+  "review_gaps": [],
+  "review_scope": "whole_record",
+  "semantic_validation": "not_evaluated",
+  "structural": "pass"
+}

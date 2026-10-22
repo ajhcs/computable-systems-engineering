@@ -1,0 +1,235 @@
+{
+  "viewport_width": 800,
+  "device_scale_factor": 1,
+  "views": [
+    {
+      "id": "01-normal-handoffs",
+      "text_count": 17,
+      "failures": [],
+      "width": 800,
+      "height": 740,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "02-label-recovery",
+      "text_count": 17,
+      "failures": [],
+      "width": 800,
+      "height": 740,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "03-responsibilities",
+      "text_count": 25,
+      "failures": [],
+      "width": 800,
+      "height": 760,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "04-need-traces",
+      "text_count": 38,
+      "failures": [],
+      "width": 800,
+      "height": 1000,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "05-receipt-deadlines",
+      "text_count": 28,
+      "failures": [],
+      "width": 800,
+      "height": 810,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "06-quantity-bound",
+      "text_count": 21,
+      "failures": [],
+      "width": 800,
+      "height": 790,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "07-blocked-handoff",
+      "text_count": 17,
+      "failures": [],
+      "width": 800,
+      "height": 820,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "08-tool-library",
+      "text_count": 25,
+      "failures": [],
+      "width": 800,
+      "height": 890,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    }
+  ],
+  "errors": [],
+  "gallery": {
+    "viewport": 390,
+    "document": 390,
+    "frames": [
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      }
+    ],
+    "textAlternatives": 8,
+    "duplicateIds": [],
+    "labels": [
+      {
+        "refs": [
+          "showcase-01-normal-handoffs-title",
+          "showcase-01-normal-handoffs-description"
+        ],
+        "own": true,
+        "name": "How does a normal handoff work? Four existing handoffs, in their recorded order. Source-bound synthetic explanatory presentation, not a native SysML graphical view."
+      },
+      {
+        "refs": [
+          "showcase-02-label-recovery-title",
+          "showcase-02-label-recovery-description"
+        ],
+        "own": true,
+        "name": "How does an unreadable label get resolved? Four existing handoffs, in their recorded order. Source-bound synthetic explanatory presentation, not a native SysML graphical view."
+      },
+      {
+        "refs": [
+          "showcase-03-responsibilities-title",
+          "showcase-03-responsibilities-description"
+        ],
+        "own": true,
+        "name": "Who does what? Selected responsibilities, kept distinct from participant names. Source-bound synthetic explanatory presentation, not a native SysML graphical view."
+      },
+      {
+        "refs": [
+          "showcase-04-need-traces-title",
+          "showcase-04-need-traces-description"
+        ],
+        "own": true,
+        "name": "Which need does each check support? Read the recorded relationship, including its direction. Source-bound synthetic explanatory presentation, not a native SysML graphical view."
+      },
+      {
+        "refs": [
+          "showcase-05-receipt-deadlines-title",
+          "showcase-05-receipt-deadlines-description"
+        ],
+        "own": true,
+        "name": "Did each receipt arrive in time? Each ID has its own inclusive two-second deadline. Source-bound synthetic explanatory presentation, not a native SysML graphical view."
+      },
+      {
+        "refs": [
+          "showcase-06-quantity-bound-title",
+          "showcase-06-quantity-bound-description"
+        ],
+        "own": true,
+        "name": "Is the recorded duration within its limit? Compare the same recorded receipt with one changed observation. Source-bound synthetic explanatory presentation, not a native SysML graphical view."
+      },
+      {
+        "refs": [
+          "showcase-07-blocked-handoff-title",
+          "showcase-07-blocked-handoff-description"
+        ],
+        "own": true,
+        "name": "Why is this handoff blocked? A deliberately broken finite fixture, with actual checker findings. Source-bound synthetic explanatory presentation, not a native SysML graphical view."
+      },
+      {
+        "refs": [
+          "showcase-08-tool-library-title",
+          "showcase-08-tool-library-description"
+        ],
+        "own": true,
+        "name": "Compare two tool-library approaches Two existing proposals; costs and outcomes remain unverified. Source-bound synthetic explanatory presentation, not a native SysML graphical view."
+      }
+    ],
+    "ariaSnapshots": [
+      "- img \"How does a normal handoff work? Four existing handoffs, in their recorded order. Source-bound synthetic explanatory presentation, not a native SysML graphical view.\": SYNTHETIC EXAMPLE / 01 How does a normal handoff work? Four existing handoffs, in their recorded order. 1 Operator to Station Present labeled container and sample ID 2 Station to Operator Return receipt with matching sample ID 3 Courier to Station Present pickup manifest 4 Station to Courier Return custody transfer record SQ_NOMINAL / E1 through E4; exact messages in source Documentary exchanges; no timing, UI or executable control flow inferred.",
+      "- img \"How does an unreadable label get resolved? Four existing handoffs, in their recorded order. Source-bound synthetic explanatory presentation, not a native SysML graphical view.\": SYNTHETIC EXAMPLE / 02 How does an unreadable label get resolved? Four existing handoffs, in their recorded order. 1 Operator to Station Present container with unreadable label 2 Station to Operator Issue hold notice; container remains unreleased 3 Operator to Station Supply corrected identification 4 Station to Operator Confirm reconciliation and receipt SQ_RECOVERY / E1 through E4; exact messages in source Documentary exchanges; no timing, UI or executable control flow inferred.",
+      "- img \"Who does what? Selected responsibilities, kept distinct from participant names. Source-bound synthetic explanatory presentation, not a native SysML graphical view.\": SYNTHETIC EXAMPLE / 03 Who does what? Selected responsibilities, kept distinct from participant names. Operator Identify container F11 Reconcile label F22 Station Record receipt F12 Record custody transfer F32 Custodian Inspect and restore F42 Operational release remains a separate decision. Courier Pickup participant; no function allocation is recorded. SQ_NOMINAL Five of twelve documentary allocations shown; full ledger is linked. Assignments are fictional illustrations, not native allocations or proof.",
+      "- img \"Which need does each check support? Read the recorded relationship, including its direction. Source-bound synthetic explanatory presentation, not a native SysML graphical view.\": SYNTHETIC EXAMPLE / 04 Which need does each check support? Read the recorded relationship, including its direction. Requirement to need R_RECORD Record receipt N_IDENTITY Preserve identity justifies R_ELAPSED Limit duration N_ACCOUNT Account for containers justifies R_CORRELATION Match each receipt N_IDENTITY Preserve identity justifies Scenario to requirement UC_NOMINAL Normal handoff R_RECORD Record receipt addresses UC_NOMINAL Normal handoff R_CORRELATION Match each receipt addresses UC_RECOVERY Label recovery R_RECORD Record receipt addresses No scenario link to R_ELAPSED is recorded in this ledger. All six source links shown; layout adds no new relationships. A typed link is not evidence that a need or requirement is satisfied.",
+      "- img \"Did each receipt arrive in time? Each ID has its own inclusive two-second deadline. Source-bound synthetic explanatory presentation, not a native SysML graphical view.\": \"SYNTHETIC EXAMPLE / 05 Did each receipt arrive in time? Each ID has its own inclusive two-second deadline. Within deadline PASS W001 0 s 2 s by 2 s W002 0.5 s 1 s by 2.5 s Dashed mark = each ID's deadline W001 receipt arrives too late FAIL W001 0 s 2.1 s by 2 s W002 0.5 s 1 s by 2.5 s Dashed mark = each ID's deadline Open dot: container presented. Filled dot: receipt issued. R_CORRELATION / W002 returns before W001, correctly paired by ID. Synthetic event evidence; a passing trace is not an implementation claim.\"",
+      "- img \"Is the recorded duration within its limit? Compare the same recorded receipt with one changed observation. Source-bound synthetic explanatory presentation, not a native SysML graphical view.\": SYNTHETIC EXAMPLE / 06 Is the recorded duration within its limit? Compare the same recorded receipt with one changed observation. 4 seconds observed at recorded receipt PASS 0 s 2 s 4 s 6 s 4 s limit 5 seconds observed at recorded receipt FAIL 0 s 2 s 4 s 6 s 4 s limit Both values are valid in the declared 0 to 20 second domain. Receipt and correlated-event checks still pass in both traces. R_ELAPSED / sample 3, receiptRecorded = true; scale 1 second. Observed values, not an inferred clock or a real-system performance claim.",
+      "- img \"Why is this handoff blocked? A deliberately broken finite fixture, with actual checker findings. Source-bound synthetic explanatory presentation, not a native SysML graphical view.\": \"SYNTHETIC EXAMPLE / 07 Why is this handoff blocked? A deliberately broken finite fixture, with actual checker findings. received recorded done FN_RECORD FN_HANDOFF blocked The handoff requires both: labelReadable == true AND labelReadable == false FAIL / Guard never enabled Reachable state has no path to completion. Counterexample node: received The arrow exists; its guard prevents execution. FS_NOMINAL / exact existing contradictory-guard negative control. Separate finite model; no SysML conversion or physical failure inferred.\"",
+      "- img \"Compare two tool-library approaches Two existing proposals; costs and outcomes remain unverified. Source-bound synthetic explanatory presentation, not a native SysML graphical view.\": \"SYNTHETIC EXAMPLE / 08 Compare two tool-library approaches Two existing proposals; costs and outcomes remain unverified. Paper ledger + board Private loan record; separate public tools/status board. Handover updates both. K_PAPER Local ledger on laptop Record each handover once; derive a separate tools/status view from the same data. K_LAPTOP Both keep on-duty volunteer authorization. Upfront ceiling: $200; no recurring software budget. Conditional workload, not a wait prediction 10 x 1 x 3 = 30 volunteer-minutes arrivals x transactions/arrival x minutes/transaction 30 work-minutes / 30 available minutes = 100% nominal load Assumes one continuously available volunteer. No final choice. Costs, upkeep and waiting remain unknown. K_PAPER / K_LAPTOP / D_SELECTION remains deferred. Fictional recollections; no measured speed advantage or expected wait.\""
+    ]
+  }
+}

@@ -1,5 +1,136 @@
 # Computable Systems Engineering
 
+Turn an idea, an operating story, or a requirement into something you can inspect: a connected model, a readable diagram, and checks that show what passes, fails, or remains unknown. Ask in plain language. The assistant handles model files and commands; you decide what the system should do.
+
+**Start here:** open this repository in Codex and copy a request below. The three skills help with a system concept, a concept of operations (who uses and supports it), or a particular operational scenario. This is an alpha with [defined capabilities and limits](docs/capability-completion.md).
+
+The examples below use two fictional services: a sample-handoff station and a community tool library. Their people, equipment, limits, and observations are demonstration choices. Each preview links to a full-size SVG, with editable model and evidence links in its guide. On small screens, open the full-size view to read the detail.
+
+## Make the idea concrete
+
+### Show the work the system needs to do
+
+```text
+Use the system-concept skill with this repository's water-sampling station example.
+Show the main functions in plain language, then let me explore the detailed breakdown.
+Keep the current model meaning and show unresolved choices.
+```
+
+[![The station's function overview: manage, receive, preserve the handoff record, release and maintain](examples/engineering-gallery/water-sampling/generated/overview.png)](examples/engineering-gallery/water-sampling/generated/function-tree/index.html)
+
+This overview shows the main responsibilities. The [full function tree](examples/engineering-gallery/water-sampling/generated/function-tree/index.html) adds eight detailed functions; the branches show decomposition, not execution order. [Edit the model](examples/engineering-gallery/water-sampling/station.sysml).
+
+## Walk through a normal day—and a difficult one
+
+### Follow a sample from intake to pickup
+
+```text
+Use the operational-scenarios skill with the water-sampling station example.
+Walk me through the nominal handoff. Show who sends what, in what order,
+and link the picture to the selected scenario.
+```
+
+[![Four ordered handoffs between the operator, sample station and courier](examples/readme-showcase/generated/01-normal-handoffs.png)](examples/readme-showcase/generated/01-normal-handoffs.svg)
+
+Read the exchanges in order to see how a receipt and custody record connect the handoffs. This is a documentary scenario reading. [Full view and sources](examples/readme-showcase/README.md#normal-handoffs).
+
+### Make the recovery path visible
+
+```text
+Use the operational-scenarios skill with the water-sampling station example.
+Show the missing-label hold and recovery. Make the unresolved identity visible
+and preserve the distinction between a receipt and permission to release.
+```
+
+[![A missing label leads to a hold, a corrected identity and a reconciliation response](examples/readme-showcase/generated/02-label-recovery.png)](examples/readme-showcase/generated/02-label-recovery.svg)
+
+The held receipt records the problem. Identity correction and release authority remain distinct. [Full view and sources](examples/readme-showcase/README.md#label-recovery).
+
+### See who is responsible for each function
+
+```text
+Use the CONOPS skill with the water-sampling station example.
+Show the declared responsibilities
+and make the scope of each assignment easy to inspect.
+```
+
+[![Declared fictional responsibilities connected to their selected station functions](examples/readme-showcase/generated/03-responsibilities.png)](examples/readme-showcase/generated/03-responsibilities.svg)
+
+These assignments explain the example's intended responsibilities. They are documentary allocations, with source links for review. [Full view and sources](examples/readme-showcase/README.md#responsibilities).
+
+### Connect the need to the requirement
+
+```text
+Use the system-concept skill with this repository's water-sampling station example.
+Show how the declared needs, requirements and use cases connect.
+Keep the relationship types visible so I can inspect what each link means.
+```
+
+[![Typed links connect the station's concerns, requirements and use cases](examples/readme-showcase/generated/04-need-traces.png)](examples/readme-showcase/generated/04-need-traces.svg)
+
+Follow an identified relationship back to its model elements. A declared link records a connection for review; it does not establish that a need has been met. [Full view and sources](examples/readme-showcase/README.md#need-traces).
+
+## Check a claim against explicit evidence
+
+### Find the receipt that arrived too late
+
+```text
+Use the operational-scenarios skill with the water-sampling example.
+Check its supplied pass and late event traces against the correlated receipt deadline.
+Show the on-time boundary, the late response and which request each receipt answers.
+```
+
+[![A receipt exactly at its two-second deadline passes; the late example arrives at 2.1 seconds](examples/readme-showcase/generated/05-receipt-deadlines.png)](examples/readme-showcase/generated/05-receipt-deadlines.svg)
+
+The event monitor matches receipts to request IDs, including responses that arrive out of order. The result applies to these supplied synthetic traces. [Full view, evidence and reports](examples/readme-showcase/README.md#receipt-deadlines).
+
+### Inspect both sides of a quantity limit
+
+```text
+Use the operational-scenarios skill with the water-sampling example.
+Compare the supplied receipt-time observations of four and five seconds
+against the declared quantity limit. Show which requirement changes result.
+```
+
+[![Four seconds passes the elapsed-observation clause; five seconds fails only that clause](examples/readme-showcase/generated/06-quantity-bound.png)](examples/readme-showcase/generated/06-quantity-bound.svg)
+
+Four seconds meets the declared bound. Five seconds fails that clause while the separate receipt deadlines still pass. These are supplied observations. [Full view, evidence and reports](examples/readme-showcase/README.md#quantity-bound).
+
+### Understand why a handoff cannot complete
+
+```text
+Use the operational-scenarios skill with the water-sampling example.
+Explain its deliberate blocked-handoff test using the separate finite model.
+Show the disabled step, the reported finding and the condition that caused it.
+```
+
+[![The deliberately blocked finite handoff reports a disabled guard and no path to completion](examples/readme-showcase/generated/07-blocked-handoff.png)](examples/readme-showcase/generated/07-blocked-handoff.svg)
+
+This deliberately altered finite model demonstrates a diagnostic. It is separate from the native SysML scenario and from observed station behavior. [Full view, model and report](examples/readme-showcase/README.md#blocked-handoff).
+
+## Compare an approach while keeping unknowns visible
+
+### Put alternatives and a capacity calculation side by side
+
+```text
+Use the system-concept skill with this repository's community tool-library example.
+Compare the paper and laptop alternatives, keep the selection open,
+and explain the conditional capacity calculation alongside its unknowns.
+```
+
+[![The tool-library concept retains two alternatives and shows its conditional workload arithmetic](examples/readme-showcase/generated/08-tool-library.png)](examples/readme-showcase/generated/08-tool-library.svg)
+
+The illustrative assumptions consume 30 work-minutes in a 30-minute window. The alternatives' evidence gaps remain visible; the arithmetic does not predict actual waiting time. [Full view, concept and calculation](examples/readme-showcase/README.md#tool-library).
+
+## Explore or reproduce the outputs
+
+Open the [preview gallery and editable sources](examples/readme-showcase/README.md), the [connected station walkthrough](examples/engineering-gallery/water-sampling/README.md), or the [capability matrix](docs/capability-completion.md). For your own material, ask a skill to investigate a focused question and keep unresolved evidence visible. Keep private sources out of Git.
+
+## Installation and technical guide
+
+<details>
+<summary>Open setup commands, supported semantics, existing examples, and implementation details</summary>
+
 Small, independently invocable skills that help a systems engineer develop a system concept, a concept of operations (CONOPS), or an operational scenario. The engineer directs consequential decisions; the assistant helps investigate, draft, run checks, and revise.
 
 **Status: alpha.** The three skills now default to authoring SysML v2 textual models for new recorded work. A pinned upstream pilot parser validates those models. A bounded controlled-text profile checks selected sampled Boolean/quantity requirements and correlated event deadlines against supplied evidence. A separate bounded generator now exports synthetic pass/fail trace pairs that demonstrate a referenced property's effect on one sampled requirement when it can find such a pair. Existing version-1 JSON helpers and the opt-in finite verifier remain available. General SysML behavior computation, temporal realizability, formal FLIP coverage, hosted Jev integration, and protected acceptance are not implemented. The project source is offered under the [MIT license](LICENSE); the separately downloaded pilot parser has its own license. Publication details are tracked in [the release handoff](docs/release-handoff.md).
@@ -13,8 +144,6 @@ Small, independently invocable skills that help a systems engineer develop a sys
 A complete document is optional. Missing information can remain an explicit unknown. The skills use a system-wide SysML model and selected views rather than requiring the entire model in every model context. The [SysML-first profile](docs/sysml-v2-profile.md) defines the supported parser and checker boundary.
 
 ## Explore a connected engineering example
-
-[![Synthetic water-sampling station: scoped function overview](examples/engineering-gallery/water-sampling/generated/overview.png)](examples/engineering-gallery/water-sampling/README.md)
 
 The [water-sampling station walkthrough](examples/engineering-gallery/water-sampling/README.md) follows a fictional sample from intake to recorded receipt, through a missing-label hold and recovery, and into maintenance lockout. It brings together editable source, readable views, typed traces and actual program outcomes. Its thresholds and evidence are demonstration choices, not a design approved for real equipment.
 
@@ -121,3 +250,5 @@ See [public references](docs/references.md) and [contribution guidance](CONTRIBU
 ## Experimental visual presentation
 
 An opt-in checked documentary function-tree renderer adds palette03, embedded Inter/Space Grotesk fonts and explicit provisional body variants. See [visual presentation](docs/visual-presentation.md) for generation, editable sources, checks and limits. Existing checking defaults remain unchanged.
+
+</details>
