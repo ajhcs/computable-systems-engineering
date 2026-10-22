@@ -19,7 +19,7 @@
     "verifier/sysml.py": "e8c9422c1493a62886663c8c11bf41fdd70f080c9abefa1da4434b22984a85ce",
     "verifier/visual_labels.py": "f8c11bce35a16866bda22dee58e39c8b4d48cc7c3b285d16781da8f92e317da3",
     "verifier/visual_projection.py": "fd54b2d2504a028800eea636971601f10fce40c98619150deb9b701d50149127",
-    "verifier/visual_style.py": "87d0c1cdf6304145bbeedfd73bf7aacc87d5ea3ef2503f811c67d0632e65c580"
+    "verifier/visual_style.py": "8d935e476be06ef756bf8c4832798616de2729ad1152b936f1f0293977d57dad"
   },
   "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
   "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",

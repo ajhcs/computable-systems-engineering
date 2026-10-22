@@ -23,7 +23,7 @@
     "verifier/views.py": "3a91caa526ddb3128c97284b770a0804ba2c2d56fb18b83ac27898c98fa4ea7a",
     "verifier/visual_labels.py": "f8c11bce35a16866bda22dee58e39c8b4d48cc7c3b285d16781da8f92e317da3",
     "verifier/visual_projection.py": "fd54b2d2504a028800eea636971601f10fce40c98619150deb9b701d50149127",
-    "verifier/visual_style.py": "87d0c1cdf6304145bbeedfd73bf7aacc87d5ea3ef2503f811c67d0632e65c580"
+    "verifier/visual_style.py": "8d935e476be06ef756bf8c4832798616de2729ad1152b936f1f0293977d57dad"
   },
   "expected_status": {
     "allocation-invalid-function": "fail",
@@ -68,7 +68,7 @@
     "function-tree/font-notices/manifest.json": "76b32ed9cd835a782004864ea3de241d699609c53157e68cbe8e2dde565da573",
     "function-tree/font-notices/space-OFL.txt": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943",
     "function-tree/index.html": "8b6b67cf251d2273c3ece1e25a5bd96cadb7e20b3480d1c6b0737db9b44509d2",
-    "function-tree/manifest.json": "74dbaf0d9a4ce1528f482d13e010f9fa63732b3fd5f7c1f3943aa7f2c9ab7ada",
+    "function-tree/manifest.json": "9cd1e4611dd7968d3911a7e72683571913222972143cd0edf9095f8888a1185f",
     "function-tree/presentation.json": "0b7deea259e43cb98f43ac6cb3f1bb2bf23ebf114d6da43f68b9ff2ac8663c04",
     "function-tree/semantic-ledger.json": "8c8cc5950932f5bcdcc387ba4297511f97e6f7594f8ff0f5e4630e3dc442d417",
     "function-tree/sources/model-1.sysml": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
@@ -94,7 +94,7 @@
     "../README.md": "38bad7579247c934891894f82455906715a54fb98e212cbbb8d74ead3123b0eb",
     "../index.html": "f82e12b52a69a9b254c4e59df7205945eeb9910586e237d63982a55fd15020a5",
     "README.md": "ad2a75c1c347a30ba81a08034bcb4f6082afcb57b3c07a740dcb69ea7fa64a81",
-    "build.py": "c696b926f0d747c90a156ce1af4ce9edb85863e188df400a579b9d042a49c321",
+    "build.py": "6b17ee8975dde9d7b471c7a4dc0a4f41ee344a74ed9d53b22fca1b9d5d9fe5d2",
     "evidence-incomplete.json": "9ac76136b28ea80704c548e3d693f95e91716912b74c120510ad22dd3cc0de81",
     "evidence-late.json": "ea0a8d3ffe34841caa4423e9df8617f10727531391759a9a47fd87710e1cad2f",
     "evidence-no-receipt.json": "5aead87a61dfcb73ddbf212da93a34f46edf1be31af539cb4afe060187a1c5af",

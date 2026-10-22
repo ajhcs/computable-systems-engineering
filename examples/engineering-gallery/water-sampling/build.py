@@ -239,6 +239,13 @@ def build(output):
     put(output / 'build-manifest.json', {'version': 1, 'claim': 'local synthetic artifact freshness and expected outcomes; not authenticated acceptance', 'inputs': inputs(), 'engines': engines(), 'expected_status': expected, 'files': files})
 
 
+def drift_paths(expected, actual, limit=12):
+    """Bound diagnostic output while preserving the complete strict comparison."""
+    changed = sorted(path for path in expected.keys() | actual.keys() if expected.get(path) != actual.get(path))
+    shown = ', '.join(changed[:limit])
+    return shown + (f' (+{len(changed) - limit} more)' if len(changed) > limit else '')
+
+
 def check():
     output = HERE / 'generated'
     manifest = json.loads((output / 'build-manifest.json').read_text())
@@ -250,7 +257,7 @@ def check():
         if receipt['svg_sha256'] != digest(output / 'overview.svg') or receipt['png_sha256'] != digest(output / 'overview.png'):
             raise ValueError('Rendered preview is stale')
     if actual != manifest['files']:
-        raise ValueError('Generated gallery output drift, deletion or addition')
+        raise ValueError('Generated gallery output drift, deletion or addition: ' + drift_paths(manifest['files'], actual))
     # Rebuild deterministic textual/vector artifacts, catching stale geometry too.
     with tempfile.TemporaryDirectory(prefix='gallery-rebuild-', dir=ROOT / '.cache') as temporary:
         fresh = Path(temporary) / 'gallery'
@@ -259,7 +266,7 @@ def check():
         rebuilt = {str(p.relative_to(fresh)): digest(p) for p in sorted(fresh.rglob('*')) if p.is_file() and p.name not in optional}
         stored = {k: v for k, v in actual.items() if k not in optional}
         if rebuilt != stored:
-            raise ValueError('Rebuilt report, HTML, SVG or source-map drift')
+            raise ValueError('Rebuilt report, HTML, SVG or source-map drift: ' + drift_paths(stored, rebuilt))
         if json.loads((fresh / 'build-manifest.json').read_text())['expected_status'] != manifest['expected_status']:
             raise ValueError('Expected outcome inventory drift')
     print('PASS synthetic gallery freshness, typed mapping and expected positive/negative outcomes')
