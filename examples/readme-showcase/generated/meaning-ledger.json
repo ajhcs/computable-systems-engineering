@@ -1,0 +1,2919 @@
+{
+  "facts": {
+    "blocked_fixture": {
+      "actors": {
+        "Courier": {},
+        "Custodian": {},
+        "Operator": {},
+        "Station": {}
+      },
+      "data": {
+        "identity": {
+          "type": "bool"
+        },
+        "inspection": {
+          "type": "bool"
+        },
+        "receipt": {
+          "type": "bool"
+        }
+      },
+      "exchanges": {
+        "IdentityCorrection": {
+          "fields": {
+            "identity": {
+              "type": "bool"
+            }
+          },
+          "from": "Operator",
+          "to": "Station"
+        },
+        "InspectionRecord": {
+          "fields": {
+            "inspection": {
+              "type": "bool"
+            }
+          },
+          "from": "Custodian",
+          "to": "Station"
+        },
+        "IssueReceipt": {
+          "fields": {
+            "receipt": {
+              "type": "bool"
+            }
+          },
+          "from": "Station",
+          "to": "Operator"
+        }
+      },
+      "properties": {
+        "intakeOpen": {
+          "owner": "controlled",
+          "type": "bool"
+        },
+        "labelReadable": {
+          "owner": "input",
+          "type": "bool"
+        },
+        "released": {
+          "owner": "controlled",
+          "type": "bool"
+        },
+        "serviceRequested": {
+          "owner": "input",
+          "type": "bool"
+        }
+      },
+      "scenarios": {
+        "FS_MAINTENANCE": {
+          "completion": [
+            "done"
+          ],
+          "initial": {
+            "intakeOpen": false,
+            "released": false
+          },
+          "require_completion": true,
+          "start": "pause",
+          "steps": {
+            "FM_INSPECT": {
+              "effects": {
+                "intakeOpen": false
+              },
+              "exchange": "InspectionRecord",
+              "from": "pause",
+              "produces": [
+                "inspection"
+              ],
+              "to": "inspected"
+            },
+            "FM_RESTORE": {
+              "consumes": [
+                "inspection"
+              ],
+              "from": "inspected",
+              "to": "done"
+            }
+          },
+          "terminal": {
+            "done": "Inspection record supplied; operational release deferred"
+          }
+        },
+        "FS_NOMINAL": {
+          "completion": [
+            "done"
+          ],
+          "external_at": [
+            "received",
+            "recorded"
+          ],
+          "initial": {
+            "intakeOpen": false,
+            "released": false
+          },
+          "initial_data": [
+            "identity"
+          ],
+          "require_completion": true,
+          "start": "received",
+          "steps": {
+            "FN_HANDOFF": {
+              "consumes": [
+                "receipt"
+              ],
+              "effects": {
+                "intakeOpen": true,
+                "released": true
+              },
+              "from": "recorded",
+              "guard": {
+                "all": [
+                  {
+                    "op": "==",
+                    "ref": "labelReadable",
+                    "value": true
+                  },
+                  {
+                    "op": "==",
+                    "ref": "labelReadable",
+                    "value": false
+                  }
+                ]
+              },
+              "to": "done"
+            },
+            "FN_RECORD": {
+              "consumes": [
+                "identity"
+              ],
+              "exchange": "IssueReceipt",
+              "from": "received",
+              "produces": [
+                "receipt"
+              ],
+              "to": "recorded"
+            }
+          },
+          "terminal": {
+            "done": "Fictional receipt recorded and pickup released"
+          }
+        },
+        "FS_RECOVERY": {
+          "completion": [
+            "done"
+          ],
+          "external_at": [
+            "hold"
+          ],
+          "initial": {
+            "intakeOpen": false,
+            "released": false
+          },
+          "require_completion": true,
+          "start": "unidentified",
+          "steps": {
+            "FX_CORRECT": {
+              "exchange": "IdentityCorrection",
+              "from": "hold",
+              "guard": {
+                "op": "==",
+                "ref": "labelReadable",
+                "value": true
+              },
+              "produces": [
+                "identity"
+              ],
+              "to": "reconciled"
+            },
+            "FX_HOLD": {
+              "effects": {
+                "released": false
+              },
+              "from": "unidentified",
+              "to": "hold"
+            },
+            "FX_RECORD": {
+              "consumes": [
+                "identity"
+              ],
+              "exchange": "IssueReceipt",
+              "from": "reconciled",
+              "produces": [
+                "receipt"
+              ],
+              "to": "done"
+            }
+          },
+          "terminal": {
+            "done": "Corrected identity and receipt available"
+          }
+        }
+      },
+      "statements": {
+        "FN_IDENTITY": {
+          "category": "need",
+          "subject": "Operator",
+          "text": "Fictional need: retain identity before release."
+        },
+        "FN_SERVICE": {
+          "category": "need",
+          "subject": "Custodian",
+          "text": "Fictional need: suspend intake during service."
+        },
+        "FR_HOLD": {
+          "category": "requirement",
+          "modality": "shall",
+          "predicate": {
+            "op": "==",
+            "ref": "released",
+            "value": false
+          },
+          "subject": "Station",
+          "when": {
+            "op": "==",
+            "ref": "labelReadable",
+            "value": false
+          }
+        },
+        "FR_PAUSE": {
+          "category": "requirement",
+          "modality": "shall",
+          "predicate": {
+            "op": "==",
+            "ref": "intakeOpen",
+            "value": false
+          },
+          "subject": "Station",
+          "when": {
+            "op": "==",
+            "ref": "serviceRequested",
+            "value": true
+          }
+        }
+      },
+      "traces": [
+        {
+          "from": "FR_HOLD",
+          "kind": "justifies",
+          "to": "FN_IDENTITY"
+        },
+        {
+          "from": "FR_PAUSE",
+          "kind": "justifies",
+          "to": "FN_SERVICE"
+        },
+        {
+          "from": "FS_NOMINAL",
+          "kind": "addresses",
+          "to": "FR_HOLD"
+        },
+        {
+          "from": "FS_RECOVERY",
+          "kind": "addresses",
+          "to": "FR_HOLD"
+        },
+        {
+          "from": "FS_MAINTENANCE",
+          "kind": "addresses",
+          "to": "FR_PAUSE"
+        }
+      ],
+      "version": 2
+    },
+    "blocked_report": {
+      "analyzed_scenarios": [
+        "FS_MAINTENANCE",
+        "FS_NOMINAL",
+        "FS_RECOVERY"
+      ],
+      "artifact_sha256": "990d7563dc56907620fc64461463d02ae1ad722458d510c5a63471f589e7634f",
+      "checker_version": "0.1.1",
+      "completed_obligations": [
+        "declarations",
+        "types",
+        "traces",
+        "consistency",
+        "scope"
+      ],
+      "dependencies": {
+        "manifest_sha256": "e2d222e878bd4781bf0b2b5c0f71a3444452634bef8a1a0bce4fd3199f589783"
+      },
+      "expected_obligations": [
+        "declarations",
+        "types",
+        "traces",
+        "consistency",
+        "scenarios",
+        "scope"
+      ],
+      "findings": [
+        {
+          "evidence": {
+            "node": "received",
+            "path": []
+          },
+          "explanation": "Reachable state has no path to completion",
+          "ids": [
+            "FS_NOMINAL"
+          ],
+          "rule": "progress",
+          "status": "fail"
+        },
+        {
+          "explanation": "Guard never enabled",
+          "ids": [
+            "FN_HANDOFF",
+            "FS_NOMINAL"
+          ],
+          "rule": "step-reachability",
+          "status": "fail"
+        }
+      ],
+      "limits": {
+        "assignment_cap": 100000,
+        "state_cap": 100000
+      },
+      "obligations": {
+        "consistency": "pass",
+        "declarations": "pass",
+        "scenarios": "fail",
+        "scope": "pass",
+        "traces": "pass",
+        "types": "pass"
+      },
+      "profile": "core-v2",
+      "rendered_requirements": {
+        "FR_HOLD": "When labelReadable == false, Station SHALL released == false.",
+        "FR_PAUSE": "When serviceRequested == true, Station SHALL intakeOpen == false."
+      },
+      "review_manifest": {
+        "requirements": [
+          "FR_HOLD",
+          "FR_PAUSE"
+        ],
+        "scenarios": [
+          "FS_NOMINAL",
+          "FS_RECOVERY",
+          "FS_MAINTENANCE"
+        ],
+        "source_revision": "fictional-finite-station-1",
+        "version": 1
+      },
+      "scope": {
+        "review": true,
+        "scenarios": "all"
+      },
+      "status": "fail"
+    },
+    "documentary_ledger": {
+      "authority": "station.sysml is the shared concept/CONOPS/documentary-scenario source; finite-scenarios.json is separately authored, never converted",
+      "boundary": "sample identity and custody records; no physical/safety validation",
+      "classification": "original synthetic simplified model-derived presentations",
+      "documentary_allocations": [
+        {
+          "function": "F1",
+          "performer": "WaterSampling::station",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F11",
+          "performer": "WaterSampling::operator",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F12",
+          "performer": "WaterSampling::station",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F2",
+          "performer": "WaterSampling::station",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F21",
+          "performer": "WaterSampling::station",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F22",
+          "performer": "WaterSampling::operator",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F3",
+          "performer": "WaterSampling::station",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F31",
+          "performer": "WaterSampling::station",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F32",
+          "performer": "WaterSampling::station",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F4",
+          "performer": "WaterSampling::station",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F41",
+          "performer": "WaterSampling::station",
+          "status": "fictional documentary allocation, not native allocation"
+        },
+        {
+          "function": "F42",
+          "performer": "WaterSampling::custodian",
+          "status": "fictional documentary allocation, not native allocation"
+        }
+      ],
+      "interaction_disposition": {
+        "artifact_reader": "Read-only engineering documentation, not a station operational UI.",
+        "routes": [
+          {
+            "exchanges": [
+              "SQ_NOMINAL_E1",
+              "SQ_NOMINAL_E3"
+            ],
+            "route": "physical/manual container or manifest handoff",
+            "sequence": "SQ_NOMINAL"
+          },
+          {
+            "exchanges": [
+              "SQ_RECOVERY_E1",
+              "SQ_RECOVERY_E3"
+            ],
+            "route": "physical/manual container handoff or documentary corrected identity",
+            "sequence": "SQ_RECOVERY"
+          },
+          {
+            "exchanges": [
+              "SQ_MAINTENANCE_E1",
+              "SQ_MAINTENANCE_E3"
+            ],
+            "route": "manual service instruction or documentary inspection evidence",
+            "sequence": "SQ_MAINTENANCE"
+          },
+          {
+            "exchanges": [
+              "SQ_NOMINAL_E2",
+              "SQ_NOMINAL_E4"
+            ],
+            "route": "protocol/documentary receipt or custody output; medium unspecified",
+            "sequence": "SQ_NOMINAL"
+          },
+          {
+            "exchanges": [
+              "SQ_RECOVERY_E2",
+              "SQ_RECOVERY_E4"
+            ],
+            "route": "protocol/documentary hold or reconciliation output; medium unspecified",
+            "sequence": "SQ_RECOVERY"
+          },
+          {
+            "exchanges": [
+              "SQ_MAINTENANCE_E2",
+              "SQ_MAINTENANCE_E4"
+            ],
+            "route": "protocol/documentary suspension or approval-pending status; medium unspecified",
+            "sequence": "SQ_MAINTENANCE"
+          }
+        ],
+        "scope": "Physical/manual handoffs and protocol receipt/status exchanges, not a newly designed station UI or accepted GUI field/command set.",
+        "wireframe_disposition": "No station wireframe for this bounded model/check question. If UI design is requested, follow current interaction-walkthrough precedents and connected sketches before implementation."
+      },
+      "maintenance_outcome": "UC_MAINTENANCE / SQ_MAINTENANCE: inspection recorded; return-to-service approval pending. Intake remains suspended. InspectAndRestore is an existing candidate function, not an automatic release decision.",
+      "native_composition": [
+        {
+          "multiplicity": "native implicit default; omitted from presentation",
+          "owner_definition": "WaterSampling::Station",
+          "part": "intakePanel",
+          "type": "WaterSampling::IntakePanel"
+        },
+        {
+          "multiplicity": "native implicit default; omitted from presentation",
+          "owner_definition": "WaterSampling::Station",
+          "part": "receiptRegister",
+          "type": "WaterSampling::ReceiptRegister"
+        },
+        {
+          "multiplicity": "native implicit default; omitted from presentation",
+          "owner_definition": "WaterSampling::Station",
+          "part": "holdingRack",
+          "type": "WaterSampling::HoldingRack"
+        }
+      ],
+      "native_part_usages": {
+        "WaterSampling::courier": "Courier",
+        "WaterSampling::custodian": "Custodian",
+        "WaterSampling::operator": "Operator",
+        "WaterSampling::station": "Station"
+      },
+      "omitted_semantics": [
+        "No activity flow implied by function parentage",
+        "No timing inferred from sequence layout",
+        "Maintenance and label policy remain documentary in SysML",
+        "Finite counterpart adds explicit invented guard/effect semantics only in its own artifact"
+      ],
+      "ownership_claim": "Station owns three component usages in its definition. External roles are package-owned usages. No ports, connectors, flows or implementation ownership inferred.",
+      "typed_traces": [
+        {
+          "from": "R_RECORD",
+          "kind": "justifies",
+          "to": "N_IDENTITY"
+        },
+        {
+          "from": "R_ELAPSED",
+          "kind": "justifies",
+          "to": "N_ACCOUNT"
+        },
+        {
+          "from": "R_CORRELATION",
+          "kind": "justifies",
+          "to": "N_IDENTITY"
+        },
+        {
+          "from": "UC_NOMINAL",
+          "kind": "addresses",
+          "to": "R_RECORD"
+        },
+        {
+          "from": "UC_NOMINAL",
+          "kind": "addresses",
+          "to": "R_CORRELATION"
+        },
+        {
+          "from": "UC_RECOVERY",
+          "kind": "addresses",
+          "to": "R_RECORD"
+        }
+      ],
+      "version": 1
+    },
+    "evidence": {
+      "late": {
+        "complete": true,
+        "events": [
+          {
+            "correlationId": "W001",
+            "event": "WaterSampling::station::containerPresented",
+            "time": "0",
+            "unit": "seconds"
+          },
+          {
+            "correlationId": "W002",
+            "event": "WaterSampling::station::containerPresented",
+            "time": "0.5",
+            "unit": "seconds"
+          },
+          {
+            "correlationId": "W002",
+            "event": "WaterSampling::station::receiptIssued",
+            "time": "1",
+            "unit": "seconds"
+          },
+          {
+            "correlationId": "W001",
+            "event": "WaterSampling::station::receiptIssued",
+            "time": "2.1",
+            "unit": "seconds"
+          }
+        ],
+        "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
+        "observations": [
+          {
+            "WaterSampling::station::intakeRequested": false,
+            "WaterSampling::station::processingElapsed": 0,
+            "WaterSampling::station::receiptRecorded": false
+          },
+          {
+            "WaterSampling::station::intakeRequested": true,
+            "WaterSampling::station::processingElapsed": 5,
+            "WaterSampling::station::receiptRecorded": false
+          },
+          {
+            "WaterSampling::station::intakeRequested": true,
+            "WaterSampling::station::processingElapsed": 5,
+            "WaterSampling::station::receiptRecorded": false
+          },
+          {
+            "WaterSampling::station::intakeRequested": true,
+            "WaterSampling::station::processingElapsed": 4,
+            "WaterSampling::station::receiptRecorded": true
+          },
+          {
+            "WaterSampling::station::intakeRequested": false,
+            "WaterSampling::station::processingElapsed": 4,
+            "WaterSampling::station::receiptRecorded": true
+          }
+        ],
+        "observed_until": {
+          "time": "4",
+          "unit": "seconds"
+        }
+      },
+      "over-limit": {
+        "complete": true,
+        "events": [
+          {
+            "correlationId": "W001",
+            "event": "WaterSampling::station::containerPresented",
+            "time": "0",
+            "unit": "seconds"
+          },
+          {
+            "correlationId": "W002",
+            "event": "WaterSampling::station::containerPresented",
+            "time": "0.5",
+            "unit": "seconds"
+          },
+          {
+            "correlationId": "W002",
+            "event": "WaterSampling::station::receiptIssued",
+            "time": "1",
+            "unit": "seconds"
+          },
+          {
+            "correlationId": "W001",
+            "event": "WaterSampling::station::receiptIssued",
+            "time": "2",
+            "unit": "seconds"
+          }
+        ],
+        "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
+        "observations": [
+          {
+            "WaterSampling::station::intakeRequested": false,
+            "WaterSampling::station::processingElapsed": 0,
+            "WaterSampling::station::receiptRecorded": false
+          },
+          {
+            "WaterSampling::station::intakeRequested": true,
+            "WaterSampling::station::processingElapsed": 5,
+            "WaterSampling::station::receiptRecorded": false
+          },
+          {
+            "WaterSampling::station::intakeRequested": true,
+            "WaterSampling::station::processingElapsed": 5,
+            "WaterSampling::station::receiptRecorded": false
+          },
+          {
+            "WaterSampling::station::intakeRequested": true,
+            "WaterSampling::station::processingElapsed": 5,
+            "WaterSampling::station::receiptRecorded": true
+          },
+          {
+            "WaterSampling::station::intakeRequested": false,
+            "WaterSampling::station::processingElapsed": 4,
+            "WaterSampling::station::receiptRecorded": true
+          }
+        ],
+        "observed_until": {
+          "time": "4",
+          "unit": "seconds"
+        }
+      },
+      "pass": {
+        "complete": true,
+        "events": [
+          {
+            "correlationId": "W001",
+            "event": "WaterSampling::station::containerPresented",
+            "time": "0",
+            "unit": "seconds"
+          },
+          {
+            "correlationId": "W002",
+            "event": "WaterSampling::station::containerPresented",
+            "time": "0.5",
+            "unit": "seconds"
+          },
+          {
+            "correlationId": "W002",
+            "event": "WaterSampling::station::receiptIssued",
+            "time": "1",
+            "unit": "seconds"
+          },
+          {
+            "correlationId": "W001",
+            "event": "WaterSampling::station::receiptIssued",
+            "time": "2",
+            "unit": "seconds"
+          }
+        ],
+        "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
+        "observations": [
+          {
+            "WaterSampling::station::intakeRequested": false,
+            "WaterSampling::station::processingElapsed": 0,
+            "WaterSampling::station::receiptRecorded": false
+          },
+          {
+            "WaterSampling::station::intakeRequested": true,
+            "WaterSampling::station::processingElapsed": 5,
+            "WaterSampling::station::receiptRecorded": false
+          },
+          {
+            "WaterSampling::station::intakeRequested": true,
+            "WaterSampling::station::processingElapsed": 5,
+            "WaterSampling::station::receiptRecorded": false
+          },
+          {
+            "WaterSampling::station::intakeRequested": true,
+            "WaterSampling::station::processingElapsed": 4,
+            "WaterSampling::station::receiptRecorded": true
+          },
+          {
+            "WaterSampling::station::intakeRequested": false,
+            "WaterSampling::station::processingElapsed": 4,
+            "WaterSampling::station::receiptRecorded": true
+          }
+        ],
+        "observed_until": {
+          "time": "4",
+          "unit": "seconds"
+        }
+      }
+    },
+    "inventory": {
+      "actions": [
+        {
+          "line": 50,
+          "name": "ManageSampleHandoff",
+          "qualified_name": "WaterSampling::ManageSampleHandoff",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 51,
+          "name": "ReceiveSample",
+          "qualified_name": "WaterSampling::ReceiveSample",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 52,
+          "name": "IdentifyContainer",
+          "qualified_name": "WaterSampling::IdentifyContainer",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 53,
+          "name": "RecordReceipt",
+          "qualified_name": "WaterSampling::RecordReceipt",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 54,
+          "name": "PreserveHandoffRecord",
+          "qualified_name": "WaterSampling::PreserveHandoffRecord",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 55,
+          "name": "HoldUnidentifiedContainer",
+          "qualified_name": "WaterSampling::HoldUnidentifiedContainer",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 56,
+          "name": "ReconcileLabel",
+          "qualified_name": "WaterSampling::ReconcileLabel",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 57,
+          "name": "ReleaseSample",
+          "qualified_name": "WaterSampling::ReleaseSample",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 58,
+          "name": "MatchCourierManifest",
+          "qualified_name": "WaterSampling::MatchCourierManifest",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 59,
+          "name": "RecordCustodyTransfer",
+          "qualified_name": "WaterSampling::RecordCustodyTransfer",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 60,
+          "name": "MaintainStation",
+          "qualified_name": "WaterSampling::MaintainStation",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 61,
+          "name": "SuspendIntake",
+          "qualified_name": "WaterSampling::SuspendIntake",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "line": 62,
+          "name": "InspectAndRestore",
+          "qualified_name": "WaterSampling::InspectAndRestore",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        }
+      ],
+      "attributes": [
+        {
+          "direction": "in",
+          "has_native_value": false,
+          "has_non_typing_specialization": false,
+          "line": 31,
+          "name": "intakeRequested",
+          "part_definition": "WaterSampling::Station",
+          "qualified_name": "WaterSampling::Station::intakeRequested",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "type": "ScalarValues::Boolean"
+        },
+        {
+          "direction": "out",
+          "has_native_value": false,
+          "has_non_typing_specialization": false,
+          "line": 32,
+          "name": "receiptRecorded",
+          "part_definition": "WaterSampling::Station",
+          "qualified_name": "WaterSampling::Station::receiptRecorded",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "type": "ScalarValues::Boolean"
+        },
+        {
+          "direction": "out",
+          "has_native_value": false,
+          "has_non_typing_specialization": false,
+          "line": 33,
+          "name": "processingElapsed",
+          "part_definition": "WaterSampling::Station",
+          "qualified_name": "WaterSampling::Station::processingElapsed",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "type": "ISQBase::DurationValue"
+        }
+      ],
+      "concerns": [
+        {
+          "id": "N_IDENTITY",
+          "line": 47,
+          "name": "PreserveIdentity",
+          "qualified_name": "WaterSampling::PreserveIdentity",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "id": "N_ACCOUNT",
+          "line": 48,
+          "name": "AccountForContainers",
+          "qualified_name": "WaterSampling::AccountForContainers",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "id": "N_SERVICE",
+          "line": 49,
+          "name": "RecoverService",
+          "qualified_name": "WaterSampling::RecoverService",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        }
+      ],
+      "constraints": [
+        {
+          "has_native_expression": false,
+          "line": 67,
+          "membership_kind": "RequirementConstraintMembership",
+          "name": "receipt",
+          "qualified_name": "WaterSampling::RecordReceiptObligation::receipt",
+          "requirement": "WaterSampling::RecordReceiptObligation",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_native_expression": false,
+          "line": 70,
+          "membership_kind": "RequirementConstraintMembership",
+          "name": "duration",
+          "qualified_name": "WaterSampling::BoundProcessingObservation::duration",
+          "requirement": "WaterSampling::BoundProcessingObservation",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_native_expression": false,
+          "line": 73,
+          "membership_kind": "RequirementConstraintMembership",
+          "name": "correlation",
+          "qualified_name": "WaterSampling::MatchEachReceipt::correlation",
+          "requirement": "WaterSampling::MatchEachReceipt",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        }
+      ],
+      "documents": [
+        {
+          "body": "SYNTHETIC DEMONSTRATION ONLY. Original fictional water-quality sample\nlogistics station, not a water treatment or public-health decision system.\nEvery need, obligation, threshold, component, allocation and operation is a\nfictional demonstration choice, not real accepted engineering intent.\nBoundary: container intake records, identification holds and custody handoff.\nExcludes collection chemistry, analytical validity, refrigeration, contamination,\nequipment reliability, physical security, clinical and public-health suitability.\nCandidate A: staffed local register; candidate B: offline station with local\nreceipts and later synchronization. B is the demonstrated concept, not a\nreal engineering selection. Offline synchronization remains qualitative.\nOpen questions: real custody policy, label reconciliation authority, storage\nduration, power budget and environmental limits require stakeholder work. ",
+          "line": 5,
+          "owner": "WaterSampling",
+          "owner_kind": "Package",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "CSE-CLOCK/2.0\nperiod 1 second ",
+          "line": 17,
+          "name": "cseClock",
+          "owner": "WaterSampling",
+          "owner_kind": "Package",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "Fictional candidate components: panel accepts requests; register\npreserves provisional or reconciled receipts; rack holds containers.\nThese declarations establish composition only, not connector topology,\nimplementation or physical capacity. A provisional receipt may state\nHELD with identity unresolved; it never authorizes pickup. ",
+          "line": 23,
+          "owner": "WaterSampling::Station",
+          "owner_kind": "PartDefinition",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "CSE-INT/2.0\nrange 0 20 scale 1 unit second ",
+          "line": 34,
+          "name": "cseType",
+          "owner": "WaterSampling::Station::processingElapsed",
+          "owner_kind": "AttributeUsage",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "Fictional stakeholder need: The operator needs sample identity preserved through custody transfer. ",
+          "line": 47,
+          "owner": "WaterSampling::PreserveIdentity",
+          "owner_kind": "ConcernUsage",
+          "requirement": "WaterSampling::PreserveIdentity",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "Fictional stakeholder need: The courier needs a reconciled record of containers accepted for pickup. ",
+          "line": 48,
+          "owner": "WaterSampling::AccountForContainers",
+          "owner_kind": "ConcernUsage",
+          "requirement": "WaterSampling::AccountForContainers",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "Fictional stakeholder need: The custodian needs a declared intake pause and controlled restoration. ",
+          "line": 49,
+          "owner": "WaterSampling::RecoverService",
+          "owner_kind": "ConcernUsage",
+          "requirement": "WaterSampling::RecoverService",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "Nominal: present labeled container; record receipt; match pickup manifest; record custody transfer. Success means a documentary transfer record, not analytical sample validity. These are documentary exchanges, not executable SysML guards/effects. ",
+          "line": 63,
+          "owner": "WaterSampling::TransferLabeledSample",
+          "owner_kind": "UseCaseUsage",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "Exception and recovery: unreadable label leads to hold; operator supplies corrected identity; station records reconciliation before release. Reconciliation authority is fictional and requires real policy work. These are documentary exchanges, not executable SysML guards/effects. ",
+          "line": 64,
+          "owner": "WaterSampling::RecoverUnidentifiedSample",
+          "owner_kind": "UseCaseUsage",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "Lifecycle: declare pause; suspend intake; inspect and restore equipment; record inspection with return-to-service approval pending. Intake remains suspended at this demonstrated outcome. Operational release is a separate decision; no physical repair simulation or reliability claim. These are documentary exchanges, not executable SysML guards/effects. ",
+          "line": 65,
+          "owner": "WaterSampling::RecordStationInspection",
+          "owner_kind": "UseCaseUsage",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "CSE-SOURCE/2.0\nSYN-WATER-01 ",
+          "line": 66,
+          "name": "cseSource",
+          "owner": "WaterSampling::RecordReceiptObligation",
+          "owner_kind": "RequirementUsage",
+          "requirement": "WaterSampling::RecordReceiptObligation",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "CSE-REQ/2.0\nUpon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.receiptRecorded = true. ",
+          "constraint": "WaterSampling::RecordReceiptObligation::receipt",
+          "line": 67,
+          "name": "cse",
+          "owner": "WaterSampling::RecordReceiptObligation::receipt",
+          "owner_kind": "ConstraintUsage",
+          "requirement": "WaterSampling::RecordReceiptObligation",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "CSE-SOURCE/2.0\nSYN-WATER-02 ",
+          "line": 69,
+          "name": "cseSource",
+          "owner": "WaterSampling::BoundProcessingObservation",
+          "owner_kind": "RequirementUsage",
+          "requirement": "WaterSampling::BoundProcessingObservation",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "CSE-REQ/2.0\nWhenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second. ",
+          "constraint": "WaterSampling::BoundProcessingObservation::duration",
+          "line": 70,
+          "name": "cse",
+          "owner": "WaterSampling::BoundProcessingObservation::duration",
+          "owner_kind": "ConstraintUsage",
+          "requirement": "WaterSampling::BoundProcessingObservation",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "CSE-SOURCE/2.0\nSYN-WATER-03 ",
+          "line": 72,
+          "name": "cseSource",
+          "owner": "WaterSampling::MatchEachReceipt",
+          "owner_kind": "RequirementUsage",
+          "requirement": "WaterSampling::MatchEachReceipt",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "CSE-EVENT/2.0\nEach unit.containerPresented shall within 2 seconds have unit.receiptIssued with matching correlationId. ",
+          "constraint": "WaterSampling::MatchEachReceipt::correlation",
+          "line": 73,
+          "name": "cse",
+          "owner": "WaterSampling::MatchEachReceipt::correlation",
+          "owner_kind": "ConstraintUsage",
+          "requirement": "WaterSampling::MatchEachReceipt",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "body": "CSE-VIEWS/1.0\n{\n\"views\": [\n{\n\"id\": \"FT_STATION\",\n\"kind\": \"function_tree\",\n\"nodes\": [\n{\n\"id\": \"F0\",\n\"element\": \"WaterSampling::ManageSampleHandoff\",\n\"level\": 0,\n\"parent\": null\n},\n{\n\"id\": \"F1\",\n\"element\": \"WaterSampling::ReceiveSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F11\",\n\"element\": \"WaterSampling::IdentifyContainer\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F12\",\n\"element\": \"WaterSampling::RecordReceipt\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F2\",\n\"element\": \"WaterSampling::PreserveHandoffRecord\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F21\",\n\"element\": \"WaterSampling::HoldUnidentifiedContainer\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F22\",\n\"element\": \"WaterSampling::ReconcileLabel\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F3\",\n\"element\": \"WaterSampling::ReleaseSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F31\",\n\"element\": \"WaterSampling::MatchCourierManifest\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F32\",\n\"element\": \"WaterSampling::RecordCustodyTransfer\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F4\",\n\"element\": \"WaterSampling::MaintainStation\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F41\",\n\"element\": \"WaterSampling::SuspendIntake\",\n\"level\": 2,\n\"parent\": \"F4\"\n},\n{\n\"id\": \"F42\",\n\"element\": \"WaterSampling::InspectAndRestore\",\n\"level\": 2,\n\"parent\": \"F4\"\n}\n]\n},\n{\n\"id\": \"SQ_NOMINAL\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"courier\",\n\"element\": \"WaterSampling::courier\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_NOMINAL_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present labeled container and sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Return receipt with matching sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E3\",\n\"from\": \"courier\",\n\"to\": \"station\",\n\"message\": \"Present pickup manifest\"\n},\n{\n\"id\": \"SQ_NOMINAL_E4\",\n\"from\": \"station\",\n\"to\": \"courier\",\n\"message\": \"Return custody transfer record\"\n}\n]\n},\n{\n\"id\": \"SQ_RECOVERY\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_RECOVERY_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present container with unreadable label\"\n},\n{\n\"id\": \"SQ_RECOVERY_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Issue hold notice; container remains unreleased\"\n},\n{\n\"id\": \"SQ_RECOVERY_E3\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Supply corrected identification\"\n},\n{\n\"id\": \"SQ_RECOVERY_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Confirm reconciliation and receipt\"\n}\n]\n},\n{\n\"id\": \"SQ_MAINTENANCE\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"custodian\",\n\"element\": \"WaterSampling::custodian\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_MAINTENANCE_E1\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Request maintenance window\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Announce intake suspended\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E3\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Record inspection and restoration\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Inspection recorded; return-to-service approval pending\"\n}\n]\n}\n]\n}\n",
+          "line": 75,
+          "name": "cseViews",
+          "owner": "WaterSampling",
+          "owner_kind": "Package",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        }
+      ],
+      "event_attributes": [
+        {
+          "event": "WaterSampling::Station::containerPresented",
+          "has_native_value": false,
+          "has_non_typing_specialization": false,
+          "line": 37,
+          "name": "correlationId",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "type": "ScalarValues::String"
+        },
+        {
+          "event": "WaterSampling::Station::receiptIssued",
+          "has_native_value": false,
+          "has_non_typing_specialization": false,
+          "line": 38,
+          "name": "correlationId",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "type": "ScalarValues::String"
+        }
+      ],
+      "events": [
+        {
+          "direction": "in",
+          "has_non_typing_specialization": false,
+          "line": 37,
+          "name": "containerPresented",
+          "part_definition": "WaterSampling::Station",
+          "qualified_name": "WaterSampling::Station::containerPresented",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "direction": "out",
+          "has_non_typing_specialization": false,
+          "line": 38,
+          "name": "receiptIssued",
+          "part_definition": "WaterSampling::Station",
+          "qualified_name": "WaterSampling::Station::receiptIssued",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        }
+      ],
+      "part_definitions": [
+        {
+          "has_specialization": false,
+          "line": 19,
+          "name": "IntakePanel",
+          "qualified_name": "WaterSampling::IntakePanel",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_specialization": false,
+          "line": 20,
+          "name": "ReceiptRegister",
+          "qualified_name": "WaterSampling::ReceiptRegister",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_specialization": false,
+          "line": 21,
+          "name": "HoldingRack",
+          "qualified_name": "WaterSampling::HoldingRack",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_specialization": false,
+          "line": 22,
+          "name": "Station",
+          "qualified_name": "WaterSampling::Station",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_specialization": false,
+          "line": 40,
+          "name": "Operator",
+          "qualified_name": "WaterSampling::Operator",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_specialization": false,
+          "line": 41,
+          "name": "Courier",
+          "qualified_name": "WaterSampling::Courier",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_specialization": false,
+          "line": 42,
+          "name": "Custodian",
+          "qualified_name": "WaterSampling::Custodian",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        }
+      ],
+      "parts": [
+        {
+          "has_native_value": false,
+          "has_non_typing_specialization": false,
+          "line": 43,
+          "name": "operator",
+          "qualified_name": "WaterSampling::operator",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "type": "WaterSampling::Operator"
+        },
+        {
+          "has_native_value": false,
+          "has_non_typing_specialization": false,
+          "line": 44,
+          "name": "station",
+          "qualified_name": "WaterSampling::station",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "type": "WaterSampling::Station"
+        },
+        {
+          "has_native_value": false,
+          "has_non_typing_specialization": false,
+          "line": 45,
+          "name": "courier",
+          "qualified_name": "WaterSampling::courier",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "type": "WaterSampling::Courier"
+        },
+        {
+          "has_native_value": false,
+          "has_non_typing_specialization": false,
+          "line": 46,
+          "name": "custodian",
+          "qualified_name": "WaterSampling::custodian",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "type": "WaterSampling::Custodian"
+        },
+        {
+          "has_native_value": true,
+          "has_non_typing_specialization": false,
+          "line": 63,
+          "name": "user",
+          "qualified_name": "WaterSampling::TransferLabeledSample::user",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_native_value": true,
+          "has_non_typing_specialization": false,
+          "line": 64,
+          "name": "user",
+          "qualified_name": "WaterSampling::RecoverUnidentifiedSample::user",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        },
+        {
+          "has_native_value": true,
+          "has_non_typing_specialization": false,
+          "line": 65,
+          "name": "user",
+          "qualified_name": "WaterSampling::RecordStationInspection::user",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        }
+      ],
+      "requirements": [
+        {
+          "has_specialization": false,
+          "id": "R_RECORD",
+          "kind": "RequirementUsage",
+          "line": 66,
+          "name": "RecordReceiptObligation",
+          "qualified_name": "WaterSampling::RecordReceiptObligation",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "subjects": [
+            {
+              "name": "unit",
+              "target": "WaterSampling::station"
+            }
+          ]
+        },
+        {
+          "has_specialization": false,
+          "id": "R_ELAPSED",
+          "kind": "RequirementUsage",
+          "line": 69,
+          "name": "BoundProcessingObservation",
+          "qualified_name": "WaterSampling::BoundProcessingObservation",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "subjects": [
+            {
+              "name": "unit",
+              "target": "WaterSampling::station"
+            }
+          ]
+        },
+        {
+          "has_specialization": false,
+          "id": "R_CORRELATION",
+          "kind": "RequirementUsage",
+          "line": 72,
+          "name": "MatchEachReceipt",
+          "qualified_name": "WaterSampling::MatchEachReceipt",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "subjects": [
+            {
+              "name": "unit",
+              "target": "WaterSampling::station"
+            }
+          ]
+        }
+      ],
+      "states": [],
+      "use_cases": [
+        {
+          "id": "UC_NOMINAL",
+          "line": 63,
+          "name": "TransferLabeledSample",
+          "qualified_name": "WaterSampling::TransferLabeledSample",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "subjects": [
+            {
+              "name": "unit",
+              "target": "WaterSampling::station"
+            }
+          ]
+        },
+        {
+          "id": "UC_RECOVERY",
+          "line": 64,
+          "name": "RecoverUnidentifiedSample",
+          "qualified_name": "WaterSampling::RecoverUnidentifiedSample",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "subjects": [
+            {
+              "name": "unit",
+              "target": "WaterSampling::station"
+            }
+          ]
+        },
+        {
+          "id": "UC_MAINTENANCE",
+          "line": 65,
+          "name": "RecordStationInspection",
+          "qualified_name": "WaterSampling::RecordStationInspection",
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "subjects": [
+            {
+              "name": "unit",
+              "target": "WaterSampling::station"
+            }
+          ]
+        }
+      ]
+    },
+    "legacy_report": {
+      "concerns": [
+        "K_LAPTOP/C_PRIVACY: support rests on assumption, not independently established evidence",
+        "K_PAPER/C_PRIVACY: support rests on assumption, not independently established evidence"
+      ],
+      "decision_authenticity": "not_evaluated",
+      "declared_findings": [
+        {
+          "concept": "K_LAPTOP",
+          "criterion": "C_BUDGET",
+          "evidence": "unknown",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_LAPTOP",
+          "criterion": "C_AUTH",
+          "evidence": "analysis",
+          "finding": "supported"
+        },
+        {
+          "concept": "K_LAPTOP",
+          "criterion": "C_PRIVACY",
+          "evidence": "assumption",
+          "finding": "supported"
+        },
+        {
+          "concept": "K_LAPTOP",
+          "criterion": "C_CHECK",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_LAPTOP",
+          "criterion": "C_VISITS",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_LAPTOP",
+          "criterion": "C_ADMIN",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_LAPTOP",
+          "criterion": "C_RELIABILITY",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_LAPTOP",
+          "criterion": "C_WAIT",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_PAPER",
+          "criterion": "C_BUDGET",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_PAPER",
+          "criterion": "C_AUTH",
+          "evidence": "analysis",
+          "finding": "supported"
+        },
+        {
+          "concept": "K_PAPER",
+          "criterion": "C_PRIVACY",
+          "evidence": "assumption",
+          "finding": "supported"
+        },
+        {
+          "concept": "K_PAPER",
+          "criterion": "C_CHECK",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_PAPER",
+          "criterion": "C_VISITS",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_PAPER",
+          "criterion": "C_ADMIN",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_PAPER",
+          "criterion": "C_RELIABILITY",
+          "evidence": "analysis",
+          "finding": "unknown"
+        },
+        {
+          "concept": "K_PAPER",
+          "criterion": "C_WAIT",
+          "evidence": "analysis",
+          "finding": "unknown"
+        }
+      ],
+      "errors": [],
+      "feasibility": "not_independently_evaluated",
+      "implementation": "not_evaluated",
+      "model_sha256": "a0c244bc2e5d3b960f1edb0b800ad4fa3571c47eaaf9a57e59f0760b092424b0",
+      "operation_links": {},
+      "review_completeness": "pass",
+      "review_gaps": [],
+      "review_scope": "whole_record",
+      "semantic_validation": "not_evaluated",
+      "structural": "pass"
+    },
+    "reports": {
+      "late": {
+        "checker_version": "sysml-2.0-alpha.2",
+        "claim_scope": "supplied_behavior_evidence",
+        "coverage": {
+          "compiled": [
+            "R_RECORD__receipt",
+            "R_ELAPSED__duration",
+            "R_CORRELATION__correlation"
+          ],
+          "expected": [
+            "R_CORRELATION__correlation",
+            "R_ELAPSED__duration",
+            "R_RECORD__receipt"
+          ],
+          "unsupported": []
+        },
+        "evidence_sha256": "2c717baa180e175db0ae457b02d2f452f5d4aa2e1fe23d184a1cd7d5230556ec",
+        "findings": [
+          {
+            "code": "event_failure",
+            "detail": "R_CORRELATION__correlation failed",
+            "line": 73,
+            "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          }
+        ],
+        "limits": {
+          "observation_cap": 10000,
+          "parser_timeout_seconds": 60,
+          "per_clause_work_cap": 1000000
+        },
+        "manifest_sha256": "284496a9baf715285eab1ee297cd181c3a35a1931dd43f94af9433535b1d33a6",
+        "model_files": [
+          {
+            "path": "examples/engineering-gallery/water-sampling/station.sysml",
+            "sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99"
+          }
+        ],
+        "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
+        "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+        "parser_issues": [],
+        "results": {
+          "R_CORRELATION__correlation": {
+            "binding": {
+              "unit.containerPresented": "WaterSampling::station::containerPresented",
+              "unit.receiptIssued": "WaterSampling::station::receiptIssued"
+            },
+            "check": {
+              "claim_scope": "correlated_event_trace",
+              "counterexample": {
+                "correlation_id": "W001",
+                "trigger_index": 0
+              },
+              "coverage": {
+                "matched": 1,
+                "triggers": 2,
+                "unmatched_responses": 1
+              },
+              "failure_count": 1,
+              "failure_examples": [
+                {
+                  "correlation_id": "W001",
+                  "trigger_index": 0
+                }
+              ],
+              "status": "fail"
+            },
+            "compiled_clause": "Each unit.containerPresented shall within 2 seconds have unit.receiptIssued with matching correlationId.",
+            "deadline_ms": "2000",
+            "source": "SYN-WATER-03",
+            "sysml_line": 73,
+            "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+          },
+          "R_ELAPSED__duration": {
+            "binding": {
+              "unit.intakeRequested": "WaterSampling::station::intakeRequested",
+              "unit.processingElapsed": "WaterSampling::station::processingElapsed",
+              "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
+            },
+            "check": {
+              "artifact_sha256": "1f5ac65233684b76936bf7dafb2706ab408849ed7faa4dd562815eebe67f96de",
+              "checker_version": "language-1.0",
+              "claim_scope": "required_sampled_trace",
+              "clock_period_ms": "1000",
+              "obligations": [
+                "R_ELAPSED__duration"
+              ],
+              "required_review": true,
+              "results": {
+                "R_ELAPSED__duration": {
+                  "coverage": {
+                    "triggers": 2
+                  },
+                  "status": "pass"
+                }
+              },
+              "review": true,
+              "scope": {
+                "missing": [],
+                "required": [
+                  "R_ELAPSED__duration"
+                ],
+                "source": "external_manifest"
+              },
+              "status": "pass",
+              "work_units_bound": 40
+            },
+            "compiled_clause": "Whenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second.",
+            "source": "SYN-WATER-02",
+            "sysml_line": 70,
+            "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+          },
+          "R_RECORD__receipt": {
+            "binding": {
+              "unit.intakeRequested": "WaterSampling::station::intakeRequested",
+              "unit.processingElapsed": "WaterSampling::station::processingElapsed",
+              "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
+            },
+            "check": {
+              "artifact_sha256": "8a8fcb26906d3f15d4e85796bcabebfd7958f5c40d68aafe90fddab02880208b",
+              "checker_version": "language-1.0",
+              "claim_scope": "required_sampled_trace",
+              "clock_period_ms": "1000",
+              "obligations": [
+                "R_RECORD__receipt"
+              ],
+              "required_review": true,
+              "results": {
+                "R_RECORD__receipt": {
+                  "coverage": {
+                    "triggers": 1
+                  },
+                  "deadline_ticks": 2,
+                  "status": "pass"
+                }
+              },
+              "review": true,
+              "scope": {
+                "missing": [],
+                "required": [
+                  "R_RECORD__receipt"
+                ],
+                "source": "external_manifest"
+              },
+              "status": "pass",
+              "work_units_bound": 40
+            },
+            "compiled_clause": "Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.receiptRecorded = true.",
+            "source": "SYN-WATER-01",
+            "sysml_line": 67,
+            "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+          }
+        },
+        "shape": {
+          "actions": 13,
+          "concerns": 3,
+          "part_definitions": 7,
+          "states": 0,
+          "use_cases": 3
+        },
+        "source_revision": "fictional-water-station-1",
+        "status": "fail",
+        "view_checks": {
+          "checker_version": "cse-views-1.0",
+          "claim_scope": "documentary_view_structure",
+          "exceptions": [],
+          "findings": [],
+          "human_review": [
+            "Functions express actions; verb-object names are recommended.",
+            "Assess decomposition adequacy and exchange meaning against the task and source.",
+            "Counts, text, bindings, and rationale do not establish completeness, approval, or behavior."
+          ],
+          "status": "pass",
+          "views": [
+            {
+              "id": "FT_STATION",
+              "kind": "function_tree"
+            },
+            {
+              "id": "SQ_NOMINAL",
+              "kind": "sequence"
+            },
+            {
+              "id": "SQ_RECOVERY",
+              "kind": "sequence"
+            },
+            {
+              "id": "SQ_MAINTENANCE",
+              "kind": "sequence"
+            }
+          ]
+        }
+      },
+      "over-limit": {
+        "checker_version": "sysml-2.0-alpha.2",
+        "claim_scope": "supplied_behavior_evidence",
+        "coverage": {
+          "compiled": [
+            "R_RECORD__receipt",
+            "R_ELAPSED__duration",
+            "R_CORRELATION__correlation"
+          ],
+          "expected": [
+            "R_CORRELATION__correlation",
+            "R_ELAPSED__duration",
+            "R_RECORD__receipt"
+          ],
+          "unsupported": []
+        },
+        "evidence_sha256": "4b849ddc05f947abd8212f1433873e43e8caf6eb21d52cefe35182fee44c11ac",
+        "findings": [
+          {
+            "code": "trace_failure",
+            "detail": "R_ELAPSED__duration failed",
+            "line": 70,
+            "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          }
+        ],
+        "limits": {
+          "observation_cap": 10000,
+          "parser_timeout_seconds": 60,
+          "per_clause_work_cap": 1000000
+        },
+        "manifest_sha256": "284496a9baf715285eab1ee297cd181c3a35a1931dd43f94af9433535b1d33a6",
+        "model_files": [
+          {
+            "path": "examples/engineering-gallery/water-sampling/station.sysml",
+            "sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99"
+          }
+        ],
+        "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
+        "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+        "parser_issues": [],
+        "results": {
+          "R_CORRELATION__correlation": {
+            "binding": {
+              "unit.containerPresented": "WaterSampling::station::containerPresented",
+              "unit.receiptIssued": "WaterSampling::station::receiptIssued"
+            },
+            "check": {
+              "claim_scope": "correlated_event_trace",
+              "coverage": {
+                "matched": 2,
+                "triggers": 2,
+                "unmatched_responses": 0
+              },
+              "status": "pass"
+            },
+            "compiled_clause": "Each unit.containerPresented shall within 2 seconds have unit.receiptIssued with matching correlationId.",
+            "deadline_ms": "2000",
+            "source": "SYN-WATER-03",
+            "sysml_line": 73,
+            "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+          },
+          "R_ELAPSED__duration": {
+            "binding": {
+              "unit.intakeRequested": "WaterSampling::station::intakeRequested",
+              "unit.processingElapsed": "WaterSampling::station::processingElapsed",
+              "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
+            },
+            "check": {
+              "artifact_sha256": "88d343120d5cb339f4f100fd8d7045998e5521dfcaea93ee3464b86b625e156e",
+              "checker_version": "language-1.0",
+              "claim_scope": "required_sampled_trace",
+              "clock_period_ms": "1000",
+              "obligations": [
+                "R_ELAPSED__duration"
+              ],
+              "required_review": true,
+              "results": {
+                "R_ELAPSED__duration": {
+                  "counterexample": {
+                    "index": 3
+                  },
+                  "coverage": {
+                    "triggers": 2
+                  },
+                  "status": "fail"
+                }
+              },
+              "review": true,
+              "scope": {
+                "missing": [],
+                "required": [
+                  "R_ELAPSED__duration"
+                ],
+                "source": "external_manifest"
+              },
+              "status": "fail",
+              "work_units_bound": 40
+            },
+            "compiled_clause": "Whenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second.",
+            "source": "SYN-WATER-02",
+            "sysml_line": 70,
+            "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+          },
+          "R_RECORD__receipt": {
+            "binding": {
+              "unit.intakeRequested": "WaterSampling::station::intakeRequested",
+              "unit.processingElapsed": "WaterSampling::station::processingElapsed",
+              "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
+            },
+            "check": {
+              "artifact_sha256": "e55fdeae7eba89e48f4e8ff381ea621b6de9b27fc2e7826c7aeae2dd854a6ff7",
+              "checker_version": "language-1.0",
+              "claim_scope": "required_sampled_trace",
+              "clock_period_ms": "1000",
+              "obligations": [
+                "R_RECORD__receipt"
+              ],
+              "required_review": true,
+              "results": {
+                "R_RECORD__receipt": {
+                  "coverage": {
+                    "triggers": 1
+                  },
+                  "deadline_ticks": 2,
+                  "status": "pass"
+                }
+              },
+              "review": true,
+              "scope": {
+                "missing": [],
+                "required": [
+                  "R_RECORD__receipt"
+                ],
+                "source": "external_manifest"
+              },
+              "status": "pass",
+              "work_units_bound": 40
+            },
+            "compiled_clause": "Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.receiptRecorded = true.",
+            "source": "SYN-WATER-01",
+            "sysml_line": 67,
+            "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+          }
+        },
+        "shape": {
+          "actions": 13,
+          "concerns": 3,
+          "part_definitions": 7,
+          "states": 0,
+          "use_cases": 3
+        },
+        "source_revision": "fictional-water-station-1",
+        "status": "fail",
+        "view_checks": {
+          "checker_version": "cse-views-1.0",
+          "claim_scope": "documentary_view_structure",
+          "exceptions": [],
+          "findings": [],
+          "human_review": [
+            "Functions express actions; verb-object names are recommended.",
+            "Assess decomposition adequacy and exchange meaning against the task and source.",
+            "Counts, text, bindings, and rationale do not establish completeness, approval, or behavior."
+          ],
+          "status": "pass",
+          "views": [
+            {
+              "id": "FT_STATION",
+              "kind": "function_tree"
+            },
+            {
+              "id": "SQ_NOMINAL",
+              "kind": "sequence"
+            },
+            {
+              "id": "SQ_RECOVERY",
+              "kind": "sequence"
+            },
+            {
+              "id": "SQ_MAINTENANCE",
+              "kind": "sequence"
+            }
+          ]
+        }
+      },
+      "pass": {
+        "checker_version": "sysml-2.0-alpha.2",
+        "claim_scope": "supplied_behavior_evidence",
+        "coverage": {
+          "compiled": [
+            "R_RECORD__receipt",
+            "R_ELAPSED__duration",
+            "R_CORRELATION__correlation"
+          ],
+          "expected": [
+            "R_CORRELATION__correlation",
+            "R_ELAPSED__duration",
+            "R_RECORD__receipt"
+          ],
+          "unsupported": []
+        },
+        "evidence_sha256": "25567670ff1a2dcb0885e2035bb1e7c9d4fb1397f2901e7e39660249ebc9d55b",
+        "findings": [],
+        "limits": {
+          "observation_cap": 10000,
+          "parser_timeout_seconds": 60,
+          "per_clause_work_cap": 1000000
+        },
+        "manifest_sha256": "284496a9baf715285eab1ee297cd181c3a35a1931dd43f94af9433535b1d33a6",
+        "model_files": [
+          {
+            "path": "examples/engineering-gallery/water-sampling/station.sysml",
+            "sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99"
+          }
+        ],
+        "model_sha256": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
+        "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+        "parser_issues": [],
+        "results": {
+          "R_CORRELATION__correlation": {
+            "binding": {
+              "unit.containerPresented": "WaterSampling::station::containerPresented",
+              "unit.receiptIssued": "WaterSampling::station::receiptIssued"
+            },
+            "check": {
+              "claim_scope": "correlated_event_trace",
+              "coverage": {
+                "matched": 2,
+                "triggers": 2,
+                "unmatched_responses": 0
+              },
+              "status": "pass"
+            },
+            "compiled_clause": "Each unit.containerPresented shall within 2 seconds have unit.receiptIssued with matching correlationId.",
+            "deadline_ms": "2000",
+            "source": "SYN-WATER-03",
+            "sysml_line": 73,
+            "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+          },
+          "R_ELAPSED__duration": {
+            "binding": {
+              "unit.intakeRequested": "WaterSampling::station::intakeRequested",
+              "unit.processingElapsed": "WaterSampling::station::processingElapsed",
+              "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
+            },
+            "check": {
+              "artifact_sha256": "1f5ac65233684b76936bf7dafb2706ab408849ed7faa4dd562815eebe67f96de",
+              "checker_version": "language-1.0",
+              "claim_scope": "required_sampled_trace",
+              "clock_period_ms": "1000",
+              "obligations": [
+                "R_ELAPSED__duration"
+              ],
+              "required_review": true,
+              "results": {
+                "R_ELAPSED__duration": {
+                  "coverage": {
+                    "triggers": 2
+                  },
+                  "status": "pass"
+                }
+              },
+              "review": true,
+              "scope": {
+                "missing": [],
+                "required": [
+                  "R_ELAPSED__duration"
+                ],
+                "source": "external_manifest"
+              },
+              "status": "pass",
+              "work_units_bound": 40
+            },
+            "compiled_clause": "Whenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second.",
+            "source": "SYN-WATER-02",
+            "sysml_line": 70,
+            "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+          },
+          "R_RECORD__receipt": {
+            "binding": {
+              "unit.intakeRequested": "WaterSampling::station::intakeRequested",
+              "unit.processingElapsed": "WaterSampling::station::processingElapsed",
+              "unit.receiptRecorded": "WaterSampling::station::receiptRecorded"
+            },
+            "check": {
+              "artifact_sha256": "8a8fcb26906d3f15d4e85796bcabebfd7958f5c40d68aafe90fddab02880208b",
+              "checker_version": "language-1.0",
+              "claim_scope": "required_sampled_trace",
+              "clock_period_ms": "1000",
+              "obligations": [
+                "R_RECORD__receipt"
+              ],
+              "required_review": true,
+              "results": {
+                "R_RECORD__receipt": {
+                  "coverage": {
+                    "triggers": 1
+                  },
+                  "deadline_ticks": 2,
+                  "status": "pass"
+                }
+              },
+              "review": true,
+              "scope": {
+                "missing": [],
+                "required": [
+                  "R_RECORD__receipt"
+                ],
+                "source": "external_manifest"
+              },
+              "status": "pass",
+              "work_units_bound": 40
+            },
+            "compiled_clause": "Upon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.receiptRecorded = true.",
+            "source": "SYN-WATER-01",
+            "sysml_line": 67,
+            "sysml_source": "examples/engineering-gallery/water-sampling/station.sysml"
+          }
+        },
+        "shape": {
+          "actions": 13,
+          "concerns": 3,
+          "part_definitions": 7,
+          "states": 0,
+          "use_cases": 3
+        },
+        "source_revision": "fictional-water-station-1",
+        "status": "pass",
+        "view_checks": {
+          "checker_version": "cse-views-1.0",
+          "claim_scope": "documentary_view_structure",
+          "exceptions": [],
+          "findings": [],
+          "human_review": [
+            "Functions express actions; verb-object names are recommended.",
+            "Assess decomposition adequacy and exchange meaning against the task and source.",
+            "Counts, text, bindings, and rationale do not establish completeness, approval, or behavior."
+          ],
+          "status": "pass",
+          "views": [
+            {
+              "id": "FT_STATION",
+              "kind": "function_tree"
+            },
+            {
+              "id": "SQ_NOMINAL",
+              "kind": "sequence"
+            },
+            {
+              "id": "SQ_RECOVERY",
+              "kind": "sequence"
+            },
+            {
+              "id": "SQ_MAINTENANCE",
+              "kind": "sequence"
+            }
+          ]
+        }
+      }
+    },
+    "tool_concept": {
+      "concepts": {
+        "K_LAPTOP": {
+          "allocations": [
+            {
+              "element": "On-duty volunteer",
+              "function": "F_AUTHORIZE"
+            },
+            {
+              "element": "Volunteer and private local ledger on laptop",
+              "function": "F_LOAN"
+            },
+            {
+              "element": "Volunteer and private local ledger on laptop",
+              "function": "F_RETURN"
+            },
+            {
+              "element": "Separate tools/status-only view derived from the same local data",
+              "function": "F_PUBLISH"
+            },
+            {
+              "element": "Volunteer comparing local records, displayed status, and stock",
+              "function": "F_RECONCILE"
+            },
+            {
+              "element": "Recoverable copy plus temporary paper record and reconciliation; owner and method unresolved",
+              "function": "F_RECOVER"
+            }
+          ],
+          "assessments": {
+            "C_ADMIN": {
+              "basis": "Single entry may save duplicate updating; entry effort, training, maintenance, and recovery can offset it. No measured comparison or named upkeep owner exists.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Rehearse representative dummy transactions; measure total handling and recovery time and estimate ongoing upkeep with a prospective owner."
+            },
+            "C_AUTH": {
+              "basis": "The proposed ledger remains volunteer-operated; each loan requires the on-duty volunteer's authorization. Automation of public status does not authorize a loan.",
+              "evidence": "analysis",
+              "finding": "supported",
+              "next_check": "Rehearse authorized and refused loans with a volunteer in the proposed interface."
+            },
+            "C_BUDGET": {
+              "basis": "The laptop exists, but condition, repair/storage/recovery provision costs, and suitable software terms are unknown. Existing hardware does not establish zero setup or upkeep cost.",
+              "evidence": "unknown",
+              "finding": "unknown",
+              "next_check": "Assess laptop condition and necessary additions; identify an offline ledger with no recurring software charge and price the full upfront package against $200."
+            },
+            "C_CHECK": {
+              "basis": "A generated local view could support on-site checks. Shared-laptop access, accessibility, and before-travel checking are unresolved; offline storage alone provides no remote access.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Agree checking location/timing and rehearse member checking while the volunteer is using the ledger."
+            },
+            "C_PRIVACY": {
+              "basis": "Conditional on members seeing only a sanitized tool/status view and being unable to enter the private ledger. The actual application and member access route do not yet exist.",
+              "evidence": "assumption",
+              "finding": "supported",
+              "next_check": "Use dummy borrower data to verify visible fields and access separation on the actual shared laptop."
+            },
+            "C_RELIABILITY": {
+              "basis": "Local operation is intended to survive internet loss, but hardware/storage/power failures and software suitability are untested. Recoverable copies and temporary paper reconciliation are proposed, not demonstrated.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Assess hardware, run offline transactions, rehearse interruption/recovery and temporary paper reconciliation, and agree recovery expectations."
+            },
+            "C_VISITS": {
+              "basis": "A generated view could eliminate separate-board update lag, but incorrect/missed transaction entry and physical discrepancies remain. No trial or remote information path shows fewer wasted visits.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Compare discrepancies and member checking behavior against the paper baseline before an outcome claim."
+            },
+            "C_WAIT": {
+              "basis": "capacity-check.txt: baseline recollections imply no nominal spare capacity at the recalled peak. No evidence establishes that laptop entry is faster; one volunteer still authorizes and handles tools. No wait limit is accepted.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Measure laptop handling-time variation and shared-device interference, then combine with observed arrival/transaction data; agree any wait threshold before judging acceptability."
+            }
+          },
+          "assumptions": [
+            "The old laptop can be made reliable and usable within the upfront ceiling; condition and costs are unknown.",
+            "A suitable ledger can operate locally without a recurring software charge; no software is selected or tested.",
+            "Private records and a member-facing status view can be separated without exposing identities; implementation and shared-device usability are untested.",
+            "Tool identifiers and loan states can be represented consistently; required data has not been inventoried.",
+            "A person can undertake upkeep and record recovery; ownership and effort are unresolved.",
+            "No remote availability publication is included in this candidate."
+          ],
+          "comparison": "Potentially removes duplicate status maintenance, but introduces device, software, privacy-access, training, and recovery work. Keep open as a comparison candidate; no weighted score or final preference has been accepted, and budget/feasibility are unknown.",
+          "evaluation": {
+            "data": "Hardware condition, priced additions, software cost terms, entry times/errors, public-view exposure, shared-device access issues, recovered/lost records, and setup/upkeep effort. No such measurements have been collected.",
+            "environment": "Existing laptop without internet, representative dummy tools/borrowers, and the usual one-volunteer arrangement; prepare a candidate ledger, sanitized view, recoverable copy, and temporary paper record.",
+            "method": "Proposed laptop readiness/cost assessment followed by an offline dummy-data rehearsal comparing entry, status, privacy, interruptions, and recovery against the paper baseline; obtain volunteer/member feedback before any live trial."
+          },
+          "functions": [
+            "F_AUTHORIZE",
+            "F_LOAN",
+            "F_RETURN",
+            "F_PUBLISH",
+            "F_RECONCILE",
+            "F_RECOVER"
+          ],
+          "operations": [],
+          "summary": "Local offline ledger on the existing laptop: volunteer enters authorized loans and returns once; the same stored state generates a separate member-facing tool/status view. No product or application has been chosen."
+        },
+        "K_PAPER": {
+          "allocations": [
+            {
+              "element": "On-duty volunteer",
+              "function": "F_AUTHORIZE"
+            },
+            {
+              "element": "Volunteer and private paper ledger",
+              "function": "F_LOAN"
+            },
+            {
+              "element": "Volunteer and private paper ledger",
+              "function": "F_RETURN"
+            },
+            {
+              "element": "Volunteer-maintained public tool/status board",
+              "function": "F_PUBLISH"
+            },
+            {
+              "element": "Volunteer comparing ledger, board, and stock",
+              "function": "F_RECONCILE"
+            },
+            {
+              "element": "Retained pages/recovery material and volunteer reconciliation; method to agree",
+              "function": "F_RECOVER"
+            }
+          ],
+          "assessments": {
+            "C_ADMIN": {
+              "basis": "Consistent board updating/reconciliation adds immediate effort and might reduce later corrections. There is no measured total-effort comparison.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Time handling, reconciliation, and corrections in baseline and paper trial, including interruptions."
+            },
+            "C_AUTH": {
+              "basis": "The proposed allocation explicitly retains the on-duty volunteer's authorization before recording/handover. This is a concept-level property, not observed execution.",
+              "evidence": "analysis",
+              "finding": "supported",
+              "next_check": "Walk through a sample loan with a volunteer and confirm the rule is preserved."
+            },
+            "C_BUDGET": {
+              "basis": "No software is proposed, satisfying the recurring-software-cost condition by design. Existing materials and any replacement or recovery materials have not been inventoried or priced; the complete spending constraint is unverified.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Inventory usable materials and price all required additions against $200 before spending."
+            },
+            "C_CHECK": {
+              "basis": "A board enables on-site checking in principle; location, accessibility, and freshness are untested. Before-travel checking is unresolved and is not supplied by an on-site board alone.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Confirm where and when members need to check, then walk through that access route."
+            },
+            "C_PRIVACY": {
+              "basis": "Conditional on a tools/status-only board and a ledger kept with the volunteer. Actual visibility and access have not been checked.",
+              "evidence": "assumption",
+              "finding": "supported",
+              "next_check": "Inspect the intended board and ledger placement using dummy borrower information."
+            },
+            "C_RELIABILITY": {
+              "basis": "Paper operation does not need internet or the old laptop. Missed paired updates, illegibility, lost pages, and a not-yet-defined recovery practice leave overall reliability unverified.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Rehearse an interrupted update and recovery of a damaged/missing record using dummy records; agree retention and recovery expectations."
+            },
+            "C_VISITS": {
+              "basis": "Paired updates address the stated missed-update mechanism but still require duplicate entries. No trial or before-travel information path demonstrates fewer wasted trips.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Observe baseline false-available incidents and wasted-visit reasons, then compare an agreed paper trial with checking behavior recorded."
+            },
+            "C_WAIT": {
+              "basis": "capacity-check.txt: supplied recollections imply 100% nominal peak utilization if one transaction per arrival. Paper-specific service time and arrival variability are unmeasured; no accepted wait threshold exists.",
+              "evidence": "analysis",
+              "finding": "unknown",
+              "next_check": "Measure waits, arrivals, transactions per visit, and service times during the trial; ask the engineer to set any required wait limit."
+            }
+          },
+          "assumptions": [
+            "Tools can be identified consistently in ledger and board; present identifiers are unknown.",
+            "A volunteer can complete paired updates despite interruptions; this is untested and may add time.",
+            "The private ledger can be kept out of public view; actual layout has not been inspected.",
+            "Materials and a workable retention/recovery method can fit the budget; costs are not established.",
+            "The current candidate provides on-site checking only; before-travel checking needs a separate arrangement."
+          ],
+          "comparison": "Recommended first exploration as a baseline because it directly addresses the known coordination failure with low technical dependency. It retains duplicate updates and may increase immediate workload. Recommendation is proposed, with neither cost compliance nor outcome improvement demonstrated.",
+          "evaluation": {
+            "data": "Arrival and transaction timestamps/counts, waits, false-available discrepancies, wasted-visit reasons and checking channel, total administrative time, costs, and recovery effort. Agree observation period and avoid unnecessary borrower identity collection.",
+            "environment": "Actual Saturday opening with usual staffing for agreed observation; prepare a private ledger and tools/status-only board. Use dummy records for disruptive rehearsals.",
+            "method": "Proposed baseline observation followed by an agreed paper-workflow trial, plus dummy-record interruption/privacy/recovery walkthroughs; seek member and volunteer feedback. No evaluation has been completed."
+          },
+          "functions": [
+            "F_AUTHORIZE",
+            "F_LOAN",
+            "F_RETURN",
+            "F_PUBLISH",
+            "F_RECONCILE",
+            "F_RECOVER"
+          ],
+          "operations": [],
+          "summary": "Improve the paper ledger/availability-board workflow: private authoritative ledger, tool-only public board, paired updates at every handover, and reconciliation before opening and after a discrepancy. Proposed workflow, not validated."
+        }
+      },
+      "criteria": {
+        "C_ADMIN": {
+          "basis": "Explicit desired outcome; no accepted target or criterion weight.",
+          "kind": "goal",
+          "measure": "Transaction handling, reconciliation, setup/training, troubleshooting, and ongoing upkeep time; distinguish per-session from occasional effort.",
+          "needs": [
+            "N_ADMIN",
+            "N_RESOURCES"
+          ],
+          "text": "Reduce total volunteer administration, including upkeep and recovery."
+        },
+        "C_AUTH": {
+          "basis": "Explicit existing rule that the user asked to preserve.",
+          "kind": "constraint",
+          "measure": "Review and rehearse each candidate's loan action for volunteer authorization before handover.",
+          "needs": [
+            "N_CONTROL"
+          ],
+          "text": "Each loan retains on-duty volunteer authorization."
+        },
+        "C_BUDGET": {
+          "basis": "Explicit user constraints; maintenance labor is evaluated separately, not treated as free.",
+          "kind": "constraint",
+          "measure": "Inventory and actual priced upfront total, plus software licensing/subscription terms; neither candidate has been priced.",
+          "needs": [
+            "N_RESOURCES"
+          ],
+          "text": "At most $200 upfront spending and no recurring software cost."
+        },
+        "C_CHECK": {
+          "basis": "Explicit user need; whether this means before travel, on site, or both is unresolved.",
+          "kind": "constraint",
+          "measure": "Member walkthrough of checking location, accessibility, freshness, and meaning of displayed status; no remote channel is yet specified.",
+          "needs": [
+            "N_VISITS"
+          ],
+          "text": "Members can check tool availability."
+        },
+        "C_PRIVACY": {
+          "basis": "Explicit supplied privacy constraint.",
+          "kind": "constraint",
+          "measure": "Inspect the public board/view and member access route with dummy borrower records.",
+          "needs": [
+            "N_PRIVACY"
+          ],
+          "text": "Member-facing information must not publicly display other borrowers' identities."
+        },
+        "C_RELIABILITY": {
+          "basis": "Supplied outage context and inconsistency problem; recovery time, tolerated data loss, and criterion weight are not agreed.",
+          "kind": "goal",
+          "measure": "Offline and interruption rehearsal, discrepancy frequency, recovery effort, and residual lost/uncertain entries; expectations require engineer agreement.",
+          "needs": [
+            "N_CONTINUITY",
+            "N_VISITS"
+          ],
+          "text": "Maintain usable, consistent records through internet outages, interruptions, and recoverable errors."
+        },
+        "C_VISITS": {
+          "basis": "Explicit desired outcome; no accepted reduction target or criterion weight.",
+          "kind": "goal",
+          "measure": "Compare reasons and counts/rates of wasted visits and false-available displays against a measured baseline, with checking channel and observation exposure recorded.",
+          "needs": [
+            "N_VISITS"
+          ],
+          "text": "Reduce wasted member visits associated with incorrect availability."
+        },
+        "C_WAIT": {
+          "basis": "User has not agreed to a maximum acceptable wait or a convenience weight; this is an unweighted comparison dimension, not an accepted service threshold.",
+          "kind": "goal",
+          "measure": "Observe arrival timing, transaction counts per visit, service-time variation, queues and actual waits; report distributions without a fabricated pass/fail threshold.",
+          "needs": [
+            "N_VISITS",
+            "N_ADMIN"
+          ],
+          "text": "Understand member convenience and waiting effects before selecting a concept."
+        }
+      },
+      "decisions": {
+        "D_EXPLORE": {
+          "affects": [
+            "K_PAPER",
+            "K_LAPTOP",
+            "C_VISITS",
+            "C_ADMIN"
+          ],
+          "basis": "Directly addresses the known missed board-update mechanism with low technical dependency. Unknown costs, workload effects, and checking channel prevent a demonstrated-feasibility or outcome claim.",
+          "by": "Assistant recommendation for engineer decision",
+          "status": "proposed",
+          "text": "Recommend a paper-workflow baseline trial as the next exploration, keeping the laptop candidate open for readiness assessment and rehearsal."
+        },
+        "D_RULE": {
+          "affects": [
+            "N_CONTROL",
+            "C_AUTH",
+            "F_AUTHORIZE",
+            "F_LOAN",
+            "K_PAPER",
+            "K_LAPTOP"
+          ],
+          "basis": "The request states: Our existing rule is that the on-duty volunteer authorizes each loan; preserve that rule.",
+          "by": "User, supplied request in ../input.md",
+          "status": "accepted",
+          "text": "Preserve on-duty volunteer authorization for each loan."
+        },
+        "D_SCOPE": {
+          "affects": [
+            "framing",
+            "K_PAPER",
+            "K_LAPTOP"
+          ],
+          "basis": "The user explicitly scoped the session and excluded detailed operational scenarios and a complete CONOPS.",
+          "by": "User, supplied request in ../input.md",
+          "status": "accepted",
+          "text": "Limit this session to essential functions and the two supplied concept approaches; no detailed scenarios or complete CONOPS."
+        },
+        "D_SELECTION": {
+          "affects": [
+            "K_PAPER",
+            "K_LAPTOP",
+            "C_WAIT",
+            "C_ADMIN",
+            "C_VISITS",
+            "C_RELIABILITY"
+          ],
+          "basis": "The user wants to decide the direction after this comparison and has not agreed on wait or weights.",
+          "by": "Unresolved in supplied request; retained for user decision",
+          "status": "deferred",
+          "text": "No final concept selection, quantitative criterion weights, maximum wait, or trial duration is recorded; these remain with the engineer."
+        }
+      },
+      "framing": {
+        "basis": "Only the supplied synthetic request in ../input.md. Proposed workflow details, evaluations, and recommendations have not been accepted. No external research or observations.",
+        "boundary": "Essential functions and two concept candidates for handover, volunteer authorization, records, member availability, reconciliation, and recovery. Detailed scenarios and a complete CONOPS are outside scope. A remote checking channel is not specified.",
+        "context": "Upfront spend must not exceed $200; no recurring software budget. Internet sometimes fails. Member-facing information must not publicly expose other borrowers' identities. Volunteer authorization remains mandatory. Timing and arrival estimates are recollections.",
+        "current_state": "Private paper loan/return ledger and a separate availability board; about 40 members, usually one volunteer, two-hour Saturday opening. An old laptop exists but is unassessed.",
+        "desired_outcome": "Fewer wasted member visits and less volunteer administration; no accepted target magnitude.",
+        "name": "Initial community tool library concept",
+        "problem": "Members find tools marked available already borrowed because the separate board is updated irregularly.",
+        "timeframe": "Opening window is two hours on Saturday. No implementation date, trial length, or outcome assessment timeframe has been agreed."
+      },
+      "functions": {
+        "F_AUTHORIZE": {
+          "inputs": [
+            "Member loan request",
+            "Current tool status"
+          ],
+          "needs": [
+            "N_CONTROL"
+          ],
+          "outputs": [
+            "Volunteer authorization or refusal"
+          ],
+          "text": "Obtain the on-duty volunteer's authorization before each loan."
+        },
+        "F_LOAN": {
+          "inputs": [
+            "Volunteer authorization",
+            "Tool handed to member"
+          ],
+          "needs": [
+            "N_VISITS",
+            "N_ADMIN",
+            "N_CONTROL"
+          ],
+          "outputs": [
+            "Private loan record",
+            "Borrowed tool status"
+          ],
+          "text": "Record an authorized tool handover and update its loan status."
+        },
+        "F_PUBLISH": {
+          "inputs": [
+            "Authoritative tool status"
+          ],
+          "needs": [
+            "N_VISITS",
+            "N_PRIVACY"
+          ],
+          "outputs": [
+            "Member-facing tool/status information"
+          ],
+          "text": "Present tool availability to members without public borrower identities."
+        },
+        "F_RECONCILE": {
+          "inputs": [
+            "Loan/return record",
+            "Displayed availability",
+            "Physical stock and discrepancy reports"
+          ],
+          "needs": [
+            "N_VISITS",
+            "N_ADMIN",
+            "N_CONTINUITY"
+          ],
+          "outputs": [
+            "Corrected record and availability display",
+            "Unresolved discrepancy for volunteer review"
+          ],
+          "text": "Detect and correct discrepancies between records, displayed status, and physical stock."
+        },
+        "F_RECOVER": {
+          "inputs": [
+            "Operational record",
+            "Retained recovery material",
+            "Disruption or record damage"
+          ],
+          "needs": [
+            "N_CONTINUITY",
+            "N_RESOURCES",
+            "N_PRIVACY"
+          ],
+          "outputs": [
+            "Recovered usable record",
+            "Discrepancies requiring reconciliation"
+          ],
+          "text": "Preserve operational records and restore a current usable record after disruption."
+        },
+        "F_RETURN": {
+          "inputs": [
+            "Tool received back",
+            "Existing loan record"
+          ],
+          "needs": [
+            "N_VISITS",
+            "N_ADMIN"
+          ],
+          "outputs": [
+            "Closed loan",
+            "Updated tool availability"
+          ],
+          "text": "Record receipt of a returned tool and update its availability."
+        }
+      },
+      "needs": {
+        "N_ADMIN": {
+          "basis": "Supplied desired outcome, usually one volunteer and a two-hour opening; no workload or wait threshold accepted.",
+          "stakeholder": "Volunteers",
+          "text": "Volunteers need less administrative work within the opening window."
+        },
+        "N_CONTINUITY": {
+          "basis": "Inferred from supplied internet outages and record/board inconsistency; recovery expectations remain to be agreed.",
+          "stakeholder": "Members and volunteers",
+          "text": "The library needs usable records and availability despite internet interruptions and operational errors."
+        },
+        "N_CONTROL": {
+          "basis": "Explicit existing rule in the supplied request.",
+          "stakeholder": "Library and on-duty volunteer",
+          "text": "The on-duty volunteer must authorize each loan."
+        },
+        "N_PRIVACY": {
+          "basis": "Explicit privacy constraint in the supplied request.",
+          "stakeholder": "Borrowers",
+          "text": "Borrower identities must be withheld from public availability information."
+        },
+        "N_RESOURCES": {
+          "basis": "Explicit $200 upfront ceiling, no recurring software budget, and unassessed laptop maintenance burden. Support capacity itself is unknown.",
+          "stakeholder": "Library organizers and volunteers",
+          "text": "The library needs an approach within its money and support capacity."
+        },
+        "N_VISITS": {
+          "basis": "Supplied problem and desired outcome; location and timing of availability checking remain unknown.",
+          "stakeholder": "Members",
+          "text": "Members need trustworthy tool availability to reduce wasted visits."
+        }
+      },
+      "operations": {},
+      "questions": [
+        {
+          "affects": [
+            "D_EXPLORE",
+            "K_PAPER",
+            "K_LAPTOP"
+          ],
+          "blocking": false,
+          "text": "Which next exploration does the engineer choose: paper baseline trial as recommended, or laptop readiness assessment and rehearsal? No activity is yet authorized by this recommendation."
+        },
+        {
+          "affects": [
+            "N_VISITS",
+            "F_PUBLISH",
+            "C_CHECK",
+            "C_VISITS",
+            "K_PAPER",
+            "K_LAPTOP"
+          ],
+          "blocking": false,
+          "text": "Must members check current availability before travel, on site, or both? Before-travel access would require an additional communication mechanism for either candidate."
+        },
+        {
+          "affects": [
+            "C_WAIT",
+            "C_ADMIN",
+            "C_VISITS",
+            "K_PAPER",
+            "K_LAPTOP"
+          ],
+          "blocking": false,
+          "text": "What are measured arrival patterns, transactions per visit, service-time variation, actual waits, administrative effort, and wasted-visit reasons?"
+        },
+        {
+          "affects": [
+            "D_SELECTION",
+            "C_WAIT",
+            "C_ADMIN",
+            "C_VISITS",
+            "C_RELIABILITY"
+          ],
+          "blocking": false,
+          "text": "Which tradeoffs and any wait/improvement targets should govern a later decision? No weights or thresholds are invented for this comparison."
+        },
+        {
+          "affects": [
+            "N_RESOURCES",
+            "C_BUDGET",
+            "K_PAPER",
+            "K_LAPTOP"
+          ],
+          "blocking": false,
+          "text": "Which existing materials are usable, what is the laptop's condition, and what is each candidate's complete upfront cost?"
+        },
+        {
+          "affects": [
+            "F_RECOVER",
+            "C_ADMIN",
+            "C_RELIABILITY",
+            "K_PAPER",
+            "K_LAPTOP"
+          ],
+          "blocking": false,
+          "text": "Who can own upkeep and recovery, and what record loss or recovery delay is acceptable?"
+        },
+        {
+          "affects": [
+            "K_PAPER",
+            "K_LAPTOP",
+            "D_EXPLORE"
+          ],
+          "blocking": false,
+          "text": "What trial duration and observation approach will the engineer accept? Open questions do not block this initial comparison, but relevant answers are needed before implementation or outcome validation."
+        }
+      ],
+      "version": 1
+    },
+    "views": {
+      "FT_STATION": {
+        "id": "FT_STATION",
+        "kind": "function_tree",
+        "nodes": [
+          {
+            "element": "WaterSampling::ManageSampleHandoff",
+            "id": "F0",
+            "level": 0,
+            "parent": null
+          },
+          {
+            "element": "WaterSampling::ReceiveSample",
+            "id": "F1",
+            "level": 1,
+            "parent": "F0"
+          },
+          {
+            "element": "WaterSampling::IdentifyContainer",
+            "id": "F11",
+            "level": 2,
+            "parent": "F1"
+          },
+          {
+            "element": "WaterSampling::RecordReceipt",
+            "id": "F12",
+            "level": 2,
+            "parent": "F1"
+          },
+          {
+            "element": "WaterSampling::PreserveHandoffRecord",
+            "id": "F2",
+            "level": 1,
+            "parent": "F0"
+          },
+          {
+            "element": "WaterSampling::HoldUnidentifiedContainer",
+            "id": "F21",
+            "level": 2,
+            "parent": "F2"
+          },
+          {
+            "element": "WaterSampling::ReconcileLabel",
+            "id": "F22",
+            "level": 2,
+            "parent": "F2"
+          },
+          {
+            "element": "WaterSampling::ReleaseSample",
+            "id": "F3",
+            "level": 1,
+            "parent": "F0"
+          },
+          {
+            "element": "WaterSampling::MatchCourierManifest",
+            "id": "F31",
+            "level": 2,
+            "parent": "F3"
+          },
+          {
+            "element": "WaterSampling::RecordCustodyTransfer",
+            "id": "F32",
+            "level": 2,
+            "parent": "F3"
+          },
+          {
+            "element": "WaterSampling::MaintainStation",
+            "id": "F4",
+            "level": 1,
+            "parent": "F0"
+          },
+          {
+            "element": "WaterSampling::SuspendIntake",
+            "id": "F41",
+            "level": 2,
+            "parent": "F4"
+          },
+          {
+            "element": "WaterSampling::InspectAndRestore",
+            "id": "F42",
+            "level": 2,
+            "parent": "F4"
+          }
+        ]
+      },
+      "SQ_MAINTENANCE": {
+        "exchanges": [
+          {
+            "from": "custodian",
+            "id": "SQ_MAINTENANCE_E1",
+            "message": "Request maintenance window",
+            "to": "station"
+          },
+          {
+            "from": "station",
+            "id": "SQ_MAINTENANCE_E2",
+            "message": "Announce intake suspended",
+            "to": "operator"
+          },
+          {
+            "from": "custodian",
+            "id": "SQ_MAINTENANCE_E3",
+            "message": "Record inspection and restoration",
+            "to": "station"
+          },
+          {
+            "from": "station",
+            "id": "SQ_MAINTENANCE_E4",
+            "message": "Inspection recorded; return-to-service approval pending",
+            "to": "operator"
+          }
+        ],
+        "id": "SQ_MAINTENANCE",
+        "kind": "sequence",
+        "participants": [
+          {
+            "element": "WaterSampling::custodian",
+            "id": "custodian"
+          },
+          {
+            "element": "WaterSampling::station",
+            "id": "station"
+          },
+          {
+            "element": "WaterSampling::operator",
+            "id": "operator"
+          }
+        ]
+      },
+      "SQ_NOMINAL": {
+        "exchanges": [
+          {
+            "from": "operator",
+            "id": "SQ_NOMINAL_E1",
+            "message": "Present labeled container and sample ID",
+            "to": "station"
+          },
+          {
+            "from": "station",
+            "id": "SQ_NOMINAL_E2",
+            "message": "Return receipt with matching sample ID",
+            "to": "operator"
+          },
+          {
+            "from": "courier",
+            "id": "SQ_NOMINAL_E3",
+            "message": "Present pickup manifest",
+            "to": "station"
+          },
+          {
+            "from": "station",
+            "id": "SQ_NOMINAL_E4",
+            "message": "Return custody transfer record",
+            "to": "courier"
+          }
+        ],
+        "id": "SQ_NOMINAL",
+        "kind": "sequence",
+        "participants": [
+          {
+            "element": "WaterSampling::operator",
+            "id": "operator"
+          },
+          {
+            "element": "WaterSampling::station",
+            "id": "station"
+          },
+          {
+            "element": "WaterSampling::courier",
+            "id": "courier"
+          }
+        ]
+      },
+      "SQ_RECOVERY": {
+        "exchanges": [
+          {
+            "from": "operator",
+            "id": "SQ_RECOVERY_E1",
+            "message": "Present container with unreadable label",
+            "to": "station"
+          },
+          {
+            "from": "station",
+            "id": "SQ_RECOVERY_E2",
+            "message": "Issue hold notice; container remains unreleased",
+            "to": "operator"
+          },
+          {
+            "from": "operator",
+            "id": "SQ_RECOVERY_E3",
+            "message": "Supply corrected identification",
+            "to": "station"
+          },
+          {
+            "from": "station",
+            "id": "SQ_RECOVERY_E4",
+            "message": "Confirm reconciliation and receipt",
+            "to": "operator"
+          }
+        ],
+        "id": "SQ_RECOVERY",
+        "kind": "sequence",
+        "participants": [
+          {
+            "element": "WaterSampling::operator",
+            "id": "operator"
+          },
+          {
+            "element": "WaterSampling::station",
+            "id": "station"
+          }
+        ]
+      }
+    }
+  },
+  "scope": {
+    "authority": "Existing published synthetic demonstration models, ledgers, evidence and actual checker outputs. No model or evidence semantics changed.",
+    "classification": "Simplified source-derived explanatory previews; not native SysML graphical views.",
+    "geometry_policy": "800px natural width; source-derived labels at 22px, supporting text 18px or larger. Narrow offline views scroll, never scale formal content to fit. Plain-language aliases retain precise source IDs in the ledger and nearby links.",
+    "scope": "Eight new preview families plus links to the preserved existing overview. No new UI, ports, topology, allocations, control flow, decisions or thresholds.",
+    "source_root": "examples/engineering-gallery/water-sampling unless a repository-relative path is explicitly given.",
+    "version": 1,
+    "views": [
+      {
+        "display_title": "How does a normal handoff work?",
+        "id": "01-normal-handoffs",
+        "meaning_boundary": "Four ordered message rows; manual/protocol handoffs, no inferred timing or activity control flow.",
+        "prompt": "Show the four normal sample handoffs, naming who sends what to whom. Use the existing station model and distinguish documentary exchanges from executable behavior.",
+        "question": "What happens during a normal pickup?",
+        "selected_ids": [
+          "SQ_NOMINAL"
+        ],
+        "source_bindings": [
+          "station.sysml#cseViews",
+          "generated/shape-concept.json"
+        ]
+      },
+      {
+        "display_title": "How does an unreadable label get resolved?",
+        "id": "02-label-recovery",
+        "meaning_boundary": "An exception/recovery reading, not a station UI or an accepted reconciliation policy.",
+        "prompt": "Walk through the unreadable-label hold and recovery. Show the four existing exchanges and make the unreleased hold explicit.",
+        "question": "What happens when a label cannot be read?",
+        "selected_ids": [
+          "SQ_RECOVERY"
+        ],
+        "source_bindings": [
+          "station.sysml#cseViews",
+          "generated/shape-concept.json"
+        ]
+      },
+      {
+        "display_title": "Who does what?",
+        "id": "03-responsibilities",
+        "meaning_boundary": "Five selected documentary allocations of twelve; courier is a sequence participant with no function allocation recorded. No native allocation or feasibility proof.",
+        "presentation_labels": {
+          "F11": "Identify container",
+          "F12": "Record receipt",
+          "F22": "Reconcile label",
+          "F32": "Record custody transfer",
+          "F42": "Inspect and restore"
+        },
+        "prompt": "Show the recorded responsibilities for identifying, recording, reconciling and inspecting samples. Keep participants distinct from functions and expose missing allocations.",
+        "question": "Who is responsible for each action?",
+        "selected_ids": [
+          "F11",
+          "F12",
+          "F22",
+          "F32",
+          "F42"
+        ],
+        "source_bindings": [
+          "semantic-ledger.json#documentary_allocations",
+          "generated/shape-concept.json"
+        ]
+      },
+      {
+        "display_title": "Which need does each check support?",
+        "id": "04-need-traces",
+        "meaning_boundary": "All six recorded typed links; a link records a relationship, not satisfaction.",
+        "presentation_labels": {
+          "N_ACCOUNT": "Account for containers",
+          "N_IDENTITY": "Preserve identity",
+          "R_CORRELATION": "Match each receipt",
+          "R_ELAPSED": "Limit duration",
+          "R_RECORD": "Record receipt",
+          "UC_NOMINAL": "Normal handoff",
+          "UC_RECOVERY": "Label recovery"
+        },
+        "prompt": "Read the existing need, requirement and scenario traces. Preserve link direction and kind, and show any missing scenario link without inventing one.",
+        "question": "Which needs and scenarios connect to each check?",
+        "selected_ids": [
+          "N_IDENTITY",
+          "N_ACCOUNT",
+          "R_RECORD",
+          "R_ELAPSED",
+          "R_CORRELATION",
+          "UC_NOMINAL",
+          "UC_RECOVERY"
+        ],
+        "source_bindings": [
+          "semantic-ledger.json#typed_traces",
+          "generated/shape-concept.json"
+        ]
+      },
+      {
+        "display_title": "Did each receipt arrive in time?",
+        "id": "05-receipt-deadlines",
+        "meaning_boundary": "Actual supported correlated-event monitor outputs for wholly synthetic traces. No latency distribution, implementation behavior or physical validation.",
+        "prompt": "Compare the existing passing and late receipt traces. Show overlapping container IDs, the inclusive two-second deadline and the correctly reversed response order.",
+        "question": "Did each container receive its own receipt in time?",
+        "selected_ids": [
+          "R_CORRELATION"
+        ],
+        "source_bindings": [
+          "evidence-pass.json",
+          "evidence-late.json",
+          "generated/native-pass.json",
+          "generated/native-late.json"
+        ]
+      },
+      {
+        "display_title": "Is the recorded duration within its limit?",
+        "id": "06-quantity-bound",
+        "meaning_boundary": "Observed integer ticks, not an inferred elapsed clock. Both values are valid within declared 0..20; only the receipt-time quantity clause fails for 5.",
+        "prompt": "Compare the recorded-receipt observations of four and five seconds against the fictional four-second limit. Show which check fails and retain the other passing controls.",
+        "question": "Was the observed processing duration within its limit?",
+        "selected_ids": [
+          "R_ELAPSED",
+          "R_RECORD",
+          "R_CORRELATION"
+        ],
+        "source_bindings": [
+          "evidence-pass.json",
+          "evidence-over-limit.json",
+          "generated/native-pass.json",
+          "generated/native-over-limit.json"
+        ]
+      },
+      {
+        "display_title": "Why is this handoff blocked?",
+        "id": "07-blocked-handoff",
+        "meaning_boundary": "Reproduce the exact existing contradictory-guard mutation; original finite fixture stays unchanged. State connectivity differs from guard-enabled reachability.",
+        "prompt": "Explain the existing blocked-handoff negative control. Show the contradictory guard and the actual finite verifier findings without implying a SysML-to-executable conversion.",
+        "question": "Why can this deliberately broken handoff never finish?",
+        "selected_ids": [
+          "FS_NOMINAL",
+          "FN_RECORD",
+          "FN_HANDOFF"
+        ],
+        "source_bindings": [
+          "finite-scenarios.json",
+          "finite-scope.json",
+          "build.py#disabled",
+          "generated/finite-disabled-release.json"
+        ]
+      },
+      {
+        "display_title": "Compare two tool-library approaches",
+        "id": "08-tool-library",
+        "meaning_boundary": "Legacy version 1 concept comparison. Conditional arithmetic from fictional recollections; no measured candidate advantage, expected wait, accepted weights or final selection.",
+        "presentation_readings": {
+          "K_LAPTOP": "Record each handover once; derive a separate tools/status view from the same data.",
+          "K_PAPER": "Private loan record; separate public tools/status board. Handover updates both."
+        },
+        "prompt": "Compare the existing community tool-library paper and laptop concepts. Show the conditional capacity arithmetic and evidence gaps without selecting a winner or predicting wait time.",
+        "question": "How could we compare two useful alternatives?",
+        "selected_ids": [
+          "K_PAPER",
+          "K_LAPTOP",
+          "C_WAIT",
+          "D_SELECTION"
+        ],
+        "source_bindings": [
+          "examples/tool-library/input.md",
+          "examples/tool-library/result/concept.json",
+          "examples/tool-library/result/capacity_check.py",
+          "examples/tool-library/result/capacity-check.txt"
+        ]
+      }
+    ]
+  },
+  "source_sha256": {
+    "docs/gallery-method.md": "74dd96b9870719596d6b7d2dd14b06c985f963133f01c1b9ed3dd866ecff6e10",
+    "examples/engineering-gallery/water-sampling/build.py": "6b17ee8975dde9d7b471c7a4dc0a4f41ee344a74ed9d53b22fca1b9d5d9fe5d2",
+    "examples/engineering-gallery/water-sampling/evidence-late.json": "ea0a8d3ffe34841caa4423e9df8617f10727531391759a9a47fd87710e1cad2f",
+    "examples/engineering-gallery/water-sampling/evidence-over-limit.json": "a113ea74cc88296dcbb59e0a55e144155a304b2bdd36dbf394f00c9e9df36716",
+    "examples/engineering-gallery/water-sampling/evidence-pass.json": "4efb6afba107de7cf8b8563509c27bf4adae57f19ad79cc39eeba342eb952b83",
+    "examples/engineering-gallery/water-sampling/finite-scenarios.json": "4f3388c0bfd9d81dbea697474ab7f036db28602647f657d9b5c433f2a9b1f27a",
+    "examples/engineering-gallery/water-sampling/finite-scope.json": "3f46f23cd498c7f852589168425e9b44eeebfa2964187896769f2d161a565569",
+    "examples/engineering-gallery/water-sampling/generated/finite-disabled-release.json": "071b6654a642b113c3cdfee8c323d1c398c5c46940fa25894a1ad9facba0037e",
+    "examples/engineering-gallery/water-sampling/generated/native-late.json": "e7030ad08f7d3b8815758d7b770864548b6f2ddb5a92f51d9a5b058cc961b74d",
+    "examples/engineering-gallery/water-sampling/generated/native-over-limit.json": "39bc0a19c92397794e86ec2e4c8460e46c8a60b59bac1a3acc846bd6e6132117",
+    "examples/engineering-gallery/water-sampling/generated/native-pass.json": "118c48d0c07d7fbdbad84cb2152484a79ec9bbc8386681241352a9e8c1eb2d6a",
+    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "cf3c7ffa44b1c228d1727611c53d1dd392b1d23c6715b6dd2bfff908b3039d57",
+    "examples/engineering-gallery/water-sampling/scope.json": "818f7f746ca40244b318cb09f6690f7d5ca07c6973ce963c58806b329eb1a956",
+    "examples/engineering-gallery/water-sampling/semantic-ledger.json": "5e36dcb1e842dbe9fe1dbbd9cb22a4904175eb43008ef6586b9a8e2885b894b5",
+    "examples/engineering-gallery/water-sampling/station.sysml": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
+    "examples/engineering-gallery/water-sampling/view-profile.json": "612bf5252b6bff7eede44683bde9954b314ae88be347ba3bc6201cfc287c65c8",
+    "examples/tool-library/README.md": "8e089bcb8a62847c692eefd9a552f5c51b17732857aa375fc95423b9580c3e35",
+    "examples/tool-library/input.md": "b30ffdfb961d23af3563506a4de2f371ad26c00e8d899fb9d5945709e6a9fe07",
+    "examples/tool-library/result/capacity-check.txt": "c383919a74dbc565d348d4ed312b5e966fe85aa167c058c32eae0878a1986a1e",
+    "examples/tool-library/result/capacity_check.py": "c09594f4939a1d7cf7d88490e86d3559701efccdfde6b41968dffbe27c173458",
+    "examples/tool-library/result/concept-brief.md": "56722ca006e6eb6bb1aaf08788ae3555c5f5faaab4f7c2359c6308258114b4f4",
+    "examples/tool-library/result/concept.json": "47ba89b6358c7b5adf99ccc05f3b9627d2558f2e936ff01c731ef6b5948bc107",
+    "skills/develop-system-concept/scripts/concept.py": "f9a8c7d96ee58f375a3f555ce4ef0630d09081b04aa7f0fce98324504f73760d"
+  }
+}

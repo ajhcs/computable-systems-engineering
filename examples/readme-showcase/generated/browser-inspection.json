@@ -1,0 +1,158 @@
+{
+  "viewport_width": 800,
+  "device_scale_factor": 1,
+  "views": [
+    {
+      "id": "01-normal-handoffs",
+      "text_count": 17,
+      "failures": [],
+      "width": 800,
+      "height": 740,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "02-label-recovery",
+      "text_count": 17,
+      "failures": [],
+      "width": 800,
+      "height": 740,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "03-responsibilities",
+      "text_count": 25,
+      "failures": [],
+      "width": 800,
+      "height": 760,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "04-need-traces",
+      "text_count": 38,
+      "failures": [],
+      "width": 800,
+      "height": 1000,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "05-receipt-deadlines",
+      "text_count": 28,
+      "failures": [],
+      "width": 800,
+      "height": 810,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "06-quantity-bound",
+      "text_count": 21,
+      "failures": [],
+      "width": 800,
+      "height": 790,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "07-blocked-handoff",
+      "text_count": 17,
+      "failures": [],
+      "width": 800,
+      "height": 820,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    },
+    {
+      "id": "08-tool-library",
+      "text_count": 25,
+      "failures": [],
+      "width": 800,
+      "height": 890,
+      "narrow": {
+        "viewport": 390,
+        "document": 390,
+        "scrollClient": 390,
+        "scrollContent": 800,
+        "naturalWidth": 800
+      }
+    }
+  ],
+  "errors": [],
+  "gallery": {
+    "viewport": 390,
+    "document": 390,
+    "frames": [
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      },
+      {
+        "client": 348,
+        "scroll": 800
+      }
+    ],
+    "textAlternatives": 8
+  }
+}

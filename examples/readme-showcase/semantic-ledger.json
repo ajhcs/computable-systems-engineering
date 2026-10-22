@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "classification": "Simplified source-derived explanatory previews; not native SysML graphical views.",
+  "authority": "Existing published synthetic demonstration models, ledgers, evidence and actual checker outputs. No model or evidence semantics changed.",
+  "scope": "Eight new preview families plus links to the preserved existing overview. No new UI, ports, topology, allocations, control flow, decisions or thresholds.",
+  "source_root": "examples/engineering-gallery/water-sampling unless a repository-relative path is explicitly given.",
+  "views": [
+    {
+      "id": "01-normal-handoffs",
+      "question": "What happens during a normal pickup?",
+      "prompt": "Show the four normal sample handoffs, naming who sends what to whom. Use the existing station model and distinguish documentary exchanges from executable behavior.",
+      "selected_ids": [
+        "SQ_NOMINAL"
+      ],
+      "source_bindings": [
+        "station.sysml#cseViews",
+        "generated/shape-concept.json"
+      ],
+      "meaning_boundary": "Four ordered message rows; manual/protocol handoffs, no inferred timing or activity control flow.",
+      "display_title": "How does a normal handoff work?"
+    },
+    {
+      "id": "02-label-recovery",
+      "question": "What happens when a label cannot be read?",
+      "prompt": "Walk through the unreadable-label hold and recovery. Show the four existing exchanges and make the unreleased hold explicit.",
+      "selected_ids": [
+        "SQ_RECOVERY"
+      ],
+      "source_bindings": [
+        "station.sysml#cseViews",
+        "generated/shape-concept.json"
+      ],
+      "meaning_boundary": "An exception/recovery reading, not a station UI or an accepted reconciliation policy.",
+      "display_title": "How does an unreadable label get resolved?"
+    },
+    {
+      "id": "03-responsibilities",
+      "question": "Who is responsible for each action?",
+      "prompt": "Show the recorded responsibilities for identifying, recording, reconciling and inspecting samples. Keep participants distinct from functions and expose missing allocations.",
+      "selected_ids": [
+        "F11",
+        "F12",
+        "F22",
+        "F32",
+        "F42"
+      ],
+      "source_bindings": [
+        "semantic-ledger.json#documentary_allocations",
+        "generated/shape-concept.json"
+      ],
+      "meaning_boundary": "Five selected documentary allocations of twelve; courier is a sequence participant with no function allocation recorded. No native allocation or feasibility proof.",
+      "display_title": "Who does what?",
+      "presentation_labels": {
+        "F11": "Identify container",
+        "F12": "Record receipt",
+        "F22": "Reconcile label",
+        "F32": "Record custody transfer",
+        "F42": "Inspect and restore"
+      }
+    },
+    {
+      "id": "04-need-traces",
+      "question": "Which needs and scenarios connect to each check?",
+      "prompt": "Read the existing need, requirement and scenario traces. Preserve link direction and kind, and show any missing scenario link without inventing one.",
+      "selected_ids": [
+        "N_IDENTITY",
+        "N_ACCOUNT",
+        "R_RECORD",
+        "R_ELAPSED",
+        "R_CORRELATION",
+        "UC_NOMINAL",
+        "UC_RECOVERY"
+      ],
+      "source_bindings": [
+        "semantic-ledger.json#typed_traces",
+        "generated/shape-concept.json"
+      ],
+      "meaning_boundary": "All six recorded typed links; a link records a relationship, not satisfaction.",
+      "display_title": "Which need does each check support?",
+      "presentation_labels": {
+        "R_RECORD": "Record receipt",
+        "R_ELAPSED": "Limit duration",
+        "R_CORRELATION": "Match each receipt",
+        "N_IDENTITY": "Preserve identity",
+        "N_ACCOUNT": "Account for containers",
+        "UC_NOMINAL": "Normal handoff",
+        "UC_RECOVERY": "Label recovery"
+      }
+    },
+    {
+      "id": "05-receipt-deadlines",
+      "question": "Did each container receive its own receipt in time?",
+      "prompt": "Compare the existing passing and late receipt traces. Show overlapping container IDs, the inclusive two-second deadline and the correctly reversed response order.",
+      "selected_ids": [
+        "R_CORRELATION"
+      ],
+      "source_bindings": [
+        "evidence-pass.json",
+        "evidence-late.json",
+        "generated/native-pass.json",
+        "generated/native-late.json"
+      ],
+      "meaning_boundary": "Actual supported correlated-event monitor outputs for wholly synthetic traces. No latency distribution, implementation behavior or physical validation.",
+      "display_title": "Did each receipt arrive in time?"
+    },
+    {
+      "id": "06-quantity-bound",
+      "question": "Was the observed processing duration within its limit?",
+      "prompt": "Compare the recorded-receipt observations of four and five seconds against the fictional four-second limit. Show which check fails and retain the other passing controls.",
+      "selected_ids": [
+        "R_ELAPSED",
+        "R_RECORD",
+        "R_CORRELATION"
+      ],
+      "source_bindings": [
+        "evidence-pass.json",
+        "evidence-over-limit.json",
+        "generated/native-pass.json",
+        "generated/native-over-limit.json"
+      ],
+      "meaning_boundary": "Observed integer ticks, not an inferred elapsed clock. Both values are valid within declared 0..20; only the receipt-time quantity clause fails for 5.",
+      "display_title": "Is the recorded duration within its limit?"
+    },
+    {
+      "id": "07-blocked-handoff",
+      "question": "Why can this deliberately broken handoff never finish?",
+      "prompt": "Explain the existing blocked-handoff negative control. Show the contradictory guard and the actual finite verifier findings without implying a SysML-to-executable conversion.",
+      "selected_ids": [
+        "FS_NOMINAL",
+        "FN_RECORD",
+        "FN_HANDOFF"
+      ],
+      "source_bindings": [
+        "finite-scenarios.json",
+        "finite-scope.json",
+        "build.py#disabled",
+        "generated/finite-disabled-release.json"
+      ],
+      "meaning_boundary": "Reproduce the exact existing contradictory-guard mutation; original finite fixture stays unchanged. State connectivity differs from guard-enabled reachability.",
+      "display_title": "Why is this handoff blocked?"
+    },
+    {
+      "id": "08-tool-library",
+      "question": "How could we compare two useful alternatives?",
+      "prompt": "Compare the existing community tool-library paper and laptop concepts. Show the conditional capacity arithmetic and evidence gaps without selecting a winner or predicting wait time.",
+      "selected_ids": [
+        "K_PAPER",
+        "K_LAPTOP",
+        "C_WAIT",
+        "D_SELECTION"
+      ],
+      "source_bindings": [
+        "examples/tool-library/input.md",
+        "examples/tool-library/result/concept.json",
+        "examples/tool-library/result/capacity_check.py",
+        "examples/tool-library/result/capacity-check.txt"
+      ],
+      "meaning_boundary": "Legacy version 1 concept comparison. Conditional arithmetic from fictional recollections; no measured candidate advantage, expected wait, accepted weights or final selection.",
+      "display_title": "Compare two tool-library approaches",
+      "presentation_readings": {
+        "K_PAPER": "Private loan record; separate public tools/status board. Handover updates both.",
+        "K_LAPTOP": "Record each handover once; derive a separate tools/status view from the same data."
+      }
+    }
+  ],
+  "geometry_policy": "800px natural width; source-derived labels at 22px, supporting text 18px or larger. Narrow offline views scroll, never scale formal content to fit. Plain-language aliases retain precise source IDs in the ledger and nearby links."
+}

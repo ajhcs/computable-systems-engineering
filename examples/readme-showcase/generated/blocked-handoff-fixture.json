@@ -1,0 +1,281 @@
+{
+  "actors": {
+    "Courier": {},
+    "Custodian": {},
+    "Operator": {},
+    "Station": {}
+  },
+  "data": {
+    "identity": {
+      "type": "bool"
+    },
+    "inspection": {
+      "type": "bool"
+    },
+    "receipt": {
+      "type": "bool"
+    }
+  },
+  "exchanges": {
+    "IdentityCorrection": {
+      "fields": {
+        "identity": {
+          "type": "bool"
+        }
+      },
+      "from": "Operator",
+      "to": "Station"
+    },
+    "InspectionRecord": {
+      "fields": {
+        "inspection": {
+          "type": "bool"
+        }
+      },
+      "from": "Custodian",
+      "to": "Station"
+    },
+    "IssueReceipt": {
+      "fields": {
+        "receipt": {
+          "type": "bool"
+        }
+      },
+      "from": "Station",
+      "to": "Operator"
+    }
+  },
+  "properties": {
+    "intakeOpen": {
+      "owner": "controlled",
+      "type": "bool"
+    },
+    "labelReadable": {
+      "owner": "input",
+      "type": "bool"
+    },
+    "released": {
+      "owner": "controlled",
+      "type": "bool"
+    },
+    "serviceRequested": {
+      "owner": "input",
+      "type": "bool"
+    }
+  },
+  "scenarios": {
+    "FS_MAINTENANCE": {
+      "completion": [
+        "done"
+      ],
+      "initial": {
+        "intakeOpen": false,
+        "released": false
+      },
+      "require_completion": true,
+      "start": "pause",
+      "steps": {
+        "FM_INSPECT": {
+          "effects": {
+            "intakeOpen": false
+          },
+          "exchange": "InspectionRecord",
+          "from": "pause",
+          "produces": [
+            "inspection"
+          ],
+          "to": "inspected"
+        },
+        "FM_RESTORE": {
+          "consumes": [
+            "inspection"
+          ],
+          "from": "inspected",
+          "to": "done"
+        }
+      },
+      "terminal": {
+        "done": "Inspection record supplied; operational release deferred"
+      }
+    },
+    "FS_NOMINAL": {
+      "completion": [
+        "done"
+      ],
+      "external_at": [
+        "received",
+        "recorded"
+      ],
+      "initial": {
+        "intakeOpen": false,
+        "released": false
+      },
+      "initial_data": [
+        "identity"
+      ],
+      "require_completion": true,
+      "start": "received",
+      "steps": {
+        "FN_HANDOFF": {
+          "consumes": [
+            "receipt"
+          ],
+          "effects": {
+            "intakeOpen": true,
+            "released": true
+          },
+          "from": "recorded",
+          "guard": {
+            "all": [
+              {
+                "op": "==",
+                "ref": "labelReadable",
+                "value": true
+              },
+              {
+                "op": "==",
+                "ref": "labelReadable",
+                "value": false
+              }
+            ]
+          },
+          "to": "done"
+        },
+        "FN_RECORD": {
+          "consumes": [
+            "identity"
+          ],
+          "exchange": "IssueReceipt",
+          "from": "received",
+          "produces": [
+            "receipt"
+          ],
+          "to": "recorded"
+        }
+      },
+      "terminal": {
+        "done": "Fictional receipt recorded and pickup released"
+      }
+    },
+    "FS_RECOVERY": {
+      "completion": [
+        "done"
+      ],
+      "external_at": [
+        "hold"
+      ],
+      "initial": {
+        "intakeOpen": false,
+        "released": false
+      },
+      "require_completion": true,
+      "start": "unidentified",
+      "steps": {
+        "FX_CORRECT": {
+          "exchange": "IdentityCorrection",
+          "from": "hold",
+          "guard": {
+            "op": "==",
+            "ref": "labelReadable",
+            "value": true
+          },
+          "produces": [
+            "identity"
+          ],
+          "to": "reconciled"
+        },
+        "FX_HOLD": {
+          "effects": {
+            "released": false
+          },
+          "from": "unidentified",
+          "to": "hold"
+        },
+        "FX_RECORD": {
+          "consumes": [
+            "identity"
+          ],
+          "exchange": "IssueReceipt",
+          "from": "reconciled",
+          "produces": [
+            "receipt"
+          ],
+          "to": "done"
+        }
+      },
+      "terminal": {
+        "done": "Corrected identity and receipt available"
+      }
+    }
+  },
+  "statements": {
+    "FN_IDENTITY": {
+      "category": "need",
+      "subject": "Operator",
+      "text": "Fictional need: retain identity before release."
+    },
+    "FN_SERVICE": {
+      "category": "need",
+      "subject": "Custodian",
+      "text": "Fictional need: suspend intake during service."
+    },
+    "FR_HOLD": {
+      "category": "requirement",
+      "modality": "shall",
+      "predicate": {
+        "op": "==",
+        "ref": "released",
+        "value": false
+      },
+      "subject": "Station",
+      "when": {
+        "op": "==",
+        "ref": "labelReadable",
+        "value": false
+      }
+    },
+    "FR_PAUSE": {
+      "category": "requirement",
+      "modality": "shall",
+      "predicate": {
+        "op": "==",
+        "ref": "intakeOpen",
+        "value": false
+      },
+      "subject": "Station",
+      "when": {
+        "op": "==",
+        "ref": "serviceRequested",
+        "value": true
+      }
+    }
+  },
+  "traces": [
+    {
+      "from": "FR_HOLD",
+      "kind": "justifies",
+      "to": "FN_IDENTITY"
+    },
+    {
+      "from": "FR_PAUSE",
+      "kind": "justifies",
+      "to": "FN_SERVICE"
+    },
+    {
+      "from": "FS_NOMINAL",
+      "kind": "addresses",
+      "to": "FR_HOLD"
+    },
+    {
+      "from": "FS_RECOVERY",
+      "kind": "addresses",
+      "to": "FR_HOLD"
+    },
+    {
+      "from": "FS_MAINTENANCE",
+      "kind": "addresses",
+      "to": "FR_PAUSE"
+    }
+  ],
+  "version": 2
+}
