@@ -18,6 +18,25 @@ The model-first plan supersedes the earlier JSON-primary architecture proposal. 
 | Context, changes, human views | Parsed selected context, conservative structural/documentation diff and generated presentation | `scripts/sysml_view.py`, `scripts/sysml_diff.py`, `scripts/sysml_present.py`; their existing suites | Context is not a verification input; diff impact is conservative and views do not override native model meaning. |
 | Synthetic variable influence | Bounded one-property/one-sample witness pairs replayed through a monitor | `python3 scripts/sysml_testgen.py examples/sysml/ack.sysml --manifest examples/sysml/ack-manifest.json --output .tmp/ack-synthetic-tests.json` | Synthetic clause-local witnesses, not observed evidence or FLIP parity; events unsupported. |
 
+
+## Connected example and verification coverage
+
+The [synthetic water-sampling station](../examples/engineering-gallery/water-sampling/README.md) demonstrates the supported paths together without merging their semantics. Its SysML model supplies concept, CONOPS, operational scenarios, components, functions and native controlled clauses; a separately authored finite model supplies its own executable guards, effects and data availability. Fictional responsibilities and stable IDs connect the readings. The [gallery method](gallery-method.md) records official terminology and authority boundaries.
+
+| Promised check class | Connected demonstration / negative control | Actual result boundary |
+| --- | --- | --- |
+| Statement grammar and declarations | Native short IDs/names, three controlled clauses, typed finite symbols; malformed native extraction and invalid finite declarations are exercised by tests | A valid grammar or declaration is not validated stakeholder intent. |
+| Types and units | Receipt-time quantity bound, exact integer ticks and clock/deadline conversions; wrong Boolean/quantity types and mismatched finite fields remain errors | No implicit conversion, physical model or inferred measured duration. |
+| Typed traces and responsibility | Requirement-to-concern, use-case-to-requirement and separate finite-to-native mappings; wrong-kind scope and unknown function/performer controls | Only the declared ID/kind correspondence is checked; allocation is documentary, not native topology or implementation proof. |
+| Requirement consistency | Finite model's globally quantified input contexts, including focused review; existing conflict and vacuity controls | Single-instant joint satisfiability, not execution conformance or reactive realizability. |
+| Scenario execution and progress | Nominal, label-recovery and maintenance finite scenarios; missing data, disabled release and exploration-cap controls | Guards/effects and data availability under finite semantics; completion remains existential. |
+| Supplied behavior review | Receipt, elapsed-observation and correlated-event traces; late, incomplete, absent-receipt and over-limit observations | Finite supplied windows, distinct from all possible behavior and real measurements. |
+| Scope completeness and provenance | Independent native and finite manifests; deleted/unclassified/duplicate/wrong-kind/null scope controls | Exact supplied inventories and byte/semantic digests, not authenticated approval. |
+| Human/documentary views | Scoped README overview, full scrollable function tree and three ordered exchange readings | Selected native identities/edges/order are preserved; the diagrams are not native executable interactions. |
+| Reproducible artifacts and delivery | Fresh report/SVG/HTML regeneration, exact inventory, source/result mutation refusal, checked local links and source-bound optional PNG | Deterministic artifact/source correspondence plus separate actual pixel inspection; no graphical-editor roundtrip. |
+
+`tests/test_engineering_gallery.py` runs the actual gallery rebuild when the pinned parser is installed and checks source/output tampering, allocation references and local artifact links. It is registered with both new runtime suites in `scripts/check.py`; `--require-sysml` prevents an absent parser from being reported as a successful required run. Optional browser rasterization uses an explicitly selected existing executable with private profile/temporary data on `/workspace`; it installs nothing and does not affect active browser sessions.
+
 ## Finite review scope manifest
 
 The optional independent scope object has exactly these fields:
@@ -56,7 +75,7 @@ python3 -B tests/test_sysml_contract.py
 python3 -B scripts/check.py --require-sysml
 ```
 
-The native suite needs the existing pinned Pilot 2025-09/kernel 0.52.0 archive, SHA-256 `c59342cb8ff5cbf9402a4df7ea3b47108078904802718792699ad854a78a3c32`, installed in this checkout's own ignored cache, with Java/javac 21+. No model, API or solver service is contacted by these tests. Installation is explicit and separate from checking. Root integration must register both new suites in the central runner; this lane does not modify that owned file.
+The native suite needs the existing pinned Pilot 2025-09/kernel 0.52.0 archive, SHA-256 `c59342cb8ff5cbf9402a4df7ea3b47108078904802718792699ad854a78a3c32`, installed in this checkout's own ignored cache, with Java/javac 21+. No model, API or solver service is contacted by these tests. Installation is explicit and separate from checking. Both added suites are registered in the central regression runner.
 
 ## Deferred plan capabilities
 

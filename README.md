@@ -12,6 +12,42 @@ Small, independently invocable skills that help a systems engineer develop a sys
 
 A complete document is optional. Missing information can remain an explicit unknown. The skills use a system-wide SysML model and selected views rather than requiring the entire model in every model context. The [SysML-first profile](docs/sysml-v2-profile.md) defines the supported parser and checker boundary.
 
+## Explore a connected engineering example
+
+[![Synthetic water-sampling station: scoped function overview](examples/engineering-gallery/water-sampling/generated/overview.png)](examples/engineering-gallery/water-sampling/README.md)
+
+The [water-sampling station walkthrough](examples/engineering-gallery/water-sampling/README.md) follows a fictional sample from intake to recorded receipt, through a missing-label hold and recovery, and into maintenance lockout. It brings together editable source, readable views, typed traces and actual program outcomes. Its thresholds and evidence are demonstration choices, not a design approved for real equipment.
+
+| Start with | Explore or edit | What you can check |
+| --- | --- | --- |
+| [Concept and operating model](examples/engineering-gallery/water-sampling/station.sysml) | Parts, concerns, functions, operational cases and declared requirements | Native syntax/reference validation and each requested drafting shape |
+| [Readable artifact browser](examples/engineering-gallery/water-sampling/generated/index.html) · [gallery guide](examples/engineering-gallery/README.md) | Scoped overview, full function tree, nominal/recovery/maintenance exchanges and model links | Selected native bindings and documentary view structure; inspect detailed diagrams at readable scale |
+| [Synthetic observation trace](examples/engineering-gallery/water-sampling/evidence-pass.json) · [required clause scope](examples/engineering-gallery/water-sampling/scope.json) | Sampled recording, exact duration bounds and correlated receipts | Named finite-window monitor results, late/missing/incomplete controls and clause-local synthetic influence tests |
+| [Finite execution model](examples/engineering-gallery/water-sampling/finite-scenarios.json) · [independent scope](examples/engineering-gallery/water-sampling/finite-scope.json) | Explicit guards, effects, typed data availability, external waits and completion | Finite consistency, reachable failures and declared completion paths; this is separately authored, not an executable SysML conversion |
+| [Meaning and scope mapping](examples/engineering-gallery/water-sampling/semantic-ledger.json) · [method and official definitions](docs/gallery-method.md) | Responsibility, source/view identities, assumptions and omitted semantics | Typed correspondence and trace structure; links alone do not prove satisfaction or physical feasibility |
+
+Run the case from a complete checkout after installing the pinned parser:
+
+```bash
+python3 examples/engineering-gallery/water-sampling/build.py --output work/water-sampling
+python3 examples/engineering-gallery/water-sampling/build.py --check
+```
+
+Use a new output directory for each generation. The check reruns supported computations and compares the committed artifacts with their source bindings. Expected failures remain visible: a late receipt fails, an unfinished observation remains unknown, and deleted or unclassified finite-review obligations cannot disappear from a supplied external scope. See the case guide for exact inputs, outcomes and limits. The [existing tool-library example](examples/tool-library/README.md) adds a legacy concept comparison and conditional capacity calculation without claiming observed performance.
+
+## Capability status and review
+
+The [completion and verification matrix](docs/capability-completion.md) maps the architecture to implemented checks, executable examples and deferred capabilities. The current finite verifier also accepts an optional independent inventory:
+
+```bash
+python3 scripts/verify.py examples/engineering-gallery/water-sampling/finite-scenarios.json \
+  --manifest examples/engineering-gallery/water-sampling/finite-scope.json --review --json --detail
+```
+
+Scenario analyses now run even when requirement applicability is unsupported; a definite dead-end failure survives an exploration cap alongside the incomplete result. Reports identify the scenarios actually analyzed. A focused review still checks global declarations, requirement consistency, traces and the supplied scope. Manifest-free legacy invocations remain available, with no independent inventory guarantee.
+
+Native parsing, supplied-trace monitoring, finite state exploration, documentary allocations and engineering acceptance are separate claims. Native expression execution, unrestricted scenario compilation, realizability, full SysML conformance and protected acceptance remain outside this alpha. No global plugin installation or native-editor roundtrip is implied by the gallery.
+
 ## Interaction walkthroughs
 
 When people interact with a proposed system or interpret an operational handoff, inspect relevant professional/UI precedents and use editable connected low-fidelity wireframes to expose consequential fields, options, defaults, actions, states and recovery. Keep source/model/requirement mappings adjacent and iterate with user feedback before substantial expansion, polish or implementation. The [interaction-walkthrough workflow](docs/interaction-walkthroughs.md) defines coverage, research provenance and review boundaries; current alpha limits remain separate from target product needs.
