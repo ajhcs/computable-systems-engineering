@@ -8,6 +8,8 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from verifier.standalone import check_copies
 
 
 def main():
@@ -28,18 +30,10 @@ def main():
     environment = dict(os.environ, PYTHONUTF8="1", PYTHONIOENCODING="utf-8",
                        PYTHONDONTWRITEBYTECODE="1", TMPDIR=str(temporary),
                        TMP=str(temporary), TEMP=str(temporary))
-    for relative in ("scripts/conops.py", "references/record.md"):
-        conops = ROOT / "skills/develop-conops" / relative
-        scenarios = ROOT / "skills/develop-operational-scenarios" / relative
-        if conops.read_bytes() != scenarios.read_bytes():
-            print(f"FAIL: standalone skill copies differ: {relative}", file=sys.stderr)
-            return 1
-    for relative in ("scripts/cse.py", "references/sysml.md"):
-        copies = [ROOT / "skills" / skill / relative for skill in
-                  ("develop-system-concept", "develop-conops", "develop-operational-scenarios")]
-        if len({path.read_bytes() for path in copies}) != 1:
-            print(f"FAIL: shared skill copies differ: {relative}", file=sys.stderr)
-            return 1
+    copies=check_copies(ROOT)
+    if copies['status']!='pass':
+        print('FAIL: standalone copy inventory: '+str(copies['groups']),file=sys.stderr)
+        return 1
     suites = (
               "test_develop_conops.py",
               "test_scenario_split.py",
@@ -81,6 +75,7 @@ def main():
               "test_reference_source_boundary.py",
               "test_ecosystem_references.py",
               "test_industrial_references.py")
+    suites = suites + ('test_composed_review.py', 'test_sysml_batch.py', 'test_standalone_copies.py', 'test_prototype_review.py', 'test_reference_prototype.py')
     for suite in suites:
         result = subprocess.run([sys.executable, "-B", str(ROOT / "tests" / suite)],
                                 cwd=ROOT, env=environment, text=True,

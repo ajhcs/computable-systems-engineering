@@ -16,6 +16,8 @@ from .sysml import check_sysml, ROOT
 
 VERSION = 'workflow-1.0'
 MARKER = 'CSE-WORKFLOW/1.0'
+COMPOSED_VERSION = 'workflow-1.1'
+COMPOSED_MARKER = 'CSE-WORKFLOW/1.1'
 JOBS = ('concept', 'scenarios', 'requirements', 'architecture', 'trade-study')
 ID = re.compile(r'[A-Za-z][A-Za-z0-9_-]{0,63}\Z')
 NATIVE_ID = re.compile(r'[A-Za-z][A-Za-z0-9_]{0,63}\Z')
@@ -68,8 +70,9 @@ def _decimal(value, where, nonnegative=False):
 
 
 def schema(record):
-    _object(record, ('version','question',*GROUPS), 'workflow')
-    if record['version'] != VERSION: raise Invalid('Unsupported workflow record version')
+    composed = type(record) is dict and record.get('version') == COMPOSED_VERSION
+    _object(record, ('version','question',*GROUPS,*(('views',) if composed else ())), 'workflow')
+    if record['version'] not in (VERSION, COMPOSED_VERSION): raise Invalid('Unsupported workflow record version')
     _object(record['question'], ('text','basis'), 'question')
     _string(record['question']['text'], 'question.text')
     _basis(record['question']['basis'], 'question.basis')
@@ -78,9 +81,23 @@ def schema(record):
         if group == 'workflows':
             if type(record[group]) is not dict or set(record[group])-set(JOBS): raise Invalid('Unknown workflow token')
         else:
-            _map(record[group], group, 512 if group == 'relations' else 64)
+            cap = (2048 if composed else 512) if group == 'relations' else (256 if composed and group == 'elements' else 64)
+            _map(record[group], group, cap)
             if all_ids & set(record[group]): raise Invalid('New record identities must be globally distinct')
             all_ids.update(record[group])
+    if composed:
+        _map(record['views'], 'views', 16)
+        if not record['views']: raise Invalid('Composed workflow needs explicit bounded views')
+        covered = set()
+        for key, view in record['views'].items():
+            _object(view, ('label','elements'), 'view '+key)
+            _string(view['label'], 'view label', False, 120)
+            _ids(view['elements'], 'view '+key)
+            if not view['elements'] or set(view['elements']) - set(record['elements']):
+                raise Invalid('View needs 1..64 existing element IDs')
+            covered.update(view['elements'])
+        if covered != set(record['elements']):
+            raise Invalid('Every composed element must belong to at least one explicit view')
     for key,s in record['sources'].items():
         _object(s, ('sha256','excerpt','kind'), key)
         if type(s['sha256']) is not str or not DIGEST.fullmatch(s['sha256']): raise Invalid(f'{key} needs SHA-256')
@@ -350,10 +367,12 @@ def inspect_workflow(model_path,source_paths=None,*,workflow='concept',ids=None,
         docs=[x for x in native['inventory']['documents'] if x.get('name')=='cseWorkflow']
         if len(docs)!=1 or sum(x.get('qualified_name')==docs[0].get('owner') for x in native['inventory']['concerns'])!=1:raise Invalid('Exactly one cseWorkflow document on a parsed concern is required')
         lines=docs[0]['body'].strip().splitlines()
-        if not lines or lines[0].strip()!=MARKER:raise Invalid('Unsupported workflow document header')
+        if not lines or lines[0].strip() not in (MARKER,COMPOSED_MARKER):raise Invalid('Unsupported workflow document header')
         payload='\n'.join(lines[1:])
         if len(payload.encode())>1_000_000:raise Invalid('Workflow record exceeds1MB')
         record=json.loads(payload,object_pairs_hook=_pairs,parse_constant=lambda value:(_ for _ in ()).throw(Invalid('Nonfinite JSON value')));schema(record)
+        expected_marker = COMPOSED_MARKER if record['version']==COMPOSED_VERSION else MARKER
+        if lines[0].strip()!=expected_marker: raise Invalid('Workflow header and record version differ')
         if type(source_paths) is not dict or set(source_paths)-set(record['sources']):raise Invalid('Only explicitly declared source IDs may be supplied')
         evidence={};source_bytes={}
         for sid,path in sorted(source_paths.items()):
@@ -442,7 +461,8 @@ def draft_model(record,package,base_text=None):
             native='concern' if KINDS[e['kind']]=='concerns' else 'part' if KINDS[e['kind']]=='parts' else 'part def' if KINDS[e['kind']]=='part_definitions' else 'action' if KINDS[e['kind']]=='actions' else 'requirement'
             suffix=" : 'WorkflowElement'" if native=='part' else ''
             lines.append("  "+native+" '"+name+"'"+suffix+';')
-    lines+=['  concern workflowContext {','    doc cseWorkflow /*'+MARKER,payload,'    */','  }','}']
+    marker = COMPOSED_MARKER if record['version']==COMPOSED_VERSION else MARKER
+    lines+=['  concern workflowContext {','    doc cseWorkflow /*'+marker,payload,'    */','  }','}']
     return '\n'.join(lines)+'\n'
 
 

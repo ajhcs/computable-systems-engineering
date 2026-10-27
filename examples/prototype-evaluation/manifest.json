@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "source_revision": "bounded-dummy-reference-1.0",
+  "expected": [
+    {
+      "id": "R_D_STOCK",
+      "constraint": "sampleRule",
+      "source": "DUMMY-REPAIR-1"
+    },
+    {
+      "id": "R_D_ADJUST_AUTH",
+      "constraint": "sampleRule",
+      "source": "DUMMY-REPAIR-1"
+    },
+    {
+      "id": "R_D_ADJUST_AUDIT",
+      "constraint": "sampleRule",
+      "source": "DUMMY-REPAIR-1"
+    },
+    {
+      "id": "R_D_REVOKE",
+      "constraint": "sampleRule",
+      "source": "DUMMY-REPAIR-1"
+    },
+    {
+      "id": "R_D_HOLD",
+      "constraint": "sampleRule",
+      "source": "DUMMY-REPAIR-1"
+    },
+    {
+      "id": "R_D_BASIS",
+      "constraint": "sampleRule",
+      "source": "DUMMY-REPAIR-1"
+    },
+    {
+      "id": "R_D_AUTH",
+      "constraint": "sampleRule",
+      "source": "DUMMY-REPAIR-1"
+    },
+    {
+      "id": "R_D_AUDIT",
+      "constraint": "sampleRule",
+      "source": "DUMMY-REPAIR-1"
+    },
+    {
+      "id": "R_D_COPIES",
+      "constraint": "sampleRule",
+      "source": "DUMMY-REPAIR-1"
+    }
+  ]
+}
