@@ -16,6 +16,8 @@ COMMANDS = {
     "diff": "sysml_diff.py",
     "concept-review": "concept_review.py",
     "question": "question.py",
+    "prototype-review": "prototype_review.py",
+    "prototype-demo": "prototype_demo.py",
     "finite": "verify.py",
     "install-parser": "install_sysml_parser.py",
 }

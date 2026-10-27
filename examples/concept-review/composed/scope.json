@@ -1,0 +1,887 @@
+{
+  "version": "concept-review-1.3",
+  "project": {
+    "id": "LENDING_DEMO",
+    "name": "Synthetic tool lending service",
+    "question": "Does the declared operational and lifecycle support remain connected?",
+    "boundary": "Assessment, checkout, fault withdrawal, maintenance coordination and readiness evaluation.",
+    "basis": "SYN"
+  },
+  "sources": {
+    "SYN": "18d0befaff84e2acb1597b11ff2b2021c3827796c78edba0ec19a5b39d93e6e8"
+  },
+  "topics": {
+    "operation": {
+      "applicability": "included",
+      "rationale": "Trace the selected normal and reported-fault situations."
+    },
+    "support": {
+      "applicability": "included",
+      "rationale": "Maintenance requires a responsible provider, procedure and service bench."
+    },
+    "interfaces": {
+      "applicability": "included",
+      "rationale": "Inspect availability/fault records and maintenance handoff."
+    },
+    "evaluation": {
+      "applicability": "included",
+      "rationale": "Plan observations and readiness evaluation resources early."
+    },
+    "procurement_disposal": {
+      "applicability": "excluded",
+      "rationale": "Outside this illustrative method-test boundary; reconsider for a real concept."
+    }
+  },
+  "expectations": {
+    "EXPECT_N_ACCESS": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "N_ACCESS",
+      "element_kind": "need",
+      "native_name": "Composed::N_ACCESS"
+    },
+    "EXPECT_K_SERVICE": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "K_SERVICE",
+      "element_kind": "concept",
+      "native_name": "Composed::K_SERVICE"
+    },
+    "EXPECT_SYS": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "SYS",
+      "element_kind": "system",
+      "native_name": "Composed::SYS"
+    },
+    "EXPECT_A_BORROWER": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "A_BORROWER",
+      "element_kind": "actor",
+      "native_name": "Composed::A_BORROWER"
+    },
+    "EXPECT_S_NORMAL": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "S_NORMAL",
+      "element_kind": "scenario",
+      "native_name": "Composed::S_NORMAL"
+    },
+    "EXPECT_S_FAULT": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "S_FAULT",
+      "element_kind": "scenario",
+      "native_name": "Composed::S_FAULT"
+    },
+    "EXPECT_S_MAINT": {
+      "kind": "element",
+      "topic": "support",
+      "element": "S_MAINT",
+      "element_kind": "scenario",
+      "native_name": "Composed::S_MAINT"
+    },
+    "EXPECT_F_ASSESS": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "F_ASSESS",
+      "element_kind": "function",
+      "native_name": "Composed::F_ASSESS"
+    },
+    "EXPECT_F_ISSUE": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "F_ISSUE",
+      "element_kind": "function",
+      "native_name": "Composed::F_ISSUE"
+    },
+    "EXPECT_F_WITHDRAW": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "F_WITHDRAW",
+      "element_kind": "function",
+      "native_name": "Composed::F_WITHDRAW"
+    },
+    "EXPECT_F_RESTORE": {
+      "kind": "element",
+      "topic": "support",
+      "element": "F_RESTORE",
+      "element_kind": "function",
+      "native_name": "Composed::F_RESTORE"
+    },
+    "EXPECT_F_QUALIFY": {
+      "kind": "element",
+      "topic": "evaluation",
+      "element": "F_QUALIFY",
+      "element_kind": "function",
+      "native_name": "Composed::F_QUALIFY"
+    },
+    "EXPECT_R_DESK": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "R_DESK",
+      "element_kind": "element",
+      "native_name": "Composed::R_DESK"
+    },
+    "EXPECT_R_APP": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "R_APP",
+      "element_kind": "element",
+      "native_name": "Composed::R_APP"
+    },
+    "EXPECT_R_STORE": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "R_STORE",
+      "element_kind": "element",
+      "native_name": "Composed::R_STORE"
+    },
+    "EXPECT_R_TECH": {
+      "kind": "element",
+      "topic": "support",
+      "element": "R_TECH",
+      "element_kind": "element",
+      "native_name": "Composed::R_TECH"
+    },
+    "EXPECT_R_PROC": {
+      "kind": "element",
+      "topic": "support",
+      "element": "R_PROC",
+      "element_kind": "element",
+      "native_name": "Composed::R_PROC"
+    },
+    "EXPECT_R_BENCH": {
+      "kind": "element",
+      "topic": "support",
+      "element": "R_BENCH",
+      "element_kind": "element",
+      "native_name": "Composed::R_BENCH"
+    },
+    "EXPECT_R_KIT": {
+      "kind": "element",
+      "topic": "evaluation",
+      "element": "R_KIT",
+      "element_kind": "element",
+      "native_name": "Composed::R_KIT"
+    },
+    "LINK_01": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "scenario_of",
+      "from": "S_NORMAL",
+      "to": "K_SERVICE"
+    },
+    "LINK_02": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "scenario_of",
+      "from": "S_FAULT",
+      "to": "K_SERVICE"
+    },
+    "LINK_03": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "scenario_of",
+      "from": "S_MAINT",
+      "to": "K_SERVICE"
+    },
+    "LINK_04": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "addresses",
+      "from": "F_ASSESS",
+      "to": "N_ACCESS"
+    },
+    "LINK_05": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "addresses",
+      "from": "F_ISSUE",
+      "to": "N_ACCESS"
+    },
+    "LINK_06": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "addresses",
+      "from": "F_WITHDRAW",
+      "to": "N_ACCESS"
+    },
+    "LINK_07": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "addresses",
+      "from": "F_RESTORE",
+      "to": "N_ACCESS"
+    },
+    "LINK_08": {
+      "kind": "relation",
+      "topic": "evaluation",
+      "relation_kind": "addresses",
+      "from": "F_QUALIFY",
+      "to": "N_ACCESS"
+    },
+    "LINK_09": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_ASSESS",
+      "to": "R_DESK"
+    },
+    "LINK_10": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_ASSESS",
+      "to": "R_STORE"
+    },
+    "LINK_11": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_ISSUE",
+      "to": "R_DESK"
+    },
+    "LINK_12": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_ISSUE",
+      "to": "R_APP"
+    },
+    "LINK_13": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_WITHDRAW",
+      "to": "R_DESK"
+    },
+    "LINK_14": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_WITHDRAW",
+      "to": "R_APP"
+    },
+    "LINK_15": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "allocated_to",
+      "from": "F_RESTORE",
+      "to": "R_TECH"
+    },
+    "LINK_16": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "allocated_to",
+      "from": "F_RESTORE",
+      "to": "R_PROC"
+    },
+    "LINK_17": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "allocated_to",
+      "from": "F_RESTORE",
+      "to": "R_BENCH"
+    },
+    "LINK_18": {
+      "kind": "relation",
+      "topic": "evaluation",
+      "relation_kind": "allocated_to",
+      "from": "F_QUALIFY",
+      "to": "R_TECH"
+    },
+    "LINK_19": {
+      "kind": "relation",
+      "topic": "evaluation",
+      "relation_kind": "allocated_to",
+      "from": "F_QUALIFY",
+      "to": "R_KIT"
+    },
+    "LINK_20": {
+      "kind": "relation",
+      "topic": "interfaces",
+      "relation_kind": "interfaces_with",
+      "from": "R_APP",
+      "to": "R_STORE"
+    },
+    "LINK_21": {
+      "kind": "relation",
+      "topic": "interfaces",
+      "relation_kind": "information_to",
+      "from": "R_APP",
+      "to": "R_TECH"
+    },
+    "LINK_22": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "participates_in",
+      "from": "A_BORROWER",
+      "to": "S_NORMAL"
+    },
+    "LINK_23": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "participates_in",
+      "from": "A_BORROWER",
+      "to": "S_FAULT"
+    },
+    "LINK_24": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "participates_in",
+      "from": "R_TECH",
+      "to": "S_MAINT"
+    },
+    "PLAN_E_NORMAL": {
+      "kind": "evidence_plan",
+      "topic": "evaluation",
+      "evidence": "E_NORMAL",
+      "target": "S_NORMAL",
+      "purpose": "validation"
+    },
+    "PLAN_E_FAULT": {
+      "kind": "evidence_plan",
+      "topic": "evaluation",
+      "evidence": "E_FAULT",
+      "target": "S_FAULT",
+      "purpose": "validation"
+    },
+    "PLAN_E_MAINT": {
+      "kind": "evidence_plan",
+      "topic": "evaluation",
+      "evidence": "E_MAINT",
+      "target": "F_RESTORE",
+      "purpose": "verification"
+    },
+    "PLAN_E_READY": {
+      "kind": "evidence_plan",
+      "topic": "evaluation",
+      "evidence": "E_READY",
+      "target": "F_QUALIFY",
+      "purpose": "qualification"
+    },
+    "WALK_S_NORMAL": {
+      "kind": "walk",
+      "topic": "operation",
+      "scenario": "S_NORMAL",
+      "functions": [
+        "F_ASSESS",
+        "F_ISSUE"
+      ]
+    },
+    "WALK_S_FAULT": {
+      "kind": "walk",
+      "topic": "operation",
+      "scenario": "S_FAULT",
+      "functions": [
+        "F_WITHDRAW"
+      ]
+    },
+    "WALK_S_MAINT": {
+      "kind": "walk",
+      "topic": "support",
+      "scenario": "S_MAINT",
+      "functions": [
+        "F_RESTORE",
+        "F_QUALIFY"
+      ]
+    },
+    "DETAIL_0": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_0",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_0"
+    },
+    "DETAIL_1": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_1",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_1"
+    },
+    "DETAIL_2": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_2",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_2"
+    },
+    "DETAIL_3": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_3",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_3"
+    },
+    "DETAIL_4": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_4",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_4"
+    },
+    "DETAIL_5": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_5",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_5"
+    },
+    "DETAIL_6": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_6",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_6"
+    },
+    "DETAIL_7": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_7",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_7"
+    },
+    "DETAIL_8": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_8",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_8"
+    },
+    "DETAIL_9": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_9",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_9"
+    },
+    "DETAIL_10": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_10",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_10"
+    },
+    "DETAIL_11": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_11",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_11"
+    },
+    "DETAIL_12": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_12",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_12"
+    },
+    "DETAIL_13": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_13",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_13"
+    },
+    "DETAIL_14": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_14",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_14"
+    },
+    "DETAIL_15": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_15",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_15"
+    },
+    "DETAIL_16": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_16",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_16"
+    },
+    "DETAIL_17": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_17",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_17"
+    },
+    "DETAIL_18": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_18",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_18"
+    },
+    "DETAIL_19": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_19",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_19"
+    },
+    "DETAIL_20": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_20",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_20"
+    },
+    "DETAIL_21": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_21",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_21"
+    },
+    "DETAIL_22": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_22",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_22"
+    },
+    "DETAIL_23": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_23",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_23"
+    },
+    "DETAIL_24": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_24",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_24"
+    },
+    "DETAIL_25": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_25",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_25"
+    },
+    "DETAIL_26": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_26",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_26"
+    },
+    "DETAIL_27": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_27",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_27"
+    },
+    "DETAIL_28": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_28",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_28"
+    },
+    "DETAIL_29": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_29",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_29"
+    },
+    "DETAIL_30": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_30",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_30"
+    },
+    "DETAIL_31": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_31",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_31"
+    },
+    "DETAIL_32": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_32",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_32"
+    },
+    "DETAIL_33": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_33",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_33"
+    },
+    "DETAIL_34": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_34",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_34"
+    },
+    "DETAIL_35": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_35",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_35"
+    },
+    "DETAIL_36": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_36",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_36"
+    },
+    "DETAIL_37": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_37",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_37"
+    },
+    "DETAIL_38": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_38",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_38"
+    },
+    "DETAIL_39": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_39",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_39"
+    },
+    "DETAIL_40": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_40",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_40"
+    },
+    "DETAIL_41": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_41",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_41"
+    },
+    "DETAIL_42": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_42",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_42"
+    },
+    "DETAIL_43": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_43",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_43"
+    },
+    "DETAIL_44": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_44",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_44"
+    },
+    "DETAIL_45": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_45",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_45"
+    },
+    "DETAIL_46": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_46",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_46"
+    },
+    "DETAIL_47": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_47",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_47"
+    },
+    "DETAIL_48": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_48",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_48"
+    },
+    "DETAIL_49": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_49",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_49"
+    },
+    "DETAIL_50": {
+      "topic": "support",
+      "kind": "element",
+      "element": "F_DETAIL_50",
+      "element_kind": "function",
+      "native_name": "Composed::F_DETAIL_50"
+    },
+    "CROSS_ALLOC": {
+      "topic": "support",
+      "kind": "relation",
+      "relation_kind": "allocated_to",
+      "from": "F_DETAIL_50",
+      "to": "R_TECH"
+    }
+  },
+  "allocation_bounds": {
+    "functions": {
+      "F_ASSESS": {
+        "min": 1,
+        "max": 7
+      },
+      "F_ISSUE": {
+        "min": 1,
+        "max": 7
+      },
+      "F_WITHDRAW": {
+        "min": 1,
+        "max": 7
+      },
+      "F_RESTORE": {
+        "min": 1,
+        "max": 7
+      },
+      "F_QUALIFY": {
+        "min": 1,
+        "max": 7
+      }
+    },
+    "resources": {
+      "R_DESK": {
+        "min": 0,
+        "max": 5
+      },
+      "R_APP": {
+        "min": 0,
+        "max": 5
+      },
+      "R_STORE": {
+        "min": 0,
+        "max": 5
+      },
+      "R_TECH": {
+        "min": 0,
+        "max": 5
+      },
+      "R_PROC": {
+        "min": 0,
+        "max": 5
+      },
+      "R_BENCH": {
+        "min": 0,
+        "max": 5
+      },
+      "R_KIT": {
+        "min": 0,
+        "max": 5
+      }
+    }
+  },
+  "views": {
+    "OPERATIONS": [
+      "A_BORROWER",
+      "F_ASSESS",
+      "F_ISSUE",
+      "F_QUALIFY",
+      "F_RESTORE",
+      "F_WITHDRAW",
+      "K_SERVICE",
+      "N_ACCESS",
+      "R_APP",
+      "R_BENCH",
+      "R_DESK",
+      "R_KIT",
+      "R_PROC",
+      "R_STORE",
+      "R_TECH",
+      "SYS",
+      "S_FAULT",
+      "S_MAINT",
+      "S_NORMAL",
+      "F_DETAIL_0",
+      "F_DETAIL_1",
+      "F_DETAIL_2",
+      "F_DETAIL_3",
+      "F_DETAIL_4",
+      "F_DETAIL_5",
+      "F_DETAIL_6",
+      "F_DETAIL_7",
+      "F_DETAIL_8",
+      "F_DETAIL_9",
+      "F_DETAIL_10",
+      "F_DETAIL_11",
+      "F_DETAIL_12",
+      "F_DETAIL_13",
+      "F_DETAIL_14",
+      "F_DETAIL_15",
+      "F_DETAIL_16",
+      "F_DETAIL_17",
+      "F_DETAIL_18",
+      "F_DETAIL_19",
+      "F_DETAIL_20",
+      "F_DETAIL_21",
+      "F_DETAIL_22",
+      "F_DETAIL_23",
+      "F_DETAIL_24",
+      "F_DETAIL_25",
+      "F_DETAIL_26",
+      "F_DETAIL_27",
+      "F_DETAIL_28",
+      "F_DETAIL_29",
+      "F_DETAIL_30",
+      "F_DETAIL_31",
+      "F_DETAIL_32",
+      "F_DETAIL_33",
+      "F_DETAIL_34",
+      "F_DETAIL_35",
+      "F_DETAIL_36",
+      "F_DETAIL_37",
+      "F_DETAIL_38",
+      "F_DETAIL_39",
+      "F_DETAIL_40"
+    ],
+    "SUPPORT": [
+      "F_DETAIL_41",
+      "F_DETAIL_42",
+      "F_DETAIL_43",
+      "F_DETAIL_44",
+      "F_DETAIL_45",
+      "F_DETAIL_46",
+      "F_DETAIL_47",
+      "F_DETAIL_48",
+      "F_DETAIL_49",
+      "F_DETAIL_50",
+      "R_TECH"
+    ]
+  }
+}

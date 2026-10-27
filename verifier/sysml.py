@@ -121,6 +121,12 @@ def _locate(line, line_ranges):
 
 
 def _parser_output(source, timeout):
+    from .sysml_batch_context import PARSE_SESSION
+    session = PARSE_SESSION.get()
+    return session(source, timeout) if session is not None else _run_parser(source, timeout)
+
+
+def _run_parser(source, timeout):
     if not JAR.is_file() or not LIBRARY.is_dir() or not (CLASSES / "SysmlBridge.class").is_file():
         raise RuntimeError("SysML pilot not installed; run python3 scripts/install_sysml_parser.py")
     if (not BRIDGE_STAMP.is_file() or

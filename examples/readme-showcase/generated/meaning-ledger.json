@@ -2893,7 +2893,7 @@
   },
   "source_sha256": {
     "docs/gallery-method.md": "74dd96b9870719596d6b7d2dd14b06c985f963133f01c1b9ed3dd866ecff6e10",
-    "examples/engineering-gallery/water-sampling/build.py": "6b17ee8975dde9d7b471c7a4dc0a4f41ee344a74ed9d53b22fca1b9d5d9fe5d2",
+    "examples/engineering-gallery/water-sampling/build.py": "f8e8854ae720e2f87f4b862215359ac84f8b4ab3111aeb4aed499d48256f954d",
     "examples/engineering-gallery/water-sampling/evidence-late.json": "ea0a8d3ffe34841caa4423e9df8617f10727531391759a9a47fd87710e1cad2f",
     "examples/engineering-gallery/water-sampling/evidence-over-limit.json": "a113ea74cc88296dcbb59e0a55e144155a304b2bdd36dbf394f00c9e9df36716",
     "examples/engineering-gallery/water-sampling/evidence-pass.json": "4efb6afba107de7cf8b8563509c27bf4adae57f19ad79cc39eeba342eb952b83",

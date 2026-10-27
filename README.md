@@ -263,3 +263,5 @@ See [public references](docs/references.md) and [contribution guidance](CONTRIBU
 An opt-in checked documentary function-tree renderer adds palette03, embedded Inter/Space Grotesk fonts and explicit provisional body variants. See [visual presentation](docs/visual-presentation.md) for generation, editable sources, checks and limits. Existing checking defaults remain unchanged.
 
 </details>
+
+Optional [local prototype verification](docs/prototype-evaluation.md), [bounded composition](docs/concept-review.md), [engineering terms](docs/engineering-terminology.md) and [current quality findings](docs/cse-quality-review.md).

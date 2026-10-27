@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from verifier.concept_review import (load, schema, starter, inspect_concept, scope_diff, render_text)
 from verifier.foundation import read_regular
 from verifier.workflow import draft_model, write_draft
+from verifier.evidence_actions import next_evidence
 
 
 def main():
@@ -28,6 +29,10 @@ def main():
     check.add_argument('model'); check.add_argument('--scope', required=True); check.add_argument('--scope-sha256', required=True)
     check.add_argument('--source', action='append', default=[], metavar='ID=PATH')
     check.add_argument('--json', action='store_true')
+    actions = commands.add_parser('next-evidence', help='Derive unresolved evidence questions from a fresh scoped review; no plans executed')
+    actions.add_argument('model'); actions.add_argument('--scope', required=True)
+    actions.add_argument('--scope-sha256', required=True)
+    actions.add_argument('--source', action='append', default=[], metavar='ID=PATH')
     args = parser.parse_args()
     try:
         if args.command == 'init-scope':
@@ -58,6 +63,9 @@ def main():
                     raise ValueError('Source arguments need distinct ID=PATH entries')
                 sources[key] = path
             result = inspect_concept(args.model,args.scope,args.scope_sha256,sources)
+            if args.command == 'next-evidence':
+                print(json.dumps(next_evidence(result),indent=2,sort_keys=True))
+                return 0 if result['status']=='pass' else 1
             print(json.dumps(result,indent=2,sort_keys=True) if args.json else render_text(result),end='\n' if args.json else '')
             return 0 if result['status']=='pass' else 1
         print(json.dumps(result,indent=2,sort_keys=True))

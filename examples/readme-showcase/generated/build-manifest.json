@@ -14,10 +14,11 @@
     "scripts/install_sysml_parser.py": "7537eea814c2f099d0bd75988dfa1dceccdb086d1675192e7b7b671bd6ab3c06",
     "tools/sysml/SysmlBridge.java": "1123660e9c50cf35a57892cef91e598fc9e8a369cf5e8562cbadfc2e886d86f5",
     "verifier/__init__.py": "e9b613e50fdcdfa309ae440af31929c37ef15874c550605a422c9c39688dc48d",
-    "verifier/concept_review.py": "dc44f3d1d48759433404abee316aa849744d3334e874b5163a30dc9c5ce8e1f1",
+    "verifier/concept_review.py": "d19a74172a0552c30782ae78a499c0a041f85fe846e00d7c1799130c6ae140a1",
     "verifier/core.py": "2b2e4e5076e2ccdbe23b7aee55c6c136dea9171da0213ba19a05f95a6b638d2a",
     "verifier/engineering_views.py": "2ca8ba2ec2a961717ccac8c6b1c2e876d4e8e3deff2f2c8df4deb871e433396a",
     "verifier/events.py": "e1e1a713fdbf1c8b455e2aa3dbcbaaf2b05c908b5e4c74abc4e3d3944139fc17",
+    "verifier/evidence_actions.py": "ab4c4c14fbec6b00f8392bc8ee3a75d2c924b821e6f24209e66770bfc43e697e",
     "verifier/flow_consistency.py": "2847a02194809e8961aa3e43346c99db6d25c4b0ef4b5a47df1e1ae59ee0b808",
     "verifier/foundation.py": "19d2a381d8b13194654edc0993f0b5fc092271120a848807e59aa20ed26d59f4",
     "verifier/human_tasks.py": "7f5d7acb5d6b2452c35a6df50e341a3a89827cd9a26c0eb4ee18e01f86f0f683",
@@ -25,12 +26,16 @@
     "verifier/inquiry.py": "cadc02cd932f317e5f2f757bd07668847052694fd943e327eeef1f6206cc9a43",
     "verifier/language.py": "09968dee6646d7913abd5e33718d640368512cafc5a9760a8daadea42fcdc7db",
     "verifier/ownership.py": "f1db1aae0a88713579f51219167c764a99fcbf9a76a5bed342be8e48bb7ed2a8",
-    "verifier/sysml.py": "a88820cf0c3d656318c7d8ab1d4818046b2735dca962ae6445d3b7567cf2b27f",
+    "verifier/prototype_review.py": "fce7d57ac6c7588f840903ddde626c18d3d164868f1ae5fa8db8dbae49bf8e5f",
+    "verifier/standalone.py": "183fa97d1e7fd6d4c9393314bf239d4dfe3350e08f471b181aeda5c08c7abaf0",
+    "verifier/sysml.py": "3e51e1d30f2f7ccd72ecb453587edfcbf002ecdca4856091be1f920a166791fc",
+    "verifier/sysml_batch.py": "d0cb6f2afc3872861d0c4f08f98c702a8770e0ad99a3bff29bdc42043ef2a872",
+    "verifier/sysml_batch_context.py": "d633cd5d991f7a032e74a868f66acc4a02b2262da36d8721166e98820152355a",
     "verifier/views.py": "3a91caa526ddb3128c97284b770a0804ba2c2d56fb18b83ac27898c98fa4ea7a",
     "verifier/visual_labels.py": "f8c11bce35a16866bda22dee58e39c8b4d48cc7c3b285d16781da8f92e317da3",
     "verifier/visual_projection.py": "fd54b2d2504a028800eea636971601f10fce40c98619150deb9b701d50149127",
     "verifier/visual_style.py": "8d935e476be06ef756bf8c4832798616de2729ad1152b936f1f0293977d57dad",
-    "verifier/workflow.py": "93ec9707fba6d8dbd553cb95bce94dd1a5104a32b9379dd3d2c416f96b5e3f54"
+    "verifier/workflow.py": "255e5de2f334a4bbf1e2f0828d7447dcbe9007c4c998ae1c47eb19710a10b7d8"
   },
   "files": {
     "01-normal-handoffs.png": "e99d27bbb23dfcd0956b6ba2e74d1bc78b2988d2fc45a04cdf25ebe433d52dd4",
@@ -57,7 +62,7 @@
     "font-notices/space-OFL.txt": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943",
     "index.html": "ce2c19e43be7f84365b340ac6113aa3d3fce9dc3705332a6f838437ebd907841",
     "legacy-structural-review.json": "69093dedd825f56c4291e0b939419746b8bbcb5fc5b002d17091829c94948153",
-    "meaning-ledger.json": "120c872f708c4c1d5e2e178a38e62a9b5e65966cf7054770d3e78480736dfed2",
+    "meaning-ledger.json": "1def7d27d6a39cc2be30548aaca5b29c29a535064cbf4f157d6aa2703f3b1745",
     "render-receipt.json": "aa8062c752d0853af67f37691435b5e3ae7b778dcf036414183cf6df45bc468a"
   },
   "generator": {
@@ -69,7 +74,7 @@
   },
   "sources": {
     "docs/gallery-method.md": "74dd96b9870719596d6b7d2dd14b06c985f963133f01c1b9ed3dd866ecff6e10",
-    "examples/engineering-gallery/water-sampling/build.py": "6b17ee8975dde9d7b471c7a4dc0a4f41ee344a74ed9d53b22fca1b9d5d9fe5d2",
+    "examples/engineering-gallery/water-sampling/build.py": "f8e8854ae720e2f87f4b862215359ac84f8b4ab3111aeb4aed499d48256f954d",
     "examples/engineering-gallery/water-sampling/evidence-late.json": "ea0a8d3ffe34841caa4423e9df8617f10727531391759a9a47fd87710e1cad2f",
     "examples/engineering-gallery/water-sampling/evidence-over-limit.json": "a113ea74cc88296dcbb59e0a55e144155a304b2bdd36dbf394f00c9e9df36716",
     "examples/engineering-gallery/water-sampling/evidence-pass.json": "4efb6afba107de7cf8b8563509c27bf4adae57f19ad79cc39eeba342eb952b83",

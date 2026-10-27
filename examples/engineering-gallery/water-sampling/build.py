@@ -80,6 +80,7 @@ def check_allocations(inventory, ledger):
 
 
 def evaluate():
+    (ROOT / '.cache').mkdir(exist_ok=True)
     if 'manifest' not in inspect.signature(verify).parameters:
         raise ValueError('Gallery requires the finite manifest capability; integrate the reviewed capability increment first.')
     reports = {}
@@ -259,6 +260,7 @@ def check():
     if actual != manifest['files']:
         raise ValueError('Generated gallery output drift, deletion or addition: ' + drift_paths(manifest['files'], actual))
     # Rebuild deterministic textual/vector artifacts, catching stale geometry too.
+    (ROOT / '.cache').mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='gallery-rebuild-', dir=ROOT / '.cache') as temporary:
         fresh = Path(temporary) / 'gallery'
         build(fresh)

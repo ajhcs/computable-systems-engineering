@@ -61,3 +61,44 @@ and operational validity and ties validation to the intended application. CSE
 uses those distinctions to bound claims, not to declare a concept validated by
 running tests. This increment adds a native worked mapping and controls using
 existing engines; it adds no behavior interpreter or task-network simulator.
+
+## Executed prototype and repeated trace studies
+
+For defined local application mechanisms, use the existing [prototype
+verification workflow](prototype-evaluation.md). It binds source artifacts,
+transaction capture, observer meanings and selected obligations. A separate
+observation adapter does not implement native actions or validate the complete
+system. The reference application's per-work-order reservation ownership,
+production identity/cache revocation, external backup recovery and physical
+media erasure remain outside its supported claims. Select a concrete requirement
+and observation boundary before extending any of those behaviors.
+
+Repeated traces for the same native obligation/model configuration can use the
+existing `check` route with separate cases:
+
+```text
+python3 skills/develop-system-concept/scripts/cse.py check MODEL.sysml --manifest MANIFEST.json --manifest-sha256 RETAINED_BYTE_DIGEST --evidence-case NORMAL=NORMAL.json --evidence-case FAULT=FAULT.json
+```
+
+This optional batch accepts 1..32 explicit model paths and 1..64 trace cases.
+It captures regular bounded model/manifest/evidence files, retains the manifest
+byte digest and reuses native parser extraction only within that process-local
+call. Each trace still goes through the existing compiler and sampled/event
+monitor with its normal scope, counterexample, completeness and analysis limits.
+The manifest digest is required; single-trace options and draft-shape mode cannot
+be mixed into a batch. Output is JSON and any required non-success exits nonzero.
+
+The checker/bridge/parser and library source bytes are fingerprinted before and
+after the batch, along with the inputs. Drift makes **all batch results unusable**,
+even if provisional per-case reports contain passes. No persistent cache or
+unchecked external parsed inventory is accepted. Failed/unknown/unsupported cases
+cannot be hidden by other successful cases. This checks local byte consistency,
+not authenticated execution, operating-system/Java integrity or source truth.
+Batch processing does not upgrade authored observations to prototype evidence;
+use the prototype wrapper for its additional capture/artifact correspondence.
+
+The synthetic batch tests reproduce the exact existing single-trace reports for
+pass, failure, incomplete capture and stale input. A nine-case study of retained
+actual prototype observations used one native parse and eight reuses while
+preserving all eight fault verdicts. That is measured parser-call reduction for
+this configuration, not a promised timing, memory or token saving.

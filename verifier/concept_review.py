@@ -15,6 +15,7 @@ from .human_tasks import expectation as task_expectation, inspect_tasks
 from .ownership import expectation as ownership_expectation, inspect_ownership
 
 VERSION = 'concept-review-1.2'
+COMPOSED_SCOPE = 'concept-review-1.3'
 ID = re.compile(r'[A-Za-z][A-Za-z0-9_-]{0,63}\Z')
 DIGEST = re.compile(r'[0-9a-f]{64}\Z')
 RELATIONS = {'addresses', 'derives_from', 'allocated_to', 'scenario_of', 'precedes',
@@ -45,9 +46,17 @@ def _ids(value, where):
 
 
 def schema(scope):
-    _object(scope, ('version', 'project', 'sources', 'topics', 'expectations', 'allocation_bounds'), 'scope')
-    if scope['version'] not in ('concept-review-1.0','concept-review-1.1',VERSION):
+    composed = type(scope) is dict and scope.get('version') == COMPOSED_SCOPE
+    _object(scope, ('version', 'project', 'sources', 'topics', 'expectations', 'allocation_bounds',
+                    *(('views',) if composed else ())), 'scope')
+    if scope['version'] not in ('concept-review-1.0','concept-review-1.1',VERSION,COMPOSED_SCOPE):
         raise Invalid('Unsupported concept-review scope version')
+    if composed:
+        _map(scope['views'], 'views', 16)
+        if not scope['views']: raise Invalid('Composed review needs separately retained views')
+        for key, members in scope['views'].items():
+            _ids(members, 'view '+key)
+            if not members: raise Invalid('A retained view needs at least one element')
     _object(scope['project'], ('id', 'name', 'question', 'boundary', 'basis'), 'project')
     for field in ('id', 'name', 'question', 'boundary'):
         _text(scope['project'][field], 'project.' + field)
@@ -81,12 +90,12 @@ def schema(scope):
         if scope['topics'][item['topic']]['applicability'] == 'excluded':
             raise Invalid(key + ' cannot silently disable an expectation through an excluded topic')
         if item['kind']=='human_task':
-            if scope['version'] not in ('concept-review-1.1','concept-review-1.2'):
+            if scope['version'] not in ('concept-review-1.1','concept-review-1.2',COMPOSED_SCOPE):
                 raise Invalid('Human-task expectations require explicit concept-review-1.1 or concept-review-1.2 scope version')
             task_expectation(item)
             continue
         if item['kind']=='ownership':
-            if scope['version']!='concept-review-1.2':raise Invalid('Ownership expectations require the explicit concept-review-1.2 scope version')
+            if scope['version'] not in ('concept-review-1.2',COMPOSED_SCOPE):raise Invalid('Ownership expectations require an explicit concept-review-1.2 or 1.3 scope version')
             ownership_expectation(item)
             continue
         _object(item, ('topic', 'kind', *fields[item['kind']]), key)
@@ -137,6 +146,18 @@ def compare(scope, record):
     findings, walks = [], {}
     def issue(rule, ids, detail, status='fail'):
         findings.append({'rule': rule, 'status': status, 'ids': ids, 'detail': detail})
+    if record['version'] == 'workflow-1.1':
+        if scope['version'] != COMPOSED_SCOPE:
+            issue('composition_scope_missing', [], 'Composed workflow needs an explicit 1.3 view scope.', 'unknown')
+        else:
+            if set(scope['views']) != set(record['views']):
+                issue('composition_views_changed', [], 'Candidate view identities differ from the retained scope.')
+            for key, members in scope['views'].items():
+                actual = record['views'].get(key, {}).get('elements', [])
+                if set(members) != set(actual):
+                    issue('composition_members_changed', [key], 'View membership differs from the retained scope.')
+    elif scope['version'] == COMPOSED_SCOPE:
+        issue('composition_record_missing', [], 'The selected composed review needs a workflow-1.1 record.')
     for field in ('name', 'question', 'boundary'):
         if not scope['project'][field].strip():
             issue('scope_context_missing', [], 'Project ' + field + ' is unresolved.', 'unknown')
@@ -265,6 +286,13 @@ def inspect_concept(model_path, scope_path, expected_scope_sha256, source_paths)
         workflow = inspect_workflow(model_path, source_paths, workflow='concept',
             **({'document_names':documents} if documents else {}))
         report['workflow'] = workflow
+        if (workflow.get('record') or {}).get('version') == 'workflow-1.1':
+            record = workflow['record']
+            report['composed_views'] = {key: {
+                'label': view['label'], 'elements': sorted(view['elements']),
+                'boundary_relations': sorted(rid for rid, rel in record['relations'].items()
+                    if (rel['from'] in view['elements']) != (rel['to'] in view['elements']))}
+                for key, view in record['views'].items()}
         report['workflow_status'] = workflow['status']
         report['findings'].extend(workflow['findings'])
         if workflow.get('model_sha256') != report['model_sha256']:
@@ -340,6 +368,7 @@ def scope_diff(before, after):
             'changed': sorted(k for k in set(old)&set(new) if old[k] != new[k])}
     return {'status': 'pass', 'claim_scope': 'scope_comparison_only', 'changes': changes,
         'project_changed': before['project'] != after['project'],
+        'views_changed': before.get('views') != after.get('views'),
         'allocation_bounds_changed': before['allocation_bounds'] != after['allocation_bounds'],
         'acceptance': 'not_evaluated'}
 
@@ -352,6 +381,9 @@ def render_text(report):
         'Workflow checks: ' + report['workflow_status'] + '; allocation counts: ' + report['allocation_status'] + '.']
     record = report.get('workflow', {}).get('record') or {}
     elements = record.get('elements', {})
+    for key, view in report.get('composed_views', {}).items():
+        lines.append('View '+view['label']+' ['+key+']: '+str(len(view['elements']))+
+                     ' elements; retained boundary relations '+', '.join(view['boundary_relations'])+'.')
     for walk in report['walks'].values():
         scenario = elements.get(walk['scenario'], {}).get('label', walk['scenario'])
         functions = [elements.get(k, {}).get('label', k) for k in walk['functions']]

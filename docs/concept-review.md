@@ -40,6 +40,8 @@ Version 1.0 remains supported unchanged. Version 1.1 adds selected
 [human-task expectations](human-task-review.md). Version 1.2 adds tailored
 [ownership/interface expectations](ownership-review.md); new scope initialization uses
 1.2. Rows, roles and fact fields are project-selected, with no universal checklist.
+Version 1.3 is an explicit opt-in for bounded documentary view composition,
+described below. Existing scopes and initializers are not silently upgraded.
 
 Supply one separate UTF-8 JSON scope, at most 1 MB. Unknown fields/versions,
 duplicate JSON keys, nonfinite values, symlinks and malformed bounds are refused.
@@ -48,7 +50,7 @@ Maps use distinct ASCII IDs, up to 64 characters. Sources/topics are capped at
 
 | Field | Contract |
 |---|---|
-| `version` | `concept-review-1.0`, `concept-review-1.1` or `concept-review-1.2` |
+| `version` | `concept-review-1.0`, `concept-review-1.1`, `concept-review-1.2` or explicit `concept-review-1.3` |
 | `project` | `{id,name,question,boundary,basis}`; basis names a scope source or is null while drafting. |
 | `sources` | Source ID → expected SHA-256 of the explicitly supplied source. No paths are opened from model or scope text. |
 | `topics` | Project topic ID → `{applicability,rationale}`. Applicability is included/excluded/unresolved. Topics are project-defined; there is no required catalog. Explain exclusions. |
@@ -85,8 +87,9 @@ role/dependency links should capture distinctions that counts cannot express.
 
 ## Authoritative SysML documentary record
 
-The SysML file contains exactly one `cseWorkflow` documentation block owned by a
-parsed concern, starting with `CSE-WORKFLOW/1.0` and JSON `version: workflow-1.0`.
+The legacy SysML record contains exactly one `cseWorkflow` documentation block owned
+by a parsed concern, starting with `CSE-WORKFLOW/1.0` and JSON `version: workflow-1.0`.
+The explicit composed version below retains one block with its matching 1.1 header.
 The shared model remains authoritative. Authoring JSON and derived allocation
 profiles are temporary inputs/views, not competing saved concept authorities.
 
@@ -120,6 +123,8 @@ or [software-only model](../examples/concept-review/software/concept.sysml) for 
 
 The reused workflow adapter checks one explicit model file, up to 5 MB, and up
 to 64 elements and 512 relations. It does not freeze arbitrary imported bundles.
+The opt-in 1.1 workflow/view contract below extends those documentary counts;
+the 1.0 format retains its existing bounds.
 Do not claim imported-only meanings are covered: use local parsed bindings or a
 separately supported bundle operation. All relevant supplied sources are explicit.
 
@@ -172,3 +177,54 @@ and launchers from another working directory. The reused foundation/workflow
 tests remain separate from these integration cases. `python3 scripts/check.py
 --require-sysml` runs the registered regressions. Passing tests establishes the
 declared software behavior, not operational or independent engineering acceptance.
+
+## Bounded documentary composition
+
+Opt in with `CSE-WORKFLOW/1.1`, JSON `version: workflow-1.1`, and one additional
+`views` field in the same authoritative model record:
+
+```json
+"views": {
+  "OPERATIONS": {"label":"Operations", "elements":["F_ISSUE","R_STORE"]},
+  "DATA": {"label":"Record governance", "elements":["F_ACCESS","R_STORE"]}
+}
+```
+
+The composed record admits at most 256 elements, 2048 relations and 16 views.
+Each nonempty view names at most 64 existing element IDs; every element must be
+in at least one view. Overlapping views share the same element identity. Other
+record groups, the 1 MB record and 5 MB model caps, and selected allocation-count
+bounds are unchanged. These are CSE implementation limits, not ISO requirements.
+View membership is documentary grouping, not native ownership, abstraction
+semantics or executable composition.
+
+Use explicit scope `concept-review-1.3` and retain an additional `views` map:
+view ID → list of expected element IDs. Labels may change. View IDs and membership
+must match the independently retained scope. Existing expectations still retain
+expected elements, cross-view relations, tasks, ownership and evaluation plans.
+All native bindings, references and decomposition cycles are checked globally;
+a view cannot hide an invalid endpoint or cycle. Reports list relations crossing
+each view boundary. Completeness of the chosen decomposition remains an engineer
+judgment. A legacy scope cannot silently admit a composed record as a successful
+review. Imported-only bundles and general native behavior remain unsupported.
+
+Use the existing `prepare`, `fingerprint`, `check` and `scope-diff` operations.
+The [synthetic composed example](../examples/concept-review/composed/concept.sysml)
+contains 70 bound elements and a separately retained view scope. It supplies no
+observed performance or actual policy evidence.
+
+## Turn missing evidence into the next investigation
+
+The existing route also offers a derived action view:
+
+```text
+python3 skills/develop-system-concept/scripts/cse.py concept-review next-evidence MODEL.sysml --scope SCOPE.json --scope-sha256 RETAINED_DIGEST --source ID=SOURCE_PATH
+```
+
+It runs the same fresh scoped review, retains its status/configuration and emits
+unresolved findings, affected IDs and linked existing plans. Tool/input repairs
+precede evidence questions; this is not an engineering risk ranking. The engineer
+selects the next investigation and nominates responsible parties. Known role
+allocations do not establish an actual delegated decision-maker. All plans remain
+`not_run`; no evidence is acquired, accepted or relabeled by this operation.
+A documentary pass can still have unexecuted plans and real-world evidence gaps.

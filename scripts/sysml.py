@@ -9,6 +9,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from verifier.core import load_json
 from verifier.sysml import check_sysml
+from verifier.sysml_batch import inspect_batch
 
 
 def main():
@@ -22,7 +23,23 @@ def main():
                         help="also check the minimal model shape for this skill")
     parser.add_argument("--view-profile", help="explicit task requirements for documentary function trees/sequences")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument('--evidence-case', action='append', default=[], metavar='ID=PATH')
+    parser.add_argument('--manifest-sha256', help='retained manifest byte digest for batch')
     args = parser.parse_args()
+    if args.evidence_case:
+        if not args.manifest or not args.manifest_sha256 or args.evidence or args.syntax_only or args.kind or args.view_profile:
+            parser.error('Trace batch needs manifest/digest and separate cases; no single evidence, shape or syntax-only mode')
+        cases={}
+        for item in args.evidence_case:
+            key,sep,path=item.partition('=')
+            if not sep or not key or not path or key in cases:
+                parser.error('Trace cases need distinct ID=PATH entries')
+            cases[key]=path
+        report=inspect_batch(args.model,args.manifest,args.manifest_sha256,cases)
+        print(json.dumps(report,sort_keys=True,indent=2))
+        return 0 if report['status']=='pass' and report['results_usable'] else 1
+    if args.manifest_sha256:
+        parser.error('--manifest-sha256 is used only with --evidence-case')
     try:
         view_profile = load_json(args.view_profile) if args.view_profile is not None else None
         if args.view_profile is not None and not isinstance(view_profile, dict):
@@ -39,7 +56,7 @@ def main():
     else:
         scope = report["claim_scope"]
         if scope.startswith("sysml_syntax"):
-            description = "SysML syntax and validation" + (f"; {args.kind} draft structure" if args.kind else "")
+            description = "SysML parsing and structural checks" + (f"; {args.kind} draft structure" if args.kind else "")
             description += "; no behavior evaluated"
         elif scope == "sysml_and_controlled_text_compilation":
             description = "controlled requirement grammar and bindings; no behavior evaluated"
