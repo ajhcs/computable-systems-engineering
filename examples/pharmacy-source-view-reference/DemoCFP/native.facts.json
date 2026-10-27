@@ -1,0 +1,106 @@
+{
+  "schema": "cse-native-composition-1",
+  "view": "TREE",
+  "selected": {
+    "kind": "PartDefinition",
+    "id": "dfb328eb-7feb-41bd-867c-83325c9fdb76",
+    "qualified": "PharmacySourceDiagramSlices::DemoCFP",
+    "name": "DemoCFP"
+  },
+  "parts": [
+    {
+      "kind": "PartUsage",
+      "id": "d896fcc8-5195-401d-8bdb-7cca62dbdde1",
+      "qualified": "PharmacySourceDiagramSlices::DemoCFP::VTS",
+      "name": "VTS",
+      "owner": "PharmacySourceDiagramSlices::DemoCFP",
+      "owner_id": "dfb328eb-7feb-41bd-867c-83325c9fdb76",
+      "composite": true,
+      "membership_id": "c7879977-c493-4730-86f0-61b5314defd9",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "73f8b7c4-91cf-4fc3-a680-53910160da04",
+          "qualified": "PharmacySourceDiagramSlices::VTS",
+          "name": "VTS"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "6ae980c4-f87a-4bd5-9d49-72ed0cf8999f",
+      "qualified": "PharmacySourceDiagramSlices::DemoCFP::toteSystem",
+      "name": "toteSystem",
+      "owner": "PharmacySourceDiagramSlices::DemoCFP",
+      "owner_id": "dfb328eb-7feb-41bd-867c-83325c9fdb76",
+      "composite": true,
+      "membership_id": "17db9a14-d6f7-4ac2-b6db-d59aa17a4a1e",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "fb79668a-39a2-4f95-a36c-aac4dded1243",
+          "qualified": "PharmacySourceDiagramSlices::HFFillSystem",
+          "name": "HFFillSystem"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "48f298b6-1eab-44fd-a75f-244661334619",
+      "qualified": "PharmacySourceDiagramSlices::DemoCFP::sortSystem",
+      "name": "sortSystem",
+      "owner": "PharmacySourceDiagramSlices::DemoCFP",
+      "owner_id": "dfb328eb-7feb-41bd-867c-83325c9fdb76",
+      "composite": true,
+      "membership_id": "d588a421-ec00-45d6-a7b7-07a30183fc24",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "565833bc-1007-44d7-a693-0c96d1226ba1",
+          "qualified": "PharmacySourceDiagramSlices::SortSystem",
+          "name": "SortSystem"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "51d4cbd9-a626-45bc-a942-b35f72ddcf13",
+      "qualified": "PharmacySourceDiagramSlices::DemoCFP::puckSystem",
+      "name": "puckSystem",
+      "owner": "PharmacySourceDiagramSlices::DemoCFP",
+      "owner_id": "dfb328eb-7feb-41bd-867c-83325c9fdb76",
+      "composite": true,
+      "membership_id": "18e7afce-6f7d-41ac-95e0-01e702ca172c",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "d9cc1c72-1ab9-4248-985a-65fe2e4ace95",
+          "qualified": "PharmacySourceDiagramSlices::HSFillSystem",
+          "name": "HSFillSystem"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    }
+  ],
+  "parse_has_errors": false,
+  "parse_issues": ""
+}

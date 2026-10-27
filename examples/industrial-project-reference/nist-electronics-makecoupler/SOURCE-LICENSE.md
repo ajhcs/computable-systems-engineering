@@ -1,0 +1,5 @@
+# Source, modifications and notices
+
+Credit the National Institute of Standards and Technology and the Production and Logistics Modeling Challenge Team. Source: [DiscreteEventLogisticsSystems](https://github.com/usnistgov/DiscreteEventLogisticsSystems/tree/7b09a59fc7e900177524f06f8a42dcc3d3c1aced), commit `7b09a59fc7e900177524f06f8a42dcc3d3c1aced`. The complete unchanged [NIST permission, attribution and warranty notice](NIST-LICENSE.md) accompanies the selected text and derivative fact ledger.
+
+The selected activity ledger and explanatory text were adapted in October 2026. Source-safe packaging, provenance and notices were clarified on 2026-10-27; selected engineering facts remain unchanged. Native XML, source archive and original author graphics are not included. The modern presentation family is also held: its visible claim that the native model accompanies it would be stale in this release. No changed graphic or old PNG is substituted as fresh rendering evidence. No NIST endorsement is implied. Repository licensing does not replace the NIST terms.

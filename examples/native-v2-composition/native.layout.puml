@@ -1,0 +1,27 @@
+@startuml
+!pragma layout smetana
+skin sysmlbw
+skinparam monochrome true
+skinparam wrapWidth 300
+hide circle
+
+comp def "ActiveSegmentedMirror" as E1  <<(T,blue) part  def>> [[psysml:de03a897-fa59-4bdd-ac28-b9ce417b8dda ]] {
+##//doc//##
+Source <U+005F>15<U+005F>0<U+005F>bf10301<U+005F>1202464929960<U+005F>949157<U+005F>5982. Three composition links directly from ASM. Do not move actuators inside Segment: the selected source model does not encode that allocation.
+}
+comp usage "seg: Segment[61]  " as E2  <<(T,blue) part>> [[psysml:3fa02b28-95a5-4dbc-8ac4-492802644edd ]] {
+##//doc//##
+Source <U+005F>15<U+005F>0<U+005F>baa02e2<U+005F>1204997510902<U+005F>964101<U+005F>9752, lower<U+003D>upper<U+003D>61, composite.
+}
+comp usage "pact: PositionActuator[183]  " as E3  <<(T,blue) part>> [[psysml:68092bc6-618c-4d77-906c-736149b66cee ]] {
+##//doc//##
+Source <U+005F>15<U+005F>0<U+005F>baa02e2<U+005F>1204997513668<U+005F>221125<U+005F>9807, lower<U+003D>upper<U+003D>183, composite.
+}
+comp usage "mount: Mount  " as E4  <<(T,blue) part>> [[psysml:e942988f-1a2c-46ac-b38a-72420b1b54f9 ]] {
+##//doc//##
+Source <U+005F>16<U+005F>6<U+005F>1<U+005F>38390512<U+005F>1265838967762<U+005F>750737<U+005F>71036 is unnamed. mount is a new derived identifier; default multiplicity 1 is implicit in original.
+}
+E1 *-- E2 [[psysml:cb8c4845-781e-46de-b7b2-bbaae4a9672f ]] 
+E1 *-- E3 [[psysml:dbe68359-5c94-4152-ba23-52fc4ccdd6c0 ]] 
+E1 *-- E4 [[psysml:f6f8a366-d7c9-4f87-9291-fc5ef8613f41 ]] 
+@enduml

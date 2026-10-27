@@ -1,0 +1,21 @@
+{
+  "pilot": "2025-09 / kernel0.52.0",
+  "jar_sha256": "c2e6ae9a526108d8caf324933ef22f617578e5d8d519870e1f5ff29ab315f517",
+  "models": {
+    "tmt-exposure": {
+      "model": "examples/engineering-reference-extension/derived/tmt-exposure.sysml",
+      "model_sha256": "6bc4e0d726eb27aaa9bcb3c1b12a93eae172d96731276f6023a690a1f32b4efc",
+      "native_semantic_file": "tmt-exposure-native-semantics.json",
+      "native_semantic_sha256": "8d663b22d30ab2d9981a718cce297db74a07c1cc44514ffacc4295b9503898fc",
+      "loaded_model_bytes_identical_to_public_model": true
+    },
+    "tmt-sequence-order": {
+      "model": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml",
+      "model_sha256": "40da00b3d7dfbeda3b73616861f2fc63ca0c8b7fef7d9e2120446a4b2f4ab431",
+      "native_semantic_file": "tmt-sequence-native-semantics.json",
+      "native_semantic_sha256": "212c9672a0f5dc0ac57aac22ebe378ae0070f6114ed9b3a2a65ca32c5eb392e5",
+      "loaded_model_bytes_identical_to_public_model": true
+    }
+  },
+  "scope": "Input identity binds saved linked inventories; hashes do not establish engineer acceptance or complete equivalence."
+}

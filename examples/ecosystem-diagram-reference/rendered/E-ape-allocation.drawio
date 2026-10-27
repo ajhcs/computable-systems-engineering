@@ -1,0 +1,28 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="E-ape-allocation">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ASMLCS_Control_if" value="Mirror control interface&#10;ASMLCS_Control_if" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="6633f4e6-aa59-41f6-96f9-8b2f0770de5d" cseQualified="ApeAllocation::Logical::controlContract">
+          <mxGeometry x="48" y="350" width="310" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="fpCtrlLan" value="Control network port&#10;fpCtrlLan" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="65ef9e46-abed-4b0e-ad28-e0acbfc98433" cseQualified="ApeAllocation::Lan::fpCtrlLan">
+          <mxGeometry x="48" y="432" width="310" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="fpImcsLan" value="Metrology network port&#10;fpImcsLan" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="c24f5892-4394-4842-841c-9fd6ab74c5da" cseQualified="ApeAllocation::Lan::fpImcsLan">
+          <mxGeometry x="48" y="514" width="310" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="imData" value="Metrology data interface&#10;imData" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="2288dec2-73c0-4fdc-b2bb-261a5f1840af" cseQualified="ApeAllocation::Logical::imData">
+          <mxGeometry x="48" y="596" width="310" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="ccs" value="Mirror control protocol&#10;ccs" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="701dd341-80e5-47e2-821a-1994270b634d" cseQualified="ApeAllocation::Protocol::ccs">
+          <mxGeometry x="48" y="678" width="310" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="tcp/ip" value="TCP/IP network protocol&#10;tcp/ip" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="1960450b-d584-4125-89ec-aea538da61aa" cseQualified="ApeAllocation::Protocol::tcpIp">
+          <mxGeometry x="48" y="760" width="310" height="77" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

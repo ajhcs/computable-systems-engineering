@@ -1,0 +1,309 @@
+{
+  "view_id": "HSFillSystem",
+  "source_root_id": "_18_5_3_3920140_1524683849396_707232_15345",
+  "source_diagram_id": "_18_5_3_3920140_1531318915516_26898_19112",
+  "source_report_figure": "6-13",
+  "source_report_pdf_page_index": 52,
+  "source_model_sha256": "f45b72f0f46ec837fc01d6599fb46f2e08ff919763bb07cb3f7166f981dd0ecf",
+  "qualification": "professional particular-CFP demonstration model based on access to actual central fill pharmacies; no deployment/conversion endorsement",
+  "source_version": {
+    "exporter": "MagicDraw UML 18.5",
+    "sysml_profile_namespace": "http://www.omg.org/spec/SysML/20150709/SysML",
+    "readme_reported_language": "SysML 1.4"
+  },
+  "scope": "only directly-owned properties explicitly depicted by the original source BDD (role and association IDs both present); a bounded view projection, not complete class conversion",
+  "properties": [
+    {
+      "source_id": "_18_5_3_3920140_1532524885026_574131_24126",
+      "source_name": "pBSys",
+      "derived_name": "pBSys",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1524684598313_160586_16029",
+      "type_name": "PuckBaggerSystem",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::pBSys"
+    },
+    {
+      "source_id": "_18_5_3_3920140_1550524403060_222373_25314",
+      "source_name": "capWS",
+      "derived_name": "capWS",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1524161356878_544194_17936",
+      "type_name": "CapWS",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::capWS"
+    },
+    {
+      "source_id": "_18_5_3_3920140_1550524419700_363709_25344",
+      "source_name": "xWS",
+      "derived_name": "xWS",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1524161347422_701648_17934",
+      "type_name": "ExceptionWS",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::xWS"
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1568127163256_528710_28684",
+      "source_name": "vDWS",
+      "derived_name": "vDWS",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3af018f_1571499201272_879613_20106",
+      "type_name": "VialDispenseSystem",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::vDWS"
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1568154046810_693419_33288",
+      "source_name": "finger",
+      "derived_name": "finger",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1525023159261_238207_20713",
+      "type_name": "HSDispenseFinger",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": "*",
+      "bounds_origin": "explicit source bound(s), omitted integer value is UML zero",
+      "source_bound_ids": [
+        "_18_5_3_3af018f_1568154061311_969606_33316",
+        "_18_5_3_3af018f_1568154061312_292061_33317"
+      ],
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::finger"
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1570121073930_557791_31648",
+      "source_name": null,
+      "derived_name": "puckConveyor",
+      "name_status": "derived alias for unnamed native role",
+      "source_type_id": "_18_5_3_3920140_1525023113072_621197_20597",
+      "type_name": "PuckConveyorSystem",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::puckConveyor"
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1571522802951_195557_22823",
+      "source_name": "VTS",
+      "derived_name": "VTS",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1524150634956_746972_14050",
+      "type_name": "VTS",
+      "source_aggregation": "none",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::VTS"
+    }
+  ],
+  "omitted_direct_members": [
+    {
+      "source_id": "_18_5_3_3920140_1550523772743_883889_25210",
+      "kind": "uml:Generalization",
+      "tag": "generalization",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1568456661051_529057_21523",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1570124677749_847737_33119",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1570124680122_26672_33132",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1570124715490_100555_33164",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1570124749154_748418_33190",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1570124754285_254936_33206",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1571500252671_760853_20910",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1571500388852_933503_20969",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1571500765058_606016_21182",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1571522898370_858165_22892",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3920140_1570795545056_242320_21668",
+      "kind": "uml:Operation",
+      "tag": "ownedOperation",
+      "name": "puckDispenseLineProcess"
+    },
+    {
+      "source_id": "_18_5_3_3920140_1570795568325_823089_21670",
+      "kind": "uml:Operation",
+      "tag": "ownedOperation",
+      "name": "puckFillOrderProcess"
+    },
+    {
+      "source_id": "_18_5_3_3920140_1571159472569_927674_33781",
+      "kind": "uml:Operation",
+      "tag": "ownedOperation",
+      "name": "fillPuckBatch"
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1571600548560_776466_25147",
+      "kind": "uml:Operation",
+      "tag": "ownedOperation",
+      "name": "puckFillComboOrderProcess"
+    }
+  ],
+  "report_presentation_differences": [
+    "Original author report/native BDD also includes nested component/inheritance context outside this direct-property view projection. The selected first-level role IDs/types/aggregation/counts are frozen identically across this projection, native v2 facts, English, and reading geometry.",
+    "The full pinned native class owns 8 direct properties; 1 not depicted in this BDD are excluded from this selected view and retained in the supplementary conversion."
+  ],
+  "native_source_diagram_identity": {
+    "layout_sha256": "30e3ee785ca896694b696abfbc68e39fcce7a994956ee489adfdb146ad7a7be7",
+    "layout_fragment_parser": "namespace-completed in-memory clone only; raw bytes preserved",
+    "root_referenced": true,
+    "direct_roles": [
+      {
+        "source_id": "_18_5_3_3920140_1532524885026_574131_24126",
+        "association_id": "_18_5_3_3920140_1532524885026_929330_24125",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3920140_1550524403060_222373_25314",
+        "association_id": "_18_5_3_3920140_1550524403060_670367_25313",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3920140_1550524419700_363709_25344",
+        "association_id": "_18_5_3_3920140_1550524419700_165167_25343",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3af018f_1568123780655_213885_28016",
+        "association_id": "_18_5_3_3af018f_1568123780655_921850_28015",
+        "role_id_present_in_layout": false,
+        "association_id_present_in_layout": false,
+        "type_id_present_in_layout": false
+      },
+      {
+        "source_id": "_18_5_3_3af018f_1568127163256_528710_28684",
+        "association_id": "_18_5_3_3af018f_1568127163256_229652_28683",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3af018f_1568154046810_693419_33288",
+        "association_id": "_18_5_3_3af018f_1568154046810_206264_33287",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3af018f_1570121073930_557791_31648",
+        "association_id": "_18_5_3_3af018f_1570121073930_851067_31647",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3af018f_1571522802951_195557_22823",
+        "association_id": "_18_5_3_3af018f_1571522802951_128795_22822",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      }
+    ]
+  },
+  "excluded_model_properties": [
+    {
+      "source_id": "_18_5_3_3af018f_1568123780655_213885_28016",
+      "source_name": "takeAwayConveyor",
+      "derived_name": "takeAwayConveyor",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1524684935715_451618_16151",
+      "type_name": "TakeAwayConveyor",
+      "source_aggregation": "none",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacyStructuralSlices::HSFillSystem::takeAwayConveyor"
+    }
+  ],
+  "supplementary_complete_direct_property_projection": "supplementary-full-direct-properties.sysml",
+  "supplementary_projection_receipt": {
+    "sha256": "aa6d161bc94ea947ee0aba514df32385c6f4235c942dbf255745f3d3f84e14a7",
+    "direct_property_count": 8,
+    "scope": "all directly-owned typed structural roles of this source class only; not a whole model or complete-class conversion",
+    "validation": "Historical worker parser evidence remains local and is not included. The public consistency checker verifies the recorded supplementary file hash, role count and declared-role agreement; it does not rerun the parser or compare original source data."
+  },
+  "release_evidence_scope": "Retained source-review ledger with structured derivative facts and source/layout hashes. Original source XML, layout fragments and raw parser receipts are not distributed. Public checks establish package consistency only; no fresh original-source comparison is claimed."
+}

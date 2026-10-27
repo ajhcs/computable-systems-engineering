@@ -1,0 +1,186 @@
+{
+  "view_id": "DemoCFP",
+  "source_root_id": "_18_5_3_3920140_1525033071601_357473_22464",
+  "source_diagram_id": "_18_5_3_3920140_1527186291936_534515_20996",
+  "source_report_figure": "6-3",
+  "source_report_pdf_page_index": 45,
+  "source_model_sha256": "f45b72f0f46ec837fc01d6599fb46f2e08ff919763bb07cb3f7166f981dd0ecf",
+  "qualification": "professional particular-CFP demonstration model based on access to actual central fill pharmacies; no deployment/conversion endorsement",
+  "source_version": {
+    "exporter": "MagicDraw UML 18.5",
+    "sysml_profile_namespace": "http://www.omg.org/spec/SysML/20150709/SysML",
+    "readme_reported_language": "SysML 1.4"
+  },
+  "scope": "only directly-owned properties explicitly depicted by the original source BDD (role and association IDs both present); a bounded view projection, not complete class conversion",
+  "properties": [
+    {
+      "source_id": "_18_5_3_3920140_1527522921619_948042_24158",
+      "source_name": "VTS",
+      "derived_name": "VTS",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1524150634956_746972_14050",
+      "type_name": "VTS",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::DemoCFP::VTS"
+    },
+    {
+      "source_id": "_18_5_3_3920140_1527522926217_269995_24188",
+      "source_name": "toteSystem",
+      "derived_name": "toteSystem",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1525033306441_211111_22594",
+      "type_name": "HFFillSystem",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::DemoCFP::toteSystem"
+    },
+    {
+      "source_id": "_18_5_3_3920140_1528313927664_843373_19107",
+      "source_name": "sortSystem",
+      "derived_name": "sortSystem",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1527522589685_489006_23809",
+      "type_name": "SortSystem",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::DemoCFP::sortSystem"
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1570121058815_561458_31618",
+      "source_name": "puckSystem",
+      "derived_name": "puckSystem",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3920140_1524683849396_707232_15345",
+      "type_name": "HSFillSystem",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacySourceDiagramSlices::DemoCFP::puckSystem"
+    }
+  ],
+  "omitted_direct_members": [
+    {
+      "source_id": "_18_5_3_3920140_1533120958014_407281_30702",
+      "kind": "uml:Generalization",
+      "tag": "generalization",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3920140_1570727761320_114856_20878",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3920140_1571082417165_824219_32758",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1571576111776_790399_23222",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1572556051335_388947_17420",
+      "kind": "uml:Connector",
+      "tag": "ownedConnector",
+      "name": null
+    },
+    {
+      "source_id": "_18_5_3_3af018f_1568404119639_853124_19568",
+      "kind": "uml:Operation",
+      "tag": "ownedOperation",
+      "name": "processOrder"
+    }
+  ],
+  "report_presentation_differences": [
+    "Original author report/native BDD also includes nested component/inheritance context outside this direct-property view projection. The selected first-level role IDs/types/aggregation/counts are frozen identically across this projection, native v2 facts, English, and reading geometry.",
+    "The full pinned native class owns 5 direct properties; 1 not depicted in this BDD are excluded from this selected view and retained in the supplementary conversion."
+  ],
+  "native_source_diagram_identity": {
+    "layout_sha256": "ed8d0b4b481c1529ed1607b3346c357f2fbc952dd06f25ee71200185d1475989",
+    "layout_fragment_parser": "namespace-completed in-memory clone only; raw bytes preserved",
+    "root_referenced": true,
+    "direct_roles": [
+      {
+        "source_id": "_18_5_3_3920140_1527522921619_948042_24158",
+        "association_id": "_18_5_3_3920140_1527522921619_335915_24157",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3920140_1527522926217_269995_24188",
+        "association_id": "_18_5_3_3920140_1527522926216_648579_24187",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3920140_1528313927664_843373_19107",
+        "association_id": "_18_5_3_3920140_1528313927663_63333_19106",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3af018f_1570121058815_561458_31618",
+        "association_id": "_18_5_3_3af018f_1570121058815_738800_31617",
+        "role_id_present_in_layout": true,
+        "association_id_present_in_layout": true,
+        "type_id_present_in_layout": true
+      },
+      {
+        "source_id": "_18_5_3_3af018f_1571402400561_299057_16621",
+        "association_id": "_18_5_3_3af018f_1571402400561_45126_16620",
+        "role_id_present_in_layout": false,
+        "association_id_present_in_layout": false,
+        "type_id_present_in_layout": false
+      }
+    ]
+  },
+  "excluded_model_properties": [
+    {
+      "source_id": "_18_5_3_3af018f_1571402400561_299057_16621",
+      "source_name": "demoCFPController",
+      "derived_name": "demoCFPController",
+      "name_status": "unchanged source role",
+      "source_type_id": "_18_5_3_3af018f_1564408726766_986848_16924",
+      "type_name": "DemoCFPController",
+      "source_aggregation": "composite",
+      "source_visibility": "public",
+      "lower": 1,
+      "upper": 1,
+      "bounds_origin": "implicit UML defaults [1..1]",
+      "source_bound_ids": [],
+      "qualified": "PharmacyStructuralSlices::DemoCFP::demoCFPController"
+    }
+  ],
+  "supplementary_complete_direct_property_projection": "supplementary-full-direct-properties.sysml",
+  "supplementary_projection_receipt": {
+    "sha256": "27bad5a119648f9b25fd2d4281b6b1f2d1913561ad6b3454139e26a5216efc9a",
+    "direct_property_count": 5,
+    "scope": "all directly-owned typed structural roles of this source class only; not a whole model or complete-class conversion",
+    "validation": "Historical worker parser evidence remains local and is not included. The public consistency checker verifies the recorded supplementary file hash, role count and declared-role agreement; it does not rerun the parser or compare original source data."
+  },
+  "release_evidence_scope": "Retained source-review ledger with structured derivative facts and source/layout hashes. Original source XML, layout fragments and raw parser receipts are not distributed. Public checks establish package consistency only; no fresh original-source comparison is claimed."
+}

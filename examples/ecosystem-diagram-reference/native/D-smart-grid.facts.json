@@ -1,0 +1,2947 @@
+{
+  "parse_has_errors": false,
+  "issues": "",
+  "elements": [
+    {
+      "id": "2dd9e348-ff97-4037-a66d-c8b3e05f6b3d",
+      "qualified": "SmartGrid2010::Domain",
+      "name": "Domain",
+      "kind": "PartDefinition",
+      "owner": "SmartGrid2010",
+      "docs": []
+    },
+    {
+      "id": "84d2667d-10f6-4ca7-87f0-7532a2d40cfd",
+      "qualified": "SmartGrid2010::Domain::comm",
+      "name": "comm",
+      "kind": "PortUsage",
+      "owner": "SmartGrid2010::Domain",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "bbcd1ec6-22f3-446f-8801-394a740e0a88",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::Domain::comm",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "db801123-aedd-4068-abb4-5a546d8ebd67",
+      "qualified": "SmartGrid2010::Domain::electrical",
+      "name": "electrical",
+      "kind": "PortUsage",
+      "owner": "SmartGrid2010::Domain",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2253ebf1-39ed-4f06-813b-d64d31e360f2",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::Domain::electrical",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "fd0f4019-a3ea-4a4f-9c41-4a276755ca56",
+      "qualified": "SmartGrid2010::DomainView",
+      "name": "DomainView",
+      "kind": "PartUsage",
+      "owner": "SmartGrid2010",
+      "docs": [
+        "NIST SP1108 Fig3-1. View context and endpoint adapter ports are introduced; no organizational ownership claim. All connectors undirected. "
+      ],
+      "types": [
+        "Parts::Part"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "949b97bf-2572-48ed-823d-52999cdf022f",
+      "qualified": "SmartGrid2010::DomainView::markets",
+      "name": "markets",
+      "kind": "PartUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [
+        "Markets domain. "
+      ],
+      "types": [
+        "SmartGrid2010::Domain"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "0fce9c56-7560-4fc5-9061-ff8dfa342b48",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::markets",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "78c6c7da-e64e-4f48-9b8a-950b2ab435dc",
+      "qualified": "SmartGrid2010::DomainView::operations",
+      "name": "operations",
+      "kind": "PartUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [
+        "Operations domain. "
+      ],
+      "types": [
+        "SmartGrid2010::Domain"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "853fd727-e13e-4659-98e6-d677f81ae923",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::operations",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ab572b9e-b399-4cf6-ad43-a5d0da3c1765",
+      "qualified": "SmartGrid2010::DomainView::serviceProvider",
+      "name": "serviceProvider",
+      "kind": "PartUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [
+        "Service Provider domain. "
+      ],
+      "types": [
+        "SmartGrid2010::Domain"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "7ccc7cf2-ceb9-4d62-9c10-a674b30d971a",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::serviceProvider",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "fdf24026-fbe0-4ec0-8913-1edc34be43a4",
+      "qualified": "SmartGrid2010::DomainView::bulkGeneration",
+      "name": "bulkGeneration",
+      "kind": "PartUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [
+        "Bulk Generation domain. "
+      ],
+      "types": [
+        "SmartGrid2010::Domain"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "8754209a-e2f9-4846-a73b-6578dae70ce2",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::bulkGeneration",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6f736d69-7cd8-4932-945b-fff2cc721fc8",
+      "qualified": "SmartGrid2010::DomainView::transmission",
+      "name": "transmission",
+      "kind": "PartUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [
+        "Transmission domain. "
+      ],
+      "types": [
+        "SmartGrid2010::Domain"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "4d55f78b-c5cf-454a-a9fc-24ce6e895d91",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::transmission",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c896198b-37f9-400c-954a-00ec0f4be647",
+      "qualified": "SmartGrid2010::DomainView::distribution",
+      "name": "distribution",
+      "kind": "PartUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [
+        "Distribution domain. "
+      ],
+      "types": [
+        "SmartGrid2010::Domain"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e6d71154-fd6a-4aa9-b38f-bcd1a2f4b85f",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::distribution",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "49656ed5-6cf2-4bc8-8624-e5a1b05edd77",
+      "qualified": "SmartGrid2010::DomainView::customer",
+      "name": "customer",
+      "kind": "PartUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [
+        "Customer domain. "
+      ],
+      "types": [
+        "SmartGrid2010::Domain"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "48fd9585-1f5a-4bfb-a2c6-0e5c101b75a5",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::customer",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "4a9f289b-5406-464b-8f3a-ed3cadfc991a",
+      "qualified": "SmartGrid2010::DomainView::DC01",
+      "name": "DC01",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::markets",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::operations",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::markets",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::operations",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fa713e9f-a5a3-450f-8093-3df3b6ac9b8b",
+      "qualified": "SmartGrid2010::DomainView::DC01::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC01",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6cec5665-f568-4b2d-bd15-b929b0ff56eb",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "7e0bf1fb-1442-46f7-acbc-6d6bf4047b3c",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC01::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6b31e391-b731-4fdc-b873-a0409a262654",
+      "qualified": "SmartGrid2010::DomainView::DC01::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC01",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "03fcd4fe-9502-4367-bd61-60fe6b6b59e6",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "6c6b4c60-62e4-4cb3-863f-0cd4933491f6",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC01::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "7e04d29d-f583-4d85-a79f-416ca9c434dd",
+      "qualified": "SmartGrid2010::DomainView::DC02",
+      "name": "DC02",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::markets",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::serviceProvider",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::markets",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::serviceProvider",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "269118cd-4de1-4865-a226-43dfec266b7f",
+      "qualified": "SmartGrid2010::DomainView::DC02::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC02",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "28919a40-cc25-47eb-8541-70c383a9f762",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "11f49ef6-7328-4fe1-adec-d508453423bc",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC02::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e7f5faec-df59-470e-ba9b-ad6e3d006a23",
+      "qualified": "SmartGrid2010::DomainView::DC02::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC02",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "11954932-0436-4c8b-b3f1-850559ddde12",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "9ec7d301-8e87-483b-b1c9-91ad1a7a8838",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC02::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2382ad6b-dd1b-4797-a499-0cc862be9555",
+      "qualified": "SmartGrid2010::DomainView::DC03",
+      "name": "DC03",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::operations",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::serviceProvider",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::operations",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::serviceProvider",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a6812ce3-69a2-44af-ab00-724bded29366",
+      "qualified": "SmartGrid2010::DomainView::DC03::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC03",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "36dc6f12-88cd-44c5-80e0-593d6df5099a",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "ee7e9b9d-ede3-443b-a62f-140c0175f49b",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC03::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "01b3570c-c456-4cdd-b9ef-e18646d563fd",
+      "qualified": "SmartGrid2010::DomainView::DC03::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC03",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "54d87f6f-791a-4d16-848c-e6227bc3e7b4",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "d2f1d169-bd5c-4206-b97f-16b7007b248e",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC03::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3e8cf8fb-de3e-45ca-8c21-6967e2c89ae0",
+      "qualified": "SmartGrid2010::DomainView::DC04",
+      "name": "DC04",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::markets",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::bulkGeneration",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::markets",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::bulkGeneration",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "88399fde-05c6-4674-babe-e6e42fe3be63",
+      "qualified": "SmartGrid2010::DomainView::DC04::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC04",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3b1e66dc-54e9-4c52-9bcc-185a64dbc913",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "120e7801-494d-4315-8ce4-cf0d90ed73f4",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC04::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "45cc89a7-4117-4a45-8787-3431df56f82c",
+      "qualified": "SmartGrid2010::DomainView::DC04::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC04",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "de80e207-f421-4f87-9e96-6ac7c9b07d02",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "f1b1276e-1863-4f8e-bbad-6b8646772ac2",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC04::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "bf452258-6bd2-4541-a623-f9fc49cc81b8",
+      "qualified": "SmartGrid2010::DomainView::DC05",
+      "name": "DC05",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::markets",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::markets",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5bea905e-835b-4a76-818e-1b2227c8075e",
+      "qualified": "SmartGrid2010::DomainView::DC05::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC05",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "29889aa3-5001-4961-87dd-a2d49a3a23de",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "fae26d1e-6f95-47a0-920d-4d97e1474d4f",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC05::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "1c504f41-659c-4ee7-956e-374b55e39133",
+      "qualified": "SmartGrid2010::DomainView::DC05::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC05",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "210c10f9-6609-4939-a771-0683fc284cd7",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "add6fec8-48ee-4549-9ec1-2c35d27f54d8",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC05::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "080c378c-47c0-4d35-8804-2ea6cf844f8d",
+      "qualified": "SmartGrid2010::DomainView::DC06",
+      "name": "DC06",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::markets",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::markets",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "be27d31d-f232-4ea4-8f38-6c02b6a37874",
+      "qualified": "SmartGrid2010::DomainView::DC06::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC06",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e34ebfaf-5c5d-4fc4-97d5-73b8cf45c4ca",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "be5769d7-d6d2-4152-82e3-11838afb9916",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC06::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "aea7121d-5d95-4454-bfd2-73f05da71130",
+      "qualified": "SmartGrid2010::DomainView::DC06::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC06",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a9ff660a-64a7-4fbf-bccb-6f25f8cc3b93",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "40fa3cd0-3b75-4863-b88b-7772108ce97e",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC06::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "bec6423a-2c72-4782-acd8-5ec1f761e6a8",
+      "qualified": "SmartGrid2010::DomainView::DC07",
+      "name": "DC07",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::markets",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::markets",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b5570d75-a91c-4d69-b4f8-82a216ceb78f",
+      "qualified": "SmartGrid2010::DomainView::DC07::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC07",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "57218cc3-8e25-4159-8696-e4c84611c8d6",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "74191582-f6c1-4669-a009-a37f8b9318da",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC07::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "7e1e54ac-3bd9-4a6d-a48b-e063dd678539",
+      "qualified": "SmartGrid2010::DomainView::DC07::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC07",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ca1db0ae-b041-4c1b-b49a-513b75a81984",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "b12b5988-1ec8-4731-9e3a-a30af51b044d",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC07::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "f99d9af3-8472-4dad-bb28-43dc24f11a9d",
+      "qualified": "SmartGrid2010::DomainView::DC08",
+      "name": "DC08",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::operations",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::bulkGeneration",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::operations",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::bulkGeneration",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d1ed4e92-4427-4d5e-9c44-a39d69804edb",
+      "qualified": "SmartGrid2010::DomainView::DC08::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC08",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c7e2dc40-6f0f-425f-8d46-fb4bd66335d0",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "2f0f8888-f92f-4c49-be66-3f7d718a0ded",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC08::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3e3f0730-5b91-48ca-9810-44e6be439ded",
+      "qualified": "SmartGrid2010::DomainView::DC08::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC08",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ae5d331c-892f-4d38-abf8-f368517b2633",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "96060254-d3bd-469a-a587-f285095acc3b",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC08::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c1fab2c9-9c21-46d4-b91b-e1a75b84bed5",
+      "qualified": "SmartGrid2010::DomainView::DC09",
+      "name": "DC09",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::operations",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::operations",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "23bafe32-4102-4d68-b6b6-3efc7f20fb62",
+      "qualified": "SmartGrid2010::DomainView::DC09::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC09",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a8700a1e-7002-4095-989c-14571f202f88",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "086b90b2-e9bc-4707-9b54-9503743bfce4",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC09::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b3d275a4-7379-40d4-9084-10f7cee6a2fd",
+      "qualified": "SmartGrid2010::DomainView::DC09::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC09",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "dd22f9f2-c435-4177-b8bb-0e428db9b7ba",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "538a80c5-b65f-40ad-8ef7-2433f5a5862d",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC09::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e267e326-5f65-4f40-8b03-5a0b85d29dc0",
+      "qualified": "SmartGrid2010::DomainView::DC10",
+      "name": "DC10",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::operations",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::operations",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "48fad706-f97e-4994-8f05-5d196e906861",
+      "qualified": "SmartGrid2010::DomainView::DC10::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC10",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "4b74981b-4740-4939-b8b6-277c30dc6952",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "e2c45f37-36bc-416c-af1c-f258cf587d57",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC10::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "52e1c048-d7bb-4088-8897-ae538dd276b2",
+      "qualified": "SmartGrid2010::DomainView::DC10::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC10",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "5b433584-1a0e-4640-ac53-735f4019541d",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "b619ab30-311e-463a-a97e-7dd9325d8d1d",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC10::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "53237a68-a32e-4bc0-af10-16ca5c0757ba",
+      "qualified": "SmartGrid2010::DomainView::DC11",
+      "name": "DC11",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::operations",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::operations",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "034f1960-7866-49df-8a22-b1adec86e581",
+      "qualified": "SmartGrid2010::DomainView::DC11::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC11",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "065e7e29-5432-47c8-a4c8-0681893eb90a",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "4b513939-9bf0-4001-81a6-d4fa24743254",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC11::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6a752989-6f58-4cd9-89ab-73691173177f",
+      "qualified": "SmartGrid2010::DomainView::DC11::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC11",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2385d1c1-a292-4309-8004-a68ec3678124",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "78acc471-e743-4b5e-b856-bff75f2e55f7",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC11::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "f8c71919-ab9f-485d-aaac-74b532235439",
+      "qualified": "SmartGrid2010::DomainView::DC12",
+      "name": "DC12",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::serviceProvider",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::serviceProvider",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "42904215-9436-4c38-9e7d-4806ce8ad0ca",
+      "qualified": "SmartGrid2010::DomainView::DC12::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC12",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2d68f812-c276-4981-82ec-5484e731b613",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "9d1c5cf8-f8e9-40aa-b452-7d726f410f06",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC12::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a8641898-f3ff-4828-aeca-3b358bea392d",
+      "qualified": "SmartGrid2010::DomainView::DC12::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC12",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "54b9b52b-6748-4757-975f-dd0c1b4aabfe",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "9ed80c8b-e391-4d12-b3c1-f4e75633b607",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC12::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a3cf65be-e7db-46dd-a714-126e8f4849da",
+      "qualified": "SmartGrid2010::DomainView::DC13",
+      "name": "DC13",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::bulkGeneration",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::bulkGeneration",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "96c39e58-afa2-435d-b298-76df16831a6a",
+      "qualified": "SmartGrid2010::DomainView::DC13::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC13",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "5dafb11b-20d0-4e77-a6ce-6d30197aac21",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "cdabd779-45dc-429d-9a17-6f6a896074ec",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC13::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3ed72548-f647-401a-a938-87cdcd6e5fa2",
+      "qualified": "SmartGrid2010::DomainView::DC13::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC13",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "91c4743f-b192-4820-b374-fb392d4348ee",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "be7e9d77-73fd-4fa5-8f54-f1d7d5db46c2",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC13::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e785146b-5834-425d-91ec-8f9826400ccf",
+      "qualified": "SmartGrid2010::DomainView::DC14",
+      "name": "DC14",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::transmission",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bbb8d0e7-15d4-4761-9a1b-27e6d84bcc03",
+      "qualified": "SmartGrid2010::DomainView::DC14::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC14",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "1006309b-af3c-4ad9-a4bf-fac193510854",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "b73037cd-04ec-4d2a-8b0f-64ccfcfd23f2",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC14::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "bf6a8db3-3d24-4e11-b002-a25b07414d22",
+      "qualified": "SmartGrid2010::DomainView::DC14::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC14",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "84f3cba5-0f5a-475d-b499-12ea20db7d34",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "dedf8d7b-6d5e-4751-8aa6-5cf239ae6925",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC14::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b273b0d9-00c6-493b-b6cd-d6077f3d9506",
+      "qualified": "SmartGrid2010::DomainView::DC15",
+      "name": "DC15",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::distribution",
+          "SmartGrid2010::Domain::comm"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::comm"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::comm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0b20148e-db31-431d-ab5c-0f1f9e1e881f",
+      "qualified": "SmartGrid2010::DomainView::DC15::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC15",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ffb2594f-b419-4ecc-8df7-2320b1775aac",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "c0ff8c45-0c8f-4e3b-a100-594d0598c441",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC15::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "30e91c63-0e5a-40a0-8028-ebbe39c11a94",
+      "qualified": "SmartGrid2010::DomainView::DC15::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DC15",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a9675cc0-bb1e-43ca-8822-b76a2089108f",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "a148184d-117c-473f-a02f-b12221157b8c",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DC15::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3bbdac80-a45a-4fcf-b1b6-4d581f78c389",
+      "qualified": "SmartGrid2010::DomainView::DE01",
+      "name": "DE01",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::bulkGeneration",
+          "SmartGrid2010::Domain::electrical"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::electrical"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::bulkGeneration",
+            "SmartGrid2010::Domain::electrical"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::electrical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bd396371-60d3-4302-ac20-19c5a566d814",
+      "qualified": "SmartGrid2010::DomainView::DE01::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DE01",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "219bdda9-d922-4ab5-8ba2-5372e532aacf",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "479fde8c-68ca-400e-a327-6737eee83d47",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DE01::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "0dfb77c3-5624-472d-becc-bb5d7377bfff",
+      "qualified": "SmartGrid2010::DomainView::DE01::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DE01",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "521fc8db-658b-4c24-bf76-6f64c7abe1f8",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "72e2246d-45c8-4ec6-ab0c-c8c01d9eaa11",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DE01::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "87bd73ca-47cd-4a33-b781-84d67f401eb7",
+      "qualified": "SmartGrid2010::DomainView::DE02",
+      "name": "DE02",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::transmission",
+          "SmartGrid2010::Domain::electrical"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::electrical"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::transmission",
+            "SmartGrid2010::Domain::electrical"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::electrical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "9dd2d028-f110-46a9-b3fa-1dc4ee60670a",
+      "qualified": "SmartGrid2010::DomainView::DE02::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DE02",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "088f9960-c197-459c-b3d9-7cb34b11de40",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "7d51c129-80be-4357-9f88-91219b3100db",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DE02::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "98cd6a6a-8597-4233-8aef-a5df67c27030",
+      "qualified": "SmartGrid2010::DomainView::DE02::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DE02",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "24c1da28-57fc-4708-8e7c-a19ff0eea412",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "b3d6014a-60da-4c81-86c8-70731d1b4a3e",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DE02::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "26ce1277-67ad-4627-bede-35f5e5fee98e",
+      "qualified": "SmartGrid2010::DomainView::DE03",
+      "name": "DE03",
+      "kind": "ConnectionUsage",
+      "owner": "SmartGrid2010::DomainView",
+      "docs": [],
+      "types": [
+        "Connections::Connection",
+        "Objects::BinaryLinkObject"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "SmartGrid2010::DomainView::distribution",
+          "SmartGrid2010::Domain::electrical"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::electrical"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::distribution",
+            "SmartGrid2010::Domain::electrical"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "SmartGrid2010::DomainView::customer",
+            "SmartGrid2010::Domain::electrical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c8379740-6c6b-4caf-a427-2eda0b9d0509",
+      "qualified": "SmartGrid2010::DomainView::DE03::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DE03",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "fbc3f9de-85b2-4942-970f-93b6463117de",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "06b31321-6ed4-43b0-b5f6-680e3a3be0ab",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DE03::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "cae2e8cf-61e7-47de-975e-8b17c7271056",
+      "qualified": "SmartGrid2010::DomainView::DE03::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "SmartGrid2010::DomainView::DE03",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "45123cd6-f156-4070-ad3f-f37e5b049bb1",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "9dd9d186-36e7-426f-9ece-c4ce1adcc59b",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "SmartGrid2010::DomainView::DE03::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    }
+  ],
+  "schema": "cse-ecosystem-linked-facts/1",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "source_file": "models/D-smart-grid.sysml",
+  "source_sha256": "d1055eee730bf7bbb8c7a2326df4c59eb3d064176bd816eb23c55475c7c43577"
+}

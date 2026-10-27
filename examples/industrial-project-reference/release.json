@@ -1,0 +1,30 @@
+{
+  "schema": "CSE-REFERENCE-SUBSET/1.0",
+  "modified": "2026-10-27",
+  "included_cases": [
+    "wireless-robot-controller",
+    "nist-electronics-makecoupler"
+  ],
+  "included_presentations": [
+    "wireless-robot-controller/endpoint-ledger",
+    "wireless-robot-controller/port-topology"
+  ],
+  "held_cases": [
+    "xppu-scenario15"
+  ],
+  "held_presentations": [
+    "nist-electronics-makecoupler/activity-reading"
+  ],
+  "held_reasons": {
+    "xppu-scenario15": "GPL modification and corresponding-source-conveyance review remains unresolved",
+    "nist-electronics-makecoupler/activity-reading": "Historical visible claim that native model accompanies graphic is stale; SVG/PNG/draw.io/mapping held together rather than altering graphics without supported rendering"
+  },
+  "fresh_source_acquisition": "not_run",
+  "fresh_parser_run": "not_run",
+  "fresh_browser_render": "not_run",
+  "native_editor_roundtrip": "not_run",
+  "engineering_acceptance": "not_established",
+  "wireless_supplied_model_sha256": "3459346bf262f10473e7c4cbc8a4b93e372a795b012d355f5adbe688ecf8956d",
+  "wireless_recorded_linked_facts_sha256": "fba00c85588576e793e36c7aec7b99a4ddbd692d94ff889ae563239a94fffb9a",
+  "note": "Recorded facts describe the supplied derivative model. Hashes do not re-establish historical parsing or source authenticity."
+}

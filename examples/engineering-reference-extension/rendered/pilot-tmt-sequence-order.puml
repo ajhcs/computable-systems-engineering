@@ -1,0 +1,17 @@
+@startuml
+skin sysmlbw
+skinparam monochrome true
+skinparam wrapWidth 300
+hide circle
+skinparam roundcorner 20
+skinparam BoxPadding 20
+skinparam SequenceBoxBackgroundColor #white
+skinparam style strictuml
+skinparam maxMessageSize 100
+
+participant "analysisDriver" as E1  << part>> [[psysml:593531d8-de0e-44c3-a1b9-45403794acb3 ]] 
+participant "peas" as E2  << part>> [[psysml:3df3f7ad-3d4b-4795-adea-94e90cdfcb3e ]] 
+E1 ->> E2 [[psysml:0b5dcc68-c7a5-4015-ada1-51f93f2d6ad7 ]] : initialAbort
+E1 ->> E2 [[psysml:5520aad4-6a95-4976-9d88-771c871ff2f0 ]] : maintenance
+E1 ->> E2 [[psysml:bb892164-1aab-464a-b97f-1e2182e6edb7 ]] : finalAbort
+@enduml

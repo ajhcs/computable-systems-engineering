@@ -1,0 +1,4953 @@
+{
+  "parse_has_errors": false,
+  "issues": "",
+  "elements": [
+    {
+      "id": "6548a686-f0dc-463d-addd-4901bad45af0",
+      "qualified": "Maintenance1995::CrewCode",
+      "name": "CrewCode",
+      "kind": "PartDefinition",
+      "owner": "Maintenance1995",
+      "docs": []
+    },
+    {
+      "id": "b76ae7fc-f008-42ef-bbd3-ba6e26a978d3",
+      "qualified": "Maintenance1995::TimedTask",
+      "name": "TimedTask",
+      "kind": "ActionDefinition",
+      "owner": "Maintenance1995",
+      "docs": []
+    },
+    {
+      "id": "7cf9d3ab-f1fc-4768-a049-1eaf44c75576",
+      "qualified": "Maintenance1995::TimedTask::startOffset",
+      "name": "startOffset",
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::TimedTask",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "83464aa6-e2bc-4394-ba3c-1681093ea83e",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::TimedTask::startOffset",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "be2b382f-6dcc-437e-92cf-d9e5638fb30e",
+      "qualified": "Maintenance1995::TimedTask::duration",
+      "name": "duration",
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::TimedTask",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2bb64773-3e2b-4f63-9fd8-30583d587b72",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::TimedTask::duration",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a96855ce-4b7e-4f86-a3bd-9b68aff831a4",
+      "qualified": "Maintenance1995::Schedule",
+      "name": "Schedule",
+      "kind": "PartUsage",
+      "owner": "Maintenance1995",
+      "docs": [
+        "NASA 1995 Fig B-10; source offsets graphically read at 0.1 h. Assignments do not assert four actual qualified workers. "
+      ],
+      "types": [
+        "Parts::Part"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ac158b17-f8dd-4118-ba91-2a7f7cf9bb29",
+      "qualified": "Maintenance1995::Schedule::A2",
+      "name": "A2",
+      "kind": "PartUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "0af5eeb2-e0be-4b4d-902c-94a16d5446bc",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::A2",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a264aa5e-fd6f-48df-b8d5-8f5f56101eda",
+      "qualified": "Maintenance1995::Schedule::B1",
+      "name": "B1",
+      "kind": "PartUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "85d7d7ab-72f7-44d9-b520-138b73d72504",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::B1",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "cc7ef97a-e917-497d-8550-84eef4f20a7f",
+      "qualified": "Maintenance1995::Schedule::C1",
+      "name": "C1",
+      "kind": "PartUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3b887565-d2a4-4356-976e-e319312ec626",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::C1",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "dd600dd3-6c48-450d-b8f6-f7029b7f6d2e",
+      "qualified": "Maintenance1995::Schedule::D1",
+      "name": "D1",
+      "kind": "PartUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "4c26ed9b-9837-460b-bde3-8b4af0c032d0",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::D1",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "0607816b-5ed8-452a-9e52-f0d614ea317d",
+      "qualified": "Maintenance1995::Schedule::C01",
+      "name": "C01",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Inspect compressor belt; source task .01. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "46c7f91b-677a-4f39-8044-ddfec20c5748",
+      "qualified": "Maintenance1995::Schedule::C01::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C01",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralInteger",
+              "value": 0
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4150ea91-9195-4ce5-b0f9-7b2c5cf56256",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C01::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "db0036e0-dc65-49f5-a393-1d565a806aa8",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralInteger",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "12ce24ed-3026-4a36-a353-2e81d47b299e",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralInteger",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralIntegerEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "8b56eaca-c048-4e62-a451-935156e97b51",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3351220-9e9c-4e31-8795-6a99304a1fe5",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "50c83c1f-f74f-4b2d-9529-bbf0a461ee16",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "d6f8e896-069a-4b81-9877-2898275e16bf",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ef63994b-e064-47eb-b21c-2611c37b74b4",
+      "qualified": "Maintenance1995::Schedule::C01::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C01",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.3
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5433b68d-0305-4d44-8276-c4cfca0448e8",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C01::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "dd6f5010-90dd-466c-b320-c6ef1bb6d7e5",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.3
+        }
+      ]
+    },
+    {
+      "id": "5ab6aedb-3347-4acd-8db3-104d624d8486",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "5a6bd5d8-821d-49b9-87ee-a51da0718c4e",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "ea560cb6-0cca-474e-a6fe-4912be880aff",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e48dc7d4-656b-476e-a70d-3440d21916b6",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "47141a15-cfa4-4767-b82b-88c6b7b47555",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2f9024b6-2632-4590-be65-7bfeb4f19efa",
+      "qualified": "Maintenance1995::Schedule::allocC01",
+      "name": "allocC01",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C01",
+        "name": "C01",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::A2",
+          "name": "A2",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C01",
+          "name": "C01",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::A2",
+          "name": "A2",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "eed31831-2f87-49db-abd8-f38550f3905b",
+      "qualified": "Maintenance1995::Schedule::allocC01::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC01",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "21e526c2-10cf-4563-a588-491246f94e04",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC01::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "d24d4f85-e398-4bea-b9f8-898ca21abae0",
+      "qualified": "Maintenance1995::Schedule::allocC01::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC01",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "7210509d-cef7-4ed4-80f7-9a3adeab88e3",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC01::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "bb3c62b3-5f6f-4a60-a9c6-0b2afa90f575",
+      "qualified": "Maintenance1995::Schedule::C02",
+      "name": "C02",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Lubricate blowdown pump; source task .02. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "869161b9-8884-4b8a-99fb-ba17fd394b73",
+      "qualified": "Maintenance1995::Schedule::C02::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C02",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.1
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ccac3b28-8a49-4a57-ac68-3d010ea9bd38",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C02::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "9e486f85-1934-49ff-acf7-8a65186fb9ba",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.1
+        }
+      ]
+    },
+    {
+      "id": "f5273a03-5f71-4fc5-83e9-a162ba8d4420",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "955e3f60-69be-4f19-9a4b-d6bed73c1123",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "f9a2b59b-a7ed-4e74-9644-a0b251111dc7",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "8fd88f07-9022-4987-bc97-211edc5be74b",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "0126baab-7952-4711-91d6-a08f50e9ae83",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c165aa0b-8b50-49cf-9378-9aefc87e6027",
+      "qualified": "Maintenance1995::Schedule::C02::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C02",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.2
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "96633018-b0c6-486c-ba10-d722218ba21e",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C02::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2ed1f107-f5f0-4a16-8ce1-a3142bacc53a",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.2
+        }
+      ]
+    },
+    {
+      "id": "c6781522-2f80-4714-9066-37cf363fb1a3",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "4b9360dc-82da-470f-91e8-78d864d8d498",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "cbc3cd76-a444-49e4-a67d-6b1e44e1b7d4",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "5f20e22d-e8e6-44b1-8372-fb4131d365a0",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "02f15952-e8c3-4a2f-974e-165eb0cfcf5e",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "f2495ca3-5814-4c0f-8114-0b1fd940ee1e",
+      "qualified": "Maintenance1995::Schedule::allocC02",
+      "name": "allocC02",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C02",
+        "name": "C02",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C02",
+          "name": "C02",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "89e448be-7759-43cf-b54c-f48384ba3848",
+      "qualified": "Maintenance1995::Schedule::allocC02::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC02",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6b4f98cf-9aac-4f63-abd8-4da9b95959a3",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC02::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "cf3ff9dd-f47e-453e-805a-2f46eed215c1",
+      "qualified": "Maintenance1995::Schedule::allocC02::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC02",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e6176845-3366-4c43-9bb5-1a6f328c563e",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC02::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b6ff5528-72ae-491d-88e4-2a15b659b8cc",
+      "qualified": "Maintenance1995::Schedule::C03",
+      "name": "C03",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Check mounting bolts; source task .03. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c2af42c1-bd03-473f-8b29-353bcbb9b0c1",
+      "qualified": "Maintenance1995::Schedule::C03::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C03",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.3
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "962a17d0-31ce-4a9a-8202-0bba1db6581b",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C03::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "780fa5b2-3144-456c-8844-1a4a4820507d",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.3
+        }
+      ]
+    },
+    {
+      "id": "e6c6ab6d-f08d-4c3e-8f42-8c0b050659c2",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c7cd9f02-5666-4f94-ac04-9a3223eec0db",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "ac3315ac-a649-4b45-aa75-b91edc60eb9f",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "8f5f848d-c5c2-4c86-983d-f25233db5c4e",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6228bf92-a1ac-42d0-a915-dc9052e28018",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "18b124ae-230a-455f-86b8-6e1a6908b360",
+      "qualified": "Maintenance1995::Schedule::C03::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C03",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.1
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "380a8ff6-01a1-403a-8820-02afc63ee5d4",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C03::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "82e8c279-a01b-4385-958f-ab32ff101e31",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.1
+        }
+      ]
+    },
+    {
+      "id": "d1f9b76b-8525-4f35-a85e-33bdce4191ee",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "040f8464-21fd-436f-bf35-1693d794e599",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "2a326670-8b1b-4a00-b4a6-27eadbf94080",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a7539851-bdd7-47b1-bf55-7c2bf99a36df",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "0f20c025-a9a2-4d5b-80ae-e4d67d9e06cc",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b4783cdf-e5b0-4182-8837-c5974f1ba080",
+      "qualified": "Maintenance1995::Schedule::allocC03",
+      "name": "allocC03",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C03",
+        "name": "C03",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C03",
+          "name": "C03",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "d989caf0-91b8-4d9e-ba0b-a0b496710611",
+      "qualified": "Maintenance1995::Schedule::allocC03::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC03",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "029a0d37-1020-4729-8fc5-e8d3b9e713c8",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC03::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "abc7d9d8-7d3b-484e-8595-3eaa6057b76e",
+      "qualified": "Maintenance1995::Schedule::allocC03::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC03",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "f3895d6f-0f2a-4594-9aa1-b7dac17b22fc",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC03::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "9a44cbb5-5817-42bb-a452-2a7ec5725dbb",
+      "qualified": "Maintenance1995::Schedule::C04",
+      "name": "C04",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Clean breather cap; source task .04. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b12da154-65a4-4f4e-9f0e-acbea20371ec",
+      "qualified": "Maintenance1995::Schedule::C04::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C04",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.4
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ca9c763d-8c3e-42ec-8af6-2c140c3324ce",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C04::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "eda1bb94-4fee-42a7-afab-f8099f1bbf99",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.4
+        }
+      ]
+    },
+    {
+      "id": "cb114365-2b80-45c4-ad2c-5bde4dead13d",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "f21c509b-6b28-4931-a7fe-595f21d75e64",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "10243d80-47fc-4b4c-ab17-5965391172e1",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "95f8758d-c5eb-40f3-9f0d-5766093cd548",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "f77a3693-ea2a-4ec8-a580-5a397a5bed0b",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "86c24823-1307-4a69-9d91-cffcb4a45a64",
+      "qualified": "Maintenance1995::Schedule::C04::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C04",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.1
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0d343616-4477-4b73-8d55-175157612f05",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C04::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "cefe7b40-8959-418d-940f-65252f94534b",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.1
+        }
+      ]
+    },
+    {
+      "id": "79eac2d4-7742-4fa4-95a2-d5147467cdbd",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "bb9cedc7-d32a-4bfe-bee6-5d2c2568e50c",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "172afcac-f08b-4b72-892f-1fe441e80ba8",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "890968e9-127c-4608-97af-af6585e8be64",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "16287159-d18b-4548-84f6-3e35d9d03ec9",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "de454f43-c529-450f-b962-70e5ed9262cd",
+      "qualified": "Maintenance1995::Schedule::allocC04",
+      "name": "allocC04",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C04",
+        "name": "C04",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C04",
+          "name": "C04",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "c7ed0a1b-e668-494b-8c7d-5081f7cdeaa7",
+      "qualified": "Maintenance1995::Schedule::allocC04::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC04",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3e177e6e-ba92-4bf3-8ee0-3dff8ef35ecc",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC04::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "d1240043-0c2b-42fa-8452-55063d927be6",
+      "qualified": "Maintenance1995::Schedule::allocC04::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC04",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "9ee16bc3-b25a-4cb1-8d80-68eec292a677",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC04::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6af4401e-b756-4bd9-9395-12bfe793b343",
+      "qualified": "Maintenance1995::Schedule::C05",
+      "name": "C05",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Clean food strainer; source task .05. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b488dc63-826d-44be-845c-9b657ab68f3b",
+      "qualified": "Maintenance1995::Schedule::C05::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C05",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralInteger",
+              "value": 0
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e0952655-cede-4ff8-ac6d-9ba016d71745",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C05::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "97333724-45fc-42e0-8694-fb753345fdff",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralInteger",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "9a580fa7-7b3c-4826-bcca-4d85d0d85938",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralInteger",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralIntegerEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "07110a58-22c5-4e56-bf8f-79787c2201d0",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "54f94183-f1d2-488f-ac7d-f5c32d745e09",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b1eff390-7532-4924-8ee9-872fb558401d",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e7cb1630-ddac-4061-a2c0-f5e306b3c707",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a850f3d2-b217-4433-9451-420c2ecbb44a",
+      "qualified": "Maintenance1995::Schedule::C05::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C05",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.5
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1fc7498a-0e8a-4a1d-932e-25af6399b726",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C05::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "04a8ec6b-6cbd-42b3-bab8-6b8a14167644",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "e2cf2d81-821c-4045-8d2d-eb831d5ce7ff",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "032127a6-1503-47c9-8dcf-9edcc4109aea",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "b3432f76-e90f-4ad7-87e0-29261a1c07f0",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "364712b7-6507-48f3-9a6c-fd3eaab59d0e",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "dd0d6b20-001d-4a56-80d7-1223f65373a4",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "9056d268-af86-4831-bb39-cf5c7455398b",
+      "qualified": "Maintenance1995::Schedule::allocC05",
+      "name": "allocC05",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C05",
+        "name": "C05",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::C1",
+          "name": "C1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C05",
+          "name": "C05",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::C1",
+          "name": "C1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "fa54a4ee-582f-46ec-b931-9bc6fc2a46b6",
+      "qualified": "Maintenance1995::Schedule::allocC05::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC05",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "232c1808-1065-4f92-8100-984fa74fb392",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC05::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2782bb11-41f1-483a-b5ae-da441e1ecff2",
+      "qualified": "Maintenance1995::Schedule::allocC05::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC05",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "fbe350a5-5941-450b-bafa-07c29b58700f",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC05::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "7d830571-50de-47fb-8d56-5a2b69156eab",
+      "qualified": "Maintenance1995::Schedule::C06",
+      "name": "C06",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Replace oil; source task .06. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "5bdea644-1402-4748-9171-872e6e07d4ce",
+      "qualified": "Maintenance1995::Schedule::C06::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C06",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.5
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "48376a2c-edc8-410c-b070-5f252b7fb90c",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C06::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "1a1f933f-3ccf-44c2-a463-2052967865f0",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "487f45c8-4f45-460b-a694-91aca9e3b28f",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a7509826-61c2-41e2-b865-3f3d7ebdb420",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "b545fcb4-51dd-4bcb-bcfc-f05d0c91e6d0",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2314b399-6612-4cec-a364-6fe7c2234fff",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "31a39142-cad7-4994-afe6-92b5f489e612",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "7f919972-f9a0-42ec-8237-5cde26636ea0",
+      "qualified": "Maintenance1995::Schedule::C06::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C06",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.2
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "77c757e1-e179-498c-bb61-d0dd74bf7320",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C06::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "67e2a13b-d312-418b-b20c-aa9aa5a6933c",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.2
+        }
+      ]
+    },
+    {
+      "id": "0f5c906d-27de-4ddc-9e75-a97d0ec4a5c5",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "13433a74-0e3d-4d2f-8cf1-7bb1739ac40d",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "19bf3b16-718f-4f76-b974-0811e51d85c5",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "5185dab4-ee0a-4bb8-ace8-3e2dddd56f03",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "fa627e46-cccc-45a4-b68e-94f2c180daea",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e94ccde8-24c3-4158-814e-867f613f0954",
+      "qualified": "Maintenance1995::Schedule::allocC06",
+      "name": "allocC06",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C06",
+        "name": "C06",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C06",
+          "name": "C06",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "afa4b42c-05e8-4f46-af31-4fe81502a9df",
+      "qualified": "Maintenance1995::Schedule::allocC06::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC06",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "0b93dd09-05bf-48a9-a44c-1517031b764d",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC06::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6bac91f6-98aa-41fd-bdc9-a709cb6f9ffd",
+      "qualified": "Maintenance1995::Schedule::allocC06::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC06",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "02d92e52-5f2e-49eb-8a99-8cecf2c5d865",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC06::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "bfaaf06a-abc0-4ad6-a167-e1b4fd321e1e",
+      "qualified": "Maintenance1995::Schedule::C07",
+      "name": "C07",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Replace filter; source task .07. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "af899f33-c56f-433c-a085-65eb7f26c058",
+      "qualified": "Maintenance1995::Schedule::C07::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C07",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.5
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bd73f157-0d4a-411f-bcd9-a9da08254b74",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C07::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c96ae8fc-31d9-46e8-928e-5cbfdd9baa39",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "73329921-d82d-417d-8b38-0a6714473a57",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e5580e01-e57e-4684-8d2f-9757d374a473",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "ab269232-e353-421f-ba64-01c432ddcd52",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a639ba5f-1c60-4839-ae75-7514ceae5e1c",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "752ece95-ff4b-4aad-9670-0605838eb69f",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "da39defa-9b80-4852-bea3-0f076fb4a304",
+      "qualified": "Maintenance1995::Schedule::C07::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C07",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.4
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d7f63f47-cb67-4e4d-b9ff-771563792fc8",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C07::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3bf84327-7db8-436d-8056-9593028b4299",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.4
+        }
+      ]
+    },
+    {
+      "id": "04cb92c9-3a27-45af-9fe4-f36daef27abe",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "4fae3a17-4638-4957-8871-2c920db69da0",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "11179a96-90a6-4986-afcf-d9f087fb7370",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "8d3a53e1-2a2f-4a73-af40-5228485f5a75",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a76272e1-7261-43fd-b22f-fac35a27d5bc",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6e3d66b9-1df5-4b28-a2be-e7fe35ffa3a5",
+      "qualified": "Maintenance1995::Schedule::allocC07",
+      "name": "allocC07",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C07",
+        "name": "C07",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::C1",
+          "name": "C1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C07",
+          "name": "C07",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::C1",
+          "name": "C1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "f0251f4c-2434-4cbf-a56a-12d526882b97",
+      "qualified": "Maintenance1995::Schedule::allocC07::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC07",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "644acde2-ffac-48ee-8437-733fb5f03f72",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC07::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "d15d3b83-d75d-490f-9b75-0df2ed314f46",
+      "qualified": "Maintenance1995::Schedule::allocC07::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC07",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "63bf9326-b9e7-46a7-bdc0-7be0cc9f5fc2",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC07::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e230be7a-deaf-4d23-83d9-ac8f88b14eaa",
+      "qualified": "Maintenance1995::Schedule::C08",
+      "name": "C08",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Replace V-drive belt; source task .08. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "03e6afa8-8d1d-407a-bf63-ab1236cb542e",
+      "qualified": "Maintenance1995::Schedule::C08::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C08",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralInteger",
+              "value": 0
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "632c7c67-326b-4b0b-8461-60c5fefdc8d7",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C08::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "cf1c85b8-0466-4674-a39a-a50f188d0e91",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralInteger",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "97ef58c0-0962-480b-81c8-f14e85655773",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralInteger",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralIntegerEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "6754db60-12f0-4615-9212-67e04bf11512",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "d9b1ba40-8edf-4691-96ae-d5e24371880b",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3eef6bec-8d4a-4fb3-9730-5938f6f10b80",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "360c82b8-20f9-427c-b948-867b27746db2",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ba816652-6b4a-463a-a4de-133e9cba3226",
+      "qualified": "Maintenance1995::Schedule::C08::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C08",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.9
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "91b9734e-ef9d-4edd-8703-2466a57e7ca8",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C08::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "7df5ff5d-89ec-43c6-bab3-0f3d3fbe9fa9",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.9
+        }
+      ]
+    },
+    {
+      "id": "1c05391a-4f04-4250-9b41-b4e2da7e24ea",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e9e0b93e-9215-425d-aa57-c9ed12c5c8bb",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "b41c9e39-5675-4f02-9d20-07b9870a800e",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "8a11ab1a-5c81-4e0e-b457-3fcede24ebc1",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b7bebcfa-685b-45bf-be88-c03957309f0c",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "5bb30d6e-e4a6-4b30-956c-15a93418658c",
+      "qualified": "Maintenance1995::Schedule::allocC08",
+      "name": "allocC08",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C08",
+        "name": "C08",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::D1",
+          "name": "D1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C08",
+          "name": "C08",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::D1",
+          "name": "D1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "d2a63073-5d40-429f-b2e0-71c4df0fe45f",
+      "qualified": "Maintenance1995::Schedule::allocC08::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC08",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "5ea5fc20-1686-43bb-b766-853488b9402f",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC08::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c3adf5c5-4680-44c9-bb16-56ed50a587fa",
+      "qualified": "Maintenance1995::Schedule::allocC08::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC08",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a6b2f4db-fb9d-4fc5-a555-d4653477ef76",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC08::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "0bae237e-298b-42fd-a03a-0b635f134e3f",
+      "qualified": "Maintenance1995::Schedule::C09",
+      "name": "C09",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Clean & inspect control panel; source task .09. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3b138b4f-1133-4871-8a98-ae9a9d40581e",
+      "qualified": "Maintenance1995::Schedule::C09::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C09",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.9
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "615003b0-16fe-4206-b0a9-cd0b79ba674d",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C09::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "736c8d5e-b992-43fb-ba66-d58dc9a9436f",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.9
+        }
+      ]
+    },
+    {
+      "id": "96ae4984-4963-4be6-8cc9-a4ab5b359636",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "867475a3-a35e-4162-b6a5-db8b97ab1e3b",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "853ef7ad-aeb1-4112-a9a2-29497f707113",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b96feebe-f3f9-4b38-b6c5-2939b508eb14",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "0f453a69-aa4b-44df-b436-726fcd747b7a",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "f05239c4-7db6-4c79-932f-4a161c254cb2",
+      "qualified": "Maintenance1995::Schedule::C09::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C09",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.1
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "93963014-1a86-4149-bee9-51cafbc14038",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C09::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "679be279-ee2d-409d-aa54-b46829d773cf",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.1
+        }
+      ]
+    },
+    {
+      "id": "a47f81a4-cece-4e47-9607-86294becd17c",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "56f38a8b-c4c3-4445-b8c3-d78299b49a47",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "9b903720-4885-42dc-8b99-3bc085827219",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "7e331272-3c4e-474e-8ab5-bbd6aa168c98",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c86c39ca-cafe-4adb-a381-38d13b5529c2",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c528c612-366f-49c2-a30b-4247c252e148",
+      "qualified": "Maintenance1995::Schedule::allocC09",
+      "name": "allocC09",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C09",
+        "name": "C09",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::C1",
+          "name": "C1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C09",
+          "name": "C09",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::C1",
+          "name": "C1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "d217e6a6-f3d7-42dc-aff6-5258441d11c5",
+      "qualified": "Maintenance1995::Schedule::allocC09::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC09",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c7c1c59e-18fc-4450-a841-bc08869e8c7d",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC09::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "696a472c-4a60-498d-9fdd-c6df066ec7b2",
+      "qualified": "Maintenance1995::Schedule::allocC09::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC09",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ecb8c996-e13b-49e4-a8c5-8c37dedc032b",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC09::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "44d0e23a-5b18-4464-9c3a-cd1399c3ecba",
+      "qualified": "Maintenance1995::Schedule::C10",
+      "name": "C10",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Install new diaphragms; source task .10. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "49abe2b9-ec51-465d-b795-b71ba26f183e",
+      "qualified": "Maintenance1995::Schedule::C10::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C10",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.3
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "028e955a-c53c-4a9f-a4df-735bab2df211",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C10::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a2f4b509-23ec-4c0a-a444-2f1588407cbd",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.3
+        }
+      ]
+    },
+    {
+      "id": "d170386a-149e-4871-82a1-2703baf0cea8",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "d4509b9e-6472-462f-80b1-feec3b23d8c7",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "5ab686e0-6ea4-4331-a15c-ed24b1bcb348",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ba9de652-8e15-4730-a519-be1cced40aaa",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "67455af9-8a61-4645-8580-b5d96f81f2ac",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "752ac935-47b2-4d05-8874-9054ec05adfe",
+      "qualified": "Maintenance1995::Schedule::C10::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C10",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.7
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e0a71cfc-348f-40b4-863d-6e15e77bd7bd",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C10::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "cf4cb258-bc39-4ce1-9e0b-d0010d735876",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.7
+        }
+      ]
+    },
+    {
+      "id": "a783d74a-30be-4595-bd97-7c1b2e899655",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "11eff0e6-8c29-4f62-afdb-d8d9419b9b46",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "fe2e12ff-a1bb-48a5-957b-a25b956a6261",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "9ae459e3-57b8-4ee1-bce1-0d11a8055620",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "f7cb8211-68b6-4c65-bc9c-58b5331352c4",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "caa7e932-e8cd-4f97-b9ad-63ceb670ba0b",
+      "qualified": "Maintenance1995::Schedule::allocC10",
+      "name": "allocC10",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C10",
+        "name": "C10",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::A2",
+          "name": "A2",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C10",
+          "name": "C10",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::A2",
+          "name": "A2",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "db9f1c69-88f8-46e8-b114-39fa924095a1",
+      "qualified": "Maintenance1995::Schedule::allocC10::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC10",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "385322d7-3683-45ca-bf29-807f7155bbf0",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC10::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "e2d3b2f0-07cf-46d6-9398-e89ddfe47e42",
+      "qualified": "Maintenance1995::Schedule::allocC10::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC10",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "5037ee60-88d1-4d14-9dd6-f683484dd61f",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC10::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "99bc1de5-c8b8-4ba7-b908-4fda32515138",
+      "qualified": "Maintenance1995::Schedule::C11",
+      "name": "C11",
+      "kind": "PerformActionUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [
+        "Clean controls; source task .11. "
+      ],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "9ac362c8-63d5-40ad-ba49-2d4604351787",
+      "qualified": "Maintenance1995::Schedule::C11::startOffset",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C11",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.9
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6f26ac63-2fb9-43cc-949c-7e11906ce43f",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C11::startOffset",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ee8572c1-2a52-4d61-b7b6-a2fe89afa7ac",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.9
+        }
+      ]
+    },
+    {
+      "id": "f1b39175-a474-44fa-af52-38997532c939",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "33d88413-5844-4b14-a7be-a3d7272d14a5",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "1e10d56a-588e-4edd-b5d7-c297bf30dc84",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ce97258c-c6ac-49b5-aab1-ca96f5c614e6",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a4ce84fa-86e6-46f2-a2f6-89afba86ebb2",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "d7ba2851-2df3-4e0d-98f2-b646c9e4bcd1",
+      "qualified": "Maintenance1995::Schedule::C11::duration",
+      "name": null,
+      "kind": "AttributeUsage",
+      "owner": "Maintenance1995::Schedule::C11",
+      "docs": [],
+      "types": [
+        "ISQBase::DurationValue"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": [
+        {
+          "kind": "OperatorExpression",
+          "operator": "[",
+          "arguments": [
+            {
+              "kind": "LiteralRational",
+              "value": 0.1
+            },
+            {
+              "kind": "FeatureReferenceExpression",
+              "referent": {
+                "qualified": "SI::hour",
+                "name": "hour",
+                "kind": "AttributeUsage",
+                "chain": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adc9ad50-19bf-4688-9ed7-5ad447fd69e0",
+      "qualified": null,
+      "name": null,
+      "kind": "OperatorExpression",
+      "owner": "Maintenance1995::Schedule::C11::duration",
+      "docs": [],
+      "types": [
+        "BaseFunctions::'['"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "384dcdb5-33cd-4c1f-8d29-18a65deb9e01",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "LiteralRational",
+          "value": 0.1
+        }
+      ]
+    },
+    {
+      "id": "39abe09b-36b4-49e5-afac-6329d968dfa6",
+      "qualified": null,
+      "name": null,
+      "kind": "LiteralRational",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::LiteralRationalEvaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b761c83a-69f8-40c9-a3bd-280fefc19c51",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "in",
+      "visibility": "private",
+      "value": [
+        {
+          "kind": "FeatureReferenceExpression",
+          "referent": {
+            "qualified": "SI::hour",
+            "name": "hour",
+            "kind": "AttributeUsage",
+            "chain": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "d8c46dba-787d-43f5-a588-ab0ef50c70bb",
+      "qualified": null,
+      "name": null,
+      "kind": "FeatureReferenceExpression",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Performances::Evaluation"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ee387bc0-a316-4642-8fd8-3eaf9ea1dd6e",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ISQBase::DurationUnit"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "46867ca6-6fb7-46fe-aa41-b1f849783490",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Base::Anything"
+      ],
+      "composite": false,
+      "direction": "out",
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "aaaa2fe7-a409-40b5-8fab-a7a8d31079bc",
+      "qualified": "Maintenance1995::Schedule::allocC11",
+      "name": "allocC11",
+      "kind": "AllocationUsage",
+      "owner": "Maintenance1995::Schedule",
+      "docs": [],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": "Maintenance1995::Schedule::C11",
+        "name": "C11",
+        "kind": "PerformActionUsage",
+        "chain": []
+      },
+      "targets": [
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ],
+      "ends": [
+        {
+          "qualified": "Maintenance1995::Schedule::C11",
+          "name": "C11",
+          "kind": "PerformActionUsage",
+          "chain": []
+        },
+        {
+          "qualified": "Maintenance1995::Schedule::B1",
+          "name": "B1",
+          "kind": "PartUsage",
+          "chain": []
+        }
+      ]
+    },
+    {
+      "id": "4cc60c20-cc3c-4c09-bb58-345e24f4a0da",
+      "qualified": "Maintenance1995::Schedule::allocC11::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC11",
+      "docs": [],
+      "types": [
+        "Maintenance1995::TimedTask"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "95eb92e2-7df3-416d-b11c-5efdde94b464",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC11::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ce476cf8-cb8c-44fb-b1ef-5e222af0b3b6",
+      "qualified": "Maintenance1995::Schedule::allocC11::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "Maintenance1995::Schedule::allocC11",
+      "docs": [],
+      "types": [
+        "Maintenance1995::CrewCode"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "d5e2dcc5-1f03-4d40-a583-a22ecbd3c328",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "Maintenance1995::Schedule::allocC11::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    }
+  ],
+  "schema": "cse-ecosystem-linked-facts/1",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "source_file": "models/C-maintenance.sysml",
+  "source_sha256": "2c941a12a3d9ac9120b346feceb299f1d9ad752a87c663a2ddc9ed217d64f62c"
+}

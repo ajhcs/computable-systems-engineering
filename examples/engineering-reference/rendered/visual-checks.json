@@ -1,0 +1,38 @@
+[
+  {
+    "file": "01-tmt-maintenance.svg",
+    "width": 1280,
+    "height": 900,
+    "text_labels": 24,
+    "clipped": [],
+    "svg_sha256": "107f140edac91726cc2f2af353783d24d8f133aef6c5c0bbc47d26276471a436",
+    "png_sha256": "334d1b463bd95e2f66fb7537b28f5716b82c15b79669339269e979a0502a1df9"
+  },
+  {
+    "file": "02-tmt-timing.svg",
+    "width": 1280,
+    "height": 900,
+    "text_labels": 35,
+    "clipped": [],
+    "svg_sha256": "7ab37b1273475ef11160e5a3eb8f7215dce573ac874b88ed523edf9f2cb43cd3",
+    "png_sha256": "f69fe88a90486c96f886e32322ffa2dfcca144897202e8fdf870fe7f74bf4586"
+  },
+  {
+    "file": "03-ape-composition.svg",
+    "width": 1280,
+    "height": 900,
+    "text_labels": 22,
+    "clipped": [],
+    "svg_sha256": "8ed21d64560f5aec5feb34e78373818da5cf0dd0fc88e0d4c6ed3f5c7c9a6c3c",
+    "png_sha256": "4e4d8300627f5b71fcb3c202f04896c8f0db415d89a5d7018a4421c12783b2b2"
+  },
+  {
+    "file": "04-ape-optical.svg",
+    "width": 1280,
+    "height": 900,
+    "text_labels": 18,
+    "clipped": [],
+    "svg_sha256": "70a7a794976e06411dcf90e4599d273aff019041e3d166c88c7da83ae43c983c",
+    "png_sha256": "39393ec551bb79abe49d49bb9180039120902d8246a26fb3bc42d43149228185"
+  }
+]

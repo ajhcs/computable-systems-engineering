@@ -1,0 +1,144 @@
+{
+  "key": "E-ape-allocation",
+  "width": 1510,
+  "height": 1000,
+  "nodes": [
+    {
+      "id": "ASMLCS_Control_if",
+      "label": "ASMLCS_Control_if",
+      "x": 48,
+      "y": 350,
+      "w": 310,
+      "h": 77,
+      "kind": "PortUsage",
+      "native_id": "6633f4e6-aa59-41f6-96f9-8b2f0770de5d",
+      "qualified": "ApeAllocation::Logical::controlContract",
+      "texture_property": "projection",
+      "display_label": "Mirror control interface"
+    },
+    {
+      "id": "fpCtrlLan",
+      "label": "fpCtrlLan",
+      "x": 48,
+      "y": 432,
+      "w": 310,
+      "h": 77,
+      "kind": "PortUsage",
+      "native_id": "65ef9e46-abed-4b0e-ad28-e0acbfc98433",
+      "qualified": "ApeAllocation::Lan::fpCtrlLan",
+      "texture_property": null,
+      "display_label": "Control network port"
+    },
+    {
+      "id": "fpImcsLan",
+      "label": "fpImcsLan",
+      "x": 48,
+      "y": 514,
+      "w": 310,
+      "h": 77,
+      "kind": "PortUsage",
+      "native_id": "c24f5892-4394-4842-841c-9fd6ab74c5da",
+      "qualified": "ApeAllocation::Lan::fpImcsLan",
+      "texture_property": null,
+      "display_label": "Metrology network port"
+    },
+    {
+      "id": "imData",
+      "label": "imData",
+      "x": 48,
+      "y": 596,
+      "w": 310,
+      "h": 77,
+      "kind": "PortUsage",
+      "native_id": "2288dec2-73c0-4fdc-b2bb-261a5f1840af",
+      "qualified": "ApeAllocation::Logical::imData",
+      "texture_property": null,
+      "display_label": "Metrology data interface"
+    },
+    {
+      "id": "ccs",
+      "label": "ccs",
+      "x": 48,
+      "y": 678,
+      "w": 310,
+      "h": 77,
+      "kind": "PortUsage",
+      "native_id": "701dd341-80e5-47e2-821a-1994270b634d",
+      "qualified": "ApeAllocation::Protocol::ccs",
+      "texture_property": null,
+      "display_label": "Mirror control protocol"
+    },
+    {
+      "id": "tcp/ip",
+      "label": "tcp/ip",
+      "x": 48,
+      "y": 760,
+      "w": 310,
+      "h": 77,
+      "kind": "PortUsage",
+      "native_id": "1960450b-d584-4125-89ec-aea538da61aa",
+      "qualified": "ApeAllocation::Protocol::tcpIp",
+      "texture_property": null,
+      "display_label": "TCP/IP network protocol"
+    }
+  ],
+  "edges": [],
+  "annotations": [
+    {
+      "kind": "matrix-cell",
+      "native_id": "47d0b05a-e75a-4c29-9edc-800fd5dcbe79",
+      "row": "ASMLCS_Control_if",
+      "column": "fpCtrlLan",
+      "symbol": "\u2192"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "c33ce179-9f7d-4662-aa8c-07d4b2aa9feb",
+      "row": "ASMLCS_Control_if",
+      "column": "ccs",
+      "symbol": "\u2192"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "47d0b05a-e75a-4c29-9edc-800fd5dcbe79",
+      "row": "fpCtrlLan",
+      "column": "ASMLCS_Control_if",
+      "symbol": "\u2190"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "a96bf56c-6faf-4fc6-b5e5-03729628e44f",
+      "row": "fpImcsLan",
+      "column": "imData",
+      "symbol": "\u2190"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "a96bf56c-6faf-4fc6-b5e5-03729628e44f",
+      "row": "imData",
+      "column": "fpImcsLan",
+      "symbol": "\u2192"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "b1e60560-dc4c-4b0e-8973-825edbff46fb",
+      "row": "imData",
+      "column": "tcp/ip",
+      "symbol": "\u2192"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "c33ce179-9f7d-4662-aa8c-07d4b2aa9feb",
+      "row": "ccs",
+      "column": "ASMLCS_Control_if",
+      "symbol": "\u2190"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "b1e60560-dc4c-4b0e-8973-825edbff46fb",
+      "row": "tcp/ip",
+      "column": "imData",
+      "symbol": "\u2190"
+    }
+  ]
+}

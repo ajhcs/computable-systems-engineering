@@ -1,0 +1,46 @@
+@startuml
+skin sysmlbw
+skinparam monochrome true
+skinparam wrapWidth 300
+hide circle
+
+comp def "HSFillSystem" as E1  <<(T,blue) part  def>> [[psysml:5817082f-8d8c-4f9d-8386-2dbfe1e9d263 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1524683849396<U+005F>707232<U+005F>15345. Only 7 direct properties depicted by source diagram <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1531318915516<U+005F>26898<U+005F>19112. Bounded view projection; not complete class conversion.
+}
+comp usage "pBSys: PuckBaggerSystem  " as E2  <<(T,blue) part>> [[psysml:bcd6f6ce-f992-4a75-983d-3602624e80d1 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1532524885026<U+005F>574131<U+005F>24126. Source role: pBSys; unchanged source role; aggregation composite.
+}
+comp usage "capWS: CapWS  " as E3  <<(T,blue) part>> [[psysml:5d78e5aa-eec1-475e-9414-25b6a7d0c166 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1550524403060<U+005F>222373<U+005F>25314. Source role: capWS; unchanged source role; aggregation composite.
+}
+comp usage "xWS: ExceptionWS  " as E4  <<(T,blue) part>> [[psysml:d32add7c-759f-4d90-9402-829c5c70eca5 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1550524419700<U+005F>363709<U+005F>25344. Source role: xWS; unchanged source role; aggregation composite.
+}
+comp usage "vDWS: VialDispenseSystem  " as E5  <<(T,blue) part>> [[psysml:479a3c78-0107-452d-bb69-915126b13df0 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3af018f<U+005F>1568127163256<U+005F>528710<U+005F>28684. Source role: vDWS; unchanged source role; aggregation composite.
+}
+comp usage "finger: HSDispenseFinger[1..*]  " as E6  <<(T,blue) part>> [[psysml:a06b2ce8-03e5-4dcd-a564-802ce27a07fc ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3af018f<U+005F>1568154046810<U+005F>693419<U+005F>33288. Source role: finger; unchanged source role; aggregation composite.
+}
+comp usage "puckConveyor: PuckConveyorSystem  " as E7  <<(T,blue) part>> [[psysml:24b013b3-339e-4f53-9980-6e091c521c93 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3af018f<U+005F>1570121073930<U+005F>557791<U+005F>31648. Source role: (unnamed); derived alias for unnamed native role; aggregation composite.
+}
+comp usage "VTS: VTS  " as E8  <<(T,blue) part>> [[psysml:b881afa7-7fe1-4b4a-b1e7-47a663c94352 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3af018f<U+005F>1571522802951<U+005F>195557<U+005F>22823. Source role: VTS; unchanged source role; aggregation none.
+}
+E1 *-- E2 [[psysml:e27de9e6-5a28-4b6a-ba6e-2d49623c05ef ]] 
+E1 *-- E3 [[psysml:05d30557-4a19-4ebc-85d5-f37517a21227 ]] 
+E1 *-- E4 [[psysml:917f7b1d-075d-41bb-87f8-4ad2d5ceab9b ]] 
+E1 *-- E5 [[psysml:f1a32b31-0db2-4a5b-ab24-4ba937de32c0 ]] 
+E1 *-- E6 [[psysml:7933f551-e421-463d-89ea-45df76db5683 ]] 
+E1 *-- E7 [[psysml:6f9e7a81-b212-45bd-af3f-68142808d683 ]] 
+E1 o-- E8 [[psysml:6ed9769a-3241-49c5-b8ae-57b63afaf739 ]] 
+@enduml

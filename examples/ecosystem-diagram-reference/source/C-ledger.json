@@ -1,0 +1,123 @@
+{
+  "status": "curated presentation reference; engineering and migration limits retained",
+  "source_ids": "C/D assigned transcription IDs; E preserves selected native XMI trace identifiers",
+  "rendering_contract": "custom model-derived presentation, not formal SysML graphical conformance",
+  "semantics": "Only selected source meaning; implementation choices and unknowns explicit",
+  "acceptance": "Engineer acceptance and editor save/reopen unrun",
+  "key": "C",
+  "title": "Maintenance time and crew loading",
+  "source": "NASA Systems Engineering Handbook 1995, Figure B-10, p.131 / PDF 143",
+  "url": "https://ocw.mit.edu/courses/16-892j-space-system-architecture-and-design-fall-2004/e5e9dea39ad9594ab73c4c56024bf659_nasasysenghbookpdf.pdf#page=143",
+  "package": "Maintenance1995",
+  "context": "Maintenance1995::Schedule",
+  "tasks": [
+    {
+      "id": "C01",
+      "label": "Inspect compressor belt",
+      "crew": "A2",
+      "start_h": 0,
+      "duration_h": 0.3,
+      "end_h": 0.3
+    },
+    {
+      "id": "C02",
+      "label": "Lubricate blowdown pump",
+      "crew": "B1",
+      "start_h": 0.1,
+      "duration_h": 0.2,
+      "end_h": 0.3
+    },
+    {
+      "id": "C03",
+      "label": "Check mounting bolts",
+      "crew": "B1",
+      "start_h": 0.3,
+      "duration_h": 0.1,
+      "end_h": 0.4
+    },
+    {
+      "id": "C04",
+      "label": "Clean breather cap",
+      "crew": "B1",
+      "start_h": 0.4,
+      "duration_h": 0.1,
+      "end_h": 0.5
+    },
+    {
+      "id": "C05",
+      "label": "Clean food strainer",
+      "crew": "C1",
+      "start_h": 0,
+      "duration_h": 0.5,
+      "end_h": 0.5
+    },
+    {
+      "id": "C06",
+      "label": "Replace oil",
+      "crew": "B1",
+      "start_h": 0.5,
+      "duration_h": 0.2,
+      "end_h": 0.7
+    },
+    {
+      "id": "C07",
+      "label": "Replace filter",
+      "crew": "C1",
+      "start_h": 0.5,
+      "duration_h": 0.4,
+      "end_h": 0.9
+    },
+    {
+      "id": "C08",
+      "label": "Replace V-drive belt",
+      "crew": "D1",
+      "start_h": 0,
+      "duration_h": 0.9,
+      "end_h": 0.9
+    },
+    {
+      "id": "C09",
+      "label": "Clean & inspect control panel",
+      "crew": "C1",
+      "start_h": 0.9,
+      "duration_h": 0.1,
+      "end_h": 1.0
+    },
+    {
+      "id": "C10",
+      "label": "Install new diaphragms",
+      "crew": "A2",
+      "start_h": 0.3,
+      "duration_h": 0.7,
+      "end_h": 1.0
+    },
+    {
+      "id": "C11",
+      "label": "Clean controls",
+      "crew": "B1",
+      "start_h": 0.9,
+      "duration_h": 0.1,
+      "end_h": 1.0
+    }
+  ],
+  "expected_labor_h": 3.6,
+  "expected_elapsed_h": 1,
+  "header": {
+    "function": "Perform periodic maint on VC distiller",
+    "location": "Engine room 3",
+    "maintenance": "Scheduled 200 hr PM",
+    "source_ffbd": "37.5X3",
+    "source_ras": "37.5X37"
+  },
+  "limits": [
+    "Illustrative handbook schedule, not a validated field maintenance procedure.",
+    "Durations and crew codes are printed. Start offsets are chart readings to 0.1 h, not mandated precedence or guaranteed precision.",
+    "Crew code is a source identifier; no staffing count or skill qualification inferred. Workload sum is task-hours, not a staffing recommendation.",
+    "Clean FOOD strainer preserves the printed wording; no silent correction to FEED.",
+    "Quantities use DurationValue and SI hour. Start is an offset from the source chart origin, not an absolute timestamp.",
+    "Allocation links preserve task-to-crew assignment. No cross-crew precedence, optimization, scheduling execution or safety approval claimed.",
+    "Schedule is an introduced view context. Its perform-action references expose TimedTask usages for allocation; the context does not assert that an organization performs every task."
+  ],
+  "record_kind": "bounded reviewed derivative fact ledger; not a source model or source truth",
+  "modified": "2026-10-27: release scope and source-rights provenance clarified; selected engineering facts unchanged"
+}

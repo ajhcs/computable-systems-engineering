@@ -1,0 +1,177 @@
+{
+  "schema": "cse-native-composition-1",
+  "view": "TREE",
+  "selected": {
+    "kind": "PartDefinition",
+    "id": "5817082f-8d8c-4f9d-8386-2dbfe1e9d263",
+    "qualified": "PharmacySourceDiagramSlices::HSFillSystem",
+    "name": "HSFillSystem"
+  },
+  "parts": [
+    {
+      "kind": "PartUsage",
+      "id": "bcd6f6ce-f992-4a75-983d-3602624e80d1",
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::pBSys",
+      "name": "pBSys",
+      "owner": "PharmacySourceDiagramSlices::HSFillSystem",
+      "owner_id": "5817082f-8d8c-4f9d-8386-2dbfe1e9d263",
+      "composite": true,
+      "membership_id": "e27de9e6-5a28-4b6a-ba6e-2d49623c05ef",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "130c9c8c-ecf6-40c9-a194-bf4dea858860",
+          "qualified": "PharmacySourceDiagramSlices::PuckBaggerSystem",
+          "name": "PuckBaggerSystem"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "5d78e5aa-eec1-475e-9414-25b6a7d0c166",
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::capWS",
+      "name": "capWS",
+      "owner": "PharmacySourceDiagramSlices::HSFillSystem",
+      "owner_id": "5817082f-8d8c-4f9d-8386-2dbfe1e9d263",
+      "composite": true,
+      "membership_id": "05d30557-4a19-4ebc-85d5-f37517a21227",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "36cb5be6-4c92-4560-aa36-3b6d87e37cc9",
+          "qualified": "PharmacySourceDiagramSlices::CapWS",
+          "name": "CapWS"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "d32add7c-759f-4d90-9402-829c5c70eca5",
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::xWS",
+      "name": "xWS",
+      "owner": "PharmacySourceDiagramSlices::HSFillSystem",
+      "owner_id": "5817082f-8d8c-4f9d-8386-2dbfe1e9d263",
+      "composite": true,
+      "membership_id": "917f7b1d-075d-41bb-87f8-4ad2d5ceab9b",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "1da55226-dcc9-4ddc-a84b-5fd80ed1d636",
+          "qualified": "PharmacySourceDiagramSlices::ExceptionWS",
+          "name": "ExceptionWS"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "479a3c78-0107-452d-bb69-915126b13df0",
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::vDWS",
+      "name": "vDWS",
+      "owner": "PharmacySourceDiagramSlices::HSFillSystem",
+      "owner_id": "5817082f-8d8c-4f9d-8386-2dbfe1e9d263",
+      "composite": true,
+      "membership_id": "f1a32b31-0db2-4a5b-ab24-4ba937de32c0",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "16892374-4d5f-4026-b82e-525147cebd8b",
+          "qualified": "PharmacySourceDiagramSlices::VialDispenseSystem",
+          "name": "VialDispenseSystem"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "a06b2ce8-03e5-4dcd-a564-802ce27a07fc",
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::finger",
+      "name": "finger",
+      "owner": "PharmacySourceDiagramSlices::HSFillSystem",
+      "owner_id": "5817082f-8d8c-4f9d-8386-2dbfe1e9d263",
+      "composite": true,
+      "membership_id": "7933f551-e421-463d-89ea-45df76db5683",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "b786b4c0-7899-41c1-ac86-50d3c0dc526a",
+          "qualified": "PharmacySourceDiagramSlices::HSDispenseFinger",
+          "name": "HSDispenseFinger"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 1,
+      "native_bound_count": 2,
+      "lower": 1,
+      "upper": "*",
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "24b013b3-339e-4f53-9980-6e091c521c93",
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::puckConveyor",
+      "name": "puckConveyor",
+      "owner": "PharmacySourceDiagramSlices::HSFillSystem",
+      "owner_id": "5817082f-8d8c-4f9d-8386-2dbfe1e9d263",
+      "composite": true,
+      "membership_id": "6f9e7a81-b212-45bd-af3f-68142808d683",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "587b1157-d7c5-4518-a40f-3c5c5d067461",
+          "qualified": "PharmacySourceDiagramSlices::PuckConveyorSystem",
+          "name": "PuckConveyorSystem"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "b881afa7-7fe1-4b4a-b1e7-47a663c94352",
+      "qualified": "PharmacySourceDiagramSlices::HSFillSystem::VTS",
+      "name": "VTS",
+      "owner": "PharmacySourceDiagramSlices::HSFillSystem",
+      "owner_id": "5817082f-8d8c-4f9d-8386-2dbfe1e9d263",
+      "composite": false,
+      "membership_id": "6ed9769a-3241-49c5-b8ae-57b63afaf739",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "ead164d5-a1cb-40ae-9193-4d90a9c1a580",
+          "qualified": "PharmacySourceDiagramSlices::VTS",
+          "name": "VTS"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    }
+  ],
+  "parse_has_errors": false,
+  "parse_issues": ""
+}

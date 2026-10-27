@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="D-smart-grid">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="markets" value="Markets" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="949b97bf-2572-48ed-823d-52999cdf022f" cseQualified="SmartGrid2010::DomainView::markets">
+          <mxGeometry x="48" y="330" width="360" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="operations" value="Operations" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="78c6c7da-e64e-4f48-9b8a-950b2ab435dc" cseQualified="SmartGrid2010::DomainView::operations">
+          <mxGeometry x="48" y="396" width="360" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="serviceProvider" value="Service Provider" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="ab572b9e-b399-4cf6-ad43-a5d0da3c1765" cseQualified="SmartGrid2010::DomainView::serviceProvider">
+          <mxGeometry x="48" y="462" width="360" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="bulkGeneration" value="Bulk Generation" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="fdf24026-fbe0-4ec0-8913-1edc34be43a4" cseQualified="SmartGrid2010::DomainView::bulkGeneration">
+          <mxGeometry x="48" y="528" width="360" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="transmission" value="Transmission" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="6f736d69-7cd8-4932-945b-fff2cc721fc8" cseQualified="SmartGrid2010::DomainView::transmission">
+          <mxGeometry x="48" y="594" width="360" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="distribution" value="Distribution" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="c896198b-37f9-400c-954a-00ec0f4be647" cseQualified="SmartGrid2010::DomainView::distribution">
+          <mxGeometry x="48" y="660" width="360" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="customer" value="Customer" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="49656ed5-6cf2-4bc8-8624-e5a1b05edd77" cseQualified="SmartGrid2010::DomainView::customer">
+          <mxGeometry x="48" y="726" width="360" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="bulkGeneration-electrical" value="Bulk Generation" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="fdf24026-fbe0-4ec0-8913-1edc34be43a4" cseQualified="SmartGrid2010::DomainView::bulkGeneration">
+          <mxGeometry x="48" y="940" width="240" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="transmission-electrical" value="Transmission" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="6f736d69-7cd8-4932-945b-fff2cc721fc8" cseQualified="SmartGrid2010::DomainView::transmission">
+          <mxGeometry x="361" y="940" width="240" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="distribution-electrical" value="Distribution" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="c896198b-37f9-400c-954a-00ec0f4be647" cseQualified="SmartGrid2010::DomainView::distribution">
+          <mxGeometry x="674" y="940" width="240" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="customer-electrical" value="Customer" style="rounded=1;whiteSpace=wrap;html=0;fontFamily=IBM Plex Sans;fontSize=16;" vertex="1" parent="1" cseNativeId="49656ed5-6cf2-4bc8-8624-e5a1b05edd77" cseQualified="SmartGrid2010::DomainView::customer">
+          <mxGeometry x="987" y="940" width="240" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="DE01" value="" source="bulkGeneration-electrical" target="transmission-electrical" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;" cseNativeId="3bbdac80-a45a-4fcf-b1b6-4d581f78c389">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DE02" value="" source="transmission-electrical" target="distribution-electrical" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;" cseNativeId="87bd73ca-47cd-4a33-b781-84d67f401eb7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DE03" value="" source="distribution-electrical" target="customer-electrical" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;" cseNativeId="26ce1277-67ad-4627-bede-35f5e5fee98e">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

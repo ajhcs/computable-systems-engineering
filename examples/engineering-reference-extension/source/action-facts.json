@@ -1,0 +1,136 @@
+{
+  "schema": "reviewed-action-facts/1",
+  "claim_scope": "Curated derivative assertions for seven selected nodes and seven selected flows; not independent source validation or original XML records.",
+  "source": {
+    "sha256": "eb54c3105e4d894bb06378476f364bbf5cdb3bfad4cbf55f10fefacf6cad515f",
+    "version": "SysML 1.4 / MagicDraw 18.0",
+    "url": "https://github.com/Open-MBEE/TMT-SysML-Model/blob/87832a1657ccab023a90a6acfd0dff02d60e2b46/TMT.mdzip"
+  },
+  "activity_id": "_17_0_2_3_41e01aa_1377716303952_671385_42761",
+  "diagram_id": "_17_0_2_3_41e01aa_1378924172312_463799_43173",
+  "nodes": [
+    {
+      "id": "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+      "kind": "uml:InitialNode",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1382548455558_205728_74434",
+      "kind": "uml:ActivityFinalNode",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+      "kind": "uml:SendSignalAction",
+      "name": null,
+      "signal": "_17_0_2_3_41e01aa_1377706340501_676597_37166",
+      "onPort": "_17_0_2_3_41e01aa_1382548607674_333485_74722",
+      "parameter": null
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+      "kind": "uml:AcceptEventAction",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    },
+    {
+      "id": "_18_0_4_baa02e2_1437598234583_903659_170363",
+      "kind": "uml:ActivityParameterNode",
+      "name": "dit",
+      "signal": null,
+      "onPort": null,
+      "parameter": "_18_0_4_baa02e2_1437598234574_12301_170362"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628566053_846606_159260",
+      "kind": "uml:ForkNode",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628574540_652543_159280",
+      "kind": "uml:JoinNode",
+      "name": null,
+      "signal": null,
+      "onPort": null,
+      "parameter": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "_17_0_2_3_41e01aa_1383810509352_353468_75620",
+      "kind": "uml:ControlFlow",
+      "source": "_18_0_5_baa02e2_1457628566053_846606_159260",
+      "target": "_17_0_2_3_41e01aa_1383810481906_821693_75583"
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810511466_177984_75625",
+      "kind": "uml:ControlFlow",
+      "source": "_18_0_5_baa02e2_1457628566053_846606_159260",
+      "target": "_17_0_2_3_41e01aa_1383810483618_843330_75595"
+    },
+    {
+      "id": "_17_0_2_3_41e01aa_1383810517529_853279_75637",
+      "kind": "uml:ControlFlow",
+      "source": "_18_0_5_baa02e2_1457628574540_652543_159280",
+      "target": "_17_0_2_3_41e01aa_1382548455558_205728_74434"
+    },
+    {
+      "id": "_18_0_4_baa02e2_1437598422630_384460_170544",
+      "kind": "uml:ObjectFlow",
+      "source": "_18_0_4_baa02e2_1437598234583_903659_170363",
+      "target": "_18_0_4_baa02e2_1437598400072_462138_170530"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628567215_126325_159264",
+      "kind": "uml:ControlFlow",
+      "source": "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+      "target": "_18_0_5_baa02e2_1457628566053_846606_159260"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628575357_814757_159285",
+      "kind": "uml:ControlFlow",
+      "source": "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+      "target": "_18_0_5_baa02e2_1457628574540_652543_159280"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1457628578060_400341_159298",
+      "kind": "uml:ControlFlow",
+      "source": "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+      "target": "_18_0_5_baa02e2_1457628574540_652543_159280"
+    }
+  ],
+  "selected_ids": [
+    "_17_0_2_3_41e01aa_1382548453439_686811_74426",
+    "_17_0_2_3_41e01aa_1382548455558_205728_74434",
+    "_17_0_2_3_41e01aa_1382548607674_333485_74722",
+    "_17_0_2_3_41e01aa_1383810481906_821693_75583",
+    "_17_0_2_3_41e01aa_1383810483618_843330_75595",
+    "_17_0_2_3_41e01aa_1383810509352_353468_75620",
+    "_17_0_2_3_41e01aa_1383810511466_177984_75625",
+    "_17_0_2_3_41e01aa_1383810517529_853279_75637",
+    "_18_0_4_baa02e2_1437598234583_903659_170363",
+    "_18_0_4_baa02e2_1437598400072_462138_170530",
+    "_18_0_4_baa02e2_1437598422630_384460_170544",
+    "_18_0_5_baa02e2_1457628566053_846606_159260",
+    "_18_0_5_baa02e2_1457628567215_126325_159264",
+    "_18_0_5_baa02e2_1457628574540_652543_159280",
+    "_18_0_5_baa02e2_1457628575357_814757_159285",
+    "_18_0_5_baa02e2_1457628578060_400341_159298"
+  ],
+  "limits": [
+    "Source command Integer dit has no supplied unit or bound.",
+    "Ack payload and receive port are unspecified; no image field is inferred.",
+    "No queues, timeout, simulation or full v1/v2 equivalence is claimed."
+  ]
+}

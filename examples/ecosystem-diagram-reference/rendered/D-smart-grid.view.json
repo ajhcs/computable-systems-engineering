@@ -1,0 +1,377 @@
+{
+  "key": "D-smart-grid",
+  "width": 1290,
+  "height": 1140,
+  "nodes": [
+    {
+      "id": "markets",
+      "label": "Markets",
+      "x": 48,
+      "y": 330,
+      "w": 360,
+      "h": 58,
+      "kind": "PartUsage",
+      "native_id": "949b97bf-2572-48ed-823d-52999cdf022f",
+      "qualified": "SmartGrid2010::DomainView::markets",
+      "texture_property": null
+    },
+    {
+      "id": "operations",
+      "label": "Operations",
+      "x": 48,
+      "y": 396,
+      "w": 360,
+      "h": 58,
+      "kind": "PartUsage",
+      "native_id": "78c6c7da-e64e-4f48-9b8a-950b2ab435dc",
+      "qualified": "SmartGrid2010::DomainView::operations",
+      "texture_property": null
+    },
+    {
+      "id": "serviceProvider",
+      "label": "Service Provider",
+      "x": 48,
+      "y": 462,
+      "w": 360,
+      "h": 58,
+      "kind": "PartUsage",
+      "native_id": "ab572b9e-b399-4cf6-ad43-a5d0da3c1765",
+      "qualified": "SmartGrid2010::DomainView::serviceProvider",
+      "texture_property": null
+    },
+    {
+      "id": "bulkGeneration",
+      "label": "Bulk Generation",
+      "x": 48,
+      "y": 528,
+      "w": 360,
+      "h": 58,
+      "kind": "PartUsage",
+      "native_id": "fdf24026-fbe0-4ec0-8913-1edc34be43a4",
+      "qualified": "SmartGrid2010::DomainView::bulkGeneration",
+      "texture_property": null
+    },
+    {
+      "id": "transmission",
+      "label": "Transmission",
+      "x": 48,
+      "y": 594,
+      "w": 360,
+      "h": 58,
+      "kind": "PartUsage",
+      "native_id": "6f736d69-7cd8-4932-945b-fff2cc721fc8",
+      "qualified": "SmartGrid2010::DomainView::transmission",
+      "texture_property": null
+    },
+    {
+      "id": "distribution",
+      "label": "Distribution",
+      "x": 48,
+      "y": 660,
+      "w": 360,
+      "h": 58,
+      "kind": "PartUsage",
+      "native_id": "c896198b-37f9-400c-954a-00ec0f4be647",
+      "qualified": "SmartGrid2010::DomainView::distribution",
+      "texture_property": null
+    },
+    {
+      "id": "customer",
+      "label": "Customer",
+      "x": 48,
+      "y": 726,
+      "w": 360,
+      "h": 58,
+      "kind": "PartUsage",
+      "native_id": "49656ed5-6cf2-4bc8-8624-e5a1b05edd77",
+      "qualified": "SmartGrid2010::DomainView::customer",
+      "texture_property": null
+    },
+    {
+      "id": "bulkGeneration-electrical",
+      "label": "Bulk Generation",
+      "x": 48,
+      "y": 940,
+      "w": 240,
+      "h": 75,
+      "kind": "PartUsage",
+      "native_id": "fdf24026-fbe0-4ec0-8913-1edc34be43a4",
+      "qualified": "SmartGrid2010::DomainView::bulkGeneration",
+      "texture_property": null
+    },
+    {
+      "id": "transmission-electrical",
+      "label": "Transmission",
+      "x": 361,
+      "y": 940,
+      "w": 240,
+      "h": 75,
+      "kind": "PartUsage",
+      "native_id": "6f736d69-7cd8-4932-945b-fff2cc721fc8",
+      "qualified": "SmartGrid2010::DomainView::transmission",
+      "texture_property": null
+    },
+    {
+      "id": "distribution-electrical",
+      "label": "Distribution",
+      "x": 674,
+      "y": 940,
+      "w": 240,
+      "h": 75,
+      "kind": "PartUsage",
+      "native_id": "c896198b-37f9-400c-954a-00ec0f4be647",
+      "qualified": "SmartGrid2010::DomainView::distribution",
+      "texture_property": null
+    },
+    {
+      "id": "customer-electrical",
+      "label": "Customer",
+      "x": 987,
+      "y": 940,
+      "w": 240,
+      "h": 75,
+      "kind": "PartUsage",
+      "native_id": "49656ed5-6cf2-4bc8-8624-e5a1b05edd77",
+      "qualified": "SmartGrid2010::DomainView::customer",
+      "texture_property": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "DE01",
+      "source": "bulkGeneration-electrical",
+      "target": "transmission-electrical",
+      "points": [
+        [
+          288,
+          977.5
+        ],
+        [
+          361,
+          977.5
+        ]
+      ],
+      "label": null,
+      "native_id": "3bbdac80-a45a-4fcf-b1b6-4d581f78c389",
+      "directed": false
+    },
+    {
+      "id": "DE02",
+      "source": "transmission-electrical",
+      "target": "distribution-electrical",
+      "points": [
+        [
+          601,
+          977.5
+        ],
+        [
+          674,
+          977.5
+        ]
+      ],
+      "label": null,
+      "native_id": "87bd73ca-47cd-4a33-b781-84d67f401eb7",
+      "directed": false
+    },
+    {
+      "id": "DE03",
+      "source": "distribution-electrical",
+      "target": "customer-electrical",
+      "points": [
+        [
+          914,
+          977.5
+        ],
+        [
+          987,
+          977.5
+        ]
+      ],
+      "label": null,
+      "native_id": "26ce1277-67ad-4627-bede-35f5e5fee98e",
+      "directed": false
+    }
+  ],
+  "annotations": [
+    {
+      "kind": "matrix-cell",
+      "native_id": "4a9f289b-5406-464b-8f3a-ed3cadfc991a",
+      "row": "markets",
+      "column": "operations"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "7e04d29d-f583-4d85-a79f-416ca9c434dd",
+      "row": "markets",
+      "column": "serviceProvider"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "3e8cf8fb-de3e-45ca-8c21-6967e2c89ae0",
+      "row": "markets",
+      "column": "bulkGeneration"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "bf452258-6bd2-4541-a623-f9fc49cc81b8",
+      "row": "markets",
+      "column": "transmission"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "080c378c-47c0-4d35-8804-2ea6cf844f8d",
+      "row": "markets",
+      "column": "distribution"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "bec6423a-2c72-4782-acd8-5ec1f761e6a8",
+      "row": "markets",
+      "column": "customer"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "4a9f289b-5406-464b-8f3a-ed3cadfc991a",
+      "row": "operations",
+      "column": "markets"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "2382ad6b-dd1b-4797-a499-0cc862be9555",
+      "row": "operations",
+      "column": "serviceProvider"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "f99d9af3-8472-4dad-bb28-43dc24f11a9d",
+      "row": "operations",
+      "column": "bulkGeneration"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "c1fab2c9-9c21-46d4-b91b-e1a75b84bed5",
+      "row": "operations",
+      "column": "transmission"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "e267e326-5f65-4f40-8b03-5a0b85d29dc0",
+      "row": "operations",
+      "column": "distribution"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "53237a68-a32e-4bc0-af10-16ca5c0757ba",
+      "row": "operations",
+      "column": "customer"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "7e04d29d-f583-4d85-a79f-416ca9c434dd",
+      "row": "serviceProvider",
+      "column": "markets"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "2382ad6b-dd1b-4797-a499-0cc862be9555",
+      "row": "serviceProvider",
+      "column": "operations"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "f8c71919-ab9f-485d-aaac-74b532235439",
+      "row": "serviceProvider",
+      "column": "customer"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "3e8cf8fb-de3e-45ca-8c21-6967e2c89ae0",
+      "row": "bulkGeneration",
+      "column": "markets"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "f99d9af3-8472-4dad-bb28-43dc24f11a9d",
+      "row": "bulkGeneration",
+      "column": "operations"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "a3cf65be-e7db-46dd-a714-126e8f4849da",
+      "row": "bulkGeneration",
+      "column": "transmission"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "bf452258-6bd2-4541-a623-f9fc49cc81b8",
+      "row": "transmission",
+      "column": "markets"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "c1fab2c9-9c21-46d4-b91b-e1a75b84bed5",
+      "row": "transmission",
+      "column": "operations"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "a3cf65be-e7db-46dd-a714-126e8f4849da",
+      "row": "transmission",
+      "column": "bulkGeneration"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "e785146b-5834-425d-91ec-8f9826400ccf",
+      "row": "transmission",
+      "column": "distribution"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "080c378c-47c0-4d35-8804-2ea6cf844f8d",
+      "row": "distribution",
+      "column": "markets"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "e267e326-5f65-4f40-8b03-5a0b85d29dc0",
+      "row": "distribution",
+      "column": "operations"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "e785146b-5834-425d-91ec-8f9826400ccf",
+      "row": "distribution",
+      "column": "transmission"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "b273b0d9-00c6-493b-b6cd-d6077f3d9506",
+      "row": "distribution",
+      "column": "customer"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "bec6423a-2c72-4782-acd8-5ec1f761e6a8",
+      "row": "customer",
+      "column": "markets"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "53237a68-a32e-4bc0-af10-16ca5c0757ba",
+      "row": "customer",
+      "column": "operations"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "f8c71919-ab9f-485d-aaac-74b532235439",
+      "row": "customer",
+      "column": "serviceProvider"
+    },
+    {
+      "kind": "matrix-cell",
+      "native_id": "b273b0d9-00c6-493b-b6cd-d6077f3d9506",
+      "row": "customer",
+      "column": "distribution"
+    }
+  ]
+}

@@ -1,0 +1,444 @@
+[
+  {
+    "kind": "text",
+    "x": 52,
+    "y": 20,
+    "w": 1008.0,
+    "h": 35,
+    "value": "TMT APS | From requirement to a computable timing constraint",
+    "source_id": null,
+    "size": 28,
+    "bold": true,
+    "color": "#203346",
+    "anchor": "start"
+  },
+  {
+    "kind": "text",
+    "x": 52,
+    "y": 65,
+    "w": 1060.8,
+    "h": 24,
+    "value": "Selected source evidence: original 2017 Figures 7-8 + February native model | separate meanings retained",
+    "source_id": null,
+    "size": 17,
+    "bold": false,
+    "color": "#506273",
+    "anchor": "start"
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        52,
+        104
+      ],
+      [
+        1228,
+        104
+      ]
+    ],
+    "value": "",
+    "source_id": null,
+    "arrow": false,
+    "dash": false,
+    "diamond": false
+  },
+  {
+    "kind": "text",
+    "x": 326.0,
+    "y": 156,
+    "w": 351.0,
+    "h": 22,
+    "value": "source requirement - English paraphrase",
+    "source_id": null,
+    "size": 15,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "middle"
+  },
+  {
+    "kind": "text",
+    "x": 326.0,
+    "y": 177,
+    "w": 151.2,
+    "h": 25,
+    "value": "REQ-2-APS-0017",
+    "source_id": "_2ca33d85-e793-40fa-9f3a-b3c90e37fd87__17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb",
+    "size": 18,
+    "bold": true,
+    "color": "#203346",
+    "anchor": "middle"
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        52,
+        208
+      ],
+      [
+        600,
+        208
+      ]
+    ],
+    "value": "",
+    "source_id": null,
+    "arrow": false,
+    "dash": false,
+    "diamond": false
+  },
+  {
+    "kind": "text",
+    "x": 68,
+    "y": 221,
+    "w": 561.0,
+    "h": 120,
+    "value": "APS supports on-axis alignment in less than 30 minutes,\nat a single elevation angle, when all optics are within\nthe alignment maintenance specifications.\n\nFull engineering conditions are retained as prose.",
+    "source_id": "_2ca33d85-e793-40fa-9f3a-b3c90e37fd87__17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb",
+    "size": 17,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "start"
+  },
+  {
+    "kind": "box",
+    "id": "english",
+    "x": 52,
+    "y": 143,
+    "w": 548,
+    "h": 228,
+    "value": "REQ-2-APS-0017",
+    "source_id": "_2ca33d85-e793-40fa-9f3a-b3c90e37fd87__17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb",
+    "fill": "#f4f7fa",
+    "rounding": 0,
+    "stereo": "source requirement - English paraphrase"
+  },
+  {
+    "kind": "text",
+    "x": 951.5,
+    "y": 156,
+    "w": 270.0,
+    "h": 22,
+    "value": "original modeled formalization",
+    "source_id": null,
+    "size": 15,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "middle"
+  },
+  {
+    "kind": "text",
+    "x": 951.5,
+    "y": 177,
+    "w": 367.2,
+    "h": 25,
+    "value": "Maintenance Alignment Maximum Time",
+    "source_id": "_18_0_5_c0402fd_1464026223074_50206_149810",
+    "size": 18,
+    "bold": true,
+    "color": "#203346",
+    "anchor": "middle"
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        675,
+        208
+      ],
+      [
+        1228,
+        208
+      ]
+    ],
+    "value": "",
+    "source_id": null,
+    "arrow": false,
+    "dash": false,
+    "diamond": false
+  },
+  {
+    "kind": "text",
+    "x": 691,
+    "y": 221,
+    "w": 520.1999999999999,
+    "h": 120,
+    "value": "maintenanceAlignmentTimeLimit: default 1800.0 s\n\nOriginal class default: February 2017.\nA timing predicate alone does not verify the optics\nor elevation-angle conditions.",
+    "source_id": "_18_0_5_c0402fd_1464026223074_50206_149810",
+    "size": 17,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "start"
+  },
+  {
+    "kind": "box",
+    "id": "formalization",
+    "x": 675,
+    "y": 143,
+    "w": 553,
+    "h": 228,
+    "value": "Maintenance Alignment Maximum Time",
+    "source_id": "_18_0_5_c0402fd_1464026223074_50206_149810",
+    "fill": "#f4f7fa",
+    "rounding": 0,
+    "stereo": "original modeled formalization"
+  },
+  {
+    "kind": "text",
+    "x": 52,
+    "y": 395,
+    "w": 1200.0,
+    "h": 54,
+    "value": "Source discrepancy: English uses < 30 min; mathematical model uses <= 1800 s.\nAt exactly 1800 s the source constraint passes, while the literal English timing condition does not.",
+    "source_id": null,
+    "size": 20,
+    "bold": true,
+    "color": "#8b4b18",
+    "anchor": "start"
+  },
+  {
+    "kind": "text",
+    "x": 232.0,
+    "y": 521,
+    "w": 118.8,
+    "h": 25,
+    "value": "peas : PEAS",
+    "source_id": "_18_0_4_baa02e2_1438808102180_452510_161842",
+    "size": 18,
+    "bold": true,
+    "color": "#203346",
+    "anchor": "middle"
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        52,
+        552
+      ],
+      [
+        412,
+        552
+      ]
+    ],
+    "value": "",
+    "source_id": null,
+    "arrow": false,
+    "dash": false,
+    "diamond": false
+  },
+  {
+    "kind": "text",
+    "x": 68,
+    "y": 565,
+    "w": 234.6,
+    "h": 72,
+    "value": "tFinal : Real [seconds]\nMaintenance effect:\ntFinal = t1 - t0.",
+    "source_id": "_18_0_4_baa02e2_1438808102180_452510_161842",
+    "size": 17,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "start"
+  },
+  {
+    "kind": "box",
+    "id": "peas",
+    "x": 52,
+    "y": 511,
+    "w": 360,
+    "h": 152,
+    "value": "peas : PEAS",
+    "source_id": "_18_0_4_baa02e2_1438808102180_452510_161842",
+    "fill": "#eef4f8",
+    "rounding": 0,
+    "stereo": null
+  },
+  {
+    "kind": "text",
+    "x": 952.5,
+    "y": 531,
+    "w": 126.0,
+    "h": 22,
+    "value": "<<constraint>>",
+    "source_id": null,
+    "size": 15,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "middle"
+  },
+  {
+    "kind": "text",
+    "x": 952.5,
+    "y": 552,
+    "w": 432.0,
+    "h": 25,
+    "value": "maintenanceAlignment : MaxTimeConstraint",
+    "source_id": "_18_0_2_baa02e2_1429562376319_87817_151513",
+    "size": 18,
+    "bold": true,
+    "color": "#203346",
+    "anchor": "middle"
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        677,
+        583
+      ],
+      [
+        1228,
+        583
+      ]
+    ],
+    "value": "",
+    "source_id": null,
+    "arrow": false,
+    "dash": false,
+    "diamond": false
+  },
+  {
+    "kind": "text",
+    "x": 693,
+    "y": 596,
+    "w": 244.79999999999998,
+    "h": 96,
+    "value": "p1 : Real [seconds]\nmaxTime : Real [seconds]\n\np1 <= maxTime",
+    "source_id": "_18_0_2_baa02e2_1429562376319_87817_151513",
+    "size": 17,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "start"
+  },
+  {
+    "kind": "box",
+    "id": "constraint",
+    "x": 677,
+    "y": 518,
+    "w": 551,
+    "h": 190,
+    "value": "maintenanceAlignment : MaxTimeConstraint",
+    "source_id": "_18_0_2_baa02e2_1429562376319_87817_151513",
+    "fill": "#eef4f8",
+    "rounding": 0,
+    "stereo": "<<constraint>>"
+  },
+  {
+    "kind": "text",
+    "x": 511,
+    "y": 525,
+    "w": 48.0,
+    "h": 23,
+    "value": "=  p1",
+    "source_id": "_18_0_5_c0402fd_1464026509327_174724_150238",
+    "size": 16,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "start"
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        412,
+        555
+      ],
+      [
+        677,
+        555
+      ]
+    ],
+    "value": "=  p1",
+    "source_id": "_18_0_5_c0402fd_1464026509327_174724_150238",
+    "arrow": false,
+    "dash": false,
+    "diamond": false
+  },
+  {
+    "kind": "text",
+    "x": 1060,
+    "y": 762,
+    "w": 96.0,
+    "h": 23,
+    "value": "=  maxTime",
+    "source_id": "_18_0_5_c0402fd_1464026223152_177814_149832",
+    "size": 16,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "start"
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        1228,
+        275
+      ],
+      [
+        1250,
+        275
+      ],
+      [
+        1250,
+        756
+      ],
+      [
+        1000,
+        756
+      ],
+      [
+        1000,
+        708
+      ]
+    ],
+    "value": "=  maxTime",
+    "source_id": "_18_0_5_c0402fd_1464026223152_177814_149832",
+    "arrow": false,
+    "dash": false,
+    "diamond": false
+  },
+  {
+    "kind": "text",
+    "x": 52,
+    "y": 690,
+    "w": 897.6,
+    "h": 48,
+    "value": "Bindings equate values; these lines are not directional data transfers.\n1560 s (paper-reported 26 min) meets both timing boundaries. No simulation was replayed.",
+    "source_id": null,
+    "size": 17,
+    "bold": false,
+    "color": "#203346",
+    "anchor": "start"
+  },
+  {
+    "kind": "edge",
+    "points": [
+      [
+        52,
+        789
+      ],
+      [
+        1228,
+        789
+      ]
+    ],
+    "value": "",
+    "source_id": null,
+    "arrow": false,
+    "dash": false,
+    "diamond": false
+  },
+  {
+    "kind": "text",
+    "x": 52,
+    "y": 803,
+    "w": 1075.2,
+    "h": 69,
+    "value": "English-to-formalization association is documented by paper Figure 7; exact publication export is unverified.\nScalar boundary checks preserve <=. They do not establish full REQ-2-APS-0017 satisfaction or acceptance.\nNew model-derived schematic; derived SysML v2 model is separately parser-validated. Original figures are linked.",
+    "source_id": null,
+    "size": 16,
+    "bold": false,
+    "color": "#506273",
+    "anchor": "start"
+  }
+]

@@ -130,6 +130,8 @@ The illustrative assumptions consume 30 work-minutes in a 30-minute window. The 
 
 Open the [preview gallery and editable sources](examples/readme-showcase/README.md), the [connected station walkthrough](examples/engineering-gallery/water-sampling/README.md), or the [capability matrix](docs/capability-completion.md). For your own material, ask a skill to investigate a focused question and keep unresolved evidence visible. Keep private sources out of Git.
 
+The [source-grounded reference library](docs/reference-library.md) also offers selected TMT, APE, NASA and NIST views, with source links, notices and explicit limits. Original raw model files remain separate.
+
 ## Installation and technical guide
 
 <details>
@@ -150,7 +152,7 @@ A complete document is optional. Missing information can remain an explicit unkn
 
 For a recorded concept, a [project-tailored review](docs/concept-review.md) compares the candidate with a separately retained scope. Related workflows cover [human tasks](docs/human-task-review.md), [ownership](docs/ownership-review.md), [behavior claims](docs/behavior-review.md), and [conditional resource questions](docs/inquiry-profile.md). These are bounded checks and investigations; their results do not establish staffing, feasibility, observed system behavior, or engineering acceptance.
 
-The [diagram-generation skill](skills/generate-engineering-diagrams/SKILL.md) helps turn accepted model meaning into a source-linked view. The [synthetic station walkthrough](examples/engineering-gallery/water-sampling/README.md) shows one bounded example. Native-editor round-trip, complete graphical conformance, and behavioral simulation remain separate, unverified outcomes.
+The [diagram-generation skill](skills/generate-engineering-diagrams/SKILL.md) helps turn accepted model meaning into a source-linked view. Explore the [synthetic station walkthrough](examples/engineering-gallery/water-sampling/README.md) or the [source-grounded references](docs/reference-library.md). Native-editor round-trip, complete graphical conformance, and behavioral simulation remain separate, unverified outcomes.
 
 ## Explore a connected engineering example
 

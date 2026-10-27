@@ -1,0 +1,7 @@
+# Source, modifications and notices
+
+Credit Richard Candell and contributors, National Institute of Standards and Technology, Wireless Factory Work-cell model, commit `3be053a2dcdb3245754739d0440c442a3b617dad`. The complete unchanged [NIST permission, attribution and warranty notice](NIST-LICENSE.md) applies to copies and derivatives of this source software and documentation. [Pinned repository](https://github.com/rcandell/wireless-factory-sysml/tree/3be053a2dcdb3245754739d0440c442a3b617dad); [native model archive](https://github.com/rcandell/wireless-factory-sysml/blob/3be053a2dcdb3245754739d0440c442a3b617dad/wireless.xml.zip).
+
+The local model, recorded linked facts, semantic ledger, engineering reading, mapping JSON, SVG/PNG and draw.io layouts are selected explanatory adaptations made in October 2026. Release scope, notices and public source locators were clarified on 2026-10-27. The original author image, report, archive and XML are not shipped. `wireless-v2` is an upstream file revision, not a claim that the original archive uses SysML v2. No blanket permission is asserted for unrelated publication material.
+
+The complete unchanged [IBM Plex SIL Open Font License](FONT-OFL-LICENSE.txt) accompanies font data embedded in the SVG files. [Font provenance](font-source.json) identifies original binaries; no font modification is claimed. No NIST, author or font-maker endorsement is implied. Repository licensing does not replace these terms.

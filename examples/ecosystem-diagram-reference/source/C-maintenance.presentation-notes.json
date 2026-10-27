@@ -1,0 +1,8 @@
+{
+  "key": "C-maintenance",
+  "removed_canvas_notes": [
+    "Source FFBD 37.5X3 / RAS 37.5X37. Starts are chart readings at 0.1 h resolution. Crew codes are source identifiers, not proved staffing counts. Printed food strainer wording retained; no cross-crew dependency inferred."
+  ],
+  "source_footer": "NASA \u00b7 Figure B-10 \u00b7 1995",
+  "classification": "Custom model-derived presentation; no formal graphical-conformance, execution or engineer acceptance claim"
+}
