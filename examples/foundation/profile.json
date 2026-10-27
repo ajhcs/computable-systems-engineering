@@ -1,0 +1,260 @@
+{
+  "version": "foundation-1.0",
+  "source_sha256": "00a2ab77afb596e64a90d44ebd04892a22df91483dfa3ae4063bbfecf8ca1b64",
+  "terms": {
+    "T_SUBJECT": {
+      "namespace": "CSE.Foundation",
+      "revision": "1",
+      "label": "subject",
+      "definition": "The declared system of interest for this use case.",
+      "kind": "subject"
+    },
+    "T_ACTOR": {
+      "namespace": "CSE.Foundation",
+      "revision": "1",
+      "label": "actor",
+      "definition": "A participant role relative to a declared subject; invocation is scoped per use case.",
+      "kind": "actor"
+    },
+    "T_RESOURCE": {
+      "namespace": "CSE.Foundation",
+      "revision": "1",
+      "label": "resource",
+      "definition": "An identified means allocated to perform a function in a selected alternative.",
+      "kind": "resource"
+    },
+    "T_FUNCTION": {
+      "namespace": "CSE.Foundation",
+      "revision": "1",
+      "label": "function",
+      "definition": "A declared transformation or work responsibility, distinct from its allocated means.",
+      "kind": "function"
+    },
+    "T_USE_CASE": {
+      "namespace": "CSE.Foundation",
+      "revision": "1",
+      "label": "use case",
+      "definition": "A subject service connected to an actor goal and declared scenarios.",
+      "kind": "use_case"
+    },
+    "T_SCENARIO": {
+      "namespace": "CSE.Foundation",
+      "revision": "1",
+      "label": "scenario",
+      "definition": "A selected narrative path through a use case, without inferred executable effects.",
+      "kind": "scenario"
+    },
+    "T_CAPABILITY": {
+      "namespace": "CSE.Foundation",
+      "revision": "1",
+      "label": "capability",
+      "definition": "A named supported operation with an executor, input contract and explicit availability.",
+      "kind": "capability"
+    },
+    "T_OBJECTIVE": {
+      "namespace": "CSE.Foundation",
+      "revision": "1",
+      "label": "objective",
+      "definition": "A desired outcome; presence alone does not define a computable satisfaction predicate.",
+      "kind": "objective"
+    }
+  },
+  "elements": {
+    "SYS": {
+      "kind": "subject",
+      "term": "T_SUBJECT",
+      "native_name": "CSEFoundation::system"
+    },
+    "A_ENGINEER": {
+      "kind": "actor",
+      "term": "T_ACTOR",
+      "native_name": "CSEFoundation::engineer"
+    },
+    "A_ASSISTANT": {
+      "kind": "actor",
+      "term": "T_ACTOR",
+      "native_name": "CSEFoundation::assistant"
+    },
+    "R_ASSISTANT": {
+      "kind": "resource",
+      "term": "T_RESOURCE",
+      "native_name": "CSEFoundation::assistant"
+    },
+    "R_CHECKER": {
+      "kind": "resource",
+      "term": "T_RESOURCE",
+      "native_name": "CSEFoundation::checker"
+    },
+    "R_SIMULATOR": {
+      "kind": "resource",
+      "term": "T_RESOURCE",
+      "native_name": "CSEFoundation::simulator"
+    },
+    "F_SOURCE": {
+      "kind": "function",
+      "term": "T_FUNCTION",
+      "native_name": "CSEFoundation::ReviewSource"
+    },
+    "F_CHECK": {
+      "kind": "function",
+      "term": "T_FUNCTION",
+      "native_name": "CSEFoundation::CheckCandidate"
+    },
+    "S_DRAFT": {
+      "kind": "scenario",
+      "term": "T_SCENARIO",
+      "native_name": "CSEFoundation::DraftScenario"
+    },
+    "UC_REVIEW": {
+      "kind": "use_case",
+      "term": "T_USE_CASE",
+      "native_name": "CSEFoundation::ReviewChange"
+    },
+    "C_CHECK": {
+      "kind": "capability",
+      "term": "T_CAPABILITY",
+      "native_name": "CSEFoundation::checker"
+    },
+    "C_NEXT": {
+      "kind": "capability",
+      "term": "T_CAPABILITY",
+      "native_name": "CSEFoundation::assistant"
+    },
+    "C_SIM": {
+      "kind": "capability",
+      "term": "T_CAPABILITY",
+      "native_name": "CSEFoundation::simulator"
+    },
+    "N_TRACE": {
+      "kind": "objective",
+      "term": "T_OBJECTIVE",
+      "native_name": "CSEFoundation::TraceableImprovement"
+    }
+  },
+  "relations": [
+    {
+      "kind": "scenario_of",
+      "from": "S_DRAFT",
+      "to": "UC_REVIEW"
+    },
+    {
+      "kind": "motivates",
+      "from": "N_TRACE",
+      "to": "F_SOURCE"
+    },
+    {
+      "kind": "implements",
+      "from": "C_CHECK",
+      "to": "F_CHECK"
+    }
+  ],
+  "use_cases": {
+    "UC_REVIEW": {
+      "category": "base",
+      "subject": "SYS",
+      "goal": "Review a source-grounded candidate without losing unresolved engineering decisions.",
+      "actors": {
+        "A_ENGINEER": {
+          "role": "primary",
+          "invokes": true,
+          "instances": 1,
+          "bounds": {
+            "min": 1,
+            "max": 1
+          },
+          "boundary": "external"
+        },
+        "A_ASSISTANT": {
+          "role": "secondary",
+          "invokes": false,
+          "instances": 1,
+          "bounds": {
+            "min": 1,
+            "max": 2
+          },
+          "boundary": "external"
+        }
+      },
+      "scenarios": [
+        "S_DRAFT"
+      ]
+    }
+  },
+  "allocations": {
+    "ALT_REVIEW": {
+      "functions": [
+        "F_SOURCE",
+        "F_CHECK"
+      ],
+      "resources": [
+        "R_ASSISTANT",
+        "R_CHECKER",
+        "R_SIMULATOR"
+      ],
+      "pairs": [
+        {
+          "function": "F_SOURCE",
+          "resource": "R_ASSISTANT",
+          "rationale": "Assistant prepares source findings for engineer review."
+        },
+        {
+          "function": "F_CHECK",
+          "resource": "R_CHECKER",
+          "rationale": "Deterministic checker computes admitted mechanical rules."
+        },
+        {
+          "function": "F_CHECK",
+          "resource": "R_ASSISTANT",
+          "rationale": "Assistant interprets diagnostics; this supplements rather than replaces program checking."
+        }
+      ],
+      "function_bounds": {
+        "F_SOURCE": {
+          "min": 1,
+          "max": 1
+        },
+        "F_CHECK": {
+          "min": 1,
+          "max": 2
+        }
+      },
+      "resource_bounds": {
+        "R_ASSISTANT": {
+          "min": 1,
+          "max": 2
+        },
+        "R_CHECKER": {
+          "min": 1,
+          "max": 1
+        },
+        "R_SIMULATOR": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  },
+  "capabilities": {
+    "VALIDATE": {
+      "element": "C_CHECK",
+      "state": "available",
+      "executor": "foundation.check",
+      "input_contract": "foundation-1.0",
+      "reason": "Trusted local profile-check adapter; no behavior or acceptance verdict."
+    },
+    "ELICIT": {
+      "element": "C_NEXT",
+      "state": "available",
+      "executor": "foundation.next",
+      "input_contract": "foundation-1.0",
+      "reason": "Lists the next missing declared fact without inventing intent."
+    },
+    "SIMULATE": {
+      "element": "C_SIM",
+      "state": "unavailable",
+      "executor": null,
+      "input_contract": null,
+      "reason": "No native behavior simulation executor is qualified in this profile."
+    }
+  }
+}

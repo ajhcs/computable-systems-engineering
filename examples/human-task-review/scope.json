@@ -1,0 +1,223 @@
+{
+  "version": "concept-review-1.1",
+  "project": {
+    "id": "HUMAN_TASK_DEMO",
+    "name": "Synthetic human-task and function-allocation study",
+    "question": "Are the selected human/automation responsibilities and task facts explicit for normal, peak, absence and recovery conditions?",
+    "boundary": "Request review and interrupted-review recovery; no staffing or automation selection verdict.",
+    "basis": "CASE"
+  },
+  "sources": {
+    "CASE": "2ae435afbf456d5d70f34349a516ed4bbc7b94cd0cd6384ea158a3ac81a9ad9b"
+  },
+  "topics": {
+    "human_tasks": {
+      "applicability": "included",
+      "rationale": "Inspect selected facts and responsibilities under normal, peak, absence and recovery contexts."
+    },
+    "actual_staffing": {
+      "applicability": "excluded",
+      "rationale": "Measured workload and resource availability are not supplied; staffing adequacy is outside this documentary check."
+    }
+  },
+  "expectations": {
+    "TASK_NORMAL": {
+      "topic": "human_tasks",
+      "kind": "human_task",
+      "task": "T_NORMAL",
+      "function": "F_REVIEW",
+      "scenario": "S_NORMAL",
+      "performers": [
+        {
+          "element": "R_CLERK",
+          "role": "execute",
+          "allocation": "human"
+        },
+        {
+          "element": "R_APP",
+          "role": "assist",
+          "allocation": "automation"
+        }
+      ],
+      "fields": [
+        "purpose",
+        "entry",
+        "inputs",
+        "completion",
+        "skills",
+        "equipment",
+        "procedure",
+        "duration",
+        "concurrency",
+        "interruption",
+        "recovery",
+        "training",
+        "evaluation"
+      ]
+    },
+    "PLAN_NORMAL": {
+      "topic": "human_tasks",
+      "kind": "evidence_plan",
+      "evidence": "E_NORMAL",
+      "target": "T_NORMAL",
+      "purpose": "validation"
+    },
+    "TASK_PEAK": {
+      "topic": "human_tasks",
+      "kind": "human_task",
+      "task": "T_PEAK",
+      "function": "F_REVIEW",
+      "scenario": "S_PEAK",
+      "performers": [
+        {
+          "element": "R_CLERK",
+          "role": "execute",
+          "allocation": "human"
+        },
+        {
+          "element": "R_APP",
+          "role": "assist",
+          "allocation": "automation"
+        }
+      ],
+      "fields": [
+        "purpose",
+        "entry",
+        "inputs",
+        "completion",
+        "skills",
+        "equipment",
+        "procedure",
+        "duration",
+        "concurrency",
+        "interruption",
+        "recovery",
+        "training",
+        "evaluation"
+      ]
+    },
+    "PLAN_PEAK": {
+      "topic": "human_tasks",
+      "kind": "evidence_plan",
+      "evidence": "E_PEAK",
+      "target": "T_PEAK",
+      "purpose": "validation"
+    },
+    "TASK_ABSENCE": {
+      "topic": "human_tasks",
+      "kind": "human_task",
+      "task": "T_ABSENCE",
+      "function": "F_REVIEW",
+      "scenario": "S_ABSENCE",
+      "performers": [
+        {
+          "element": "R_BACKUP",
+          "role": "execute",
+          "allocation": "human"
+        },
+        {
+          "element": "R_APP",
+          "role": "assist",
+          "allocation": "automation"
+        }
+      ],
+      "fields": [
+        "purpose",
+        "entry",
+        "inputs",
+        "completion",
+        "skills",
+        "equipment",
+        "procedure",
+        "duration",
+        "concurrency",
+        "interruption",
+        "recovery",
+        "training",
+        "evaluation"
+      ]
+    },
+    "PLAN_ABSENCE": {
+      "topic": "human_tasks",
+      "kind": "evidence_plan",
+      "evidence": "E_ABSENCE",
+      "target": "T_ABSENCE",
+      "purpose": "validation"
+    },
+    "TASK_RECOVERY": {
+      "topic": "human_tasks",
+      "kind": "human_task",
+      "task": "T_RECOVERY",
+      "function": "F_RECOVER",
+      "scenario": "S_RECOVERY",
+      "performers": [
+        {
+          "element": "R_CLERK",
+          "role": "execute",
+          "allocation": "human"
+        },
+        {
+          "element": "R_APP",
+          "role": "assist",
+          "allocation": "automation"
+        }
+      ],
+      "fields": [
+        "purpose",
+        "entry",
+        "inputs",
+        "completion",
+        "skills",
+        "equipment",
+        "procedure",
+        "duration",
+        "concurrency",
+        "interruption",
+        "recovery",
+        "training",
+        "evaluation"
+      ]
+    },
+    "PLAN_RECOVERY": {
+      "topic": "human_tasks",
+      "kind": "evidence_plan",
+      "evidence": "E_RECOVERY",
+      "target": "T_RECOVERY",
+      "purpose": "validation"
+    }
+  },
+  "allocation_bounds": {
+    "functions": {
+      "F_REVIEW": {
+        "min": 1,
+        "max": 5
+      },
+      "F_RECOVER": {
+        "min": 1,
+        "max": 4
+      }
+    },
+    "resources": {
+      "R_CLERK": {
+        "min": 0,
+        "max": 2
+      },
+      "R_BACKUP": {
+        "min": 0,
+        "max": 2
+      },
+      "R_APP": {
+        "min": 0,
+        "max": 2
+      },
+      "R_TERMINAL": {
+        "min": 0,
+        "max": 2
+      },
+      "R_PROC": {
+        "min": 0,
+        "max": 2
+      }
+    }
+  }
+}

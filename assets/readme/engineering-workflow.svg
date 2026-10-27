@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="410" viewBox="0 0 1400 410" role="img" aria-labelledby="title description">
+  <title id="title">Computable systems engineering</title>
+  <desc id="description">A graphic for an engineer-directed workflow from a question to a model and evidence.</desc>
+  <rect width="1400" height="410" fill="#25282d"/>
+  <path d="M0 368H1400" stroke="#51565b" stroke-width="2"/>
+  <path d="M72 67h48" stroke="#b06030" stroke-width="6"/>
+  <text x="72" y="112" fill="#d2dae6" font-family="Inter,system-ui,sans-serif" font-size="23" font-weight="700" letter-spacing="2">COMPUTABLE SYSTEMS ENGINEERING</text>
+  <text x="72" y="200" fill="#ffffff" font-family="Inter,system-ui,sans-serif" font-size="72" font-weight="700">Make the system</text>
+  <text x="72" y="283" fill="#eedcd1" font-family="Inter,system-ui,sans-serif" font-size="72" font-weight="700">inspectable.</text>
+  <text x="74" y="342" fill="#dededb" font-family="Space Grotesk,system-ui,sans-serif" font-size="25">Concepts, operations and evidence — connected.</text>
+  <g fill="none" stroke="#7b858a" stroke-width="3">
+    <path d="M970 114v21h130v18"/>
+    <path d="M1100 220v19H970v20"/>
+  </g>
+  <g font-family="Space Grotesk,system-ui,sans-serif" font-size="31" font-weight="700">
+    <rect x="885" y="47" width="376" height="67" fill="#d2dae6"/>
+    <rect x="885" y="47" width="10" height="67" fill="#32588e"/>
+    <text x="918" y="92" fill="#25282d">Question</text>
+    <rect x="1027" y="153" width="302" height="67" fill="#e0dae6"/>
+    <rect x="1027" y="153" width="10" height="67" fill="#894b25"/>
+    <text x="1060" y="198" fill="#25282d">Shared model</text>
+    <rect x="885" y="259" width="376" height="67" fill="#d5e2da"/>
+    <rect x="885" y="259" width="10" height="67" fill="#3f7956"/>
+    <text x="918" y="304" fill="#25282d">Evidence</text>
+  </g>
+</svg>

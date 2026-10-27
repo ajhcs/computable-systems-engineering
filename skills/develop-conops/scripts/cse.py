@@ -3,6 +3,7 @@
 
 import argparse
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -13,6 +14,8 @@ COMMANDS = {
     "testgen": "sysml_testgen.py",
     "view": "sysml_view.py",
     "diff": "sysml_diff.py",
+    "concept-review": "concept_review.py",
+    "question": "question.py",
     "finite": "verify.py",
     "install-parser": "install_sysml_parser.py",
 }
@@ -30,7 +33,8 @@ def main():
         return 2
     if args.command == "runtime":
         print(json.dumps({"runtime_root": str(ROOT),
-                          "profile": str(ROOT / "docs/sysml-v2-profile.md")}, sort_keys=True))
+                          "profile": str(ROOT / "docs/sysml-v2-profile.md"),
+                          "sysml_cache": str(Path(os.environ.get("CSE_SYSML_CACHE", ROOT / ".cache/sysml")).expanduser().resolve())}, sort_keys=True))
         return 0
     # Keep the caller's working directory: user model paths are not runtime paths.
     try:

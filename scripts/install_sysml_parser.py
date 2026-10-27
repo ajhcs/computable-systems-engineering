@@ -2,6 +2,7 @@
 """Install the pinned OMG SysML v2 pilot parser into this repository's ignored cache."""
 
 from hashlib import sha256
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -10,7 +11,7 @@ from urllib.request import urlopen
 from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-CACHE = ROOT / ".cache" / "sysml"
+CACHE = Path(os.environ.get("CSE_SYSML_CACHE", ROOT / ".cache" / "sysml")).expanduser().resolve()
 ARCHIVE = CACHE / "jupyter-sysml-kernel-0.52.0.zip"
 URL = "https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation/releases/download/2025-09/jupyter-sysml-kernel-0.52.0.zip"
 SHA256 = "c59342cb8ff5cbf9402a4df7ea3b47108078904802718792699ad854a78a3c32"

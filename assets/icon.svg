@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Computable Systems Engineering</title>
+  <rect width="128" height="128" rx="24" fill="#162b36"/>
+  <path d="M42 36h44M32 46v36m64-36v36M42 92h44M42 44l44 40" fill="none" stroke="#d9edf0" stroke-width="6"/>
+  <g fill="#50c7bd" stroke="#162b36" stroke-width="4">
+    <rect x="18" y="22" width="28" height="28" rx="6"/>
+    <rect x="82" y="22" width="28" height="28" rx="6"/>
+    <rect x="18" y="78" width="28" height="28" rx="6"/>
+    <rect x="82" y="78" width="28" height="28" rx="6"/>
+  </g>
+</svg>

@@ -1,0 +1,58 @@
+{
+  "version": "concept-review-1.0",
+  "project": {
+    "id": "EXPORT_DEMO",
+    "name": "Synthetic software export slice",
+    "question": "Is the export concept connected to its selected purpose and evidence plan?",
+    "boundary": "Configuration export behavior in an existing application; no facility or staffing change.",
+    "basis": "BRIEF"
+  },
+  "sources": {
+    "BRIEF": "7f65ca373505543f9dd5a229c41a2581e066955541ced8dae93b8509df2d5e88",
+    "CHECKS": "2032a0c1b9ac45be3cecc409d62741056bb4f44b09a639c8ce11f0ed19006a9b"
+  },
+  "topics": {
+    "export": {
+      "applicability": "included",
+      "rationale": "Purpose, responsibility and evaluation of the selected software change."
+    },
+    "physical_support": {
+      "applicability": "excluded",
+      "rationale": "No new physical equipment or facility is in this illustrative change; host/platform adequacy remains outside this review."
+    }
+  },
+  "expectations": {
+    "EXPORT_FUNCTION": {
+      "topic": "export",
+      "kind": "element",
+      "element": "F_EXPORT",
+      "element_kind": "function",
+      "native_name": "SoftwareExample::ExportConfiguration"
+    },
+    "EXPORT_TRACE": {
+      "topic": "export",
+      "kind": "relation",
+      "relation_kind": "addresses",
+      "from": "F_EXPORT",
+      "to": "N_EXPORT"
+    },
+    "EXPORT_ALLOCATION": {
+      "topic": "export",
+      "kind": "relation",
+      "relation_kind": "allocated_to",
+      "from": "F_EXPORT",
+      "to": "R_APP"
+    },
+    "EXPORT_PLAN": {
+      "topic": "export",
+      "kind": "evidence_plan",
+      "evidence": "E_EXPORT",
+      "target": "F_EXPORT",
+      "purpose": "verification"
+    }
+  },
+  "allocation_bounds": {
+    "functions": {},
+    "resources": {}
+  }
+}

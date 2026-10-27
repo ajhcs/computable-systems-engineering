@@ -1,10 +1,14 @@
+![A question, a shared model, and evidence connected in an engineer-directed workflow](assets/readme/engineering-workflow.svg)
+
 # Computable Systems Engineering
 
-Turn an idea, an operating story, or a requirement into something you can inspect: a connected model, a readable diagram, and checks that show what passes, fails, or remains unknown. Ask in plain language. The assistant handles model files and commands; you decide what the system should do.
+Turn an idea, an operating story, or a requirement into something you can inspect: a connected model, a readable view, and checks that show what passes, fails, or remains unknown. Ask in plain language. The assistant handles model files and commands; **you decide what the system should do**.
 
-**Start here:** open this repository in Codex and copy a request below. The three skills help with a system concept, a concept of operations (who uses and supports it), or a particular operational scenario. This is an alpha with [defined capabilities and limits](docs/capability-completion.md).
+[Start with an example](#make-the-idea-concrete) · [Check evidence](#check-a-claim-against-explicit-evidence) · [Explore the sources](#explore-or-reproduce-the-outputs) · [Setup and technical guide](#installation-and-technical-guide)
 
-The examples below use two fictional services: a sample-handoff station and a community tool library. Their people, equipment, limits, and observations are demonstration choices. Each preview links to a full-size SVG, with editable model and evidence links in its guide. On small screens, open the full-size view to read the detail.
+**Start here:** open this repository in Codex and copy a request below. The skills help you develop a system concept, investigate a concept of operations, explore a particular operational scenario, or render a source-grounded engineering diagram. This is an alpha with [defined capabilities and limits](docs/capability-completion.md).
+
+The examples use two fictional services: a sample-handoff station and a community tool library. Their people, equipment, limits, and observations are demonstration choices. Each preview links to a full-size view, with editable model and evidence links in its guide. On small screens, open the full-size view to read the detail. The PNGs and browser-inspection records are from an earlier rendering; the current integration reproduced their source SVGs byte for byte.
 
 ## Make the idea concrete
 
@@ -131,17 +135,22 @@ Open the [preview gallery and editable sources](examples/readme-showcase/README.
 <details>
 <summary>Open setup commands, supported semantics, existing examples, and implementation details</summary>
 
-Small, independently invocable skills that help a systems engineer develop a system concept, a concept of operations (CONOPS), or an operational scenario. The engineer directs consequential decisions; the assistant helps investigate, draft, run checks, and revise.
+Three independently invocable drafting skills help a systems engineer develop a system concept, a concept of operations (CONOPS), or an operational scenario. A fourth supports source-grounded diagrams. The engineer directs consequential decisions; the assistant helps investigate, draft, run checks, and revise.
 
-**Status: alpha.** The three skills now default to authoring SysML v2 textual models for new recorded work. A pinned upstream pilot parser validates those models. A bounded controlled-text profile checks selected sampled Boolean/quantity requirements and correlated event deadlines against supplied evidence. A separate bounded generator now exports synthetic pass/fail trace pairs that demonstrate a referenced property's effect on one sampled requirement when it can find such a pair. Existing version-1 JSON helpers and the opt-in finite verifier remain available. General SysML behavior computation, temporal realizability, formal FLIP coverage, hosted Jev integration, and protected acceptance are not implemented. The project source is offered under the [MIT license](LICENSE); the separately downloaded pilot parser has its own license. Publication details are tracked in [the release handoff](docs/release-handoff.md).
+**Status: alpha.** The three drafting skills default to authoring SysML v2 textual models for new recorded work. A pinned upstream pilot parser validates those models. A bounded controlled-text profile checks selected sampled Boolean/quantity requirements and correlated event deadlines against supplied evidence. A separate bounded generator exports synthetic pass/fail trace pairs that demonstrate a referenced property's effect on one sampled requirement when it can find such a pair. Existing version-1 JSON helpers and the opt-in finite verifier remain available. General SysML behavior computation, temporal realizability, formal FLIP coverage, hosted Jev integration, and protected acceptance are not implemented. The project source is offered under the [MIT license](LICENSE); the separately downloaded pilot parser has its own license. Publication details are tracked in [the release handoff](docs/release-handoff.md).
 
 | Skill | Useful work unit |
 |---|---|
 | `develop-system-concept` | Frame a problem, identify functions, explore alternatives, and assess evidence for a concept decision. |
 | `develop-conops` | Connect stakeholder needs, boundaries, scenarios, responsibilities, and evaluation plans. |
 | `develop-operational-scenarios` | Develop or investigate one scenario or a selected set. |
+| `generate-engineering-diagrams` | Produce or review views from established engineering meaning and supporting evidence. |
 
 A complete document is optional. Missing information can remain an explicit unknown. The skills use a system-wide SysML model and selected views rather than requiring the entire model in every model context. The [SysML-first profile](docs/sysml-v2-profile.md) defines the supported parser and checker boundary.
+
+For a recorded concept, a [project-tailored review](docs/concept-review.md) compares the candidate with a separately retained scope. Related workflows cover [human tasks](docs/human-task-review.md), [ownership](docs/ownership-review.md), [behavior claims](docs/behavior-review.md), and [conditional resource questions](docs/inquiry-profile.md). These are bounded checks and investigations; their results do not establish staffing, feasibility, observed system behavior, or engineering acceptance.
+
+The [diagram-generation skill](skills/generate-engineering-diagrams/SKILL.md) helps turn accepted model meaning into a source-linked view. The [synthetic station walkthrough](examples/engineering-gallery/water-sampling/README.md) shows one bounded example. Native-editor round-trip, complete graphical conformance, and behavioral simulation remain separate, unverified outcomes.
 
 ## Explore a connected engineering example
 
@@ -183,7 +192,7 @@ When people interact with a proposed system or interpret an operational handoff,
 
 ## Try the current helpers
 
-Python 3.10 or newer; the version-1 helpers use only the standard library. SysML validation additionally requires Java 21+, `javac` 21+, and the pinned pilot parser installed into the ignored project cache. Run from this directory:
+Computed checks require a local executor. The shared SysML runtime is qualified on Linux with Python 3.10 or newer and Java/`javac` 21+; native Windows SysML execution is unsupported. Version-1 helpers use only the Python standard library. SysML also needs the pinned pilot parser. For an installed or read-only copy, set `CSE_SYSML_CACHE` to a private writable directory outside the plugin; source checkouts default to ignored `.cache/sysml`. Run from this repository:
 
 ```bash
 python3 scripts/check.py
@@ -224,9 +233,9 @@ retain their current checks. Try the neutral fixture with
 
 ## Use the skills
 
-The repository registers its three skills through symlinks under `.agents/skills/`, which Codex discovers when you open this project. They remain independently invocable and are scoped to this repository. Start a new project conversation if the skill selector has not refreshed. [Codex skill discovery](https://learn.chatgpt.com/docs/build-skills) documents repository scope and symlink support.
+The repository registers its four skills through symlinks under `.agents/skills/`, which Codex discovers when you open this project. They remain independently invocable and are scoped to this repository. Start a new project conversation if the skill selector has not refreshed. [Codex skill discovery](https://learn.chatgpt.com/docs/build-skills) documents repository scope and symlink support.
 
-Each skill's `scripts/cse.py` launcher finds the shared parser/engine from its real location, so checks work from subdirectories as well as the repository root. The repository also includes a plugin manifest at `.codex-plugin/plugin.json`; installation through a public marketplace remains untested. Copying a skill folder alone preserves its version-1 helper, but does not install the shared SysML engine. Avoid duplicate installations.
+Each drafting skill's `scripts/cse.py` launcher finds the shared parser/engine from its real location, so checks work from subdirectories as well as the repository root. The portable plugin manifest is `plugin.json`, with `.codex-plugin/plugin.json` for compatibility. Both declare the local executor requirement. Installation through a public marketplace remains untested. Copying a drafting skill folder alone preserves its version-1 helper, but does not install the shared SysML engine. Avoid duplicate installations.
 
 Example requests:
 
