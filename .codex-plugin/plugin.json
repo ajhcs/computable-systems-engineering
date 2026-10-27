@@ -15,7 +15,7 @@
   ],
   "interface": {
     "displayName": "Computable Systems Engineering",
-    "shortDescription": "Develop concepts with the engineer in control",
+    "shortDescription": "Develop concepts with evidence",
     "longDescription": "Three independently invocable engineering drafting skills plus a diagram-generation skill. Source-linked diagrams retain engineering meaning and report parser, rendering and fidelity checks separately. New engineering-model creation and acceptance remain with the engineer.",
     "developerName": "ajhcs and contributors",
     "category": "Productivity",
