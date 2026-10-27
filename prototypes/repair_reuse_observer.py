@@ -4,6 +4,7 @@ This is a same-user local observation boundary, not authenticated execution.
 Missing, mistyped or contradictory capture facts are rejected, never defaulted.
 """
 from datetime import datetime
+import re
 
 
 def _fields(value, fields, where):
@@ -34,7 +35,7 @@ def _flag(value, where):
 
 
 def _snapshot(state, sequence, where):
-    _fields(state, ('security','part','record','policy','copies','tombstone',
+    _fields(state, ('security','part','record','policy','copies','tombstone','holds',
                     'movements','dispositions','copy_dispositions','audit'), where)
     security=state['security']
     known=type(security) is dict and security.get('actor') is not None
@@ -61,6 +62,21 @@ def _snapshot(state, sequence, where):
         for key in ('id','class','state'):_text(record[key],'record.'+key)
         _text(record['policy'],'record.policy',True)
         _flag(record['held'],'record.held');_boolean(record['payload_present'],'record.payload_present')
+    holds=state['holds']
+    if type(holds) is not list or len(holds)>64:
+        raise ValueError('Hold snapshot needs a bounded complete row list')
+    identities=set()
+    for hold in holds:
+        _fields(hold,('record_id','hold_id','active'),'hold')
+        _text(hold['record_id'],'hold.record_id');_flag(hold['active'],'hold.active')
+        if type(hold['hold_id']) is not str or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}',hold['hold_id']):
+            raise ValueError('Invalid captured hold identity')
+        if record is None or hold['record_id']!=record['id']:
+            raise ValueError('Hold row belongs to another or unknown record')
+        if hold['hold_id'] in identities:raise ValueError('Duplicate captured hold identity')
+        identities.add(hold['hold_id'])
+    if record is not None and record['held']!=int(any(hold['active'] for hold in holds)):
+        raise ValueError('Aggregate hold flag contradicts captured hold rows')
     policy=state['policy']
     if policy is not None:
         _fields(policy,('id','reviewed','not_before_tick','basis'),where+'.policy')
@@ -93,8 +109,8 @@ def _snapshot(state, sequence, where):
 
 
 def validate_capture(event):
-    """Admit the registered v3 SQL-capture contract before any projection."""
-    _fields(event,('sequence','utc','action','actor','part_id','record_id','request_id','before','after','result'),'event')
+    """Admit the registered v4 SQL-capture contract before any projection."""
+    _fields(event,('sequence','utc','action','actor','part_id','record_id','request_id','hold_id','before','after','result'),'event')
     _integer(event['sequence'],'sequence',1);_text(event['utc'],'utc')
     if datetime.fromisoformat(event['utc']).tzinfo is None:raise ValueError('Capture timestamp needs a timezone')
     _text(event['action'],'action')
@@ -102,6 +118,11 @@ def validate_capture(event):
                                'hold','release_hold','set_fixture_policy','dispose','restore'):
         raise ValueError('Unsupported captured operation')
     for key in ('actor','part_id','record_id','request_id'):_text(event[key],key,True)
+    if event['action'] in ('hold','release_hold'):
+        if type(event['hold_id']) is not str or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}',event['hold_id']):
+            raise ValueError('Hold operation needs an explicit captured identity')
+    elif event['hold_id'] is not None:
+        raise ValueError('Non-hold operation has an unexpected hold identity')
     for key in ('before','after'):
         _snapshot(event[key],event['sequence'],key)
         for group,target in (('part','part_id'),('record','record_id')):
@@ -164,11 +185,15 @@ def observe(event):
         valid = bool(security['actor'] and security['active'] and security['session_epoch'] == security['epoch'])
         return valid and any(g['permission']==permission and g['scope'] in ('*',scope) for g in security['grants'])
     valid = bool(security['actor'] and security['active'] and security['session_epoch'] == security['epoch'])
+    change_hold=event['action'] in ('hold','release_hold')
+    other_holds=lambda state:{h['hold_id']:h['active'] for h in state['holds'] if h['hold_id']!=event['hold_id']}
     values = {
         'stockMismatch': bool(part and part['book'] != part['physical']),
         'adjustmentAuthorized': permitted('stock.adjust'),
         'revocationEffective': bool(event['action']=='read' and security['actor'] and not valid),
-        'holdActive': bool(record and record['held']),
+        'holdActive': any(hold['active']==1 for hold in before['holds']),
+        'holdChangeAttempted': change_hold,
+        'unrelatedHoldsPreserved': other_holds(before)==other_holds(after) if change_hold else True,
         'retentionBasisKnown': bool(before['policy'] and before['policy']['reviewed']),
         'dispositionAuthorityKnown': bool(record and permitted('record.dispose', record_class)),
         'issueCommitted': any(r['kind']=='issue' and r['quantity']>0 for r in movements),

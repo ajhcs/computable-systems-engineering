@@ -35,12 +35,13 @@ run record, invocation and CSE review. No network service, account, external
 backup or user record is touched. The application is an example system under
 test, not a new CSE verdict engine or a required architecture for other projects.
 
-The reference driver executes 26 business transactions. Schema/fixture/session
+The reference driver executes 33 business transactions. Schema/fixture/session
 setup is outside its declared capture boundary. Its dummy policy uses logical
 eligibility ticks, not an adopted retention period or real-world authority.
-The default manifest adds read/issue authorization checks to the earlier nine
-stock/revocation/hold/disposition obligations; the separate original manifest
-remains available. Fault injection is explicit and restricted to named reference
+The default [hold manifest](../examples/prototype-evaluation/hold-manifest.json)
+retains the eleven stock/access/record obligations and adds preservation of
+unrelated named holds. The earlier nine- and eleven-obligation manifests remain
+available unchanged. Fault injection is explicit and restricted to named reference
 test defects; every fault run uses a new dummy database.
 
 ## Review captured evidence
@@ -61,7 +62,7 @@ python3 skills/develop-system-concept/scripts/cse.py prototype-review MODEL.sysm
 | `verification_method` | `sampled_trace_analysis`. |
 | `evidence_origin` | `executed_local_prototype`; an authored trace does not satisfy this operation. This declaration is not authenticated by the local tool. |
 | `observation_mode` | `transaction_sequence`; inputs represent decision state, outputs committed/returned results. Index is not physical sample time. |
-| `adapter` | `repair_reuse_sqlite_v3` recomputes from captured SQL states; `recorded_boolean_signals_v1` checks recorded signals only and declares that narrower correspondence. Other adapters are unsupported. |
+| `adapter` | `repair_reuse_sqlite_v4` recomputes from captured SQL states and named hold rows; `recorded_boolean_signals_v1` checks recorded signals only and declares that narrower correspondence. Other adapters are unsupported. |
 | `signal_definitions` | Native-bound signal → `{meaning,phase}`; phase is decision_state/committed_state/returned_output. |
 | `artifacts` | Explicit ID → `{role,sha256}`. Required roles: implementation, observer, driver, execution_log, monitor_input. Optional data_store. Paths come only from CLI arguments. |
 | `run` | ID, timezone-qualified start/end, exit code, transaction count and capture boundary. |
@@ -105,9 +106,11 @@ reproduce failure and attempted recovery using the existing public fixtures and
 native checker. They document current limitations, rather than implementing
 repairs:
 
-- One Boolean hold cannot preserve independent notices. Releasing one can clear
-  the flag and allow disposition despite another notice in an authored case.
-  The current Boolean-hold requirement does not detect that missing meaning.
+- Named holds now preserve independent notices on a record. See the
+  [bounded hold contract and regression](../examples/prototype-evaluation/independent-holds.md).
+  The old Boolean-only representation is historical; the new preservation
+  obligation detects the explicit release-all regression. Real notice
+  applicability, issuer authority and completeness remain unknown.
 - Retrying after an injected residual-copy or missing-audit fault returns
   `already_disposed` or `already_reconciled`; it does not repair the copy or
   reconstruct historical audit evidence. Keep the earlier counterexample.
@@ -125,8 +128,10 @@ validation and stakeholder acceptance remain unresolved without their evidence.
 
 ## Capture admission and revision boundary
 
-The current application is 1.2 and its registered SQL observer is
-`repair_reuse_sqlite_v3`. Every transaction explicitly captures the Boolean
+The current application is 1.3 (database schema 2) and its registered SQL observer is
+`repair_reuse_sqlite_v4`. Every transaction explicitly captures the requested
+hold ID (null for non-hold operations), complete bounded per-record hold rows in
+both snapshots, and the Boolean
 `returned_payload_present`, including false for non-content results. The observer
 requires complete event/snapshot/result fields, integer stock counts, SQLite 0/1
 flags, Boolean presence facts, bounded typed ledger rows and consistent target/
@@ -142,10 +147,17 @@ be lowercase SHA-256 values. Type admission does not verify that a statement is
 true, adequate or approved. Same-user fabrication/authentication remains outside
 this local boundary.
 
-Earlier v1/v2 observer captures are historical and unsupported by this registered
+Earlier v1/v2/v3 observer captures are historical and unsupported by this registered
 adapter. Do not relabel old sources, edit old observation hashes or silently
 reinterpret an incomplete trace. Execute a fresh dummy run with the new observer
 when current executed-prototype evidence is needed. The separate recorded-Boolean
 adapter remains explicitly narrower and does not acquire SQL correspondence.
+
+Old databases are refused without migration or mutation; create a fresh dummy
+database. The captured aggregate `held` flag is derived from active hold rows,
+not a separately mutable database flag. Missing rows/identity, duplicate or
+foreign identities, unknown active flags and contradictory aggregates are
+capture errors, never inferred as no active hold. The preservation monitor
+compares unrelated row identities and active states within the target record.
 
 Audit evidence must match the selected operation action, target and actor in its transaction. Foreign audit rows do not satisfy the audit signal; they remain a monitor failure when the selected operation lacks its audit. Movement/policy/tombstone references and event/decision actor identity must agree with their captured targets. These are bounded reference-adapter correspondence checks, not authenticated real-world authority.

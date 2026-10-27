@@ -94,33 +94,28 @@ class WalkthroughLimitTests(unittest.TestCase):
         self.assertEqual(revocation['coverage']['triggers'], 0)
         self.assertEqual(set(report['results']), set(self.compiled['results']))
 
-    def test_boolean_hold_does_not_represent_two_independent_notices(self):
-        # Two distinct notices exist only in this explicitly authored case.
-        remaining_notices = {'SYNTHETIC-A', 'SYNTHETIC-B'}
+    def test_independent_hold_release_preserves_other_notice_and_blocks_disposition(self):
         self.store.transact(self.steward, 'set_fixture_policy',
                             record='R-OTHER', not_before_tick=0)
-        for _notice in sorted(remaining_notices):
-            self.store.transact(self.steward, 'hold', record='R-OTHER')
-        remaining_notices.remove('SYNTHETIC-A')
-        self.store.transact(self.steward, 'release_hold', record='R-OTHER')
+        for notice in ('SYNTHETIC-A', 'SYNTHETIC-B'):
+            self.store.transact(self.steward, 'hold', record='R-OTHER', hold_id=notice)
+        self.store.transact(self.steward, 'release_hold', record='R-OTHER', hold_id='SYNTHETIC-A')
 
-        # An adversarial probe bypasses the scripted stop for remaining B.
         self.assertEqual(self.store.transact(
-            self.steward, 'dispose', record='R-OTHER')['outcome'], 'committed')
+            self.steward, 'dispose', record='R-OTHER')['reason'], 'retention_hold')
         event = self.store.events()[-1]
-        self.assertEqual(remaining_notices, {'SYNTHETIC-B'})
-        self.assertEqual(event['before']['record']['held'], 0)
-        self.assertFalse(event['after']['record']['payload_present'])
-        self.assertFalse(observe(event)[PREFIX + 'holdActive'])
+        self.assertEqual({h['hold_id'] for h in event['before']['holds'] if h['active']}, {'SYNTHETIC-B'})
+        self.assertEqual(event['before']['record']['held'], 1)
+        self.assertTrue(event['after']['record']['payload_present'])
+        self.assertTrue(observe(event)[PREFIX + 'holdActive'])
 
         report = self.monitor()
         self.assertEqual(self.clause(report, 'R_D_HOLD')['status'], 'pass')
         self.assertEqual(report['status'], 'unknown', report)
         self.assertNotIn('fail', [value['check']['status']
                                   for value in report['results'].values()])
-        # UNKNOWN here concerns unexercised clauses, not detection of notice B.
-        self.assertEqual(self.store.transact(
-            self.steward, 'restore', record='R-OTHER')['reason'], 'disposition_tombstone')
+        # This retained eleven-obligation scope checks disposition gating. The
+        # additional hold-preservation obligation is exercised by prototype-review.
 
     def test_retry_does_not_repair_a_declared_export_left_by_fault(self):
         self.prepare_disposition()

@@ -176,11 +176,11 @@ class ReferencePrototypeTests(unittest.TestCase):
 
     def test_complete_driver_executes_transactions_and_observer_emits_only_booleans(self):
         events=exercise(self.store)
-        self.assertEqual(len(events),26)
-        self.assertEqual([e['sequence'] for e in events],list(range(1,27)))
+        self.assertEqual(len(events),33)
+        self.assertEqual([e['sequence'] for e in events],list(range(1,34)))
         self.assertTrue(any(e['result'].get('reason')=='disposition_tombstone' for e in events))
         for event in events:
-            values=observe(event);self.assertEqual(len(values),15)
+            values=observe(event);self.assertEqual(len(values),17)
             self.assertTrue(all(type(value) is bool for value in values.values()))
 
 
