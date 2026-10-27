@@ -5,6 +5,7 @@ compiler inputs for the existing deterministic language checker.
 """
 
 from hashlib import sha256
+import os
 import fcntl
 import json
 import math
@@ -19,7 +20,7 @@ from .influence import generate_influence_tests
 from .engineering_views import check_views
 
 ROOT = Path(__file__).resolve().parents[1]
-CACHE = ROOT / ".cache" / "sysml"
+CACHE = Path(os.environ.get("CSE_SYSML_CACHE", ROOT / ".cache" / "sysml")).expanduser().resolve()
 JAR = CACHE / "pilot-2025-09" / "sysml" / "jupyter-sysml-kernel-0.52.0-all.jar"
 LIBRARY = CACHE / "pilot-2025-09" / "sysml" / "sysml.library"
 CLASSES = CACHE / "classes"

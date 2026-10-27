@@ -1,0 +1,34 @@
+{
+  "model_sha256": "e8fda17af3f20ded9b61771ec9cb096184ad733769d91267b2b09801c94dbbbc",
+  "complete": true,
+  "observed_until": {
+    "time": "5",
+    "unit": "minutes"
+  },
+  "events": [
+    {
+      "event": "ReturnRecording::desk::returnAccepted",
+      "time": "0",
+      "unit": "minutes",
+      "correlationId": "A"
+    },
+    {
+      "event": "ReturnRecording::desk::returnAccepted",
+      "time": "1",
+      "unit": "minutes",
+      "correlationId": "B"
+    },
+    {
+      "event": "ReturnRecording::desk::conditionRecorded",
+      "time": "3",
+      "unit": "minutes",
+      "correlationId": "B"
+    },
+    {
+      "event": "ReturnRecording::desk::conditionRecorded",
+      "time": "4",
+      "unit": "minutes",
+      "correlationId": "A"
+    }
+  ]
+}

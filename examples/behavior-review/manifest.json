@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "source_revision": "synthetic-return-1",
+  "expected": [
+    {"id": "R_RECORD", "constraint": "recordingTime", "source": "SYN-RETURN-1"}
+  ]
+}

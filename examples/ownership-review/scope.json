@@ -1,0 +1,132 @@
+{
+  "version": "concept-review-1.2",
+  "project": {
+    "id": "OWNERSHIP_DEMO",
+    "name": "Synthetic two-provider ownership study",
+    "question": "Are constituent and interface responsibilities, agreements and withdrawal/change arrangements explicit?",
+    "boundary": "Two platforms and their shared information interface; no authentication of commitments or continuity.",
+    "basis": "CASE"
+  },
+  "sources": {
+    "CASE": "990328e315d5159b291683ca8928738d42b91121325b47f45c3f8a1b17da4f02"
+  },
+  "topics": {
+    "ownership": {
+      "applicability": "included",
+      "rationale": "Retain selected constituent/interface roles and change/withdrawal proposals."
+    },
+    "enforcement": {
+      "applicability": "excluded",
+      "rationale": "No protected approval or enforcement service is selected for this documentary concept."
+    }
+  },
+  "expectations": {
+    "OWN_E_ALPHA": {
+      "topic": "ownership",
+      "kind": "ownership",
+      "target": "E_ALPHA",
+      "target_kind": "element",
+      "roles": {
+        "own": [
+          "ORG_ALPHA"
+        ],
+        "operate": [
+          "ORG_ALPHA"
+        ],
+        "fund": [
+          "ORG_ALPHA"
+        ],
+        "change": [
+          "ORG_ALPHA"
+        ],
+        "support": [
+          "ORG_ALPHA"
+        ],
+        "accept": [
+          "ORG_ALPHA"
+        ]
+      },
+      "fields": [
+        "agreement",
+        "change_control",
+        "withdrawal"
+      ]
+    },
+    "OWN_E_BETA": {
+      "topic": "ownership",
+      "kind": "ownership",
+      "target": "E_BETA",
+      "target_kind": "element",
+      "roles": {
+        "own": [
+          "ORG_BETA"
+        ],
+        "operate": [
+          "ORG_BETA"
+        ],
+        "fund": [
+          "ORG_BETA"
+        ],
+        "change": [
+          "ORG_BETA"
+        ],
+        "support": [
+          "ORG_BETA"
+        ],
+        "accept": [
+          "ORG_BETA"
+        ]
+      },
+      "fields": [
+        "agreement",
+        "change_control",
+        "withdrawal"
+      ]
+    },
+    "OWN_I_API": {
+      "topic": "ownership",
+      "kind": "ownership",
+      "target": "I_API",
+      "target_kind": "interface",
+      "roles": {
+        "own": [
+          "ORG_ALPHA",
+          "ORG_BETA"
+        ],
+        "operate": [
+          "ORG_COORD"
+        ],
+        "fund": [
+          "ORG_COORD"
+        ],
+        "change": [
+          "ORG_ALPHA",
+          "ORG_BETA"
+        ],
+        "support": [
+          "ORG_ALPHA",
+          "ORG_BETA"
+        ],
+        "accept": [
+          "ORG_COORD"
+        ]
+      },
+      "fields": [
+        "agreement",
+        "change_control",
+        "withdrawal"
+      ]
+    },
+    "EXPECTED_INTERFACE": {
+      "topic": "ownership",
+      "kind": "relation",
+      "relation_kind": "interfaces_with",
+      "from": "E_ALPHA",
+      "to": "E_BETA"
+    }
+  },
+  "allocation_bounds": {
+    "functions": {},
+    "resources": {}
+  }
+}

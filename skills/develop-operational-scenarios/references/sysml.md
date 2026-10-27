@@ -11,9 +11,9 @@ check for each requested kind. Concept plus scenario development needs
 `--kind concept` and `--kind scenario`, without a complete CONOPS.
 Keep supplied raw files and private annotations out of Git. Record concise
 derived content and source references instead of copying source documents into
-SysML or generated reports. In this repository, place user-specific models and
-reports under the ignored `work/` directory or an approved private location on
-`/workspace`; inspect Git status before committing. Tracked examples use only
+SysML or generated reports. Keep user-specific models and reports in the selected project's ignored/private
+work directory, outside the installed plugin (this repository: `work/` on
+`/workspace`); inspect Git status before committing. Tracked examples use only
 synthetic material or small attributed public-source derivatives.
 
 Use ordinary SysML elements for the information they actually represent:
@@ -27,8 +27,16 @@ pass. The engineer resolves consequential meaning.
 
 Use `python3 <skill-dir>/scripts/cse.py` as the installed entry point; it follows
 the real skill path to the shared repository or complete plugin runtime. Its
-`runtime` command prints the runtime root and profile location. Copying only a
+`runtime` command prints the runtime root, profile and parser-cache locations. Copying only a
 skill folder preserves its legacy helper, but cannot install the shared engine.
+
+For installed copies, set `CSE_SYSML_CACHE` to a private writable directory on
+the user's workspace and retain it for installation and every subsequent check.
+It defaults to `<runtime>/.cache/sysml` for source checkouts; do not store user
+models inside the installed plugin. The shared SysML runtime is qualified on
+Linux and requires local Python 3.10+ and Java/javac 21+. Native Windows SysML
+is unsupported. Without local execution, keep the model a draft and report
+checks as not run.
 
 Install the pinned parser once with
 `python3 <skill-dir>/scripts/cse.py install-parser`, then run
@@ -75,6 +83,13 @@ useful diagrams when relationships or sequencing need them. Report syntax,
 compilation, synthetic test coverage, and supplied-evidence results separately;
 explain unsupported constructs and qualitative content in plain language.
 
+For recorded concept work, also follow the system-concept skill's
+[project-tailored coverage review](../../../docs/concept-review.md). Its
+`cse.py concept-review check` command uses a separately retained project scope
+to detect omitted elements, responsibilities, interfaces and evaluation plans.
+It supplements these native/behavior checks; it does not make independent
+scenario or CONOPS work require a concept scope.
+
 For an existing version-1 JSON record or an explicit legacy request, read
 `references/record.md` and use its original helper. Do not silently translate
 its prose into executable SysML constraints. Reconcile any migration with the
@@ -118,3 +133,6 @@ do not establish the new view-quality conditions; do not claim all existing
 models were checked for them. See the shared runtime's
 `examples/sysml/views/sample-handling.sysml` and `task-profile.json` for a neutral
 synthetic example. Keep syntax, structure, semantic review, and behavior separate.
+
+
+For source-grounded diagram work, use the [diagram-generation skill](../../generate-engineering-diagrams/SKILL.md) with an accepted model and its supporting evidence. Keep source versions and IDs, distinguish simplified derivatives, and report fidelity, parser and rendering checks separately from engineering acceptance.

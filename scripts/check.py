@@ -15,7 +15,7 @@ def main():
     parser.add_argument("--require-sysml", action="store_true", help="fail rather than skip when the pinned parser is unavailable")
     args = parser.parse_args()
     if args.require_sysml:
-        cache = ROOT / ".cache/sysml"
+        cache = Path(os.environ.get("CSE_SYSML_CACHE", ROOT / ".cache/sysml")).expanduser().resolve()
         stamp = cache / "classes/SysmlBridge.source.sha256"
         source = ROOT / "tools/sysml/SysmlBridge.java"
         if (not (cache / "pilot-2025-09/sysml/jupyter-sysml-kernel-0.52.0-all.jar").is_file() or
@@ -40,10 +40,37 @@ def main():
         if len({path.read_bytes() for path in copies}) != 1:
             print(f"FAIL: shared skill copies differ: {relative}", file=sys.stderr)
             return 1
-    suites = ("test_develop_conops.py", "test_scenario_split.py", "test_concept.py", "test_verifier.py", "test_verifier_completion.py",
-              "test_language.py", "test_language_oracle.py", "test_influence.py", "test_events.py",
-              "test_public_language_cases.py", "test_sysml.py", "test_sysml_contract.py", "test_sysml_views.py",
-              "test_sysml_public.py", "test_skill_runtime.py", "test_engineering_views.py", "test_visual_style.py", "test_visual_projection.py", "test_visual_labels.py", "test_engineering_gallery.py", "test_readme_showcase.py")
+    suites = (
+              "test_develop_conops.py",
+              "test_scenario_split.py",
+              "test_concept.py",
+              "test_verifier.py",
+              "test_verifier_completion.py",
+              "test_language.py",
+              "test_language_oracle.py",
+              "test_influence.py",
+              "test_events.py",
+              "test_public_language_cases.py",
+              "test_sysml.py",
+              "test_sysml_contract.py",
+              "test_sysml_views.py",
+              "test_sysml_public.py",
+              "test_skill_runtime.py",
+              "test_engineering_views.py",
+              "test_visual_style.py",
+              "test_visual_projection.py",
+              "test_visual_labels.py",
+              "test_engineering_gallery.py",
+              "test_readme_showcase.py",
+              "test_runtime_cache.py",
+              "test_foundation_core.py",
+              "test_workflow.py",
+              "test_concept_review.py",
+              "test_human_tasks.py",
+              "test_inquiry.py",
+              "test_flow_consistency.py",
+              "test_ownership.py",
+              "test_behavior_review.py")
     for suite in suites:
         result = subprocess.run([sys.executable, "-B", str(ROOT / "tests" / suite)],
                                 cwd=ROOT, env=environment, text=True,

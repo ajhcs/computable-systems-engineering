@@ -1,0 +1,446 @@
+{
+  "version": "concept-review-1.0",
+  "project": {
+    "id": "LENDING_DEMO",
+    "name": "Synthetic tool lending service",
+    "question": "Does the declared operational and lifecycle support remain connected?",
+    "boundary": "Assessment, checkout, fault withdrawal, maintenance coordination and readiness evaluation.",
+    "basis": "SYN"
+  },
+  "sources": {
+    "SYN": "18d0befaff84e2acb1597b11ff2b2021c3827796c78edba0ec19a5b39d93e6e8"
+  },
+  "topics": {
+    "operation": {
+      "applicability": "included",
+      "rationale": "Trace the selected normal and reported-fault situations."
+    },
+    "support": {
+      "applicability": "included",
+      "rationale": "Maintenance requires a responsible provider, procedure and service bench."
+    },
+    "interfaces": {
+      "applicability": "included",
+      "rationale": "Inspect availability/fault records and maintenance handoff."
+    },
+    "evaluation": {
+      "applicability": "included",
+      "rationale": "Plan observations and readiness evaluation resources early."
+    },
+    "procurement_disposal": {
+      "applicability": "excluded",
+      "rationale": "Outside this illustrative method-test boundary; reconsider for a real concept."
+    }
+  },
+  "expectations": {
+    "EXPECT_N_ACCESS": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "N_ACCESS",
+      "element_kind": "need",
+      "native_name": "LendingExample::AccessNeed"
+    },
+    "EXPECT_K_SERVICE": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "K_SERVICE",
+      "element_kind": "concept",
+      "native_name": "LendingExample::ServiceConcept"
+    },
+    "EXPECT_SYS": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "SYS",
+      "element_kind": "system",
+      "native_name": "LendingExample::system"
+    },
+    "EXPECT_A_BORROWER": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "A_BORROWER",
+      "element_kind": "actor",
+      "native_name": "LendingExample::borrower"
+    },
+    "EXPECT_S_NORMAL": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "S_NORMAL",
+      "element_kind": "scenario",
+      "native_name": "LendingExample::NormalCheckout"
+    },
+    "EXPECT_S_FAULT": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "S_FAULT",
+      "element_kind": "scenario",
+      "native_name": "LendingExample::FaultReport"
+    },
+    "EXPECT_S_MAINT": {
+      "kind": "element",
+      "topic": "support",
+      "element": "S_MAINT",
+      "element_kind": "scenario",
+      "native_name": "LendingExample::MaintenanceReturn"
+    },
+    "EXPECT_F_ASSESS": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "F_ASSESS",
+      "element_kind": "function",
+      "native_name": "LendingExample::AssessAvailability"
+    },
+    "EXPECT_F_ISSUE": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "F_ISSUE",
+      "element_kind": "function",
+      "native_name": "LendingExample::RecordHandover"
+    },
+    "EXPECT_F_WITHDRAW": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "F_WITHDRAW",
+      "element_kind": "function",
+      "native_name": "LendingExample::WithdrawFaultedTool"
+    },
+    "EXPECT_F_RESTORE": {
+      "kind": "element",
+      "topic": "support",
+      "element": "F_RESTORE",
+      "element_kind": "function",
+      "native_name": "LendingExample::MaintainTool"
+    },
+    "EXPECT_F_QUALIFY": {
+      "kind": "element",
+      "topic": "evaluation",
+      "element": "F_QUALIFY",
+      "element_kind": "function",
+      "native_name": "LendingExample::EvaluateReadiness"
+    },
+    "EXPECT_R_DESK": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "R_DESK",
+      "element_kind": "element",
+      "native_name": "LendingExample::deskOperator"
+    },
+    "EXPECT_R_APP": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "R_APP",
+      "element_kind": "element",
+      "native_name": "LendingExample::checkoutApp"
+    },
+    "EXPECT_R_STORE": {
+      "kind": "element",
+      "topic": "operation",
+      "element": "R_STORE",
+      "element_kind": "element",
+      "native_name": "LendingExample::toolStore"
+    },
+    "EXPECT_R_TECH": {
+      "kind": "element",
+      "topic": "support",
+      "element": "R_TECH",
+      "element_kind": "element",
+      "native_name": "LendingExample::maintenanceProvider"
+    },
+    "EXPECT_R_PROC": {
+      "kind": "element",
+      "topic": "support",
+      "element": "R_PROC",
+      "element_kind": "element",
+      "native_name": "LendingExample::maintenanceProcedure"
+    },
+    "EXPECT_R_BENCH": {
+      "kind": "element",
+      "topic": "support",
+      "element": "R_BENCH",
+      "element_kind": "element",
+      "native_name": "LendingExample::serviceBench"
+    },
+    "EXPECT_R_KIT": {
+      "kind": "element",
+      "topic": "evaluation",
+      "element": "R_KIT",
+      "element_kind": "element",
+      "native_name": "LendingExample::readinessKit"
+    },
+    "LINK_01": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "scenario_of",
+      "from": "S_NORMAL",
+      "to": "K_SERVICE"
+    },
+    "LINK_02": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "scenario_of",
+      "from": "S_FAULT",
+      "to": "K_SERVICE"
+    },
+    "LINK_03": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "scenario_of",
+      "from": "S_MAINT",
+      "to": "K_SERVICE"
+    },
+    "LINK_04": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "addresses",
+      "from": "F_ASSESS",
+      "to": "N_ACCESS"
+    },
+    "LINK_05": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "addresses",
+      "from": "F_ISSUE",
+      "to": "N_ACCESS"
+    },
+    "LINK_06": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "addresses",
+      "from": "F_WITHDRAW",
+      "to": "N_ACCESS"
+    },
+    "LINK_07": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "addresses",
+      "from": "F_RESTORE",
+      "to": "N_ACCESS"
+    },
+    "LINK_08": {
+      "kind": "relation",
+      "topic": "evaluation",
+      "relation_kind": "addresses",
+      "from": "F_QUALIFY",
+      "to": "N_ACCESS"
+    },
+    "LINK_09": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_ASSESS",
+      "to": "R_DESK"
+    },
+    "LINK_10": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_ASSESS",
+      "to": "R_STORE"
+    },
+    "LINK_11": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_ISSUE",
+      "to": "R_DESK"
+    },
+    "LINK_12": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_ISSUE",
+      "to": "R_APP"
+    },
+    "LINK_13": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_WITHDRAW",
+      "to": "R_DESK"
+    },
+    "LINK_14": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "allocated_to",
+      "from": "F_WITHDRAW",
+      "to": "R_APP"
+    },
+    "LINK_15": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "allocated_to",
+      "from": "F_RESTORE",
+      "to": "R_TECH"
+    },
+    "LINK_16": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "allocated_to",
+      "from": "F_RESTORE",
+      "to": "R_PROC"
+    },
+    "LINK_17": {
+      "kind": "relation",
+      "topic": "support",
+      "relation_kind": "allocated_to",
+      "from": "F_RESTORE",
+      "to": "R_BENCH"
+    },
+    "LINK_18": {
+      "kind": "relation",
+      "topic": "evaluation",
+      "relation_kind": "allocated_to",
+      "from": "F_QUALIFY",
+      "to": "R_TECH"
+    },
+    "LINK_19": {
+      "kind": "relation",
+      "topic": "evaluation",
+      "relation_kind": "allocated_to",
+      "from": "F_QUALIFY",
+      "to": "R_KIT"
+    },
+    "LINK_20": {
+      "kind": "relation",
+      "topic": "interfaces",
+      "relation_kind": "interfaces_with",
+      "from": "R_APP",
+      "to": "R_STORE"
+    },
+    "LINK_21": {
+      "kind": "relation",
+      "topic": "interfaces",
+      "relation_kind": "information_to",
+      "from": "R_APP",
+      "to": "R_TECH"
+    },
+    "LINK_22": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "participates_in",
+      "from": "A_BORROWER",
+      "to": "S_NORMAL"
+    },
+    "LINK_23": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "participates_in",
+      "from": "A_BORROWER",
+      "to": "S_FAULT"
+    },
+    "LINK_24": {
+      "kind": "relation",
+      "topic": "operation",
+      "relation_kind": "participates_in",
+      "from": "R_TECH",
+      "to": "S_MAINT"
+    },
+    "PLAN_E_NORMAL": {
+      "kind": "evidence_plan",
+      "topic": "evaluation",
+      "evidence": "E_NORMAL",
+      "target": "S_NORMAL",
+      "purpose": "validation"
+    },
+    "PLAN_E_FAULT": {
+      "kind": "evidence_plan",
+      "topic": "evaluation",
+      "evidence": "E_FAULT",
+      "target": "S_FAULT",
+      "purpose": "validation"
+    },
+    "PLAN_E_MAINT": {
+      "kind": "evidence_plan",
+      "topic": "evaluation",
+      "evidence": "E_MAINT",
+      "target": "F_RESTORE",
+      "purpose": "verification"
+    },
+    "PLAN_E_READY": {
+      "kind": "evidence_plan",
+      "topic": "evaluation",
+      "evidence": "E_READY",
+      "target": "F_QUALIFY",
+      "purpose": "qualification"
+    },
+    "WALK_S_NORMAL": {
+      "kind": "walk",
+      "topic": "operation",
+      "scenario": "S_NORMAL",
+      "functions": [
+        "F_ASSESS",
+        "F_ISSUE"
+      ]
+    },
+    "WALK_S_FAULT": {
+      "kind": "walk",
+      "topic": "operation",
+      "scenario": "S_FAULT",
+      "functions": [
+        "F_WITHDRAW"
+      ]
+    },
+    "WALK_S_MAINT": {
+      "kind": "walk",
+      "topic": "support",
+      "scenario": "S_MAINT",
+      "functions": [
+        "F_RESTORE",
+        "F_QUALIFY"
+      ]
+    }
+  },
+  "allocation_bounds": {
+    "functions": {
+      "F_ASSESS": {
+        "min": 1,
+        "max": 7
+      },
+      "F_ISSUE": {
+        "min": 1,
+        "max": 7
+      },
+      "F_WITHDRAW": {
+        "min": 1,
+        "max": 7
+      },
+      "F_RESTORE": {
+        "min": 1,
+        "max": 7
+      },
+      "F_QUALIFY": {
+        "min": 1,
+        "max": 7
+      }
+    },
+    "resources": {
+      "R_DESK": {
+        "min": 0,
+        "max": 5
+      },
+      "R_APP": {
+        "min": 0,
+        "max": 5
+      },
+      "R_STORE": {
+        "min": 0,
+        "max": 5
+      },
+      "R_TECH": {
+        "min": 0,
+        "max": 5
+      },
+      "R_PROC": {
+        "min": 0,
+        "max": 5
+      },
+      "R_BENCH": {
+        "min": 0,
+        "max": 5
+      },
+      "R_KIT": {
+        "min": 0,
+        "max": 5
+      }
+    }
+  }
+}

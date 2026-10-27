@@ -20,6 +20,16 @@ See the upstream license files in the extracted cache; the pilot repository
 labels its code EPL-2.0. The installer does not run automatically during a
 check and does not download or send an engineering model.
 
+For an installed or read-only plugin, set `CSE_SYSML_CACHE` to a private writable
+cache on your workspace, outside the plugin, before installation and checking.
+For example, `export CSE_SYSML_CACHE=/absolute/project/work/sysml-cache` on a
+POSIX shell. Keep the same setting for every command; `cse.py runtime` reports
+its resolved location. The default remains `<runtime>/.cache/sysml` for source
+checkouts. An empty selected cache never falls back to another installed parser.
+The parser runtime is qualified on Linux; it currently uses POSIX file locking
+and does not support native Windows SysML execution. On hosts without local
+execution, only qualitative work is available and computed checks remain unrun.
+
 ```text
 python3 scripts/install_sysml_parser.py
 python3 scripts/sysml.py examples/sysml/concept.sysml --syntax-only --kind concept

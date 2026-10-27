@@ -1,9 +1,9 @@
 # Working on this project
 
-- The repository registers its three skills through `.agents/skills/`. For a user request to use the system-concept, CONOPS, or operational-scenarios skills, read the matching local `skills/develop-*/SKILL.md` instructions. Accept natural skill names; do not require exact identifiers. When multiple skills are requested, apply them to one shared model and run each relevant draft-shape check. Concept plus scenario work does not require a complete CONOPS. Handle model files and commands for the engineer.
+- The repository registers four independently invocable skills: three engineering drafting skills and diagram generation through `.agents/skills/`. For a user request to use the system-concept, CONOPS, or operational-scenarios skills, read the matching local `skills/develop-*/SKILL.md` instructions. Accept natural skill names; do not require exact identifiers. When multiple skills are requested, apply them to one shared model and run each relevant draft-shape check. Concept plus scenario work does not require a complete CONOPS. Handle model files and commands for the engineer.
 - Read `docs/first-version-brief.md` and the relevant skill's record contract before changing semantics. Use `python3 scripts/check.py` for the current regression suite.
 - Preserve engineer authority over accepted intent, obligations, applicability, units, thresholds, and selection. Routine implementation and draft repairs proceed within the requested scope. Surface consequential meaning changes as proposals.
-- Keep the three skills independently invocable. Their existing version-1 records are structural drafting formats; do not claim they already encode executable scenario logic.
+- Keep all four skills independently invocable. The engineering drafting skills' existing version-1 records are structural drafting formats; do not claim they already encode executable scenario logic.
 - Use explicit, bounded semantics for computable verdicts. Unsupported, incomplete, timed-out, and errored checks cannot produce an overall successful required review. Do not use an LLM to supply a deterministic verdict.
 - Keep runtime dependencies small. Add libraries only for a concrete capability with meaningful tests. Do not implement an unrestricted natural-language parser or execute code supplied inside a model record.
 - The CONOPS and scenario helpers are identical copies so each skill can run independently. Update and verify both when changing that shared implementation. Keep record contracts aligned.
@@ -12,3 +12,5 @@
 - The kickoff prompt authorizes the first verifier increment, not an automatic complete engineering design. Preserve unrelated work and check repository state before commits or publication.
 
 - For relevant user-facing interactions and operational handoffs, follow [the interaction-walkthrough workflow](docs/interaction-walkthroughs.md): inspect professional/UI precedents, draft plain connected low-fidelity wireframes with adjacent engineering mappings, and iterate with user feedback before substantial expansion, polish or implementation. Preserve model authority, explicit unsupported behavior and existing authorization; tailor coverage to the selected scope.
+
+- For diagram generation or reference-library work, read `skills/generate-engineering-diagrams/SKILL.md`. Preserve existing accepted model meaning, source versions and explicit view labels; keep new engineering-model creation engineer-directed.
