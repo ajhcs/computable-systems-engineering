@@ -12,7 +12,7 @@ attempts remain in the private evidence history.
 | Priority | Remaining issue | Current treatment / next evidence |
 |---|---|---|
 | High before real operations | Actual stakeholder need, eligibility/release obligations, part/supplier suitability, funds, competence, authority and retention obligations are unestablished. | Keep project findings UNKNOWN. `concept-review next-evidence` derives existing unresolved questions and linked plans from a fresh scoped review. The engineer selects investigations and responsible people; a dummy policy or textbook note supplies no real decision. |
-| High before relying on the example's hold/recovery behavior | Independent hold identities, residual-copy recovery and missing-audit recovery are unsupported in the reference application. | [Synthetic regressions](../examples/prototype-evaluation/walkthrough/README.md) reproduce a remaining-notice gap that the Boolean check misses, and preserve copy/audit violations across no-change retries. Define a scoped repair and its observation meaning before stronger claims. These tests characterize limitations, not acceptance of those workflows. |
+| High before relying on the example's recovery behavior | Residual-copy recovery and missing-audit recovery are unsupported in the reference application. | [Synthetic regressions](../examples/prototype-evaluation/walkthrough/README.md) preserve copy/audit violations across no-change retries. [Named holds](../examples/prototype-evaluation/independent-holds.md) now preserve unrelated notices in the bounded local prototype; actual issuer authority and complete notice applicability remain unknown. These tests are not operational acceptance. |
 | Medium during documentary review | Nonempty criteria or evaluation prose can pass coverage without being adequate. | Native synthetic tests retain a coverage pass for weak wording while a missing selected fact fails. Engineering review of criteria, handoffs and evidence sufficiency remains necessary; no automatic semantic-adequacy verdict is implemented. |
 | Medium when stronger behavior claims are needed | General native workflow execution, per-work-order reservation ownership, production identity/cache revocation, external backup/restore, scale and physical erasure are outside the selected monitor/application. | Reuse the [behavior correspondence](behavior-review.md) and [prototype workflow](prototype-evaluation.md) for supported narrower questions. Select a concrete requirement/observation boundary before another extension; a native parse or sampled pass cannot substitute for these behaviors. |
 | Medium for an ISO conformity claim | Complete applicable normative clause coverage has not been assessed. | The [standards/evidence map](engineering-terminology.md) distinguishes current alignment from missing normative text, applicability, tailoring and objective evidence. Do not invent clauses or treat grammar as requirement sufficiency. |
@@ -89,7 +89,7 @@ mistyped captured facts could hide actual read, stock and hold faults, despite
 correct artifact hashes. It also found malformed mandatory metadata being
 accepted. Passing software tests had not covered these adversarial inputs.
 
-The current correction uses application 1.2 / observer v3 with strict capture
+That independently reviewed correction used application 1.2 / observer v3 with strict capture
 admission before monitoring and typed mandatory metadata. Missing read presence,
 integer/string substitutions, contradictory served outcomes, unknown stock values
 and malformed hold flags cannot become Boolean false and pass. Original nine/
@@ -98,6 +98,15 @@ historical/unsupported; current evidence needs a new execution. New regression
 controls use actual faulty executions and coherently rehashed malformed captures,
 not just happy-path projection tests. Current exact-head regression and CI
 receipts qualify this correction separately from the earlier 707-test increment.
+
+The subsequent named-hold repair uses application 1.3 / schema 2 / observer v4.
+It keeps the original eleven requirement meanings and manifest, adds a separate
+hold-preservation requirement/manifest, and replaces the Boolean-only example
+with typed named rows. Fresh synthetic captures distinguish correct release
+from an injected release-all regression. Earlier database/capture versions stay
+historical, without implicit migration. This increment's self-review and tests
+are separate from the independent review above; no engineering acceptance or
+real authority is inferred.
 
 These are software/contract reviews; they do not establish real project policy,
 authority, intended-use validation, original-source authenticity, protected

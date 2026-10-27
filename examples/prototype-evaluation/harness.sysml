@@ -9,6 +9,8 @@ package DummyRehearsal {
   in attribute adjustmentAuthorized : Boolean;
   in attribute revocationEffective : Boolean;
   in attribute holdActive : Boolean;
+  in attribute holdChangeAttempted : Boolean;
+  out attribute unrelatedHoldsPreserved : Boolean;
   in attribute retentionBasisKnown : Boolean;
   in attribute dispositionAuthorityKnown : Boolean;
   in attribute readAuthorized : Boolean;

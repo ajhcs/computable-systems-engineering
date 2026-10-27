@@ -135,6 +135,44 @@ class PrototypeReviewTests(unittest.TestCase):
         self.assertEqual(r.returncode,0,r.stderr+r.stdout)
         self.assertEqual(json.loads(r.stdout)['status'],'pass')
 
+    def test_named_holds_and_release_all_regression_use_new_obligation(self):
+        key='R_D_HOLD_PRESERVE__sampleRule'
+        self.assertEqual(self.report['native_check']['results'][key]['check']['status'],'pass')
+        self.assertEqual(len(self.run_record['selected_obligations']),12)
+        self.assertEqual(self.run_record['run']['transaction_count'],33)
+        fault=generate_run(self.directory/'release-all',faults=['release_all_holds'])
+        self.assertEqual(fault['status'],'fail',fault['findings'])
+        self.assertEqual(fault['native_check']['results'][key]['check']['status'],'fail')
+        events=[json.loads(line) for line in (self.directory/'release-all/transactions.jsonl').read_text().splitlines()]
+        event=next(e for e in events if e['action']=='release_hold' and e['hold_id']=='NOTICE-A')
+        self.assertEqual({h['hold_id']:h['active'] for h in event['after']['holds']},
+                         {'NOTICE-A':0,'NOTICE-B':0})
+        self.assertEqual(fault['validation'],'not_performed')
+        self.assertEqual(fault['decision_authentication'],'not_provided')
+
+    def test_missing_hold_identity_or_rows_is_rejected_before_monitoring(self):
+        events=[json.loads(line) for line in Path(self.invocation['artifacts']['TRANSACTIONS']).read_text().splitlines()]
+        for name,change in [('identity',lambda e:e.pop('hold_id')),
+                            ('rows',lambda e:e['after'].pop('holds'))]:
+            with self.subTest(name=name):
+                broken=deepcopy(events)
+                event=next(e for e in broken if e['action']=='release_hold')
+                change(event)
+                capture=self.directory/(name+'.jsonl')
+                capture.write_text(''.join(json.dumps(e)+'\n' for e in broken))
+                self.paths['TRANSACTIONS']=str(capture)
+                self.record['artifacts']['TRANSACTIONS']['sha256']=sha256(capture.read_bytes()).hexdigest()
+                result,checker=self.check()
+                self.assertEqual(result['status'],'error')
+                self.assertEqual(result['monitor_status'],'not_run')
+                checker.assert_not_called()
+
+    def test_old_sql_adapter_is_not_silently_reinterpreted_as_named_holds(self):
+        self.record['adapter']='repair_reuse_sqlite_v3'
+        result,_=self.check()
+        self.assertEqual(result['status'],'unsupported')
+        self.assertFalse(result['results_usable'])
+
 
     def test_mandatory_metadata_rejects_truthy_non_text_values(self):
         original=deepcopy(self.record)

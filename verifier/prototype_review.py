@@ -60,9 +60,9 @@ def inspect_prototype(models,manifest_path,manifest_sha256,evidence_path,run_pat
             issue('method','unsupported','Only row-local transaction-decision/result observation analysis is supported here')
         if record['evidence_origin']!='executed_local_prototype':
             issue('evidence_origin','unknown','Authored samples are not evidence of executed prototype transactions')
-        if record['adapter'] not in ('repair_reuse_sqlite_v3','recorded_boolean_signals_v1'):
+        if record['adapter'] not in ('repair_reuse_sqlite_v4','recorded_boolean_signals_v1'):
             issue('adapter','unsupported','Unknown adapter; no arbitrary observer or command will be loaded')
-        report['observation_correspondence']='recomputed_from_captured_sql_state' if record['adapter']=='repair_reuse_sqlite_v3' else 'recorded_signals_only'
+        report['observation_correspondence']='recomputed_from_captured_sql_state' if record['adapter']=='repair_reuse_sqlite_v4' else 'recorded_signals_only'
         if type(record['signal_definitions']) is not dict or not record['signal_definitions']:
             raise ValueError('Declare signal meanings and decision/result observation phases')
         for name,definition in record['signal_definitions'].items():
@@ -135,7 +135,7 @@ def inspect_prototype(models,manifest_path,manifest_sha256,evidence_path,run_pat
                 issue('capture_count','fail','Capture, run receipt and monitor observation counts differ')
             if [e.get('sequence') for e in events]!=list(range(1,len(events)+1)):
                 issue('capture_sequence','fail','Transaction sequence is missing, reordered or duplicated')
-            if record['adapter']=='repair_reuse_sqlite_v3':
+            if record['adapter']=='repair_reuse_sqlite_v4':
                 from prototypes.repair_reuse_observer import validate_capture
                 for event in events:validate_capture(event)
         native=check_sysml(models,manifest=manifest,evidence=evidence,review=True)
@@ -150,7 +150,7 @@ def inspect_prototype(models,manifest_path,manifest_sha256,evidence_path,run_pat
         if not signals:issue('signal_scope','unknown','No supported observation signals were compiled')
         if signals-set(record['signal_definitions']):issue('signal_definition','unknown','A bound signal lacks its meaning/phase definition')
         if events is not None:
-            if record['adapter']=='repair_reuse_sqlite_v3':
+            if record['adapter']=='repair_reuse_sqlite_v4':
                 from prototypes.repair_reuse_observer import observe
                 from pathlib import Path
                 registered=Path(__file__).resolve().parents[1]/'prototypes/repair_reuse_observer.py'

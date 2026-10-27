@@ -18,6 +18,8 @@ MEANINGS={
  'adjustmentAuthorized':('Current session has stock-adjust authority at this decision.','decision_state'),
  'revocationEffective':('Requested read uses a known invalidated session/epoch. Unknown identity is not asserted as revoked.','decision_state'),
  'holdActive':('Target record is held in this transaction decision state; false when no record is targeted.','decision_state'),
+ 'holdChangeAttempted':('The captured operation adds or releases one named hold, including denied or no-change attempts.','decision_state'),
+ 'unrelatedHoldsPreserved':('All captured hold identities and active flags other than the requested hold are unchanged on the target record.','committed_state'),
  'retentionBasisKnown':('Target record has a reviewed fixture-only policy; no actual project retention period is supplied.','decision_state'),
  'dispositionAuthorityKnown':('Current session has disposition permission for the target record class.','decision_state'),
  'issueCommitted':('This committed transaction contains an actual positive issue movement.','committed_state'),
@@ -40,8 +42,8 @@ def generate_run(output,models=None,manifest_path=None,faults=()):
     frozen_paths={}
     for key,raw in source_bytes.items():
         target=frozen/(key.lower()+'.py');target.write_bytes(raw);frozen_paths[key]=target
-    models=[Path(p).resolve() for p in (models or [ROOT/'examples/prototype-evaluation/harness.sysml',ROOT/'examples/prototype-evaluation/authorization.sysml'])]
-    manifest_path=Path(manifest_path or ROOT/'examples/prototype-evaluation/strict-manifest.json').resolve()
+    models=[Path(p).resolve() for p in (models or [ROOT/'examples/prototype-evaluation/harness.sysml',ROOT/'examples/prototype-evaluation/authorization.sysml',ROOT/'examples/prototype-evaluation/independent-holds.sysml'])]
+    manifest_path=Path(manifest_path or ROOT/'examples/prototype-evaluation/hold-manifest.json').resolve()
     start=datetime.now(timezone.utc).isoformat()
     store=Store(output/'dummy.sqlite',create=True,faults=faults);events=exercise(store)
     if any(path.read_bytes()!=source_bytes[key] for key,path in source_paths.items()):
@@ -69,10 +71,10 @@ def generate_run(output,models=None,manifest_path=None,faults=()):
     record={'version':VERSION,'system_of_interest':'Optional local SQLite repair/reuse dummy prototype '+PROTOTYPE_VERSION,
         'purpose':'Verify selected transaction-level stock, access, hold and disposition obligations against an executed local dummy application.',
         'verification_method':'sampled_trace_analysis','evidence_origin':'executed_local_prototype','observation_mode':'transaction_sequence',
-        'adapter':'repair_reuse_sqlite_v3','signal_definitions':definitions,
+        'adapter':'repair_reuse_sqlite_v4','signal_definitions':definitions,
         'artifacts':{key:{'role':roles[key],'sha256':sha256(path.read_bytes()).hexdigest()} for key,path in paths.items()},
         'run':{'id':uuid.uuid4().hex,'start_utc':start,'end_utc':end,'exit_code':0,'transaction_count':len(events),
-               'capture_boundary':'All 26 business transactions in the fixed dummy driver, excluding fixture/schema and session setup. Decision-state inputs plus committed/returned outputs; transaction index is not physical sample timing.'},
+               'capture_boundary':'All 33 business transactions in the fixed dummy driver, excluding fixture/schema and session setup. Decision-state inputs plus committed/returned outputs; transaction index is not physical sample timing.'},
         'selected_obligations':[x['id']+'__'+x['constraint'] for x in manifest['expected']],
         'unresolved':[{'id':'REAL_POLICY','description':'Actual project retention periods, authority, obligations and stakeholder acceptance remain unknown. Fixture policy eligibility ticks are not adopted periods.','scope':'outside_selected_scope'},
                       {'id':'ENVIRONMENT','description':'No real inventory, identity provider, network/cache, external backup, secure-media erasure or production concurrency/scale qualification.','scope':'outside_selected_scope'}],
