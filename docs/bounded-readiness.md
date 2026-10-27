@@ -33,7 +33,7 @@ removing an obligation from the candidate does not remove it from the scope.
 | Conditional capacity and alternatives | [Inquiry](inquiry-profile.md), inquiry-1.0/1.1. Exact supplied-rate calculations, explicit availability/capability/composition/shared-resource assumptions and separate assignment/capacity results. No automatic selection. |
 | Conditional mean-flow consistency | Inquiry 1.1 optional flow checks, explicit applicability, boundary/population/averaging, compatible units and tolerance. No staffing inference. |
 | Selected behavior questions | [Behavior correspondence](behavior-review.md): existing sampled clauses, correlated item/event deadlines and explicitly authored finite-verifier checks. Each retains its exact semantics, evidence and analysis limits. |
-| Diagrams | Existing independent diagram-generation skill and reviewed reference library. Model meaning, source/view labels and rendered review remain separate from execution claims. |
+| Diagrams | Independent diagram-generation skill and synthetic source-linked examples. Model meaning, source/view labels and rendered review remain separate from execution claims. |
 
 This work adds no native SysML behavior interpreter, general optimizer, protected
 approval service, simulation of human task networks or fatigue model. A finite

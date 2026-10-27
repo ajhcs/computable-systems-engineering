@@ -144,7 +144,7 @@ Three independently invocable drafting skills help a systems engineer develop a 
 | `develop-system-concept` | Frame a problem, identify functions, explore alternatives, and assess evidence for a concept decision. |
 | `develop-conops` | Connect stakeholder needs, boundaries, scenarios, responsibilities, and evaluation plans. |
 | `develop-operational-scenarios` | Develop or investigate one scenario or a selected set. |
-| `generate-engineering-diagrams` | Produce or review views from established engineering meaning and matched references. |
+| `generate-engineering-diagrams` | Produce or review views from established engineering meaning and supporting evidence. |
 
 A complete document is optional. Missing information can remain an explicit unknown. The skills use a system-wide SysML model and selected views rather than requiring the entire model in every model context. The [SysML-first profile](docs/sysml-v2-profile.md) defines the supported parser and checker boundary.
 
@@ -235,7 +235,7 @@ retain their current checks. Try the neutral fixture with
 
 The repository registers its four skills through symlinks under `.agents/skills/`, which Codex discovers when you open this project. They remain independently invocable and are scoped to this repository. Start a new project conversation if the skill selector has not refreshed. [Codex skill discovery](https://learn.chatgpt.com/docs/build-skills) documents repository scope and symlink support.
 
-Each skill's `scripts/cse.py` launcher finds the shared parser/engine from its real location, so checks work from subdirectories as well as the repository root. The portable plugin manifest is `plugin.json`, with `.codex-plugin/plugin.json` for compatibility. Both declare the local executor requirement. Installation through a public marketplace remains untested. Copying a skill folder alone preserves its version-1 helper, but does not install the shared SysML engine. Avoid duplicate installations.
+Each drafting skill's `scripts/cse.py` launcher finds the shared parser/engine from its real location, so checks work from subdirectories as well as the repository root. The portable plugin manifest is `plugin.json`, with `.codex-plugin/plugin.json` for compatibility. Both declare the local executor requirement. Installation through a public marketplace remains untested. Copying a drafting skill folder alone preserves its version-1 helper, but does not install the shared SysML engine. Avoid duplicate installations.
 
 Example requests:
 
