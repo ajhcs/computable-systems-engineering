@@ -1,0 +1,33 @@
+{
+  "engine": "Installed SysML Pilot 2025-09, interactive kernel0.52.0 ExpressionEvaluator",
+  "model": "../engineering-reference/derived/tmt-timing.sysml",
+  "model_sha256": "5365dc3afcda42c48cf613c4bd018c648e7420ca04766071a0b8e3188b834c85",
+  "passed": 3,
+  "rows": [
+    {
+      "input_seconds": 1799,
+      "expression": "TMTTimingDerived::MaxTimeConstraint(1799.0,1800.0)",
+      "native_result": "LiteralBoolean true (40cf6e0c-31fd-4aed-9188-b97aefb5afbe)",
+      "expected": true,
+      "literal_english_expected": true,
+      "actual_boolean": true
+    },
+    {
+      "input_seconds": 1800,
+      "expression": "TMTTimingDerived::MaxTimeConstraint(1800.0,1800.0)",
+      "native_result": "LiteralBoolean true (6c44655c-157a-43b7-a9b6-f1d85d72528d)",
+      "expected": true,
+      "literal_english_expected": false,
+      "actual_boolean": true
+    },
+    {
+      "input_seconds": 1801,
+      "expression": "TMTTimingDerived::MaxTimeConstraint(1801.0,1800.0)",
+      "native_result": "LiteralBoolean false (9fe75667-8ae8-4f66-a9e3-76851acd9f74)",
+      "expected": false,
+      "literal_english_expected": false,
+      "actual_boolean": false
+    }
+  ],
+  "scope": "Actual native pure expression evaluation with supplied seconds; not behavioral simulation, native editor round-trip or measured telescope evidence."
+}

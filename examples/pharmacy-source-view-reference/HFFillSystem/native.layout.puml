@@ -1,0 +1,52 @@
+@startuml
+!pragma layout smetana
+skin sysmlbw
+skinparam monochrome true
+skinparam wrapWidth 300
+hide circle
+
+comp def "HFFillSystem" as E1  <<(T,blue) part  def>> [[psysml:0ceea493-6d68-4fc2-98ae-3f51cf4e19f4 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1525033306441<U+005F>211111<U+005F>22594. Only 8 direct properties depicted by source diagram <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1525090963217<U+005F>762798<U+005F>23919. Bounded view projection; not complete class conversion.
+}
+comp usage "toteBagSys: ToteBaggerSystem  " as E2  <<(T,blue) part>> [[psysml:a4e12c38-4427-4d97-b8be-5cc901160aa0 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1525091185146<U+005F>459437<U+005F>24296. Source role: toteBagSys; unchanged source role; aggregation composite.
+}
+comp usage "autoUofU: AFrame[*]  " as E3  <<(T,blue) part>> [[psysml:fca756cf-e7d8-4764-8e5d-cf3c3875fda8 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1525091400756<U+005F>151052<U+005F>24552. Source role: autoUofU; unchanged source role; aggregation composite.
+}
+comp usage "xSKU: XSKU[*]  " as E4  <<(T,blue) part>> [[psysml:e12e51ce-3104-40e4-8e3b-78d27d9bcfd1 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1525091419588<U+005F>337508<U+005F>24623. Source role: xSKU; unchanged source role; aggregation composite.
+}
+comp usage "manualFillSystem: ManualFillSystem[*]  " as E5  <<(T,blue) part>> [[psysml:52165b7e-116b-48d5-9151-778f3632cc7d ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1526999402276<U+005F>416783<U+005F>17078. Source role: manualFillSystem; unchanged source role; aggregation composite.
+}
+comp usage "pharmacist: PharmacistStnTote  " as E6  <<(T,blue) part>> [[psysml:0280a71d-580c-4083-bf05-817c871894dc ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1526999439531<U+005F>564345<U+005F>17149. Source role: pharmacist; unchanged source role; aggregation composite.
+}
+comp usage "toteConveyor: ToteConveyorSystem  " as E7  <<(T,blue) part>> [[psysml:8e80e890-faca-478b-be18-ed8b29a0d730 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1570890926644<U+005F>882340<U+005F>25483. Source role: (unnamed); derived alias for unnamed native role; aggregation composite.
+}
+comp usage "roboticDispSystem: RoboticDispSystem[1..*]  " as E8  <<(T,blue) part>> [[psysml:0329d99b-e86d-4d55-8a2c-f0fcca58989b ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1570893902845<U+005F>101145<U+005F>26779. Source role: roboticDispSystem; unchanged source role; aggregation composite.
+}
+comp usage "VTS: VTS  " as E9  <<(T,blue) part>> [[psysml:97a60ea3-118f-4bff-897b-4dd1601e04d9 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3af018f<U+005F>1572369083244<U+005F>629213<U+005F>25523. Source role: VTS; unchanged source role; aggregation none.
+}
+E1 *-- E2 [[psysml:e6113fb1-a274-4b30-8138-4344179dc632 ]] 
+E1 *-- E3 [[psysml:4d4763fc-fd8d-4c54-bc5b-75e8533f6b97 ]] 
+E1 *-- E4 [[psysml:f9273d6d-fb6f-403b-8766-1a34a69c31c5 ]] 
+E1 *-- E5 [[psysml:f10062d1-801b-43b0-b828-0a11517e9991 ]] 
+E1 *-- E6 [[psysml:2399cdfc-e9f7-4f60-bd4e-09d5fe747d02 ]] 
+E1 *-- E7 [[psysml:64f2bba5-1ff0-4f2e-8019-841fae7be5f8 ]] 
+E1 *-- E8 [[psysml:010a67ad-c1de-4434-a404-a31b1a4bfbe0 ]] 
+E1 o-- E9 [[psysml:a852b695-2b86-418e-8a93-e0ca0ffb2359 ]] 
+@enduml

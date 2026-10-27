@@ -1,0 +1,61 @@
+{
+  "runtime": "v22.23.2",
+  "browser": "Chromium 1243 installed",
+  "pixel_ratio": 2,
+  "receipts": [
+    {
+      "name": "native",
+      "viewport": [
+        1141,
+        345
+      ],
+      "text_nodes": 29,
+      "viewport_clipped_text": []
+    },
+    {
+      "name": "technical-ledger",
+      "viewport": [
+        1141,
+        345
+      ],
+      "text_nodes": 29,
+      "viewport_clipped_text": []
+    },
+    {
+      "name": "instrument-record",
+      "viewport": [
+        1141,
+        345
+      ],
+      "text_nodes": 29,
+      "viewport_clipped_text": []
+    },
+    {
+      "name": "quiet-precision",
+      "viewport": [
+        1141,
+        345
+      ],
+      "text_nodes": 29,
+      "viewport_clipped_text": []
+    },
+    {
+      "name": "research-folio",
+      "viewport": [
+        1141,
+        345
+      ],
+      "text_nodes": 29,
+      "viewport_clipped_text": []
+    },
+    {
+      "name": "engineering-standard",
+      "viewport": [
+        1141,
+        345
+      ],
+      "text_nodes": 29,
+      "viewport_clipped_text": []
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "scope": "Selected attributed derivatives; original documents and source archives are linked, not bundled",
+  "sources": {
+    "C": {
+      "sha256": "ba5eb54784b09848fc2e2928b97d9b087975a4c3a216a7e82ca4509f4dcc1534",
+      "bytes": 2484796
+    },
+    "D": {
+      "sha256": "3e44c6346f2d200a1cf192486ebb83914529573b03e5d91d0e08c9905918f94f",
+      "bytes": 3834571
+    },
+    "E_model": {
+      "sha256": "66f8b6f9451ec8365d000feed6b0ed7b9141bebb6b24cb5b506724c1963dfcea",
+      "bytes": 21211466
+    }
+  },
+  "urls": {
+    "C": "https://ocw.mit.edu/courses/16-892j-space-system-architecture-and-design-fall-2004/e5e9dea39ad9594ab73c4c56024bf659_nasasysenghbookpdf.pdf#page=143",
+    "D": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=904712#page=33",
+    "E": "https://github.com/Open-MBEE/OpenSE-Cookbook/blob/288a863025498a4d8bc8e945cfec640e6a90268c/Models/APE-ReferenceModel.mdzip"
+  },
+  "ape_archive": "https://github.com/Open-MBEE/OpenSE-Cookbook/blob/288a863025498a4d8bc8e945cfec640e6a90268c/Models/APE-ReferenceModel.mdzip",
+  "interpretation": "Hashes identify inspected source bytes; no source authenticity, endorsement or whole-model equivalence is inferred",
+  "E_publication_context": "https://mbse.gfse.org/documents/SE2PracticesAndGuidelines.pdf#page=85",
+  "record_kind": "Reviewed source locator/hash record; source files are not bundled"
+}

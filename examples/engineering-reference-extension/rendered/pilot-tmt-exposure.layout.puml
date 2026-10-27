@@ -1,0 +1,23 @@
+@startuml
+!pragma layout smetana
+skin sysmlbw
+skinparam monochrome true
+skinparam wrapWidth 300
+hide circle
+skinparam ranksep 8
+
+rec usage "takeSHExposure" as E1  <<(T,blue) action>> [[psysml:2110dc33-6852-41b1-961a-afd7bb158323 ]] {
+portin "dit" as E2  [[psysml:7b5e9d16-d62f-4648-a8e5-21c6a7a8e5fa ]] 
+send "sendCommand\n new SH_Take_exposure_Cmd(dit)" as E3  << send action>> [[psysml:e21245ad-6fe2-4990-aa9e-2d1b564bd6fd ]] 
+accept "awaitAck\nSH_Take_exposure_Ack" as E4  << accept action>> [[psysml:2150c34a-174e-4268-9ed3-bf73a4aa35de ]] 
+fork "exposureFork" as E5  [[psysml:c4628881-6a08-4244-b479-3890035eeca9 ]] 
+join "exposureJoin" as E6  [[psysml:ba63eb2d-6fca-42a8-babe-9fabbae4c057 ]] 
+[*] ..> E5 [[psysml:86eec0ac-45c8-4756-8bbd-ac7f481c38dd ]] 
+E6 ..> [*] [[psysml:3969dba2-40e9-4695-834f-91a3fcd5220a ]] 
+}
+
+E5 ..> E3 [[psysml:caebb882-72a3-469e-b7b8-72f203c59839 ]] 
+E5 ..> E4 [[psysml:5dbd79ef-016d-4bf4-94e0-5d86cced3c22 ]] 
+E3 ..> E6 [[psysml:869c5998-9a74-45f7-bd9f-21315f661d60 ]] 
+E4 ..> E6 [[psysml:9d5c6184-bd0f-49c6-8eec-68eccfb33d9a ]] 
+@enduml

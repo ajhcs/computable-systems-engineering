@@ -1,0 +1,1096 @@
+{
+  "case": "WFC-01",
+  "view": "endpoint-ledger",
+  "classification": "Selected source-model explanatory graphics; not claimed formal SysML v2 graphical conformance",
+  "canvas": [
+    1200,
+    1210
+  ],
+  "elements": [
+    {
+      "id": "WFC-01-endpoint-ledger-1",
+      "kind": "canvas",
+      "sourceIds": [],
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "w": 1200,
+        "h": 1210
+      },
+      "display": null
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-2",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 25,
+        "w": 1120,
+        "h": 50.550000000000004
+      },
+      "display": [
+        "Trace each connection by its endpoints"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-3",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 73,
+        "w": 1120,
+        "h": 34.35
+      },
+      "display": [
+        "Wireless Factory \u00b7 exact seven-connector reading"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-4",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 40,
+        "y": 106,
+        "w": 1120,
+        "h": 30.3
+      },
+      "display": [
+        "Repeated endpoint names refer to the same source feature. No flow direction or sequence is inferred."
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-5",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528246125416_795172_18482"
+      ],
+      "geometry": {
+        "x": 45,
+        "y": 158,
+        "w": 1110,
+        "h": 70.80000000000001
+      },
+      "display": [
+        "Six referenced applications connect to the same xcvr.xcvr port.",
+        "xcvr is inherited, private, owned and has multiplicity 1..*."
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-6",
+      "kind": "entity",
+      "sourceIds": [
+        "_18_5_3_4100178_1530326485493_9830_18619"
+      ],
+      "geometry": {
+        "x": 40,
+        "y": 253,
+        "w": 1118,
+        "h": 76
+      },
+      "display": null
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-7",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1530326485493_9830_18619"
+      ],
+      "geometry": {
+        "x": 59,
+        "y": 277,
+        "w": 82,
+        "h": 35.7
+      },
+      "display": [
+        "C1"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-8",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1530326212176_39574_17918"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 259,
+        "w": 410,
+        "h": 37.05
+      },
+      "display": [
+        "rStates"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-9",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1530326212145_301884_17915"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 295,
+        "w": 410,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: StatesPublisherApp [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-10",
+      "kind": "connector",
+      "sourceIds": [
+        "_18_5_3_4100178_1530326485493_9830_18619"
+      ],
+      "geometry": {
+        "points": [
+          [
+            582,
+            294
+          ],
+          [
+            718,
+            294
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        {
+          "id": "_18_5_3_4100178_1530326485493_482708_18620",
+          "roleId": "_18_5_3_4100178_1530326212176_39574_17918",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "rStates",
+          "ownerName": "RobotController",
+          "path": "rStates"
+        },
+        {
+          "id": "_18_5_3_4100178_1530326485493_200608_18621",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-11",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1527439336289_370866_51781"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 259,
+        "w": 390,
+        "h": 37.05
+      },
+      "display": [
+        "xcvr.xcvr"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-12",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528504660133_155808_30600"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 295,
+        "w": 390,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: iXcvr [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-13",
+      "kind": "entity",
+      "sourceIds": [
+        "_18_5_3_4100178_1531349792679_717551_26838"
+      ],
+      "geometry": {
+        "x": 40,
+        "y": 346,
+        "w": 1118,
+        "h": 76
+      },
+      "display": null
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-14",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1531349792679_717551_26838"
+      ],
+      "geometry": {
+        "x": 59,
+        "y": 370,
+        "w": 82,
+        "h": 35.7
+      },
+      "display": [
+        "C2"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-15",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1530286707141_516588_30449"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 352,
+        "w": 410,
+        "h": 37.05
+      },
+      "display": [
+        "colDetect"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-16",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1530286707117_776005_30446"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 388,
+        "w": 410,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: CollisionDetectApp [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-17",
+      "kind": "connector",
+      "sourceIds": [
+        "_18_5_3_4100178_1531349792679_717551_26838"
+      ],
+      "geometry": {
+        "points": [
+          [
+            582,
+            387
+          ],
+          [
+            718,
+            387
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        {
+          "id": "_18_5_3_4100178_1531349792679_453291_26839",
+          "roleId": "_18_5_3_4100178_1530286707141_516588_30449",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "colDetect",
+          "ownerName": "RobotController",
+          "path": "colDetect"
+        },
+        {
+          "id": "_18_5_3_4100178_1531349792679_270154_26840",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-18",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1527439336289_370866_51781"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 352,
+        "w": 390,
+        "h": 37.05
+      },
+      "display": [
+        "xcvr.xcvr"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-19",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528504660133_155808_30600"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 388,
+        "w": 390,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: iXcvr [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-20",
+      "kind": "entity",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611125055_71645_31072"
+      ],
+      "geometry": {
+        "x": 40,
+        "y": 439,
+        "w": 1118,
+        "h": 76
+      },
+      "display": null
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-21",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611125055_71645_31072"
+      ],
+      "geometry": {
+        "x": 59,
+        "y": 463,
+        "w": 82,
+        "h": 35.7
+      },
+      "display": [
+        "C3"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-22",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1530286663203_516173_30384"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 445,
+        "w": 410,
+        "h": 37.05
+      },
+      "display": [
+        "path Planner"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-23",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1530286663159_613364_30381"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 481,
+        "w": 410,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: PathPlannerApp [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-24",
+      "kind": "connector",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611125055_71645_31072"
+      ],
+      "geometry": {
+        "points": [
+          [
+            582,
+            480
+          ],
+          [
+            718,
+            480
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        {
+          "id": "_18_5_3_4100178_1531611125055_21731_31073",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        },
+        {
+          "id": "_18_5_3_4100178_1531611125055_651133_31074",
+          "roleId": "_18_5_3_4100178_1530286663203_516173_30384",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "path Planner",
+          "ownerName": "RobotController",
+          "path": "path Planner"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-25",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1527439336289_370866_51781"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 445,
+        "w": 390,
+        "h": 37.05
+      },
+      "display": [
+        "xcvr.xcvr"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-26",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528504660133_155808_30600"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 481,
+        "w": 390,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: iXcvr [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-27",
+      "kind": "entity",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611131074_332407_31096"
+      ],
+      "geometry": {
+        "x": 40,
+        "y": 532,
+        "w": 1118,
+        "h": 76
+      },
+      "display": null
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-28",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611131074_332407_31096"
+      ],
+      "geometry": {
+        "x": 59,
+        "y": 556,
+        "w": 82,
+        "h": 35.7
+      },
+      "display": [
+        "C4"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-29",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1531610427908_349019_29907"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 538,
+        "w": 410,
+        "h": 37.05
+      },
+      "display": [
+        "armControlApp"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-30",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1531609289390_348707_28131"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 574,
+        "w": 410,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: ArmControlApp [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-31",
+      "kind": "connector",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611131074_332407_31096"
+      ],
+      "geometry": {
+        "points": [
+          [
+            582,
+            573
+          ],
+          [
+            718,
+            573
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        {
+          "id": "_18_5_3_4100178_1531611131074_819529_31097",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        },
+        {
+          "id": "_18_5_3_4100178_1531611131074_803795_31098",
+          "roleId": "_18_5_3_4100178_1531610427908_349019_29907",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "armControlApp",
+          "ownerName": "RobotController",
+          "path": "armControlApp"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-32",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1527439336289_370866_51781"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 538,
+        "w": 390,
+        "h": 37.05
+      },
+      "display": [
+        "xcvr.xcvr"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-33",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528504660133_155808_30600"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 574,
+        "w": 390,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: iXcvr [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-34",
+      "kind": "entity",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611138584_840155_31120"
+      ],
+      "geometry": {
+        "x": 40,
+        "y": 625,
+        "w": 1118,
+        "h": 76
+      },
+      "display": null
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-35",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611138584_840155_31120"
+      ],
+      "geometry": {
+        "x": 59,
+        "y": 649,
+        "w": 82,
+        "h": 35.7
+      },
+      "display": [
+        "C5"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-36",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1531610070889_770225_29565"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 631,
+        "w": 410,
+        "h": 37.05
+      },
+      "display": [
+        "eEControlApp"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-37",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1531609594857_802529_28663"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 667,
+        "w": 410,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: EEControlApp [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-38",
+      "kind": "connector",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611138584_840155_31120"
+      ],
+      "geometry": {
+        "points": [
+          [
+            582,
+            666
+          ],
+          [
+            718,
+            666
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        {
+          "id": "_18_5_3_4100178_1531611138584_444028_31121",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        },
+        {
+          "id": "_18_5_3_4100178_1531611138585_923622_31122",
+          "roleId": "_18_5_3_4100178_1531610070889_770225_29565",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "eEControlApp",
+          "ownerName": "RobotController",
+          "path": "eEControlApp"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-39",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1527439336289_370866_51781"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 631,
+        "w": 390,
+        "h": 37.05
+      },
+      "display": [
+        "xcvr.xcvr"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-40",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528504660133_155808_30600"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 667,
+        "w": 390,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: iXcvr [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-41",
+      "kind": "entity",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611143139_164723_31144"
+      ],
+      "geometry": {
+        "x": 40,
+        "y": 718,
+        "w": 1118,
+        "h": 76
+      },
+      "display": null
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-42",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611143139_164723_31144"
+      ],
+      "geometry": {
+        "x": 59,
+        "y": 742,
+        "w": 82,
+        "h": 35.7
+      },
+      "display": [
+        "C6"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-43",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1530286637762_402623_30319"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 724,
+        "w": 410,
+        "h": 37.05
+      },
+      "display": [
+        "inverse Kinematics"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-44",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1530286637742_187262_30316"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 760,
+        "w": 410,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: IKApp [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-45",
+      "kind": "connector",
+      "sourceIds": [
+        "_18_5_3_4100178_1531611143139_164723_31144"
+      ],
+      "geometry": {
+        "points": [
+          [
+            582,
+            759
+          ],
+          [
+            718,
+            759
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        {
+          "id": "_18_5_3_4100178_1531611143139_869451_31145",
+          "roleId": "_18_5_3_4100178_1527439336289_370866_51781",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "xcvr",
+          "ownerName": "Transceiver",
+          "path": "xcvr.xcvr"
+        },
+        {
+          "id": "_18_5_3_4100178_1531611143139_764447_31146",
+          "roleId": "_18_5_3_4100178_1530286637762_402623_30319",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "inverse Kinematics",
+          "ownerName": "RobotController",
+          "path": "inverse Kinematics"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-46",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1527439336289_370866_51781"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 724,
+        "w": 390,
+        "h": 37.05
+      },
+      "display": [
+        "xcvr.xcvr"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-47",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528504660133_155808_30600"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 760,
+        "w": 390,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: iXcvr [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-48",
+      "kind": "entity",
+      "sourceIds": [
+        "_18_5_3_4100178_1528247576760_386908_20123"
+      ],
+      "geometry": {
+        "x": 40,
+        "y": 811,
+        "w": 1118,
+        "h": 76
+      },
+      "display": null
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-49",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528247576760_386908_20123"
+      ],
+      "geometry": {
+        "x": 59,
+        "y": 835,
+        "w": 82,
+        "h": 35.7
+      },
+      "display": [
+        "C7"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-50",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1527439177867_744395_51342"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 817,
+        "w": 410,
+        "h": 37.05
+      },
+      "display": [
+        "xcvr.rf"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-51",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528052652156_158134_44356"
+      ],
+      "geometry": {
+        "x": 158,
+        "y": 853,
+        "w": 410,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: iRF [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-52",
+      "kind": "connector",
+      "sourceIds": [
+        "_18_5_3_4100178_1528247576760_386908_20123"
+      ],
+      "geometry": {
+        "points": [
+          [
+            582,
+            852
+          ],
+          [
+            718,
+            852
+          ]
+        ]
+      },
+      "display": null,
+      "endpoints": [
+        {
+          "id": "_18_5_3_4100178_1528247576760_558711_20124",
+          "roleId": "_18_5_3_4100178_1527439177867_744395_51342",
+          "partWithPortId": "_18_5_3_4100178_1528246125416_795172_18482",
+          "legacyStereotypes": [
+            "NestedConnectorEnd"
+          ],
+          "roleName": "rf",
+          "ownerName": "Transceiver",
+          "path": "xcvr.rf"
+        },
+        {
+          "id": "_18_5_3_4100178_1528247576760_247746_20125",
+          "roleId": "_18_5_3_4100178_1528052652158_864306_44377",
+          "partWithPortId": null,
+          "legacyStereotypes": [],
+          "roleName": "ant",
+          "ownerName": "Wireless Device",
+          "path": "ant"
+        }
+      ],
+      "direction": "undirected"
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-53",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528052652158_864306_44377"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 817,
+        "w": 390,
+        "h": 37.05
+      },
+      "display": [
+        "ant"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-54",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528052652156_158134_44356"
+      ],
+      "geometry": {
+        "x": 746,
+        "y": 853,
+        "w": 390,
+        "h": 28.950000000000003
+      },
+      "display": [
+        "Type: iRF [1]"
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-55",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1527439177867_744395_51342",
+        "_18_5_3_4100178_1527439336289_370866_51781",
+        "_18_5_3_4100178_1528052652158_864306_44377",
+        "_18_5_3_4100178_1531347992299_198851_25687"
+      ],
+      "geometry": {
+        "x": 45,
+        "y": 932,
+        "w": 1110,
+        "h": 91.05000000000001
+      },
+      "display": [
+        "Port facts: rf is a Transceiver proxy port; ant is a Wireless Device full port.",
+        "DataPort : iApp is a Device full port and has no connector in this selected IBD.",
+        "xcvr : iXcvr is a Transceiver UML Port with no full/proxy stereotype applied."
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-56",
+      "kind": "label",
+      "sourceIds": [
+        "_18_5_3_4100178_1528678196980_540894_21097",
+        "_18_5_3_4100178_1528595830665_33956_25055",
+        "_18_5_3_4100178_1527870062763_957594_17984"
+      ],
+      "geometry": {
+        "x": 45,
+        "y": 1045,
+        "w": 1110,
+        "h": 82.95
+      },
+      "display": [
+        "Original hierarchy: Device \u2192 Wireless Device \u2192 Controller \u2192 RobotController.",
+        "The formal SelectedView lifts displayed inherited features; source owners remain in the ledger.",
+        "Source constraints, algorithm behavior and omitted ports are unconverted; no simulation claim."
+      ]
+    },
+    {
+      "id": "WFC-01-endpoint-ledger-57",
+      "kind": "label",
+      "sourceIds": [],
+      "geometry": {
+        "x": 45,
+        "y": 1155,
+        "w": 1110,
+        "h": 30.3
+      },
+      "display": [
+        "NIST source 3be053a2 \u00b7 static diagram ID/author Fig. 12(b) matched \u00b7 notice accompanies derivatives."
+      ]
+    }
+  ]
+}

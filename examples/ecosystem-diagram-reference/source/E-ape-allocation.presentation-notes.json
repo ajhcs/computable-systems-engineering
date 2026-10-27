@@ -1,0 +1,15 @@
+{
+  "key": "E-ape-allocation",
+  "removed_canvas_notes": [
+    "Human-readable names are presentation aliases; native identifiers remain unchanged beneath each name. No CCS expansion or undocumented payload fields are invented.",
+    "Four unique allocations appear twice each in the symmetric selected matrix (8 marked cells). Parent counts are totals, not extra allocations.",
+    "2011 figure and 2023 formal archive remain separate sources; four named endpoint pairings agree. No whole-model equivalence claim.",
+    "ASMLCS_Control_if is a UML Interface definition. logical.controlContract is an introduced representative port usage typed by a v2 port definition; this explicit view-context lift is not a lossless interface migration.",
+    "Archive imData, fpCtrlLan and fpImcsLan are public UML ProxyPorts; ccs and tcp/ip are public UML ports with no applied port stereotype found. The v2 plain-port projection preserves allocation endpoints, not complete proxy/interface semantics. Protocol operations and payloads are outside this matrix.",
+    "The source figure also shows an empty repeated AsmLCS group/unnamed-port row. Its exact archived identity is unresolved. It is retained as a source-only annotation, without inventing an extra physical port or allocation. Blank cells mean no selected modeled allocation.",
+    "LAN and protocol groups are introduced view contexts corresponding to source definitions; source owner IDs, visibility and implicit multiplicities are retained in mapping. No private part is made public.",
+    "Only typed allocation correspondence is upgraded; no operational connectivity or protocol compatibility is proved."
+  ],
+  "source_footer": "OpenSE Cookbook \u00b7 Figure 60 \u00b7 2011 / archive 2023",
+  "classification": "Custom model-derived presentation; no formal graphical-conformance, execution or engineer acceptance claim"
+}

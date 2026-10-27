@@ -16,3 +16,11 @@ build/
 private/
 local/
 node_modules/
+
+# Keep original source fragments and broad source-record projections local.
+/examples/engineering-reference/source/*.xml
+/examples/engineering-reference/source/projection.json
+/examples/engineering-reference-extension/source/*.xml
+/examples/engineering-reference-extension/source/projection.json
+/examples/engineering-reference-extension/source/sequence-projection.json
+/examples/pharmacy-source-view-reference/*/original-native-diagram-layout.xml

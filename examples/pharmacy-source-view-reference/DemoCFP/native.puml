@@ -1,0 +1,31 @@
+@startuml
+skin sysmlbw
+skinparam monochrome true
+skinparam wrapWidth 300
+hide circle
+
+comp def "DemoCFP" as E1  <<(T,blue) part  def>> [[psysml:dfb328eb-7feb-41bd-867c-83325c9fdb76 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1525033071601<U+005F>357473<U+005F>22464. Only 4 direct properties depicted by source diagram <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1527186291936<U+005F>534515<U+005F>20996. Bounded view projection; not complete class conversion.
+}
+comp usage "VTS: VTS  " as E2  <<(T,blue) part>> [[psysml:d896fcc8-5195-401d-8bdb-7cca62dbdde1 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1527522921619<U+005F>948042<U+005F>24158. Source role: VTS; unchanged source role; aggregation composite.
+}
+comp usage "toteSystem: HFFillSystem  " as E3  <<(T,blue) part>> [[psysml:6ae980c4-f87a-4bd5-9d49-72ed0cf8999f ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1527522926217<U+005F>269995<U+005F>24188. Source role: toteSystem; unchanged source role; aggregation composite.
+}
+comp usage "sortSystem: SortSystem  " as E4  <<(T,blue) part>> [[psysml:48f298b6-1eab-44fd-a75f-244661334619 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3920140<U+005F>1528313927664<U+005F>843373<U+005F>19107. Source role: sortSystem; unchanged source role; aggregation composite.
+}
+comp usage "puckSystem: HSFillSystem  " as E5  <<(T,blue) part>> [[psysml:51d4cbd9-a626-45bc-a942-b35f72ddcf13 ]] {
+##//doc//##
+SOURCE<U+002D>ID <U+005F>18<U+005F>5<U+005F>3<U+005F>3af018f<U+005F>1570121058815<U+005F>561458<U+005F>31618. Source role: puckSystem; unchanged source role; aggregation composite.
+}
+E1 *-- E2 [[psysml:c7879977-c493-4730-86f0-61b5314defd9 ]] 
+E1 *-- E3 [[psysml:17db9a14-d6f7-4ac2-b6db-d59aa17a4a1e ]] 
+E1 *-- E4 [[psysml:d588a421-ec00-45d6-a7b7-07a30183fc24 ]] 
+E1 *-- E5 [[psysml:18e7afce-6f7d-41ac-95e0-01e702ca172c ]] 
+@enduml

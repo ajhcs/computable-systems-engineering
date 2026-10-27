@@ -1,0 +1,73 @@
+{
+  "schema": "reviewed-sequence-facts/1",
+  "claim_scope": "Curated derivative assertions for the selected three untimed exchanges; not independent source validation or serialized original records.",
+  "source": {
+    "sha256": "eb54c3105e4d894bb06378476f364bbf5cdb3bfad4cbf55f10fefacf6cad515f",
+    "version": "SysML 1.4 / MagicDraw 18.0",
+    "url": "https://github.com/Open-MBEE/TMT-SysML-Model/blob/87832a1657ccab023a90a6acfd0dff02d60e2b46/TMT.mdzip"
+  },
+  "interaction_id": "_18_0_5_baa02e2_1458099293885_800041_152044",
+  "diagram_id": "_18_0_5_baa02e2_1458099293891_41550_152049",
+  "lifelines": [
+    {
+      "id": "_18_0_5_baa02e2_1458099294143_628657_152079",
+      "represents": "_18_0_5_baa02e2_1454128060627_462855_170075",
+      "name": "analysisDriver",
+      "visibility": "public",
+      "ordered_events": [
+        "_18_0_5_baa02e2_1458099294145_560741_152086",
+        "_18_0_5_baa02e2_1458099294146_644794_152089",
+        "_18_0_5_baa02e2_1458099294147_588842_152092"
+      ],
+      "ordered_messages": [
+        "_18_0_5_baa02e2_1458099294136_642396_152078",
+        "_18_0_5_baa02e2_1458099294136_802828_152076",
+        "_18_0_5_baa02e2_1458099294136_95702_152077"
+      ]
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099294144_32845_152081",
+      "represents": "_17_0_2_3_41e01aa_1389728908413_724070_61695",
+      "name": "peas",
+      "visibility": "private",
+      "ordered_events": [
+        "_18_0_5_baa02e2_1458099294146_791176_152087",
+        "_18_0_5_baa02e2_1458099294146_530702_152090",
+        "_18_0_5_baa02e2_1458099294147_466084_152093"
+      ],
+      "ordered_messages": [
+        "_18_0_5_baa02e2_1458099294136_642396_152078",
+        "_18_0_5_baa02e2_1458099294136_802828_152076",
+        "_18_0_5_baa02e2_1458099294136_95702_152077"
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "_18_0_5_baa02e2_1458099294136_642396_152078",
+      "sort": "asynchSignal",
+      "signature_id": "_18_0_4_baa02e2_1435196367610_837152_180594",
+      "signal": "Abort",
+      "send_event": "_18_0_5_baa02e2_1458099294145_560741_152086",
+      "receive_event": "_18_0_5_baa02e2_1458099294146_791176_152087"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099294136_802828_152076",
+      "sort": "asynchSignal",
+      "signature_id": "_18_0_4_baa02e2_1437066483571_319242_152444",
+      "signal": "Maintenance Alignment",
+      "send_event": "_18_0_5_baa02e2_1458099294146_644794_152089",
+      "receive_event": "_18_0_5_baa02e2_1458099294146_530702_152090"
+    },
+    {
+      "id": "_18_0_5_baa02e2_1458099294136_95702_152077",
+      "sort": "asynchSignal",
+      "signature_id": "_18_0_4_baa02e2_1435196367610_837152_180594",
+      "signal": "Abort",
+      "send_event": "_18_0_5_baa02e2_1458099294147_588842_152092",
+      "receive_event": "_18_0_5_baa02e2_1458099294147_466084_152093"
+    }
+  ],
+  "timing_scope": "excluded; original duration constraints are not transcribed as executable assertions",
+  "excluded_duration_constraints": 3
+}

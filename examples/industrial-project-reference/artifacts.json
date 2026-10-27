@@ -1,0 +1,28 @@
+{
+  "scope": "Exact supplied derivative bytes; hash agreement is not source truth, rights clearance or fresh rendering",
+  "sha256": {
+    "README.md": "ff71cb49a341e8376d6a7681c07a08d83a000a466a3ec372242121e6cb29b81d",
+    "nist-electronics-makecoupler/NIST-LICENSE.md": "e84ddeddbd41569bb4e0cfb98a90cdcb3bc37eaac6482f7e04887ad895d4c850",
+    "nist-electronics-makecoupler/README.md": "68bdcae4330185627c49f10908ac4d5c38be6615ef311a15f51bac5c7af3f759",
+    "nist-electronics-makecoupler/SOURCE-LICENSE.md": "95c3eadd09333213b6e44faabecfd81c303ddd93d7a0734f5acaecf91b35c291",
+    "nist-electronics-makecoupler/semantic-ledger.json": "52337abdcc82b7a25bdf6610d29bb777960dbc8ad4e1d20ebdb62dd1f9965851",
+    "release.json": "a25492e421a95beef4419b9b10d6a001e4c8d86f7cbeac7db6cffe5287e9c08f",
+    "tools/check.py": "dda33078204dff47485a14082b30b64f03c52b127a1d46cd5bc5ad3be7e3e18d",
+    "wireless-robot-controller/FONT-OFL-LICENSE.txt": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+    "wireless-robot-controller/NIST-LICENSE.md": "389e34dc29d0558cfaa152ba9774c0d1270330bfd05d05150e1f908b610f8129",
+    "wireless-robot-controller/SOURCE-LICENSE.md": "d21ab079724838f5658ea38b81312dd914009e00b533bdccdb037f6bcc0e5bd5",
+    "wireless-robot-controller/endpoint-ledger-mapping.json": "e890d2eda4f2414c138d2e87d0c187afce13e70901f75f50949edd283bc5efa3",
+    "wireless-robot-controller/endpoint-ledger.drawio": "702ac0f358f4e9c902f2ade5fc1649382c6cbf359716926f99ecbc8a8a1e353f",
+    "wireless-robot-controller/endpoint-ledger.png": "4bfb2f1cb51ac5cf26d85de719c14db485fb3ad324632e725e0880c92da124cf",
+    "wireless-robot-controller/endpoint-ledger.svg": "0cd611c83a637ec558f5bbcde75b908268440127efe6803ca418ab75c2d00ba0",
+    "wireless-robot-controller/engineering-reading.md": "6c9739056603b40c6b2b13ffa88ed806df8990ba500e090e82480f8ed130a968",
+    "wireless-robot-controller/font-source.json": "62f1761db5d21fcb9ac2c83dee43bae78e188d99a33efee5e985e09ca05682dd",
+    "wireless-robot-controller/model.sysml": "3459346bf262f10473e7c4cbc8a4b93e372a795b012d355f5adbe688ecf8956d",
+    "wireless-robot-controller/native-linked-facts.json": "fba00c85588576e793e36c7aec7b99a4ddbd692d94ff889ae563239a94fffb9a",
+    "wireless-robot-controller/port-topology-mapping.json": "7707c2658dfec309f58c889e6c8c1591b7fb4ad59e197642f34625ceeb16d1c6",
+    "wireless-robot-controller/port-topology.drawio": "4fca2b59dc062ff4a627cda069aefd671e7d07299e9a39eda42b770b3f56f9ed",
+    "wireless-robot-controller/port-topology.png": "b66846915b064a35028d7087b5f9a1e755a8995cd3ff072005f4b799e6a26229",
+    "wireless-robot-controller/port-topology.svg": "f617c5bdfb87fb02f065841e6b8fe6daa1e264909deb85127117a4939bd54558",
+    "wireless-robot-controller/semantic-ledger.json": "5a48bfc69d29a0e674a8db6f984e12814ddb067be11b62ff326f5c8c53fbf2a1"
+  }
+}

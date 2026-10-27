@@ -1,0 +1,12 @@
+{
+  "key": "D-smart-grid",
+  "removed_canvas_notes": [
+    "Filled symmetric cells preserve the source\u2019s \u201cSecure Communication Flows\u201d legend; they are not security verification.",
+    "No arrowheads in the original: ordering here does not assert one-way power flow.",
+    "Matrix symmetry represents the same connection twice; a blank off-diagonal cell means no line in this selected source figure.",
+    "Domain grouping is descriptive. Introduced view-context parts and adapter ports do not assert ownership or physical interfaces.",
+    "Source wording \u201csecure\u201d is preserved; no mandatory authority or security rule is imposed on CSE."
+  ],
+  "source_footer": "NIST SP 1108 \u00b7 Figure 3-1 \u00b7 2010",
+  "classification": "Custom model-derived presentation; no formal graphical-conformance, execution or engineer acceptance claim"
+}

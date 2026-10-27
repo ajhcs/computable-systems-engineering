@@ -1,0 +1,19 @@
+# ESO APE reference: boundary and nested optical ports
+
+Saved parser/native/render reports describe historical checks on their exact inputs; this packaging change does not rerun them or independently validate original sources. Public current checks establish reviewed-derivative correspondence only.
+
+A context view identifies a selected boundary and its external interactions. Simplification should preserve the boundary and nested endpoint.
+
+**Original triple:** [Cookbook section 7.1.1, pages 31-32](https://mbse.gfse.org/documents/SE2PracticesAndGuidelines.pdf#page=31), [Figure 20, page 32](https://mbse.gfse.org/documents/SE2PracticesAndGuidelines.pdf#page=32), and [pinned native model](https://github.com/Open-MBEE/OpenSE-Cookbook/blob/288a863025498a4d8bc8e945cfec640e6a90268c/Models/APE-ReferenceModel.mdzip). Diagram ID: `_15_0_baa02e2_1202884084083_833372_3197`, ObservatoryContext_Optical. The 2011 document is matched to a 2023 SysML 1.6 reference; exact source export is unverified.
+
+**Simplified reading:** ut3 : UnitTelescope contains ada : NasmythAdapter. ape_t : APE_Telescope contains omb : OptoMechanicalBench containing lg1 : LensGroup1. An external connector joins ada.FoV_oif to object_oif on APE. A second reaches lg1.in_oif through omb.lg1.
+
+English describes the adapter handing telescope light to APE. The selected 2023 XMI encodes **undirected connectors** and three untyped **SysML 1.6 ProxyPorts**. The public derivative facts retain selected stereotype identities, namespace and base_Port relationships. Exact original records remain local. The 2011 Figure 20 visibly uses port arrow glyphs; these are not interpreted as connector item-flow arrows or imported as directions into the newer untyped ports. The simplified square glyphs omit those historical port arrows. Plain v2 ports preserve endpoint identities and connectivity but do not translate interface contracts, conjugation, or complete proxy-port semantics. The new view keeps undirected connector lines and labels the English light direction separately. It invents no typed input/output declarations, payloads, optical functions, or delivery guarantees.
+
+**New artifacts:** [context view](rendered/04-ape-optical.png), [editable view](rendered/04-ape-optical.drawio), [derived v2](derived/ape-optical.sysml), [pinned original authority; raw slice stays local](https://github.com/Open-MBEE/OpenSE-Cookbook/blob/288a863025498a4d8bc8e945cfec640e6a90268c/Models/APE-ReferenceModel.mdzip), [curated derivative facts](source/view-facts.json). External connector ID: `_16_6_1_382e050d_1263290942250_179892_11452`; nested connector: `_16_6_1_382e050d_1263291033453_363731_11568`; NestedConnectorEnd `_16_6_1_382e050d_1263291033578_413964_11573` has propertyPath omb then lg1.
+
+The 2011 figure uses ape; the newer model's ape_t redefines that property. APE_Telescope inherits APE, including omb and object_oif; the v2 fragment retains this inheritance and connector path.
+
+Two private members (lg1 and ada) become public **only in derived v2** so nested references resolve with the pinned parser. ut3 and ape_t retain their original private visibility because the external connector is declared in their owning context. This visibility adaptation is explicit; original raw records remain local; their private model visibility is preserved in the derivative contract. The fragment does not preserve the complete redefinition/model or claim lossless migration. Other interfaces, parts and physical properties are omitted by source ID. Native round-trip and optical performance remain untested. APE reference status and [notices](notices/README.md) apply.
+
+Documentation attribution: Robert Karban, Tim Weilkiens, Rudolf Hauber, M. Zamparelli, Rainer Diekmann and Andreas Hein, as listed in Cookbook page 2; model provenance is the ESO/GfSE/INCOSE SE2 MBSE Challenge team.

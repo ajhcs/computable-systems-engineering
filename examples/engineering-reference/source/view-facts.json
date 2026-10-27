@@ -1,0 +1,335 @@
+{
+  "schema": "reviewed-diagram-facts/1",
+  "claim_scope": "Curated derivative assertions for selected visible views; not independent original-source validation or a native model serialization.",
+  "sources": {
+    "tmt": {
+      "sha256": "eb54c3105e4d894bb06378476f364bbf5cdb3bfad4cbf55f10fefacf6cad515f",
+      "version": "SysML 1.4 / MagicDraw 18.0",
+      "url": "https://github.com/Open-MBEE/TMT-SysML-Model/blob/87832a1657ccab023a90a6acfd0dff02d60e2b46/TMT.mdzip"
+    },
+    "ape": {
+      "sha256": "66f8b6f9451ec8365d000feed6b0ed7b9141bebb6b24cb5b506724c1963dfcea",
+      "version": "SysML 1.6 / MagicDraw 2022x v7",
+      "url": "https://github.com/Open-MBEE/OpenSE-Cookbook/blob/288a863025498a4d8bc8e945cfec640e6a90268c/Models/APE-ReferenceModel.mdzip"
+    }
+  },
+  "slices": {
+    "tmt-maintenance": {
+      "project": "tmt",
+      "source_diagram_id": "_18_0_2_b4c02e1_1437082104799_289314_203284",
+      "selected_ids": [
+        "_17_0_2_3_41e01aa_1383540424694_865498_58143",
+        "_17_0_2_3_41e01aa_1383541688252_643738_65387",
+        "_17_0_2_3_41e01aa_1383541802537_31914_65403",
+        "_17_0_2_3_41e01aa_1383541815273_542603_65409",
+        "_17_0_2_3_41e01aa_1383541820628_466036_65413",
+        "_18_0_4_baa02e2_1432924809533_220506_153469",
+        "_18_0_4_baa02e2_1432924811404_212818_153484",
+        "_18_0_4_baa02e2_1437066409415_379651_152422",
+        "_18_0_4_baa02e2_1437066432308_831145_152441",
+        "_18_0_4_baa02e2_1437066502649_816302_152451",
+        "_18_0_4_baa02e2_1437066536103_963725_152466",
+        "_18_0_4_baa02e2_1437066564616_958435_152481",
+        "_18_0_4_baa02e2_1437066589348_55458_152497",
+        "_18_0_4_baa02e2_1437066593619_910343_152500",
+        "_18_0_4_baa02e2_1437066606405_932721_152507",
+        "_18_0_4_baa02e2_1437066608693_153972_152510",
+        "_18_0_4_baa02e2_1437066612054_926208_152513",
+        "_18_0_4_baa02e2_1437067320221_362935_153311"
+      ],
+      "states": [
+        {
+          "id": "_17_0_2_3_41e01aa_1383541688252_643738_65387",
+          "name": "StandBy"
+        },
+        {
+          "id": "_18_0_4_baa02e2_1432924809533_220506_153469",
+          "name": "Initializing"
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437066409415_379651_152422",
+          "name": "Maintenance Alignment"
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437066502649_816302_152451",
+          "name": "Correcting Rigid Body and Segment Figure"
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437066536103_963725_152466",
+          "name": "Broad Band Phasing 1um"
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437066564616_958435_152481",
+          "name": "Narrow Band Phasing"
+        }
+      ],
+      "transitions": [
+        {
+          "id": "_17_0_2_3_41e01aa_1383541802537_31914_65403",
+          "source": "_18_0_4_baa02e2_1432924809533_220506_153469",
+          "target": "_17_0_2_3_41e01aa_1383541688252_643738_65387",
+          "source_name": "Initializing",
+          "target_name": "StandBy",
+          "effect": null,
+          "signals": [
+            {
+              "name": "InitComplete"
+            }
+          ]
+        },
+        {
+          "id": "_17_0_2_3_41e01aa_1383541820628_466036_65413",
+          "source": "_17_0_2_3_41e01aa_1383541688252_643738_65387",
+          "target": "_17_0_2_3_41e01aa_1383541815273_542603_65409",
+          "source_name": "StandBy",
+          "target_name": "uml:FinalState",
+          "effect": null,
+          "signals": [
+            {
+              "name": "Finished"
+            }
+          ]
+        },
+        {
+          "id": "_18_0_4_baa02e2_1432924811404_212818_153484",
+          "source": "_17_0_2_3_41e01aa_1383540424694_865498_58143",
+          "target": "_18_0_4_baa02e2_1432924809533_220506_153469",
+          "source_name": "uml:Pseudostate",
+          "target_name": "Initializing",
+          "effect": null,
+          "signals": []
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437066589348_55458_152497",
+          "source": "_18_0_4_baa02e2_1437066432308_831145_152441",
+          "target": "_18_0_4_baa02e2_1437066502649_816302_152451",
+          "source_name": "uml:Pseudostate",
+          "target_name": "Correcting Rigid Body and Segment Figure",
+          "effect": "initTimer",
+          "signals": []
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437066593619_910343_152500",
+          "source": "_17_0_2_3_41e01aa_1383541688252_643738_65387",
+          "target": "_18_0_4_baa02e2_1437066409415_379651_152422",
+          "source_name": "StandBy",
+          "target_name": "Maintenance Alignment",
+          "effect": null,
+          "signals": [
+            {
+              "name": "Maintenance Alignment"
+            }
+          ]
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437066606405_932721_152507",
+          "source": "_18_0_4_baa02e2_1437066502649_816302_152451",
+          "target": "_18_0_4_baa02e2_1437066536103_963725_152466",
+          "source_name": "Correcting Rigid Body and Segment Figure",
+          "target_name": "Broad Band Phasing 1um",
+          "effect": "diffTime",
+          "signals": [
+            {
+              "name": "Finished"
+            }
+          ]
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437066608693_153972_152510",
+          "source": "_18_0_4_baa02e2_1437066536103_963725_152466",
+          "target": "_18_0_4_baa02e2_1437066564616_958435_152481",
+          "source_name": "Broad Band Phasing 1um",
+          "target_name": "Narrow Band Phasing",
+          "effect": "diffTime",
+          "signals": [
+            {
+              "name": "Finished"
+            }
+          ]
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437066612054_926208_152513",
+          "source": "_18_0_4_baa02e2_1437066564616_958435_152481",
+          "target": "_17_0_2_3_41e01aa_1383541688252_643738_65387",
+          "source_name": "Narrow Band Phasing",
+          "target_name": "StandBy",
+          "effect": "FinalDiffTime",
+          "signals": [
+            {
+              "name": "Finished"
+            }
+          ]
+        },
+        {
+          "id": "_18_0_4_baa02e2_1437067320221_362935_153311",
+          "source": "_18_0_4_baa02e2_1437066409415_379651_152422",
+          "target": "_17_0_2_3_41e01aa_1383541688252_643738_65387",
+          "source_name": "Maintenance Alignment",
+          "target_name": "StandBy",
+          "effect": null,
+          "signals": [
+            {
+              "name": "Abort"
+            }
+          ]
+        }
+      ]
+    },
+    "tmt-timing": {
+      "project": "tmt",
+      "source_diagram_id": null,
+      "selected_ids": [
+        "_18_0_2_baa02e2_1429562376319_87817_151513",
+        "_18_0_4_baa02e2_1438808102180_452510_161842",
+        "_18_0_5_c0402fd_1464026223074_50206_149810",
+        "_18_0_5_c0402fd_1464026223152_177814_149832",
+        "_18_0_5_c0402fd_1464026509327_174724_150238",
+        "_2ca33d85-e793-40fa-9f3a-b3c90e37fd87__17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb"
+      ],
+      "source_expression": "p1<=maxTime",
+      "limit_seconds": 1800.0,
+      "english_timing_boundary": "strictly less than 1800 seconds; other operational conditions remain qualitative",
+      "source_ids": {
+        "requirement": "_2ca33d85-e793-40fa-9f3a-b3c90e37fd87__17_188f7b22-cc8f-4e5c-b35c-8e3fc63198fb",
+        "constraint": "_18_0_2_baa02e2_1429562376320_828902_151514",
+        "limit": "_18_0_5_c0402fd_1464026223153_484492_149834",
+        "duration": "_18_0_4_baa02e2_1438808102180_452510_161842",
+        "duration_binding": "_18_0_5_c0402fd_1464026509327_174724_150238",
+        "limit_binding": "_18_0_5_c0402fd_1464026223152_177814_149832"
+      },
+      "boundary_discrepancy": "Strict narrative and inclusive mathematical operator remain distinct; no whole-requirement satisfaction claim."
+    },
+    "ape-composition": {
+      "project": "ape",
+      "source_diagram_id": "_15_0_baa02e2_1204997376379_43454_9637",
+      "selected_ids": [
+        "_15_0_baa02e2_1204997460087_185642_9681",
+        "_15_0_baa02e2_1204997471931_475271_9705",
+        "_15_0_baa02e2_1204997510902_964101_9752",
+        "_15_0_baa02e2_1204997513668_221125_9807",
+        "_15_0_bf10301_1202464929960_949157_5982",
+        "_16_6_1_38390512_1265838951058_526030_71009",
+        "_16_6_1_38390512_1265838967762_750737_71036"
+      ],
+      "parts": [
+        {
+          "id": "_15_0_baa02e2_1204997510902_964101_9752",
+          "name": "seg",
+          "type_id": "_15_0_baa02e2_1204997460087_185642_9681",
+          "type_name": "Segment",
+          "lower": 61,
+          "upper": 61,
+          "implicit_multiplicity": false,
+          "aggregation": "composite",
+          "owner_id": "_15_0_bf10301_1202464929960_949157_5982",
+          "visibility": "private"
+        },
+        {
+          "id": "_15_0_baa02e2_1204997513668_221125_9807",
+          "name": "pact",
+          "type_id": "_15_0_baa02e2_1204997471931_475271_9705",
+          "type_name": "PositionActuator",
+          "lower": 183,
+          "upper": 183,
+          "implicit_multiplicity": false,
+          "aggregation": "composite",
+          "owner_id": "_15_0_bf10301_1202464929960_949157_5982",
+          "visibility": "private"
+        },
+        {
+          "id": "_16_6_1_38390512_1265838967762_750737_71036",
+          "name": null,
+          "type_id": "_16_6_1_38390512_1265838951058_526030_71009",
+          "type_name": "Mount",
+          "lower": 1,
+          "upper": 1,
+          "implicit_multiplicity": true,
+          "aggregation": "composite",
+          "owner_id": "_15_0_bf10301_1202464929960_949157_5982",
+          "visibility": "private"
+        }
+      ]
+    },
+    "ape-optical": {
+      "project": "ape",
+      "source_diagram_id": "_15_0_baa02e2_1202884084083_833372_3197",
+      "selected_ids": [
+        "_15_0_3c00182_1203339836217_958479_4963",
+        "_15_0_baa02e2_1202883879567_634876_2995",
+        "_15_0_baa02e2_1202884121520_857843_3293",
+        "_15_1_baa02e2_1210774914160_880510_12061",
+        "_15_1_baa02e2_1212914157343_515859_8565",
+        "_15_1_baa02e2_1212914971437_912712_9360",
+        "_15_1_bf10301_1210680977392_846759_11441",
+        "_15_1_bf10301_1210764986103_615550_6670",
+        "_16_5_4_359f051f_1260449554968_992972_24991",
+        "_16_6_1_382e050d_1263290942250_179892_11452",
+        "_16_6_1_382e050d_1263291033453_363731_11568"
+      ],
+      "connectors": [
+        {
+          "id": "_16_6_1_382e050d_1263290942250_179892_11452",
+          "owner_id": "_15_0_baa02e2_1202883879567_634876_2995",
+          "ends": [
+            {
+              "role": "_15_1_bf10301_1210680977392_846759_11441"
+            },
+            {
+              "role": "_15_1_baa02e2_1212914971437_912712_9360"
+            }
+          ],
+          "direction": "undirected"
+        },
+        {
+          "id": "_16_6_1_382e050d_1263291033453_363731_11568",
+          "owner_id": "_16_5_4_359f051f_1260448562906_634594_24892",
+          "ends": [
+            {
+              "role": "_15_1_bf10301_1210680977392_846759_11441"
+            },
+            {
+              "role": "_15_1_bf10301_1210764986103_615550_6670"
+            }
+          ],
+          "direction": "undirected"
+        }
+      ],
+      "port_stereotypes": [
+        {
+          "id": "_15_1_baa02e2_1212914971437_912712_9360_application",
+          "base_Port": "_15_1_baa02e2_1212914971437_912712_9360",
+          "stereotype": "ProxyPort",
+          "namespace": "http://www.omg.org/spec/SysML/20181001/SysML"
+        },
+        {
+          "id": "_15_1_bf10301_1210764986103_615550_6670_application",
+          "base_Port": "_15_1_bf10301_1210764986103_615550_6670",
+          "stereotype": "ProxyPort",
+          "namespace": "http://www.omg.org/spec/SysML/20181001/SysML"
+        },
+        {
+          "id": "_15_1_bf10301_1210680977392_846759_11441_application",
+          "base_Port": "_15_1_bf10301_1210680977392_846759_11441",
+          "stereotype": "ProxyPort",
+          "namespace": "http://www.omg.org/spec/SysML/20181001/SysML"
+        }
+      ],
+      "nested_property_path": [
+        "_15_0_3c00182_1203339836217_958479_4963",
+        "_15_1_baa02e2_1210774914160_880510_12061"
+      ],
+      "source_visibility": {
+        "ut3": "private",
+        "ape_t": "private",
+        "lg1": "private",
+        "ada": "private"
+      },
+      "derived_visibility": {
+        "ut3": "private",
+        "ape_t": "private",
+        "lg1": "public",
+        "ada": "public"
+      }
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "schema": "cse-native-composition-1",
+  "view": "TREE",
+  "selected": {
+    "kind": "PartDefinition",
+    "id": "0ceea493-6d68-4fc2-98ae-3f51cf4e19f4",
+    "qualified": "PharmacySourceDiagramSlices::HFFillSystem",
+    "name": "HFFillSystem"
+  },
+  "parts": [
+    {
+      "kind": "PartUsage",
+      "id": "a4e12c38-4427-4d97-b8be-5cc901160aa0",
+      "qualified": "PharmacySourceDiagramSlices::HFFillSystem::toteBagSys",
+      "name": "toteBagSys",
+      "owner": "PharmacySourceDiagramSlices::HFFillSystem",
+      "owner_id": "0ceea493-6d68-4fc2-98ae-3f51cf4e19f4",
+      "composite": true,
+      "membership_id": "e6113fb1-a274-4b30-8138-4344179dc632",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "e9fdbe18-947b-4882-99d9-dac79d8be03b",
+          "qualified": "PharmacySourceDiagramSlices::ToteBaggerSystem",
+          "name": "ToteBaggerSystem"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "fca756cf-e7d8-4764-8e5d-cf3c3875fda8",
+      "qualified": "PharmacySourceDiagramSlices::HFFillSystem::autoUofU",
+      "name": "autoUofU",
+      "owner": "PharmacySourceDiagramSlices::HFFillSystem",
+      "owner_id": "0ceea493-6d68-4fc2-98ae-3f51cf4e19f4",
+      "composite": true,
+      "membership_id": "4d4763fc-fd8d-4c54-bc5b-75e8533f6b97",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "5a1ab487-5ba1-4a3b-8885-df1dc54f205f",
+          "qualified": "PharmacySourceDiagramSlices::AFrame",
+          "name": "AFrame"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 0,
+      "native_bound_count": 2,
+      "lower": 0,
+      "upper": "*",
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "e12e51ce-3104-40e4-8e3b-78d27d9bcfd1",
+      "qualified": "PharmacySourceDiagramSlices::HFFillSystem::xSKU",
+      "name": "xSKU",
+      "owner": "PharmacySourceDiagramSlices::HFFillSystem",
+      "owner_id": "0ceea493-6d68-4fc2-98ae-3f51cf4e19f4",
+      "composite": true,
+      "membership_id": "f9273d6d-fb6f-403b-8766-1a34a69c31c5",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "a2160028-5d6e-4613-97fb-12f17d3e6d6e",
+          "qualified": "PharmacySourceDiagramSlices::XSKU",
+          "name": "XSKU"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 0,
+      "native_bound_count": 2,
+      "lower": 0,
+      "upper": "*",
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "52165b7e-116b-48d5-9151-778f3632cc7d",
+      "qualified": "PharmacySourceDiagramSlices::HFFillSystem::manualFillSystem",
+      "name": "manualFillSystem",
+      "owner": "PharmacySourceDiagramSlices::HFFillSystem",
+      "owner_id": "0ceea493-6d68-4fc2-98ae-3f51cf4e19f4",
+      "composite": true,
+      "membership_id": "f10062d1-801b-43b0-b828-0a11517e9991",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "b4981902-2047-4315-8ed9-557b67252a7b",
+          "qualified": "PharmacySourceDiagramSlices::ManualFillSystem",
+          "name": "ManualFillSystem"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 0,
+      "native_bound_count": 2,
+      "lower": 0,
+      "upper": "*",
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "0280a71d-580c-4083-bf05-817c871894dc",
+      "qualified": "PharmacySourceDiagramSlices::HFFillSystem::pharmacist",
+      "name": "pharmacist",
+      "owner": "PharmacySourceDiagramSlices::HFFillSystem",
+      "owner_id": "0ceea493-6d68-4fc2-98ae-3f51cf4e19f4",
+      "composite": true,
+      "membership_id": "2399cdfc-e9f7-4f60-bd4e-09d5fe747d02",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "d272b5e7-eb4f-4b04-8bfd-b896dc782674",
+          "qualified": "PharmacySourceDiagramSlices::PharmacistStnTote",
+          "name": "PharmacistStnTote"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "8e80e890-faca-478b-be18-ed8b29a0d730",
+      "qualified": "PharmacySourceDiagramSlices::HFFillSystem::toteConveyor",
+      "name": "toteConveyor",
+      "owner": "PharmacySourceDiagramSlices::HFFillSystem",
+      "owner_id": "0ceea493-6d68-4fc2-98ae-3f51cf4e19f4",
+      "composite": true,
+      "membership_id": "64f2bba5-1ff0-4f2e-8019-841fae7be5f8",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "e66d1443-e4e0-43a4-983f-540292ea25c5",
+          "qualified": "PharmacySourceDiagramSlices::ToteConveyorSystem",
+          "name": "ToteConveyorSystem"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "0329d99b-e86d-4d55-8a2c-f0fcca58989b",
+      "qualified": "PharmacySourceDiagramSlices::HFFillSystem::roboticDispSystem",
+      "name": "roboticDispSystem",
+      "owner": "PharmacySourceDiagramSlices::HFFillSystem",
+      "owner_id": "0ceea493-6d68-4fc2-98ae-3f51cf4e19f4",
+      "composite": true,
+      "membership_id": "010a67ad-c1de-4434-a404-a31b1a4bfbe0",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "d6bb63a0-2c09-4154-a1c9-275e6fcb6bea",
+          "qualified": "PharmacySourceDiagramSlices::RoboticDispSystem",
+          "name": "RoboticDispSystem"
+        }
+      ],
+      "multiplicity_kind": "MultiplicityRange",
+      "native_lower_bound": 1,
+      "native_bound_count": 2,
+      "lower": 1,
+      "upper": "*",
+      "multiplicity_origin": "explicit range"
+    },
+    {
+      "kind": "PartUsage",
+      "id": "97a60ea3-118f-4bff-897b-4dd1601e04d9",
+      "qualified": "PharmacySourceDiagramSlices::HFFillSystem::VTS",
+      "name": "VTS",
+      "owner": "PharmacySourceDiagramSlices::HFFillSystem",
+      "owner_id": "0ceea493-6d68-4fc2-98ae-3f51cf4e19f4",
+      "composite": false,
+      "membership_id": "a852b695-2b86-418e-8a93-e0ca0ffb2359",
+      "visibility": "public",
+      "definitions": [
+        {
+          "kind": "PartDefinition",
+          "id": "fc0cd12c-fc5d-40f7-b715-e02f5b01f216",
+          "qualified": "PharmacySourceDiagramSlices::VTS",
+          "name": "VTS"
+        }
+      ],
+      "multiplicity_kind": "Multiplicity",
+      "lower": 1,
+      "upper": 1,
+      "multiplicity_origin": "implicit language default; no owned bound range"
+    }
+  ],
+  "parse_has_errors": false,
+  "parse_issues": ""
+}

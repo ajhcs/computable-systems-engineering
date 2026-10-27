@@ -3,3 +3,12 @@
 *.jpg binary
 *.pdf binary
 *.zip binary
+
+# Preserve the exact generated pilot SVG bytes referenced by historical evidence.
+/examples/engineering-reference-extension/rendered/pilot-*.svg -text
+/examples/native-v2-composition/native.svg -text
+/examples/pharmacy-source-view-reference/*/native.svg -text
+
+# Preserve the reviewed font notices and their artifact bindings byte for byte.
+/examples/ecosystem-diagram-reference/fonts/LICENSE.txt -text
+/examples/industrial-project-reference/wireless-robot-controller/FONT-OFL-LICENSE.txt -text

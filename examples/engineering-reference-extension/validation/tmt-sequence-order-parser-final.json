@@ -1,0 +1,147 @@
+{
+  "checker_version": "sysml-2.0-alpha.2",
+  "claim_scope": "sysml_syntax_and_validation",
+  "coverage": {
+    "compiled": [],
+    "expected": [],
+    "unsupported": []
+  },
+  "findings": [],
+  "inventory": {
+    "actions": [
+      {
+        "line": 19,
+        "name": "initialAbort",
+        "qualified_name": "TMTSequenceOrderDerived::maintenanceMessageOrder::initialAbort",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "line": 22,
+        "name": "maintenance",
+        "qualified_name": "TMTSequenceOrderDerived::maintenanceMessageOrder::maintenance",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "line": 25,
+        "name": "finalAbort",
+        "qualified_name": "TMTSequenceOrderDerived::maintenanceMessageOrder::finalAbort",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      }
+    ],
+    "attributes": [],
+    "concerns": [],
+    "constraints": [],
+    "documents": [
+      {
+        "body": "Selected message order from original SysML1.4 TMT Interaction _18_0_5_baa02e2_1458099293885_800041_152044, matching paper Figure6. Duration constraints deliberately remain source-only: min values are LiteralString 60s/2000s while maxima lack value expressions. This is not a timed scenario or simulation. ",
+        "line": 2,
+        "owner": "TMTSequenceOrderDerived",
+        "owner_kind": "Package",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "body": "Source Signal _18_0_4_baa02e2_1435196367610_837152_180594. ",
+        "line": 3,
+        "owner": "TMTSequenceOrderDerived::Abort",
+        "owner_kind": "ItemDefinition",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "body": "Source Signal _18_0_4_baa02e2_1437066483571_319242_152444; original name Maintenance Alignment. ",
+        "line": 4,
+        "owner": "TMTSequenceOrderDerived::MaintenanceAlignment",
+        "owner_kind": "ItemDefinition",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "body": "New selected interaction occurrence; full analysis context and participant implementations omitted. MessageUsage does not assert a complete UML asynchSignal execution-equivalence mapping. ",
+        "line": 6,
+        "owner": "TMTSequenceOrderDerived::maintenanceMessageOrder",
+        "owner_kind": "OccurrenceUsage",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "body": "Lifeline _18_0_5_baa02e2_1458099294143_628657_152079 represents public original property _18_0_5_baa02e2_1454128060627_462855_170075. Selected type implementations omitted. ",
+        "line": 8,
+        "owner": "TMTSequenceOrderDerived::maintenanceMessageOrder::analysisDriver",
+        "owner_kind": "PartUsage",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "body": "Lifeline _18_0_5_baa02e2_1458099294144_32845_152081 represents private original property _17_0_2_3_41e01aa_1389728908413_724070_61695. Original visibility retained. ",
+        "line": 14,
+        "owner": "TMTSequenceOrderDerived::maintenanceMessageOrder::peas",
+        "owner_kind": "PartUsage",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "body": "Source asynchSignal Message _18_0_5_baa02e2_1458099294136_642396_152078; event pair 152086 / 152087. ",
+        "line": 20,
+        "owner": "TMTSequenceOrderDerived::maintenanceMessageOrder::initialAbort",
+        "owner_kind": "FlowUsage",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "body": "Source asynchSignal Message _18_0_5_baa02e2_1458099294136_802828_152076; event pair 152089 / 152090. ",
+        "line": 23,
+        "owner": "TMTSequenceOrderDerived::maintenanceMessageOrder::maintenance",
+        "owner_kind": "FlowUsage",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "body": "Source asynchSignal Message _18_0_5_baa02e2_1458099294136_95702_152077; event pair 152092 / 152093. ",
+        "line": 26,
+        "owner": "TMTSequenceOrderDerived::maintenanceMessageOrder::finalAbort",
+        "owner_kind": "FlowUsage",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      }
+    ],
+    "event_attributes": [],
+    "events": [],
+    "part_definitions": [],
+    "parts": [
+      {
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 7,
+        "name": "analysisDriver",
+        "qualified_name": "TMTSequenceOrderDerived::maintenanceMessageOrder::analysisDriver",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      },
+      {
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "line": 13,
+        "name": "peas",
+        "qualified_name": "TMTSequenceOrderDerived::maintenanceMessageOrder::peas",
+        "source": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml"
+      }
+    ],
+    "requirements": [],
+    "states": [],
+    "use_cases": []
+  },
+  "limits": {
+    "observation_cap": 10000,
+    "parser_timeout_seconds": 60,
+    "per_clause_work_cap": 1000000
+  },
+  "model_files": [
+    {
+      "path": "examples/engineering-reference-extension/derived/tmt-sequence-order.sysml",
+      "sha256": "40da00b3d7dfbeda3b73616861f2fc63ca0c8b7fef7d9e2120446a4b2f4ab431"
+    }
+  ],
+  "model_sha256": "40da00b3d7dfbeda3b73616861f2fc63ca0c8b7fef7d9e2120446a4b2f4ab431",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "parser_issues": [],
+  "results": {},
+  "shape": {
+    "actions": 3,
+    "concerns": 0,
+    "part_definitions": 0,
+    "states": 0,
+    "use_cases": 0
+  },
+  "status": "pass"
+}

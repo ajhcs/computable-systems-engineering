@@ -1,0 +1,939 @@
+{
+  "parse_has_errors": false,
+  "issues": "",
+  "elements": [
+    {
+      "id": "f493c40b-7c8f-43b5-afe4-f6283d7c1a7c",
+      "qualified": "ApeAllocation::ControlContract",
+      "name": "ControlContract",
+      "kind": "PortDefinition",
+      "owner": "ApeAllocation",
+      "docs": [
+        "Source UML Interface _16_6_1_244503e7_1263493734875_132468_15222; operations excluded from selected allocation view. "
+      ]
+    },
+    {
+      "id": "e02b86d3-d443-4ad7-8d43-039e63da555e",
+      "qualified": "ApeAllocation::ControlContract::'~ControlContract'",
+      "name": null,
+      "kind": "ConjugatedPortDefinition",
+      "owner": "ApeAllocation::ControlContract",
+      "docs": []
+    },
+    {
+      "id": "586d281d-2c0a-418c-9053-81a66c0459a6",
+      "qualified": "ApeAllocation::Logical",
+      "name": "Logical",
+      "kind": "PartDefinition",
+      "owner": "ApeAllocation",
+      "docs": [
+        "controlContract is an explicit representative usage of source UML Interface ASMLCS_Control_if, not a recovered source-owned port. "
+      ]
+    },
+    {
+      "id": "6633f4e6-aa59-41f6-96f9-8b2f0770de5d",
+      "qualified": "ApeAllocation::Logical::controlContract",
+      "name": "controlContract",
+      "kind": "PortUsage",
+      "owner": "ApeAllocation::Logical",
+      "docs": [
+        "Source _16_6_1_244503e7_1263493734875_132468_15222 representative usage; not source-owned port. "
+      ],
+      "types": [
+        "ApeAllocation::ControlContract"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "049c63d2-3160-4415-bc71-76aff8a6c413",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::Logical::controlContract",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "2288dec2-73c0-4fdc-b2bb-261a5f1840af",
+      "qualified": "ApeAllocation::Logical::imData",
+      "name": "imData",
+      "kind": "PortUsage",
+      "owner": "ApeAllocation::Logical",
+      "docs": [
+        "Source _16_6_1_244503e7_1263493581062_706108_15145; source public port, implicit UML multiplicity [1]. "
+      ],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "942021bb-8722-4eaf-857c-74754bf9388a",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::Logical::imData",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "9be06482-ca7c-45f1-9f48-6ecb4fc7b592",
+      "qualified": "ApeAllocation::Lan",
+      "name": "Lan",
+      "kind": "PartDefinition",
+      "owner": "ApeAllocation",
+      "docs": []
+    },
+    {
+      "id": "65ef9e46-abed-4b0e-ad28-e0acbfc98433",
+      "qualified": "ApeAllocation::Lan::fpCtrlLan",
+      "name": "fpCtrlLan",
+      "kind": "PortUsage",
+      "owner": "ApeAllocation::Lan",
+      "docs": [
+        "Source _16_6_1_244503e7_1263495171687_871359_16235; source public port, implicit UML multiplicity [1]. "
+      ],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "d8be1578-33a3-48de-8aee-3ba8c4c46b83",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::Lan::fpCtrlLan",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c24f5892-4394-4842-841c-9fd6ab74c5da",
+      "qualified": "ApeAllocation::Lan::fpImcsLan",
+      "name": "fpImcsLan",
+      "kind": "PortUsage",
+      "owner": "ApeAllocation::Lan",
+      "docs": [
+        "Source _16_6_1_244503e7_1263495509640_910005_16475; source public port, implicit UML multiplicity [1]. "
+      ],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "35c0cbc1-1d66-4157-bbda-20ed502af374",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::Lan::fpImcsLan",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "64f40b08-85c0-4b32-b380-8f3ba3a9490f",
+      "qualified": "ApeAllocation::Protocol",
+      "name": "Protocol",
+      "kind": "PartDefinition",
+      "owner": "ApeAllocation",
+      "docs": []
+    },
+    {
+      "id": "701dd341-80e5-47e2-821a-1994270b634d",
+      "qualified": "ApeAllocation::Protocol::ccs",
+      "name": "ccs",
+      "kind": "PortUsage",
+      "owner": "ApeAllocation::Protocol",
+      "docs": [
+        "Source _16_6_1_3831050f_1263583514718_266101_19151; source public port, implicit UML multiplicity [1]. "
+      ],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "1ae199c0-0b49-4379-8662-281bc21f07f0",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::Protocol::ccs",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "1960450b-d584-4125-89ec-aea538da61aa",
+      "qualified": "ApeAllocation::Protocol::tcpIp",
+      "name": "tcpIp",
+      "kind": "PortUsage",
+      "owner": "ApeAllocation::Protocol",
+      "docs": [
+        "Source _16_6_1_3831050f_1263583499203_313131_19135; source public port, implicit UML multiplicity [1]. "
+      ],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c01a25e4-f54d-49de-989d-210471c3abc7",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::Protocol::tcpIp",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "d0fe56f6-0d29-4b08-8b9d-d7c0b78c4575",
+      "qualified": "ApeAllocation::AllocationView",
+      "name": "AllocationView",
+      "kind": "PartUsage",
+      "owner": "ApeAllocation",
+      "docs": [],
+      "types": [
+        "Parts::Part"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "23cd72c5-651b-4f73-bbdb-5bb2916bd498",
+      "qualified": "ApeAllocation::AllocationView::logical",
+      "name": "logical",
+      "kind": "PartUsage",
+      "owner": "ApeAllocation::AllocationView",
+      "docs": [],
+      "types": [
+        "ApeAllocation::Logical"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "3d5a2e85-8e9a-4df8-a768-844673449766",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::logical",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "96da08b0-74e4-4c82-9929-857d5cf5e472",
+      "qualified": "ApeAllocation::AllocationView::lan",
+      "name": "lan",
+      "kind": "PartUsage",
+      "owner": "ApeAllocation::AllocationView",
+      "docs": [],
+      "types": [
+        "ApeAllocation::Lan"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "13f9f284-b53d-4383-9c55-0e076549e788",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::lan",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "7eeacb90-52a1-4bab-b125-c322d92a943e",
+      "qualified": "ApeAllocation::AllocationView::protocol",
+      "name": "protocol",
+      "kind": "PartUsage",
+      "owner": "ApeAllocation::AllocationView",
+      "docs": [],
+      "types": [
+        "ApeAllocation::Protocol"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ed0d66e9-cba7-4dd3-a887-e42c6c0aab07",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::protocol",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b1e60560-dc4c-4b0e-8973-825edbff46fb",
+      "qualified": "ApeAllocation::AllocationView::EA01",
+      "name": "EA01",
+      "kind": "AllocationUsage",
+      "owner": "ApeAllocation::AllocationView",
+      "docs": [
+        "source XMI _16_6_1_3831050f_1263583532875_901339_19165 "
+      ],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "ApeAllocation::AllocationView::logical",
+          "ApeAllocation::Logical::imData"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::protocol",
+            "ApeAllocation::Protocol::tcpIp"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::logical",
+            "ApeAllocation::Logical::imData"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::protocol",
+            "ApeAllocation::Protocol::tcpIp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "00f9ba87-687f-4fb5-ae23-fff046be2e88",
+      "qualified": "ApeAllocation::AllocationView::EA01::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "ApeAllocation::AllocationView::EA01",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "ab6b060f-dff5-4e92-9653-352c0c0a568d",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "8daf73e4-be2f-4a51-ab34-e636bb9d3554",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::EA01::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "b4c0c50a-1282-4832-b3e5-7e3155f6c14d",
+      "qualified": "ApeAllocation::AllocationView::EA01::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "ApeAllocation::AllocationView::EA01",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "8c89e702-9bc6-46aa-a708-0e2299889f2f",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "0ebbc5f4-321a-4358-8c86-bb35a154ceba",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::EA01::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "c33ce179-9f7d-4662-aa8c-07d4b2aa9feb",
+      "qualified": "ApeAllocation::AllocationView::EA02",
+      "name": "EA02",
+      "kind": "AllocationUsage",
+      "owner": "ApeAllocation::AllocationView",
+      "docs": [
+        "source XMI _16_6_1_3831050f_1263583574796_723624_19192 "
+      ],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "ApeAllocation::AllocationView::logical",
+          "ApeAllocation::Logical::controlContract"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::protocol",
+            "ApeAllocation::Protocol::ccs"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::logical",
+            "ApeAllocation::Logical::controlContract"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::protocol",
+            "ApeAllocation::Protocol::ccs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8de69033-12f7-48ad-b5a0-0d7e18c7e646",
+      "qualified": "ApeAllocation::AllocationView::EA02::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "ApeAllocation::AllocationView::EA02",
+      "docs": [],
+      "types": [
+        "ApeAllocation::ControlContract"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "95459503-60b9-4bab-9042-4a528ef80f43",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ApeAllocation::ControlContract"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "32f64ac8-7ec3-4769-b860-690e24567e40",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::EA02::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "aa1d4c1a-e9b6-40fc-bd19-1c7113f7311a",
+      "qualified": "ApeAllocation::AllocationView::EA02::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "ApeAllocation::AllocationView::EA02",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "550dd5c2-d46e-45a7-9138-a73f4b4a922e",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "f262cca1-ff4f-4265-977a-00a9b6a245a0",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::EA02::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "a96bf56c-6faf-4fc6-b5e5-03729628e44f",
+      "qualified": "ApeAllocation::AllocationView::EA03",
+      "name": "EA03",
+      "kind": "AllocationUsage",
+      "owner": "ApeAllocation::AllocationView",
+      "docs": [
+        "source XMI _16_6_1_3831050f_1263583418312_3805_19081 "
+      ],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "ApeAllocation::AllocationView::logical",
+          "ApeAllocation::Logical::imData"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::lan",
+            "ApeAllocation::Lan::fpImcsLan"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::logical",
+            "ApeAllocation::Logical::imData"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::lan",
+            "ApeAllocation::Lan::fpImcsLan"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "89dd5490-ef89-4e62-b83e-f310044a82f6",
+      "qualified": "ApeAllocation::AllocationView::EA03::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "ApeAllocation::AllocationView::EA03",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "81f32b6e-770e-4686-989b-d63daab365d8",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "05a54820-49dc-47b5-8800-0fb5ba195c29",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::EA03::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "090fd232-3acc-45be-bcad-4f93fdaafb5a",
+      "qualified": "ApeAllocation::AllocationView::EA03::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "ApeAllocation::AllocationView::EA03",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "74f3a0b2-c7bf-4eac-ba41-127f114e799c",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "b5e9bd74-14cc-45ec-99ce-98d261870780",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::EA03::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "47d0b05a-e75a-4c29-9edc-800fd5dcbe79",
+      "qualified": "ApeAllocation::AllocationView::EA04",
+      "name": "EA04",
+      "kind": "AllocationUsage",
+      "owner": "ApeAllocation::AllocationView",
+      "docs": [
+        "source XMI _16_6_1_3831050f_1263583452296_216920_19094 "
+      ],
+      "types": [
+        "Allocations::Allocation"
+      ],
+      "composite": true,
+      "direction": null,
+      "visibility": "public",
+      "value": [],
+      "source": {
+        "qualified": null,
+        "name": null,
+        "kind": "Feature",
+        "chain": [
+          "ApeAllocation::AllocationView::logical",
+          "ApeAllocation::Logical::controlContract"
+        ]
+      },
+      "targets": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::lan",
+            "ApeAllocation::Lan::fpCtrlLan"
+          ]
+        }
+      ],
+      "ends": [
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::logical",
+            "ApeAllocation::Logical::controlContract"
+          ]
+        },
+        {
+          "qualified": null,
+          "name": null,
+          "kind": "Feature",
+          "chain": [
+            "ApeAllocation::AllocationView::lan",
+            "ApeAllocation::Lan::fpCtrlLan"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2c05796f-e9f8-4b66-8c99-03837fd682c3",
+      "qualified": "ApeAllocation::AllocationView::EA04::source",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "ApeAllocation::AllocationView::EA04",
+      "docs": [],
+      "types": [
+        "ApeAllocation::ControlContract"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "be1dbe2e-63f5-4931-9b7f-25b8aeded944",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "ApeAllocation::ControlContract"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "94bad6c8-2cab-4866-bf28-c20a109a9e29",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::EA04::source",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "9145a192-fb05-4835-832c-07b5f661e107",
+      "qualified": "ApeAllocation::AllocationView::EA04::target",
+      "name": null,
+      "kind": "ReferenceUsage",
+      "owner": "ApeAllocation::AllocationView::EA04",
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    },
+    {
+      "id": "56b177fd-db59-437d-902e-488e4045ac3d",
+      "qualified": null,
+      "name": null,
+      "kind": "Feature",
+      "owner": null,
+      "docs": [],
+      "types": [
+        "Ports::Port"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": null,
+      "value": []
+    },
+    {
+      "id": "652c2c0a-0371-4e54-8de9-375c46fab47f",
+      "qualified": null,
+      "name": null,
+      "kind": "Multiplicity",
+      "owner": "ApeAllocation::AllocationView::EA04::target",
+      "docs": [],
+      "types": [
+        "ScalarValues::Natural"
+      ],
+      "composite": false,
+      "direction": null,
+      "visibility": "public",
+      "value": []
+    }
+  ],
+  "schema": "cse-ecosystem-linked-facts/1",
+  "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+  "source_file": "models/E-ape-allocation.sysml",
+  "source_sha256": "081573fa31512afaba5bfc931ccaf1717239fdae9d0217e5d6ee0725e56e2240"
+}

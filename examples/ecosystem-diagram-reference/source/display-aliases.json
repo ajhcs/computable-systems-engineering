@@ -1,0 +1,37 @@
+{
+  "scope": "Presentation aliases, not renamed model elements or inferred capabilities",
+  "E": {
+    "ASMLCS_Control_if": {
+      "display": "Mirror control interface",
+      "basis": "Cookbook 2011 \u00a79.3.1 and interface name: Active Segmented Mirror Local Control System command/data interface",
+      "projection": "representative usage"
+    },
+    "fpCtrlLan": {
+      "display": "Control network port",
+      "basis": "Source public port fpCtrlLan typed Ethernet-100Base-T_fs, with ASMLCS_Control_if allocated to it"
+    },
+    "fpImcsLan": {
+      "display": "Metrology network port",
+      "basis": "Source public Ethernet port fpImcsLan; IMCS refers to the InternalMetrology source context"
+    },
+    "imData": {
+      "display": "Metrology data interface",
+      "basis": "Source imData typed IMData, allocated to the IMCS LAN port and TCP/IP; no payload fields inferred"
+    },
+    "ccs": {
+      "display": "Mirror control protocol",
+      "basis": "Source port ccs typed ASMProtocolStackA; control interface allocation. CCS abbreviation is not expanded"
+    },
+    "tcp/ip": {
+      "display": "TCP/IP network protocol",
+      "basis": "Source port tcp/ip typed TCP/IP; source data interface allocation"
+    }
+  },
+  "C": {
+    "maintenance_header": {
+      "source": "Scheduled 200 hr PM",
+      "display": "Scheduled \u00b7 200 hours",
+      "basis": "Human-readable display of the source scheduled-maintenance field; original PM notation retained in semantic source ledger without inventing an expansion"
+    }
+  }
+}

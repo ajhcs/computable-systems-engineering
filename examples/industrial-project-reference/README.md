@@ -1,0 +1,11 @@
+# Selected NIST industrial references
+
+This release retains two explanatory derivatives from pinned NIST repositories: [Wireless RobotController](wireless-robot-controller/engineering-reading.md) and [electronics MakeCoupler](nist-electronics-makecoupler/README.md). They preserve selected source ownership, multiplicity, direction and missing-semantic boundaries. They are engineering research/case-study references, not deployed-system validation or accepted designs.
+
+Wireless supplies a scoped SysML v2 structural projection, previously recorded linked facts and two editable presentations. MakeCoupler supplies text and a derivative fact ledger for a selected SysML 1.x activity; its presentation family is held because its visible native-model-bundling claim would be stale here. It is not a SysML v2 conversion. Both folders include the exact upstream NIST notice and source/modification notice. Wireless also includes the complete IBM Plex font notice.
+
+Original author figures, native XML, archives and historical receipts are omitted. Bounded derivative ledgers summarize selected reviewed facts with public pinned source locators; they contain no original XML records and are not source truth. Private machine paths are removed. The xPPU family remains held pending GPL modification and corresponding-source-conveyance review; its files and author figure are absent. This hold is not a claim that independent MIT code is relicensed by aggregation.
+
+The two included Wireless SVG and PNG presentations retain their historical bytes. No new browser rendering, fresh native parsing, font-box measurement or native-tool round-trip was run for this release. Historical claims in superseded receipts are not transferred to this subset. [Release status and supplied-input bindings](release.json) record these boundaries.
+
+Run `python3 -B examples/industrial-project-reference/tools/check.py` from the repository root. It requires both retained cases, rejects xPPU requests, checks bounded derivative facts against supplied presentation mappings, and verifies the supplied artifact inventory. It does not acquire or parse original native XML, execute a model, certify source truth or qualify native-editor behavior. The source's open semantics remain open.

@@ -1,0 +1,2969 @@
+[
+  {
+    "kind": "PortUsage",
+    "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+    "name": "rf",
+    "qualified": "WirelessRobotControllerSelected::Transceiver::rf",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "5537eb7d-3097-4fe9-8d48-1287757aa131",
+      "name": "Transceiver",
+      "qualified": "WirelessRobotControllerSelected::Transceiver"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PortDefinition",
+        "id": "bf050fb2-4bcd-4a9b-b2cf-9bae150024b1",
+        "name": "iRF",
+        "qualified": "WirelessRobotControllerSelected::iRF"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PortUsage",
+    "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+    "name": "xcvr",
+    "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "5537eb7d-3097-4fe9-8d48-1287757aa131",
+      "name": "Transceiver",
+      "qualified": "WirelessRobotControllerSelected::Transceiver"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PortDefinition",
+        "id": "d2e767c5-8cf0-470f-8461-4833b0fb2f76",
+        "name": "iXcvr",
+        "qualified": "WirelessRobotControllerSelected::iXcvr"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PartUsage",
+    "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+    "name": "xcvr",
+    "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": true,
+    "visibility": "private",
+    "types": [
+      {
+        "kind": "PartDefinition",
+        "id": "5537eb7d-3097-4fe9-8d48-1287757aa131",
+        "name": "Transceiver",
+        "qualified": "WirelessRobotControllerSelected::Transceiver"
+      }
+    ],
+    "lower": 1,
+    "upper": "*",
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PartUsage",
+    "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+    "name": "inverse Kinematics",
+    "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PartDefinition",
+        "id": "e0b6c1ad-8856-4a89-8a9d-5a0893f23102",
+        "name": "IKApp",
+        "qualified": "WirelessRobotControllerSelected::IKApp"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PartUsage",
+    "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+    "name": "path Planner",
+    "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PartDefinition",
+        "id": "349dd55e-1311-4b04-a6d6-b219ace29d0f",
+        "name": "PathPlannerApp",
+        "qualified": "WirelessRobotControllerSelected::PathPlannerApp"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PartUsage",
+    "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+    "name": "colDetect",
+    "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PartDefinition",
+        "id": "a01bf5bb-8cde-479c-b00f-b35da29d1741",
+        "name": "CollisionDetectApp",
+        "qualified": "WirelessRobotControllerSelected::CollisionDetectApp"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PartUsage",
+    "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+    "name": "rStates",
+    "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PartDefinition",
+        "id": "b72d4bcc-d6a2-463b-8ff2-f380528c6152",
+        "name": "StatesPublisherApp",
+        "qualified": "WirelessRobotControllerSelected::StatesPublisherApp"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PartUsage",
+    "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+    "name": "eEControlApp",
+    "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PartDefinition",
+        "id": "a1682c48-9c16-4ae7-94ac-47b17eb114f3",
+        "name": "EEControlApp",
+        "qualified": "WirelessRobotControllerSelected::EEControlApp"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PartUsage",
+    "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+    "name": "armControlApp",
+    "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PartDefinition",
+        "id": "599fa035-8afb-4e93-a81f-e6f8bd5a9091",
+        "name": "ArmControlApp",
+        "qualified": "WirelessRobotControllerSelected::ArmControlApp"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PortUsage",
+    "id": "a56dcc36-417e-497c-a895-86601731472f",
+    "name": "ant",
+    "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PortDefinition",
+        "id": "bf050fb2-4bcd-4a9b-b2cf-9bae150024b1",
+        "name": "iRF",
+        "qualified": "WirelessRobotControllerSelected::iRF"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "PortUsage",
+    "id": "2abee75a-dce0-40f3-b22c-30306a356ae7",
+    "name": "DataPort",
+    "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::DataPort",
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": false,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "PortDefinition",
+        "id": "6215a53f-d658-4626-964f-ac769ab3c5c3",
+        "name": "iApp",
+        "qualified": "WirelessRobotControllerSelected::iApp"
+      }
+    ],
+    "lower": 1,
+    "upper": 1,
+    "endFeature": [],
+    "ownedFeature": []
+  },
+  {
+    "kind": "ConnectionUsage",
+    "id": "b18dc0e6-7769-44a7-95f0-5f0cf521c9ac",
+    "name": null,
+    "qualified": null,
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": true,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "ConnectionDefinition",
+        "id": "e40bf5fe-e2e4-56c0-b7a6-0b06988f6aae",
+        "name": "Connection",
+        "qualified": "Connections::Connection"
+      },
+      {
+        "kind": "AssociationStructure",
+        "id": "b4e0537d-b404-57e7-9bf7-0abc5c433ab3",
+        "name": "BinaryLinkObject",
+        "qualified": "Objects::BinaryLinkObject"
+      }
+    ],
+    "endFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "290c0b50-4a3d-4fce-bb76-a578acebd800",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "04c897c5-3b35-4db9-8992-84ef9aa06561",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "697c2050-f876-4dc9-aa9d-e2b5f751664d",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+                "name": "rf",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::rf"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "697c2050-f876-4dc9-aa9d-e2b5f751664d",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+                "name": "rf",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::rf"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "04c897c5-3b35-4db9-8992-84ef9aa06561",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "697c2050-f876-4dc9-aa9d-e2b5f751664d",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+                  "name": "rf",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::rf"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "697c2050-f876-4dc9-aa9d-e2b5f751664d",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+                  "name": "rf",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::rf"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "e9ee98e9-4f50-45ec-bdd4-70d1a7bee43d",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "8176fb5f-f3d0-4de2-b13b-2df1b3090ee2",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PortUsage",
+            "id": "a56dcc36-417e-497c-a895-86601731472f",
+            "name": "ant",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PortUsage",
+            "id": "a56dcc36-417e-497c-a895-86601731472f",
+            "name": "ant",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "8176fb5f-f3d0-4de2-b13b-2df1b3090ee2",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PortUsage",
+              "id": "a56dcc36-417e-497c-a895-86601731472f",
+              "name": "ant",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PortUsage",
+              "id": "a56dcc36-417e-497c-a895-86601731472f",
+              "name": "ant",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ],
+    "relatedFeature": [
+      {
+        "kind": "Feature",
+        "id": "697c2050-f876-4dc9-aa9d-e2b5f751664d",
+        "name": null,
+        "qualified": null,
+        "chainingFeature": [
+          {
+            "kind": "PartUsage",
+            "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          {
+            "kind": "PortUsage",
+            "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+            "name": "rf",
+            "qualified": "WirelessRobotControllerSelected::Transceiver::rf",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        ],
+        "ownedSubsetting": []
+      },
+      {
+        "kind": "PortUsage",
+        "id": "a56dcc36-417e-497c-a895-86601731472f",
+        "name": "ant",
+        "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+        "chainingFeature": [],
+        "ownedSubsetting": []
+      }
+    ],
+    "ownedFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "290c0b50-4a3d-4fce-bb76-a578acebd800",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "04c897c5-3b35-4db9-8992-84ef9aa06561",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "697c2050-f876-4dc9-aa9d-e2b5f751664d",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+                "name": "rf",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::rf"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "697c2050-f876-4dc9-aa9d-e2b5f751664d",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+                "name": "rf",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::rf"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "04c897c5-3b35-4db9-8992-84ef9aa06561",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "697c2050-f876-4dc9-aa9d-e2b5f751664d",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+                  "name": "rf",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::rf"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "697c2050-f876-4dc9-aa9d-e2b5f751664d",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "5d62efa6-36ea-405e-9e53-85ec9d315111",
+                  "name": "rf",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::rf"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "e9ee98e9-4f50-45ec-bdd4-70d1a7bee43d",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "8176fb5f-f3d0-4de2-b13b-2df1b3090ee2",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PortUsage",
+            "id": "a56dcc36-417e-497c-a895-86601731472f",
+            "name": "ant",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PortUsage",
+            "id": "a56dcc36-417e-497c-a895-86601731472f",
+            "name": "ant",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "8176fb5f-f3d0-4de2-b13b-2df1b3090ee2",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PortUsage",
+              "id": "a56dcc36-417e-497c-a895-86601731472f",
+              "name": "ant",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PortUsage",
+              "id": "a56dcc36-417e-497c-a895-86601731472f",
+              "name": "ant",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::ant",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "ConnectionUsage",
+    "id": "9bbda069-4e1c-4f11-9f6a-861b8d92d952",
+    "name": null,
+    "qualified": null,
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": true,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "ConnectionDefinition",
+        "id": "e40bf5fe-e2e4-56c0-b7a6-0b06988f6aae",
+        "name": "Connection",
+        "qualified": "Connections::Connection"
+      },
+      {
+        "kind": "AssociationStructure",
+        "id": "b4e0537d-b404-57e7-9bf7-0abc5c433ab3",
+        "name": "BinaryLinkObject",
+        "qualified": "Objects::BinaryLinkObject"
+      }
+    ],
+    "endFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "fc0bbe00-dde3-44df-9c37-1da9c2f1a1b0",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "804073cb-7fc9-4f8c-8420-3ae939475472",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+            "name": "rStates",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+            "name": "rStates",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "804073cb-7fc9-4f8c-8420-3ae939475472",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+              "name": "rStates",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+              "name": "rStates",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "876ce989-74e2-4009-82c8-7cdacb069bc1",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "a998c95b-a462-4302-a199-34218700b0b3",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "6c38fe82-2ead-4692-8d07-a0f6123b0ab8",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "6c38fe82-2ead-4692-8d07-a0f6123b0ab8",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "a998c95b-a462-4302-a199-34218700b0b3",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "6c38fe82-2ead-4692-8d07-a0f6123b0ab8",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "6c38fe82-2ead-4692-8d07-a0f6123b0ab8",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ],
+    "relatedFeature": [
+      {
+        "kind": "PartUsage",
+        "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+        "name": "rStates",
+        "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+        "chainingFeature": [],
+        "ownedSubsetting": []
+      },
+      {
+        "kind": "Feature",
+        "id": "6c38fe82-2ead-4692-8d07-a0f6123b0ab8",
+        "name": null,
+        "qualified": null,
+        "chainingFeature": [
+          {
+            "kind": "PartUsage",
+            "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          {
+            "kind": "PortUsage",
+            "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        ],
+        "ownedSubsetting": []
+      }
+    ],
+    "ownedFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "fc0bbe00-dde3-44df-9c37-1da9c2f1a1b0",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "804073cb-7fc9-4f8c-8420-3ae939475472",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+            "name": "rStates",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+            "name": "rStates",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "804073cb-7fc9-4f8c-8420-3ae939475472",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+              "name": "rStates",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "27f6e781-459e-49b8-b38d-1ab92f6eb357",
+              "name": "rStates",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::rStates",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "876ce989-74e2-4009-82c8-7cdacb069bc1",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "a998c95b-a462-4302-a199-34218700b0b3",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "6c38fe82-2ead-4692-8d07-a0f6123b0ab8",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "6c38fe82-2ead-4692-8d07-a0f6123b0ab8",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "a998c95b-a462-4302-a199-34218700b0b3",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "6c38fe82-2ead-4692-8d07-a0f6123b0ab8",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "6c38fe82-2ead-4692-8d07-a0f6123b0ab8",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "ConnectionUsage",
+    "id": "714a0d2a-e33a-4535-9dec-7e618adf29a8",
+    "name": null,
+    "qualified": null,
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": true,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "ConnectionDefinition",
+        "id": "e40bf5fe-e2e4-56c0-b7a6-0b06988f6aae",
+        "name": "Connection",
+        "qualified": "Connections::Connection"
+      },
+      {
+        "kind": "AssociationStructure",
+        "id": "b4e0537d-b404-57e7-9bf7-0abc5c433ab3",
+        "name": "BinaryLinkObject",
+        "qualified": "Objects::BinaryLinkObject"
+      }
+    ],
+    "endFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "8a21d926-7b68-48cf-aa87-4833407b5be3",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "8af71585-66d4-440f-89fa-57b989f2a28f",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+            "name": "colDetect",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+            "name": "colDetect",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "8af71585-66d4-440f-89fa-57b989f2a28f",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+              "name": "colDetect",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+              "name": "colDetect",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "08c5db5d-6573-4649-8087-81a1dde6de5d",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "54cd4d64-db1f-463e-82e3-88fb650087a7",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "5e0052dc-967f-4613-a47d-8bbc944b2bf0",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "5e0052dc-967f-4613-a47d-8bbc944b2bf0",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "54cd4d64-db1f-463e-82e3-88fb650087a7",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "5e0052dc-967f-4613-a47d-8bbc944b2bf0",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "5e0052dc-967f-4613-a47d-8bbc944b2bf0",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ],
+    "relatedFeature": [
+      {
+        "kind": "PartUsage",
+        "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+        "name": "colDetect",
+        "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+        "chainingFeature": [],
+        "ownedSubsetting": []
+      },
+      {
+        "kind": "Feature",
+        "id": "5e0052dc-967f-4613-a47d-8bbc944b2bf0",
+        "name": null,
+        "qualified": null,
+        "chainingFeature": [
+          {
+            "kind": "PartUsage",
+            "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          {
+            "kind": "PortUsage",
+            "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        ],
+        "ownedSubsetting": []
+      }
+    ],
+    "ownedFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "8a21d926-7b68-48cf-aa87-4833407b5be3",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "8af71585-66d4-440f-89fa-57b989f2a28f",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+            "name": "colDetect",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+            "name": "colDetect",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "8af71585-66d4-440f-89fa-57b989f2a28f",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+              "name": "colDetect",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "b4e0d6ac-708a-4cb4-8f23-4678bec949f5",
+              "name": "colDetect",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::colDetect",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "08c5db5d-6573-4649-8087-81a1dde6de5d",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "54cd4d64-db1f-463e-82e3-88fb650087a7",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "5e0052dc-967f-4613-a47d-8bbc944b2bf0",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "5e0052dc-967f-4613-a47d-8bbc944b2bf0",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "54cd4d64-db1f-463e-82e3-88fb650087a7",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "5e0052dc-967f-4613-a47d-8bbc944b2bf0",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "5e0052dc-967f-4613-a47d-8bbc944b2bf0",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "ConnectionUsage",
+    "id": "70c72b99-2587-4910-b814-d7829a7f00bd",
+    "name": null,
+    "qualified": null,
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": true,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "ConnectionDefinition",
+        "id": "e40bf5fe-e2e4-56c0-b7a6-0b06988f6aae",
+        "name": "Connection",
+        "qualified": "Connections::Connection"
+      },
+      {
+        "kind": "AssociationStructure",
+        "id": "b4e0537d-b404-57e7-9bf7-0abc5c433ab3",
+        "name": "BinaryLinkObject",
+        "qualified": "Objects::BinaryLinkObject"
+      }
+    ],
+    "endFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "bab7c753-7de7-4c47-8a0d-8a1a586f8bed",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "d951a4ec-aec7-4b9d-87eb-9d5353054464",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "01fb5cd5-b553-4abc-a7fb-5b20df9945f6",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "01fb5cd5-b553-4abc-a7fb-5b20df9945f6",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "d951a4ec-aec7-4b9d-87eb-9d5353054464",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "01fb5cd5-b553-4abc-a7fb-5b20df9945f6",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "01fb5cd5-b553-4abc-a7fb-5b20df9945f6",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "0cc2cb8c-6cd6-4ff5-af27-8146cc84cc85",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "7f4c7f58-b5c1-426f-9a4f-8a901ac3b327",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+            "name": "path Planner",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+            "name": "path Planner",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "7f4c7f58-b5c1-426f-9a4f-8a901ac3b327",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+              "name": "path Planner",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+              "name": "path Planner",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ],
+    "relatedFeature": [
+      {
+        "kind": "Feature",
+        "id": "01fb5cd5-b553-4abc-a7fb-5b20df9945f6",
+        "name": null,
+        "qualified": null,
+        "chainingFeature": [
+          {
+            "kind": "PartUsage",
+            "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          {
+            "kind": "PortUsage",
+            "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        ],
+        "ownedSubsetting": []
+      },
+      {
+        "kind": "PartUsage",
+        "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+        "name": "path Planner",
+        "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+        "chainingFeature": [],
+        "ownedSubsetting": []
+      }
+    ],
+    "ownedFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "bab7c753-7de7-4c47-8a0d-8a1a586f8bed",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "d951a4ec-aec7-4b9d-87eb-9d5353054464",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "01fb5cd5-b553-4abc-a7fb-5b20df9945f6",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "01fb5cd5-b553-4abc-a7fb-5b20df9945f6",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "d951a4ec-aec7-4b9d-87eb-9d5353054464",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "01fb5cd5-b553-4abc-a7fb-5b20df9945f6",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "01fb5cd5-b553-4abc-a7fb-5b20df9945f6",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "0cc2cb8c-6cd6-4ff5-af27-8146cc84cc85",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "7f4c7f58-b5c1-426f-9a4f-8a901ac3b327",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+            "name": "path Planner",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+            "name": "path Planner",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "7f4c7f58-b5c1-426f-9a4f-8a901ac3b327",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+              "name": "path Planner",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "8532eb43-2cf6-4a6a-96fc-fbf645df5c37",
+              "name": "path Planner",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027path Planner\u0027",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "ConnectionUsage",
+    "id": "6a7a8c14-5e95-4a20-be4e-15e1197c603c",
+    "name": null,
+    "qualified": null,
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": true,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "ConnectionDefinition",
+        "id": "e40bf5fe-e2e4-56c0-b7a6-0b06988f6aae",
+        "name": "Connection",
+        "qualified": "Connections::Connection"
+      },
+      {
+        "kind": "AssociationStructure",
+        "id": "b4e0537d-b404-57e7-9bf7-0abc5c433ab3",
+        "name": "BinaryLinkObject",
+        "qualified": "Objects::BinaryLinkObject"
+      }
+    ],
+    "endFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "994fc9b6-07ac-4f07-9b26-c300210d8cde",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "b334041d-b68d-40c8-a544-641b15da9366",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "4f7d9db2-830e-41cc-8390-103400195c41",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "4f7d9db2-830e-41cc-8390-103400195c41",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "b334041d-b68d-40c8-a544-641b15da9366",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "4f7d9db2-830e-41cc-8390-103400195c41",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "4f7d9db2-830e-41cc-8390-103400195c41",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "c682de6c-b817-4880-8706-30da0f5157c7",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "3d6e2a19-8453-412f-8af4-35b0944c0daa",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+            "name": "armControlApp",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+            "name": "armControlApp",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "3d6e2a19-8453-412f-8af4-35b0944c0daa",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+              "name": "armControlApp",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+              "name": "armControlApp",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ],
+    "relatedFeature": [
+      {
+        "kind": "Feature",
+        "id": "4f7d9db2-830e-41cc-8390-103400195c41",
+        "name": null,
+        "qualified": null,
+        "chainingFeature": [
+          {
+            "kind": "PartUsage",
+            "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          {
+            "kind": "PortUsage",
+            "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        ],
+        "ownedSubsetting": []
+      },
+      {
+        "kind": "PartUsage",
+        "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+        "name": "armControlApp",
+        "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+        "chainingFeature": [],
+        "ownedSubsetting": []
+      }
+    ],
+    "ownedFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "994fc9b6-07ac-4f07-9b26-c300210d8cde",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "b334041d-b68d-40c8-a544-641b15da9366",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "4f7d9db2-830e-41cc-8390-103400195c41",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "4f7d9db2-830e-41cc-8390-103400195c41",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "b334041d-b68d-40c8-a544-641b15da9366",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "4f7d9db2-830e-41cc-8390-103400195c41",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "4f7d9db2-830e-41cc-8390-103400195c41",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "c682de6c-b817-4880-8706-30da0f5157c7",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "3d6e2a19-8453-412f-8af4-35b0944c0daa",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+            "name": "armControlApp",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+            "name": "armControlApp",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "3d6e2a19-8453-412f-8af4-35b0944c0daa",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+              "name": "armControlApp",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "3ef01efc-1a9a-43f9-81cb-158c1b40c6bf",
+              "name": "armControlApp",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::armControlApp",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "ConnectionUsage",
+    "id": "9c16aff9-d40b-4355-a98a-57d278dbf710",
+    "name": null,
+    "qualified": null,
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": true,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "ConnectionDefinition",
+        "id": "e40bf5fe-e2e4-56c0-b7a6-0b06988f6aae",
+        "name": "Connection",
+        "qualified": "Connections::Connection"
+      },
+      {
+        "kind": "AssociationStructure",
+        "id": "b4e0537d-b404-57e7-9bf7-0abc5c433ab3",
+        "name": "BinaryLinkObject",
+        "qualified": "Objects::BinaryLinkObject"
+      }
+    ],
+    "endFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "8fe6307f-d429-43e9-8e81-6f64adc5d1a4",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "b844d5d9-6c26-42c6-bb98-43b9e517fc8e",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "157d8bbb-06cd-46e1-ac3f-f5f75760ae20",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "157d8bbb-06cd-46e1-ac3f-f5f75760ae20",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "b844d5d9-6c26-42c6-bb98-43b9e517fc8e",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "157d8bbb-06cd-46e1-ac3f-f5f75760ae20",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "157d8bbb-06cd-46e1-ac3f-f5f75760ae20",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "a9179a38-ed0e-4bc9-8082-e549ee25c379",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "782d7e92-e8bd-4b53-ac22-af3ff386593a",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+            "name": "eEControlApp",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+            "name": "eEControlApp",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "782d7e92-e8bd-4b53-ac22-af3ff386593a",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+              "name": "eEControlApp",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+              "name": "eEControlApp",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ],
+    "relatedFeature": [
+      {
+        "kind": "Feature",
+        "id": "157d8bbb-06cd-46e1-ac3f-f5f75760ae20",
+        "name": null,
+        "qualified": null,
+        "chainingFeature": [
+          {
+            "kind": "PartUsage",
+            "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          {
+            "kind": "PortUsage",
+            "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        ],
+        "ownedSubsetting": []
+      },
+      {
+        "kind": "PartUsage",
+        "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+        "name": "eEControlApp",
+        "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+        "chainingFeature": [],
+        "ownedSubsetting": []
+      }
+    ],
+    "ownedFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "8fe6307f-d429-43e9-8e81-6f64adc5d1a4",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "b844d5d9-6c26-42c6-bb98-43b9e517fc8e",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "157d8bbb-06cd-46e1-ac3f-f5f75760ae20",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "157d8bbb-06cd-46e1-ac3f-f5f75760ae20",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "b844d5d9-6c26-42c6-bb98-43b9e517fc8e",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "157d8bbb-06cd-46e1-ac3f-f5f75760ae20",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "157d8bbb-06cd-46e1-ac3f-f5f75760ae20",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "a9179a38-ed0e-4bc9-8082-e549ee25c379",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "782d7e92-e8bd-4b53-ac22-af3ff386593a",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+            "name": "eEControlApp",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+            "name": "eEControlApp",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "782d7e92-e8bd-4b53-ac22-af3ff386593a",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+              "name": "eEControlApp",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "94703e26-4c77-4056-b363-c843fe3f59aa",
+              "name": "eEControlApp",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::eEControlApp",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "ConnectionUsage",
+    "id": "9200334a-342e-496a-a5ef-e710651cc65b",
+    "name": null,
+    "qualified": null,
+    "owner": {
+      "kind": "PartDefinition",
+      "id": "b9a744b4-c6c2-4299-b4ef-744e6f5d5821",
+      "name": "RobotControllerSelectedView",
+      "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView"
+    },
+    "composite": true,
+    "visibility": "public",
+    "types": [
+      {
+        "kind": "ConnectionDefinition",
+        "id": "e40bf5fe-e2e4-56c0-b7a6-0b06988f6aae",
+        "name": "Connection",
+        "qualified": "Connections::Connection"
+      },
+      {
+        "kind": "AssociationStructure",
+        "id": "b4e0537d-b404-57e7-9bf7-0abc5c433ab3",
+        "name": "BinaryLinkObject",
+        "qualified": "Objects::BinaryLinkObject"
+      }
+    ],
+    "endFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "075deba3-a87a-4ef0-8cfd-7e0a0c9e4806",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "e28e52f0-9e7e-4445-b0f0-4c0828062066",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "e04b9f1a-a588-4ab6-8df4-6f8875ac8137",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "e04b9f1a-a588-4ab6-8df4-6f8875ac8137",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "e28e52f0-9e7e-4445-b0f0-4c0828062066",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "e04b9f1a-a588-4ab6-8df4-6f8875ac8137",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "e04b9f1a-a588-4ab6-8df4-6f8875ac8137",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "af6d11a3-cb66-4345-906b-e04c3da3f424",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "e0a631fe-7d07-43da-9513-de952764fde1",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+            "name": "inverse Kinematics",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+            "name": "inverse Kinematics",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "e0a631fe-7d07-43da-9513-de952764fde1",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+              "name": "inverse Kinematics",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+              "name": "inverse Kinematics",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ],
+    "relatedFeature": [
+      {
+        "kind": "Feature",
+        "id": "e04b9f1a-a588-4ab6-8df4-6f8875ac8137",
+        "name": null,
+        "qualified": null,
+        "chainingFeature": [
+          {
+            "kind": "PartUsage",
+            "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          {
+            "kind": "PortUsage",
+            "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+            "name": "xcvr",
+            "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        ],
+        "ownedSubsetting": []
+      },
+      {
+        "kind": "PartUsage",
+        "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+        "name": "inverse Kinematics",
+        "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+        "chainingFeature": [],
+        "ownedSubsetting": []
+      }
+    ],
+    "ownedFeature": [
+      {
+        "kind": "ReferenceUsage",
+        "id": "075deba3-a87a-4ef0-8cfd-7e0a0c9e4806",
+        "name": "source",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "e28e52f0-9e7e-4445-b0f0-4c0828062066",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "Feature",
+            "id": "e04b9f1a-a588-4ab6-8df4-6f8875ac8137",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "Feature",
+            "id": "e04b9f1a-a588-4ab6-8df4-6f8875ac8137",
+            "name": null,
+            "qualified": null,
+            "chainingFeature": [
+              {
+                "kind": "PartUsage",
+                "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+              },
+              {
+                "kind": "PortUsage",
+                "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                "name": "xcvr",
+                "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+              }
+            ],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "e28e52f0-9e7e-4445-b0f0-4c0828062066",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "Feature",
+              "id": "e04b9f1a-a588-4ab6-8df4-6f8875ac8137",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "Feature",
+              "id": "e04b9f1a-a588-4ab6-8df4-6f8875ac8137",
+              "name": null,
+              "qualified": null,
+              "chainingFeature": [
+                {
+                  "kind": "PartUsage",
+                  "id": "6b64f5ad-7bc9-4605-918c-934c2ef84f31",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::xcvr"
+                },
+                {
+                  "kind": "PortUsage",
+                  "id": "6e855ceb-2eee-4980-bf11-69efa09c7252",
+                  "name": "xcvr",
+                  "qualified": "WirelessRobotControllerSelected::Transceiver::xcvr"
+                }
+              ],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      },
+      {
+        "kind": "ReferenceUsage",
+        "id": "af6d11a3-cb66-4345-906b-e04c3da3f424",
+        "name": "target",
+        "qualified": null,
+        "chainingFeature": [],
+        "ownedReferenceSubsetting": {
+          "kind": "ReferenceSubsetting",
+          "id": "e0a631fe-7d07-43da-9513-de952764fde1",
+          "name": null,
+          "qualified": null,
+          "referencedFeature": {
+            "kind": "PartUsage",
+            "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+            "name": "inverse Kinematics",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          },
+          "subsettedFeature": {
+            "kind": "PartUsage",
+            "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+            "name": "inverse Kinematics",
+            "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+            "chainingFeature": [],
+            "ownedSubsetting": []
+          }
+        },
+        "ownedSubsetting": [
+          {
+            "kind": "ReferenceSubsetting",
+            "id": "e0a631fe-7d07-43da-9513-de952764fde1",
+            "name": null,
+            "qualified": null,
+            "referencedFeature": {
+              "kind": "PartUsage",
+              "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+              "name": "inverse Kinematics",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            },
+            "subsettedFeature": {
+              "kind": "PartUsage",
+              "id": "2bc8794d-6b96-4388-8f91-d56980e8e95e",
+              "name": "inverse Kinematics",
+              "qualified": "WirelessRobotControllerSelected::RobotControllerSelectedView::\u0027inverse Kinematics\u0027",
+              "chainingFeature": [],
+              "ownedSubsetting": []
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

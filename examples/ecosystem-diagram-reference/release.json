@@ -1,0 +1,21 @@
+{
+  "schema": "CSE-REFERENCE-SUBSET/1.0",
+  "modified": "2026-10-27",
+  "included_cases": [
+    "C-maintenance",
+    "D-smart-grid",
+    "E-ape-allocation"
+  ],
+  "held_cases": [
+    "A-bank",
+    "B-healthcare"
+  ],
+  "held_reason": "Adaptation rights unresolved; no A/B source-derived payload is included",
+  "asset_status": "Existing models, parser facts, SVG, PNG and editable geometry retained unchanged; modified derivative ledgers and source notices accompany them",
+  "fresh_source_acquisition": "not_run",
+  "fresh_parser_run": "not_run",
+  "fresh_browser_render": "not_run",
+  "native_editor_roundtrip": "not_run",
+  "engineering_acceptance": "not_established",
+  "note": "Historical visible Review 03 is a presentation revision, not fresh qualification. Hashes identify supplied bytes, not source authenticity or rights clearance."
+}

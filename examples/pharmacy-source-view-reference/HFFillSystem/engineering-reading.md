@@ -1,0 +1,3 @@
+The source-view projection selects seven owned roles: tote bagging, an optional A-frame resource, an optional XSKU resource, optional manual filling, a pharmacist station, an unnamed tote-conveyor role marked by the derived alias toteConveyor, and one or more robotic dispensing systems. Optional resource multiplicities are 0..*; robotic dispensing is 1..*. The vial transfer system is a reference. The controller and take-away conveyor role are outside this BDD selection and remain in the supplementary conversion.
+
+Scope: direct properties only. The v2 leaf definitions are identity-only declarations; no missing engineering detail is silently supplied.

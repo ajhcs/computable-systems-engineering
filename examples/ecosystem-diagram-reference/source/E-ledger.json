@@ -1,0 +1,144 @@
+{
+  "status": "curated presentation reference; engineering and migration limits retained",
+  "source_ids": "C/D assigned transcription IDs; E preserves selected native XMI trace identifiers",
+  "rendering_contract": "custom model-derived presentation, not formal SysML graphical conformance",
+  "semantics": "Only selected source meaning; implementation choices and unknowns explicit",
+  "acceptance": "Engineer acceptance and editor save/reopen unrun",
+  "key": "E",
+  "title": "APE port-allocation matrix",
+  "source": "Selected endpoints and allocations from the Apache-2.0 Open-MBEE/OpenSE-Cookbook APE model, commit 288a863025498a4d8bc8e945cfec640e6a90268c",
+  "url": "https://github.com/Open-MBEE/OpenSE-Cookbook/blob/288a863025498a4d8bc8e945cfec640e6a90268c/Models/APE-ReferenceModel.mdzip",
+  "archive_url": "https://github.com/Open-MBEE/OpenSE-Cookbook/blob/288a863025498a4d8bc8e945cfec640e6a90268c/Models/APE-ReferenceModel.mdzip",
+  "package": "ApeAllocation",
+  "context": "ApeAllocation::AllocationView",
+  "objects": {
+    "imData": {
+      "id": "_16_6_1_244503e7_1263493581062_706108_15145",
+      "uml_kind": "uml:Port",
+      "visibility": "public",
+      "owner_name": "AsmLCS_iif",
+      "multiplicity": {
+        "lower": 1,
+        "upper": 1,
+        "origin": "UML implicit [1] where no owned lower/upper value is present"
+      },
+      "source_stereotypes": [
+        "ProxyPort"
+      ]
+    },
+    "fpCtrlLan": {
+      "id": "_16_6_1_244503e7_1263495171687_871359_16235",
+      "uml_kind": "uml:Port",
+      "visibility": "public",
+      "owner_name": "AsmLCS_eif",
+      "multiplicity": {
+        "lower": 1,
+        "upper": 1,
+        "origin": "UML implicit [1] where no owned lower/upper value is present"
+      },
+      "source_stereotypes": [
+        "ProxyPort"
+      ]
+    },
+    "fpImcsLan": {
+      "id": "_16_6_1_244503e7_1263495509640_910005_16475",
+      "uml_kind": "uml:Port",
+      "visibility": "public",
+      "owner_name": "AsmLCS_eif",
+      "multiplicity": {
+        "lower": 1,
+        "upper": 1,
+        "origin": "UML implicit [1] where no owned lower/upper value is present"
+      },
+      "source_stereotypes": [
+        "ProxyPort"
+      ]
+    },
+    "ASMLCS_Control_if": {
+      "id": "_16_6_1_244503e7_1263493734875_132468_15222",
+      "uml_kind": "uml:Interface",
+      "visibility": null,
+      "owner_name": "AsmLCS",
+      "multiplicity": {
+        "origin": "Not applicable: UML Interface definition, not a port or part usage"
+      },
+      "source_stereotypes": []
+    },
+    "tcp/ip": {
+      "id": "_16_6_1_3831050f_1263583499203_313131_19135",
+      "uml_kind": "uml:Port",
+      "visibility": "public",
+      "owner_name": "AsmLCS_pif",
+      "multiplicity": {
+        "lower": 1,
+        "upper": 1,
+        "origin": "UML implicit [1] where no owned lower/upper value is present"
+      },
+      "source_stereotypes": []
+    },
+    "ccs": {
+      "id": "_16_6_1_3831050f_1263583514718_266101_19151",
+      "uml_kind": "uml:Port",
+      "visibility": "public",
+      "owner_name": "AsmLCS_pif",
+      "multiplicity": {
+        "lower": 1,
+        "upper": 1,
+        "origin": "UML implicit [1] where no owned lower/upper value is present"
+      },
+      "source_stereotypes": []
+    }
+  },
+  "roles": {
+    "ASMLCS_Control_if": "logical.controlContract",
+    "imData": "logical.imData",
+    "fpCtrlLan": "lan.fpCtrlLan",
+    "fpImcsLan": "lan.fpImcsLan",
+    "ccs": "protocol.ccs",
+    "tcp/ip": "protocol.tcpIp"
+  },
+  "allocations": [
+    {
+      "id": "_16_6_1_3831050f_1263583532875_901339_19165",
+      "source": "imData",
+      "target": "tcp/ip",
+      "native_source": "logical.imData",
+      "native_target": "protocol.tcpIp"
+    },
+    {
+      "id": "_16_6_1_3831050f_1263583574796_723624_19192",
+      "source": "ASMLCS_Control_if",
+      "target": "ccs",
+      "native_source": "logical.controlContract",
+      "native_target": "protocol.ccs"
+    },
+    {
+      "id": "_16_6_1_3831050f_1263583418312_3805_19081",
+      "source": "imData",
+      "target": "fpImcsLan",
+      "native_source": "logical.imData",
+      "native_target": "lan.fpImcsLan"
+    },
+    {
+      "id": "_16_6_1_3831050f_1263583452296_216920_19094",
+      "source": "ASMLCS_Control_if",
+      "target": "fpCtrlLan",
+      "native_source": "logical.controlContract",
+      "native_target": "lan.fpCtrlLan"
+    }
+  ],
+  "limits": [
+    "Four unique allocations appear twice each in the symmetric selected matrix (8 marked cells). Parent counts are totals, not extra allocations.",
+    "2011 figure and 2023 formal archive remain separate sources; four named endpoint pairings agree. No whole-model equivalence claim.",
+    "ASMLCS_Control_if is a UML Interface definition. logical.controlContract is an introduced representative port usage typed by a v2 port definition; this explicit view-context lift is not a lossless interface migration.",
+    "Archive imData, fpCtrlLan and fpImcsLan are public UML ProxyPorts; ccs and tcp/ip are public UML ports with no applied port stereotype found. The v2 plain-port projection preserves allocation endpoints, not complete proxy/interface semantics. Protocol operations and payloads are outside this matrix.",
+    "The source figure also shows an empty repeated AsmLCS group/unnamed-port row. Its exact archived identity is unresolved. It is retained as a source-only annotation, without inventing an extra physical port or allocation. Blank cells mean no selected modeled allocation.",
+    "LAN and protocol groups are introduced view contexts corresponding to source definitions; source owner IDs, visibility and implicit multiplicities are retained in mapping. No private part is made public.",
+    "Only typed allocation correspondence is upgraded; no operational connectivity or protocol compatibility is proved."
+  ],
+  "record_kind": "bounded reviewed derivative fact ledger; not a source model or source truth",
+  "modified": "2026-10-27: release scope and source-rights provenance clarified; selected engineering facts unchanged",
+  "publication_context_url": "https://mbse.gfse.org/documents/SE2PracticesAndGuidelines.pdf#page=85",
+  "rights_basis": "Pinned APE model license; no permission to reproduce Cookbook figures is inferred",
+  "archive_member": "com.nomagic.magicdraw.uml_model.shared_model"
+}

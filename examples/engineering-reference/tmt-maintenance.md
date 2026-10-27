@@ -1,0 +1,17 @@
+# TMT APS: maintenance-alignment lifecycle
+
+Saved parser/native/render reports describe historical checks on their exact inputs; this packaging change does not rerun them or independently validate original sources. Public current checks establish reviewed-derivative correspondence only.
+
+The authors use a state machine for PEAS's lifecycle and activities for work within states. This distinction is the lesson: a state is not merely the next box in an informal process graph.
+
+**Original triple:** [2017 paper Figure 2 / section 2.3, page 4](https://www.omgsysml.org/TMT-APS_AO4ELT17_AnalyzingBehavior_final.pdf#page=4), its adjacent author-written English explanation, and [unaltered native model](https://github.com/Open-MBEE/TMT-SysML-Model/blob/87832a1657ccab023a90a6acfd0dff02d60e2b46/TMT.mdzip). Pin: February 27, 2017, MagicDraw 18.0 / SysML 1.4. Diagram ID: `_18_0_2_b4c02e1_1437082104799_289314_203284`; state machine: `_17_0_2_3_41e01aa_1383540424302_365385_58121`. Names and transition structure match Figure 2; exact publication export commit is unverified.
+
+**Simplified reading:** Initializing performs InitializePEAS; InitComplete leads to StandBy. The Maintenance Alignment signal enters the composite Maintenance Alignment state. Its initial transition invokes initTimer and enters Correcting Rigid Body and Segment Figure. Finished advances to Broad Band Phasing 1um with diffTime, then to Narrow Band Phasing with diffTime. Finished there returns to StandBy with FinalDiffTime. Abort exits the composite state to StandBy. Finished in StandBy reaches the lifecycle final state.
+
+Abort belongs to the **composite state**, applying while any selected maintenance substate is active. Moving it to the final phasing state would alter behavior. The same Finished signal has different targets depending on its source state. Do-activities and transition effects are distinct.
+
+**New artifacts:** [view](rendered/01-tmt-maintenance.png), [editable view](rendered/01-tmt-maintenance.drawio), [derived v2](derived/tmt-maintenance.sysml), [pinned original authority; raw slice stays local](https://github.com/Open-MBEE/TMT-SysML-Model/blob/87832a1657ccab023a90a6acfd0dff02d60e2b46/TMT.mdzip), [curated derivative facts](source/view-facts.json). The public fact contract records nine selected transitions, endpoints and event/effect identities; opaque source bodies remain local. Original initial pseudostates become v2 entry successions; the final state becomes the enclosing definition's built-in done target. MaintenanceAlignmentSignal is a new v2 identifier for the original signal.
+
+We simplify layout and omit unrelated lifecycle scenarios and activity internals. Original action bodies remain in local raw evidence and the linked native authority; they are not bundled, translated or executed. Empty named v2 action usages retain action identity, not implementation equivalence. The original unlabelled InitComplete logging effect gets the derived identifier InitCompleteEffect. Its source ID is traced; its body remains local and the implementation is opaque and execution equivalence is not asserted. Native lifecycle execution remains unrun. Parser acceptance checks the derivative's well-formedness only.
+
+Read the paper's separate Abort and normal-completion sentences with its diagram, which explicitly has both exits. Do not add a new guard or remove completion. [Source notices](notices/README.md) apply.

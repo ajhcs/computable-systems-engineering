@@ -70,7 +70,17 @@ def main():
               "test_inquiry.py",
               "test_flow_consistency.py",
               "test_ownership.py",
-              "test_behavior_review.py")
+              "test_behavior_review.py",
+              "test_reference_release.py",
+              "test_pharmacy_source_safe.py",
+              "test_engineering_references.py",
+              "test_exposure_reference.py",
+              "test_sequence_reference.py",
+              "test_native_composition.py",
+              "test_diagram_style_prototypes.py",
+              "test_reference_source_boundary.py",
+              "test_ecosystem_references.py",
+              "test_industrial_references.py")
     for suite in suites:
         result = subprocess.run([sys.executable, "-B", str(ROOT / "tests" / suite)],
                                 cwd=ROOT, env=environment, text=True,
