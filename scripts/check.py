@@ -76,6 +76,7 @@ def main():
               "test_ecosystem_references.py",
               "test_industrial_references.py")
     suites = suites + ('test_composed_review.py', 'test_sysml_batch.py', 'test_standalone_copies.py', 'test_prototype_review.py', 'test_reference_prototype.py')
+    suites = suites + ('test_walkthrough_limits.py',)
     for suite in suites:
         result = subprocess.run([sys.executable, "-B", str(ROOT / "tests" / suite)],
                                 cwd=ROOT, env=environment, text=True,

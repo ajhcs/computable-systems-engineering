@@ -108,6 +108,14 @@ continue. A pass with proposed facts means selected planning documentation is
 present; behavior, staffing adequacy and performance qualification stay unevaluated.
 Do not narrow accepted scope as a routine repair.
 
+Nonempty documentary wording is not checked for semantic sufficiency. For
+example, the public synthetic native tests show that completion `Done.` or a
+plan method `Run a test.` can pass coverage while missing the useful operating
+criteria or evaluation detail. Removing a selected fact still fails. Review
+activation/completion meaning, producer/consumer payloads, decision rights,
+acknowledgments and evidence adequacy with the engineer; a structural pass is
+not that review. See the [synthetic examples and limits](../examples/prototype-evaluation/walkthrough/README.md).
+
 Use `cse.py concept-review check ...` as before. The
 [synthetic service-desk model](../examples/human-task-review/concept.sysml) covers
 four proposed contexts with illustrative durations and unexecuted evaluation plans.

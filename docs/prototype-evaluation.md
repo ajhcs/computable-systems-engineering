@@ -98,6 +98,31 @@ unknown where evidence is missing. Existing operational/participant evaluation
 plans are not automatically completed by these prototype transactions. Generic
 discussion and ordinary concept drafting do not require this execution record.
 
+### Failure, retry and simulated-role boundaries
+
+The [synthetic walkthrough examples](../examples/prototype-evaluation/walkthrough/README.md)
+reproduce failure and attempted recovery using the existing public fixtures and
+native checker. They document current limitations, rather than implementing
+repairs:
+
+- One Boolean hold cannot preserve independent notices. Releasing one can clear
+  the flag and allow disposition despite another notice in an authored case.
+  The current Boolean-hold requirement does not detect that missing meaning.
+- Retrying after an injected residual-copy or missing-audit fault returns
+  `already_disposed` or `already_reconciled`; it does not repair the copy or
+  reconstruct historical audit evidence. Keep the earlier counterexample.
+- Reopening committed state is not a crash/power-loss test. Scripted approval,
+  expected evidence version and receiver receipt are not enforced by local
+  permission bits. The fixture's physical-count column is not a field observation.
+- Unexercised selected conditions remain `unknown`. A focused case cannot claim
+  the full manifest passed, and an unrelated unknown is not detection of a
+  semantic gap in a passing clause.
+
+Keep simulated role statements, approvals and acknowledgments distinct from
+executed application transactions. Record partial walkthrough work separately
+from completion of full qualification/validation plans; real authority, participant
+validation and stakeholder acceptance remain unresolved without their evidence.
+
 ## Capture admission and revision boundary
 
 The current application is 1.2 and its registered SQL observer is

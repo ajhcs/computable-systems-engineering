@@ -184,6 +184,29 @@ class NativeTaskControls(unittest.TestCase):
         self.assertIn('Primary clerk',render_text(result))
         self.assertEqual(result['human_tasks']['staffing_adequacy'],'not_evaluated')
 
+    def test_nonempty_completion_is_not_checked_for_semantic_sufficiency(self):
+        register=deepcopy(REGISTER)
+        register['tasks']['T_NORMAL']['facts']['completion']['text']='Done.'
+        result=self.run_variant(register)
+        self.assertEqual(result['status'],'pass',result['findings'])
+        self.assertEqual(result['claim_scope'],'project_scoped_documentary_coverage')
+        self.assertEqual(result['human_tasks']['performance_qualification'],'not_evaluated')
+        register['tasks']['T_NORMAL']['facts'].pop('completion')
+        missing=self.run_variant(register)
+        self.assertEqual(missing['status'],'fail')
+        self.assertIn('task_fact_missing',{f['rule'] for f in missing['findings']})
+
+    def test_nonempty_plan_method_is_not_checked_for_evidence_adequacy(self):
+        record=deepcopy(RECORD)
+        evaluation=REGISTER['tasks']['T_NORMAL']['facts']['evaluation']['refs'][0]
+        record['evidence'][evaluation]['method']='Run a test.'
+        result=self.run_variant(record=record)
+        self.assertEqual(result['status'],'pass',result['findings'])
+        self.assertEqual(result['claim_scope'],'project_scoped_documentary_coverage')
+        self.assertEqual(record['evidence'][evaluation]['mode'],'plan')
+        self.assertEqual(record['evidence'][evaluation]['result'],'not_run')
+        self.assertEqual(result['acceptance'],'not_evaluated')
+
     def test_native_omissions_and_wrong_role_do_not_hide_behind_generic_counts(self):
         for case in ['task','training','performer','allocation']:
             with self.subTest(case=case):
