@@ -242,7 +242,7 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
         return report
     record_groups = ("attributes", "events", "event_attributes", "parts", "part_definitions",
                      "concerns", "use_cases", "actions", "states", "requirements",
-                     "constraints", "documents")
+                     "constraints", "documents", "ports", "port_definitions", "connections")
     if not all(isinstance(parsed.get(key), list) and all(isinstance(item, dict) for item in parsed[key])
                for key in record_groups):
         _problem(report, "parser_contract", "SysML adapter omitted required extracted records")
@@ -290,7 +290,7 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
         report["inventory"] = {key: parsed[key] for key in
                                ("part_definitions", "parts", "concerns", "use_cases", "actions", "states",
                                 "requirements", "constraints", "attributes", "events",
-                                "event_attributes", "documents")}
+                                "event_attributes", "documents", "ports", "port_definitions", "connections")}
         return report
 
     for category in ("requirements", "parts", "part_definitions", "constraints"):
@@ -323,7 +323,10 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
 
     reqs = {item["qualified_name"]: item for item in parsed["requirements"]
             if item.get("kind") == "RequirementUsage"}
-    parts = {item["qualified_name"]: item for item in parsed["parts"]}
+    # Documentary inventory includes declared nested roles. The sampled profile
+    # still has no instance-path/inherited-composition semantics for those roles.
+    sampled_parts = [item for item in parsed["parts"] if not item.get("nested", False)]
+    parts = {item["qualified_name"]: item for item in sampled_parts}
     part_definitions = {item["qualified_name"]: item for item in parsed["part_definitions"]}
     attributes = parsed["attributes"]
     events = parsed["events"]
@@ -362,19 +365,19 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
     found_labels = set()
     known_evidence_fields = {
         part["qualified_name"] + "::" + attribute["name"]
-        for part in parsed["parts"] for attribute in attributes
+        for part in sampled_parts for attribute in attributes
         if part.get("type") == attribute.get("part_definition") and attribute.get("name")
     }
     known_event_paths = {
         part["qualified_name"] + "::" + event["name"]
-        for part in parsed["parts"] for event in events
+        for part in sampled_parts for event in events
         if part.get("type") == event.get("part_definition") and event.get("name")
     }
     event_fields = {
         part["qualified_name"] + "::" + event["name"]:
         {attribute["name"]: attribute.get("type") for attribute in event_attributes
          if attribute.get("event") == event.get("qualified_name")}
-        for part in parsed["parts"] for event in events
+        for part in sampled_parts for event in events
         if part.get("type") == event.get("part_definition") and event.get("name")
     }
     for constraint in parsed["constraints"]:
@@ -428,6 +431,9 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
             if len(subjects) != 1 or not subjects[0].get("target"):
                 raise ValueError(f"{key} needs exactly one bound subject")
             alias, target = subjects[0]["name"], subjects[0]["target"]
+            if any(item.get("qualified_name") == target and item.get("nested", False)
+                   for item in parsed["parts"]):
+                raise UnsupportedFeature(f"{key} depends on a nested role; sampled instance-path semantics are not implemented")
             part = parts.get(target)
             if part is None or not part.get("type"):
                 raise ValueError(f"{key} subject does not resolve to a typed part")

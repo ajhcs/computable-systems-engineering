@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "renderer": "Google Chrome for Testing 143.0.7499.4",
+  "renderer_sha256": "20ffc88be1c6f7dc8351bebfaca965ff9a07617bddf696f0b67ef85e5868b29a",
+  "assets": [
+    {
+      "source": "assets/readme/cse-overview.svg",
+      "source_sha256": "dbc83a3ea0ac2dd0ea3c23e853f6d84e238f0662f75ef233ecc48dc5e65ce0b6",
+      "png": "assets/readme/cse-overview.png",
+      "png_sha256": "91353d06b4eb207aed4c0249bc1e03c25553d04624d435ff3bc928b7912481fb",
+      "viewport": [
+        1600,
+        830
+      ],
+      "kind": "original_explanatory_illustration"
+    },
+    {
+      "source": "assets/readme/connected-overview.svg",
+      "source_sha256": "ac4e4c96d6c96d6dd8a067752229c01ebda4271c5c8e9311efd3772a887d3942",
+      "png": "assets/readme/connected-context.png",
+      "png_sha256": "0e91f1d9c5b6b2e42b02d06932904aef88238b241033c6141867b4b49244d6e6",
+      "viewport": [
+        1600,
+        820
+      ],
+      "kind": "simplified_model_derived_presentation"
+    }
+  ],
+  "illustration_generator": "assets/readme/build.py",
+  "illustration_generator_sha256": "4380652242f1d50ce9b7e00436879e1d9d72257c2a584ba081fb3af3013c5683",
+  "native_view_ledger": "examples/configuration-review/connected/generated/view.json",
+  "native_view_ledger_sha256": "ca41b307517ffc3df00df98ef5c544d395b87e040d75a290c69d57f48a951bae",
+  "claim": "Actual browser rasterization and exact source/image bindings; native behavior and engineering acceptance are separate."
+}

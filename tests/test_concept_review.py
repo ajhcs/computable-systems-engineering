@@ -2,6 +2,8 @@
 from copy import deepcopy
 from hashlib import sha256
 import json
+import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -126,6 +128,54 @@ class NativeReviewTests(unittest.TestCase):
     def setUpClass(cls):
         cls.baseline=inspect_concept(EXAMPLE/'concept.sysml',EXAMPLE/'scope.json',
             (EXAMPLE/'scope.sha256').read_text().strip(),{'SYN':EXAMPLE/'brief.md'})
+
+    def test_explicit_bundle_covers_definitions_and_refuses_omission_or_duplicate_metadata(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            d=Path(directory);base=d/'definitions.sysml';metadata=d/'review.sysml'
+            base.write_text(BASE);metadata.write_text("package 'LendingMetadata' {"+PAYLOAD)
+            digest=(EXAMPLE/'scope.sha256').read_text().strip();sources={'SYN':EXAMPLE/'brief.md'}
+            result=inspect_concept([metadata,base],EXAMPLE/'scope.json',digest,sources)
+            self.assertEqual(result['status'],'pass',result['findings'])
+            self.assertEqual(len(result['model_files']),2)
+            self.assertEqual(result['model_sha256'],result['workflow']['model_sha256'])
+            self.assertEqual(result['allocation_status'],'pass')
+            missing=inspect_concept([metadata],EXAMPLE/'scope.json',digest,sources)
+            self.assertNotEqual(missing['status'],'pass')
+            duplicate=d/'duplicate.sysml';duplicate.write_text(metadata.read_text().replace('LendingMetadata','OtherMetadata'))
+            repeated=inspect_concept([base,metadata,duplicate],EXAMPLE/'scope.json',digest,sources)
+            self.assertEqual(repeated['status'],'error')
+            self.assertTrue(any('Exactly one cseWorkflow' in f['detail'] for f in repeated['findings']))
+
+    def test_installed_read_only_runtime_executes_actual_review_from_another_project(self):
+        from verifier.sysml import CACHE
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            d=Path(directory);package=d/'installed';external=d/'project';external.mkdir()
+            shutil.copytree(ROOT/'verifier', package/'verifier', ignore=shutil.ignore_patterns('__pycache__'))
+            for name in ['scripts/concept_review.py','tools/sysml/SysmlBridge.java',
+                         'skills/develop-system-concept/scripts/cse.py']:
+                target=package/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/name,target)
+            for p in package.rglob('*'):
+                if p.is_file():p.chmod(0o444)
+            directories=sorted([p for p in package.rglob('*') if p.is_dir()],key=lambda p:len(p.parts),reverse=True)
+            for p in directories+[package]:p.chmod(0o555)
+            try:
+                # Establish a real denied write, then exercise the installed launcher,
+                # CLI, native parser, coverage and allocation route without mocks.
+                with self.assertRaises(PermissionError):(package/'write-probe').write_text('denied')
+                cmd=[sys.executable,'-B',str(package/'skills/develop-system-concept/scripts/cse.py'),
+                     'concept-review','check',str(EXAMPLE/'concept.sysml'),'--scope',str(EXAMPLE/'scope.json'),
+                     '--scope-sha256',(EXAMPLE/'scope.sha256').read_text().strip(),
+                     '--source','SYN='+str(EXAMPLE/'brief.md'),'--json']
+                process=subprocess.run(cmd,cwd=external,env=dict(os.environ,CSE_SYSML_CACHE=str(CACHE)),
+                                       capture_output=True,text=True,timeout=180)
+                self.assertEqual(process.returncode,0,process.stdout+process.stderr)
+                report=json.loads(process.stdout)
+                self.assertEqual(report['status'],'pass',report['findings'])
+                self.assertEqual(report['allocation_status'],'pass')
+                self.assertFalse((package/'.tmp').exists())
+                self.assertFalse((package/'.cache').exists())
+            finally:
+                for p in [package]+directories:p.chmod(0o755)
 
     def test_baseline_native_counts_and_coverage(self):
         self.assertEqual(self.baseline['status'],'pass',self.baseline['findings'])

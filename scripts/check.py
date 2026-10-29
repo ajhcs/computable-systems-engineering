@@ -34,50 +34,7 @@ def main():
     if copies['status']!='pass':
         print('FAIL: standalone copy inventory: '+str(copies['groups']),file=sys.stderr)
         return 1
-    suites = (
-              "test_develop_conops.py",
-              "test_scenario_split.py",
-              "test_concept.py",
-              "test_verifier.py",
-              "test_verifier_completion.py",
-              "test_language.py",
-              "test_language_oracle.py",
-              "test_influence.py",
-              "test_events.py",
-              "test_public_language_cases.py",
-              "test_sysml.py",
-              "test_sysml_contract.py",
-              "test_sysml_views.py",
-              "test_sysml_public.py",
-              "test_skill_runtime.py",
-              "test_engineering_views.py",
-              "test_visual_style.py",
-              "test_visual_projection.py",
-              "test_visual_labels.py",
-              "test_engineering_gallery.py",
-              "test_readme_showcase.py",
-              "test_runtime_cache.py",
-              "test_foundation_core.py",
-              "test_workflow.py",
-              "test_concept_review.py",
-              "test_human_tasks.py",
-              "test_inquiry.py",
-              "test_flow_consistency.py",
-              "test_ownership.py",
-              "test_behavior_review.py",
-              "test_reference_release.py",
-              "test_pharmacy_source_safe.py",
-              "test_engineering_references.py",
-              "test_exposure_reference.py",
-              "test_sequence_reference.py",
-              "test_native_composition.py",
-              "test_diagram_style_prototypes.py",
-              "test_reference_source_boundary.py",
-              "test_ecosystem_references.py",
-              "test_industrial_references.py")
-    suites = suites + ('test_composed_review.py', 'test_sysml_batch.py', 'test_standalone_copies.py', 'test_prototype_review.py', 'test_reference_prototype.py')
-    suites = suites + ('test_walkthrough_limits.py',)
-    suites = suites + ('test_independent_holds.py',)
+    suites = ('test_develop_conops.py', 'test_scenario_split.py', 'test_concept.py', 'test_verifier.py', 'test_verifier_completion.py', 'test_language.py', 'test_language_oracle.py', 'test_influence.py', 'test_events.py', 'test_public_language_cases.py', 'test_sysml.py', 'test_sysml_contract.py', 'test_sysml_views.py', 'test_sysml_public.py', 'test_skill_runtime.py', 'test_engineering_views.py', 'test_visual_style.py', 'test_visual_projection.py', 'test_visual_labels.py', 'test_engineering_gallery.py', 'test_readme_showcase.py', 'test_runtime_cache.py', 'test_foundation_core.py', 'test_workflow.py', 'test_concept_review.py', 'test_human_tasks.py', 'test_inquiry.py', 'test_flow_consistency.py', 'test_ownership.py', 'test_behavior_review.py', 'test_reference_release.py', 'test_pharmacy_source_safe.py', 'test_engineering_references.py', 'test_exposure_reference.py', 'test_sequence_reference.py', 'test_native_composition.py', 'test_diagram_style_prototypes.py', 'test_reference_source_boundary.py', 'test_ecosystem_references.py', 'test_industrial_references.py', 'test_composed_review.py', 'test_sysml_batch.py', 'test_standalone_copies.py', 'test_prototype_review.py', 'test_reference_prototype.py', 'test_walkthrough_limits.py', 'test_independent_holds.py', 'test_nested_roles.py', 'test_configuration.py', 'test_connected_native.py', 'test_configuration_view.py')
     for suite in suites:
         result = subprocess.run([sys.executable, "-B", str(ROOT / "tests" / suite)],
                                 cwd=ROOT, env=environment, text=True,

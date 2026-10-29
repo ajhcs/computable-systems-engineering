@@ -11,7 +11,8 @@ sys.path.insert(0, str(ROOT))
 from verifier.sysml import check_sysml, JAR, CLASSES
 
 GROUPS = ('attributes', 'events', 'event_attributes', 'parts', 'part_definitions',
-          'concerns', 'use_cases', 'actions', 'states', 'requirements', 'constraints', 'documents')
+          'concerns', 'use_cases', 'actions', 'states', 'requirements', 'constraints', 'documents',
+          'ports', 'port_definitions', 'connections')
 MODEL = ROOT / 'examples/sysml/ack.sysml'
 
 
@@ -41,7 +42,8 @@ class ParserContractTests(unittest.TestCase):
             self.assertEqual(report['findings'][0]['code'], 'unresolved_identity')
 
     def test_malformed_extraction_and_diagnostics_return_contract_error(self):
-        for patch_value in ({'issues': {}}, {'issues': [None]}, {'requirements': [None]}, {'parts': {}}):
+        for patch_value in ({'issues': {}}, {'issues': [None]}, {'requirements': [None]}, {'parts': {}},
+                            {'ports': [None]}, {'port_definitions': {}}, {'connections': [None]}):
             parsed = self.parsed()
             parsed.update(patch_value)
             report = self.check(parsed, syntax_only=True)

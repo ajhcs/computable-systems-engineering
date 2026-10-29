@@ -12,9 +12,11 @@
     "assets/diagram-style/fonts/space-grotesk-700.woff2": "35f8aec56cfd5cbfdb03cc68733a54a0b05bb3617ffcd5fd332badc0b045ca55",
     "assets/diagram-style/profile.json": "8bf69ddbfcd88052c2df28b59853898e7651f8e8c0b39e2b7e0e948ae3d0f984",
     "scripts/install_sysml_parser.py": "7537eea814c2f099d0bd75988dfa1dceccdb086d1675192e7b7b671bd6ab3c06",
-    "tools/sysml/SysmlBridge.java": "1123660e9c50cf35a57892cef91e598fc9e8a369cf5e8562cbadfc2e886d86f5",
+    "tools/sysml/SysmlBridge.java": "24126588ec0bcc9731c52c1fa996e9c7d0f41c5e702d1622ec8fa8e31926d232",
     "verifier/__init__.py": "e9b613e50fdcdfa309ae440af31929c37ef15874c550605a422c9c39688dc48d",
-    "verifier/concept_review.py": "d19a74172a0552c30782ae78a499c0a041f85fe846e00d7c1799130c6ae140a1",
+    "verifier/concept_review.py": "81bd68948ab9c1eabdd129d04b5702d9e78b96bdc5255dbd30dc6d013854a6b2",
+    "verifier/configuration.py": "979e39198002f58aa3c0b3b0d392a6181050f38787c5855c36c0e1c880098a04",
+    "verifier/configuration_view.py": "8eb414e75e0d0986f20ae281979c3feecdb5ac0ef51f9f4aa625ee5afd826b9c",
     "verifier/core.py": "2b2e4e5076e2ccdbe23b7aee55c6c136dea9171da0213ba19a05f95a6b638d2a",
     "verifier/engineering_views.py": "2ca8ba2ec2a961717ccac8c6b1c2e876d4e8e3deff2f2c8df4deb871e433396a",
     "verifier/events.py": "e1e1a713fdbf1c8b455e2aa3dbcbaaf2b05c908b5e4c74abc4e3d3944139fc17",
@@ -28,14 +30,14 @@
     "verifier/ownership.py": "f1db1aae0a88713579f51219167c764a99fcbf9a76a5bed342be8e48bb7ed2a8",
     "verifier/prototype_review.py": "7a3d725e39463c8cc2953f43247f80bfa23abddafbdf8c81dc09c380353e6dc2",
     "verifier/standalone.py": "183fa97d1e7fd6d4c9393314bf239d4dfe3350e08f471b181aeda5c08c7abaf0",
-    "verifier/sysml.py": "3e51e1d30f2f7ccd72ecb453587edfcbf002ecdca4856091be1f920a166791fc",
+    "verifier/sysml.py": "4d3641c77eca31f94c916c16986753e3ffacf8a49b47f9aba390ba0d15e9a591",
     "verifier/sysml_batch.py": "d0cb6f2afc3872861d0c4f08f98c702a8770e0ad99a3bff29bdc42043ef2a872",
     "verifier/sysml_batch_context.py": "d633cd5d991f7a032e74a868f66acc4a02b2262da36d8721166e98820152355a",
     "verifier/views.py": "3a91caa526ddb3128c97284b770a0804ba2c2d56fb18b83ac27898c98fa4ea7a",
     "verifier/visual_labels.py": "f8c11bce35a16866bda22dee58e39c8b4d48cc7c3b285d16781da8f92e317da3",
     "verifier/visual_projection.py": "fd54b2d2504a028800eea636971601f10fce40c98619150deb9b701d50149127",
     "verifier/visual_style.py": "8d935e476be06ef756bf8c4832798616de2729ad1152b936f1f0293977d57dad",
-    "verifier/workflow.py": "255e5de2f334a4bbf1e2f0828d7447dcbe9007c4c998ae1c47eb19710a10b7d8"
+    "verifier/workflow.py": "cf284e42fbf0012b668c2eabf7c5079452a11bec21bcd369fdd278705c41072c"
   },
   "files": {
     "01-normal-handoffs.png": "e99d27bbb23dfcd0956b6ba2e74d1bc78b2988d2fc45a04cdf25ebe433d52dd4",
@@ -62,7 +64,7 @@
     "font-notices/space-OFL.txt": "18a4de52385f6b988782639d5d0cc1326e5a8c2de9a7f01d7b20d9aedcc60943",
     "index.html": "ce2c19e43be7f84365b340ac6113aa3d3fce9dc3705332a6f838437ebd907841",
     "legacy-structural-review.json": "69093dedd825f56c4291e0b939419746b8bbcb5fc5b002d17091829c94948153",
-    "meaning-ledger.json": "1def7d27d6a39cc2be30548aaca5b29c29a535064cbf4f157d6aa2703f3b1745",
+    "meaning-ledger.json": "13f692f976bf898277c373bd968724b6784da335f1736f807e6fa8a063fb9f74",
     "render-receipt.json": "aa8062c752d0853af67f37691435b5e3ae7b778dcf036414183cf6df45bc468a"
   },
   "generator": {
@@ -84,7 +86,7 @@
     "examples/engineering-gallery/water-sampling/generated/native-late.json": "e7030ad08f7d3b8815758d7b770864548b6f2ddb5a92f51d9a5b058cc961b74d",
     "examples/engineering-gallery/water-sampling/generated/native-over-limit.json": "39bc0a19c92397794e86ec2e4c8460e46c8a60b59bac1a3acc846bd6e6132117",
     "examples/engineering-gallery/water-sampling/generated/native-pass.json": "118c48d0c07d7fbdbad84cb2152484a79ec9bbc8386681241352a9e8c1eb2d6a",
-    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "cf3c7ffa44b1c228d1727611c53d1dd392b1d23c6715b6dd2bfff908b3039d57",
+    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "ce12b28339e3bde84652040a42042f074dce25cfe3dd2697daad256e350e91bc",
     "examples/engineering-gallery/water-sampling/scope.json": "818f7f746ca40244b318cb09f6690f7d5ca07c6973ce963c58806b329eb1a956",
     "examples/engineering-gallery/water-sampling/semantic-ledger.json": "5e36dcb1e842dbe9fe1dbbd9cb22a4904175eb43008ef6586b9a8e2885b894b5",
     "examples/engineering-gallery/water-sampling/station.sysml": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",

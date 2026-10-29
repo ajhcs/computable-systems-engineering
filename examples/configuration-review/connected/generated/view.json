@@ -1,0 +1,95 @@
+{
+  "acceptance": "not_evaluated",
+  "behavior": "not_run",
+  "checker_sha256": "979e39198002f58aa3c0b3b0d392a6181050f38787c5855c36c0e1c880098a04",
+  "claim_scope": "artifact_fidelity_to_fresh_connected_configuration_report",
+  "configuration_report_sha256": "8b1c6907dc846fa42f3b409421437fde646006b7d63287de444c10717227fa05",
+  "edge_aliases": {
+    "C1": "DataLink"
+  },
+  "findings": [],
+  "limits": [
+    "Checks explicit authored role declarations and exact direct types, not installed equipment or procurement quantities.",
+    "Selected roles must be reachable through their explicit parent chain and linked type inheritance.",
+    "Inherited role lookup is refused when a descendant redefines the requested declaration; select the overriding declaration explicitly.",
+    "Usage-owned overrides are checked; specialized parent usage inheritance and native variant selection are unsupported.",
+    "Open alternatives are named library definitions, not automatic selections or evidence of a complete trade space.",
+    "Hashes identify supplied bytes, not engineer assent, source truth, implementation, behavior or acceptance.",
+    "Connection checks prove only retained ordinary binary native adjacency in the selected explicit context; no flow, direction, protocol or behavior is established.",
+    "The system view covers retained obligations; omitted native connectors are disclosed. Empty connections make no connectivity claim."
+  ],
+  "model_files": [
+    {
+      "path": "examples/configuration-review/connected/current.sysml",
+      "sha256": "87f23363c8ec76827c373d4a2aa85ecd1bfe5b2adab0944ddb0fc94cbf81629a"
+    },
+    {
+      "path": "examples/configuration-review/connected/library.sysml",
+      "sha256": "e92447735f3c4ad9b38d37ea9ee0537fff66661843cdd6c2aa958cc6db3cb12c"
+    }
+  ],
+  "model_sha256": "8ad8d514f02f5b6cb1c42fa9f916dbafedbc00abc0dac4f600a0477f49883d4e",
+  "native": {
+    "checker_version": "sysml-2.0-alpha.2",
+    "findings": [],
+    "parser": "OMG SysML v2 Pilot 2025-09 / kernel 0.52.0",
+    "parser_issues": [],
+    "status": "pass"
+  },
+  "renderer_sha256": "8eb414e75e0d0986f20ae281979c3feecdb5ac0ef51f9f4aa625ee5afd826b9c",
+  "scope_sha256": "49706f42715ec9372479ecf774da63dedc69ec15dd1977b139d71343048b27e2",
+  "status": "pass",
+  "system_view": {
+    "edges": {
+      "DataLink": {
+        "directed": false,
+        "from": {
+          "path": [
+            "LinkContext::current",
+            "LinkLibrary::System::sensor",
+            "LinkLibrary::Sensor::output"
+          ],
+          "port": "LinkLibrary::Sensor::output",
+          "role": "Sensor"
+        },
+        "kind": "native_connection",
+        "native_name": "LinkContext::dataLink",
+        "owner": "LinkContext",
+        "to": {
+          "path": [
+            "LinkContext::enterprise",
+            "LinkLibrary::Receiver::input"
+          ],
+          "port": "LinkLibrary::Receiver::input",
+          "role": "Enterprise"
+        }
+      }
+    },
+    "nodes": {
+      "$root": {
+        "kind": "root",
+        "native_name": "LinkContext::current",
+        "parent": null,
+        "type": "LinkLibrary::System"
+      },
+      "Enterprise": {
+        "kind": "external_role",
+        "native_name": "LinkContext::enterprise",
+        "parent": null,
+        "type": "LinkLibrary::Receiver"
+      },
+      "Sensor": {
+        "kind": "selected_role",
+        "native_name": "LinkLibrary::System::sensor",
+        "parent": "$root",
+        "type": "LinkLibrary::Sensor"
+      }
+    },
+    "omissions": [],
+    "open_alternatives": [],
+    "scope": "selected_configuration_obligations",
+    "status": "pass",
+    "version": "configuration-system-view-1.0"
+  },
+  "version": "configuration-system-artifacts-1.0"
+}

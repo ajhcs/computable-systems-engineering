@@ -27,3 +27,30 @@ computation, and synthetic variable-influence test generation. The skills are
 registered only in this repository, as requested by the engineer. The
 [pre-test review](pre-test-review.md) records the checks and limitations, and
 the [end-user guide](end-user-test.md) describes the intended trial.
+
+## Connected-context alpha
+
+The local 0.2.0-alpha.2 increment adds optional current-configuration reconciliation across
+explicit model files, nested documentary roles, external peers and supported
+ordinary binary native connections. A generated current-system SVG, HTML reader
+and trace ledger can be checked against a fresh native reconciliation. The
+[configuration contract](configuration-review.md) and
+[system-view guide](configuration-system-view.md) retain unsupported semantics
+and distinguish adjacency from execution, protocol compatibility and acceptance.
+
+The README now introduces practical questions in plain language and includes
+editable original artwork and a presentation derived from a checked synthetic
+connected fixture. Existing source-linked examples remain available. The
+[technical guide](technical-guide.md) retains setup commands and detailed
+semantics. Both plugin descriptions reflect the broader concepts, operations,
+connections and evidence workflow.
+
+The complete plugin has also been installed and checked at user scope through
+a local Codex marketplace. This does not establish a public marketplace listing
+or adoption by an already-running model turn. Verify the release tag, merged
+commit, exact-head CI and resulting package before reporting public delivery.
+
+The public 0.2.0-alpha.3 candidate combines that reviewed functionality with the
+new README, descriptions, editable artwork, published native-view fixture and a
+clean-checkout test scratch fix. It uses a new package version so the earlier
+installed alpha.2 remains distinguishable.

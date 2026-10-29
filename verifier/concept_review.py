@@ -10,7 +10,7 @@ import re
 
 from .core import _pairs
 from .foundation import Invalid, _object, read_regular, check_profile
-from .workflow import KINDS, inspect_workflow
+from .workflow import KINDS, inspect_workflow, capture_model_inputs
 from .human_tasks import expectation as task_expectation, inspect_tasks
 from .ownership import expectation as ownership_expectation, inspect_ownership
 
@@ -245,7 +245,7 @@ def inspect_concept(model_path, scope_path, expected_scope_sha256, source_paths)
         'project': None, 'findings': [], 'workflow_status': 'not_run', 'allocation_status': 'not_run',
         'human_task_status': 'not_run',
         'ownership_status': 'not_run',
-        'model_sha256': None, 'scope_sha256': None, 'sources': {}, 'walks': {},
+        'model_sha256': None, 'model_files': [], 'scope_sha256': None, 'sources': {}, 'walks': {},
         'coverage': {'expected': [], 'checked': [], 'not_run': []},
         'behavior': 'not_run', 'required_behavior_review': 'not_evaluated', 'acceptance': 'not_evaluated',
         'limits': ['Scope appropriateness and completeness require engineering judgment.',
@@ -270,9 +270,11 @@ def inspect_concept(model_path, scope_path, expected_scope_sha256, source_paths)
         report['coverage']['not_run'] = sorted(scope['expectations'])
         if type(source_paths) is not dict or set(source_paths) != set(scope['sources']):
             raise Invalid('Supply exactly the source IDs declared by the project scope')
-        model_raw = read_regular(model_path, 5_000_000)
-        report['model_sha256'] = sha256(model_raw).hexdigest()
-        captured = [(model_path, model_raw, 5_000_000), (scope_path, scope_raw, 1_000_000)]
+        models, files, digest = capture_model_inputs(model_path)
+        report['model_sha256'] = digest
+        report['model_files'] = files
+        captured = [(path, raw, 5_000_000) for path, raw in models]
+        captured.append((scope_path, scope_raw, 1_000_000))
         for key, path in sorted(source_paths.items()):
             raw = read_regular(path, 1_000_000)
             captured.append((path, raw, 1_000_000))

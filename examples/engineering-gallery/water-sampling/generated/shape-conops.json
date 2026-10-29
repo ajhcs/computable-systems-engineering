@@ -146,6 +146,7 @@
         "source": "examples/engineering-gallery/water-sampling/station.sysml"
       }
     ],
+    "connections": [],
     "constraints": [
       {
         "has_native_expression": false,
@@ -360,116 +361,316 @@
     "part_definitions": [
       {
         "has_specialization": false,
+        "is_variation": false,
         "line": 19,
         "name": "IntakePanel",
         "qualified_name": "WaterSampling::IntakePanel",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "supertypes": []
       },
       {
         "has_specialization": false,
+        "is_variation": false,
         "line": 20,
         "name": "ReceiptRegister",
         "qualified_name": "WaterSampling::ReceiptRegister",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "supertypes": []
       },
       {
         "has_specialization": false,
+        "is_variation": false,
         "line": 21,
         "name": "HoldingRack",
         "qualified_name": "WaterSampling::HoldingRack",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "supertypes": []
       },
       {
         "has_specialization": false,
+        "is_variation": false,
         "line": 22,
         "name": "Station",
         "qualified_name": "WaterSampling::Station",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "supertypes": []
       },
       {
         "has_specialization": false,
+        "is_variation": false,
         "line": 40,
         "name": "Operator",
         "qualified_name": "WaterSampling::Operator",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "supertypes": []
       },
       {
         "has_specialization": false,
+        "is_variation": false,
         "line": 41,
         "name": "Courier",
         "qualified_name": "WaterSampling::Courier",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "supertypes": []
       },
       {
         "has_specialization": false,
+        "is_variation": false,
         "line": 42,
         "name": "Custodian",
         "qualified_name": "WaterSampling::Custodian",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "supertypes": []
       }
     ],
     "parts": [
       {
         "has_native_value": false,
         "has_non_typing_specialization": false,
+        "is_composite": true,
+        "is_variant": false,
+        "is_variation": false,
+        "line": 28,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
+        "name": "intakePanel",
+        "nested": true,
+        "owner": "WaterSampling::Station",
+        "owner_kind": "PartDefinition",
+        "part_definition": "WaterSampling::Station",
+        "qualified_name": "WaterSampling::Station::intakePanel",
+        "redefines": [],
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subsets": [],
+        "type": "WaterSampling::IntakePanel",
+        "types": [
+          "WaterSampling::IntakePanel"
+        ]
+      },
+      {
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "is_composite": true,
+        "is_variant": false,
+        "is_variation": false,
+        "line": 29,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
+        "name": "receiptRegister",
+        "nested": true,
+        "owner": "WaterSampling::Station",
+        "owner_kind": "PartDefinition",
+        "part_definition": "WaterSampling::Station",
+        "qualified_name": "WaterSampling::Station::receiptRegister",
+        "redefines": [],
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subsets": [],
+        "type": "WaterSampling::ReceiptRegister",
+        "types": [
+          "WaterSampling::ReceiptRegister"
+        ]
+      },
+      {
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "is_composite": true,
+        "is_variant": false,
+        "is_variation": false,
+        "line": 30,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
+        "name": "holdingRack",
+        "nested": true,
+        "owner": "WaterSampling::Station",
+        "owner_kind": "PartDefinition",
+        "part_definition": "WaterSampling::Station",
+        "qualified_name": "WaterSampling::Station::holdingRack",
+        "redefines": [],
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subsets": [],
+        "type": "WaterSampling::HoldingRack",
+        "types": [
+          "WaterSampling::HoldingRack"
+        ]
+      },
+      {
+        "has_native_value": false,
+        "has_non_typing_specialization": false,
+        "is_composite": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 43,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "operator",
+        "nested": false,
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::operator",
+        "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
-        "type": "WaterSampling::Operator"
+        "subsets": [],
+        "type": "WaterSampling::Operator",
+        "types": [
+          "WaterSampling::Operator"
+        ]
       },
       {
         "has_native_value": false,
         "has_non_typing_specialization": false,
+        "is_composite": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 44,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "station",
+        "nested": false,
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::station",
+        "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
-        "type": "WaterSampling::Station"
+        "subsets": [],
+        "type": "WaterSampling::Station",
+        "types": [
+          "WaterSampling::Station"
+        ]
       },
       {
         "has_native_value": false,
         "has_non_typing_specialization": false,
+        "is_composite": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 45,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "courier",
+        "nested": false,
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::courier",
+        "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
-        "type": "WaterSampling::Courier"
+        "subsets": [],
+        "type": "WaterSampling::Courier",
+        "types": [
+          "WaterSampling::Courier"
+        ]
       },
       {
         "has_native_value": false,
         "has_non_typing_specialization": false,
+        "is_composite": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 46,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "custodian",
+        "nested": false,
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::custodian",
+        "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
-        "type": "WaterSampling::Custodian"
+        "subsets": [],
+        "type": "WaterSampling::Custodian",
+        "types": [
+          "WaterSampling::Custodian"
+        ]
       },
       {
         "has_native_value": true,
         "has_non_typing_specialization": false,
+        "is_composite": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 63,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "user",
+        "nested": false,
+        "owner": "WaterSampling::TransferLabeledSample",
+        "owner_kind": "UseCaseUsage",
         "qualified_name": "WaterSampling::TransferLabeledSample::user",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "redefines": [],
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subsets": [],
+        "types": []
       },
       {
         "has_native_value": true,
         "has_non_typing_specialization": false,
+        "is_composite": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 64,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "user",
+        "nested": false,
+        "owner": "WaterSampling::RecoverUnidentifiedSample",
+        "owner_kind": "UseCaseUsage",
         "qualified_name": "WaterSampling::RecoverUnidentifiedSample::user",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "redefines": [],
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subsets": [],
+        "types": []
       },
       {
         "has_native_value": true,
         "has_non_typing_specialization": false,
+        "is_composite": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 65,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "user",
+        "nested": false,
+        "owner": "WaterSampling::RecordStationInspection",
+        "owner_kind": "UseCaseUsage",
         "qualified_name": "WaterSampling::RecordStationInspection::user",
-        "source": "examples/engineering-gallery/water-sampling/station.sysml"
+        "redefines": [],
+        "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "subsets": [],
+        "types": []
       }
     ],
+    "port_definitions": [],
+    "ports": [],
     "requirements": [
       {
         "has_specialization": false,
@@ -580,7 +781,7 @@
     "concerns": 3,
     "kind": "conops",
     "part_definitions": 7,
-    "parts": 7,
+    "parts": 10,
     "states": 0,
     "use_cases": 3
   },
