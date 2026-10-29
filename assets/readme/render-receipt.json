@@ -26,6 +26,8 @@
       "kind": "simplified_model_derived_presentation"
     }
   ],
+  "raster_exporter": "assets/readme/render.py",
+  "raster_exporter_sha256": "1c7bc5fd289e24cfbe392e8e090a229f89b6fd70163716e80bb6541ce068032c",
   "illustration_generator": "assets/readme/build.py",
   "illustration_generator_sha256": "4380652242f1d50ce9b7e00436879e1d9d72257c2a584ba081fb3af3013c5683",
   "native_view_ledger": "examples/configuration-review/connected/generated/view.json",

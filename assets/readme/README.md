@@ -11,7 +11,7 @@ It draws the selected current root, its sensor role, the explicit receiver peer,
 and the retained `DataLink` ordinary undirected native adjacency. Selected
 parentage is shown by containment. Labels are shortened and multiplicity is
 omitted; exact identities, paths, diagnostics and omissions remain in the
-native reader and ledger. The card and circular endpoint styling is explanatory
+system reader and ledger. The card and circular endpoint styling is explanatory
 presentation, not a claim of formal SysML graphical interchange or behavior.
 
 The SVGs retain editable text and geometry. They embed the repository's existing
@@ -36,8 +36,8 @@ python3 assets/readme/render.py --browser /path/to/chromium
 An optional `--library-path` selects an existing shared-library directory. The
 script uses isolated temporary profiles under the repository's ignored `.tmp`
 directory; it installs no browser or dependencies and leaves HOME unchanged.
-`render-receipt.json` binds the exact sources, PNGs, renderer, illustration
-generator and native view ledger. A changed native fixture needs a fresh native
-view before these sources are rebuilt. Rasterization/source comparison and
+`render-receipt.json` binds the exact sources, PNGs, renderer, export helper,
+illustration generator and native view ledger. A changed native fixture needs a
+fresh checked system view before these sources are rebuilt. Rasterization/source comparison and
 visual inspection support their stated scopes; they do not authenticate source
 truth, engineering acceptance, or audience preference.

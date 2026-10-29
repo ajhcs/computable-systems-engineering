@@ -51,6 +51,6 @@ or adoption by an already-running model turn. Verify the release tag, merged
 commit, exact-head CI and resulting package before reporting public delivery.
 
 The public 0.2.0-alpha.3 candidate combines that reviewed functionality with the
-new README, descriptions, editable artwork, published native-view fixture and a
+new README, descriptions, editable artwork, published model-derived view fixture and a
 clean-checkout test scratch fix. It uses a new package version so the earlier
 installed alpha.2 remains distinguishable.

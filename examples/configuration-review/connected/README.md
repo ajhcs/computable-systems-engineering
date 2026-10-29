@@ -21,7 +21,7 @@ other nonordinary connection kinds are retained as unsupported for this bounded
 connection interpretation. This is a synthetic software fixture, not a real
 engineering project or accepted architecture.
 
-The [native-generated SVG](generated/system.svg), [HTML reader](generated/index.html)
+The [model-derived system-view SVG](generated/system.svg), [HTML reader](generated/index.html)
 and [trace ledger](generated/view.json) are saved outputs for this exact fixture.
 The README's [simplified illustration](../../../assets/readme/connected-overview.svg)
 derives from that ledger. It shortens labels and omits multiplicity; the native

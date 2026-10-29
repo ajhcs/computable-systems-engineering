@@ -64,9 +64,9 @@ You keep a separate record of what the design is expected to include: the retain
 
 This view comes from the [two-file synthetic model](examples/configuration-review/connected/README.md) and its separately retained [selection scope](examples/configuration-review/connected/scope.json). The model also contains an unselected historical system and a second receiver. Their matching types cannot stand in for the selected endpoints. The line represents native adjacency; it does not establish data-flow direction or protocol compatibility.
 
-[Editable illustration](assets/readme/connected-overview.svg) · [Native-generated SVG](examples/configuration-review/connected/generated/system.svg) · [HTML reader](examples/configuration-review/connected/generated/index.html) · [Trace ledger](examples/configuration-review/connected/generated/view.json)
+[Editable illustration](assets/readme/connected-overview.svg) · [Checked system-view SVG](examples/configuration-review/connected/generated/system.svg) · [HTML reader](examples/configuration-review/connected/generated/index.html) · [Trace ledger](examples/configuration-review/connected/generated/view.json)
 
-The illustration shortens labels for reading. The native-generated view and ledger retain full identities, diagnostics, findings, and omissions. See the [reconciliation contract](docs/configuration-review.md) for the checked semantics.
+The illustration shortens labels for reading. The model-derived system view and ledger retain full identities, diagnostics, findings, and omissions. See the [reconciliation contract](docs/configuration-review.md) for the checked semantics.
 
 **A picture can go stale.** CSE can rerun the native review and compare a saved view with freshly derived artifacts. Changed sources, retargeted connections, altered SVGs, and stale success labels cannot silently preserve a passing view check. The [system-view guide](docs/configuration-system-view.md) explains what is compared. Download the HTML reader and its sibling files to open it locally.
 
