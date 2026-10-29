@@ -121,12 +121,32 @@ or [software-only model](../examples/concept-review/software/concept.sysml) for 
   `{text,affects,blocking}`. Preserve uncertainties rather than inventing decisions.
   Trade-study data are not required for a concept coverage slice.
 
-The reused workflow adapter checks one explicit model file, up to 5 MB, and up
-to 64 elements and 512 relations. It does not freeze arbitrary imported bundles.
-The opt-in 1.1 workflow/view contract below extends those documentary counts;
-the 1.0 format retains its existing bounds.
-Do not claim imported-only meanings are covered: use local parsed bindings or a
-separately supported bundle operation. All relevant supplied sources are explicit.
+The workflow and concept-review adapters accept a single model path or an explicit
+list/tuple of 1–128 model paths, with at most 5 MB combined UTF-8 bytes. Supply all
+needed imported definitions; imports do not discover or open files automatically.
+Exactly one `cseWorkflow` block on one parsed concern is required across the set.
+The legacy record retains its 64-element/512-relation bounds; the opt-in 1.1
+workflow/view contract below extends those counts.
+
+The adapter captures every explicitly supplied file before parsing, checks the
+private snapshot once, and uses that same inventory for coverage, allocation and
+selected human-task/ownership checks. Source diagnostics map back to their original
+file and line. Reports retain `model_files` with canonical path labels and byte
+digests. For one file, `model_sha256` remains its byte digest. For a bundle it is
+the SHA-256 of the canonical, sorted JSON file/digest inventory, matching the native
+parser's model identity. Changing a dependency or its canonical path changes that
+identity; input mutation during a check is an error. A successful report covers
+only this explicit model set and selected documentary scope.
+
+Workflow scratch files use `CSE_SYSML_CACHE/workflow-scratch` outside the installed
+package. Set `CSE_SYSML_CACHE` to a private writable directory on the workspace for
+installed plugins, consistently with parser setup. Temporary directories are
+private and cleaned on completion or failure. The repository default remains its
+workspace parser cache. No system temporary-directory fallback is used.
+
+For example, pass `room.sysml equipment.sysml review.sysml` before `--scope` to
+`concept-review check` or `next-evidence`. Single-file commands remain supported.
+All relevant evidence sources are supplied explicitly as before.
 
 ## Drafting loop and commands
 

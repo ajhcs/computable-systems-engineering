@@ -15,6 +15,7 @@ COMMANDS = {
     "view": "sysml_view.py",
     "diff": "sysml_diff.py",
     "concept-review": "concept_review.py",
+    "configuration-review": "configuration.py",
     "question": "question.py",
     "prototype-review": "prototype_review.py",
     "prototype-demo": "prototype_demo.py",

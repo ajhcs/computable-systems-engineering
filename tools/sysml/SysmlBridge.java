@@ -36,6 +36,11 @@ import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
+import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.PortUsage;
+import org.omg.sysml.lang.sysml.PortDefinition;
+import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
+import org.omg.sysml.lang.sysml.Connector;
 
 public final class SysmlBridge {
     private static final Gson JSON = new Gson();
@@ -97,6 +102,97 @@ public final class SysmlBridge {
         return false;
     }
 
+    private static Map<String, Object> multiplicityFacts(Usage part) {
+        Map<String, Object> facts = new LinkedHashMap<>();
+        var multiplicity = part.getMultiplicity();
+        if (multiplicity instanceof org.omg.sysml.lang.sysml.MultiplicityRange range) {
+            var lower = range.getLowerBound();
+            var upper = range.getUpperBound();
+            if (upper instanceof org.omg.sysml.lang.sysml.LiteralInteger hi &&
+                    (lower instanceof org.omg.sysml.lang.sysml.LiteralInteger ||
+                     (lower == null && range.getBound().size() == 1))) {
+                facts.put("status", "literal");
+                facts.put("lower", lower == null ? hi.getValue() : ((org.omg.sysml.lang.sysml.LiteralInteger)lower).getValue());
+                facts.put("upper", hi.getValue());
+            } else {
+                facts.put("status", "unsupported");
+            }
+        } else if (multiplicity == null || (multiplicity.eClass().getName().equals("Multiplicity") && multiplicity.getOwnedMember().isEmpty())) {
+            // Defaults on a redefining/subsetting declaration may be narrowed by
+            // the inherited target; consumers must reconcile that chain first.
+            facts.put("status", part.getOwnedRedefinition().stream().anyMatch(s -> !s.isImplied()) ||
+                    part.getOwnedSubsetting().stream().anyMatch(s -> !s.isImplied()) ? "inherited" : "default");
+            if (facts.get("status").equals("default")) {
+                facts.put("lower", 1);
+                facts.put("upper", 1);
+            }
+        } else {
+            facts.put("status", "unsupported");
+        }
+        return facts;
+    }
+
+    private static Map<String, Object> portFacts(PortUsage port) {
+        Map<String, Object> item = new LinkedHashMap<>();
+        var owner = port.getOwningNamespace();
+        item.put("name", port.getName());
+        item.put("qualified_name", port.getQualifiedName());
+        item.put("owner", owner == null ? null : owner.getQualifiedName());
+        item.put("owner_kind", owner == null ? null : owner.eClass().getName());
+        item.put("type", typedBy(port));
+        item.put("types", port.getOwnedTyping().stream().map(t -> t.getType() == null ? null : t.getType().getQualifiedName()).toList());
+        item.put("direction", port.getDirection() == null ? null : port.getDirection().getName());
+        item.put("redefines", port.getOwnedRedefinition().stream().filter(r -> !r.isImplied()).map(r -> r.getRedefinedFeature() == null ? null : r.getRedefinedFeature().getQualifiedName()).toList());
+        item.put("subsets", port.getOwnedSubsetting().stream().filter(s -> !s.isImplied() && !(s instanceof org.omg.sysml.lang.sysml.Redefinition)).map(s -> s.getSubsettedFeature() == null ? null : s.getSubsettedFeature().getQualifiedName()).toList());
+        item.put("has_native_value", hasNativeValue(port));
+        item.put("has_non_typing_specialization", port.getOwnedSpecialization().stream().anyMatch(s -> !(s instanceof FeatureTyping)));
+        item.put("is_variation", port.isVariation());
+        item.put("is_variant", port.getOwningMembership() instanceof org.omg.sysml.lang.sysml.VariantMembership);
+        item.put("multiplicity", multiplicityFacts(port));
+        item.put("line", line(port));
+        return item;
+    }
+
+    private static Map<String, Object> connectionFacts(Connector connector) {
+        Map<String, Object> item = new LinkedHashMap<>();
+        var owner = connector.getOwningNamespace();
+        item.put("name", connector.getName());
+        item.put("qualified_name", connector.getQualifiedName());
+        item.put("owner", owner == null ? null : owner.getQualifiedName());
+        item.put("owner_kind", owner == null ? null : owner.eClass().getName());
+        item.put("kind", connector.eClass().getName());
+        item.put("line", line(connector));
+        boolean ordinary = connector.eClass().getName().equals("ConnectionUsage");
+        boolean specialized = connector.getOwnedSpecialization().stream().anyMatch(s -> !s.isImplied());
+        item.put("has_non_typing_specialization", specialized);
+        item.put("has_native_value", hasNativeValue(connector));
+        boolean variable = connector instanceof Usage usage && (usage.isVariation() || usage.getOwningMembership() instanceof org.omg.sysml.lang.sysml.VariantMembership);
+        item.put("is_variation", connector instanceof Usage usage && usage.isVariation());
+        item.put("is_variant", connector.getOwningMembership() instanceof org.omg.sysml.lang.sysml.VariantMembership);
+        if (connector instanceof Usage usage) item.put("multiplicity", multiplicityFacts(usage));
+        List<Map<String, Object>> ends = new ArrayList<>();
+        for (Feature endpoint : connector.getRelatedFeature()) {
+            var chain = endpoint.getChainingFeature().isEmpty() ? List.of(endpoint) : endpoint.getChainingFeature();
+            List<String> path = new ArrayList<>();
+            boolean linked = !chain.isEmpty() && chain.size() <= 32;
+            for (int i = 0; i < chain.size() && i < 32; i++) {
+                Feature feature = chain.get(i);
+                path.add(feature.getQualifiedName());
+                linked &= feature.getQualifiedName() != null && (i == chain.size() - 1 ? feature instanceof PortUsage : feature instanceof PartUsage && !(feature instanceof Connector));
+            }
+            Map<String, Object> end = new LinkedHashMap<>();
+            end.put("path", path);
+            end.put("status", linked ? "supported" : "unsupported");
+            end.put("reason", linked ? "Linked static part/port feature chain" : "Endpoint is not a bounded linked part-to-port chain");
+            ends.add(end);
+        }
+        boolean supported = ordinary && !specialized && !variable && !hasNativeValue(connector) && ends.size() == 2 && ends.stream().allMatch(e -> e.get("status").equals("supported"));
+        item.put("ends", ends);
+        item.put("supported", supported);
+        item.put("reason", supported ? "Ordinary binary native connection; adjacency is undirected" : "Only unspecialized ordinary binary connections with static port endpoints are supported");
+        return item;
+    }
+
     private static Map<String, Object> extract(Element root) {
         List<Map<String, Object>> attributes = new ArrayList<>();
         List<Map<String, Object>> events = new ArrayList<>();
@@ -110,10 +206,29 @@ public final class SysmlBridge {
         List<Map<String, Object>> requirements = new ArrayList<>();
         List<Map<String, Object>> constraints = new ArrayList<>();
         List<Map<String, Object>> documents = new ArrayList<>();
+        List<Map<String, Object>> ports = new ArrayList<>();
+        List<Map<String, Object>> portDefinitions = new ArrayList<>();
+        List<Map<String, Object>> connections = new ArrayList<>();
         List<EObject> all = new ArrayList<>();
         all.add(root);
         for (var iterator = root.eAllContents(); iterator.hasNext();) all.add(iterator.next());
         for (EObject object : all) {
+            if (object instanceof PortUsage port) ports.add(portFacts(port));
+            if (object instanceof PortDefinition portDefinition) {
+                Map<String, Object> item = new LinkedHashMap<>();
+                item.put("name", portDefinition.getName());
+                item.put("qualified_name", portDefinition.getQualifiedName());
+                item.put("is_variation", portDefinition.isVariation());
+                item.put("is_conjugated", portDefinition instanceof ConjugatedPortDefinition);
+                if (portDefinition instanceof ConjugatedPortDefinition conjugated) {
+                    PortDefinition original = conjugated.getOriginalPortDefinition();
+                    item.put("original_port_definition", original == null ? null : original.getQualifiedName());
+                }
+                item.put("supertypes", portDefinition.getOwnedSpecialization().stream().filter(s -> !s.isImplied()).map(s -> s.getGeneral() == null ? null : s.getGeneral().getQualifiedName()).toList());
+                item.put("line", line(portDefinition));
+                portDefinitions.add(item);
+            }
+            if (object instanceof Connector connector) connections.add(connectionFacts(connector));
             if (object instanceof AttributeUsage attribute) {
                 EventOccurrenceUsage ownerEvent = parent(attribute, EventOccurrenceUsage.class);
                 PartDefinition part = parent(attribute, PartDefinition.class);
@@ -157,20 +272,42 @@ public final class SysmlBridge {
                 item.put("name", partDefinition.getName());
                 item.put("qualified_name", partDefinition.getQualifiedName());
                 item.put("has_specialization", !partDefinition.getOwnedSpecialization().isEmpty());
+                item.put("is_variation", partDefinition.isVariation());
+                item.put("supertypes", partDefinition.getOwnedSpecialization().stream()
+                        .filter(s -> !s.isImplied())
+                        .map(s -> s.getGeneral() == null ? null : s.getGeneral().getQualifiedName()).toList());
                 item.put("line", line(partDefinition));
                 partDefinitions.add(item);
-            } else if (object instanceof PartUsage part) {
-                if (parent(part, PartDefinition.class) == null) {
-                    Map<String, Object> item = new LinkedHashMap<>();
-                    item.put("name", part.getName());
-                    item.put("qualified_name", part.getQualifiedName());
-                    item.put("type", typedBy(part));
-                    item.put("has_native_value", hasNativeValue(part));
-                    item.put("has_non_typing_specialization", part.getOwnedSpecialization().stream()
-                            .anyMatch(specialization -> !(specialization instanceof FeatureTyping)));
-                    item.put("line", line(part));
-                    parts.add(item);
-                }
+            } else if (object instanceof PartUsage part && !(object instanceof Connector)) {
+                Map<String, Object> item = new LinkedHashMap<>();
+                item.put("name", part.getName());
+                item.put("qualified_name", part.getQualifiedName());
+                item.put("type", typedBy(part));
+                // Declared role identities only: do not materialize inherited
+                // members or infer equipment counts from these declarations.
+                var namespace = part.getOwningNamespace();
+                var definition = parent(part, PartDefinition.class);
+                item.put("owner", namespace == null ? null : namespace.getQualifiedName());
+                item.put("owner_kind", namespace == null ? null : namespace.eClass().getName());
+                item.put("part_definition", definition == null ? null : definition.getQualifiedName());
+                item.put("nested", definition != null || parent(part, PartUsage.class) != null);
+                item.put("types", part.getOwnedTyping().stream()
+                        .map(t -> t.getType() == null ? null : t.getType().getQualifiedName()).toList());
+                item.put("redefines", part.getOwnedRedefinition().stream()
+                        .filter(r -> !r.isImplied())
+                        .map(r -> r.getRedefinedFeature() == null ? null : r.getRedefinedFeature().getQualifiedName()).toList());
+                item.put("subsets", part.getOwnedSubsetting().stream()
+                        .filter(s -> !s.isImplied() && !(s instanceof org.omg.sysml.lang.sysml.Redefinition))
+                        .map(s -> s.getSubsettedFeature() == null ? null : s.getSubsettedFeature().getQualifiedName()).toList());
+                item.put("is_composite", part.isComposite());
+                    item.put("is_variation", part.isVariation());
+                    item.put("is_variant", part.getOwningMembership() instanceof org.omg.sysml.lang.sysml.VariantMembership);
+                item.put("multiplicity", multiplicityFacts(part));
+                item.put("has_native_value", hasNativeValue(part));
+                item.put("has_non_typing_specialization", part.getOwnedSpecialization().stream()
+                        .anyMatch(specialization -> !(specialization instanceof FeatureTyping)));
+                item.put("line", line(part));
+                parts.add(item);
             } else if (object instanceof ConcernUsage concern) {
                 Map<String, Object> item = new LinkedHashMap<>();
                 item.put("id", concern.getDeclaredShortName());
@@ -272,6 +409,9 @@ public final class SysmlBridge {
         result.put("requirements", requirements);
         result.put("constraints", constraints);
         result.put("documents", documents);
+        result.put("ports", ports);
+        result.put("port_definitions", portDefinitions);
+        result.put("connections", connections);
         return result;
     }
 

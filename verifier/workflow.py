@@ -12,7 +12,7 @@ from pathlib import Path
 
 from .core import _pairs
 from .foundation import Invalid, _object, read_regular
-from .sysml import check_sysml, ROOT
+from .sysml import check_sysml, ROOT, CACHE
 
 VERSION = 'workflow-1.0'
 MARKER = 'CSE-WORKFLOW/1.0'
@@ -35,7 +35,7 @@ LIMITS = [
     'Trade comparison is qualitative; numeric values and weights are documentary inputs, not calculated scores.',
     'Evidence plans and reported assessments are distinct from independently qualified verification or validation.',
     'Recorded decisions and hashes do not authenticate assent or establish a protected runner.',
-    'This adapter checks one explicitly supplied model; imported dependencies outside it are not frozen.',
+    'Only the explicitly supplied model set is frozen; undeclared imports are not discovered.',
 ]
 
 
@@ -344,23 +344,87 @@ def analyze(record,native,source_evidence,*,workflow,ids=None,review=False):
     return report
 
 
+def _model_label(path):
+    resolved = Path(path).resolve()
+    try:
+        return resolved.relative_to(ROOT).as_posix()
+    except ValueError:
+        return resolved.as_posix()
+
+
+def capture_model_inputs(paths):
+    """Capture an explicit bounded model set using the native bundle identity."""
+    if isinstance(paths, (str, Path)):
+        paths = [paths]
+    elif type(paths) not in (list, tuple):
+        raise Invalid('Supply a model path or explicit list/tuple of model paths')
+    if not paths or len(paths) > 128:
+        raise Invalid('Supply between 1 and 128 SysML model files')
+    paths = [Path(path) for path in paths]
+    canonical = [str(path.resolve()) for path in paths]
+    if len(canonical) != len(set(canonical)):
+        raise Invalid('Duplicate SysML model file')
+    captured = []
+    files = []
+    total = 0
+    for path in sorted(paths, key=lambda p: str(p.resolve())):
+        raw = read_regular(path, 5_000_000)
+        raw.decode('utf-8')
+        total += len(raw)
+        if total > 5_000_000:
+            raise Invalid('Combined SysML model exceeds 5 MB')
+        captured.append((path, raw))
+        files.append({'path': _model_label(path), 'sha256': sha256(raw).hexdigest()})
+    return captured, files, _model_digest(files)
+
+
+def _model_digest(files):
+    return (files[0]['sha256'] if len(files) == 1 else
+            sha256(json.dumps(files, sort_keys=True, separators=(',', ':')).encode()).hexdigest())
+
+
 def inspect_workflow(model_path,source_paths=None,*,workflow='concept',ids=None,review=False,document_names=()):
     source_paths={} if source_paths is None else source_paths
-    report=_base(workflow,ids,review);report['input_paths']={'model':str(model_path),'sources':{str(k):str(v) for k,v in source_paths.items()} if type(source_paths) is dict else {}}
+    report=_base(workflow,ids,review);report['input_paths']={'model':(str(model_path[0]) if type(model_path) in (list,tuple) and len(model_path)==1 else [str(p) for p in model_path] if type(model_path) in (list,tuple) else str(model_path)),'sources':{str(k):str(v) for k,v in source_paths.items()} if type(source_paths) is dict else {}}
     received=deepcopy(report['input_paths'])
     try:
         if type(document_names) is not tuple or set(document_names)-{'cseHumanTasks','cseOwnership'}:
             raise Invalid('Unsupported supplemental document request')
-        raw=read_regular(model_path,5_000_000);raw.decode('utf-8');digest=sha256(raw).hexdigest();report['model_sha256']=digest
-        directory=ROOT/'.tmp';directory.mkdir(exist_ok=True)
-        with tempfile.TemporaryDirectory(prefix='workflow-',dir=directory) as temp:
-            snapshot=Path(temp)/'captured.sysml';snapshot.write_bytes(raw)
-            native=check_sysml(snapshot,syntax_only=True,kind=None)
-        native['model_files']=[{'path':str(model_path),'sha256':digest}]
-        for records in native.get('inventory',{}).values():
-            for item in records:item['source']=str(model_path)
-        for finding in native.get('findings',[])+native.get('parser_issues',[]):
-            if finding.get('source'):finding['source']=str(model_path)
+        captured, files, digest = capture_model_inputs(model_path)
+        report.update(model_sha256=digest, model_files=deepcopy(files))
+        directory = CACHE / 'workflow-scratch'
+        directory.mkdir(mode=0o700, parents=True, exist_ok=True)
+        if directory.is_symlink():
+            raise Invalid('Workflow scratch directory must not be a symlink')
+        with tempfile.TemporaryDirectory(prefix='workflow-', dir=directory) as temp:
+            snapshots = []
+            snapshot_files = []
+            source_map = {}
+            for index, ((original, raw), entry) in enumerate(zip(captured, files)):
+                snapshot = Path(temp) / f'{index:03d}.sysml'
+                snapshot.write_bytes(raw)
+                snapshot.chmod(0o600)
+                snapshots.append(snapshot)
+                label = _model_label(snapshot)
+                snapshot_files.append({'path': label, 'sha256': entry['sha256']})
+                source_map[label] = str(original)
+            native = check_sysml(snapshots[0] if len(snapshots) == 1 else snapshots,
+                                 syntax_only=True, kind=None)
+        native_digest_matches = native.get('model_sha256') == _model_digest(snapshot_files)
+        native['model_files'] = deepcopy(files)
+        for records in native.get('inventory', {}).values():
+            for item in records:
+                if item.get('source') in source_map:
+                    item['source'] = source_map[item['source']]
+                elif len(files) == 1:
+                    item['source'] = str(captured[0][0])
+        for finding in native.get('findings', []) + native.get('parser_issues', []):
+            if finding.get('source') in source_map:
+                finding['source'] = source_map[finding['source']]
+            elif finding.get('source') and len(files) == 1:
+                finding['source'] = str(captured[0][0])
+        native['snapshot_sha256'] = native.get('model_sha256')
+        native['model_sha256'] = digest
         report['native_status']=native.get('status','error');report['native_parser']=native.get('parser')
         if native.get('status')!='pass':
             return _native_failure(report,native)
@@ -384,14 +448,14 @@ def inspect_workflow(model_path,source_paths=None,*,workflow='concept',ids=None,
         report=analyze(record,native,evidence,workflow=workflow,ids=ids,review=review);report['input_paths']=received;report['document_owner']=docs[0]['owner'];report['model_sha256']=digest;report['native_model_sha256']=native.get('model_sha256')
         if document_names:
             report['supplemental_documents']={name:deepcopy([x for x in native['inventory']['documents'] if x.get('name')==name]) for name in document_names}
-        changed=read_regular(model_path,5_000_000)!=raw or native.get('model_sha256')!=digest
+        changed=any(read_regular(path,5_000_000)!=raw for path,raw in captured) or not native_digest_matches
         changed=changed or any(read_regular(source_paths[k],1_000_000)!=v for k,v in source_bytes.items())
         if changed:
             report.update(status='error',input_stability='error',view={},conditional_analysis='not_run')
             report['findings'].append({'rule':'inputs_changed','status':'error','ids':[],'detail':'Model/source bytes changed or native digest mismatched'})
         else:report['input_stability']='pass'
         return report
-    except (OSError,ValueError,TypeError,KeyError,RecursionError) as exc:
+    except (OSError,ValueError,TypeError,KeyError,RecursionError,RuntimeError) as exc:
         report.update(status='error',input_stability='not_completed',view={},conditional_analysis='not_run')
         report['input_paths']=received;report['findings'].append({'rule':'input_or_record','status':'error','ids':[],'detail':str(exc)})
         return report

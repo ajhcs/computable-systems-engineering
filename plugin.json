@@ -1,17 +1,22 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "computable-systems-engineering",
-  "version": "0.2.0-alpha.1",
-  "description": "Engineer-directed concept, CONOPS and scenario skills plus a source-grounded diagram skill.",
+  "version": "0.2.0-alpha.3",
+  "description": "AI-assisted systems design with connected models, clear diagrams, and checks you can inspect.",
   "author": {
     "name": "ajhcs",
     "url": "https://github.com/ajhcs"
   },
   "keywords": [
     "systems-engineering",
-    "conops",
+    "sysml-v2",
+    "mbse",
+    "modeling",
+    "requirements",
+    "operations",
     "verification",
-    "conceptual-design"
+    "conops",
+    "codex"
   ],
   "license": "MIT",
   "repository": "https://github.com/ajhcs/computable-systems-engineering",
@@ -21,15 +26,15 @@
       "requires_local_executor": true,
       "interface": {
         "displayName": "Computable Systems Engineering",
-        "shortDescription": "Develop concepts with evidence",
-        "longDescription": "Three independently invocable engineering drafting skills plus a diagram-generation skill. Source-linked diagrams retain engineering meaning and report parser, rendering and fidelity checks separately. New engineering-model creation and acceptance remain with the engineer.",
+        "shortDescription": "Model systems. Check the work.",
+        "longDescription": "Explore how people, software, equipment, and services work together. Develop concepts and scenarios, inspect a selected connected system, and run supported checks against explicit scope and evidence. Four independently invocable skills keep models editable, unknowns visible, and consequential decisions with you.",
         "developerName": "ajhcs and contributors",
         "category": "Productivity",
         "capabilities": [],
         "defaultPrompt": [
-          "Use the system-concept and CONOPS skills on the material below. Keep my raw materials out of Git.",
-          "Help me develop one operational scenario.",
-          "Use the diagram reference skill to render this accepted model and show its source and validation limits."
+          "Help me explore this system idea. Identify functions, people, alternatives, and the evidence we still need.",
+          "Walk through normal operation and recovery with the operational-scenarios skill.",
+          "Check the selected connected system against retained scope and generate a source-linked current-system view."
         ],
         "composerIcon": "./assets/icon.svg",
         "logo": "./assets/icon.svg"

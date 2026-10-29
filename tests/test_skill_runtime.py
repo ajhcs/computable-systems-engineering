@@ -17,6 +17,17 @@ PARSER_AVAILABLE = JAR.is_file() and (CLASSES / "SysmlBridge.class").is_file()
 
 
 class RuntimeTests(unittest.TestCase):
+    def test_configuration_review_available_from_each_independent_launcher(self):
+        (ROOT / ".tmp").mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / ".tmp") as directory:
+            for name in SKILLS:
+                result = subprocess.run(
+                    [sys.executable, "-B", str(ROOT / "skills" / name / "scripts/cse.py"),
+                     "configuration-review", "--help"], cwd=directory,
+                    text=True, capture_output=True)
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                self.assertIn("scope", result.stdout.lower())
+
     def test_installer_explains_unsupported_java_before_download_or_compile(self):
         (ROOT / ".tmp").mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=ROOT / ".tmp") as directory:

@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from verifier.foundation import Invalid
-from verifier.workflow import (schema,analyze,inspect_workflow,render_text,draft_model,write_draft,empty_record,JOBS,MARKER)
+from verifier.workflow import (schema,analyze,inspect_workflow,render_text,draft_model,write_draft,empty_record,JOBS,MARKER,capture_model_inputs)
 ROOT=Path(__file__).resolve().parents[1]
 
 
@@ -158,6 +158,79 @@ class WorkflowControls(unittest.TestCase):
             real=Path(d)/'real';real.write_text('content');link=Path(d)/'link';link.symlink_to(real)
             with patch('verifier.workflow.check_sysml') as parser:r=inspect_workflow(link)
             self.assertEqual(r['status'],'error');parser.assert_not_called()
+    def test_explicit_bundle_identity_matches_native_and_is_order_independent(self):
+        from verifier.sysml import _model_input
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as d:
+            a=Path(d)/'a.sysml';b=Path(d)/'b.sysml'
+            a.write_text('package Alpha {}');b.write_text('package Beta {}')
+            _, files, digest = capture_model_inputs([b,a])
+            self.assertEqual((files,digest), _model_input([a,b])[1::2])
+            self.assertEqual(capture_model_inputs([a])[2], sha256(a.read_bytes()).hexdigest())
+            old=digest;b.write_text('package Changed {}')
+            self.assertNotEqual(old,capture_model_inputs([a,b])[2])
+            for invalid in ([a,a], [], [a]*129):
+                with self.assertRaises(ValueError): capture_model_inputs(invalid)
+
+    def test_bundle_captures_remaps_and_detects_dependency_mutation(self):
+        from verifier.sysml import _model_input
+        record,_,_,text=fixture()
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as d:
+            a=Path(d)/'a.sysml';b=Path(d)/'b.sysml';source=Path(d)/'s.md'
+            a.write_text('package Alpha {}');b.write_text('package Beta {}');source.write_text(text)
+            def native(paths,**kw):
+                _, files, _, digest = _model_input(paths)
+                _, n, _, _ = fixture();n['model_sha256']=digest
+                n['inventory']['concerns'].append({'qualified_name':'Demo::workflowContext'})
+                n['inventory']['documents']=[{'source':files[1]['path'],'name':'cseWorkflow','owner':'Demo::workflowContext','body':MARKER+'\n'+json.dumps(record)}]
+                n['inventory']['parts'][0]['source']=files[0]['path']
+                return n
+            with patch('verifier.workflow.check_sysml',side_effect=native):
+                report=inspect_workflow([b,a],{'SRC':source})
+            self.assertEqual(report['status'],'pass',report['findings'])
+            self.assertEqual(len(report['model_files']),2)
+            self.assertEqual(report['native_inventory']['parts'][0]['source'],str(a))
+            def mutate(paths,**kw):
+                n=native(paths,**kw);b.write_text('package Unexpected {}');return n
+            with patch('verifier.workflow.check_sysml',side_effect=mutate):
+                report=inspect_workflow([a,b],{'SRC':source})
+            self.assertEqual(report['status'],'error');self.assertEqual(report['view'],{})
+            self.assertIn('inputs_changed',{x['rule'] for x in report['findings']})
+            def mutate_source(paths,**kw):
+                n=native(paths,**kw);source.write_text(text+' changed');return n
+            with patch('verifier.workflow.check_sysml',side_effect=mutate_source):
+                report=inspect_workflow([a,b],{'SRC':source})
+            # Sources are acquired after native parsing; a changed source must
+            # fail its retained provenance rather than receive a successful review.
+            self.assertEqual(report['status'],'fail')
+            self.assertTrue(any(f['rule'].startswith('source_') for f in report['findings']))
+
+    def test_bundle_diagnostics_preserve_original_dependency_file(self):
+        from verifier.sysml import _model_input
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as d:
+            a=Path(d)/'a.sysml';b=Path(d)/'b.sysml'
+            a.write_text('package Alpha {}');b.write_text('invalid')
+            def native(paths,**kw):
+                _, files, _, digest = _model_input(paths)
+                return {'status':'error','model_sha256':digest,'findings':[],
+                    'parser_issues':[{'source':files[1]['path'],'line':3,'severity':'ERROR','message':'Invalid dependency'}]}
+            with patch('verifier.workflow.check_sysml',side_effect=native):r=inspect_workflow([a,b])
+            self.assertEqual(r['status'],'error');self.assertEqual(r['parser_issues'][0]['source'],str(b))
+            self.assertEqual(r['parser_issues'][0]['line'],3)
+
+    def test_scratch_uses_configured_cache_and_cleans_up_on_parser_exception(self):
+        record,_,_,text=fixture()
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as d:
+            model=Path(d)/'m.sysml';model.write_text('captured');cache=Path(d)/'private-cache'
+            def refuse(path,**kw):
+                self.assertTrue(path.is_relative_to(cache))
+                self.assertEqual(path.stat().st_mode & 0o077,0)
+                raise RuntimeError('parser stopped')
+            with patch('verifier.workflow.CACHE',cache), patch('verifier.workflow.check_sysml',side_effect=refuse):
+                result=inspect_workflow(model)
+            self.assertEqual(result['status'],'error')
+            self.assertEqual(result['view'],{})
+            self.assertEqual(list((cache/'workflow-scratch').iterdir()),[])
+
     def test_duplicate_json_keys_refused(self):
         a,_,_,_=fixture()
         with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as d:

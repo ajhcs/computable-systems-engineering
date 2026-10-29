@@ -136,3 +136,22 @@ synthetic example. Keep syntax, structure, semantic review, and behavior separat
 
 
 For source-grounded diagram work, use the [diagram-generation skill](../../generate-engineering-diagrams/SKILL.md) with an accepted model and its supporting evidence. Keep source versions and IDs, distinguish simplified derivatives, and report fidelity, parser and rendering checks separately from engineering acceptance.
+
+## Current configuration reconciliation
+
+For an explicitly selected configuration, use the optional
+[configuration review](../../../docs/configuration-review.md). Retain the engineer's
+configuration scope separately from the candidate, supply every required native
+model file explicitly, and check the selected root and qualified role identities.
+The `configuration-review` command is available through each drafting launcher.
+Its derived current view reports the declared selection and open alternatives;
+it does not select products, update accepted meaning, prove installed quantities,
+or establish interface behavior. Unsupported selected obligations remain unresolved.
+
+For a selected connected context, opt in to `configuration-1.1` and retain explicit
+external peer and native connection obligations. The same command derives a
+current system view and checks a saved view against fresh native reconciliation;
+see [connected system views](../../../docs/configuration-system-view.md).
+The view presents supported native adjacency and selected ownership, with omitted
+or unresolved facts visible. A connection/view result does not execute exchanges
+or establish a vendor protocol, operational behavior or engineering acceptance.

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="744" viewBox="0 0 1440 744" role="img" aria-labelledby="title desc">
+<title id="title">Current system: selected native declarations and connections</title>
+<desc id="desc">Simplified model-derived presentation of retained configuration obligations. Lines show undirected native connection adjacency; no flow, protocol, behavior, or complete architecture claim.</desc>
+<metadata>{&quot;acceptance&quot;:&quot;not_evaluated&quot;,&quot;behavior&quot;:&quot;not_run&quot;,&quot;checker_sha256&quot;:&quot;979e39198002f58aa3c0b3b0d392a6181050f38787c5855c36c0e1c880098a04&quot;,&quot;claim_scope&quot;:&quot;artifact_fidelity_to_fresh_connected_configuration_report&quot;,&quot;configuration_report_sha256&quot;:&quot;8b1c6907dc846fa42f3b409421437fde646006b7d63287de444c10717227fa05&quot;,&quot;edge_aliases&quot;:{&quot;C1&quot;:&quot;DataLink&quot;},&quot;findings&quot;:[],&quot;limits&quot;:[&quot;Checks explicit authored role declarations and exact direct types, not installed equipment or procurement quantities.&quot;,&quot;Selected roles must be reachable through their explicit parent chain and linked type inheritance.&quot;,&quot;Inherited role lookup is refused when a descendant redefines the requested declaration; select the overriding declaration explicitly.&quot;,&quot;Usage-owned overrides are checked; specialized parent usage inheritance and native variant selection are unsupported.&quot;,&quot;Open alternatives are named library definitions, not automatic selections or evidence of a complete trade space.&quot;,&quot;Hashes identify supplied bytes, not engineer assent, source truth, implementation, behavior or acceptance.&quot;,&quot;Connection checks prove only retained ordinary binary native adjacency in the selected explicit context; no flow, direction, protocol or behavior is established.&quot;,&quot;The system view covers retained obligations; omitted native connectors are disclosed. Empty connections make no connectivity claim.&quot;],&quot;model_files&quot;:[{&quot;path&quot;:&quot;examples/configuration-review/connected/current.sysml&quot;,&quot;sha256&quot;:&quot;87f23363c8ec76827c373d4a2aa85ecd1bfe5b2adab0944ddb0fc94cbf81629a&quot;},{&quot;path&quot;:&quot;examples/configuration-review/connected/library.sysml&quot;,&quot;sha256&quot;:&quot;e92447735f3c4ad9b38d37ea9ee0537fff66661843cdd6c2aa958cc6db3cb12c&quot;}],&quot;model_sha256&quot;:&quot;8ad8d514f02f5b6cb1c42fa9f916dbafedbc00abc0dac4f600a0477f49883d4e&quot;,&quot;native&quot;:{&quot;checker_version&quot;:&quot;sysml-2.0-alpha.2&quot;,&quot;findings&quot;:[],&quot;parser&quot;:&quot;OMG SysML v2 Pilot 2025-09 / kernel 0.52.0&quot;,&quot;parser_issues&quot;:[],&quot;status&quot;:&quot;pass&quot;},&quot;renderer_sha256&quot;:&quot;8eb414e75e0d0986f20ae281979c3feecdb5ac0ef51f9f4aa625ee5afd826b9c&quot;,&quot;scope_sha256&quot;:&quot;49706f42715ec9372479ecf774da63dedc69ec15dd1977b139d71343048b27e2&quot;,&quot;status&quot;:&quot;pass&quot;,&quot;system_view&quot;:{&quot;edges&quot;:{&quot;DataLink&quot;:{&quot;directed&quot;:false,&quot;from&quot;:{&quot;path&quot;:[&quot;LinkContext::current&quot;,&quot;LinkLibrary::System::sensor&quot;,&quot;LinkLibrary::Sensor::output&quot;],&quot;port&quot;:&quot;LinkLibrary::Sensor::output&quot;,&quot;role&quot;:&quot;Sensor&quot;},&quot;kind&quot;:&quot;native_connection&quot;,&quot;native_name&quot;:&quot;LinkContext::dataLink&quot;,&quot;owner&quot;:&quot;LinkContext&quot;,&quot;to&quot;:{&quot;path&quot;:[&quot;LinkContext::enterprise&quot;,&quot;LinkLibrary::Receiver::input&quot;],&quot;port&quot;:&quot;LinkLibrary::Receiver::input&quot;,&quot;role&quot;:&quot;Enterprise&quot;}}},&quot;nodes&quot;:{&quot;$root&quot;:{&quot;kind&quot;:&quot;root&quot;,&quot;native_name&quot;:&quot;LinkContext::current&quot;,&quot;parent&quot;:null,&quot;type&quot;:&quot;LinkLibrary::System&quot;},&quot;Enterprise&quot;:{&quot;kind&quot;:&quot;external_role&quot;,&quot;native_name&quot;:&quot;LinkContext::enterprise&quot;,&quot;parent&quot;:null,&quot;type&quot;:&quot;LinkLibrary::Receiver&quot;},&quot;Sensor&quot;:{&quot;kind&quot;:&quot;selected_role&quot;,&quot;native_name&quot;:&quot;LinkLibrary::System::sensor&quot;,&quot;parent&quot;:&quot;$root&quot;,&quot;type&quot;:&quot;LinkLibrary::Sensor&quot;}},&quot;omissions&quot;:[],&quot;open_alternatives&quot;:[],&quot;scope&quot;:&quot;selected_configuration_obligations&quot;,&quot;status&quot;:&quot;pass&quot;,&quot;version&quot;:&quot;configuration-system-view-1.0&quot;},&quot;version&quot;:&quot;configuration-system-artifacts-1.0&quot;}</metadata>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#203746}.id{font-size:20px;font-weight:bold}.small{font-size:15px}.muted{fill:#4b606e}.edge{fill:none;stroke:#526e86;stroke-width:2}.port{fill:white;stroke:#526e86;stroke-width:2}</style>
+<rect width="1440" height="744" fill="#f7f9fb"/>
+<text x="55" y="42" font-size="26" font-weight="bold">Current system — retained configuration obligations</text>
+<text x="55" y="77" font-size="20">Result: pass · simplified model-derived presentation</text>
+<text x="55" y="107" class="small">Selected declarations at left; explicit external peers at right. Lines are undirected adjacency.</text>
+<text x="55" y="133" class="small">Only reconciled facts are drawn. Findings, omitted checks and unselected topology appear in the reader and ledger.</text>
+<text x="55" y="157" class="small">Native diagnostics: 0 (0 warnings). Full diagnostics appear in the reader and ledger.</text>
+<path class="edge" d="M 555 532 H 600 V 324 H 885"><title>DataLink: LinkContext::dataLink</title></path>
+<text x="605" y="422.0" class="small">C1</text>
+<g data-role-id="$root"><rect x="55" y="170" width="500" height="176" rx="8" fill="#edf2fb" stroke="#899eaf"/>
+<text x="73" y="200" class="id">$root</text>
+<text x="73" y="224" class="small muted">root</text>
+<text x="73" y="248" class="small ">LinkContext::current</text>
+<text x="73" y="268" class="small muted">LinkLibrary::System</text>
+<text x="73" y="288" class="small muted">Parent: current context</text>
+</g>
+<g data-role-id="Sensor"><rect x="55" y="378" width="500" height="204" rx="8" fill="#edf2fb" stroke="#899eaf"/>
+<text x="73" y="408" class="id">Sensor</text>
+<text x="73" y="432" class="small muted">selected role</text>
+<text x="73" y="456" class="small ">LinkLibrary::System::sensor</text>
+<text x="73" y="476" class="small muted">LinkLibrary::Sensor</text>
+<text x="73" y="496" class="small muted">Parent: $root</text>
+<circle cx="555" cy="532" r="5" class="port"><title>LinkLibrary::Sensor::output</title></circle>
+<text x="541" y="537" text-anchor="end" class="small" data-native-port="LinkLibrary::Sensor::output">output</text>
+</g>
+<g data-role-id="Enterprise"><rect x="885" y="170" width="500" height="204" rx="8" fill="#f2eef9" stroke="#899eaf"/>
+<text x="903" y="200" class="id">Enterprise</text>
+<text x="903" y="224" class="small muted">external role</text>
+<text x="903" y="248" class="small ">LinkContext::enterprise</text>
+<text x="903" y="268" class="small muted">LinkLibrary::Receiver</text>
+<text x="903" y="288" class="small muted">Parent: current context</text>
+<circle cx="885" cy="324" r="5" class="port"><title>LinkLibrary::Receiver::input</title></circle>
+<text x="899" y="329" text-anchor="start" class="small" data-native-port="LinkLibrary::Receiver::input">input</text>
+</g>
+<text x="55" y="669" class="small">Native model 8ad8d514f02f5b6cb1c42fa9f916dbafedbc00abc0dac4f600a0477f49883d4e</text>
+<text x="55" y="694" class="small">Scope 49706f42715ec9372479ecf774da63dedc69ec15dd1977b139d71343048b27e2</text>
+</svg>

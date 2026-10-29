@@ -23,7 +23,8 @@ def fixture():
     body = MODEL.read_text().split('doc cseViews /*', 1)[1].split('*/', 1)[0].strip()
     data = json.loads('\n'.join(body.splitlines()[1:]))
     inventory = {group: [] for group in ('attributes', 'events', 'event_attributes', 'parts',
-        'part_definitions', 'concerns', 'use_cases', 'actions', 'states', 'requirements', 'constraints', 'documents')}
+        'part_definitions', 'concerns', 'use_cases', 'actions', 'states', 'requirements', 'constraints', 'documents',
+        'ports', 'port_definitions', 'connections')}
     inventory['actions'] = [{'qualified_name': node['element']} for node in data['views'][0]['nodes']]
     inventory['parts'] = [{'qualified_name': item['element']} for item in data['views'][1]['participants']]
     inventory['documents'] = [{'name': 'cseViews', 'owner_kind': 'Package', 'body': body}]

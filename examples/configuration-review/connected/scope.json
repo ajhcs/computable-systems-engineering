@@ -1,0 +1,36 @@
+{
+  "version": "configuration-1.1",
+  "root": {
+    "native_name": "LinkContext::current",
+    "type": "LinkLibrary::System"
+  },
+  "selected_roles": {
+    "Sensor": {
+      "parent": "$root",
+      "native_name": "LinkLibrary::System::sensor",
+      "type": "LinkLibrary::Sensor"
+    }
+  },
+  "external_roles": {
+    "Enterprise": {
+      "native_name": "LinkContext::enterprise",
+      "type": "LinkLibrary::Receiver"
+    }
+  },
+  "open_alternatives": [],
+  "connections": [
+    {
+      "id": "DataLink",
+      "native_name": "LinkContext::dataLink",
+      "owner": "LinkContext",
+      "from": {
+        "role": "Sensor",
+        "port": "LinkLibrary::Sensor::output"
+      },
+      "to": {
+        "role": "Enterprise",
+        "port": "LinkLibrary::Receiver::input"
+      }
+    }
+  ]
+}

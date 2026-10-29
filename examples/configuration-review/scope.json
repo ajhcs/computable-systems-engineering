@@ -1,0 +1,10 @@
+{
+  "version": "configuration-1.0",
+  "root": {"native_name": "ConfigurationContext::current", "type": "ConfigurationLibrary::SelectedSystem"},
+  "selected_roles": {
+    "Sensor": {"parent": "$root", "native_name": "ConfigurationLibrary::BaseSystem::sensor", "type": "ConfigurationLibrary::Sensor"},
+    "Accessory": {"parent": "$root", "native_name": "ConfigurationLibrary::SelectedSystem::accessory", "type": "ConfigurationLibrary::Accessory"}
+  },
+  "open_alternatives": ["ConfigurationLibrary::HistoricalSensor", "ConfigurationLibrary::AlternativeSystem"],
+  "connections": []
+}
