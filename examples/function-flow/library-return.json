@@ -1,0 +1,208 @@
+{
+  "version": "function-flow-1.0",
+  "finite_model": {
+    "version": 2,
+    "actors": {
+      "Clerk": {},
+      "System": {}
+    },
+    "properties": {
+      "Enabled": {
+        "type": "bool",
+        "owner": "controlled"
+      }
+    },
+    "data": {
+      "Request": {
+        "type": "bool"
+      },
+      "Ready": {
+        "type": "bool"
+      },
+      "Result": {
+        "type": "bool"
+      }
+    },
+    "exchanges": {},
+    "statements": {},
+    "traces": [],
+    "scenarios": {
+      "Routine": {
+        "start": "start",
+        "initial": {
+          "Enabled": false
+        },
+        "initial_data": [
+          "Request"
+        ],
+        "terminal": {
+          "done": "Proposed work complete"
+        },
+        "completion": [
+          "done"
+        ],
+        "require_completion": true,
+        "steps": {
+          "SPrepare": {
+            "from": "start",
+            "to": "ready",
+            "effects": {
+              "Enabled": true
+            },
+            "consumes": [
+              "Request"
+            ],
+            "produces": [
+              "Ready"
+            ]
+          },
+          "SComplete": {
+            "from": "ready",
+            "to": "done",
+            "guard": {
+              "ref": "Enabled",
+              "op": "==",
+              "value": true
+            },
+            "consumes": [
+              "Ready"
+            ],
+            "produces": [
+              "Result"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "finite_model_sha256": "bfc4426e92adf55628094419b35033a4ce2210b8fab4b047f9c6b188e1f010eb",
+  "functions": {
+    "Prepare": {
+      "label": "Inspect return",
+      "transformation": "Inspect return. Synthetic proposed transformation, not proof.",
+      "inputs": {
+        "request": {
+          "data": "Request",
+          "type": "bool",
+          "unit": null
+        }
+      },
+      "outputs": {
+        "ready": {
+          "data": "Ready",
+          "type": "bool",
+          "unit": null
+        }
+      },
+      "enabling": null,
+      "performers": [
+        "Clerk",
+        "System"
+      ],
+      "accountable": [
+        "Clerk"
+      ]
+    },
+    "Complete": {
+      "label": "Record inspection",
+      "transformation": "Record inspection. Synthetic proposed transformation, not proof.",
+      "inputs": {
+        "ready": {
+          "data": "Ready",
+          "type": "bool",
+          "unit": null
+        }
+      },
+      "outputs": {
+        "result": {
+          "data": "Result",
+          "type": "bool",
+          "unit": null
+        }
+      },
+      "enabling": {
+        "ref": "Enabled",
+        "op": "==",
+        "value": true
+      },
+      "performers": [
+        "Clerk",
+        "System"
+      ],
+      "accountable": [
+        "Clerk"
+      ]
+    },
+    "Handle": {
+      "label": "Return item",
+      "transformation": "Return item. Synthetic proposed transformation, not proof.",
+      "inputs": {
+        "request": {
+          "data": "Request",
+          "type": "bool",
+          "unit": null
+        }
+      },
+      "outputs": {
+        "result": {
+          "data": "Result",
+          "type": "bool",
+          "unit": null
+        }
+      },
+      "enabling": null,
+      "performers": [
+        "Clerk",
+        "System"
+      ],
+      "accountable": [
+        "Clerk"
+      ]
+    }
+  },
+  "flows": {
+    "Handover": {
+      "from": "Prepare",
+      "output": "ready",
+      "to": "Complete",
+      "input": "ready"
+    }
+  },
+  "step_bindings": {
+    "Routine": {
+      "SPrepare": "Prepare",
+      "SComplete": "Complete"
+    }
+  },
+  "decompositions": {
+    "Breakdown": {
+      "parent": "Handle",
+      "children": [
+        "Prepare",
+        "Complete"
+      ],
+      "inputs": [
+        {
+          "parent_port": "request",
+          "child": "Prepare",
+          "child_port": "request"
+        }
+      ],
+      "outputs": [
+        {
+          "parent_port": "result",
+          "child": "Complete",
+          "child_port": "result"
+        }
+      ]
+    }
+  },
+  "policy": {
+    "accountable": "exactly_one",
+    "performers_required": true
+  },
+  "limits": {
+    "state_cap": 10000,
+    "assignment_cap": 10000
+  }
+}

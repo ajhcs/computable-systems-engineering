@@ -23,6 +23,38 @@ candidate. The scope is a proposed or reviewed engineering input; a populated
 field or hash does not authenticate engineer acceptance. Keep private notes and
 project models under ignored `work/` or another approved private workspace.
 
+## Connect investigations and decisions
+
+When the framing is genuinely open, separate the situation reported by a source,
+the stakeholder's desired change, a possible explanation and a suggested solution.
+A complaint about delay does not establish its cause. Keep another explanation
+only if it would lead to a different design or investigation; reuse settled intent
+and name missing stakeholder input rather than supplying it yourself.
+
+For a consequential investigation, make the reasoning reviewable: uncertainty X
+matters to decision Y; seek evidence Z; finding A would support the choice, while B
+would send it back for reconsideration. Qualitative observations can distinguish
+explanations without a numerical threshold. Record this in the existing question,
+evidence-plan and proposed-decision text, with affected IDs. No additional artifact
+is needed for discussion alone.
+
+Carry the existing context when changing focus or invoking another drafting skill:
+
+| Transition | Useful context to retain |
+|---|---|
+| Framing to functions | Relevant need/outcome IDs, boundary and unresolved explanation. |
+| Functions to possible means | Function IDs, required transformation and operating conditions; open implementation choices. |
+| Concept to scenario | Decision question, IDs, actors, trigger, intended outcome and assumptions. |
+| Scenario or evidence to concept | What was learned, affected IDs/assumptions, reason and return point, decision retained or proposed for reconsideration. |
+
+These are flexible entry points, not a required sequence or new workflow record.
+Evidence can send the work back to an explanation, outcome, boundary, function,
+means, scenario or evaluation method. Review those consequences instead of only
+repairing the chosen component. Preserve the retained scope; changes to accepted
+meaning remain proposals. The [synthetic lending reframing study](../../../examples/concept-review/lending/reframing-study.md)
+shows a changed explanation and proposal while retaining every original coverage
+expectation and unexecuted evaluation plan.
+
 ## Draft and run the checks
 
 When tasks or human/automation allocation are part of this question, use the

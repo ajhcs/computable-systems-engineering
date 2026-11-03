@@ -17,8 +17,10 @@ COMMANDS = {
     "concept-review": "concept_review.py",
     "configuration-review": "configuration.py",
     "question": "question.py",
+    "terminology": "terminology.py",
     "prototype-review": "prototype_review.py",
     "prototype-demo": "prototype_demo.py",
+    "analyze": "analyze.py",
     "finite": "verify.py",
     "install-parser": "install_sysml_parser.py",
 }

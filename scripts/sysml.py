@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from verifier.core import load_json
 from verifier.sysml import check_sysml
 from verifier.sysml_batch import inspect_batch
+from verifier.terminology import apply_drafting_profiles, render_text as english_text
 
 
 def main():
@@ -35,7 +36,7 @@ def main():
             if not sep or not key or not path or key in cases:
                 parser.error('Trace cases need distinct ID=PATH entries')
             cases[key]=path
-        report=inspect_batch(args.model,args.manifest,args.manifest_sha256,cases)
+        report=apply_drafting_profiles(inspect_batch(args.model,args.manifest,args.manifest_sha256,cases), args.model)
         print(json.dumps(report,sort_keys=True,indent=2))
         return 0 if report['status']=='pass' and report['results_usable'] else 1
     if args.manifest_sha256:
@@ -51,6 +52,7 @@ def main():
         return 2
     report = check_sysml(args.model, manifest=manifest, evidence=evidence, review=args.review,
                          syntax_only=args.syntax_only, kind=args.kind, view_profile=view_profile)
+    report = apply_drafting_profiles(report, args.model)
     if args.json:
         print(json.dumps(report, sort_keys=True, indent=2))
     else:
@@ -85,6 +87,8 @@ def main():
                 print(f"    exercised condition(s): {detail['coverage'].get('triggers', 0)}")
             if "counterexample" in detail:
                 print(f"    counterexample: {json.dumps(detail['counterexample'], sort_keys=True)}")
+        if "english" in report:
+            print(english_text(report["english"]), end="")
     return 0 if report["status"] == "pass" else 1
 
 

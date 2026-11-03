@@ -1,0 +1,220 @@
+{
+  "version": "function-flow-1.0",
+  "finite_model": {
+    "version": 2,
+    "actors": {
+      "Clerk": {},
+      "System": {}
+    },
+    "properties": {
+      "Enabled": {
+        "type": "bool",
+        "owner": "controlled"
+      }
+    },
+    "data": {
+      "Request": {
+        "type": "int",
+        "min": 0,
+        "max": 10,
+        "unit": "items",
+        "scale": "1"
+      },
+      "Ready": {
+        "type": "int",
+        "min": 0,
+        "max": 10,
+        "unit": "items",
+        "scale": "1"
+      },
+      "Result": {
+        "type": "int",
+        "min": 0,
+        "max": 10,
+        "unit": "items",
+        "scale": "1"
+      }
+    },
+    "exchanges": {},
+    "statements": {},
+    "traces": [],
+    "scenarios": {
+      "Routine": {
+        "start": "start",
+        "initial": {
+          "Enabled": false
+        },
+        "initial_data": [
+          "Request"
+        ],
+        "terminal": {
+          "done": "Proposed work complete"
+        },
+        "completion": [
+          "done"
+        ],
+        "require_completion": true,
+        "steps": {
+          "SPrepare": {
+            "from": "start",
+            "to": "ready",
+            "effects": {
+              "Enabled": true
+            },
+            "consumes": [
+              "Request"
+            ],
+            "produces": [
+              "Ready"
+            ]
+          },
+          "SComplete": {
+            "from": "ready",
+            "to": "done",
+            "guard": {
+              "ref": "Enabled",
+              "op": "==",
+              "value": true
+            },
+            "consumes": [
+              "Ready"
+            ],
+            "produces": [
+              "Result"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "finite_model_sha256": "520fe974f8b8ecf4fe58a218bc55b3060a717b99de66280b85026de5886fcc13",
+  "functions": {
+    "Prepare": {
+      "label": "Pick items",
+      "transformation": "Pick items. Synthetic proposed transformation, not proof.",
+      "inputs": {
+        "request": {
+          "data": "Request",
+          "type": "int",
+          "unit": "items"
+        }
+      },
+      "outputs": {
+        "ready": {
+          "data": "Ready",
+          "type": "int",
+          "unit": "items"
+        }
+      },
+      "enabling": null,
+      "performers": [
+        "Clerk",
+        "System"
+      ],
+      "accountable": [
+        "Clerk"
+      ]
+    },
+    "Complete": {
+      "label": "Pack order",
+      "transformation": "Pack order. Synthetic proposed transformation, not proof.",
+      "inputs": {
+        "ready": {
+          "data": "Ready",
+          "type": "int",
+          "unit": "items"
+        }
+      },
+      "outputs": {
+        "result": {
+          "data": "Result",
+          "type": "int",
+          "unit": "items"
+        }
+      },
+      "enabling": {
+        "ref": "Enabled",
+        "op": "==",
+        "value": true
+      },
+      "performers": [
+        "Clerk",
+        "System"
+      ],
+      "accountable": [
+        "Clerk"
+      ]
+    },
+    "Handle": {
+      "label": "Fulfill order",
+      "transformation": "Fulfill order. Synthetic proposed transformation, not proof.",
+      "inputs": {
+        "request": {
+          "data": "Request",
+          "type": "int",
+          "unit": "items"
+        }
+      },
+      "outputs": {
+        "result": {
+          "data": "Result",
+          "type": "int",
+          "unit": "items"
+        }
+      },
+      "enabling": null,
+      "performers": [
+        "Clerk",
+        "System"
+      ],
+      "accountable": [
+        "Clerk"
+      ]
+    }
+  },
+  "flows": {
+    "Handover": {
+      "from": "Prepare",
+      "output": "ready",
+      "to": "Complete",
+      "input": "ready"
+    }
+  },
+  "step_bindings": {
+    "Routine": {
+      "SPrepare": "Prepare",
+      "SComplete": "Complete"
+    }
+  },
+  "decompositions": {
+    "Breakdown": {
+      "parent": "Handle",
+      "children": [
+        "Prepare",
+        "Complete"
+      ],
+      "inputs": [
+        {
+          "parent_port": "request",
+          "child": "Prepare",
+          "child_port": "request"
+        }
+      ],
+      "outputs": [
+        {
+          "parent_port": "result",
+          "child": "Complete",
+          "child_port": "result"
+        }
+      ]
+    }
+  },
+  "policy": {
+    "accountable": "exactly_one",
+    "performers_required": true
+  },
+  "limits": {
+    "state_cap": 10000,
+    "assignment_cap": 10000
+  }
+}

@@ -17,6 +17,7 @@ import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.Documentation;
@@ -68,21 +69,17 @@ public final class SysmlBridge {
         return type == null ? null : type.getQualifiedName();
     }
 
-    private static String referenceTarget(ReferenceUsage reference) {
-        for (EObject next : reference.eContents()) {
-            if (next instanceof FeatureReferenceExpression expression) {
-                Element referent = expression.getReferent();
-                return referent == null ? null : referent.getQualifiedName();
-            }
-            for (var iterator = next.eAllContents(); iterator.hasNext();) {
-                EObject child = iterator.next();
-                if (child instanceof FeatureReferenceExpression expression) {
-                    Element referent = expression.getReferent();
-                    return referent == null ? null : referent.getQualifiedName();
-                }
-            }
-        }
-        return null;
+    private static String referenceTarget(Feature reference) {
+        // A nested member or one operand of a compound value is not this binding.
+        List<FeatureValue> values = reference.eContents().stream()
+                .filter(FeatureValue.class::isInstance).map(FeatureValue.class::cast)
+                .filter(value -> value.getFeatureWithValue() == reference).toList();
+        if (values.size() != 1) return null;
+        FeatureValue value = values.get(0);
+        if (value.isDefault() || value.isInitial() ||
+                !(value.getValue() instanceof FeatureReferenceExpression expression)) return null;
+        Element referent = expression.getReferent();
+        return referent == null ? null : referent.getQualifiedName();
     }
 
     private static boolean directMember(Feature feature, PartDefinition part) {
@@ -237,6 +234,11 @@ public final class SysmlBridge {
                     item.put("name", attribute.getName());
                     item.put("event", ownerEvent.getQualifiedName());
                     item.put("type", typedBy(attribute));
+                    item.put("types", attribute.getOwnedTyping().stream()
+                            .map(t -> t.getType() == null ? null : t.getType().getQualifiedName()).toList());
+                    item.put("multiplicity", multiplicityFacts(attribute));
+                    item.put("is_variation", attribute.isVariation());
+                    item.put("is_variant", attribute.getOwningMembership() instanceof org.omg.sysml.lang.sysml.VariantMembership);
                     item.put("has_native_value", hasNativeValue(attribute));
                     item.put("has_non_typing_specialization", attribute.getOwnedSpecialization().stream()
                             .anyMatch(specialization -> !(specialization instanceof FeatureTyping)));
@@ -248,6 +250,11 @@ public final class SysmlBridge {
                     item.put("qualified_name", attribute.getQualifiedName());
                     item.put("part_definition", part.getQualifiedName());
                     item.put("type", typedBy(attribute));
+                    item.put("types", attribute.getOwnedTyping().stream()
+                            .map(t -> t.getType() == null ? null : t.getType().getQualifiedName()).toList());
+                    item.put("multiplicity", multiplicityFacts(attribute));
+                    item.put("is_variation", attribute.isVariation());
+                    item.put("is_variant", attribute.getOwningMembership() instanceof org.omg.sysml.lang.sysml.VariantMembership);
                     item.put("direction", attribute.getDirection() == null ? null : attribute.getDirection().getName());
                     item.put("has_native_value", hasNativeValue(attribute));
                     item.put("has_non_typing_specialization", attribute.getOwnedSpecialization().stream()
@@ -322,13 +329,20 @@ public final class SysmlBridge {
                 item.put("qualified_name", useCase.getQualifiedName());
                 item.put("line", line(useCase));
                 List<Map<String, String>> subjects = new ArrayList<>();
+                List<Map<String, String>> actors = new ArrayList<>();
                 for (EObject child : all) {
-                    if (child instanceof ReferenceUsage ref && parent(ref, UseCaseUsage.class) == useCase &&
-                            parent(ref, SubjectMembership.class) != null) {
-                        subjects.add(Map.of("name", ref.getName(), "target", referenceTarget(ref) == null ? "" : referenceTarget(ref)));
+                    if (child instanceof Usage ref && ref.getOwningNamespace() == useCase &&
+                            (ref.getOwningMembership() instanceof SubjectMembership ||
+                             ref.getOwningMembership() instanceof ActorMembership)) {
+                        String target = referenceTarget(ref);
+                        Map<String, String> binding = Map.of("name", ref.getName() == null ? "" : ref.getName(),
+                                "target", target == null ? "" : target);
+                        if (ref.getOwningMembership() instanceof SubjectMembership) subjects.add(binding);
+                        if (ref.getOwningMembership() instanceof ActorMembership) actors.add(binding);
                     }
                 }
                 item.put("subjects", subjects);
+                item.put("actors", actors);
                 useCases.add(item);
             } else if (object instanceof ActionDefinition action) {
                 Map<String, Object> item = new LinkedHashMap<>();

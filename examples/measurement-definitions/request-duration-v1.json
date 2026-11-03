@@ -1,0 +1,65 @@
+{
+  "version": "measure-definitions-1.0",
+  "id": "RequestDuration",
+  "revision": "synthetic-1",
+  "label": "Mean request handling duration",
+  "definition": {
+    "quantity": "Elapsed handling plus completion work per synthetic request",
+    "scale": "ratio",
+    "inputs": {
+      "handling": {
+        "quantity": "Elapsed handling duration per included request",
+        "unit": {
+          "second": 1
+        },
+        "scale": "ratio"
+      },
+      "completion": {
+        "quantity": "Completion work duration per included request",
+        "unit": {
+          "second": 1
+        },
+        "scale": "ratio"
+      }
+    },
+    "formula": {
+      "op": "add",
+      "args": [
+        {
+          "ref": "handling"
+        },
+        {
+          "ref": "completion"
+        }
+      ]
+    },
+    "unit": {
+      "second": 1
+    },
+    "population": "Synthetic completed requests in the study roster",
+    "boundary": "One synthetic service team; request-level logged work only",
+    "aggregation": {
+      "method": "mean",
+      "basis": "Arithmetic mean of per-request sums; each request has equal weight"
+    },
+    "exclusions": [
+      "Exclude synthetic test requests and retain exclusion counts"
+    ],
+    "window": "Synthetic study day; include requests completed at or after 00:00 and before the next 00:00 UTC",
+    "sampling": "Census of the synthetic roster using the same event log and clock convention",
+    "conditions": [
+      "Handling and completion intervals do not overlap",
+      "Missing timestamps are reported; no zero duration is imputed"
+    ],
+    "uncertainty": "Synthetic authored durations; no field calibration or observed precision claimed"
+  },
+  "sources": {
+    "SyntheticSpec": {
+      "revision": "synthetic-1",
+      "locator": "Authored synthetic fixture in this repository",
+      "basis": "Proposed checker example; no real operational or clinical claim"
+    }
+  },
+  "unknowns": [],
+  "links": []
+}

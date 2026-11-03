@@ -1,0 +1,101 @@
+{
+  "version": "queue-analysis-1.0",
+  "id": "ServicePool",
+  "revision": "synthetic-1",
+  "subject": {
+    "id": "R_POOL",
+    "model_revision": "synthetic-1",
+    "basis": "Original synthetic queue arithmetic example; no NIST operating data."
+  },
+  "time_unit": "minute",
+  "job_unit": "request",
+  "checks": {
+    "Replay": {
+      "kind": "fcfs_replay",
+      "servers": 1,
+      "window": {
+        "start": "0",
+        "end": "8"
+      },
+      "jobs": [
+        {
+          "id": "A",
+          "arrival": "0",
+          "service": "3"
+        },
+        {
+          "id": "B",
+          "arrival": "1",
+          "service": "2"
+        },
+        {
+          "id": "C",
+          "arrival": "2",
+          "service": "1"
+        }
+      ],
+      "assumptions": {
+        "empty_initial_system": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "unit_demand": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "identical_servers": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "nonpreemptive": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "complete_arrivals_in_window": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        }
+      }
+    },
+    "Stationary": {
+      "kind": "mmc",
+      "servers": 2,
+      "arrival_rate": "2",
+      "service_rate": "2",
+      "assumptions": {
+        "poisson_arrivals": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "exponential_service": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "independent_arrivals_and_services": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "identical_servers": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "fcfs": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "infinite_queue": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "no_abandonment": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        },
+        "stationary_rates": {
+          "holds": true,
+          "basis": "Explicit synthetic model assumption; no operating evidence."
+        }
+      }
+    }
+  }
+}

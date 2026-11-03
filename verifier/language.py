@@ -190,6 +190,34 @@ def render_requirement(parsed, properties):
     return head + f" satisfy {comp(parsed['response'])}."
 
 
+def check_repair(before, after, actors, properties, clock, *, requirement_id):
+    """Compare supported semantics without applying or accepting a prose edit."""
+    report = {'checker_version': VERSION, 'rule': 'CSE-LANGUAGE-REPAIR',
+              'ids': [requirement_id], 'phrase': after, 'status': 'unsupported',
+              'claim_scope': 'bounded_requirement_semantics_comparison',
+              'acceptance': 'not_evaluated'}
+    try:
+        original = parse_requirement(before, actors, properties, clock)
+    except (LanguageError, KeyError, TypeError, InvalidOperation) as exc:
+        report.update(detail=f'Original clause has no supported meaning: {exc}',
+                      repair='Retain the source and resolve its meaning before proposing an executable repair.')
+        return report
+    try:
+        candidate = parse_requirement(after, actors, properties, clock)
+    except (LanguageError, KeyError, TypeError, InvalidOperation) as exc:
+        report.update(status='fail', detail=f'Proposed repair leaves the supported grammar/types: {exc}',
+                      repair='Preserve the original obligation, scope, condition, negation, timing and units.')
+        return report
+    changed = sorted(key for key in original.keys() | candidate.keys()
+                     if original.get(key) != candidate.get(key))
+    report.update(status='fail' if changed else 'pass', changed_fields=changed,
+                  detail='Proposed repair changes supported meaning: '+', '.join(changed) if changed else
+                         'The parsed actor, scope, condition, comparisons and timing are unchanged.',
+                  repair='Retain the original clause; present any intended meaning change for an engineer decision.' if changed else
+                         'No supported semantic change found; the comparison does not approve source intent.')
+    return report
+
+
 def _compare(item, row):
     value = row.get(item["name"])
     if value is None:

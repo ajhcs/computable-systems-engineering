@@ -6,6 +6,13 @@ requirement of the cited standards. The reviewed public catalogues and glossary
 sources are identified below; a complete normative clause-level conformity
 assessment has not been performed.
 
+Apply the project's selected controlled-English terminology rules throughout
+authored engineering work using [check-engineering-language](../skills/check-engineering-language/SKILL.md).
+It reuses scoped concept definitions and native IDs, keeps source text/literals
+intact, and reports strict selected violations during drafting. Its
+[rule contract](../skills/check-engineering-language/references/controlled-english.md)
+states the ASD-STE100 Issue 9 basis and actual deterministic coverage.
+
 | Term | CSE usage |
 |---|---|
 | System of interest | The particular system or system element being considered in the current question; state its boundary and environment. |

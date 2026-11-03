@@ -46,6 +46,16 @@ class UnsupportedFeature(ValueError):
     """Valid SysML content outside the executable CSE profile."""
 
 
+def _scalar_shape(feature):
+    """Admit only explicitly known singleton feature shape and owned typing."""
+    multiplicity = feature.get('multiplicity', {})
+    return (type(multiplicity) is dict and multiplicity.get('status') in ('default', 'literal') and
+            type(multiplicity.get('lower')) is int and type(multiplicity.get('upper')) is int and
+            multiplicity['lower'] == multiplicity['upper'] == 1 and feature.get('type') is not None and
+            feature.get('types') == [feature['type']] and
+            all(type(feature.get(flag)) is bool and not feature[flag] for flag in ('is_variation', 'is_variant')))
+
+
 def _problem(report, code, detail, *, status="error", line=None, source=None, owner=None):
     item = {"code": code, "detail": detail}
     if line is not None:
@@ -438,6 +448,8 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
             if part is None or not part.get("type"):
                 raise ValueError(f"{key} subject does not resolve to a typed part")
             definition = part_definitions.get(part["type"], {})
+            if not _scalar_shape(part) or type(definition.get("is_variation")) is not bool or definition["is_variation"]:
+                raise UnsupportedFeature(f"{key} needs a known single-instance, nonvariation subject")
             if (requirement.get("has_specialization") or definition.get("has_specialization") or
                     part.get("has_non_typing_specialization") or part.get("has_native_value")):
                 raise UnsupportedFeature(f"{key} depends on inheritance, specialization, or a native subject value that is not computed")
@@ -460,6 +472,8 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
                         raise ValueError(f"{key} needs one {correlation} attribute on both events")
                     if fields[0].get("type") != "ScalarValues::String":
                         raise UnsupportedFeature(f"{key} correlation type is not yet supported")
+                    if not _scalar_shape(fields[0]):
+                        raise UnsupportedFeature(f"{key} needs a known scalar, nonvariation correlation field")
                     if fields[0].get("has_native_value") or fields[0].get("has_non_typing_specialization"):
                         raise UnsupportedFeature(f"{key} correlation field has a native value or specialization that is not computed")
                 trigger_path = target + "::" + trigger["name"]
@@ -498,6 +512,8 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
                 if attribute.get("part_definition") != part["type"]:
                     continue
                 if attribute.get("direction") not in ("in", "out"):
+                    continue
+                if not _scalar_shape(attribute):
                     continue
                 local = alias + "." + attribute["name"]
                 owner_kind = "input" if attribute["direction"] == "in" else "controlled"

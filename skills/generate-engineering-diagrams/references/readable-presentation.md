@@ -31,3 +31,7 @@ For matrices, keep readable axis names, cell meanings and the key together. Pres
 ## Review the result
 
 Compare the revised view against the same scoped source/model identities. Check aliases, independent texture assignments, meaningful units and relationship direction before measuring layout. Then inspect actual pixels and font identities, clipping, text/edge collisions and ownership of annotations. Keep readable scrolling on narrow screens rather than shrinking formal labels. Geometry and contrast checks do not establish faster comprehension or user acceptance.
+
+## Technical documents
+
+For engineering documents, manuals and drawing sets, use [technical document guidance](../../../docs/technical-documents.md). Use a compact print hierarchy, complete labels and consistent units. Keep process logs and note inventories in linked evidence.

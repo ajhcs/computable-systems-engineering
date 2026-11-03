@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analyze Queues"
+  short_description: "Compute queue waiting and resource utilization"
+  default_prompt: "Use $analyze-queues to analyze this workload or queue model with explicit units, assumptions and observation boundaries."

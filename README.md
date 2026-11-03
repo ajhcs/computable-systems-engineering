@@ -70,6 +70,28 @@ The illustration shortens labels for reading. The model-derived system view and 
 
 **A picture can go stale.** CSE can rerun the native review and compare a saved view with freshly derived artifacts. Changed sources, retargeted connections, altered SVGs, and stale success labels cannot silently preserve a passing view check. The [system-view guide](docs/configuration-system-view.md) explains what is compared. Download the HTML reader and its sibling files to open it locally.
 
+## Analyze a connected engineering question
+
+Eleven focused skills cover coordination, concept, CONOPS, scenarios,
+architecture, measures, evidence planning, queues, failure analysis,
+controlled English and diagrams. Start with the activity that answers the
+current question; a complete lifecycle document set is not required.
+
+| Question | Shared deterministic check |
+| --- | --- |
+| Do equations, units, functions and finite handoffs agree? | [Calculations and function/flow checks](docs/engineering-analysis.md) |
+| Which declared checks are affected by a change? | [Dependency impact](docs/impact-analysis.md) |
+| What do supplied observations establish? | [Measures](docs/measurement-definitions.md) and [observation calculations](docs/observation-validation.md) |
+| Where does the explicit workload wait? | [Queue analysis](docs/queue-analysis.md) |
+| How do shared causes affect a Boolean failure model? | [Failure analysis](docs/failure-analysis.md) |
+| Do reports and diagrams still match their declared sources? | [Artifact freshness](docs/artifact-freshness.md) |
+
+Keep computation results connected to the question, model IDs and current
+revision. Report failed limits and missing evidence early. Detailed methods load
+only when selected; the tools run without loading their implementation into the
+conversation. [Coupled calculations](docs/coupled-calculations.md) explain the
+extra checks needed when physical models and sampled controls interact.
+
 ## Keep the work connected as it grows
 
 - **Use several model files together.** Shared definitions and current-context declarations can remain separate while the checker evaluates the explicit file set.
@@ -140,7 +162,7 @@ Real-world feasibility, source truth, protocol compatibility, stakeholder accept
 
 ## Get started
 
-Clone the repository, open it in Codex, and try a request above. All four skills are independently available from this checkout: system concept, concept of operations (CONOPS), operational scenarios, and engineering diagrams.
+Clone the repository, open it in Codex, and try a request above. All eleven skills are independently available from this checkout. Use the coordination skill for connected work or invoke the relevant activity directly.
 
 ```bash
 git clone https://github.com/ajhcs/computable-systems-engineering.git

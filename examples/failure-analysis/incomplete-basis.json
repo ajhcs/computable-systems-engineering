@@ -1,0 +1,53 @@
+{
+  "version": "failure-analysis-1.0",
+  "id": "IncompleteFailureBasis",
+  "revision": "synthetic-1",
+  "basis": "Synthetic Boolean example; all events refer to the same mission.",
+  "events": {
+    "A": {
+      "description": "A failure",
+      "basis": null,
+      "probability": "1/100"
+    },
+    "B": {
+      "description": "B failure",
+      "basis": "Synthetic exact probability",
+      "probability": "1/200"
+    },
+    "C": {
+      "description": "C failure",
+      "basis": "Synthetic exact probability",
+      "probability": "1/500"
+    }
+  },
+  "gates": {
+    "AB": {
+      "operator": "and",
+      "inputs": [
+        "A",
+        "B"
+      ]
+    },
+    "AC": {
+      "operator": "and",
+      "inputs": [
+        "A",
+        "C"
+      ]
+    },
+    "Top": {
+      "operator": "or",
+      "inputs": [
+        "AB",
+        "AC"
+      ]
+    }
+  },
+  "top_event": "Top",
+  "probability": {
+    "assumption": "mutually_independent",
+    "basis": "Explicit synthetic assumption",
+    "mission": "One synthetic mission"
+  },
+  "fmea": {}
+}

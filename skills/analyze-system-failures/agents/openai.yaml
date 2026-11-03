@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analyze system failures"
+  short_description: "Check Boolean fault trees and FMEA record consistency"
+  default_prompt: "Use $analyze-system-failures to check this fault tree and its FMEA records with explicit assumptions."

@@ -1,0 +1,23 @@
+/* CSE technical note starter. Supply embedded project fonts; verify the exported pages. */
+@page {size:A4 landscape;margin:0}
+ *{box-sizing:border-box}
+ body{margin:0;background:#ddd;color:#111;font-family:var(--technical-sans,Plex),sans-serif}
+ .page{width:297mm;height:210mm;padding:12mm 15mm 10mm;background:#fff;position:relative;margin:8mm auto;overflow:hidden}
+ h1{font-size:19pt;font-weight:600;margin:0 0 3mm}
+ h2{font-size:12pt;font-weight:600;margin:4mm 0 2mm;border-bottom:1px solid #333;padding-bottom:1mm}
+ p{font-size:10pt;line-height:1.32;margin:2mm 0}
+ .meta{border-top:1.5px solid #111;border-bottom:1px solid #777;padding:2mm 0;display:flex;justify-content:space-between;font-size:9pt}
+ figure{margin:2mm 0}
+ figure img{width:100%;display:block}
+ figure img{width:var(--figure-width,100%)}
+ figcaption{font-size:9pt;margin-top:1mm}
+ table{width:100%;border-collapse:collapse;font-size:9pt}
+ th,td{border:1px solid #888;text-align:left;padding:1.5mm;vertical-align:top}
+ th{background:#eee}
+ code{font-family:var(--technical-mono,PlexMono),monospace;font-size:8.5pt}
+ footer{position:absolute;bottom:7mm;left:15mm;right:15mm;border-top:1px solid #333;padding-top:2mm;display:flex;justify-content:space-between;font-size:8pt}
+ .columns{display:grid;grid-template-columns:1fr 1fr;gap:8mm}
+ @media print{body{background:white}
+.page{margin:0;break-after:page}
+.page:last-child{break-after:auto}
+}
