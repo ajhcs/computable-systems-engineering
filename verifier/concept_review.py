@@ -6,6 +6,7 @@ retain. No project obligations or allocation minima are inferred from the draft.
 from copy import deepcopy
 from hashlib import sha256
 import json
+from pathlib import Path
 import re
 
 from .core import _pairs
@@ -13,6 +14,7 @@ from .foundation import Invalid, _object, read_regular, check_profile
 from .workflow import KINDS, inspect_workflow, capture_model_inputs
 from .human_tasks import expectation as task_expectation, inspect_tasks
 from .ownership import expectation as ownership_expectation, inspect_ownership
+from .terminology import apply_drafting_profiles
 
 VERSION = 'concept-review-1.2'
 COMPOSED_SCOPE = 'concept-review-1.3'
@@ -242,6 +244,7 @@ def allocation_profile(scope, record, model_digest):
 
 def inspect_concept(model_path, scope_path, expected_scope_sha256, source_paths):
     report = {'version': VERSION, 'status': 'error', 'claim_scope': 'project_scoped_documentary_coverage',
+        'coverage_status': 'not_run',
         'project': None, 'findings': [], 'workflow_status': 'not_run', 'allocation_status': 'not_run',
         'human_task_status': 'not_run',
         'ownership_status': 'not_run',
@@ -253,6 +256,7 @@ def inspect_concept(model_path, scope_path, expected_scope_sha256, source_paths)
             'Plans are not observed operational evidence; narrative walks are not executable behavior.',
             'Hashes identify input bytes, not authenticated approval or protected execution.']}
     captured = []
+    model_paths, selected_profiles = [], None
     def issue(rule, status, ids, detail):
         report['findings'].append({'rule': rule, 'status': status, 'ids': ids, 'detail': detail})
     try:
@@ -275,6 +279,16 @@ def inspect_concept(model_path, scope_path, expected_scope_sha256, source_paths)
         report['model_files'] = files
         captured = [(path, raw, 5_000_000) for path, raw in models]
         captured.append((scope_path, scope_raw, 1_000_000))
+        model_paths = [path for path, _ in models]
+        selected_profiles = [Path(path).with_suffix('.english.json') for path in model_paths
+            if Path(path).with_suffix('.english.json').exists() or Path(path).with_suffix('.english.json').is_symlink()]
+        for path in selected_profiles:
+            try:
+                captured.append((path, read_regular(path, 1_000_000), 1_000_000))
+            except (OSError, ValueError):
+                # Let the shared English checker report malformed/inaccessible
+                # selections without discarding otherwise available coverage.
+                pass
         for key, path in sorted(source_paths.items()):
             raw = read_regular(path, 1_000_000)
             captured.append((path, raw, 1_000_000))
@@ -350,9 +364,29 @@ def inspect_concept(model_path, scope_path, expected_scope_sha256, source_paths)
         issue('input_or_scope', 'error', [], str(exc))
         report['status'] = 'error'
     finally:
+        report['coverage_status'] = report['status']
+        if 'workflow' in report:
+            # Workflow inventories omit document bodies. Reuse the shared
+            # selected-profile route, which reparses only when English is selected.
+            report = apply_drafting_profiles(report, model_paths)
+            for finding in report.get('english', {}).get('findings', []):
+                if finding['status'] not in ('error', 'fail', 'unsupported', 'unknown', 'not_run'):
+                    continue
+                phrase, repair = finding.get('phrase', ''), finding.get('repair', '')
+                detail = (repr(phrase)+': ' if phrase else '') + finding['detail']
+                if repair:
+                    detail += ' Repair: '+repair
+                report['findings'].append({'rule': 'english.'+finding['rule'],
+                    'status': finding['status'], 'ids': finding.get('ids', []),
+                    'detail': detail, 'phrase': phrase, 'repair': repair})
         try:
+            current_profiles = [Path(path).with_suffix('.english.json') for path in model_paths
+                if Path(path).with_suffix('.english.json').exists() or Path(path).with_suffix('.english.json').is_symlink()]
+            if selected_profiles is not None and current_profiles != selected_profiles:
+                issue('input_changed', 'error', [], 'Selected English profile files changed during checking.')
+                report['status'] = 'error'
             if any(read_regular(path, cap) != raw for path, raw, cap in captured):
-                issue('input_changed', 'error', [], 'A captured model, scope or source changed during checking.')
+                issue('input_changed', 'error', [], 'A captured model, scope, source or English profile changed during checking.')
                 report['status'] = 'error'
         except (OSError, ValueError) as exc:
             issue('input_changed', 'error', [], str(exc))
@@ -377,10 +411,15 @@ def scope_diff(before, after):
 
 def render_text(report):
     project = report.get('project') or {}
-    lines = ['Concept coverage: ' + report['status'] + '.',
+    lines = ['Concept review: ' + report['status'] + '.',
+        'Documentary coverage: ' + report.get('coverage_status', report['status']) + '.',
         'Project: ' + project.get('name', 'unresolved'), 'Question: ' + project.get('question', 'unresolved'),
         'Boundary: ' + project.get('boundary', 'unresolved'),
         'Workflow checks: ' + report['workflow_status'] + '; allocation counts: ' + report['allocation_status'] + '.']
+    if 'english' in report:
+        english = report['english']
+        lines.append('Controlled English: '+english['status']+'; '+str(len(english.get('selected_terms', [])))+
+                     ' selected term(s), '+str(len(english.get('checked_views', [])))+' authored view(s).')
     record = report.get('workflow', {}).get('record') or {}
     elements = record.get('elements', {})
     for key, view in report.get('composed_views', {}).items():

@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "GlobalSyntax": {
+      "global": true,
+      "targets": []
+    },
+    "OtherReview": {
+      "global": false,
+      "targets": [
+        "Unrelated"
+      ]
+    },
+    "ScenarioReview": {
+      "global": false,
+      "targets": [
+        "Scenario"
+      ]
+    },
+    "ViewReconcile": {
+      "global": false,
+      "targets": [
+        "View"
+      ]
+    }
+  },
+  "version": "impact-scope-1.0"
+}

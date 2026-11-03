@@ -13,11 +13,11 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from verifier.foundation import check_profile, inspect, execute, load_profile, Invalid, MAX_BYTES
-from verifier.sysml import check_sysml, JAR
+from verifier.sysml import check_sysml, JAR, CLASSES
 
 PROFILE = json.loads((ROOT/'examples/foundation/profile.json').read_text())
 MODEL = ROOT/'examples/foundation/cse-self-model.sysml'
-# Synthetic adapter snapshot for unit cases; actual native coverage is exercised in test_concept_review.py.
+# Synthetic adapter snapshot for unit cases; NativeFoundationTests exercises the real parser.
 NATIVE = {'status':'pass', 'model_sha256':sha256(MODEL.read_bytes()).hexdigest(), 'inventory':{
  'parts':[{'qualified_name':'CSEFoundation::'+n} for n in ('system','engineer','assistant','checker','simulator')],
  'actions':[{'qualified_name':'CSEFoundation::'+n} for n in ('ReviewSource','CheckCandidate','DraftScenario')],
@@ -235,6 +235,60 @@ class FoundationTests(unittest.TestCase):
         with patch('verifier.foundation.inspect',return_value=(deepcopy(PROFILE),result())):
             r=execute('ignored','ignored','SIMULATE')
         self.assertEqual(r['status'],'unsupported');self.assertIn('capability_unavailable',rules(r))
+
+@unittest.skipUnless(JAR.is_file() and (CLASSES / 'SysmlBridge.class').is_file(), 'Install the pinned SysML parser')
+class NativeFoundationTests(unittest.TestCase):
+    def test_declared_subject_and_actors_resolve_in_actual_native_model(self):
+        _, report = inspect(ROOT/'examples/foundation/profile.json', MODEL)
+        self.assertEqual(report['status'], 'pass', report)
+
+    def test_actual_retargeted_and_duplicate_actors_fail_declared_correspondence(self):
+        (ROOT/'.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            for actor_text in ('actor drafter = checker;',
+                               'actor drafter = assistant; actor duplicate = engineer;'):
+                with self.subTest(actor_text=actor_text):
+                    model = Path(directory)/'changed.sysml'
+                    model.write_text(MODEL.read_text().replace('actor drafter = assistant;', actor_text))
+                    profile = deepcopy(PROFILE)
+                    profile['source_sha256'] = sha256(model.read_bytes()).hexdigest()
+                    native = check_sysml(model, syntax_only=True)
+                    self.assertEqual(native['status'], 'pass', native)
+                    report = check_profile(profile, native)
+                    self.assertEqual(report['status'], 'fail', report)
+                    self.assertIn('native_actors', rules(report))
+
+    def test_nested_or_compound_values_cannot_supply_a_native_binding(self):
+        cases = (
+            ('actor owner = engineer;', 'actor owner { ref part nested = engineer; }', 'native_actors'),
+            ('actor owner = engineer;', 'actor owner = (engineer, checker);', 'native_actors'),
+            ('subject unit = system;', 'subject unit { ref part nested = system; }', 'native_subject'),
+        )
+        (ROOT/'.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            for original, changed, rule in cases:
+                with self.subTest(changed=changed):
+                    model = Path(directory)/'unsupported-binding.sysml'
+                    model.write_text(MODEL.read_text().replace(original, changed))
+                    profile = deepcopy(PROFILE)
+                    profile['source_sha256'] = sha256(model.read_bytes()).hexdigest()
+                    native = check_sysml(model, syntax_only=True)
+                    self.assertEqual(native['status'], 'pass', native)
+                    report = check_profile(profile, native)
+                    self.assertEqual(report['status'], 'fail', report)
+                    self.assertIn(rule, rules(report))
+
+    def test_parenthesized_direct_reference_retains_the_actor_binding(self):
+        (ROOT/'.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            model = Path(directory)/'parenthesized.sysml'
+            model.write_text(MODEL.read_text().replace('actor owner = engineer;', 'actor owner = (engineer);'))
+            profile = deepcopy(PROFILE)
+            profile['source_sha256'] = sha256(model.read_bytes()).hexdigest()
+            native = check_sysml(model, syntax_only=True)
+            self.assertEqual(native['status'], 'pass', native)
+            self.assertEqual(check_profile(profile, native)['status'], 'pass')
+
 
 if __name__ == "__main__":
     unittest.main()

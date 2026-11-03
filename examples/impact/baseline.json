@@ -1,0 +1,53 @@
+{
+  "complete": true,
+  "dependencies": {
+    "RequirementScenario": {
+      "dependency": "Requirement",
+      "dependent": "Scenario",
+      "kind": "uses"
+    },
+    "ScenarioView": {
+      "dependency": "Scenario",
+      "dependent": "View",
+      "kind": "view_of"
+    },
+    "SourceRequirement": {
+      "dependency": "Source",
+      "dependent": "Requirement",
+      "kind": "derived_from"
+    }
+  },
+  "nodes": {
+    "Requirement": {
+      "kind": "requirement",
+      "native_name": "Demo::Bound",
+      "sha256": "dc33fdb1bbe1ef385ce4874299b4dedb451c0e34a1a136d0439c8e113a401e8f"
+    },
+    "Scenario": {
+      "kind": "scenario",
+      "native_name": "Demo::Transfer",
+      "sha256": "32c57f5f7fb09f5b10c1e4318bc0ab6fda51986254669de5177eacbb2d7faf29"
+    },
+    "Source": {
+      "kind": "source",
+      "native_name": null,
+      "sha256": "809f185d52c14f551a62c7cdec9351c62979055d604af18f7523a28433a4f610"
+    },
+    "Unrelated": {
+      "kind": "element",
+      "native_name": "Demo::Other",
+      "sha256": "5d40a189e9e8a08ad76c9f70759ca53eeee449f61a0bbedcb895ed945bd01852"
+    },
+    "View": {
+      "kind": "view",
+      "native_name": null,
+      "sha256": "0fbec1487cfb5e90b3face0a04bb1058c0f2edcdf3e63df675840c83a1b045fd"
+    }
+  },
+  "revision": {
+    "id": "synthetic-baseline",
+    "sha256": "c5c389493b2bdb109227e3cf18c98373fd82c3cbe40fe19dc45103f92d92e0d4"
+  },
+  "unresolved": [],
+  "version": "impact-snapshot-1.0"
+}

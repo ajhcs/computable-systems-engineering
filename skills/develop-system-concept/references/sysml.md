@@ -76,12 +76,7 @@ slice and `python3 <skill-dir>/scripts/cse.py diff --before OLD.sysml --after NE
 to inspect structural and documentation changes. The diff reports conservative
 directly affected elements; review consequential changes with the engineer.
 
-Return readable views from the model, not a raw SysML dump as the sole result.
-For a combined request, show the concept summary and the requested ordered
-operational sequence, referencing the same IDs and model revision. Include
-useful diagrams when relationships or sequencing need them. Report syntax,
-compilation, synthetic test coverage, and supplied-evidence results separately;
-explain unsupported constructs and qualitative content in plain language.
+Return the requested engineering view from the shared model and revision. For documents, follow [technical document guidance](../../../docs/technical-documents.md). Keep detailed computation and test receipts in linked evidence; retain the scope and unresolved facts needed to read the document correctly.
 
 For recorded concept work, also follow the system-concept skill's
 [project-tailored coverage review](../../../docs/concept-review.md). Its

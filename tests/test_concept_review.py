@@ -17,6 +17,7 @@ from verifier.concept_review import (schema, starter, compare, allocation_profil
     inspect_concept, scope_diff, render_text)
 from verifier.workflow import draft_model
 from verifier.sysml import JAR, CLASSES
+from verifier.foundation import term_digest
 
 EXAMPLE = ROOT/'examples/concept-review/lending'
 SOFTWARE = ROOT/'examples/concept-review/software'
@@ -24,6 +25,9 @@ SCOPE = json.loads((EXAMPLE/'scope.json').read_text())
 MODEL_TEXT = (EXAMPLE/'concept.sysml').read_text()
 BASE, PAYLOAD = MODEL_TEXT.split("package 'LendingMetadata' {", 1)
 RECORD = json.loads(PAYLOAD.split('doc cseWorkflow /*CSE-WORKFLOW/1.0',1)[1].split('*/',1)[0])
+REFRAMING_SCOPE = json.loads((EXAMPLE/'reframing-scope.json').read_text())
+REFRAMING_TEXTS = [(EXAMPLE/('reframing-'+stage+'.sysml')).read_text() for stage in ('before','after')]
+REFRAMING_RECORDS = [json.loads(text.split('doc cseWorkflow /*CSE-WORKFLOW/1.0',1)[1].split('*/',1)[0]) for text in REFRAMING_TEXTS]
 PARSER = JAR.is_file() and (CLASSES/'SysmlBridge.class').is_file()
 
 
@@ -72,6 +76,34 @@ class ScopeTests(unittest.TestCase):
     def test_evaluation_plan_cannot_be_relabelled_as_observed_support(self):
         r=deepcopy(RECORD);r['evidence']['E_READY'].update(mode='assessment',result='supported')
         self.assertIn('evaluation_meaning_changed',{x['rule'] for x in compare(SCOPE,r)[0]})
+
+    def test_reframing_retains_original_obligations_and_unexecuted_evaluations(self):
+        schema(REFRAMING_SCOPE)
+        for field in ('project','topics','expectations','allocation_bounds'):
+            self.assertEqual(REFRAMING_SCOPE[field],SCOPE[field])
+        self.assertEqual(REFRAMING_SCOPE['sources']['SYN'],SCOPE['sources']['SYN'])
+        for record in REFRAMING_RECORDS:
+            self.assertEqual(compare(REFRAMING_SCOPE,record)[0],[])
+            for key,element in RECORD['elements'].items():
+                self.assertEqual(record['elements'][key]['native_name'],element['native_name'])
+                self.assertEqual(record['elements'][key]['kind'],element['kind'])
+            for key,plan in RECORD['evidence'].items():
+                self.assertEqual({field:record['evidence'][key][field] for field in ('mode','result','purpose','target')},
+                                 {field:plan[field] for field in ('mode','result','purpose','target')})
+            self.assertEqual(record['evidence']['E_DIFFERENTIATE']['mode'],'plan')
+            self.assertEqual(record['evidence']['E_DIFFERENTIATE']['result'],'not_run')
+            self.assertEqual(record['sources']['STUDY']['kind'],'provided')
+            self.assertNotIn('accepted',{d['status'] for d in record['decisions'].values()})
+
+    def test_reframing_cannot_hide_a_removed_responsibility_or_relabelled_plan(self):
+        revised=REFRAMING_RECORDS[1]
+        omitted=deepcopy(revised)
+        omitted['relations']={k:v for k,v in omitted['relations'].items()
+            if (v['kind'],v['from'],v['to'])!=('allocated_to','F_RESTORE','R_TECH')}
+        self.assertIn('missing_scoped_relation',{x['rule'] for x in compare(REFRAMING_SCOPE,omitted)[0]})
+        relabelled=deepcopy(revised)
+        relabelled['evidence']['E_READY'].update(mode='assessment',result='supported')
+        self.assertIn('evaluation_meaning_changed',{x['rule'] for x in compare(REFRAMING_SCOPE,relabelled)[0]})
 
     def test_counts_are_selected_and_no_default_minimum_is_invented(self):
         software=json.loads((SOFTWARE/'scope.json').read_text())
@@ -184,6 +216,36 @@ class NativeReviewTests(unittest.TestCase):
         self.assertEqual(self.baseline['acceptance'],'not_evaluated')
         self.assertIn('not executable',render_text(self.baseline))
 
+    def test_reframing_revisions_use_the_same_retained_native_review_scope(self):
+        scope_path=EXAMPLE/'reframing-scope.json'
+        digest=(EXAMPLE/'reframing-scope.sha256').read_text().strip()
+        self.assertEqual(digest,sha256(scope_path.read_bytes()).hexdigest())
+        sources={'SYN':EXAMPLE/'brief.md','STUDY':EXAMPLE/'reframing-study.md'}
+        for stage in ('before','after'):
+            with self.subTest(stage=stage):
+                result=inspect_concept(EXAMPLE/('reframing-'+stage+'.sysml'),scope_path,digest,sources)
+                self.assertEqual(result['status'],'pass',result['findings'])
+                self.assertEqual(result['allocation_status'],'pass')
+                self.assertEqual(result['acceptance'],'not_evaluated')
+                self.assertEqual(result['coverage']['checked'],sorted(REFRAMING_SCOPE['expectations']))
+                self.assertEqual(result['coverage']['not_run'],[])
+
+    def test_reframing_native_review_still_detects_clean_obligation_loss(self):
+        record=deepcopy(REFRAMING_RECORDS[1])
+        record['relations']={k:v for k,v in record['relations'].items()
+            if (v['kind'],v['from'],v['to'])!=('allocated_to','F_RESTORE','R_TECH')}
+        base=REFRAMING_TEXTS[1].split("package 'LendingMetadata' {",1)[0]
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            model=Path(directory)/'reframing-without-maintainer.sysml'
+            model.write_text(draft_model(record,'LendingMetadata',base))
+            result=inspect_concept(model,EXAMPLE/'reframing-scope.json',
+                (EXAMPLE/'reframing-scope.sha256').read_text().strip(),
+                {'SYN':EXAMPLE/'brief.md','STUDY':EXAMPLE/'reframing-study.md'})
+        self.assertEqual(result['workflow_status'],'pass',result['findings'])
+        self.assertEqual(result['allocation_status'],'pass')
+        self.assertEqual(result['status'],'fail')
+        self.assertIn('missing_scoped_relation',{x['rule'] for x in result['findings']})
+
     def inspect_variant(self,record,base=BASE,scope=SCOPE,source=None):
         with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
             d=Path(directory);model=d/'model.sysml';model.write_text(draft_model(record,'LendingMetadata',base))
@@ -279,6 +341,131 @@ class NativeReviewTests(unittest.TestCase):
             self.assertEqual(out.returncode,1,out.stderr+out.stdout)
             report=json.loads(out.stdout)
             self.assertTrue(any(f['rule']=='native_parser' for f in report['findings']),report)
+
+
+@unittest.skipUnless(PARSER, 'Install the pinned SysML parser')
+class NativeEnglishReviewTests(unittest.TestCase):
+    """Use real native text and CLI behavior for the selected-language boundary."""
+
+    def prepare(self, directory, *, phrase='as appropriate', missing_coverage=False):
+        directory = Path(directory)
+        body = 'The desk operator records the fault handoff'+(' '+phrase if phrase else '')+'.'
+        base = BASE.replace('    part deskOperator : PersonRole;',
+            '    part deskOperator : PersonRole {\n        doc handoff /* '+body+' */\n    }', 1)
+        record = deepcopy(RECORD)
+        if missing_coverage:
+            record['relations'] = {key: value for key, value in record['relations'].items()
+                if (value['kind'], value['from'], value['to']) != ('allocated_to', 'F_RESTORE', 'R_TECH')}
+        model = directory/'model.sysml'
+        model.write_text(draft_model(record, 'LendingMetadata', base))
+        term = {'namespace': 'LendingExample', 'revision': '1', 'label': 'desk operator',
+                'definition': 'The on-duty person who handles the selected lending desk transactions.',
+                'kind': 'resource', 'part_of_speech': 'noun', 'approved_forms': ['desk operator']}
+        profile = {'version': 'foundation-1.0', 'source_sha256': sha256(model.read_bytes()).hexdigest(),
+            'terms': {'T_DESK': term},
+            'elements': {'R_DESK': {'kind': 'resource', 'term': 'T_DESK', 'native_name': 'LendingExample::deskOperator'}},
+            'relations': [], 'use_cases': {}, 'allocations': {}, 'capabilities': {},
+            'english': {'version': 'english-1.0', 'revision': '1',
+                'rules': ['ASD-STE100-1.11', 'CSE-TERM-POS', 'CSE-PHRASES'],
+                'terms': {'T_DESK': term_digest(term)},
+                'views': {'V_HANDOFF': {'element': 'R_DESK', 'document': 'handoff',
+                    'text_sha256': sha256(body.encode()).hexdigest(),
+                    'uses': [{'term': 'T_DESK', 'slot': 'noun', 'start': 4, 'end': 17}], 'preserved': []}},
+                'phrases': {'P_VAGUE': {'phrase': 'as appropriate', 'severity': 'required',
+                    'repair': 'State the applicable condition or retain an unresolved question.'}}}}
+        write_json(model.with_suffix('.english.json'), profile)
+        return model
+
+    def run_cli(self, model, command='check', extra_models=(), json_output=True):
+        cmd = [sys.executable, '-B', str(ROOT/'skills/develop-system-concept/scripts/cse.py'),
+               'concept-review', command, str(model), *(str(path) for path in extra_models),
+               '--scope', str(EXAMPLE/'scope.json'), '--scope-sha256', (EXAMPLE/'scope.sha256').read_text().strip(),
+               '--source', 'SYN='+str(EXAMPLE/'brief.md')]
+        if command == 'check' and json_output:
+            cmd.append('--json')
+        return subprocess.run(cmd, cwd=Path(model).parent, capture_output=True, text=True, timeout=60)
+
+    def test_selected_phrase_blocks_cli_and_next_evidence_without_erasing_coverage(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            model = self.prepare(directory)
+            completed = self.run_cli(model)
+            self.assertEqual(completed.returncode, 1, completed.stdout+completed.stderr)
+            report = json.loads(completed.stdout)
+            self.assertEqual(report['coverage_status'], 'pass')
+            self.assertEqual(report['english']['status'], 'fail')
+            self.assertEqual(report['status'], 'fail')
+            finding = next(f for f in report['findings'] if f['rule'] == 'english.CSE-PHRASE/P_VAGUE')
+            self.assertEqual(finding['phrase'], 'as appropriate')
+            self.assertIn('applicable condition', finding['repair'])
+            self.assertIn('Repair:', render_text(report))
+            completed = self.run_cli(model, 'next-evidence')
+            self.assertEqual(completed.returncode, 1, completed.stdout+completed.stderr)
+            actions = json.loads(completed.stdout)['actions']
+            action = next(a for a in actions if a['rule'] == 'english.CSE-PHRASE/P_VAGUE')
+            self.assertIn('as appropriate', action['question'])
+            self.assertIn('applicable condition', action['question'])
+
+    def test_positive_cli_and_no_profile_compatibility(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            model = self.prepare(directory, phrase='')
+            completed = self.run_cli(model)
+            self.assertEqual(completed.returncode, 0, completed.stdout+completed.stderr)
+            report = json.loads(completed.stdout)
+            self.assertEqual((report['status'], report['coverage_status'], report['english']['status']), ('pass', 'pass', 'pass'))
+            model.with_suffix('.english.json').unlink()
+            completed = self.run_cli(model)
+            self.assertEqual(completed.returncode, 0, completed.stdout+completed.stderr)
+            self.assertNotIn('english', json.loads(completed.stdout))
+
+    def test_fixing_phrase_restores_only_language_while_missing_coverage_stays_failed(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            model = self.prepare(directory, missing_coverage=True)
+            before = json.loads(self.run_cli(model).stdout)
+            self.assertEqual((before['coverage_status'], before['english']['status']), ('fail', 'fail'))
+            model = self.prepare(directory, phrase='', missing_coverage=True)
+            completed = self.run_cli(model)
+            self.assertEqual(completed.returncode, 1, completed.stdout+completed.stderr)
+            after = json.loads(completed.stdout)
+            self.assertEqual((after['status'], after['coverage_status'], after['english']['status']), ('fail', 'fail', 'pass'))
+            self.assertIn('missing_scoped_relation', {finding['rule'] for finding in after['findings']})
+            self.assertFalse(any(f['rule'].startswith('english.') for f in after['findings']))
+
+    def test_malformed_selected_profile_cannot_turn_coverage_pass_into_review_success(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            model = self.prepare(directory, phrase='')
+            model.with_suffix('.english.json').write_text('{malformed')
+            completed = self.run_cli(model)
+            self.assertEqual(completed.returncode, 1, completed.stdout+completed.stderr)
+            report = json.loads(completed.stdout)
+            self.assertEqual((report['coverage_status'], report['english']['status'], report['status']), ('pass', 'error', 'error'))
+
+    def test_selected_profile_over_native_bundle_retains_unsupported_language_status(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            model = self.prepare(directory, phrase='')
+            base, payload = model.read_text().split("package 'LendingMetadata' {", 1)
+            model.write_text(base)
+            metadata = Path(directory)/'metadata.sysml'
+            metadata.write_text("package 'LendingMetadata' {"+payload)
+            completed = self.run_cli(model, extra_models=[metadata])
+            self.assertEqual(completed.returncode, 1, completed.stdout+completed.stderr)
+            report = json.loads(completed.stdout)
+            self.assertEqual((report['coverage_status'], report['english']['status'], report['status']), ('pass', 'unsupported', 'unsupported'))
+
+    def test_profile_changed_after_language_check_invalidates_whole_review(self):
+        from verifier.concept_review import apply_drafting_profiles as real_apply
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            model = self.prepare(directory, phrase='')
+            def change_after_check(report, paths):
+                result = real_apply(report, paths)
+                profile = model.with_suffix('.english.json')
+                profile.write_text(profile.read_text()+'\n')
+                return result
+            with patch('verifier.concept_review.apply_drafting_profiles', side_effect=change_after_check):
+                report = inspect_concept(model, EXAMPLE/'scope.json',
+                    (EXAMPLE/'scope.sha256').read_text().strip(), {'SYN': EXAMPLE/'brief.md'})
+            self.assertEqual(report['english']['status'], 'pass')
+            self.assertEqual(report['status'], 'error')
+            self.assertIn('input_changed', {finding['rule'] for finding in report['findings']})
 
 
 if __name__=='__main__':

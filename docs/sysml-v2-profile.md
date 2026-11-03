@@ -120,6 +120,16 @@ attributes. Trace evidence uses the resolved part path, such as
 wrong direction for the response, unsupported types, malformed text, and stale
 model hashes. Arbitrary code in documentation is never executed.
 
+The sampled subject and referenced attributes must have known singleton shape
+and one explicit type. Default multiplicity and explicit `[1]` are admitted;
+collections, optional multiplicity such as `[0..1]`, unresolved shape and variation
+are unsupported. Unsupported attributes outside the selected clause remain
+outside its compiled input. Their existence cannot turn a referenced collection
+into a scalar. The correlated-event profile likewise requires each selected
+String correlation field to be scalar; unrelated unsupported fields do not supply
+correlation identity. This check does not interpret collection elements or native
+variation semantics.
+
 The [correlated-event example](../examples/sysml/correlated-events.sysml) uses
 `CSE-EVENT/2.0` on a required constraint:
 

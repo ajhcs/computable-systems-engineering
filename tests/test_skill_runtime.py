@@ -41,7 +41,10 @@ class RuntimeTests(unittest.TestCase):
             self.assertNotIn("bad class file", result.stderr)
 
     def test_repo_skill_links_resolve_to_complete_skills(self):
-        for name in SKILLS:
+        sources = sorted((ROOT / "skills").glob("*/SKILL.md"))
+        self.assertTrue(sources)
+        for source in sources:
+            name = source.parent.name
             skill = ROOT / ".agents/skills" / name
             self.assertTrue(skill.is_symlink())
             self.assertEqual(skill.resolve(), ROOT / "skills" / name)

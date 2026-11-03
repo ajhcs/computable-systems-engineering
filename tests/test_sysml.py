@@ -325,6 +325,59 @@ class SysmlTests(unittest.TestCase):
             report = check_sysml(path, manifest=EVENT_MANIFEST, evidence=evidence, review=True)
             self.assertEqual(report["status"], "unsupported", report["findings"])
 
+    def test_sampled_referenced_attribute_requires_scalar_shape(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            path = Path(directory)/'sampled-shape.sysml'
+            for cardinality in ('[2]', '[0..1]', '[1]'):
+                path.write_text(MODEL.read_text().replace('acknowledged : Boolean;', 'acknowledged : Boolean'+cardinality+';'))
+                evidence = copy.deepcopy(EVIDENCE); evidence['model_sha256'] = sha256(path.read_bytes()).hexdigest()
+                report = check_sysml(path, manifest=MANIFEST, evidence=evidence, review=True)
+                self.assertEqual(report['parser_issues'], [])
+                expected = 'pass' if cardinality == '[1]' else 'unsupported'
+                self.assertEqual(report['status'], expected, report['findings'])
+                if expected == 'unsupported':
+                    self.assertEqual(report['coverage']['compiled'], [])
+                    self.assertEqual(report['coverage']['unsupported'], ['R_ACK__responseTime'])
+            # The unsupported attribute is outside this selected clause.
+            path.write_text(MODEL.read_text().replace('out attribute acknowledged : Boolean;',
+                'out attribute acknowledged : Boolean;\n        out attribute unrelated : Boolean[2];'))
+            evidence['model_sha256'] = sha256(path.read_bytes()).hexdigest()
+            report = check_sysml(path, manifest=MANIFEST, evidence=evidence, review=True)
+            self.assertEqual(report['status'], 'pass', report['findings'])
+            self.assertNotIn('unit.unrelated', report['results']['R_ACK__responseTime']['binding'])
+
+    def test_correlated_event_field_requires_scalar_shape(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            path = Path(directory)/'event-shape.sysml'
+            for cardinality in ('[2]', '[0..1]', '[1]'):
+                path.write_text(EVENT_MODEL.read_text().replace('correlationId : String;', 'correlationId : String'+cardinality+';'))
+                evidence = copy.deepcopy(EVENT_EVIDENCE); evidence['model_sha256'] = sha256(path.read_bytes()).hexdigest()
+                report = check_sysml(path, manifest=EVENT_MANIFEST, evidence=evidence, review=True)
+                self.assertEqual(report['parser_issues'], [])
+                expected = 'pass' if cardinality == '[1]' else 'unsupported'
+                self.assertEqual(report['status'], expected, report['findings'])
+                if expected == 'unsupported':
+                    self.assertEqual(report['coverage']['compiled'], [])
+                    self.assertEqual(report['coverage']['unsupported'], ['R_EVENT__responseTime'])
+            path.write_text(EVENT_MODEL.read_text().replace('attribute correlationId : String;',
+                'attribute correlationId : String; attribute unrelated : String[2];'))
+            evidence['model_sha256'] = sha256(path.read_bytes()).hexdigest()
+            report = check_sysml(path, manifest=EVENT_MANIFEST, evidence=evidence, review=True)
+            self.assertEqual(report['status'], 'pass', report['findings'])
+
+    def test_sampled_subject_requires_single_instance_shape(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            path = Path(directory)/'subject-shape.sysml'
+            for cardinality in ('[2]', '[0..1]', '[1]'):
+                path.write_text(MODEL.read_text().replace('part controller : Controller;', 'part controller : Controller'+cardinality+';'))
+                evidence = copy.deepcopy(EVIDENCE); evidence['model_sha256'] = sha256(path.read_bytes()).hexdigest()
+                report = check_sysml(path, manifest=MANIFEST, evidence=evidence, review=True)
+                self.assertEqual(report['parser_issues'], [])
+                expected = 'pass' if cardinality == '[1]' else 'unsupported'
+                self.assertEqual(report['status'], expected, report['findings'])
+                if expected == 'unsupported':
+                    self.assertEqual(report['coverage']['compiled'], [])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,55 @@
+{
+  "version": "calculations-1.0",
+  "id": "EnergyBudget",
+  "revision": "synthetic-energy-1",
+  "variables": {
+    "Power": {
+      "domain": "rational",
+      "values": [
+        "2",
+        "4"
+      ],
+      "unit": {
+        "Wh": 1,
+        "hour": -1
+      },
+      "basis": "Synthetic authored input"
+    },
+    "Duration": {
+      "domain": "rational",
+      "values": [
+        "2",
+        "3"
+      ],
+      "unit": {
+        "hour": 1
+      },
+      "basis": "Synthetic authored input"
+    }
+  },
+  "assumptions": {},
+  "checks": {
+    "Capacity": {
+      "kind": "forall",
+      "relation": "le",
+      "lhs": {
+        "op": "mul",
+        "args": [
+          {
+            "ref": "Power"
+          },
+          {
+            "ref": "Duration"
+          }
+        ]
+      },
+      "rhs": {
+        "number": "12",
+        "unit": {
+          "Wh": 1
+        }
+      },
+      "assumptions": []
+    }
+  }
+}

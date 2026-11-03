@@ -34,6 +34,49 @@ source truth, native connectors, executable behavior, feasibility, staffing,
 observed validation or acceptance. Hashes identify bytes, not decisions. The
 scope can be maintained locally; no protected runner is a universal prerequisite.
 
+Normal `concept-review check` and `next-evidence` also enforce a selected sibling
+`.english.json` profile through the existing controlled-English checker.
+`coverage_status` retains the documentary result; `english.status` reports the
+selected language result; overall `status` cannot pass when either fails or
+remains incomplete. Required English findings retain the affected IDs, exact
+phrase and repair in the normal report and derived next-evidence actions.
+Without a profile, English is not selected and no language pass is implied.
+Selected profiles over native file bundles remain unsupported. The review checks
+model, scope, sources and selected profile stability across the operation.
+
+## A small operational handoff
+
+Use the existing [lending reframing study](../examples/concept-review/lending/reframing-study.md)
+as a connected concept/scenario starting point. Copy the model to a private
+project workspace; retain its need, boundary, decisions, source versions and
+separate scope. Prepare a sibling English selection against an actual named
+native document using the [controlled-English contract](../skills/check-engineering-language/references/controlled-english.md).
+Select existing concept IDs and noun/verb roles explicitly. The deterministic
+`terminology prepare` helper fills text hashes and unambiguous character spans
+in a separate candidate profile. It can also refresh an existing selection
+against retained before/after model revisions. Inspect its text diff and unresolved
+matches; it does not rewrite prose, infer meanings or advance retained review scope.
+
+Run both requested draft shapes and the retained concept review through the
+existing drafting launchers. For an explicitly authored finite handoff contract,
+also run `cse.py analyze functional-graph HANDOFF.functions.json` using the
+[function/flow contract](function-flow-review.md). To check its native connection,
+supply `--native-model MODEL.sysml --native-bindings BINDINGS.json` using the
+[native binding contract](function-native-binding.md). This checks retained
+revisions, exact selected native identities and the supported Boolean type slice
+before running the finite check. Guards, effects and execution order remain
+explicitly authored finite semantics; the adapter does not establish their
+equivalence to native behavior.
+
+Return the actual finding and counterexample to the affected question and
+proposed decision. A missing release datum or unknown accountable party in a
+finite hypothesis can motivate further investigation; it does not establish a
+real operating defect or authorize an owner. Keep plans unexecuted and accepted
+intent unchanged. Adding a new evidence source requires an explicit scope/source
+revision, with prior expectations retained; do not refresh the retained digest
+just to obtain a pass. `concept-review next-evidence` derives unresolved actions
+from a fresh review and does not perform them or authenticate a decision.
+
 ## Project scope versions
 
 Version 1.0 remains supported unchanged. Version 1.1 adds selected
@@ -190,6 +233,13 @@ facilities and evaluation support; [software](../examples/concept-review/softwar
 selects export purpose/allocation/evaluation and explains why new physical support
 is outside its boundary. The software example uses multiple arbitrarily named
 sources and selects no assignment-count test. Neither supplies observed results.
+
+The additive [lending reframing study](../examples/concept-review/lending/reframing-study.md)
+uses the existing records to connect an uncertainty, a differentiating observation
+plan, supplied synthetic results and a revised proposal. Its paired model revisions
+retain the original needs, scope expectations and evaluation plans. The results
+are authored teaching material, not observed operational evidence or approval;
+the checker does not infer the explanation or choose the concept.
 
 `tests/test_concept_review.py` checks both actual native-backed projects, seven
 clean omissions, unknown/unsupported/stale inputs, scope drift, changed inputs,

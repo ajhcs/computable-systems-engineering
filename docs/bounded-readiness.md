@@ -66,3 +66,15 @@ Selected Zotero notes and historical engineering literature identify methods and
 questions; they cannot supply those observations or commitments. Advanced native
 concurrency, scheduling/optimization and continuous behavior need separately
 scoped support when a project actually requires them.
+
+
+## Focused analysis and delivery checks
+
+The pack now exposes eleven independent skills. Shared exact arithmetic covers
+explicit finite calculations and optional typed polynomial identities; graph,
+queue, fault-tree, observation and impact checks retain their declared scope.
+See [bounded engineering analysis](engineering-analysis.md) for each contract.
+[Artifact freshness](artifact-freshness.md) checks a retained file set before
+accepting generated outputs. It does not establish model correctness, successful
+engineering verdicts, physical validity or protected execution. General native
+SysML differential-equation execution remains unsupported.

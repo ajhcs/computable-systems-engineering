@@ -1,3 +1,9 @@
+This is the historical design proposal for the first verifier increment. For the
+current native SysML workflow and available checks, use the
+[SysML profile](sysml-v2-profile.md), [bounded-use guide](bounded-readiness.md) and
+[engineering analysis contracts](engineering-analysis.md). The proposed protected
+execution boundary below remains separate work.
+
 The shared engineering model is the durable representation we maintain. A paragraph, diagram, machine query, or tool export exposes a particular view of that model. No individual view needs to contain everything. The model and each of its views have explicitly declared semantics and scope.
 
 The engineer directs the inquiry and settles consequential choices. The LLM helps elicit needs, investigate uncertainty, propose changes, run programs, and explain findings. Programs supply the verdicts for conditions with defined computational meaning. A narrow question can end with a small model change, an investigation result, or an explicit unknown; producing a complete document is optional.

@@ -1,0 +1,86 @@
+{
+  "version": "calculations-1.0",
+  "id": "MotionIdentity",
+  "revision": "synthetic-motion-1",
+  "variables": {
+    "Speed": {
+      "domain": "real",
+      "values": null,
+      "unit": {
+        "metre": 1,
+        "second": -1
+      },
+      "basis": "Synthetic authored input"
+    },
+    "FirstDuration": {
+      "domain": "real",
+      "values": null,
+      "unit": {
+        "second": 1
+      },
+      "basis": "Synthetic authored input"
+    },
+    "SecondDuration": {
+      "domain": "real",
+      "values": null,
+      "unit": {
+        "second": 1
+      },
+      "basis": "Synthetic authored input"
+    }
+  },
+  "assumptions": {},
+  "checks": {
+    "DistanceIdentity": {
+      "kind": "polynomial_identity",
+      "relation": "eq",
+      "lhs": {
+        "op": "mul",
+        "args": [
+          {
+            "ref": "Speed"
+          },
+          {
+            "op": "add",
+            "args": [
+              {
+                "ref": "FirstDuration"
+              },
+              {
+                "ref": "SecondDuration"
+              }
+            ]
+          }
+        ]
+      },
+      "rhs": {
+        "op": "add",
+        "args": [
+          {
+            "op": "mul",
+            "args": [
+              {
+                "ref": "Speed"
+              },
+              {
+                "ref": "FirstDuration"
+              }
+            ]
+          },
+          {
+            "op": "mul",
+            "args": [
+              {
+                "ref": "Speed"
+              },
+              {
+                "ref": "SecondDuration"
+              }
+            ]
+          }
+        ]
+      },
+      "assumptions": []
+    }
+  }
+}

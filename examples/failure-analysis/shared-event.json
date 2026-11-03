@@ -1,0 +1,63 @@
+{
+  "version": "failure-analysis-1.0",
+  "id": "SharedFailure",
+  "revision": "synthetic-1",
+  "basis": "Synthetic Boolean example; all events refer to the same mission.",
+  "events": {
+    "A": {
+      "description": "A failure",
+      "basis": "Synthetic exact probability",
+      "probability": "1/100"
+    },
+    "B": {
+      "description": "B failure",
+      "basis": "Synthetic exact probability",
+      "probability": "1/200"
+    },
+    "C": {
+      "description": "C failure",
+      "basis": "Synthetic exact probability",
+      "probability": "1/500"
+    }
+  },
+  "gates": {
+    "AB": {
+      "operator": "and",
+      "inputs": [
+        "A",
+        "B"
+      ]
+    },
+    "AC": {
+      "operator": "and",
+      "inputs": [
+        "A",
+        "C"
+      ]
+    },
+    "Top": {
+      "operator": "or",
+      "inputs": [
+        "AB",
+        "AC"
+      ]
+    }
+  },
+  "top_event": "Top",
+  "probability": {
+    "assumption": "mutually_independent",
+    "basis": "Explicit synthetic assumption",
+    "mission": "One synthetic mission"
+  },
+  "fmea": {
+    "PumpFailure": {
+      "component": "Pump",
+      "failure_mode": "Does not start",
+      "event": "A",
+      "local_effect": "Pump delivers no flow",
+      "system_effect": "One modeled path is unavailable",
+      "detection": "Explicit synthetic flow observation",
+      "basis": "Synthetic example only"
+    }
+  }
+}

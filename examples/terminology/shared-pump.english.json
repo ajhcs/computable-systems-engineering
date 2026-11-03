@@ -1,0 +1,113 @@
+{
+  "version": "foundation-1.0",
+  "source_sha256": "65c3e1f56723f121be20f1b99e76603b130cdc4399064a3120813fe503d131cd",
+  "terms": {
+    "T_PUMP": {
+      "namespace": "Example.Water",
+      "revision": "1",
+      "label": "pump",
+      "definition": "A resource that moves water through the selected circuit.",
+      "kind": "resource",
+      "part_of_speech": "noun",
+      "approved_forms": [
+        "pump",
+        "pumps"
+      ]
+    },
+    "T_ISOLATE": {
+      "namespace": "Example.Water",
+      "revision": "1",
+      "label": "isolate",
+      "definition": "Disconnect the selected circuit from its water supply.",
+      "kind": "function",
+      "part_of_speech": "verb",
+      "approved_forms": [
+        "isolate",
+        "Isolate"
+      ]
+    }
+  },
+  "elements": {
+    "R_PUMP": {
+      "kind": "resource",
+      "term": "T_PUMP",
+      "native_name": "EnglishPump::pump"
+    },
+    "F_ISOLATE": {
+      "kind": "function",
+      "term": "T_ISOLATE",
+      "native_name": "EnglishPump::Isolate"
+    }
+  },
+  "relations": [],
+  "use_cases": {},
+  "allocations": {},
+  "capabilities": {},
+  "english": {
+    "version": "english-1.0",
+    "revision": "1",
+    "rules": [
+      "ASD-STE100-1.11",
+      "CSE-TERM-POS",
+      "CSE-PHRASES"
+    ],
+    "terms": {
+      "T_PUMP": "39acc54063b57fee600360736fe2fa372b84abaadff2e4465cfbc3fa89e44999",
+      "T_ISOLATE": "1dfa9515f1bea687a88a668a356326bb1bc7cb27d33a4cb6db2aa881c86b800d"
+    },
+    "views": {
+      "V_PUMP": {
+        "element": "R_PUMP",
+        "document": "description",
+        "text_sha256": "576e418784cc8a94fc49fc7d6cebe87de1ecc790e10d8a4b53fd6da5c8bc5d00",
+        "uses": [
+          {
+            "term": "T_PUMP",
+            "slot": "noun",
+            "start": 4,
+            "end": 8
+          }
+        ],
+        "preserved": []
+      },
+      "V_ISOLATE": {
+        "element": "F_ISOLATE",
+        "document": "description",
+        "text_sha256": "32ee3ea260fa485e5ac75301c6772e0ee5a097b0107f2fea7aeaadc9bc5409c8",
+        "uses": [
+          {
+            "term": "T_ISOLATE",
+            "slot": "verb",
+            "start": 0,
+            "end": 7
+          },
+          {
+            "term": "T_PUMP",
+            "element": "R_PUMP",
+            "slot": "noun",
+            "start": 12,
+            "end": 16
+          }
+        ],
+        "preserved": []
+      }
+    },
+    "phrases": {
+      "P_VAGUE": {
+        "phrase": "as appropriate",
+        "repair": "State the applicable condition or retain an unresolved question.",
+        "severity": "required"
+      },
+      "P_LATIN": {
+        "phrase": "etc.",
+        "repair": "Name the intended items or state that the list is incomplete.",
+        "severity": "required"
+      },
+      "P_SUITABLE": {
+        "phrase": "is suitable",
+        "repair": "Connect suitability to the stated need and available evidence.",
+        "severity": "advice"
+      }
+    }
+  }
+}

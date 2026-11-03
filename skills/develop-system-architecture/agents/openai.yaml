@@ -1,0 +1,4 @@
+interface:
+  display_name: "Develop System Architecture"
+  short_description: "Connect functions, parts, allocations and interfaces"
+  default_prompt: "Use $develop-system-architecture to develop or review the requested architecture slice, preserving my decisions and running the selected supported checks."

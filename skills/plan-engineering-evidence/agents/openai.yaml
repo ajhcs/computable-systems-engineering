@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan engineering evidence"
+  short_description: "Plan verification, validation and early testability"
+  default_prompt: "Use $plan-engineering-evidence to plan the next evidence for this engineering decision."

@@ -27,5 +27,7 @@ jobs:
           java-version: '21'
       - name: Install the pinned SysML parser
         run: python scripts/install_sysml_parser.py
+      - name: Install pinned symbolic calculation dependencies
+        run: python -m pip install -r requirements-analysis.txt
       - name: Run all checks with SysML required
         run: python scripts/check.py --require-sysml

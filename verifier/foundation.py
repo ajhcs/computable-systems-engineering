@@ -9,6 +9,7 @@ import os
 import stat
 from pathlib import Path
 import re
+import unicodedata
 
 from .core import _pairs
 from .sysml import check_sysml
@@ -100,9 +101,38 @@ def _ids(value, where):
         raise Invalid(f'{where} needs unique valid IDs')
 
 
+def digest(value):
+    """Content identity, never engineer assent or a semantic-equivalence proof."""
+    return sha256(json.dumps(value, sort_keys=True, separators=(',', ':'),
+                             ensure_ascii=False, allow_nan=False).encode()).hexdigest()
+
+
+def term_digest(term):
+    return digest({field: term[field] for field in
+                   ('namespace', 'revision', 'label', 'definition', 'kind')} |
+                  {'part_of_speech': term.get('part_of_speech', 'noun'),
+                   'approved_forms': term.get('approved_forms', [term['label']])})
+
+
+def term_findings(terms):
+    """Preserve scoped identity; neither labels nor shared icons merge concepts."""
+    findings, scopes = [], {}
+    for key, term in sorted(terms.items()):
+        for label in term.get('approved_forms', [term['label']]):
+            scope = (term['namespace'], term['revision'], unicodedata.normalize('NFC', label))
+            if scope in scopes and scopes[scope] != key:
+                findings.append({'rule': 'term_scope', 'status': 'fail', 'ids': [scopes[scope], key],
+                    'phrase': label, 'detail': 'Ambiguous approved label in the same namespace/revision',
+                    'repair': 'Resolve the concept definitions and selected names; do not equate them from matching labels.'})
+            scopes[scope] = key
+    return findings
+
+
 def _schema(profile):
     _object(profile, ('version', 'source_sha256', 'terms', 'elements', 'relations',
-                      'use_cases', 'allocations', 'capabilities'), 'profile')
+                      'use_cases', 'allocations', 'capabilities', 'english'), 'profile',
+            required=('version', 'source_sha256', 'terms', 'elements', 'relations',
+                      'use_cases', 'allocations', 'capabilities'))
     if profile['version'] != VERSION:
         raise Invalid('Unsupported foundation profile version')
     if type(profile['source_sha256']) is not str or not re.fullmatch('[0-9a-f]{64}', profile['source_sha256']):
@@ -110,11 +140,22 @@ def _schema(profile):
     for group in ('terms', 'elements', 'use_cases', 'allocations', 'capabilities'):
         _map(profile[group], group)
     for key, term in profile['terms'].items():
-        _object(term, ('namespace', 'revision', 'label', 'definition', 'kind'), key)
+        fields = ('namespace', 'revision', 'label', 'definition', 'kind')
+        _object(term, (*fields, 'part_of_speech', 'approved_forms'), key, required=fields)
         for field in ('namespace', 'revision', 'label', 'definition'):
             _text(term[field], f'{key}.{field}')
         if term['kind'] not in KINDS:
             raise Invalid(f'{key} unsupported term kind')
+        if term.get('part_of_speech', 'noun') not in ('noun', 'verb'):
+            raise Invalid(f'{key}.part_of_speech needs noun or verb')
+        forms = term.get('approved_forms', [term['label']])
+        _list(forms, f'{key}.approved_forms')
+        if not forms or len(forms) > 32 or term['label'] not in forms:
+            raise Invalid(f'{key}.approved_forms needs the canonical label and at most 32 forms')
+        for form in forms:
+            _text(form, f'{key}.approved_form')
+        if len(forms) != len(set(forms)):
+            raise Invalid(f'{key}.approved_forms needs unique strings')
     for key, element in profile['elements'].items():
         _object(element, ('kind', 'term', 'native_name'), key)
         if type(element['kind']) is not str or element['kind'] not in KINDS:
@@ -201,13 +242,7 @@ def check_profile(profile, native):
             issue('typed_reference', 'fail', [where, key], f'Expected element kind {sorted(kind)}')
             return False
         return True
-    # Term labels can coincide across scopes; definitions are never silently equated.
-    term_scope = set()
-    for key, term in terms.items():
-        scope = (term['namespace'], term['revision'], term['label'])
-        if scope in term_scope:
-            issue('term_scope', 'fail', [key], 'Duplicate label in the same namespace/revision')
-        term_scope.add(scope)
+    report['findings'].extend(term_findings(terms))
     for key, element in elements.items():
         term = terms.get(element['term'])
         if term is None or term['kind'] != element['kind']:
@@ -333,6 +368,11 @@ def check_profile(profile, native):
             issue('capability_admission', 'unsupported', [key], 'Available claim lacks a trusted executor/input contract')
         report['capabilities'][key] = {'available': available and executor is not None and capability['input_contract'] == executor['input'],
                                      'executor': capability['executor'], 'reason': capability['reason']}
+    if 'english' in profile:
+        from .terminology import check_english
+        report['english'] = check_english(profile, native)
+        if report['english']['status'] != 'pass':
+            issue('english_profile', report['english']['status'], [], 'Selected controlled-English checks did not pass; see english findings')
     severity = {'pass':0,'unknown':1,'unsupported':2,'fail':3,'error':4}
     report['findings'].sort(key=lambda x:(x['rule'], str(x['ids']), x['detail']))
     report['status'] = max((x['status'] for x in report['findings']), default='pass', key=lambda x:severity.get(x,4))

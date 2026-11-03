@@ -1,0 +1,149 @@
+{
+  "acceptance": "not_evaluated",
+  "baseline": {
+    "id": "synthetic-baseline",
+    "sha256": "c5c389493b2bdb109227e3cf18c98373fd82c3cbe40fe19dc45103f92d92e0d4"
+  },
+  "baseline_snapshot_sha256": "c9d5c6402ea34dd98d64b0667636019239989ac5b683a10763cdcc2a13682d2d",
+  "candidate": {
+    "id": "synthetic-candidate",
+    "sha256": "c0d5f4927f41df81094b648040db72d3a896ca54919089b4e2ea56670d3efcb7"
+  },
+  "candidate_snapshot_sha256": "b7a0218f7d809322a1f2ad0ea45ced5b5bb6a511beac7f8f78894f55e7789f9d",
+  "change_reasons": {
+    "Source": [
+      {
+        "id": "Source",
+        "kind": "node_modified"
+      }
+    ]
+  },
+  "changed": {
+    "added": [],
+    "dependencies": [],
+    "modified": [
+      "Source"
+    ],
+    "removed": []
+  },
+  "claim_scope": "declared_dependency_impact_and_recheck_selection",
+  "coverage": {
+    "changed_seeds": [
+      "Source"
+    ],
+    "declared_graph_complete": true,
+    "discovered_dependencies": false,
+    "selection": "declared_graph"
+  },
+  "execution": "not_run",
+  "findings": [],
+  "impacted": {
+    "Requirement": {
+      "depth": 1,
+      "path": [
+        {
+          "dependency": "Source",
+          "dependent": "Requirement",
+          "id": "SourceRequirement",
+          "kind": "derived_from",
+          "revision": "baseline"
+        }
+      ],
+      "seed": "Source"
+    },
+    "Scenario": {
+      "depth": 2,
+      "path": [
+        {
+          "dependency": "Source",
+          "dependent": "Requirement",
+          "id": "SourceRequirement",
+          "kind": "derived_from",
+          "revision": "baseline"
+        },
+        {
+          "dependency": "Requirement",
+          "dependent": "Scenario",
+          "id": "RequirementScenario",
+          "kind": "uses",
+          "revision": "baseline"
+        }
+      ],
+      "seed": "Source"
+    },
+    "Source": {
+      "depth": 0,
+      "path": [],
+      "seed": "Source"
+    },
+    "View": {
+      "depth": 3,
+      "path": [
+        {
+          "dependency": "Source",
+          "dependent": "Requirement",
+          "id": "SourceRequirement",
+          "kind": "derived_from",
+          "revision": "baseline"
+        },
+        {
+          "dependency": "Requirement",
+          "dependent": "Scenario",
+          "id": "RequirementScenario",
+          "kind": "uses",
+          "revision": "baseline"
+        },
+        {
+          "dependency": "Scenario",
+          "dependent": "View",
+          "id": "ScenarioView",
+          "kind": "view_of",
+          "revision": "baseline"
+        }
+      ],
+      "seed": "Source"
+    }
+  },
+  "limits": [
+    "Reachability is restricted to explicitly supplied typed dependencies in both revisions.",
+    "Dependency declarations and hashes establish no semantic completeness, source truth or engineer assent.",
+    "A selected check is a recheck proposal; no checker is executed and no required review or acceptance is granted.",
+    "Incomplete dependency coverage broadens selection to every retained check; omitted checks remain outside the supplied scope."
+  ],
+  "max_work": 100000,
+  "required_review": "not_evaluated",
+  "scope_sha256": "cffd01a921090fc26d14903f41500bbc7e351b26cc55d036546a0e2815ff61d3",
+  "selected_checks": {
+    "GlobalSyntax": {
+      "execution": "not_run",
+      "reasons": [
+        "global_check"
+      ],
+      "targets": []
+    },
+    "ScenarioReview": {
+      "execution": "not_run",
+      "reasons": [
+        "impacted_targets"
+      ],
+      "targets": [
+        "Scenario"
+      ]
+    },
+    "ViewReconcile": {
+      "execution": "not_run",
+      "reasons": [
+        "impacted_targets"
+      ],
+      "targets": [
+        "View"
+      ]
+    }
+  },
+  "status": "pass",
+  "unselected_checks": [
+    "OtherReview"
+  ],
+  "version": "impact-1.0",
+  "work": 12
+}

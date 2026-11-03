@@ -1,0 +1,119 @@
+{
+  "version": "function-native-1.0",
+  "native_model_sha256": "22e1ea12ac9ceaf3a7fec3bc573f36bd37f44960ac4727955ab95057655a6f54",
+  "function_flow_sha256": "df3c020fc3cb603b68dfef6d8ccb675b266db0d205bade7cc2b283c94f4c2b76",
+  "functions": {
+    "Prepare": {
+      "kind": "function",
+      "native_name": "NativeHandoff::Prepare",
+      "element": "F_PREPARE"
+    },
+    "Complete": {
+      "kind": "function",
+      "native_name": "NativeHandoff::Complete",
+      "element": "F_COMPLETE"
+    },
+    "Handle": {
+      "kind": "function",
+      "native_name": "NativeHandoff::Handle",
+      "element": "F_HANDLE"
+    }
+  },
+  "parties": {
+    "Clerk": {
+      "kind": "element",
+      "native_name": "NativeHandoff::clerk",
+      "element": "R_CLERK"
+    },
+    "System": {
+      "kind": "system",
+      "native_name": "NativeHandoff::desk",
+      "element": "R_SYSTEM"
+    }
+  },
+  "scenarios": {
+    "Routine": [
+      {
+        "kind": "scenario",
+        "native_name": "NativeHandoff::Routine",
+        "element": "S_ROUTINE"
+      }
+    ]
+  },
+  "steps": {
+    "Routine": {
+      "SPrepare": {
+        "kind": "step",
+        "native_name": "NativeHandoff::PrepareStep",
+        "element": "T_PREPARE"
+      },
+      "SComplete": {
+        "kind": "step",
+        "native_name": "NativeHandoff::CompleteStep",
+        "element": "T_COMPLETE"
+      }
+    }
+  },
+  "data": {
+    "Request": {
+      "part": {
+        "kind": "system",
+        "native_name": "NativeHandoff::desk",
+        "element": "R_SYSTEM"
+      },
+      "attribute": "NativeHandoff::DeskData::request"
+    },
+    "Ready": {
+      "part": {
+        "kind": "system",
+        "native_name": "NativeHandoff::desk",
+        "element": "R_SYSTEM"
+      },
+      "attribute": "NativeHandoff::DeskData::ready"
+    },
+    "Result": {
+      "part": {
+        "kind": "system",
+        "native_name": "NativeHandoff::desk",
+        "element": "R_SYSTEM"
+      },
+      "attribute": "NativeHandoff::DeskData::result"
+    }
+  },
+  "properties": {
+    "Enabled": {
+      "part": {
+        "kind": "system",
+        "native_name": "NativeHandoff::desk",
+        "element": "R_SYSTEM"
+      },
+      "attribute": "NativeHandoff::DeskData::enabled"
+    }
+  },
+  "relations": {
+    "L_ALLOC": {
+      "kind": "allocated_to",
+      "from": "F_PREPARE",
+      "to": "R_SYSTEM",
+      "label": "Proposed assignment"
+    },
+    "L_PARENT_PREPARE": {
+      "kind": "decomposes",
+      "from": "F_HANDLE",
+      "to": "F_PREPARE",
+      "label": "Proposed decomposition"
+    },
+    "L_PARENT_COMPLETE": {
+      "kind": "decomposes",
+      "from": "F_HANDLE",
+      "to": "F_COMPLETE",
+      "label": "Proposed decomposition"
+    },
+    "L_ORDER": {
+      "kind": "precedes",
+      "from": "T_PREPARE",
+      "to": "T_COMPLETE",
+      "label": "Documentary order only"
+    }
+  }
+}

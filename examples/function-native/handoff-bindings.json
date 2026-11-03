@@ -1,0 +1,82 @@
+{
+  "version": "function-native-1.0",
+  "native_model_sha256": "c3363b3e3311eba178efccde9ff40ec59ef1de0841e34794a2ef5260b22f7ae4",
+  "function_flow_sha256": "df3c020fc3cb603b68dfef6d8ccb675b266db0d205bade7cc2b283c94f4c2b76",
+  "functions": {
+    "Prepare": {
+      "kind": "function",
+      "native_name": "NativeHandoff::Prepare"
+    },
+    "Complete": {
+      "kind": "function",
+      "native_name": "NativeHandoff::Complete"
+    },
+    "Handle": {
+      "kind": "function",
+      "native_name": "NativeHandoff::Handle"
+    }
+  },
+  "parties": {
+    "Clerk": {
+      "kind": "element",
+      "native_name": "NativeHandoff::clerk"
+    },
+    "System": {
+      "kind": "system",
+      "native_name": "NativeHandoff::desk"
+    }
+  },
+  "scenarios": {
+    "Routine": [
+      {
+        "kind": "scenario",
+        "native_name": "NativeHandoff::Routine"
+      }
+    ]
+  },
+  "steps": {
+    "Routine": {
+      "SPrepare": {
+        "kind": "step",
+        "native_name": "NativeHandoff::PrepareStep"
+      },
+      "SComplete": {
+        "kind": "step",
+        "native_name": "NativeHandoff::CompleteStep"
+      }
+    }
+  },
+  "data": {
+    "Request": {
+      "part": {
+        "kind": "system",
+        "native_name": "NativeHandoff::desk"
+      },
+      "attribute": "NativeHandoff::DeskData::request"
+    },
+    "Ready": {
+      "part": {
+        "kind": "system",
+        "native_name": "NativeHandoff::desk"
+      },
+      "attribute": "NativeHandoff::DeskData::ready"
+    },
+    "Result": {
+      "part": {
+        "kind": "system",
+        "native_name": "NativeHandoff::desk"
+      },
+      "attribute": "NativeHandoff::DeskData::result"
+    }
+  },
+  "properties": {
+    "Enabled": {
+      "part": {
+        "kind": "system",
+        "native_name": "NativeHandoff::desk"
+      },
+      "attribute": "NativeHandoff::DeskData::enabled"
+    }
+  },
+  "relations": {}
+}

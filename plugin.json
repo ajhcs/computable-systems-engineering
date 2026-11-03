@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "computable-systems-engineering",
-  "version": "0.2.0-alpha.3",
+  "version": "0.2.0-alpha.4",
   "description": "AI-assisted systems design with connected models, clear diagrams, and checks you can inspect.",
   "author": {
     "name": "ajhcs",
@@ -27,7 +27,7 @@
       "interface": {
         "displayName": "Computable Systems Engineering",
         "shortDescription": "Model systems. Check the work.",
-        "longDescription": "Explore how people, software, equipment, and services work together. Develop concepts and scenarios, inspect a selected connected system, and run supported checks against explicit scope and evidence. Four independently invocable skills keep models editable, unknowns visible, and consequential decisions with you.",
+        "longDescription": "Explore how people, software, equipment, and services work together. Eleven focused skills connect concepts, architecture, scenarios, measures and evidence. Deterministic checks cover declared calculations, flows, queues, failures, observations, changes and artifact freshness. Consequential decisions stay with you.",
         "developerName": "ajhcs and contributors",
         "category": "Productivity",
         "capabilities": [],

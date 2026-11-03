@@ -1,0 +1,53 @@
+{
+  "version": "calculations-1.0",
+  "id": "CareThroughput",
+  "revision": "synthetic-care-1",
+  "variables": {
+    "Patients": {
+      "domain": "rational",
+      "values": [
+        "3"
+      ],
+      "unit": {
+        "patient": 1
+      },
+      "basis": "Synthetic authored input"
+    },
+    "Hours": {
+      "domain": "rational",
+      "values": [
+        "2"
+      ],
+      "unit": {
+        "hour": 1
+      },
+      "basis": "Synthetic authored input"
+    }
+  },
+  "assumptions": {},
+  "checks": {
+    "Rate": {
+      "kind": "forall",
+      "relation": "eq",
+      "lhs": {
+        "op": "div",
+        "args": [
+          {
+            "ref": "Patients"
+          },
+          {
+            "ref": "Hours"
+          }
+        ]
+      },
+      "rhs": {
+        "number": "3/2",
+        "unit": {
+          "patient": 1,
+          "hour": -1
+        }
+      },
+      "assumptions": []
+    }
+  }
+}

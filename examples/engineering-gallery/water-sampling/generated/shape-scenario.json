@@ -93,34 +93,64 @@
         "direction": "in",
         "has_native_value": false,
         "has_non_typing_specialization": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 31,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "intakeRequested",
         "part_definition": "WaterSampling::Station",
         "qualified_name": "WaterSampling::Station::intakeRequested",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
-        "type": "ScalarValues::Boolean"
+        "type": "ScalarValues::Boolean",
+        "types": [
+          "ScalarValues::Boolean"
+        ]
       },
       {
         "direction": "out",
         "has_native_value": false,
         "has_non_typing_specialization": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 32,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "receiptRecorded",
         "part_definition": "WaterSampling::Station",
         "qualified_name": "WaterSampling::Station::receiptRecorded",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
-        "type": "ScalarValues::Boolean"
+        "type": "ScalarValues::Boolean",
+        "types": [
+          "ScalarValues::Boolean"
+        ]
       },
       {
         "direction": "out",
         "has_native_value": false,
         "has_non_typing_specialization": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 33,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "processingElapsed",
         "part_definition": "WaterSampling::Station",
         "qualified_name": "WaterSampling::Station::processingElapsed",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
-        "type": "ISQBase::DurationValue"
+        "type": "ISQBase::DurationValue",
+        "types": [
+          "ISQBase::DurationValue"
+        ]
       }
     ],
     "concerns": [
@@ -323,19 +353,39 @@
         "event": "WaterSampling::Station::containerPresented",
         "has_native_value": false,
         "has_non_typing_specialization": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 37,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "correlationId",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
-        "type": "ScalarValues::String"
+        "type": "ScalarValues::String",
+        "types": [
+          "ScalarValues::String"
+        ]
       },
       {
         "event": "WaterSampling::Station::receiptIssued",
         "has_native_value": false,
         "has_non_typing_specialization": false,
+        "is_variant": false,
+        "is_variation": false,
         "line": 38,
+        "multiplicity": {
+          "lower": 1,
+          "status": "default",
+          "upper": 1
+        },
         "name": "correlationId",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
-        "type": "ScalarValues::String"
+        "type": "ScalarValues::String",
+        "types": [
+          "ScalarValues::String"
+        ]
       }
     ],
     "events": [
@@ -721,6 +771,12 @@
     "states": [],
     "use_cases": [
       {
+        "actors": [
+          {
+            "name": "user",
+            "target": "WaterSampling::operator"
+          }
+        ],
         "id": "UC_NOMINAL",
         "line": 63,
         "name": "TransferLabeledSample",
@@ -734,6 +790,12 @@
         ]
       },
       {
+        "actors": [
+          {
+            "name": "user",
+            "target": "WaterSampling::operator"
+          }
+        ],
         "id": "UC_RECOVERY",
         "line": 64,
         "name": "RecoverUnidentifiedSample",
@@ -747,6 +809,12 @@
         ]
       },
       {
+        "actors": [
+          {
+            "name": "user",
+            "target": "WaterSampling::custodian"
+          }
+        ],
         "id": "UC_MAINTENANCE",
         "line": 65,
         "name": "RecordStationInspection",

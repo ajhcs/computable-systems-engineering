@@ -1,0 +1,43 @@
+{
+  "version": "observation-validation-1.0",
+  "id": "SyntheticObservations",
+  "revision": "synthetic-1",
+  "measure": {"id": "RequestDuration", "revision": "synthetic-definition-1", "unit": {"second": 1}},
+  "dataset": {
+    "id": "SyntheticHeldOut", "revision": "synthetic-data-1",
+    "population": "Three invented observations; no external population inference.",
+    "boundary": "Synthetic request duration examples only.",
+    "window": "Three explicitly listed observation events; all rows included.",
+    "sampling": "Hand-authored numerical controls; not a probability sample.",
+    "role": "held_out", "basis": "Synthetic fixture to demonstrate computation, not empirical evidence."
+  },
+  "assumptions": {
+    "Aligned": {"kind": "sample_alignment", "text": "Each actual and its interval refer to the same row event and unit.", "basis": "Synthetic row IDs and hand calculation."},
+    "Central": {"kind": "central_interval", "text": "Bounds are evaluated as an authored central 50 percent interval with alpha 1/2.", "basis": "Synthetic score interpretation only; no fitted probability distribution."},
+    "Separate": {"kind": "held_out_separation", "text": "These examples did not fit or tune a predictive model.", "basis": "There is no fitted model in this synthetic control."},
+    "Weights": {"kind": "weight_meaning", "text": "Weights express relative descriptive mass; zero weights exclude mass without deleting rows.", "basis": "Authored synthetic weights; not sampling independence."},
+    "Independent": {"kind": "independent_trials", "text": "The four Bernoulli trials are independent in the conditional mathematical model.", "basis": "Explicit synthetic assumption, not an observed fact."},
+    "Common": {"kind": "common_probability", "text": "All four modeled trials share probability 1/2.", "basis": "Explicit conditional model parameter."},
+    "Binary": {"kind": "binary_outcome", "text": "Each modeled trial has exactly success or failure.", "basis": "Explicit conditional model definition."}
+  },
+  "checks": {
+    "Intervals": {
+      "kind": "interval", "purpose": "held_out_validation", "alpha": "1/2",
+      "assumptions": ["Aligned", "Central", "Separate"],
+      "rows": [
+        {"id": "ObsA", "actual": "0", "lower": "0", "upper": "2"},
+        {"id": "ObsB", "actual": "3", "lower": "2", "upper": "4"},
+        {"id": "ObsC", "actual": "6", "lower": "4", "upper": "5"}
+      ]
+    },
+    "Weighted": {
+      "kind": "weighted_summary", "assumptions": ["Weights"],
+      "rows": [{"id": "ObsA", "value": "1", "weight": "1"}, {"id": "ObsB", "value": "3", "weight": "3"}]
+    },
+    "Tail": {
+      "kind": "binomial_tail", "n": 4, "k": 3, "probability": "1/2", "tail": "ge",
+      "assumptions": ["Independent", "Common", "Binary"]
+    }
+  },
+  "unknowns": []
+}
