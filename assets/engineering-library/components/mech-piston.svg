@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-piston-title mech-piston-desc">
+<title id="mech-piston-title">Piston and rod</title>
+<desc id="mech-piston-desc">A piston head with ring grooves connects to a rod. This proposed flat view omits an unexplained circular mark present in candidate 03; the rod joint remains unspecified.</desc>
+<path data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M39 48 H77 V112 H39 Z" />
+<line data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" x1="48" y1="49" x2="48" y2="111" />
+<line data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" x1="56" y1="49" x2="56" y2="111" />
+<path data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M77 72 H123 V88 H77" />
+<circle data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" cx="123" cy="80" r="8" />
+</svg>

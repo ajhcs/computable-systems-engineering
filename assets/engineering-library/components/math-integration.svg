@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Integration</title>
+<desc id="desc">An integral sign and differential represent continuous integration. A generic notation example; no model, numerical value or result is asserted.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<text x="44" y="105" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="72" stroke="none" fill="black">∫</text><text x="91" y="96" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="25" font-style="italic" stroke="none" fill="black">f(x)</text><text x="133" y="96" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-style="italic" stroke="none" fill="black">dx</text>
+</g>
+</svg>

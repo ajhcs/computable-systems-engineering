@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Centrifugal blower housing</title><desc id="desc">Proposed generic side view: scroll casing, axial inlet rim, one rectangular discharge and a supporting base. The wheel and details inside the inlet are not depicted.</desc>
+<style>.shell{fill:#eeeeec} .face{fill:#f6f6f4} .top{fill:#fafaf9} .base{fill:#e1e2df} .recess{fill:#c4c7c4} .outer{stroke:#303030;stroke-width:1.8;fill:none;stroke-linecap:butt;stroke-linejoin:round} .detail{stroke:#555555;stroke-width:1.05;fill:none;stroke-linecap:butt;stroke-linejoin:round}</style>
+<g id="base-fills"><rect x="39" y="117" width="75" height="9" rx="1.5" fill="#ffffff"/>
+ <path d="M42 117 C27 107 22 91 25 73 C29 44 48 30 72 30 C92 30 107 36 116 51 H135 V76 H118 C116 96 110 108 101 117 Z" fill="#ffffff"/>
+ <circle cx="73" cy="74" r="24" fill="#ffffff"/>
+ <circle cx="73" cy="74" r="16" fill="#ffffff"/></g>
+<g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M44 111 Q52 116.5 65 116.5 H100 L102 113 H65 Q54 113 44 111 Z"/><path d="M59 81 A16 16 0 0 0 87 81 C81 86 65 86 59 81 Z"/></g>
+<g id="outlines"><g class="outer"><rect x="39" y="117" width="75" height="9" rx="1.5"/><path d="M42 117 C27 107 22 91 25 73 C29 44 48 30 72 30 C92 30 107 36 116 51 H135 V76 H118 C116 96 110 108 101 117 Z"/></g>
+ <g class="detail"><circle cx="73" cy="74" r="24"/><circle cx="73" cy="74" r="16"/><path d="M129 51 V76"/></g></g>
+</svg>

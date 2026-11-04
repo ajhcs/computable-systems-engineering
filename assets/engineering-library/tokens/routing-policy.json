@@ -1,0 +1,31 @@
+{
+  "status": "local design-system rule; not a physical clearance requirement",
+  "scope": "visible SVG ink at the palette reference scale; orthogonal candidate ranking has fixed endpoints and boundaries",
+  "reference_stroke_s": 2.5,
+  "candidate_grid_s": 0.5,
+  "connector_to_connector_clearance_ink_s": 6,
+  "label_to_unrelated_connector_clearance_ink_s": 2,
+  "label_to_own_connector_clearance_ink_s": 2,
+  "label_leader_to_own_connector_clearance_ink_s": 2,
+  "inline_label_padding_each_end_s": 2,
+  "port_to_port_clearance_ink_s": 6,
+  "port_to_corner_clearance_ink_s": 6,
+  "unconnected_crossing_gap_butt_ends_s": 6,
+  "crossing_count": "Count each distinct nonconnected route-pair intersection once using the underlying centerlines before rendering their gaps or bridges; exclude declared connected junctions.",
+  "crossing_exception": "A deliberate nonconnection crossing may violate parallel-route clearance locally; retain the specified gap or bridge and do not add a junction dot.",
+  "hard_constraints": [
+    "Preserve declared endpoint identities, permitted sides and port direction.",
+    "Keep unrelated connectors, label ink, component boundaries and port boxes clear according to the local gaps; only declared endpoints and connected junctions may meet.",
+    "A port identifier's annotation leader may touch its own port box; a connection-label leader stops clear of the connection.",
+    "An inline label uses a gap in a straight connection, with the specified padding on both sides.",
+    "Do not merge independent connections or create unmarked crossings. If no candidate satisfies the constraints, report no feasible candidate."
+  ],
+  "orthogonal_candidate_rank": [
+    "fewer nonconnecting crossings",
+    "fewer 90-degree bends",
+    "shorter total Manhattan length measured in integer candidate-grid ticks",
+    "lexicographically smaller ordered list of route vertices, comparing x then y in integer grid ticks"
+  ],
+  "stable_order": "For multiple connections, process stable uppercase zero-padded connection IDs in ASCII order; for each fixed-endpoint route compare candidate rank in order. Preserve any explicitly locked routing order. Use the drawing's fixed grid origin; do not snap endpoints that do not lie on the grid, and report them as unsupported for this candidate rule.",
+  "scope_limit": "Ranking is a deterministic choice among supplied feasible orthogonal candidates; this does not implement a router or prove a global minimum. Curved routes need a separately defined length and bend policy."
+}

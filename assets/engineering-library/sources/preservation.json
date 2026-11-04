@@ -1,0 +1,1711 @@
+{
+  "source_package": "engineering-palette-complete-05",
+  "source_index_sha256": "18f428ba9d14f3e7428992b4b5247277ccca0784cbccd1b290b5178b9f52e449",
+  "primary_icons": [
+    {
+      "id": "elec-resistor-physical",
+      "sha256": "ba82ecf5dda2e64d81bc67cf118a2e7bfd9996e64f845139646ae6df30a08bd3",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-capacitor-physical",
+      "sha256": "bc4fa5deb561cb0d8ace94077b271cb6b2d9dafdefdfe8a604009600777a0f31",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-inductor-physical",
+      "sha256": "a3a7f143dffb522106e427d285c8f46dec33450b2a83e99772b579e096d150f7",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-diode-physical",
+      "sha256": "f11f7f5bd11d6ff6aef76be66435f3ea614078bd5b60224e8ac5b9cebfcc3563",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-transistor-physical",
+      "sha256": "668567ed353c2815ae419ed251b0b4be582b0434979ff8896bdad949389aaaf2",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-integrated-circuit-physical",
+      "sha256": "7c48bf6b7f9378276b30b33d267c53fb07486cc9ed1aa145dd4491f88b2114aa",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-transformer-physical",
+      "sha256": "652f5e9e6b5a127f1a81a0efe5f43d070b0fb43d2eeab629a1af5093b85b57e7",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-contactor",
+      "sha256": "b748a3b60635d9c4db16e77b8b839b9ebe51a522dbe3f8a257c16a28bf372ad1",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-connector-physical",
+      "sha256": "6a88a11c003b9b0db914c9d9b571b9c13944400010695fbf0dc4e7a0c5cc80e6",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-terminal-physical",
+      "sha256": "148e478f33ca1e0e78d64fc83a65e6528173e3151ae85b31ff28c7881693d448",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-plug-physical",
+      "sha256": "cf01a953530047ddd0005a0fb50f17c078b7dc59a698f913cc35f2d28003e402",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-socket-physical",
+      "sha256": "dd8323fa733ddd8f591d6128ad6f9fbd9daeca224a9efe43820ede5a3943628a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-battery-physical",
+      "sha256": "bce9c0f865ee20d037e359f4db8acfc5c98a14ef16eb30311a1eec10f068f8d1",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-circuit-breaker",
+      "sha256": "fd9d0cb0f4c77ef9d597f2dad6001f0694620b2fe3c9db94e657464365374836",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-power-supply",
+      "sha256": "bf85b98477445df978dfb5b5b2d844b853716941154bbe06abdd06bc16e5f988",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-converter",
+      "sha256": "ac7e4606eecfd8a0e0532ea9e541b4e5dc01cb82e3111d22cf39664949d76a7c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-sensor",
+      "sha256": "6d056d7f9d6d261b2d02c9c58021d7fcbc413a4ad2be751070f613cf3a900681",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-transducer",
+      "sha256": "53c976c3944a75bec6af04db9f2c183e264e2eae4345522b0d19262358b8cd4a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-resistor-schematic",
+      "sha256": "c961c283ff198da47ed7c7dd2a41b3142e0db787cf4ca579d242482ea9a19209",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-capacitor-schematic",
+      "sha256": "780acacdbffefb9010d6c5ff51f3d23a27702bfc4d42bc76c513105f7f7bd7f8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-inductor-schematic",
+      "sha256": "44776c1c6085b4667b9e8cf2b9bbb5267930c427fcd578abc832c89c66fb49e2",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-diode-schematic",
+      "sha256": "b3ddaf78e362ce1b261228a5724507e68aba727005d385b6788b1f63bcd08165",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-transistor-schematic",
+      "sha256": "9e222abf7e644732b4d46c9be20177986851077f73a540738c1f6967615c474e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-integrated-circuit-schematic",
+      "sha256": "b2c3c1575995e86237080e38d2db9224879a0b6353bd1b511637fd56edb90eef",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-transformer-schematic",
+      "sha256": "131172f6b424b180b92f1e6b9aea63a42864bdac9734b92f891a60d20cdcbed9",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-generator",
+      "sha256": "33c5db460f5a5a5e882a21248fe8a2651d42dca7ee54fe4da09073af816230b0",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-motor",
+      "sha256": "95b17cfc80bf82090834ee2907252a963d0bcd701e405640aff45a2c130ed613",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-switch",
+      "sha256": "ce64f9317bffbd43b1373a5ef5a14b45f21260f5965d0992bf2bfab32fdcbfc7",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-relay",
+      "sha256": "0811f2167637dd2446e12cd849df331092e82e5e10f4bc849d653be28b9f6eec",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-fuse",
+      "sha256": "9f08a624fd01d626fcdc1c60e60b1619a2e8722d89040b3fd6072080df9fa98e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-disconnect",
+      "sha256": "b42c8af9f6c95970d89d40ccfef936bcfa16afe40531f272d4cf4608acdb03a8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-signal-ground",
+      "sha256": "6c8873d32357da9b767cee61ff8fe1b228d97ef6e00de3aec7b2941a93dadf69",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-protective-earth",
+      "sha256": "8547dc35aad3b1aa3da75abb3dd4e1b4d2aa27711b078928e1a4e51c89a127d1",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-connector-schematic",
+      "sha256": "a31bd482bc19373bdb58cab8a9d790b06cca1491601cc6eb73ccd4b537230ade",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-terminal-schematic",
+      "sha256": "f713f4fd5b01ccc19073f9d25c9cf151ab7e64082a43f7694b3050f29d3a5747",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-plug-schematic",
+      "sha256": "8e77e4ed8d2d423dd79c235fd5ebbd98936d24b97eaa3bbe33a268d748b7166b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-socket-schematic",
+      "sha256": "ea89938e27ef723e62a51cf822ca4752e24d4aba8beac28e0a47d3913fd4320a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-battery-schematic",
+      "sha256": "86b5c54f8702b868f9033218dc851b1ad1faafc5cfbbb82cc460a01ac8bf7ce3",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-instrumentation",
+      "sha256": "a4fdf6a08ad24cb7763d763b78b7689fc4fbf853c8e56cce875e9913cc2a6376",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-logic-and",
+      "sha256": "14150ae3a7a46030edf181edfd33ebfb8b864ba636220b3d518025b8f018b130",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-logic-or",
+      "sha256": "ef621685d5d4c474b041dcc58f30b88096c150ec669421f12a5bb1ac77c924fc",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-logic-not",
+      "sha256": "845e287340f2a5afd976de504e4a63e925c98031a7b96139e78e1e440b49b820",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-logic-nand",
+      "sha256": "f97544f45ff295e3c3b371f374fc8f7275a51d6e5b7e4418f47e0f4320f456f9",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "elec-control-circuit",
+      "sha256": "e29ab675b89f0be1ea5a687a75ea57b83467ad39601f811881a430906eb6bbac",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-gear",
+      "sha256": "7e50ce6ab3ec83e046d57fd0b9faf3eec05033305d8e37f7aa1c7f47b662c3b1",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-pulley",
+      "sha256": "1c18303f35369b093310c22dff5c654a9d063183e5a1f1774b662de9895e9e03",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-belt",
+      "sha256": "3c842147284a7032de5066f0e4183045f4d82ce5e0b485721756545ef3d6c62d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-chain",
+      "sha256": "e7cdab589711b563239f5cba80d0a26d26f94a568e7cb45f20cb3b90819080f2",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-cam",
+      "sha256": "34814759e13ac3d68e04c59d3b835bfcd0d2071219f26c978151deeec9c80718",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-lever",
+      "sha256": "1538f0152ccc0dd75f38c37b23f61cc99a026e4d3802615760e0c9c31fdcdbe2",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-linkage",
+      "sha256": "f1d7c790d29bb3095acab99e25763f3d495f9163d200da912ecbe3886e628afc",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-bearing",
+      "sha256": "8cd244edda5b3d005abe0b850e35e3112cbc921251ddebb0ba78a8200865a597",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-spring",
+      "sha256": "98811f0f1787e4dff396580ca2d3cfc64fea29b19a17fbab2033e6afaadcca4a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-shaft",
+      "sha256": "5f50d5ed0911b36a3ea0509c66165601e3bc04f1cec6011decdddde4820b516c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-coupling",
+      "sha256": "9f76bfc407aa3d43f183c71430c6819b95ae8b22d3f710c0fb7aa38062156d02",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-joint",
+      "sha256": "f98e2682045c5d314aa1f54239465f0cd26fea59165847224ffefd754dece688",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-fastener",
+      "sha256": "6597dcdc2a1cdfe9be872b7294c3ca6c8259198f0326abef0f33946286f499ca",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-motor",
+      "sha256": "d9c2e349ddb634120d077f3cc1b8d2c6e9cada7bcb4d0e91163ef375588b58bc",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-actuator",
+      "sha256": "f9f4aa2e906b4c32da024eff82204433b21f2bcafcb71c034c77a105d2b9e4ed",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-piston",
+      "sha256": "e83355deedd2d275943afefda64aaad6e628d14ddaddfd59abaf6cbc2bd14153",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-cylinder",
+      "sha256": "511a12aca62f84f2b3dd0d0552dd08adcbb68635765e9d1211ef5923613824a3",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-servo",
+      "sha256": "d72061560f88f738119167af76bb2211648ee67423f63d17f9ba8c74e4a74673",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-beam",
+      "sha256": "7e66b5cda290602b5ff9938b6f23a5bb04bf4ee895ea5b18e04bfb5ebb898a04",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-frame",
+      "sha256": "df91478cddc258a25758867782e5f9ee350fda4b1494ded8681a429fb4a79cb8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-support",
+      "sha256": "c4177ea180e2248310299f82e82dff741840618c335c0df5cacf9908eb51c5c7",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-bracket",
+      "sha256": "dbc8c5ade8011f0bb11aea4e1fc6679204cd3676f2ce0bb9f556f779571d6039",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-foundation",
+      "sha256": "3c422da5f8954bec2c588b7b71cf7edf95d50e97d5bc48be4238e4bbea9f5e60",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-cut",
+      "sha256": "28974cc458de5e24d48ded71673aca9ac16c80bf9aeffd62a9cce0de9faac297",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-weld",
+      "sha256": "eb48e53d16f1f4af225b7e37f544265d61f0e665f38e1be512ef9ed4b95c6f36",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-drill",
+      "sha256": "72a6c9ab45dd4531a735f45d6a1a3ccdaecfeb39b40c28830588822375592e5a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-mill",
+      "sha256": "9668d1cb0a494b90e8bd6c404cc5fe954d349d8c7f0f9135c2871e2abfa7082a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-bend",
+      "sha256": "4c9e5757ef3082c662f007923daa2a8d655c7d226e3a9090327f84b3c86bd2cd",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-cast",
+      "sha256": "6edc194adbb54457fa74181af22f10a17d2eb7e69036fffb930409b3c0582914",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-machine",
+      "sha256": "bc35117f7f308a6e4443de109abf4036c9d0eda5201b65be0da0755ff807da2a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-exploded-view",
+      "sha256": "a929c29ad94a9273cc419c8118903f49ee1ef8699487c427aedeb710db166a9c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-mating",
+      "sha256": "626d3b9109cd107bd940f26f974d2db94d6fb7ad41de1e673bd0d4ca6a006975",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-insertion",
+      "sha256": "9609589d53ed1a38c045a3ced5bddec87a9915d4896f6ded4dee0ebf05c9c498",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-alignment",
+      "sha256": "1baab61959537baba507fd0466a59878f994402aad2327917585113a302d561a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-attachment",
+      "sha256": "9a3acca05ff368099fed0c7881c0ee81b852f087dbfcd58d2750e01aa3b5c2e6",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-rotation",
+      "sha256": "e238137ea509366ea3c9ba829a443dbf366e2627047fe769576611714c63c601",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-translation",
+      "sha256": "0d7830884777c6b38f20e9f0fbd6816c16926d2164401e710bcbc6e75a63638b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-oscillation",
+      "sha256": "b9ad6e9255f362ee87b181ca6ea8e302788cb9b007cdf7c7b55f592e12695f79",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-reciprocation",
+      "sha256": "b0e08691528712d12c2d059e617cd357602e22cc36269bd09f46918c63a887ab",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-gear-schematic",
+      "sha256": "9947033dbf224a3e4437eb281fa07d851b7413a9aa6233676420f6e1300712e3",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-force",
+      "sha256": "a53bcf295904c6554d19d4d2648202e86931d34e044f132bc538ffd2c6a7feee",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-torque",
+      "sha256": "0ec9280fcbe50c7f30d52f62cb8fb711fc5ff4aed81be752f0f26b9c81966b9d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-tension",
+      "sha256": "65495d3b22667fd82675618bea67fbd559711fa25ddddaf814bc4f99267733e1",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-compression",
+      "sha256": "efac99310199f828d3c2f4802d4bdc287d7c16f28d3c34a61f46015d7576d0a8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-shear",
+      "sha256": "7561501d71081c09dfa8daa4625dfec65be46f476536f721410ec89046062d42",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "mech-moment",
+      "sha256": "988a27cc046418d7e8b400e7b095cdad8c6b395b3075d8de3f850ef86e2937e4",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-pipe",
+      "sha256": "d754a14a39d0ab30b3abdb38e0f970e4595152c4bb1462f2b6bd604757d79aa1",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-tube",
+      "sha256": "a0afb9e3cbad827331b7c49f341cf76d22770d58cabc84659b976fc70613fa92",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-channel",
+      "sha256": "931a4507f0c8c75cf27ad60ae7af7e393f9c7e51f285820acb0ad5f640905e9b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-manifold",
+      "sha256": "c69d54016c1252369d0c582ae81bef7dedf9487a6dbbea8b1b7eab096077b4d8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-junction",
+      "sha256": "ebec9b331809c47556c2d9d3f30d049a7daf942d28daf57e24f075b25b0de2d2",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-valve-physical",
+      "sha256": "ef53997ebf660677ccb7536ef06fc20b6c8dc617f51e9609fef8f7ef9f6858c0",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-check-valve",
+      "sha256": "b8a43dc83973c47c968d8a630d76e4a94cb604324b7b3bff458e20170e3e9178",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-regulator",
+      "sha256": "6e016373f1e3c12487e9d03ef8de02a69fb30fbd2080c85ddd62eec5e99d8af5",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-orifice",
+      "sha256": "ebebcd99d5e7c2a536a15fc5a1a225ee5a1a4b69d399538d13e39cbc702b5d1c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-pump-physical",
+      "sha256": "8c1495dc154a94e7b46571e778126de109e12b2900c3fea98b096b6d3ce22c35",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-compressor",
+      "sha256": "5c41fcc63afad109acb707d8cf15f760767f3354281ef1249b99fc6cb78e6050",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-fan",
+      "sha256": "7a1205f2f0d640f4770e3628303a514a55c2027f34554ee49e2938c2551a51d6",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-blower",
+      "sha256": "297ffff17ce3012e857a60af5a539180edf4db9cdccece4fcfb389bf9a401314",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-tank-physical",
+      "sha256": "0d997c491d63e551814bd4594eb1c41f4b487ac6eb06b3e479d7ce64518daafb",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-reservoir",
+      "sha256": "84c13de23b0b5fca5ada71c12f8803751eb397f8cabfc05ea99b39adf770f8b5",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-pressure-vessel",
+      "sha256": "7aecfcb62a6a80d7d9069cb818ab3129de2704fa8248ad520a4d094aaef89a3f",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-filter-physical",
+      "sha256": "271a2104356c97ad672b62fc741a779aad730e61785c87aa9e9ea00796752c7b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-separator",
+      "sha256": "082c0b84b8d94206a9f889234bf2ef9aa779e1628c4a0081c4c916e108eb4973",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-mixer",
+      "sha256": "af2c8e337f2594676eebb42711cdabba85886bda1f1a747f7f19d448e142f0d4",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-heat-exchanger-physical",
+      "sha256": "998d3a13a5d8151af1bb642efb657e5d2516d4ae4b91d2d9fa67faffa71a360b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-pressure",
+      "sha256": "b090bc28fb93594cf656a6babb91fe7a6f7952a9682f77683508b19304998191",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-flow",
+      "sha256": "2ff13888e65020c985a4360c454cb6c5f289b0ff0b1a15ca1ed3fab54f5a6c40",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-temperature",
+      "sha256": "ecee86dcc587b220c5b85737d612923ad58e7f43ebe7a1ae55fd48cf202afd30",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-level",
+      "sha256": "dd19157d6f1d874a0b3b9118d3bedffd15e668d3df4bb49a70ed22687d8fb977",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-heater",
+      "sha256": "9ce84ad2361ea67c9bba60f07aee0d64e5e62ea25410da5b6dc0ad6abe31235c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-cooler",
+      "sha256": "93d9e2d2cf820a8394f76f568a331cf038f8c9fe902f7997d11641a650daf4f9",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-radiator",
+      "sha256": "d4375c711a63b7c34f36020303c6c498e60d2d3e6a7f1467849774279ab82065",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-insulation",
+      "sha256": "b7d669ec22b1e30c95dd31b1e589f2940db9dad16e2f880b7078367095d0bad8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-leakage",
+      "sha256": "75b22cf8ed279e763df46cc63e1208644f03a97656064f7a4e9b2b6612c4d575",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-pressure-loss",
+      "sha256": "524e239c15e4492e2d95b20954e9cf60039a267a417904c3b16d67a812756225",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-blockage",
+      "sha256": "22f19fcbbaead39ba425410f02fa7ab560067f344c6ace772bd8a22742af5356",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-cavitation",
+      "sha256": "ffc839414923d768e80187825834c8eb5b4782cb0c2aaca431a7444061e6b1ac",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-valve-schematic",
+      "sha256": "bde33247f5e7446edad119db5827e8ca0b22b8cb8b39acde1a052373c886c8fd",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-pump-schematic",
+      "sha256": "9e8bde1eb4fa0de3fde9dff174c0cf367a2584472d7c153b78066acfe8d0ed36",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-tank-schematic",
+      "sha256": "32c7a389cb9c0980ef1e188fa1e0bdcbc151a9d1f44a18a77ec41175efe0ed24",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-filter-schematic",
+      "sha256": "2d0ac301c1fc4ce628bd7f37302220892bd8ad766fd9f880e6ed8b503ffbd295",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-heat-exchanger-schematic",
+      "sha256": "753ec070ffb3a83549ee4b9e4bcc3fec0ba6d689b43bbf3b0b783b5262313e5d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "fluid-instrument-schematic",
+      "sha256": "4a86961a855bc1f100f9a40a1283077e4d381dc23d20fc493df96ffd778b8e3b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-computer",
+      "sha256": "076a208f846ebd402c36a7d4f13a3dc2dfba3ed217be82a311a989bfefe1d658",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-server",
+      "sha256": "deb3755554e023553b7f1ff9befdbc928e69ab9ec2c80d0e26e37d1429a7511e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-workstation",
+      "sha256": "780cad388f2923ff65a93286c4f2ac2d5d8df101f48e9c8a748204d5ac3b58c8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-embedded-device",
+      "sha256": "3dbbd9ad2408975d83affb00b716041d8f98cb8863357566ef6517c57bb51b77",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-cpu",
+      "sha256": "838f06f24d32ebc7a7f81668c3322e4e8e732033777638c4fdd75f0217b47f69",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-gpu",
+      "sha256": "2926e7e326183731ed815b0314fa7e7d8fea6a96b8e99f5c2fd8b050c60e4c54",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-memory",
+      "sha256": "4e72504052ff559ab9f504aecc5583da663c4f94a9c43bd000e447480a515074",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-storage",
+      "sha256": "0db59461565185c8e09b5a8a5a7bc96d871552fb64750d0eb68041f8ab82e773",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-router",
+      "sha256": "af9ee958a9d804b93aaf39ff15bcf4245695b31bde87053a04361be5c9b5c7f0",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-switch",
+      "sha256": "f67938a9b2aa2b39da704c0ccc16d5a6a10de104dfd8d6d047ce81d1f63623fc",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-on-premises",
+      "sha256": "289ead58b99b9b763460e2816e126e5e198e638ebac41e05bded6bf8a2f87dda",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-database",
+      "sha256": "1aab99c2ffab704383bdb9b4b6ee88867267df684336331e45784b48ce770d57",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-data-lake",
+      "sha256": "45b9f87dc19e989ef537e57f1d735f13d6227744f860149588e46580be068432",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-api",
+      "sha256": "220fe14fd7d14695e004a086adff280e86c789e436714f176442ae5b6360ebdf",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-application",
+      "sha256": "e7aede4f212379127afee56048d724f09dcd0c6e880d5b3e1a70607831e14910",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-firewall",
+      "sha256": "1580a4684b05fed9ef8449c784edd4c416f1d6720a47fd933d021bf4c48bb1e3",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-cloud",
+      "sha256": "e39faf397e17019c261a45ba4c00795304203111a6ade037b86171fc4b26f04d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-message",
+      "sha256": "7d0e1e61ed63203721d89943b57b071e264afbcad48b0911fc02975039d2f84d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-encryption",
+      "sha256": "4b8848a5778358446b15641c33745be042f24d723eaa5914ffd4922ac745e40d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-authentication",
+      "sha256": "8962b73c1922fba260ce5ddbfffa0c4d6f4ea04d39012e2ccc19511e313523e8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-artificial-intelligence",
+      "sha256": "349f4795030b1de006c1a8202b2b4821ffccc6fed34f57fb69993f89e00cabf2",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-simulation",
+      "sha256": "f23f0778beb283d2d3b34d72e19910a55cba1e2bcf8dc8a2939546ff891eb292",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-file-system",
+      "sha256": "2428fca9124c338409836592bbd530dd16944b3786d9cd936393ac2a05547157",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-service",
+      "sha256": "739870be893fb5dae47bc721b95eeb9994dcda5abd46abbc6f1d10fd182eb135",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-process",
+      "sha256": "f028db3fcc8e416e72bb1acf880953afa4f4d861259014af2da2194d2e352583",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-gateway",
+      "sha256": "cf931530fe1969ec81dfbe3e7778d3d7263dad3e66daf4a105481b4e94ef2795",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-edge",
+      "sha256": "d648084beeb163c429f9f7122322d57c24898fb43691879b98e50af46adc1633",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-network-connection",
+      "sha256": "f71d0549f78af83aa1c3ac339eacfbe89425e70ec17ce4898e955e6b7e260739",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-event",
+      "sha256": "1434663fd73475d22ad7dece096a49714bd2dfd630450e244e1fea2cb43d1722",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-packet",
+      "sha256": "6b154b1b92df6cb12b9317c864c7aa7b5bda7514702a602e2f2ecd5893070e78",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-authorization",
+      "sha256": "c692c1d4578691e629f9bb5eac4486c41675a19c4d911e79261d24f76709b196",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-software-container",
+      "sha256": "32679b133ee31b93128385636ef16c01b6b8ad9c8848c5a266e59e61fd98f202",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-virtual-machine",
+      "sha256": "2b028c2241b8afbf99a42c989c357cc357d369b4e5c11d4ac92a74734184ebff",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-model",
+      "sha256": "ce47ab5beafbcedc81f990156ed5226aef94893a53718cd11eab060c99f236ba",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-training",
+      "sha256": "bed684297591d37f1ffc70f1def9f7e8b6cde64943cb7dd1310d102bbdabbb3e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-inference",
+      "sha256": "f0159249eb3b038aa4cf9f4175e9e11e7bf8eee09d5aaf61480e4faaa0d41864",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-digital-twin",
+      "sha256": "ecd553613dd8cf4a53200bc9b69ce7c88de4e77114b0d5fb8b70180747492a0d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "comp-optimization",
+      "sha256": "0cb6aa0cfb6588f5f732e6f717aa82370d9f5d483999b52dc2acd84dffe2192f",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-variable",
+      "sha256": "a8fed48e880cb7bd4028185747b50e2be52738863c95a5ed768514504be6b15d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-constant",
+      "sha256": "3e1268c0602a733eb766dffa9922c9b69b2c3a361a75d37481e0d79131fe5dfb",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-parameter",
+      "sha256": "5149df4866c2a57c6205a72322de19ab759f28105206f03c3e0e68ddf630691a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-function",
+      "sha256": "e1897d50c7cd5363ebe8be966943e1eae1f809834f6943141478af2508b58150",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-operators",
+      "sha256": "f41595567140039811a4d0c0e7baf5c749626e4c247aa05a9970d63923094405",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-summation",
+      "sha256": "ab7e5c622b1b0ac938575ca214e8e9bfd4342edd7098a234719843bfc4a3fbb5",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-integration",
+      "sha256": "779717eb990ca6fb94b345608f319a71086216c7b83c98deee70f0e07be27d3b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-vector",
+      "sha256": "7a4d1f81ba4ad169fbdf3ca3ac1f7c05e7353bace02c4f886482dbc537e06543",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-matrix",
+      "sha256": "f99c268ad8edead5c0416a74caa65bc160be8d78dd24ee39adde2b3c248b6710",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-coordinate-frame",
+      "sha256": "702b26769a1224df0db2b4dbbfcee8808fe4a454190246dd458c6f8c1a266299",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-probability-distribution",
+      "sha256": "f6f5fcc9d762520e37d35037dcca84ce675d00955c582cd687a74238345bd70d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-statistical-uncertainty",
+      "sha256": "8269d192c89b724a352a162729bb2b8302ceac5582886a9afd7a29945f14b583",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-measurement",
+      "sha256": "e4c36a9ff1fbb6262eae22490c4d570189ec82a17382ac27b627eda5e5a4fc01",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-calibration",
+      "sha256": "28e108efe3db8889bfdbc508d068a83342cc1024bebefde4efc5078a0c952361",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-optimization",
+      "sha256": "be705ba3881f8f80b2d7bdce3197fabb388990c3ac19b86aee5c2c28f2b43cd6",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-convergence",
+      "sha256": "c4ea28cf935b20f888af71b2202c39ea03319d437aebb844c44486673cc22dfb",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-waveform",
+      "sha256": "1cc252b423323c4b23e39690406638eaeb8e4959e49437ecfc4b8a7576d7c890",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-frequency",
+      "sha256": "d6c4369a1876e489c72a7c0ad032723bfe5367e20dc603d87b467e783b2d9d29",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-sampling",
+      "sha256": "1a5724154fdad800ee85c599b3a1a02ef3255d46f8776153805be4eb796563b3",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-discretization",
+      "sha256": "66cc91d915e5c42080d00c60f411cfd299b9ee6c80c7af554681c0b86105eb24",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-units",
+      "sha256": "4c304b75eaeaf45594b2bb2506010aa035f8873c5b8e5bb7b7408029ab1a251d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "math-dimensional-analysis",
+      "sha256": "9167099931affcf5aa89dea2385a254919cf68bf4bc5d330d2c0a77bc3ab8692",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-exam-table",
+      "sha256": "925d14480784725032bb17745a449872ab5663ad41b7f21eb299f8de37522333",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-hospital-bed",
+      "sha256": "57b2a9502119cdc65f6e462baddfd92f42e2854b8a87d3c46cef19e4f4af103a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-monitor",
+      "sha256": "d9c19bf44130274d2e19426f15881d6bda329c1f5e51061cc30c1070a45a492f",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-blood-pressure-device",
+      "sha256": "eb6bbd85b560f857e3072e4073a043b66600c5b3532e79f4b4a0380fcfc5567e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-thermometer",
+      "sha256": "31e2c1a3ac330d20bbd88854390eba27b198b3831700ab89e6633eee97c0a83c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-pulse-oximeter",
+      "sha256": "95a9a675e3267664a0abd47d9c06512aecd9c88877f0ce4f4f10959a20b58eed",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-scale",
+      "sha256": "3531f9772aef17db8dbbf183fa9c6f479ef51a188f75c61dd959718783019d82",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-syringe",
+      "sha256": "d716884a99c3f432a35792776319feecdc9f481a956a1c44fbcd390ca930ecb8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-infusion-pump",
+      "sha256": "d7e2ab0b77ab40e6c9b82892537b7ac4cdf28596a16424054b73428d4502afde",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-infusion-line",
+      "sha256": "ee9a8a11728d9de6bdd0955dfd6bc277cb49474ee6762a1f99c9fd3532769778",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-microscope",
+      "sha256": "ffcea460de6d7cd0950c915ff6416b8fb0399abc3636c36965f1df9f7ab02e47",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-centrifuge",
+      "sha256": "0216c375efdb565b33e40aa628a9be275e521d1cbbc08497088e1f497e7b5f75",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-pipette",
+      "sha256": "32012d0284777b218374a246d4366b00161cc1d2eea06572bbd1f14f8c74aa07",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-sample-container",
+      "sha256": "8a95b83c6e6153a99b942cb2d19541847b2eceebe96c05ca0dd2549903b375e5",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-specimen",
+      "sha256": "ae14269649dda0c973877d8dc29d9379c460a5f91f50f99ed755c6d100d06c58",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-reagent",
+      "sha256": "0c194fc971fa8e1a3b96048f160c129542f0ddddc3ea494c8971f9bce78b03eb",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-analyzer",
+      "sha256": "937e85ed25f65c4c3753f85b1e17b361ebad980c8dda2f28727adc8f239edd04",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-diagnostic-device",
+      "sha256": "66f95ece2298f2568ad282c363e7e23829a4cd515b7e589dbd3f1aee2546203c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-patient",
+      "sha256": "1c8ab7db87dd165c1e36fcf645b7029c68385318b4a7074402f2415bfd6b5d91",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-clinician",
+      "sha256": "2b8d4f063463fca8f0753eff0c20fd7cc89d674a107209f6c7eb78b1b77897ea",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-technician",
+      "sha256": "2ab342523dadb7b738ec8e55f4f497f09ed7942d14fb81831de2441769b796d1",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-ecg",
+      "sha256": "0aecd062b3554ab780a6442c57b5211f146fd4584bf549c1486403db47808c26",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-assay",
+      "sha256": "a87bbab6d6b38d22dcbda57df9d6b6aeb338b4d110b85bd8e218dbd343ed439b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-sterilization",
+      "sha256": "87a6e390f3f21058dc8b3b6699da3ab5588889ce39eb002277e5b637b016919a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-contamination",
+      "sha256": "1e097dd365d66effcbf4c1e3aa9ebb6055edc3e4c33eacd2cc94d11e817a9535",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "med-biosecurity",
+      "sha256": "6662b7c2941426a58bf52989d22f7ffd6822125eb1f10c51659f3386d53f060e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-aircraft",
+      "sha256": "1a306957f3ee4da71dff179f855fef6ed85118ec713baa6e73c0d898f34ca9bc",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-helicopter",
+      "sha256": "6c2922fd1e610a176014120b9c39ebaa8cde3690cc7694df4074aef69997d110",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-uav",
+      "sha256": "32a528dc2e8a287b16bf885bceab3c8b9adcaf08cabf467cb3058b518642122e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-satellite",
+      "sha256": "106a04e097b25df5ee2f7cac560dbcf9d2922f6ccdd1e69de04d215de57e2822",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-ground-station",
+      "sha256": "7f8d78cbf219f47a0bd0107c2571ff0f7754097a03fcd1a6f316848dd6b93c6f",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-antenna",
+      "sha256": "a665c22cc220a6256a629ac01e55991150f8242dbb03a2d1cf77fa4bd55f5e69",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-vehicle",
+      "sha256": "fdb212c70ee1d35154ca32d48eb12282e18859a2c47c4ca5b4408cece63d429a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-mobile-platform",
+      "sha256": "0b61c792cd8350f970d478cccff0eb062a5f42a64b6d97371752a1707f580a95",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-trailer",
+      "sha256": "8763cae4743077a61df811519f72c573ba41bb66e34efe495bdf9570c85dbda6",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-radar",
+      "sha256": "2aa25191dd8de814533c2654c2f6f4a07a1614a0166155c4256762931340d406",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-optical-sensor",
+      "sha256": "be658136334498c70bbe4e2ef71b9127ab1be3b9ca69b1c5be9e559e52958486",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-power-generation",
+      "sha256": "94cc350bc003ab69d3eb966d85c164e1ba35d045531d55398d0d3939b69e3b5c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-environmental-control",
+      "sha256": "65adb7d63892b8cb927358afd41aaacca7a9005c3d94aff6977e2b40d1342883",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-shelter",
+      "sha256": "f466de63ed8fd0d690306049c180ad04cb20b09b9c5c4d88724dd9ee0d8baf8d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-facility",
+      "sha256": "707b44646ad47b1402958588a13207bcf56e304faa7c0d0e98be9a7121f99cc4",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-field-equipment",
+      "sha256": "d1598f79c49fb018043a3147557d74d13df734718c08e13583f64221437c5621",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-transport",
+      "sha256": "3e1d8acad517180aac6136d3c71159f6ebb8afec5345e5878dc7ea432b94d332",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-navigation",
+      "sha256": "b317b14f8c138ccf7693f8dfe8f44dd6af85bd3b39df4afea277a6122ac1d944",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-supply",
+      "sha256": "fa646cca2f655eb78c035e81cbdf81e43b9757962347197b38ea894426a8efd9",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-monitoring",
+      "sha256": "8e378e80a41de9a32461b024a4d1b0db010683b9ce03725986e89ce5650f53b0",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-tracking-system",
+      "sha256": "b3f7c495e733a0f3cd701f7245c68de7cb680ed4b5ed5d563bd31f26d4071048",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-positioning",
+      "sha256": "a35cd7fd4a64c322897fdeb19bf6c30025a1fa2971dabf912b6a5e84f395f4c7",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-communications-relay",
+      "sha256": "1166b9a3be1ed9bf62025f27de91281409421379138781c4df574f0a96668e5f",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-power-distribution",
+      "sha256": "7729845100cdebfdd71f0555e6fabaee10b98d6f3589130146580311725d4707",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-logistics",
+      "sha256": "75ec1a9cc1005265cd262497b2aa84ddd16be8ea0fecee94456970398e9fc37d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-command",
+      "sha256": "032b5cd00f1b7ed1313240279708ecd8accd6849358ce064f04821f463b2abbb",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "field-response",
+      "sha256": "e0923cd3a71da7099021e84d4a2425dc77b3a32566f150c7758d63f19f324169",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-orientation-marker",
+      "sha256": "5b9cbb351d3e6f75c8b1a4ad4af94e9b34bb86406c620bb8abd2022cd564f415",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-exception",
+      "sha256": "4c5de36fc597d9f9cf63e321f80eae29b1768b62cd59b9bf403df414625c3fad",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-numbered-callout",
+      "sha256": "4be62cbdcceaf3f972fd22a25d0af49f7ab4750e810be7bb684b47bb2ba9ae85",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-detail-identifier",
+      "sha256": "3f5d26a49c4096da2dbfae7e5bc2db49a67c8ed4034246f76dd7ca530c28c1e7",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-section-marker",
+      "sha256": "4b970e164c8145239c3909c10296aea31d9c8863a697c7a82e587fa0699d70e0",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-cutting-plane",
+      "sha256": "87823f78cf592ddc53051856fd8f320524bf86cf0860a94abb1ae66ba609e7e7",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-elevation-marker",
+      "sha256": "5bfe4104db7ebaa798b1822503ff47557597fe970abaacc68419b4464e83b839",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-datum-symbol",
+      "sha256": "691c34fd1a4e745e10650aee7d55af64d37f76d4c754f985976989d4de5e9d58",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-dimension",
+      "sha256": "66d5e62110ab083aa4f4557ff99a84e173499a3cc015bbbe7dcc8fa3b2992fc6",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-revision-marker",
+      "sha256": "ab58aad69b6b700af82f7dffc0bef790711080aa773fb19564a33c80d6e2e029",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-reference-arrow",
+      "sha256": "78a4dbf213666963682ffd5f23bc12f9663cac160351ce245fb8847cd1099cad",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-coordinate-grid",
+      "sha256": "e230793611e9c98e19dce5a1e7d8b36d7d4ea601d7691e33ec82c13cd722ac61",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-note",
+      "sha256": "90c75d4fbb66fe311a466566d610ac121ce354f777db225955047257c0ac3328",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-footnote",
+      "sha256": "23e0f974ae1a7876f704384db8340f728baca9d6da971b31d43f7c30e4ded73e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-tolerance",
+      "sha256": "23a41c9543f4592e42bfd486b69558f163fb87b4ce8aedbfdccc2830c159b2b1",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "doc-scale-indicator",
+      "sha256": "64d292349de0d19a51e4b8385568d760c755c2d1f98377d923c84194390ccfde",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "people-person",
+      "sha256": "f07eb25196e6f5b046fe2b9fbbafbe0c63141de0464d542a6ae7d91080539423",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "people-operator",
+      "sha256": "ace0bfd4a132c743da8947d2ebf35c6a0e347f6bf5bcc3e4371a0b6a437c6bca",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "people-engineer",
+      "sha256": "76385dd30b63aaeb9c0334fb1b1021dfcc711b42cd33db7d1cec2e50e856d5fd",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "people-technician",
+      "sha256": "a6833d34f102a6e909aa6581cf9fe98e991aee2c1b642b9aec1722615dd233d9",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "people-manager",
+      "sha256": "78c6c18678c0e7af79d215b978f0014525ca503ef715b2c16b501cff5715f9bb",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "people-team",
+      "sha256": "00de137db36d60fd9d7e95dea3e413d5c6a05fc98436f4bb3cde3562e83ae59e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "people-organization",
+      "sha256": "4caafc301faad2ce4becf142586d304967a3afe9aef5976b53ec06b02a8b3550",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "people-user",
+      "sha256": "47b75c9929e8ab639adf1e0e020e97c1958c8cc88c35b6c9ca76e29f44978d77",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "people-customer",
+      "sha256": "33a8cce26cdaf74ab37f79bca6a222947e781e635a0af35cb99ef4b0ce223ac2",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "controls-start",
+      "sha256": "5a0e4bb629e458ad82283d6f3edaef93110a52740beab41f1ca257f13e446394",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "controls-stop",
+      "sha256": "21d96b0da70632a0a668a30c2a4ec28972c2763a5197dc12555dafaf45ee24e5",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "controls-pause",
+      "sha256": "b261a53047dc08286f14343dad2131e519447970db9f756ded984fd06b20b739",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "actions-inspect",
+      "sha256": "26ebecf6da5b4c8303b721c4ae2c92940ec0a4c72e1f70a8dcf164caae130ca1",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "actions-repair",
+      "sha256": "21bd427b3e43aa22287ff9bcabb0446b4240bb5d36b1758429e0e987db1ec35e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "actions-replace",
+      "sha256": "21c704e10ee9954d6b505eaca0b17ab6c5921c84ed9340a7af41a6b973540d15",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "actions-assemble",
+      "sha256": "c8b5767012f0fa7a9a9d0bf51851b7d774ba20c4f8c7ffb8f48a762271cfa6c5",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "actions-disassemble",
+      "sha256": "9ac52adf9ce1955e56cbfe7bb20692d0d99473f659ca08b138ff1fca34991143",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "actions-transport",
+      "sha256": "75d11d8e02cda1369aa58bfaa2252135c7079122e3b584ce92b605e57246ddf6",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "actions-deploy",
+      "sha256": "5f1fb42e127a00187c16ecf7ee07a494bfd07326cfd24bafbcc355dfdfc45693",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "actions-verify",
+      "sha256": "16d29647581fec7acd1b88ac36370126e75413dc012602dbd90f67bb38bbaced",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-home",
+      "sha256": "fa67512abd00065b4f97473cc18f48e2718fe5ab933f6e4679e2ffe674c2eef9",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-back",
+      "sha256": "1867f3ecb00149216fcf36ac8b1386eaa59f8eaa3ce12dfb4f11da99124d2232",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-forward",
+      "sha256": "8c0813a8d3bbee8803bb64e00bdb6006837465ae525e3db8a6b18ffde8468f8b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-up",
+      "sha256": "931992ca9a8f6031feaa86bf3a08e8cda67ee1e3b30ca117e94bfba8a312d100",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-down",
+      "sha256": "eb471a02b9c6e77bd3928b4018be66f4c3a7e5105d0584243e18203eb86529fb",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-expand",
+      "sha256": "b58bd2c2e2b78673b64d9378e096e8be8cad8575ed868acb138d543895d9ca8c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-collapse",
+      "sha256": "88277cc00211e1aea97b1127851769e6277337e8a0668b6410f8373d5c1f42b4",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-zoom-in",
+      "sha256": "72ee608b4eba16e9bbee54dea5a4f8425496501fb08d0c84952570aa325f2c80",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-zoom-out",
+      "sha256": "22d472daac2e538486bc7c4581f3a3c82390ca403b505844d4e83e4b4f21512b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-search",
+      "sha256": "8048f7fb8518d8ad9249720c7e98f37311af5d0e82875be8ffae7ab425cb6a85",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-locate",
+      "sha256": "509dc795f452177e88c240d282b8179908bf04b8a178eb2cbfe2c2ad4d212ee9",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "navigation-return",
+      "sha256": "8ede3f1ca62708ea4023abc046ab9e2d7b104c9b82e656ac134b15ca0736e58e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-active",
+      "sha256": "1d99f45558a332dfabaa2f32b32e3b86246f65ebe8b0359aec49807823f67781",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-inactive",
+      "sha256": "c3fb8f1cd9fb7cd6b6fab1a4fb760b819be41ee81778c7e6374d1b538b19ad1c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-complete",
+      "sha256": "9ba3cb7530922298a64d81cb319632ad3a59fcced35566e50a2af8239f88034c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-pending",
+      "sha256": "d73901fbc6fc94d6813c010785529aeaa962d0f7469d342a536564c4abe5fa51",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-failed",
+      "sha256": "f669b789d41faa1116ad8b79b7b59be605df5eb22ee526ded788d1d22d453c0c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-unknown",
+      "sha256": "f3bfd8404f981c063d9c2e91384b8ce67a166711f0354c9eeeb4d6489ba01e2f",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-assumed",
+      "sha256": "e5cd74b8532a5f8b56fc3bcb73ac6028e5705b0fc3fe2a5921369aae9040312b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-proposed",
+      "sha256": "8aaaa49e829df941f60bb28915ba4a11cde62d37a465a428e9ee3f98ec012073",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-approved",
+      "sha256": "865849cab3f8609269af0880528f0d43fcf9d1fea251ad589409fd4641bc0adf",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "status-rejected",
+      "sha256": "1608b55b6bf46b0a536a60aea6b2f8d453aec869f1c0a5fd38445198f011378b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "annotations-information",
+      "sha256": "bb5b918d876103d9ff8a05df29e7a9947d12d8d2fc445afe7d2ebd82f3ddb0b8",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "annotations-note",
+      "sha256": "acd27a0a5c06c52c1881016cc63031d2e0d3817890f308730584b2da64538066",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "warnings-caution",
+      "sha256": "d010d51334e03cbaee883b7c475d26def9e41abefd3e9065b085babe20175d17",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "warnings-warning",
+      "sha256": "3ad6dc674d545a3ede311229c97ffb8326c96cdc169239a3e180ca6cfd93194a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "warnings-danger",
+      "sha256": "150fb28d4c2bf82d9272b0e7ef7b3ab3320aab5ea259aa096a6aa49a5d56b303",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "warnings-prohibition",
+      "sha256": "091923e6e445fa174e238cc7b4fb636ae6e8440efbf0976d76f3556dadb469df",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "warnings-mandatory-action",
+      "sha256": "d4b528d8fab1c991cb3193e6e370def644e9788390d2e1b1ebcd8f1b155ff022",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "documents-file",
+      "sha256": "fc13a954c680706d4a8a962f05547d2eff3ba81638b59717d622b1dc1fef027e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "documents-folder",
+      "sha256": "ccbe23b67040ea5bf04c540b60776df103c24b6df54d745ea703037bf8583295",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "documents-drawing",
+      "sha256": "53b22a4916f0e44acfd87c723289999cf21bce6ee5e3704e668d6d8317076c5b",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "documents-specification",
+      "sha256": "54ba3bb18dd32956df8d0349e384a9fde11c69a447cc5e23a0ab44d0131755e7",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "documents-procedure",
+      "sha256": "9ff48edf2040b315dc2de954d5bd37af5283e48ecda3fbf19fc1da36193de707",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "documents-checklist",
+      "sha256": "4e074840dea571340478ef92ebefdca3dbb0b92979e2241a1b22b92741e69c23",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "documents-report",
+      "sha256": "d82ca8d2977295597a00271c606db6205dc39795dacd590580765e0fe95c8792",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "documents-revision",
+      "sha256": "f291069ca763f28817a30674803974e2a181097ba7d11e1ab3c1ef6021598dfd",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "documents-attachment",
+      "sha256": "411b8592cbb3d3b1c1875bbedb13d91e7a62bf27819baf282a4f55d065d89d7a",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "time-clock",
+      "sha256": "988d12cd330c886dd5c3eb233791bd8ed0e2b5acf31e536409fcd54cffb21666",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "time-timer",
+      "sha256": "fc377d8ac53fcda0df1e862a7ccf4172bda961d4c3473ad8c207b9cf0151b8d9",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "time-calendar",
+      "sha256": "3d80403f1d5d0082b57b919fd52c38d441eb4967b8346dfbdfc88ded83e35909",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "time-duration",
+      "sha256": "5571c409ce5516ba2896b04ed27505e3d2ffc4bf9114820033ce326abd101777",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "time-delay",
+      "sha256": "3e73467e5293734ee24286e07bd8c4e6c6f72291b2b1efe05057fcd8649f43ce",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "time-deadline",
+      "sha256": "871e9d6cf64b26b38a81a50164bfa0d8e7f3254910bd6f0ff2b0d19ad06a5d1c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "time-sequence",
+      "sha256": "ddb56afb942d3f0f2105de56f17d430391a484a16629b134c8060173f4e020a7",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "time-milestone",
+      "sha256": "ea3e9a379a8bf4bf296ac704bcf70aab37ea3e45a263db0c6a9cd70eaaf7e1eb",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "location-building",
+      "sha256": "ed892bdbb9a0a01118017dc0716295c9b89882f031ee6f02605c325770c97962",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "location-room",
+      "sha256": "fb7f2ba6a3b0252502d326f29e8a085eeed85331d0fc59915f47179e6156d3dc",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "location-map",
+      "sha256": "04a54c8d39ca68eebbbd4ecea49b9bea1f1b73ef9f500fc0b1263594f2893d20",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "location-coordinates",
+      "sha256": "d076c039e75dfcf0f66580d99417530d5db4ed1f98a26ea4c81f3b6ad803cfc3",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "location-direction",
+      "sha256": "dae34f6e7549953734713780e1f084b1bf5c21a0fea4d127461c9907bfc9eb5e",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "location-boundary",
+      "sha256": "9bd3f7d3fbb6c242dff0bd89f8a7997e6d93a634874c1ef481de94abd40b208c",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "location-waypoint",
+      "sha256": "e536fc815c34dcbfbdc56d4a2b7c701bd09ce5e63ef999ca920d42861c8c333d",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "location-destination",
+      "sha256": "94e29cd6854d6a5299329c48a1c28b7953adb1d6724c66ba2b368176bddf8acf",
+      "approval_state": "proposed"
+    },
+    {
+      "id": "approved-01-console",
+      "sha256": "c82671ea5f5a8df9f8f3d7c8b7b9c5352578b53f8bb72476ad3e00b25518a239",
+      "approval_state": "approved"
+    },
+    {
+      "id": "approved-02-repair",
+      "sha256": "fc38b02179d132120ff7fe30751f98eca72faf3b030ad64733e19c0b7b3d2ba5",
+      "approval_state": "approved"
+    },
+    {
+      "id": "approved-03-drawing",
+      "sha256": "507ac927a2f29bc38355e482266e0edc62cec275aaa1cee9428c187fb35ce7dc",
+      "approval_state": "approved"
+    },
+    {
+      "id": "approved-04-room",
+      "sha256": "e20d8d443eebc8b8a571098269cac00388056d6883d088f6c23723b9ee27645d",
+      "approval_state": "approved"
+    },
+    {
+      "id": "interface-pwr",
+      "sha256": "a6fc0a60fedfee26ba00573214252dc4de7acfe76e5f8eed16738974e6ec8a37",
+      "approval_state": "approved"
+    },
+    {
+      "id": "interface-dat",
+      "sha256": "1d2967aa920f1785cee41f4920b612fa3bee00c1e388e86ce150fa2a556d4295",
+      "approval_state": "approved"
+    },
+    {
+      "id": "interface-ctl",
+      "sha256": "78b764035c4ac2060e581fad409bcfe405f23d8a92223ffda2983231ca30c5d1",
+      "approval_state": "approved"
+    },
+    {
+      "id": "interface-fld",
+      "sha256": "0a1db8ff67cef4cf58abdc751242e539f78852dc74958b849d826d148477e9fd",
+      "approval_state": "approved"
+    },
+    {
+      "id": "interface-mec",
+      "sha256": "85d1b77184c5fc4397694214ab39222bd3e8ec7f8cf88633d6e3bfc1e97454e2",
+      "approval_state": "approved"
+    },
+    {
+      "id": "interface-fnc",
+      "sha256": "39a761a74c41b337257734dbe674d70566bc38aceade83ebdb60546ab2e6f82a",
+      "approval_state": "approved"
+    }
+  ]
+}

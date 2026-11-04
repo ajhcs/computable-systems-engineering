@@ -1,0 +1,13 @@
+# Controlled color palette
+
+[Swatches: CSV](color-swatches.csv) · [Swatches: JSON](color-swatches.json) · [Color proximity audit](color-distance-audit.csv) · [Visual-language sheets](sections/visual-language/visual-language.pdf)
+
+The saved local palette contains **68 exact sRGB color swatches**: the twelve selected base colors and 48 companion tones on the first color sheet, plus eight additional selected colors on the next sheet. Every swatch has a stable ID and exact 8-bit sRGB hex value. The separate neutral scale contains white, 10%, 25%, 50%, 75% and black, where percentages denote black mixed into white in encoded sRGB.
+
+The twelve initial families use the exact user-selected `C13-B` through `C24-B` values. Their companion `L36`, `L50`, `L64`, `L78` and `L92` identifiers name target OKLCH lightness levels. For each family, the level nearest the exact base is omitted to avoid an almost-identical companion. Remaining tones keep the base hue and at most its chroma; the chroma is reduced when needed to fit sRGB, and the listed final hex value is authoritative after rounding. This is a local method using the color-space concepts in [CSS Color 4](https://www.w3.org/TR/css-color/).
+
+The additional exact selections use `C25-B` through `C32-B`. They are included as individual swatches, without automatically generated companion tones. No hue has an assigned interface or system meaning. The fixed swatch set constrains source color choices; semi-transparent fills blend with their background and can produce intermediate displayed colors.
+
+Burnt orange `C27-B #DA5C18` is close to the existing `C14-L64 #D56930`, and steel blue `C32-B #90B6CB` is close to `C19-L78 #85C3D3`; the additional-color sheet shows both comparisons. The proximity audit lists the **22 pairs** in the full set whose ΔE OK falls below the local 0.04 screening threshold, including pairs that predate the latest additions. This threshold prompts inspection and does not guarantee distinguishability. Preserve text, symbols or textures as additional cues whenever color conveys meaning, in line with [W3C's use-of-color guidance](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html).
+
+Each swatch label uses whichever of black or white gives the higher calculated sRGB contrast; each displayed swatch-label pair is at least 4.5:1. This does not establish color-vision separation, adjacent-object contrast, physical print appearance or accessibility conformance of a finished diagram. Legacy drawings can contain earlier neutral styling; use the named values for new color choices and check the actual composition.

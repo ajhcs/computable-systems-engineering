@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Inductor — schematic</title>
+<desc id="desc">A two-terminal coil schematic without a core material designation.</desc>
+<g fill="none" stroke="black" stroke-width="2.4" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M20 80H48 M112 80H140 M48 80 A8 8 0 0 1 64 80 A8 8 0 0 1 80 80 A8 8 0 0 1 96 80 A8 8 0 0 1 112 80"/>
+</g>
+</svg>

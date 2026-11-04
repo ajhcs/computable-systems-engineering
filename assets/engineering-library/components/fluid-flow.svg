@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Flow instrument — drafting candidate</title>
+<desc id="desc">Diagrammatic in-line flow meter with a stylized rotor; the housing does not claim that the rotor is externally visible or that a specific flow technology is depicted.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.9"><path d="M20 69 H53 M107 69 H140 M20 91 H53 M107 91 H140" /><rect x="53" y="49" width="54" height="62" rx="4" /></g><g stroke-width="1.05"><circle cx="80" cy="80" r="17" /><path d="M80 63 V97 M63 80 H97 M68 68 L92 92 M92 68 L68 92" /></g></g>
+</svg>

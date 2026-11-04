@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc"><title id="title">Hospital bed — proposed drafting candidate — graphite</title><desc id="desc">Generic adjustable hospital bed in side elevation, shown with a raised back section and attached wheeled support. No patient or specific adjustment mechanism is depicted.</desc><g id="artwork" fill="none" stroke="#303030" stroke-width="1.8" stroke-linecap="butt" stroke-linejoin="round"><path data-part="end-panels" d="M24 54 V103 M136 72 V103"/>
+<path data-part="mattress" fill="white" d="M26 76 H57 L75 87 H134 V96 H26 Z"/>
+<path data-part="pillow" fill="white" d="M32 76 V70 Q32 66 36 66 H52 Q56 66 56 70 V76 Z"/>
+<path data-part="frame" fill="white" d="M26 96 H134 V102 H26 Z"/>
+<path data-part="supports" d="M38 102 V122 M122 102 V122 M38 112 H122"/>
+<circle data-part="left-caster" cx="38" cy="127" r="5" fill="white"/><circle data-part="right-caster" cx="122" cy="127" r="5" fill="white"/>
+<path stroke-width="1.05" d="M75 87 V96 M30 99 H130"/></g><g id="surface-tone" data-optional="true" fill="none" stroke="#858585" stroke-width="0.65" stroke-linecap="butt"><path d="M43 100 H117 M42 109 H116"/></g></svg>

@@ -1,0 +1,12 @@
+{
+  "source_palette_sha256": "18c3ff938319fcae194905e7e89eb64be177a8ce5efe48205985b3565a2a6dab",
+  "source_index_sha256": "18f428ba9d14f3e7428992b4b5247277ccca0784cbccd1b290b5178b9f52e449",
+  "primary_icon_count": 341,
+  "variants": 8,
+  "palette_groups": 556,
+  "empty_groups_excluded": [],
+  "color_tokens": 68,
+  "algorithm": "Each named or directly labeled group is isolated with inherited presentation attributes and shared SVG definitions; its own layout translation is removed. Bounds are measured with librsvg. Nested groups are also indexed with their own IDs.",
+  "scope": "Authored SVG presentation assets. Semantic mappings are declared applicability contexts, not generated accepted model content.",
+  "artwork_only_variants": 103
+}

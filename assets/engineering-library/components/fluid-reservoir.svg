@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Reservoir — drafting candidate</title>
+<desc id="desc">Open reservoir drawn as a diagrammatic elevation; the liquid boundary is illustrative and does not specify a level or fluid circuit.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.9"><path d="M38 39 V122 H122 V39" /><line x1="32" y1="39" x2="45" y2="39" /><line x1="115" y1="39" x2="128" y2="39" /></g><g stroke-width="1.05"><path d="M40 86 Q50 82 60 86 T80 86 T100 86 T120 86" /><line x1="44" y1="112" x2="116" y2="112" /></g></g>
+</svg>

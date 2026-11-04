@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Regulator — proposed side elevation</title><desc id="desc">Generic adjustable diaphragm regulator with two opposed connection ends and a bottom plug interpretation. The diaphragm is enclosed and not drawn. The plug is a proposed interpretation of an ambiguous baseline mark.</desc>
+<g id="artwork" stroke="#1d2528" stroke-linejoin="round" stroke-linecap="round">
+
+<path data-part="body" d="M32 94 H48 Q54 86 63 86 H97 Q106 86 112 94 H128 V111 H112 Q105 120 95 120 H65 Q55 120 48 111 H32 Z" fill="#fff" stroke-width="1.8"/>
+<g id="tone"><path data-part="body-low-tone" d="M33 106 H49 Q56 116 66 116 H94 Q104 116 111 106 H127 V110 H112 Q105 119 95 119 H65 Q55 119 48 110 H33 Z" fill="#dce1e3" stroke="none"/></g>
+<path data-part="body-outline" d="M32 94 H48 Q54 86 63 86 H97 Q106 86 112 94 H128 V111 H112 Q105 120 95 120 H65 Q55 120 48 111 H32 Z" fill="none" stroke-width="1.8"/>
+<path data-part="bottom-plug" d="M73 120 V126 H87 V120" fill="#fff" stroke-width="1.8"/>
+<path data-part="connection-left" d="M20 91 H32 V114 H20 Z" fill="#fff" stroke-width="1.8"/>
+<path data-part="connection-right" d="M128 91 H140 V114 H128 Z" fill="#fff" stroke-width="1.8"/>
+<path data-part="diaphragm-case" d="M60 82 L66 60 Q67 56 71 56 H89 Q93 56 94 60 L100 82 Z" fill="#fff" stroke-width="1.8"/>
+<path data-part="case-seam" d="M55 82 H105 V88 H55 Z" fill="#fff" stroke-width="1.8"/>
+<path data-part="adjustment-stem" d="M77 56 V42 H83 V56" fill="#fff" stroke-width="1.8"/>
+<rect data-part="adjustment-knob" x="68" y="36" width="24" height="6" rx="1.5" fill="#fff" stroke-width="1.8"/>
+<path data-part="stem-collar" d="M74 52 H86 V56 H74 Z" fill="#fff" stroke-width="1.05"/>
+<path data-part="flange-seams" d="M25 92 V113 M135 92 V113" fill="none" stroke-width="0.7"/>
+
+</g>
+</svg>

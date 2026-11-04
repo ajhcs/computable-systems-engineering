@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="234.15000" height="234.15000" viewBox="32.92500 -7.07500 234.15000 234.15000" role="img"><defs><mask id="circle-white-dots-clearance" maskUnits="userSpaceOnUse" x="-3" y="-3" width="306" height="226">
+      <rect x="-3" y="-3" width="306" height="226" fill="#fff" />
+      <use href="#circle-white-dots-label" fill="#000" stroke="#000" stroke-width="10" stroke-linejoin="round" />
+    </mask>
+    <pattern id="circle-white-dots-pattern" width="21.94" height="21.94" patternUnits="userSpaceOnUse" patternTransform="translate(2.47 6.42)">
+      <circle cx="10.97" cy="10.97" r="1.8" fill="#888" />
+    </pattern>
+    <circle id="shape-circle" cx="150" cy="110" r="110" />
+    </defs><g id="circle-white-dots" fill="#000" aria-label="Circle, Dots, White" data-safe-area="63 70 174 80">
+    <use href="#shape-circle" fill="#fff" />
+    <use href="#shape-circle" fill="url(#circle-white-dots-pattern)" mask="url(#circle-white-dots-clearance)" />
+    <use href="#shape-circle" fill="none" stroke="#000" stroke-width="3" />
+    <rect id="circle-white-dots-label-backing" x="113" y="73" width="74" height="74" rx="3" fill="#fff" data-role="label-backing" /><text id="circle-white-dots-label" x="150" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" data-max-label-width="164"><tspan x="150" dy="-1.2em">Circle</tspan><tspan x="150" dy="1.2em">Dots</tspan><tspan x="150" dy="1.2em">White</tspan></text>
+  </g>
+  <title>Circle Dots White</title></svg>

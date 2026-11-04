@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">OR gate — schematic</title>
+<desc id="desc">An OR logic gate with two inputs and one output. A simplified logic mark; no formal-standard conformity or particular device is asserted.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M50 46 Q93 43 114 80 Q93 117 50 114 Q68 80 50 46 Z" stroke-width="2.4"/>
+<path d="M19 62 H56.4775 M19 98 H56.4775 M114 80 H141" stroke-width="2.4"/>
+</g>
+</svg>

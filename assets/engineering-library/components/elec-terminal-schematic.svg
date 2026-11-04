@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Terminal — schematic</title>
+<desc id="desc">A single terminal represented by a hollow ring between two conductor stubs. Local adaptation of the terminal-circle convention, distinct from the palette junction dot. The circle alone does not establish a particular terminal type or formal conformity.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="20" y1="80" x2="73" y2="80" stroke-width="2.4" /><circle cx="80" cy="80" r="7" stroke-width="2.4" data-role="terminal"/><line x1="87" y1="80" x2="140" y2="80" stroke-width="2.4" />
+</g>
+</svg>

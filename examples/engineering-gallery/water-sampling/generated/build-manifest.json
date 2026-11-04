@@ -16,6 +16,7 @@
     "verifier/__init__.py": "e9b613e50fdcdfa309ae440af31929c37ef15874c550605a422c9c39688dc48d",
     "verifier/artifacts.py": "83d303fbe0c7f6e693367f16549a84b0b99a920cf1f28e5c156cdd0bdbadb2a8",
     "verifier/calculations.py": "ae8537e74cfa28cb42d4e27f04c56705fc77aee9204ad26973249ee08323be4a",
+    "verifier/components.py": "8f42df519e606396d47c8fe809d50ea5fd486aa9fa43a4ca83e6bf55aefe623f",
     "verifier/concept_review.py": "bfd3267a50d0651d928af442b95264497b174b8e4e8ccfaf84a6e089a2b86c51",
     "verifier/configuration.py": "979e39198002f58aa3c0b3b0d392a6181050f38787c5855c36c0e1c880098a04",
     "verifier/configuration_view.py": "8eb414e75e0d0986f20ae281979c3feecdb5ac0ef51f9f4aa625ee5afd826b9c",

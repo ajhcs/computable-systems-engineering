@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="234.15000" height="234.15000" viewBox="32.92500 -7.07500 234.15000 234.15000" role="img"><defs><mask id="circle-white-diagonal-clearance" maskUnits="userSpaceOnUse" x="-3" y="-3" width="306" height="226">
+      <rect x="-3" y="-3" width="306" height="226" fill="#fff" />
+      <use href="#circle-white-diagonal-label" fill="#000" stroke="#000" stroke-width="10" stroke-linejoin="round" />
+    </mask>
+    <pattern id="circle-white-diagonal-pattern" width="23.7" height="23.7" patternUnits="userSpaceOnUse" patternTransform="translate(7 0)">
+      <path d="M-6 6 L6 -6 M0 23.7 L23.7 0 M17.7 29.7 L29.7 17.7" fill="none" stroke="#888" stroke-width="1.2" />
+    </pattern>
+    <circle id="shape-circle" cx="150" cy="110" r="110" />
+    </defs><g id="circle-white-diagonal" fill="#000" aria-label="Circle, Diagonal lines, White" data-safe-area="63 70 174 80">
+    <use href="#shape-circle" fill="#fff" />
+    <use href="#shape-circle" fill="url(#circle-white-diagonal-pattern)" mask="url(#circle-white-diagonal-clearance)" />
+    <use href="#shape-circle" fill="none" stroke="#000" stroke-width="3" />
+    <rect id="circle-white-diagonal-label-backing" x="69" y="73" width="162" height="74" rx="3" fill="#fff" data-role="label-backing" /><text id="circle-white-diagonal-label" x="150" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" data-max-label-width="164"><tspan x="150" dy="-1.2em">Circle</tspan><tspan x="150" dy="1.2em">Diagonal lines</tspan><tspan x="150" dy="1.2em">White</tspan></text>
+  </g>
+  <title>Circle Diagonal lines White</title></svg>

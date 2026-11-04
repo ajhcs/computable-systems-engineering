@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc"><title id="title">Equipment facility, front elevation</title><desc id="desc">Generic rectangular equipment facility with an attached roof cap, two windows and an entrance. No specific facility function or materials are claimed.</desc>
+ <g id="artwork" fill="none" stroke="#303030" stroke-linecap="butt" stroke-linejoin="round"><rect x="30" y="50" width="100" height="70" fill="white" stroke-width="1.8" data-part="front-wall"/>
+ <path d="M26 44 H134 V51 H26 Z" fill="white" stroke-width="1.8" data-part="roof-cap"/>
+ <rect x="39" y="63" width="23" height="17" stroke-width="1.05" data-part="left-window"/><rect x="98" y="63" width="23" height="17" stroke-width="1.05" data-part="right-window"/>
+ <path d="M68 120 V90 H92 V120 M80 90 V120" stroke-width="1.05" data-part="entry"/></g><g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M31 115 H67 V119 H31 Z M93 115 H129 V119 H93 Z"/></g></svg>

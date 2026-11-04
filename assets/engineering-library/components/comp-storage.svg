@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc"><title id="title">Opened hard-disk storage example</title><desc id="desc">An open hard-disk example in top view with a platter, hub and connected pivoting actuator arm. Other forms of storage do not require these parts.</desc>
+ <g id="artwork" fill="none" stroke="#303030" stroke-linecap="butt" stroke-linejoin="round"><rect x="34" y="19" width="92" height="122" rx="2" fill="white" stroke-width="1.8" data-part="housing"/>
+ <rect x="40" y="25" width="80" height="110" stroke-width="1.05" data-part="housing-rim"/>
+ <circle cx="77" cy="68" r="30" stroke-width="1.05" data-part="platter"/><circle cx="77" cy="68" r="6" stroke-width="1.05" data-part="platter-hub"/>
+ <path d="M100 105 L87 82 L91 77 L105 101 Z" fill="white" stroke-width="1.05" data-part="actuator-arm"/>
+ <circle cx="104" cy="104" r="5.3" fill="white" stroke-width="1.05" data-part="actuator-pivot"/><circle cx="104" cy="104" r="1.4" stroke-width="0.7" data-part="pivot-center"/></g><g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M41 130 H119 V134 H41 Z"/></g></svg>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="311.62500" height="191.62500" viewBox="-5.81250 -5.81250 311.62500 191.62500" role="img"><defs /><g id="src-saved-redesign-labelslanes-routing-lanes-offset" aria-label="Parallel routing lanes, Offset lanes">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="guide" d="M55 118 H112 V97 H245" stroke="#909090" stroke-width="18" stroke-linecap="butt" /><path class="guide" d="M55 153 H145 V132 H245" stroke="#909090" stroke-width="18" stroke-linecap="butt" /><path class="route" d="M55 118 H112 V97 H245" stroke="#000" stroke-width="2.5" stroke-linecap="butt" /><path class="route" d="M55 153 H145 V132 H245" stroke="#000" stroke-width="2.5" stroke-linecap="butt" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Offset lanes</text>
+    </g>
+    <title>Offset lanes</title></svg>

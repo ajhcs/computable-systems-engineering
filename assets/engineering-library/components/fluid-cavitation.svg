@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Cavitation — drafting candidate</title>
+<desc id="desc">A pump rotor accompanied by small bubbles. Bubbles are a conceptual cue, not evidence of cavitation or a diagnosis.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.0"><circle cx="76" cy="81" r="42" /><circle cx="76" cy="81" r="7" /><path d="M76 39 V25 H101 V47" /></g><g stroke-width="1.1"><path d="M76 74 Q92 59 103 68 M83 82 Q95 98 86 108 M70 85 Q53 96 48 83" /><circle cx="53" cy="61" r="3" /><circle cx="61" cy="55" r="4" /><circle cx="65" cy="66" r="3" /><circle cx="52" cy="73" r="3" /></g></g>
+</svg>

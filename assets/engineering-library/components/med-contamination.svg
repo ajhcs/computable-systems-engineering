@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Contamination — drafting candidate</title>
+<desc id="desc">Particles above an abstract surface suggest possible contamination. Local conceptual picture; it is not a certified biohazard, GHS or ISO warning, or evidence that contamination exists.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.0"><path d="M32 112 H128" /><path d="M56 112 C55 104 63 100 70 103 C75 94 89 96 93 104 C103 100 111 106 108 112 Z" /></g><g stroke-width="1.1"><circle cx="55" cy="80" r="4" /><circle cx="94" cy="76" r="5" /><circle cx="77" cy="63" r="4" /><line x1="50" y1="65" x2="45" y2="60" /><line x1="105" y1="60" x2="110" y2="55" /></g></g>
+</svg>

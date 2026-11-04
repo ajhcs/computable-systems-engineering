@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Sensor — input to electrical output</title>
+<desc id="desc">A sensor block receiving a physical stimulus and presenting two electrical output contacts. Generic input-to-electrical-output pictogram; the stimulus, quantity, response and pin polarity are unspecified. It does not identify a particular sensor.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="round">
+<rect x="51" y="49" width="58" height="62" stroke-width="2.4"/>
+<path d="M17 80 H51 M44 76 L51 80 L44 84 M109 68 H142 M109 92 H142" stroke-width="1.4"/>
+<text x="80" y="89" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="25" stroke="none" fill="black">S</text>
+</g>
+</svg>

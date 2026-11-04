@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Frequency</title>
+<desc id="desc">Frequency f is the reciprocal of period T. A generic notation example; no model, numerical value or result is asserted. This identity applies to a periodic signal.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<text x="80" y="95" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="30" font-style="italic" stroke="none" fill="black">f = 1/T</text>
+</g>
+</svg>

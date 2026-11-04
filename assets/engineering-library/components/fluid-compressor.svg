@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Reciprocating compressor housing</title><desc id="desc">Proposed generic front elevation: a finned cylinder and head on a crankcase, circular bolted face cover, and supporting base. No ports or internals are specified.</desc>
+<style>.shell{fill:#eeeeec} .face{fill:#f6f6f4} .top{fill:#fafaf9} .base{fill:#e1e2df} .recess{fill:#c4c7c4} .outer{stroke:#303030;stroke-width:1.8;fill:none;stroke-linecap:butt;stroke-linejoin:round} .detail{stroke:#555555;stroke-width:1.05;fill:none;stroke-linecap:butt;stroke-linejoin:round}</style>
+<g id="base-fills"><rect x="32" y="117" width="96" height="9" rx="1.5" fill="#ffffff"/>
+ <rect x="38" y="76" width="84" height="41" rx="5" fill="#ffffff"/>
+ <path d="M57 53 H103 V76 H57 Z" fill="#ffffff"/>
+ <path d="M52 44 H108 V53 H52 Z" fill="#ffffff"/>
+ <path d="M57 37 H103 V44 H57 Z" fill="#ffffff"/>
+ <circle cx="80" cy="96" r="11.5" fill="#ffffff"/></g>
+<g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M45 111 H115 V116.8 H45 Z"/></g>
+<g id="outlines"><g class="outer"><rect x="32" y="117" width="96" height="9" rx="1.5"/><rect x="38" y="76" width="84" height="41" rx="5"/><path d="M57 76 V53 H103 V76 M52 53 V44 H108 V53 H103 M57 53 H52 M57 44 V37 H103 V44"/></g>
+ <g class="detail"><path d="M61 59 H99 M61 65 H99 M61 71 H99"/><circle cx="80" cy="96" r="11.5"/><circle cx="74.5" cy="90.5" r="0.9"/><circle cx="85.5" cy="90.5" r="0.9"/><circle cx="74.5" cy="101.5" r="0.9"/><circle cx="85.5" cy="101.5" r="0.9"/></g></g>
+</svg>

@@ -12,6 +12,20 @@ Systems engineering asks how the pieces fit together, what should happen, and ho
 
 **Alpha · Local execution · Open source.** Models use SysML v2, a systems modeling language; you can start without knowing its syntax. Native checks require Linux, Python 3.10+ and Java 21+.
 
+## Reusable engineering components
+
+The [engineering component library](docs/component-library.md) contains **1076 individually labeled components**: physical illustrations, schematic symbols, connectors, ports, containers, annotations, document elements and color swatches. Each has an editable SVG, a stable ID, source records and an explicit SysML/SysE modeling context. Use it alongside CSE architecture, scenarios, measures and evidence workflows.
+
+[Complete palette PDF](assets/engineering-library/palette.pdf) · [Editable SVG overview](assets/engineering-library/palette.svg) · [Draw.io library](assets/engineering-library/integrations/drawio/cse-all.xml) · [Kernspan adapter](assets/engineering-library/integrations/kernspan/README.md)
+
+```sh
+python3 scripts/icons.py list --query pulley
+python3 scripts/icons.py list --sysml PortUsage
+python3 scripts/icons.py export --format drawio --out /path/to/project/presentation
+```
+
+The index distinguishes presentation artwork from formal model notation. Applying an illustration preserves the model's declared identities, endpoints and meaning. Draw.io imports include editable labels and metadata; Kernspan receives a reusable egui module and atlas for explicit integration.
+
 ## Start with the question that matters to you
 
 | You want to understand… | Ask CSE to… | Inspect… |

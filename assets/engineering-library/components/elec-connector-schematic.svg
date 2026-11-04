@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Connector — unmated two-contact schematic</title>
+<desc id="desc">Two independent pairs of plug and socket contacts shown separated by visible gaps. Unmated schematic example; no electrical connection crosses either gap and no polarity or mating standard is specified.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="20" y1="58" x2="61" y2="58" stroke-width="2.4" /><rect x="61" y="55.6" width="11" height="4.8" stroke-width="0" fill="black" data-role="pin-contact"/><path d="M 91 49 Q 105 58 91 67" stroke-width="2.4" data-role="socket-contact"/><line x1="98" y1="58" x2="140" y2="58" stroke-width="2.4" /><line x1="20" y1="102" x2="61" y2="102" stroke-width="2.4" /><rect x="61" y="99.6" width="11" height="4.8" stroke-width="0" fill="black" data-role="pin-contact"/><path d="M 91 93 Q 105 102 91 111" stroke-width="2.4" data-role="socket-contact"/><line x1="98" y1="102" x2="140" y2="102" stroke-width="2.4" />
+</g>
+</svg>

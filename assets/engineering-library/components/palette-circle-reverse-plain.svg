@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="234.15000" height="234.15000" viewBox="32.92500 -7.07500 234.15000 234.15000" role="img"><defs><circle id="shape-circle" cx="150" cy="110" r="110" />
+    </defs><g id="circle-reverse-plain" fill="#fff" aria-label="Circle, Plain, Reverse" data-safe-area="63 70 174 80">
+    <use href="#shape-circle" fill="#000" />
+    <use href="#shape-circle" fill="none" stroke="#000" stroke-width="3" />
+    <text id="circle-reverse-plain-label" x="150" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" data-max-label-width="164"><tspan x="150" dy="-1.2em">Circle</tspan><tspan x="150" dy="1.2em">Plain</tspan><tspan x="150" dy="1.2em">Reverse</tspan></text>
+  </g>
+  <title>Circle Plain Reverse</title></svg>

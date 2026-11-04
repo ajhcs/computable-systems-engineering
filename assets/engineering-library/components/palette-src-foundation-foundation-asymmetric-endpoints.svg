@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="315.60781" height="234.65859" viewBox="33.16289 506.17852 315.60781 234.65859" role="img"><defs /><g id="src-foundation-foundation-asymmetric-endpoints" aria-label="Asymmetric Endpoints">
+    <text x="40" y="530" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#000">Asymmetric Endpoints</text>
+    <g id="src-foundation-foundation-asymmetric-mixed" aria-label="Mixed ends" transform="translate(40 554)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M50 125 H232 M64 116 L50 125 L64 134" /><path d="M250 125 L232 115 L232 135 Z" fill="#000" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Mixed ends</text>
+    </g>
+  </g>
+  <title>Asymmetric Endpoints</title></svg>

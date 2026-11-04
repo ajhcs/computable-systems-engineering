@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Separator — drafting candidate</title>
+<desc id="desc">Diagrammatic vessel view with an illustrative baffle and level mark; no physical cut face, separation mechanism, flow path or phase is specified.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.9"><path d="M50 43 Q50 29 80 29 Q110 29 110 43 V117 Q110 131 80 131 Q50 131 50 117 Z" /><path d="M50 60 H29 M110 60 H131 M80 29 V18 M80 131 V143" /></g><g stroke-width="1.05"><path d="M51 76 H91 V98 H109" /><path d="M59 112 Q69 108 79 112 T99 112" /></g></g>
+</svg>

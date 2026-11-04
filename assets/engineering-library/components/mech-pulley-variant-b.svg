@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Pulley B — near flange hides wrap</title><desc id="desc">Face view of a generic flanged wheel. A single continuous rope is drawn behind the opaque near flange so its upper wrap is concealed and two free tails emerge below the wheel. This is a generic visibility interpretation, not the exact product drawing.</desc>
+<g stroke-linecap="round" stroke-linejoin="round">
+<path d="M48 133 V70 A32 32 0 0 1 112 70 V133" fill="none" stroke="#303030" stroke-width="2.2"/>
+<circle cx="80" cy="70" r="37.5" fill="white" stroke="#303030" stroke-width="1.8"/>
+<circle cx="80" cy="70" r="27" fill="none" stroke="#505050" stroke-width="1.05"/>
+<circle cx="80" cy="70" r="5.8" fill="white" stroke="#303030" stroke-width="1.05"/>
+<path d="M35 70 H125" fill="none" stroke="#81888a" stroke-width="0.7" stroke-dasharray="8 2 1.5 2"/>
+</g></svg>

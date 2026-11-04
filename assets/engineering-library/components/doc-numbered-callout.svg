@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="doc-numbered-callout-title doc-numbered-callout-desc">
+<title id="doc-numbered-callout-title">Numbered callout balloons</title>
+<desc id="doc-numbered-callout-desc">Two numbered balloons and leaders refer to different illustrated assembly items. Numbers are synthetic item identifiers; no bill of materials is supplied.</desc>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="52" y="62" width="57" height="33"/>
+<rect data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x="66" y="95" width="28" height="19"/>
+<circle data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" cx="29" cy="40" r="13"/>
+<text x="29" y="46" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#000000">1</text>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="38" y1="50" x2="57" y2="62"/>
+<circle data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" cx="131" cy="121" r="13"/>
+<text x="131" y="127" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#000000">2</text>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="119" y1="115" x2="93" y2="104"/>
+</svg>

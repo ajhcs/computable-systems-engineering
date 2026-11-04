@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Resistor — rectangular schematic</title>
+<desc id="desc">A two-terminal rectangular resistor mark. The stubs are circuit connections, without endpoint rings.</desc>
+<g fill="none" stroke="black" stroke-width="2.4" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M20 80H48 M112 80H140"/>
+<rect x="48" y="66" width="64" height="28"/>
+</g>
+</svg>

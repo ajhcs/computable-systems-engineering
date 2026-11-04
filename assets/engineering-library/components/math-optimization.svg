@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Optimization</title>
+<desc id="desc">Minimizing f of x illustrates an optimization objective. A generic notation example; no model, numerical value or result is asserted. The feasible set, optimizer and result are unspecified.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<text x="48" y="93" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="22" stroke="none" fill="black">min</text><text x="105" y="93" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="30" font-style="italic" stroke="none" fill="black">f(x)</text>
+</g>
+</svg>

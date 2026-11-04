@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1013.67422" height="234.65859" viewBox="33.16289 1006.17852 1013.67422 234.65859" role="img"><defs /><g id="src-foundation-foundation-crossings" aria-label="Line crossings">
+    <text x="40" y="1030" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#000">Line crossings</text>
+    <g id="src-foundation-foundation-crossings-dot" aria-label="Connected with dot" transform="translate(40 1054)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M55 125 H245 M150 95 V155" /><circle class="junction-dot" cx="150" cy="125" r="4.5" fill="#000" stroke="none" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Connected with dot</text>
+    </g>
+    <g id="src-foundation-foundation-crossings-gap" aria-label="No connection: gap" transform="translate(390 1054)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path class="crossing-line" d="M55 125 H245" /><path class="interrupted-line" d="M150 95 V117.5 M150 132.5 V155" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">No connection: gap</text>
+    </g>
+    <g id="src-foundation-foundation-crossings-bridge" aria-label="No connection: bridge" transform="translate(740 1054)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path class="bridge-line" d="M55 125 H140 Q150 105 160 125 H245" /><path class="interrupted-line" d="M150 85 V107.5 M150 122.5 V145" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">No connection: bridge</text>
+    </g>
+  </g>
+  <title>Line crossings</title></svg>

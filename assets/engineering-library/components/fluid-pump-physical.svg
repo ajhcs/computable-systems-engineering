@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Centrifugal pump: physical — proposed pump-end elevation</title><desc id="desc">Generic centrifugal pump exterior viewed along the suction axis, with an axial front inlet and an upward discharge. The impeller and fluid path are enclosed, not depicted. This changes the appearance and position of the baseline inlet mark and requires review.</desc>
+<g id="artwork" stroke="#1d2528" stroke-linejoin="round" stroke-linecap="round">
+
+<path data-part="feet" d="M57 118 L51 133 H68 L73 123 Z M88 123 L93 133 H110 L104 118 Z" fill="#fff" stroke-width="1.8"/>
+<path data-part="casing" d="M68 58 C52 62 43 75 43 91 C43 111 59 126 80 126 C101 126 118 111 118 91 C118 75 109 63 97 58 V43 H68 Z" fill="#fff" stroke-width="1.8"/>
+<g id="tone"><path data-part="casing-low-tone" d="M45 100 C48 114 62 124 80 124 C98 124 112 114 116 100 C108 112 97 119 80 119 C64 119 52 112 45 100 Z" fill="#dce1e3" stroke="none"/></g>
+<path data-part="casing-outline" d="M68 58 C52 62 43 75 43 91 C43 111 59 126 80 126 C101 126 118 111 118 91 C118 75 109 63 97 58 V43 H68 Z" fill="none" stroke-width="1.8"/>
+<path data-part="discharge-flange-edge-on" d="M63 36 H102 V43 H63 Z" fill="#fff" stroke-width="1.8"/>
+<circle data-part="front-cover-seam" cx="80" cy="91" r="30" fill="none" stroke-width="1.05"/>
+<circle data-part="axial-inlet-flange" cx="80" cy="91" r="16" fill="#fff" stroke-width="1.8"/>
+<circle data-part="axial-inlet-bore" cx="80" cy="91" r="9" fill="none" stroke-width="1.05"/>
+<g data-part="cover-bolt-marks" fill="none" stroke-width="1.05"><circle cx="80" cy="68" r="1.5"/><circle cx="103" cy="91" r="1.5"/><circle cx="80" cy="114" r="1.5"/><circle cx="57" cy="91" r="1.5"/></g>
+<path data-part="foot-baselines" d="M54 130 H69 M93 130 H107" fill="none" stroke-width="0.7"/>
+
+</g>
+</svg>

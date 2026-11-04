@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="doc-orientation-marker-title doc-orientation-marker-desc">
+<title id="doc-orientation-marker-title">Orientation marker</title>
+<desc id="doc-orientation-marker-desc">An N and arrow indicate a notional north orientation. No actual geographic reference, azimuth or standard marker is asserted.</desc>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="80" y1="118" x2="80" y2="48"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="80,48 74.02,61.0 85.98,61.0"/>
+<text x="80" y="38" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#000000">N</text>
+</svg>

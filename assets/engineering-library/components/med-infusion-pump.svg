@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Infusion pump</title>
+<desc id="desc">A generic infusion pump housing. No tubing, drug, patient connection, flow rate or device performance is implied.</desc>
+<g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M110 36 H115 V123 Q115 128 110 129 Z" /></g><g fill="none" stroke="#1d2528" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.8"><rect x="43" y="29" width="74" height="102" rx="6" /><rect x="54" y="41" width="52" height="28" rx="3" /><path d="M63 80 H97 V119 H63 Z" /></g><g stroke-width="1.05"><path d="M78 82 V117" /><circle cx="57" cy="80" r="3" /><circle cx="103" cy="80" r="3" /><line x1="63" y1="53" x2="97" y2="53" /></g></g>
+</svg>

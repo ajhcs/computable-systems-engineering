@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1013.67422" height="234.65859" viewBox="33.16289 6.17852 1013.67422 234.65859" role="img"><defs /><g id="src-labels-redesign-labelslanes-section-connection-labels" aria-label="Connection labels">
+    <text x="40" y="30" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#000">Connection labels</text>
+    <g id="src-labels-redesign-labelslanes-connection-labels-above" aria-label="Connection labels, Above line" transform="translate(40 54)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="connection" d="M50 130 H250" /><path class="label-anchor" d="M150 111 V123.75" stroke-width="1.5" stroke="#777" data-role="annotation-leader" /><text x="150" y="101" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#000" stroke="none">Signal A</text></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Above line</text>
+    </g>
+    <g id="src-labels-redesign-labelslanes-connection-labels-inline" aria-label="Connection labels, Inline label" transform="translate(390 54)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="connection" d="M50 125 H108 M192 125 H250" /><text x="150" y="125" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#000" stroke="none">Signal A</text></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Inline label</text>
+    </g>
+    <g id="src-labels-redesign-labelslanes-connection-labels-boxed" aria-label="Connection labels, Boxed inline" transform="translate(740 54)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="connection" d="M50 125 H102 M198 125 H250" /><rect x="102" y="110" width="96" height="30" fill="#fff" /><text x="150" y="125" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#000" stroke="none">Signal A</text></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Boxed inline</text>
+    </g>
+  </g>
+  <title>Connection labels</title></svg>

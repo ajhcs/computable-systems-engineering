@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-pulley-title mech-pulley-desc">
+<title id="mech-pulley-title">Pulley</title>
+<desc id="mech-pulley-desc">Face view of a grooved pulley with a rope tangent to its rim. Shaft support and rope load are omitted.</desc>
+<circle data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="73" r="35" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="73" r="26" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="73" r="6" />
+<path data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" d="M44 128 L44 73 A36 36 0 0 1 116 73 L116 128" />
+<line data-role="center" fill="none" stroke="#282828" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" x1="36" y1="73" x2="124" y2="73" stroke-dasharray="8 2 1.5 2" />
+</svg>

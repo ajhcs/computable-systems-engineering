@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-support-title mech-support-desc">
+<title id="mech-support-title">Support</title>
+<desc id="mech-support-desc">A triangular support carries a pinned contact over a base. The rendering does not fully define constraint freedoms or a standardized support symbol.</desc>
+<circle data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="58" r="5"/>
+<polygon data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" points="80,63 57,105 103,105"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="51.0" y1="105" x2="109.0" y2="105"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="68" y1="105" x2="63" y2="112"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="74" y1="105" x2="69" y2="112"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="80" y1="105" x2="75" y2="112"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="86" y1="105" x2="81" y2="112"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="92" y1="105" x2="87" y2="112"/>
+</svg>

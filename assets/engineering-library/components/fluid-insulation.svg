@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Insulation — drafting candidate</title>
+<desc id="desc">An unscaled pipe and annular insulation section; radial marks are local texture in the insulating layer, not a standardized material hatch.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.9"><circle cx="80" cy="80" r="50" /><circle cx="80" cy="80" r="24" /></g><g stroke-width="1.05"><circle cx="80" cy="80" r="33" /><line x1="39" y1="60" x2="48" y2="66" /><line x1="42" y1="99" x2="51" y2="94" /><line x1="60" y1="39" x2="66" y2="48" /><line x1="99" y1="42" x2="94" y2="51" /><line x1="121" y1="60" x2="112" y2="66" /><line x1="118" y1="99" x2="109" y2="94" /><line x1="60" y1="121" x2="66" y2="112" /><line x1="99" y1="118" x2="94" y2="109" /></g><g stroke-width="0.7" stroke-dasharray="8 2 1.5 2"><line x1="20" y1="80" x2="140" y2="80" /><line x1="80" y1="20" x2="80" y2="140" /></g></g>
+</svg>

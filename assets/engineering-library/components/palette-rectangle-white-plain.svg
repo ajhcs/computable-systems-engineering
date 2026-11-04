@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="312.65000" height="202.65000" viewBox="-6.32500 8.67500 312.65000 202.65000" role="img"><defs><rect id="shape-rectangle" x="0" y="15" width="300" height="190" />
+    </defs><g id="rectangle-white-plain" fill="#000" aria-label="Rectangle, Plain, White">
+    <use href="#shape-rectangle" fill="#fff" />
+    <use href="#shape-rectangle" fill="none" stroke="#000" stroke-width="3" />
+    <text id="rectangle-white-plain-label" x="150" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600"><tspan x="150" dy="-1.2em">Rectangle</tspan><tspan x="150" dy="1.2em">Plain</tspan><tspan x="150" dy="1.2em">White</tspan></text>
+  </g>
+  <title>Rectangle Plain White</title></svg>

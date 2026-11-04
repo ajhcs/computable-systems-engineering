@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1363.67422" height="234.65859" viewBox="33.16289 6.17852 1363.67422 234.65859" role="img"><defs /><g id="src-foundation-foundation-arrowheads" aria-label="Arrowheads">
+    <text x="40" y="30" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#000">Arrowheads</text>
+    <g id="src-foundation-foundation-arrowheads-open-v" aria-label="Open V" transform="translate(40 54)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M50 125 H250 M236 116 L250 125 L236 134" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Open V</text>
+    </g>
+    <g id="src-foundation-foundation-arrowheads-filled-triangle" aria-label="Filled triangle" transform="translate(390 54)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M50 125 H232" /><path d="M250 125 L232 115 L232 135 Z" fill="#000" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Filled triangle</text>
+    </g>
+    <g id="src-foundation-foundation-arrowheads-hollow-triangle" aria-label="Hollow triangle" transform="translate(740 54)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M50 125 H232" /><path class="hollow-head" d="M250 125 L232 115 L232 135 Z" fill="#fff" fill-opacity="1" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Hollow triangle</text>
+    </g>
+    <g id="src-foundation-foundation-arrowheads-notched" aria-label="Notched arrowhead" transform="translate(1090 54)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M50 125 H239" /><path class="notched-head" d="M250 125 L224 112 L239 125 L224 138 Z" fill="#000" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Notched arrowhead</text>
+    </g>
+  </g>
+  <title>Arrowheads</title></svg>

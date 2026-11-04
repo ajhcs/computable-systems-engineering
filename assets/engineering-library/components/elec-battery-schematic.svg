@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Battery — multi-cell schematic</title>
+<desc id="desc">A two-cell battery, with long plates on the left of each pair and the positive terminal on the left. Local schematic mark; no voltage, chemistry or formal-standard conformity is asserted.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M20 80 H49 M49 53 V107 M61 65 V95 M61 80 H91 M91 53 V107 M103 65 V95 M103 80 H140" stroke-width="2.4"/>
+</g>
+</svg>

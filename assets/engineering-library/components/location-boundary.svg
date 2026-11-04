@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" role="img" aria-labelledby="symbol-title"><title id="symbol-title">Boundary</title><desc>Dashed region edge with a point inside; no selection handles.</desc><g fill="none" stroke="#000" stroke-width="1.86" stroke-linecap="round" stroke-linejoin="round" data-icon="boundary"><rect x="15" y="16" width="70" height="68" stroke-dasharray="7 5" /><circle cx="50" cy="50" r="5" fill="#000" stroke="none" /></g></svg>

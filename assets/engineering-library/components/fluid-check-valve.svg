@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Check valve: open cutaway — drafting candidate</title>
+<desc id="desc">Diagrammatic open ball-check cutaway, not a manufacturing section: the left-to-right arrow shows illustrative forward flow and the ball is downstream of its inlet seat. No actual valve position or operating condition is asserted.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.9"><path d="M20 60 H140 M20 100 H140" /><line x1="20" y1="60" x2="20" y2="100" /><line x1="140" y1="60" x2="140" y2="100" /><path d="M53 60 V68 L66 74 M53 100 V92 L66 86" /><circle cx="92" cy="80" r="10" /></g><g stroke-width="1.0"><line x1="43" y1="43" x2="116" y2="43" /><path d="M107 37 L116 43 L107 49" /></g></g>
+</svg>

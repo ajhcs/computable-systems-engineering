@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Valve: physical — proposed side elevation</title><desc id="desc">Hand-operated in-line valve with two opposed connection ends and a horizontal handwheel shown edge-on. Exterior only; no valve position, service or dimensions are specified.</desc>
+<g id="artwork" stroke="#1d2528" stroke-linejoin="round" stroke-linecap="round">
+
+<path data-part="main-body" d="M32 91 H46 Q51 81 63 81 H97 Q109 81 114 91 H128 V110 H114 Q106 123 96 124 H64 Q54 123 46 110 H32 Z" fill="#fff" stroke-width="1.8"/>
+<g id="tone"><path data-part="body-low-tone" d="M33 105 H48 Q55 118 65 119 H95 Q105 118 112 105 H127 V109 H114 Q106 122 96 123 H64 Q54 122 46 109 H33 Z" fill="#dce1e3" stroke="none"/></g>
+<path data-part="main-body-outline" d="M32 91 H46 Q51 81 63 81 H97 Q109 81 114 91 H128 V110 H114 Q106 123 96 124 H64 Q54 123 46 110 H32 Z" fill="none" stroke-width="1.8"/>
+<path data-part="connection-left" d="M20 88 H32 V113 H20 Z" fill="#fff" stroke-width="1.8"/>
+<path data-part="connection-right" d="M128 88 H140 V113 H128 Z" fill="#fff" stroke-width="1.8"/>
+<path data-part="bonnet-joint" d="M57 75 H103 V81 H57 Z" fill="#fff" stroke-width="1.8"/>
+<path data-part="bonnet" d="M68 75 V65 Q68 61 73 61 H87 Q92 61 92 65 V75 Z" fill="#fff" stroke-width="1.8"/>
+<path data-part="stem" d="M76 61 V42 H84 V61" fill="#fff" stroke-width="1.8"/>
+<path data-part="stem-collar" d="M73 55 H87 V61 H73 Z" fill="#fff" stroke-width="1.05"/>
+<rect data-part="wheel-edge-on" x="48" y="36" width="64" height="6" rx="2.5" fill="#fff" stroke-width="1.8"/>
+<path data-part="wheel-hub" d="M76 42 V44 H84 V42" fill="none" stroke-width="1.05"/>
+<path data-part="flange-seams" d="M25 89 V112 M135 89 V112" fill="none" stroke-width="0.7"/>
+
+</g>
+</svg>

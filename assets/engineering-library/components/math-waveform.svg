@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Waveform</title>
+<desc id="desc">A generic continuous periodic waveform against time. A generic notation example; no model, numerical value or result is asserted. Amplitude, period and units are unspecified.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="24" y1="80" x2="139" y2="80" stroke-width="1.4" /><path d="M 132.79 83.23 L 139 80 L 132.79 76.77" stroke-width="1.4" /><line x1="31" y1="131" x2="31" y2="26" stroke-width="1.4" /><path d="M 34.23 32.21 L 31 26 L 27.77 32.21" stroke-width="1.4" /><path d="M 32 80 C 39 43 52 43 59 80 C 66 117 79 117 86 80 C 93 43 106 43 113 80 C 120 117 130 117 136 92" stroke-width="2.4" /><text x="140" y="98" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" font-style="italic" stroke="none" fill="black">t</text>
+</g>
+</svg>

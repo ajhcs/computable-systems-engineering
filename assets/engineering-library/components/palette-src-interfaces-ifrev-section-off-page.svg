@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1013.67422" height="234.65859" viewBox="33.16289 766.17852 1013.67422 234.65859" role="img"><defs /><g id="src-interfaces-ifrev-section-off-page" aria-label="Off-page references">
+    <text x="40" y="790" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#000">Off-page references</text>
+    <g id="src-interfaces-ifrev-off-page-flag" aria-label="Flag locator" transform="translate(40 814)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="route" d="M55 120 H128" /><path class="locator" d="M128 96 H223 L242 120 L223 144 H128 Z" fill="#fff" /><text class="connection-id" x="181" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#000" stroke="none">IF-01</text><text class="destination" x="181" y="129" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#000" stroke="none">S2/B4</text></g>
+      <text x="150" y="34" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Flag locator</text>
+    </g>
+    <g id="src-interfaces-ifrev-off-page-circle" aria-label="Circle locator" transform="translate(390 814)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="route" d="M55 119 H149" /><circle class="locator-outer" cx="185" cy="119" r="36" fill="#fff" /><circle class="locator-inner" cx="185" cy="119" r="30" fill="#fff" /><text class="connection-id" x="185" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#000" stroke="none">IF-01</text><text class="destination" x="185" y="129" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#000" stroke="none">S2/B4</text></g>
+      <text x="150" y="34" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Circle locator</text>
+    </g>
+    <g id="src-interfaces-ifrev-off-page-box" aria-label="Boxed locator" transform="translate(740 814)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="route" d="M55 120 H135" /><rect class="locator" x="135" y="96" width="105" height="48" fill="#fff" /><text class="connection-id" x="187.5" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#000" stroke="none">IF-01</text><text class="destination" x="187.5" y="129" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#000" stroke="none">S2/B4</text></g>
+      <text x="150" y="34" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Boxed locator</text>
+    </g>
+  </g>
+<title>Off-page references</title></svg>

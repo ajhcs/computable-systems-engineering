@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Pressure vessel</title>
+<desc id="desc">A horizontal vessel with rounded ends and supports. Generic vessel shape; no pressure rating, contents or code compliance is asserted.</desc>
+<g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M40 103 Q80 107 120 103 L112 109 H48 Q43 108 40 103 Z" /></g><g fill="none" stroke="#1d2528" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.8"><path d="M48 50 Q26 50 26 80 Q26 110 48 110 H112 Q134 110 134 80 Q134 50 112 50 Z" /><path d="M53 110 L48 126 M107 110 L112 126" /><path d="M68 50 V37 H88 V50" /></g><g stroke-width="1.05"><path d="M48 50 Q57 80 48 110" /><path d="M112 50 Q103 80 112 110" /></g><g stroke-width="0.7" stroke-dasharray="8 2 1.5 2"><line x1="18" y1="80" x2="142" y2="80" /></g></g>
+</svg>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">ECG — drafting candidate</title>
+<desc id="desc">A display with a stylized electrical trace. The trace is illustrative; no leads, patient, real waveform or diagnostic inference are shown.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.0"><rect x="28" y="42" width="104" height="76" rx="4" /></g><g stroke-width="1.1"><path d="M35 81 H53 L61 71 L69 92 L79 57 L88 81 H124" /></g></g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-compression-title mech-compression-desc">
+<title id="mech-compression-title">Compression</title>
+<desc id="mech-compression-desc">Arrows push inward on opposite ends of a member. The sketch does not quantify stress, buckling or material response.</desc>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="53" y="67" width="54" height="26"/>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="20" y1="80" x2="53" y2="80"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="53,80 46.0,76.78 46.0,83.22"/>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="140" y1="80" x2="107" y2="80"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="107,80 114.0,83.22 114.0,76.78"/>
+</svg>

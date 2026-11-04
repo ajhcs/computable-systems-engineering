@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Tank: physical</title>
+<desc id="desc">A vertical enclosed tank with simple supports. Generic physical form; no dimensions, material, service or performance are specified.</desc>
+<g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M101 53 L107 51 V108 Q106 113 101 117 Z" /></g><g fill="none" stroke="#1d2528" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.8"><path d="M50 47 Q50 31 80 31 Q110 31 110 47 V109 Q110 126 80 126 Q50 126 50 109 Z" /><path d="M61 123 L56 137 M99 123 L104 137" /><path d="M70 31 V23 H90 V31" /></g><g stroke-width="1.05"><path d="M50 47 Q80 58 110 47" /><path d="M50 108 Q80 118 110 108" /></g><g stroke-width="0.7" stroke-dasharray="8 2 1.5 2"><line x1="80" y1="18" x2="80" y2="139" /></g></g>
+</svg>

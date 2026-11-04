@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-shear-title mech-shear-desc">
+<title id="mech-shear-title">Shear</title>
+<desc id="mech-shear-desc">Opposed tangential arrows act on parallel faces of a block. This depicts a loading idea, not a complete stress state or equilibrium analysis.</desc>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="57" y="52" width="46" height="56"/>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="57" y1="102" x2="57" y2="58"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="57,58 53.78,65.0 60.22,65.0"/>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="103" y1="58" x2="103" y2="102"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="103,102 106.22,95.0 99.78,95.0"/>
+</svg>

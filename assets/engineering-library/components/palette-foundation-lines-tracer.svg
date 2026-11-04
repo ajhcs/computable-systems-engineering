@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="311.62500" height="191.62500" viewBox="-5.81250 -5.81250 311.62500 191.62500" role="img"><defs /><g id="foundation-lines-tracer" aria-label="Tracers">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <path d="M24 125 H276" fill="none" stroke="#000" stroke-width="2.8" /><path d="M34 125 L46 121 H254 L266 125 L254 129 H46 Z" fill="#000" /><path d="M48 123.5 H252" fill="none" stroke="#fff" stroke-width="2.2" />
+      <text x="150" y="52" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#000">Tracers</text>
+    </g>
+    <title>Tracers</title></svg>

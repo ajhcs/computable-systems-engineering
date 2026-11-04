@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Integrated circuit — functional block schematic</title>
+<desc id="desc">An unspecified four-terminal integrated-circuit block. The four terminal functions are not named.</desc>
+<g fill="none" stroke="black" stroke-width="2.4" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M20 60 H52 M20 100 H52 M108 60 H140 M108 100 H140"/>
+<rect x="52" y="42" width="56" height="76"/>
+<text x="80" y="88" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="22" stroke="none" fill="black">IC</text>
+</g>
+</svg>

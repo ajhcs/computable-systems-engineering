@@ -58,3 +58,5 @@ verification or intended-use evidence to [evidence planning](../plan-engineering
 State the actual checked scope: parsing, declared coverage, finite execution,
 physical feasibility and engineer acceptance are separate claims. Unsupported,
 incomplete, errored or unrun required checks cannot establish success.
+
+For presentation of selected parts, ports, connections and boundaries, see the [engineering component library](../../docs/component-library.md). Its per-ID modeling contexts support explicit architecture bindings; selecting a drawing does not declare ownership, direction, multiplicity or compatibility.

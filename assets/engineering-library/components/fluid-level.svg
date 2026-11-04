@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Level instrument — drafting candidate</title>
+<desc id="desc">Diagrammatic vessel and external sight glass with an illustrative common level; no actual reading, process or safe level is established.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.9"><path d="M42 33 V127 H105 V33" /><rect x="113" y="49" width="15" height="62" rx="6" /><line x1="105" y1="58" x2="113" y2="58" /><line x1="105" y1="102" x2="113" y2="102" /></g><g stroke-width="1.05"><line x1="43" y1="86" x2="104" y2="86" /><line x1="116" y1="86" x2="125" y2="86" /><line x1="119" y1="54" x2="119" y2="80" /></g></g>
+</svg>

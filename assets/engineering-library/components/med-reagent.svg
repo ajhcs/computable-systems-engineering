@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Reagent</title>
+<desc id="desc">A closed bottle with an abstract label panel. The panel contains no chemical identity, concentration, hazard classification or use instructions.</desc>
+<g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M101 59 H106 V126 H101 Z" /></g><g fill="none" stroke="#1d2528" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.8"><path d="M64 42 V28 H96 V42 L108 57 V128 H52 V57 Z" /><rect x="62" y="21" width="36" height="7" rx="2" /></g><g stroke-width="1.05"><rect x="63" y="76" width="34" height="26" rx="2" /><path d="M70 94 Q80 83 90 94" /></g></g>
+</svg>

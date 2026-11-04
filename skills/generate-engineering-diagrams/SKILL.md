@@ -20,3 +20,5 @@ This skill runs in the complete repository/plugin checkout and links shared tool
 For changes to functions, parts, allocations or interfaces, use [system architecture](../develop-system-architecture/SKILL.md). For explicit function/flow contracts, use [bounded engineering analysis](../../docs/engineering-analysis.md); arrows alone establish no executed behavior.
 
 For a generated document set, use [artifact freshness](../../docs/artifact-freshness.md) to reject changed sources and stale exports before delivery. Match each legend category to the actual quantity and unit on its connectors.
+
+For reusable illustrations, schematic artwork, connectors, ports and annotations, use the [component library](../../docs/component-library.md). Select stable IDs with `python3 <runtime>/scripts/icons.py list`, inspect each entry’s treatment and engineering context, and bind it to explicit model IDs. Export standalone SVGs, Draw.io libraries or the Kernspan presentation adapter. A component’s context does not create accepted model semantics.

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Pulley A — visible rope path</title><desc id="desc">Diagrammatic face view of one wheel, a continuous rope with two downward tails, and the axle center. The wheel rim is omitted under the coincident upper rope arc so the path remains distinct. The rope groove and load are not physically specified.</desc>
+<g stroke-linecap="round" stroke-linejoin="round">
+<circle cx="80" cy="70" r="35" fill="white" stroke="none"/>
+<path d="M45 70 A35 35 0 0 0 115 70" fill="none" stroke="#303030" stroke-width="1.8"/>
+<path d="M44 133 V70 A36 36 0 0 1 116 70 V133" fill="none" stroke="#303030" stroke-width="2"/>
+<circle cx="80" cy="70" r="25" fill="none" stroke="#505050" stroke-width="1.05"/>
+<circle cx="80" cy="70" r="5.8" fill="white" stroke="#303030" stroke-width="1.05"/>
+<path d="M37 70 H123" fill="none" stroke="#81888a" stroke-width="0.7" stroke-dasharray="8 2 1.5 2"/>
+</g></svg>

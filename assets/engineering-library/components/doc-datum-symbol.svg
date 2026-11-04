@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="doc-datum-symbol-title doc-datum-symbol-desc">
+<title id="doc-datum-symbol-title">Datum feature identifier</title>
+<desc id="doc-datum-symbol-desc">A triangular attachment connects a boxed synthetic datum letter A to a surface. Generic candidate only; it does not define a datum reference frame or establish GD&amp;T compliance.</desc>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="36" y="48" width="88" height="50"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="80,98 73,111 87,111"/>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="80" y1="111" x2="80" y2="118"/>
+<rect data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x="68" y="118" width="24" height="22"/>
+<text x="80" y="135" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#000000">A</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Heat exchanger — DIAGRAMMATIC TRANSPARENT VIEW — proposal</title>
+<desc id="desc">Explanatory transparent shell view with four generic stubs, three parallel passage indications and two unassigned transverse marks. No flow route, pressure rating, duty or physical cut face is specified.</desc>
+<g fill="none" stroke="#1d2528" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.8"><rect x="39" y="53" width="82" height="54" rx="24" /><path d="M53 53 V38 H68 V53 M92 53 V38 H107 V53 M53 107 V122 H68 V107 M92 107 V122 H107 V107" /></g><g stroke-width="1.05"><path d="M49 67 H111 M49 80 H111 M49 93 H111" /><line x1="58" y1="53" x2="58" y2="107" /><line x1="102" y1="53" x2="102" y2="107" /></g></g>
+</svg>

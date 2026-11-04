@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Foot-mounted motor</title><desc id="desc">Proposed generic parallel oblique exterior: cylindrical housing, three longitudinal surface ridges, mounting foot and one coaxial output shaft. Motor technology, power and motion are not specified.</desc>
+<style>.shell{fill:#eeeeec} .face{fill:#f6f6f4} .top{fill:#fafaf9} .base{fill:#e1e2df} .recess{fill:#c4c7c4} .outer{stroke:#303030;stroke-width:1.8;fill:none;stroke-linecap:butt;stroke-linejoin:round} .detail{stroke:#555555;stroke-width:1.05;fill:none;stroke-linecap:butt;stroke-linejoin:round}</style>
+<g id="base-fills"><path d="M55 99 H94 V113 H55 Z" fill="#ffffff"/>
+ <rect x="49" y="113" width="51" height="7" rx="1.3" fill="#ffffff"/>
+ <path d="M45 54 H104 A9 24 0 0 1 104 102 H45 A9 24 0 0 1 45 54 Z" fill="#ffffff"/>
+ <ellipse cx="104" cy="78" rx="9" ry="24" fill="#ffffff"/>
+ <path d="M104 69 H114 A3.5 9 0 0 1 114 87 H104 A3.5 9 0 0 1 104 69 Z" fill="#ffffff"/>
+ <path d="M114 73 H137 A2 5 0 0 1 137 83 H114 Z" fill="#ffffff"/></g>
+<g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M48 97 H100 V101.8 H48 Z"/><path d="M118 80 H134 V82 H118 Z"/></g>
+<g id="outlines"><g class="outer"><path d="M55 102 V113 H94 V102"/><rect x="49" y="113" width="51" height="7" rx="1.3"/><path d="M45 54 H104 A9 24 0 0 1 112.35 69 M112.35 87 A9 24 0 0 1 104 102 H45 A9 24 0 0 1 45 54"/><path d="M104 69 H114 A3.5 9 0 0 1 117 73 M117 83 A3.5 9 0 0 1 114 87 H104 A3.5 9 0 0 1 104 69"/><path d="M114 73 H137 A2 5 0 0 1 137 83 H114"/></g>
+ <g class="detail"><path d="M104 54 A9 24 0 0 0 104 102"/><path d="M52 66 H96 M52 76 H96 M52 86 H96"/><ellipse cx="137" cy="78" rx="2" ry="5"/></g></g>
+</svg>

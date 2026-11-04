@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Technician — drafting candidate</title>
+<desc id="desc">A person with protective eyewear and a work garment. Role and protective adequacy cannot be determined from the figure.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.0"><circle cx="80" cy="42" r="17" /><path d="M43 126 Q44 87 65 76 L80 90 L95 76 Q116 87 117 126 Z" /></g><g stroke-width="1.1"><path d="M63 42 H97 M69 38 H78 V47 H69 Z M82 38 H91 V47 H82 Z" /><path d="M64 78 L70 100 H90 L96 78" /></g></g>
+</svg>

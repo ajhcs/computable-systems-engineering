@@ -1,0 +1,822 @@
+{
+  "status": "source-referenced drawings for user review; not formal conformance",
+  "sources": {
+    "group-a/airforce-machines": {
+      "title": "US Air Force Civil Engineering Electrical Training, Basic Symbols",
+      "url": "https://files.eric.ed.gov/fulltext/ED226239.pdf",
+      "figure": "PDF page 78, printed page 9, Figure 1-6 Electric symbols",
+      "local_document_sha256": "36153e46073cc12a248d7eac7af5deeb9c2fc4bc6298ca52de35af190a63479e"
+    },
+    "group-a/doe-symbols-1": {
+      "title": "US DOE HDBK-1016/2-93, Electronic Diagrams, Prints, and Schematics",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL2.pdf",
+      "figure": "PDF page 21, printed PR-04 page 3, Figure 1 Electronic Symbols",
+      "local_document_sha256": "ca2014c1f6757ffbb59a2e4ff5ed25af9559a2ef5e22686939970b9d8269bd21"
+    },
+    "group-a/doe-symbols-2": {
+      "title": "US DOE HDBK-1016/2-93, Electronic Diagrams, Prints, and Schematics",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL2.pdf",
+      "figure": "PDF page 22, printed PR-04 page 4, Figure 2 Electronic Symbols Continued",
+      "local_document_sha256": "ca2014c1f6757ffbb59a2e4ff5ed25af9559a2ef5e22686939970b9d8269bd21"
+    },
+    "group-a/illinois-symbols": {
+      "title": "University of Illinois ECE 205 Electrical and Electronics Circuits, Lecture 02",
+      "url": "https://urlectures.web.illinois.edu/Lecture02.pdf",
+      "figure": "PDF/slide page 15, Symbols for common circuit elements",
+      "local_document_sha256": "e600c6640e1bb751d4656d41b932c0aafc984375dc542078c36eb2e3278bc9e4"
+    },
+    "group-a/mit-inductor": {
+      "title": "MIT 6.S917 Tube Electronics, Lab 01",
+      "url": "https://tubes.mit.edu/6S917/2025/labs/lab01",
+      "figure": "Inductors section, photograph captioned An Inductor with a ferrous core; image https://tubes.mit.edu/6S917/_static/2025/labs/lab01/inductor.jpg",
+      "local_document_sha256": "85ebcae2c3087efed9ebfdbb53e018872c434f41027706d226c7fef80a39bb86"
+    },
+    "group-a/ohio-symbols": {
+      "title": "DriveOhio Educator Toolkit, AutomatE 6-8 Module 1",
+      "url": "https://dam.assets.ohio.gov/image/upload/drive.ohio.gov/workforce/educator-toolkit/automate/lesson-plans/AutomatE_6-8.pdf",
+      "figure": "PDF page 17, printed page 16, Figure 3",
+      "local_document_sha256": "942e5fdba64ee12b708e42fe44d0241ab22d06bf3b22e5718a88352e681d45cc"
+    },
+    "group-a/post-doe-symbols-1": {
+      "title": "US DOE HDBK-1016/2-93, Electronic Diagrams, Prints, and Schematics",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL2.pdf",
+      "figure": "PDF page 21, printed PR-04 page 3, Figure 1 Electronic Symbols",
+      "inspection": "Previously inspected rendered PDF page",
+      "access_status": "opened and visually inspected",
+      "sha256": "ca2014c1f6757ffbb59a2e4ff5ed25af9559a2ef5e22686939970b9d8269bd21"
+    },
+    "group-a/post-doe-transformer-physical": {
+      "title": "US DOE Fundamentals Handbook Electrical Science Volume 4, DOE-HDBK-1011/4-92",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL4.pdf",
+      "figure": "PDF page 48, printed ES-13 page 4, Figure 1 Core-Type Transformer",
+      "inspection": "Downloaded and directly viewed a locally rendered source page",
+      "access_status": "opened and visually inspected",
+      "sha256": "061802bb0f89583a5efbce7514fb3b49afe915caffd5f4a5a5c74bbefa2093dd"
+    },
+    "group-a/post-kemet-est-polarity": {
+      "title": "KEMET EST Radial Aluminum Electrolytic Capacitors, A4010 EST",
+      "url": "https://content.kemet.com/datasheets/KEM_A4010_EST.pdf",
+      "figure": "PDF/printed page 15, Marking and Construction illustrations",
+      "inspection": "Downloaded and directly viewed a locally rendered source page",
+      "access_status": "opened and visually inspected",
+      "sha256": "9b2aa8b98a62b9f95f9270c04d57534fa00b4f0891c6f6eccd257944d804adca"
+    },
+    "group-a/post-nichicon-cap": {
+      "title": "Nichicon aluminum electrolytic capacitors, UVK series",
+      "url": "https://www.nichicon.co.jp/english/_assets/images/products/catalog/corporate/digital/e-lead.pdf",
+      "figure": "PDF page 1, Radial Lead Type side outline and upper product photographs",
+      "inspection": "Previously inspected rendered PDF page",
+      "access_status": "opened and visually inspected",
+      "sha256": "a6f9fc83d561fd09fcd9d8c3c072cf8f9b92b950474831edbeb7b6012930d581"
+    },
+    "group-a/ti-ic-block": {
+      "title": "Texas Instruments TLV1704-SEP Single-Event Effects Radiation Report, SLOK014A",
+      "url": "https://www.ti.com/lit/pdf/slok014",
+      "figure": "page 5, Figure 3-3 TLV1704-SEP Bias Diagram",
+      "local_document_sha256": "6c0260fc0c1baa4019fdd014976f88c7e3401943781e6e66fcaf4fbeb1578313"
+    },
+    "group-a/ti-pdip": {
+      "title": "Texas Instruments UA9637A dual differential line receiver, SLLS111C",
+      "url": "https://www.ti.com/lit/ds/symlink/ua9637a.pdf",
+      "figure": "page 3, Figure 4-1 D (SOIC) or P (PDIP) Package, Top View",
+      "local_document_sha256": "43ccf0a5a1e3c179367136533bcf0e000f623cd42d6781e045463a0b90d0cfa1"
+    },
+    "group-a/ti-to92": {
+      "title": "Texas Instruments package outline LPG0003A TO-92, 4221343/C",
+      "url": "https://www.ti.com/lit/pdf/mpbc003",
+      "figure": "page 1, front and bottom mechanical views and package rendering",
+      "local_document_sha256": "dddb41fa5ced9d9c47a25cf1ee5519d7012532c2d995fd03c996b5dd12186d17"
+    },
+    "group-a/vishay-diode": {
+      "title": "Vishay Semiconductors DO-41 Glass, document 84003",
+      "url": "https://www.vishay.com/docs/84003/84003.pdf",
+      "figure": "page 1, Package Dimensions side drawing 94 9368",
+      "local_document_sha256": "575a4d7069c841320b607a908500146beaae484032e1a5b12a74669477644ed9"
+    },
+    "group-a/vishay-inductor": {
+      "title": "Vishay Dale IHD Filter Inductors, High Current, Axial Leaded, document 34016",
+      "url": "https://www.vishay.com/docs/34016/ihd.pdf",
+      "figure": "page 1, product photographs and DIMENSIONS side view",
+      "local_document_sha256": "70d744d0a72630c561689a4bc00d6fdeed62aa38ecd9b492f3c73b75c1d903c5"
+    },
+    "group-a/vishay-resistor": {
+      "title": "Vishay, Drift Calculation for Thin Film Resistors",
+      "url": "https://www.vishay.com/doc?28809=",
+      "figure": "page 1, left axial-leaded resistor illustration",
+      "local_document_sha256": "6e63b33f09a6a012ffe61ffb1249208432161d471e04bc1d0edbbcb54155dda4"
+    },
+    "group-b/elec-circuit-breaker-1": {
+      "title": "Siemens Miniature Circuit Breakers configuration manual, 09/2023",
+      "url": "https://cache.industry.siemens.com/dl/files/792/45302792/att_1155886/v4/MAN_L1V30914799-02_en_en-US.pdf",
+      "figure": "PDF p.196, printed p.194, 5SY1 front view",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "08c1cbd841a6f7230089247aaed4d08d42bb2e8041eb520c5da978c37bcf9de6"
+    },
+    "group-b/elec-circuit-breaker-2": {
+      "title": "US DOE Engineering Symbology, Prints and Drawings, Volume 2",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL2.pdf",
+      "figure": "PR-04 printed p.4, PDF p.22, Fig. 2",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "ca2014c1f6757ffbb59a2e4ff5ed25af9559a2ef5e22686939970b9d8269bd21"
+    },
+    "group-b/elec-connector-physical-1": {
+      "title": "Eaton Souriau 8D series catalog",
+      "url": "https://jowo.ag/wp-content/uploads/2026/04/MIL-DTL-38999_Series.pdf",
+      "figure": "PDF and printed p.33, Mated connectors, type 0 with plug",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "1f0601b82dcdb6edbef524291d2ef4f5a5b8da67f78f23b79f7e10cd250309b5"
+    },
+    "group-b/elec-connector-schematic-1": {
+      "title": "KiCad 10.0.7 installed official symbol library",
+      "url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/10.0.7/Connector.kicad_symdir/Conn_01x02_Pin.kicad_sym",
+      "figure": "Connector:Conn_01x02_Pin",
+      "access": "local symbol exported by kicad-cli and visually inspected as rendered SVG",
+      "sha256": "30380c3643f4826dfada59d2f5130842bbac6ddf999279a7ee41155dcc1eac15",
+      "original_url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/master/Connector.kicad_symdir/Conn_01x02_Pin.kicad_sym",
+      "version_pin": "10.0.7; upstream and inspected local bytes match"
+    },
+    "group-b/elec-connector-schematic-2": {
+      "title": "KiCad 10.0.7 installed official symbol library",
+      "url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/10.0.7/Connector.kicad_symdir/Conn_01x02_Socket.kicad_sym",
+      "figure": "Connector:Conn_01x02_Socket",
+      "access": "local symbol exported by kicad-cli and visually inspected as rendered SVG",
+      "sha256": "79ae40886b8505e05cc9b3dce14aed4d507136577b02fa693a9b7fc31231b8ed",
+      "original_url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/master/Connector.kicad_symdir/Conn_01x02_Socket.kicad_sym",
+      "version_pin": "10.0.7; upstream and inspected local bytes match"
+    },
+    "group-b/elec-connector-schematic-3": {
+      "title": "ABB Emax DC installation manual",
+      "url": "https://library.e.abb.com/public/13c3b3db80bb42db97a341f5f7a8b225/1SDH000635R0002.pdf",
+      "figure": "printed and PDF p.124/131, circuit diagram symbol legend",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "63e9f1bac8e6cb6fb87d8a427fd175100e9571ff420714f442d410d3edfd2fb1"
+    },
+    "group-b/elec-contactor-1": {
+      "title": "ABB AF09–AF96 three-pole contactors",
+      "url": "https://library.e.abb.com/public/6a8c0a714c70494a85837e4b81755e1f/1SBC101438D0201.pdf",
+      "figure": "PDF p.11, printed 5/155, terminal marking and positioning",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "c537e5196a490ff29672147c3352dc444adfad608fb9eb5db86b096537a36ffb"
+    },
+    "group-b/elec-disconnect-1": {
+      "title": "ABB Emax DC installation manual",
+      "url": "https://library.e.abb.com/public/13c3b3db80bb42db97a341f5f7a8b225/1SDH000635R0002.pdf",
+      "figure": "printed and PDF p.124/131, circuit diagram symbol legend",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "63e9f1bac8e6cb6fb87d8a427fd175100e9571ff420714f442d410d3edfd2fb1"
+    },
+    "group-b/elec-fuse-1": {
+      "title": "ABB Emax DC installation manual",
+      "url": "https://library.e.abb.com/public/13c3b3db80bb42db97a341f5f7a8b225/1SDH000635R0002.pdf",
+      "figure": "printed and PDF p.124/131, circuit diagram symbol legend",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "63e9f1bac8e6cb6fb87d8a427fd175100e9571ff420714f442d410d3edfd2fb1"
+    },
+    "group-b/elec-fuse-2": {
+      "title": "KiCad 10.0.7 installed official symbol library",
+      "url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/10.0.7/Device.kicad_symdir/Fuse.kicad_sym",
+      "figure": "Device:Fuse",
+      "access": "local symbol exported by kicad-cli and visually inspected as rendered SVG",
+      "sha256": "08d01d9946b9d571c9860b3ca3151a6b36d39516d4b9ec9edc3820046c75dfd2",
+      "original_url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/master/Device.kicad_symdir/Fuse.kicad_sym",
+      "version_pin": "10.0.7; upstream and inspected local bytes match"
+    },
+    "group-b/elec-protective-earth-1": {
+      "title": "KiCad 10.0.7 installed official symbol library",
+      "url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/10.0.7/power.kicad_symdir/Earth_Protective.kicad_sym",
+      "figure": "power:Earth_Protective",
+      "access": "local symbol exported by kicad-cli and visually inspected as rendered SVG",
+      "sha256": "5a2e34deae4929fc207597be9a7ccb3a82d70a1ea3f5fd3c8b8c3029f7ea1df7",
+      "original_url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/master/power.kicad_symdir/Earth_Protective.kicad_sym",
+      "version_pin": "10.0.7; upstream and inspected local bytes match"
+    },
+    "group-b/elec-relay-1": {
+      "title": "US DOE Engineering Symbology, Prints and Drawings, Volume 1",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL1.pdf",
+      "figure": "PR-03 printed p.7, PDF p.103, Fig. 7",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "98e614c25f9949a6e0b3130a78642a48d23e47e4e1be855c00dfff13fb4e71e5"
+    },
+    "group-b/elec-relay-2": {
+      "title": "ABB Emax DC installation manual",
+      "url": "https://library.e.abb.com/public/13c3b3db80bb42db97a341f5f7a8b225/1SDH000635R0002.pdf",
+      "figure": "printed and PDF p.124/131, circuit diagram symbol legend",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "63e9f1bac8e6cb6fb87d8a427fd175100e9571ff420714f442d410d3edfd2fb1"
+    },
+    "group-b/elec-signal-ground-1": {
+      "title": "KiCad 10.0.7 installed official symbol library",
+      "url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/10.0.7/power.kicad_symdir/GND.kicad_sym",
+      "figure": "power:GND",
+      "access": "local symbol exported by kicad-cli and visually inspected as rendered SVG",
+      "sha256": "2505811766064acf321cd3aae4e72ef96d35da64c1ed4ca8d6a24271c9cf7734",
+      "original_url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/master/power.kicad_symdir/GND.kicad_sym",
+      "version_pin": "10.0.7; upstream and inspected local bytes match"
+    },
+    "group-b/elec-switch-1": {
+      "title": "US DOE Engineering Symbology, Prints and Drawings, Volume 2",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL2.pdf",
+      "figure": "PR-04 printed p.4, PDF p.22, Fig. 2",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "ca2014c1f6757ffbb59a2e4ff5ed25af9559a2ef5e22686939970b9d8269bd21"
+    },
+    "group-b/elec-switch-2": {
+      "title": "ABB Emax DC installation manual",
+      "url": "https://library.e.abb.com/public/13c3b3db80bb42db97a341f5f7a8b225/1SDH000635R0002.pdf",
+      "figure": "printed and PDF p.124/131, circuit diagram symbol legend",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "63e9f1bac8e6cb6fb87d8a427fd175100e9571ff420714f442d410d3edfd2fb1"
+    },
+    "group-b/elec-terminal-physical-1": {
+      "title": "Omega RDXL120 User Manual M-4708/1008",
+      "url": "https://assets.omega.com/manuals/M4708.pdf",
+      "figure": "PDF p.31 printed p.2-1, terminal block face; PDF p.56 printed p.3-5, enlarged clamp view",
+      "access": "downloaded and visually inspected as rendered PDF page",
+      "sha256": "faa3394d2429d9cb4dbada2cb889fb8fef82914d6aa3d3bcf8533b3c3c9b22d6"
+    },
+    "group-b/post-doe-delta": {
+      "title": "DOE Electrical Science Volume 4, DOE-HDBK-1011/4-92",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL4.pdf",
+      "location": "PDF p.52, ES-13 p.8, Fig. 3 Delta Connection",
+      "access": "visually inspected reviewer-retained rendered PDF page",
+      "sha256": "061802bb0f89583a5efbce7514fb3b49afe915caffd5f4a5a5c74bbefa2093dd"
+    },
+    "group-b/post-doe-terminal-board": {
+      "title": "DOE Engineering Symbology, Prints and Drawings Volume 2",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL2.pdf",
+      "location": "PDF p.22, PR-04 p.4, Fig. 2 terminal board",
+      "access": "downloaded and visually inspected full page and enlarged terminal-board detail",
+      "sha256": "ca2014c1f6757ffbb59a2e4ff5ed25af9559a2ef5e22686939970b9d8269bd21"
+    },
+    "group-b/post-dsmt-receptacle": {
+      "title": "DSM&T Power Cord Receptacles catalog, NEMA 1-15R",
+      "url": "https://dsmt.com/wp-content/uploads/2024/03/DSMT_Catalog.pdf",
+      "location": "PDF p.29, printed p.14, NEMA 1-15R photograph and front view",
+      "access": "downloaded, rendered, and visually inspected",
+      "sha256": "bc8a7945173a2c31646bd985121647b99d7a618006ecba6f4996a80c7a9ce204"
+    },
+    "group-b/post-kicad-pin": {
+      "title": "KiCad installed official symbol library v10.0.7",
+      "url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/10.0.7/Connector.kicad_symdir/Conn_01x02_Pin.kicad_sym",
+      "location": "Connector:Conn_01x02_Pin, exported symbol unit 1",
+      "access": "local symbol exported and visually inspected; upstream URL may change",
+      "sha256": "30380c3643f4826dfada59d2f5130842bbac6ddf999279a7ee41155dcc1eac15",
+      "original_url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/master/Connector.kicad_symdir/Conn_01x02_Pin.kicad_sym",
+      "version_pin": "10.0.7; upstream and inspected local bytes match"
+    },
+    "group-b/post-kicad-socket": {
+      "title": "KiCad installed official symbol library v10.0.7",
+      "url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/10.0.7/Connector.kicad_symdir/Conn_01x02_Socket.kicad_sym",
+      "location": "Connector:Conn_01x02_Socket, exported symbol unit 1",
+      "access": "local symbol exported and visually inspected; upstream URL may change",
+      "sha256": "79ae40886b8505e05cc9b3dce14aed4d507136577b02fa693a9b7fc31231b8ed",
+      "original_url": "https://gitlab.com/kicad/libraries/kicad-symbols/-/blob/master/Connector.kicad_symdir/Conn_01x02_Socket.kicad_sym",
+      "version_pin": "10.0.7; upstream and inspected local bytes match"
+    },
+    "group-b/post-qualtek-plug": {
+      "title": "Qualtek 223051-01 power cord, revision B",
+      "url": "https://qualtekusa.com/wp-content/uploads/specsheets/22305101.pdf",
+      "location": "p.1 NEMA 1-15P plug side and face views",
+      "access": "downloaded, rendered, and visually inspected; proprietary source figure is private and not included in delivery",
+      "sha256": "313613ea6abb7e10e750e6dfa1e3e7c8af12d3fef49cf6ae4aff9c7afcbdaec5"
+    },
+    "group-c/aa-industrial": {
+      "title": "Energizer Industrial LR6 AA Product Datasheet, EBC-8808EU-A(IND)",
+      "url": "https://static.brw.ch/pdf/8212_STD_Battery_LR6_Industrial_E.pdf",
+      "location": "page 1, Industry Standard Dimensions and product photograph",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "47bd1416079812aa9a0148b70c41a18f1c57878ac21844c971c473b43bb33368",
+      "access": "retrieved and rendered for private source inspection"
+    },
+    "group-c/doe-fig1": {
+      "title": "DOE Fundamentals Handbook, Engineering Symbology, Prints, and Drawings, Volume 2, DOE-HDBK-1016/2-93",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL2.pdf",
+      "location": "PR-04 page 3, PDF page 21, Figure 1: battery",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "ca2014c1f6757ffbb59a2e4ff5ed25af9559a2ef5e22686939970b9d8269bd21",
+      "access": "retrieved and rendered for private source inspection"
+    },
+    "group-c/doe-fig2": {
+      "title": "DOE Fundamentals Handbook, Engineering Symbology, Prints, and Drawings, Volume 2, DOE-HDBK-1016/2-93",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL2.pdf",
+      "location": "PR-04 page 4, PDF page 22, Figure 2: voltmeter",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "ca2014c1f6757ffbb59a2e4ff5ed25af9559a2ef5e22686939970b9d8269bd21",
+      "access": "retrieved and rendered for private source inspection"
+    },
+    "group-c/doe-gates": {
+      "title": "DOE Fundamentals Handbook, Engineering Symbology, Prints, and Drawings, Volume 2, DOE-HDBK-1016/2-93",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1016-93_VOL2.pdf",
+      "location": "PR-05 page 5, PDF page 55, Figure 3: IEEE/ANSI column, AND, OR, NOT and NAND rows",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "ca2014c1f6757ffbb59a2e4ff5ed25af9559a2ef5e22686939970b9d8269bd21",
+      "access": "retrieved and rendered for private source inspection"
+    },
+    "group-c/schneider-control": {
+      "title": "Schneider Electric, How do I operate a star delta starter with 2 wire control?",
+      "url": "https://www.se.com/nl/nl/faqs/FA147367/",
+      "location": "first figure, Simple Schematic of 3 Wire Control Using a Relay or Contactor",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "c4a21dd232b498aeb81f99b33db1a68aa39e7d2d02d37650b1b458b28332f4f0",
+      "access": "retrieved and rendered for private source inspection"
+    },
+    "group-c/ti-acdc": {
+      "title": "Texas Instruments, 500-W, >94.5% Efficiency, Analog Control AC/DC Reference Design for 5G Telecom Rectifier, TIDUET3, February 2021",
+      "url": "https://www.ti.com/lit/ug/tiduet3/tiduet3.pdf",
+      "location": "page 3, Figure 2-1, with AC/DC purpose stated on page 1",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "0d4897b64b65fed67cee37171b26f83f148d587268f0f5cb0c233985ca0e9d4d",
+      "access": "retrieved and rendered for private source inspection"
+    },
+    "group-c/ti-inverter": {
+      "title": "Texas Instruments, AMC High-Side Power Supply Options, SDAA154, October 2025",
+      "url": "https://www.ti.com/lit/an/sdaa154/sdaa154.pdf",
+      "location": "page 8, Figure 2-8 Inverter Block Diagram (DC to AC Converter)",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "189556b554c240f1e7fcd41153444f408940dac99127a6f70f5c98b743d05cfb",
+      "access": "retrieved and rendered for private source inspection"
+    },
+    "group-c/ti-sensor1": {
+      "title": "Texas Instruments, ultrasonic condition-monitoring technical article SSZTA82",
+      "url": "https://www.ti.com/document-viewer/lit/html/SSZTA82/GUID-02464ED1-D29E-4975-8267-FE3711D8094F",
+      "location": "Figure 1: functional block diagram of an ultrasonic detector",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "ce464be24509bdda779d5ca94da2070412bea4e95f87fe969737b590ed7fa829",
+      "access": "retrieved and rendered for private source inspection"
+    },
+    "group-c/ti-sensor2": {
+      "title": "Texas Instruments, ultrasonic condition-monitoring technical article SSZTA82",
+      "url": "https://www.ti.com/document-viewer/lit/html/SSZTA82/GUID-02464ED1-D29E-4975-8267-FE3711D8094F",
+      "location": "Figure 2: functional block diagram of a 4mA–20mA current loop",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "5bb914b67cb6db78d08153b4b1898ab1128bd42f57d9e2b001c047a72afb49a3",
+      "access": "retrieved and rendered for private source inspection"
+    },
+    "group-c/ti-transducer": {
+      "title": "Ron Mancini, Instrumentation: Sensors to A/D Converters, chapter 12 of Texas Instruments Op Amps for Everyone, SLOD006B",
+      "url": "https://web.mit.edu/6.101/www/reference/op_amps_everyone.pdf",
+      "location": "printed page 12-1, PDF page 193, Figure 12-1",
+      "inspected": "visual raster inspected 2026-11-03",
+      "sha256": "5a1f15e5901a870e66a5ef098b505b13620ac6fbd89ec373db5cdf4df7c05da5",
+      "access": "retrieved and rendered for private source inspection"
+    }
+  },
+  "items": {
+    "elec-resistor-physical": {
+      "source_ids": [
+        "group-a/vishay-resistor"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "The left component has a cylindrical body, multiple annular bands, rounded ends and one straight coaxial lead at each end.",
+      "intended_adaptation": "Side elevation: cylindrical outline with two leads, simple end boundaries and a restrained set of uncolored band outlines.",
+      "limits": "Reference is a specific marked thin-film example; the icon does not assign a color code, resistance, tolerance or dimensions.",
+      "group": "group-a"
+    },
+    "elec-resistor-schematic": {
+      "source_ids": [
+        "group-a/ohio-symbols"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "The Resistor row uses an empty horizontal rectangle connected to a line at the midpoint of each short side.",
+      "intended_adaptation": "Keep the existing rectangular two-terminal resistor, with plain connection stubs.",
+      "limits": "This is a selected circuit-drawing convention, not evidence of formal IEC compliance.",
+      "group": "group-a"
+    },
+    "elec-capacitor-physical": {
+      "source_ids": [
+        "group-a/post-nichicon-cap",
+        "group-a/post-kemet-est-polarity"
+      ],
+      "observed_visual_construction": "Nichicon shows a sleeved radial can with two parallel leads and the positive lead longer; KEMET labels the contrasting lengthwise sleeve stripe negative and illustrates unequal leads.",
+      "intended_adaptation": "Keep the polarized radial side view, with negative marks on the left sleeve stripe, a shorter left lead and a longer right lead.",
+      "limits": "Example is polarized and distinct from the separate unpolarized schematic; no part size, rating or wiring instruction is assigned.",
+      "access_status": "both sources opened and visually inspected",
+      "group": "group-a"
+    },
+    "elec-capacitor-schematic": {
+      "source_ids": [
+        "group-a/ohio-symbols",
+        "group-a/doe-symbols-1"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "Ohio Figure 3 uses two equal straight parallel plates separated by a gap, with one centered lead on each outside face. DOE also shows this fixed-capacitor alternative.",
+      "intended_adaptation": "Keep equal plates with centered straight stubs and no polarity mark.",
+      "limits": "This separate unpolarized notation should not be paired as a wiring representation of the illustrated electrolytic package.",
+      "group": "group-a"
+    },
+    "elec-inductor-physical": {
+      "source_ids": [
+        "group-a/vishay-inductor",
+        "group-a/mit-inductor"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "Vishay shows a cylindrical axial-leaded bobbin product with one straight lead at each end; its photo has a protective sleeve. MIT shows a bare helix around a dark cylindrical core with leads bent in the same direction.",
+      "intended_adaptation": "Synthesize an illustrative exposed winding in a side view, with a core/bobbin and axial leads to preserve the existing model meaning.",
+      "limits": "No one figure establishes this exact combination: the Vishay product is sleeved and the MIT example has radial leads. It is an explanatory composite, not a specific manufacturer part.",
+      "group": "group-a"
+    },
+    "elec-inductor-schematic": {
+      "source_ids": [
+        "group-a/ohio-symbols",
+        "group-a/doe-symbols-1"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "Ohio shows a connected sequence of four semicircular humps in a line without a core mark; DOE Figure 1 shows an uncored winding as an alternative representation.",
+      "intended_adaptation": "Use a clear four-arc coil with straight end stubs and no parallel core lines.",
+      "limits": "Coil orientation and number of drawn arcs are presentation choices; no magnetic core material is specified.",
+      "group": "group-a"
+    },
+    "elec-diode-physical": {
+      "source_ids": [
+        "group-a/vishay-diode"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "A short cylindrical axial glass body has one lead on each side and a single shaded band at one end labeled cathode identification.",
+      "intended_adaptation": "Side elevation with narrow end band, cylindrical outline and coaxial leads; position the band at the right.",
+      "limits": "The right-side band follows the source marking concept but is illustrative, not a wiring instruction or exact DO-41 dimension.",
+      "group": "group-a"
+    },
+    "elec-diode-schematic": {
+      "source_ids": [
+        "group-a/illinois-symbols",
+        "group-a/doe-symbols-2"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "The Illinois slide shows an unfilled triangle pointing right into a perpendicular vertical bar with straight left/right leads; DOE shows the filled-triangle variant.",
+      "intended_adaptation": "Use the source-observed unfilled variant with anode lead left and cathode bar right.",
+      "limits": "Source conventions differ in fill; this diagram adopts the Illinois outline and makes no formal-standard compliance claim.",
+      "group": "group-a"
+    },
+    "elec-transistor-physical": {
+      "source_ids": [
+        "group-a/ti-to92"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "The front view has a shallow rectangular molded body above three separate parallel leads; vertical lines near the body edges indicate end bevels, while the bottom view shows the chamfered outline.",
+      "intended_adaptation": "Use a coherent front view of a TO-92-like three-lead package with end bevel boundaries and straight parallel leads.",
+      "limits": "The example is a package outline; no pinout, type or actual dimensions are assigned.",
+      "group": "group-a"
+    },
+    "elec-transistor-schematic": {
+      "source_ids": [
+        "group-a/doe-symbols-2",
+        "group-a/illinois-symbols"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "DOE Figure 2 shows a left base bar, collector branch upper right and emitter branch lower right with arrow pointing outward; the source encloses the mark in a circle.",
+      "intended_adaptation": "Preserve the original uncircled NPN mark, left base and outward lower-right emitter arrow, on straight connection stubs.",
+      "limits": "The enclosing circle is omitted as an allowed local simplification; no pin numbering or package is implied.",
+      "group": "group-a"
+    },
+    "elec-integrated-circuit-physical": {
+      "source_ids": [
+        "group-a/ti-pdip"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "Top-view package figure has an elongated rectangle with an indentation centered in one short edge and four lead positions on each long side.",
+      "intended_adaptation": "Top view of a notched eight-position dual-inline package with four individually outlined pins on each side.",
+      "limits": "The source shows a particular eight-pin receiver; icon assigns neither its pin functions nor dimensions.",
+      "group": "group-a"
+    },
+    "elec-integrated-circuit-schematic": {
+      "source_ids": [
+        "group-a/ti-ic-block"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "A rectangular IC block has line connections on the left and right, with pin numbers and named functions shown in the actual circuit.",
+      "intended_adaptation": "Generalize to the existing blank four-terminal rectangle with two line connections on each side; omit specific pin identifiers and functions.",
+      "limits": "The cited device has fourteen labeled pins; a generic four-terminal block is a local abstraction and does not describe that product or an actual pinout.",
+      "group": "group-a"
+    },
+    "elec-transformer-physical": {
+      "source_ids": [
+        "group-a/post-doe-transformer-physical"
+      ],
+      "observed_visual_construction": "The DOE core-type teaching figure shows one closed rectangular iron core, with two separate helical windings wound around opposite vertical limbs and each winding ending in a separate circuit. The indicated flux lines and external test circuits are explanatory, not physical components.",
+      "intended_adaptation": "Independently redraw a compact front construction with a closed core and two distinct winding groups around its limbs; omit external circuit, flux lines, labels, dimensions and ratings.",
+      "limits": "A simplified teaching construction, not a specific manufacturer part or a claim about leakage, turns ratio, lamination, dimensions or field strength.",
+      "access_status": "opened and visually inspected before revision",
+      "group": "group-a"
+    },
+    "elec-transformer-schematic": {
+      "source_ids": [
+        "group-a/post-doe-symbols-1"
+      ],
+      "observed_visual_construction": "DOE Figure 1 shows two separate opposing coil marks, four conductor ends and parallel lines between the coils for a magnetic-core transformer.",
+      "intended_adaptation": "Retain an independently constructed pair of opposing coil marks separated by two core lines, four plain connection stubs and no polarity dots.",
+      "limits": "A schematic convention; no material, ratio, rating or formal-standard compliance is asserted.",
+      "access_status": "opened and visually inspected before revision",
+      "group": "group-a"
+    },
+    "elec-generator": {
+      "source_ids": [
+        "group-a/airforce-machines"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "Figure 1-6 marks Generator with a capital G inside a circle in a straight conductor line.",
+      "intended_adaptation": "Retain a G in a circle with straight left and right connection stubs.",
+      "limits": "Current type, phase, winding and exact connection remain unspecified; this is a generic mark.",
+      "group": "group-a"
+    },
+    "elec-motor": {
+      "source_ids": [
+        "group-a/airforce-machines"
+      ],
+      "access_status": "opened and figure pixels inspected",
+      "observed_visual_construction": "Figure 1-6 marks Motor with a capital M inside a circle in a straight conductor line.",
+      "intended_adaptation": "Retain an M in a circle with straight left and right connection stubs.",
+      "limits": "Current type, phase, winding and exact connection remain unspecified; this is a generic mark.",
+      "group": "group-a"
+    },
+    "elec-switch": {
+      "observed_visual_construction": "DOE single switch has two filled contact points and a tilted blade with a gap; ABB make contact has a broken conductor and diagonal blade.",
+      "intended_adaptation": "Keep a single open blade and two contact points on one horizontal conductor; ordinary lead ends have no added rings.",
+      "limits": "Not a particular switch or formal standard certification.",
+      "source_ids": [
+        "group-b/elec-switch-1",
+        "group-b/elec-switch-2"
+      ],
+      "access_status": "downloaded and visually inspected as rendered PDF page; downloaded and visually inspected as rendered PDF page",
+      "group": "group-b"
+    },
+    "elec-relay": {
+      "observed_visual_construction": "DOE Fig. 7 shows a relay coil with a dashed mechanical linkage and separate normally-open contact; ABB shows a rectangular control coil.",
+      "intended_adaptation": "Use a rectangular coil, a separate normally-open contact, and a dashed link; no conducting line joins their circuits.",
+      "limits": "The juxtaposition is an adaptation of two source conventions; no rating or energized condition asserted.",
+      "source_ids": [
+        "group-b/elec-relay-1",
+        "group-b/elec-relay-2"
+      ],
+      "access_status": "downloaded and visually inspected as rendered PDF page; downloaded and visually inspected as rendered PDF page",
+      "group": "group-b"
+    },
+    "elec-contactor": {
+      "observed_visual_construction": "ABB front positioning diagrams show a tall device with three upper and three lower main connection positions, a central face, and optional auxiliary positions.",
+      "intended_adaptation": "Draw a simplified face with three aligned top and bottom screw access positions and central actuator area; omit model markings.",
+      "limits": "Front diagram is a simplified local adaptation, not a dimensioned part or actual contact state.",
+      "source_ids": [
+        "group-b/elec-contactor-1"
+      ],
+      "access_status": "downloaded and visually inspected as rendered PDF page",
+      "group": "group-b"
+    },
+    "elec-fuse": {
+      "observed_visual_construction": "ABB p.124 general fuse is a narrow rectangle bisected by the conductor; KiCad Fuse uses the same rectangle-and-through-line construction.",
+      "intended_adaptation": "Rotate horizontally and retain the conductor through the rectangle; use plain lead ends.",
+      "limits": "Graphic does not state rating or actual protection.",
+      "source_ids": [
+        "group-b/elec-fuse-1",
+        "group-b/elec-fuse-2"
+      ],
+      "access_status": "downloaded and visually inspected as rendered PDF page; local symbol exported by kicad-cli and visually inspected as rendered SVG",
+      "group": "group-b"
+    },
+    "elec-circuit-breaker": {
+      "observed_visual_construction": "Siemens 5SY1 front has a narrow enclosed body, paired terminal features at opposite ends and a central actuator; DOE Fig. 2 breaker mark is a gap spanned by a curved arc.",
+      "intended_adaptation": "Retain the prior explicit interface pictogram: a breaker-like body with actuator, plus an open-contact indication within; plain external leads.",
+      "limits": "This combines visual ideas from separate sources. It is not an observed cutaway, a trip mechanism, or a protective-device schematic.",
+      "source_ids": [
+        "group-b/elec-circuit-breaker-1",
+        "group-b/elec-circuit-breaker-2"
+      ],
+      "access_status": "downloaded and visually inspected as rendered PDF page; downloaded and visually inspected as rendered PDF page",
+      "group": "group-b"
+    },
+    "elec-disconnect": {
+      "observed_visual_construction": "ABB switch-disconnector has a diagonal blade visibly separated from a fixed contact with a small open diamond and transverse mark.",
+      "intended_adaptation": "Rotate the open contact horizontally and preserve a legible fixed-contact isolating mark; keep a real gap and plain lead ends.",
+      "limits": "Source is a switch-disconnector example; the graphic itself proves no isolation performance.",
+      "source_ids": [
+        "group-b/elec-disconnect-1"
+      ],
+      "access_status": "downloaded and visually inspected as rendered PDF page",
+      "group": "group-b"
+    },
+    "elec-signal-ground": {
+      "observed_visual_construction": "KiCad GND is a down-pointing open triangle, top horizontal edge joined at its center to a single vertical lead.",
+      "intended_adaptation": "Keep the triangle with one plain upper lead; omit the GND text to preserve the prior compact icon.",
+      "limits": "This represents a local reference convention, not a protective-earth or chassis connection.",
+      "source_ids": [
+        "group-b/elec-signal-ground-1"
+      ],
+      "access_status": "local symbol exported by kicad-cli and visually inspected as rendered SVG",
+      "group": "group-b"
+    },
+    "elec-protective-earth": {
+      "observed_visual_construction": "KiCad Earth_Protective has a vertical lead entering a surrounding circle, connecting to the longest of three progressively shorter horizontal bars.",
+      "intended_adaptation": "Retain the circle, lead and three bars in a compact local redraw, with no decorative terminal ring.",
+      "limits": "It indicates intended protective-earth reference only; the graphic proves no bonding, installation or safety qualification.",
+      "source_ids": [
+        "group-b/elec-protective-earth-1"
+      ],
+      "access_status": "local symbol exported by kicad-cli and visually inspected as rendered SVG",
+      "group": "group-b"
+    },
+    "elec-connector-physical": {
+      "observed_visual_construction": "Eaton p.33 shows a plug and receptacle mated end to end, with stepped cylindrical shells and a larger coupling collar bridging the mating joint.",
+      "intended_adaptation": "Draw a simplified side elevation with two stepped housing halves, cable necks and a distinct coupling collar; omit proprietary sizes and texture.",
+      "limits": "Generic multi-contact example; no family, count, pinout, sealing or dimensional fit established.",
+      "source_ids": [
+        "group-b/elec-connector-physical-1"
+      ],
+      "access_status": "downloaded and visually inspected as rendered PDF page",
+      "group": "group-b"
+    },
+    "elec-connector-schematic": {
+      "observed_visual_construction": "KiCad shows two separate solid pin bars and two separate curved socket marks; ABB shows a pin adjoining a socket in its socket-and-plug legend.",
+      "intended_adaptation": "Place two pin marks facing two curved socket marks with visible air gaps, preserving one independent path per row.",
+      "limits": "Adapted arrangement is unmated; no circuit connection crosses either gap and no polarity is specified.",
+      "source_ids": [
+        "group-b/elec-connector-schematic-1",
+        "group-b/elec-connector-schematic-2",
+        "group-b/elec-connector-schematic-3"
+      ],
+      "access_status": "local symbol exported by kicad-cli and visually inspected as rendered SVG; local symbol exported by kicad-cli and visually inspected as rendered SVG; downloaded and visually inspected as rendered PDF page",
+      "group": "group-b"
+    },
+    "elec-terminal-physical": {
+      "observed_visual_construction": "Omega terminal strip shows individual round slotted screw heads arranged on a rectangular face; the enlarged clamp view shows the signal wire entering below the screw.",
+      "intended_adaptation": "Isolate one screw on a rectangular terminal block face and include its supporting channel in top view.",
+      "limits": "Isolating a single repeated position is an adaptation; no exact clamp internals, wire size or rating are asserted.",
+      "source_ids": [
+        "group-b/elec-terminal-physical-1"
+      ],
+      "access_status": "downloaded and visually inspected as rendered PDF page",
+      "group": "group-b"
+    },
+    "elec-terminal-schematic": {
+      "source_ids": [
+        "group-b/post-doe-delta",
+        "group-b/post-doe-terminal-board"
+      ],
+      "observed_visual_construction": "DOE delta Fig. 3 uses open terminal circles A/B/C at lead ends while filled points mark internal junctions. The terminal-board figure has open circles on individual conductors.",
+      "intended_adaptation": "Use one hollow ring between two plain horizontal stubs, differentiated from the palette filled junction dot. The two-stub standalone form is a local adaptation.",
+      "limits": "Local convention, not a universal rule or claim of standard conformity. Source delta circles are at ends, and source board rings lie within a board.",
+      "access_status": "both cited figures visually inspected before this revision",
+      "group": "group-b"
+    },
+    "elec-plug-physical": {
+      "source_ids": [
+        "group-b/post-qualtek-plug",
+        "group-b/post-dsmt-receptacle"
+      ],
+      "observed_visual_construction": "Qualtek p.1 shows a NEMA 1-15P plug in side view with two parallel flat blades; DSM&T p.14 illustrates a NEMA 1-15R receptacle with two slots. The Qualtek C7 at the opposite end of its cord is not that receptacle.",
+      "intended_adaptation": "Retain a generic two-blade side view and describe its visual relationship to the revised two-slot face without treating the two drawings as a tested mated set.",
+      "limits": "The drawings are generic and not dimensioned, rated, certified or fit checked; no physical compatibility is established by the icons.",
+      "access_status": "both actual manufacturer figures visually inspected before this revision",
+      "group": "group-b"
+    },
+    "elec-plug-schematic": {
+      "source_ids": [
+        "group-b/post-kicad-pin"
+      ],
+      "observed_visual_construction": "Two separate parallel plain leads end at short solid pin-contact rectangles.",
+      "intended_adaptation": "Translate the previous two-contact mark 20 viewBox units right to center the standalone drawing, preserving direction, geometry and two independent paths.",
+      "limits": "A schematic convention, not a physical pin arrangement or mating qualification.",
+      "access_status": "actual KiCad symbol export visually inspected before the original drawing",
+      "group": "group-b"
+    },
+    "elec-socket-physical": {
+      "source_ids": [
+        "group-b/post-dsmt-receptacle",
+        "group-b/post-qualtek-plug"
+      ],
+      "observed_visual_construction": "DSM&T shows a rounded rectangular 1-15R mating face with two parallel rectangular slots side by side. Qualtek shows a two-flat-blade 1-15P example, not a matching actual specimen in this figure.",
+      "intended_adaptation": "Use an independently drawn rounded rectangular face with two equal recessed slot openings, rotated 90 degrees so the pair is vertically arranged; retain generic proportions and omit branding, tabs and dimensions.",
+      "limits": "Illustrates a visually corresponding two-slot family; no exact dimensions, actual mating verification, voltage, rating or formal conformity are asserted.",
+      "access_status": "both actual manufacturer figures visually inspected before the socket redraw",
+      "group": "group-b"
+    },
+    "elec-socket-schematic": {
+      "source_ids": [
+        "group-b/post-kicad-socket"
+      ],
+      "observed_visual_construction": "Two separate parallel plain leads end at open curved socket contacts.",
+      "intended_adaptation": "Translate the previous two-contact mark 25 viewBox units left to center the standalone drawing, preserving direction, geometry and two independent paths.",
+      "limits": "A schematic convention, not a physical socket arrangement or mating qualification.",
+      "access_status": "actual KiCad symbol export visually inspected before the original drawing",
+      "group": "group-b"
+    },
+    "elec-battery-physical": {
+      "source_ids": [
+        "group-c/aa-industrial"
+      ],
+      "observed_visual_construction": "The dimensional side view has a long narrow straight cylindrical body, a short narrower projection at its positive end, and an essentially flat opposite end; the photo shows a jacketed cell.",
+      "intended_adaptation": "Rotate the side profile horizontally, preserve the long aspect and positive nub, and use only small plus/minus polarity marks; omit dimensions and branding.",
+      "limits": "The source is a particular AA alkaline cell; this drawing is deliberately generic and conveys no specific size, chemistry or rating.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-battery-schematic": {
+      "source_ids": [
+        "group-c/doe-fig1"
+      ],
+      "observed_visual_construction": "The battery mark has two alternating long and short parallel plates, linked by a short wire, with straight leads outside and no terminal circles.",
+      "intended_adaptation": "Draw two long-short pairs with long plates on the left of each pair; keep the straight continuation leads.",
+      "limits": "A local schematic mark; polarity follows the existing palette meaning, no voltage or chemistry is asserted.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-power-supply": {
+      "source_ids": [
+        "group-c/ti-acdc"
+      ],
+      "observed_visual_construction": "The cited reference is a specific converter circuit whose AC input is drawn at the left and whose downstream conversion feeds a DC supply; discrete stages and control are shown.",
+      "intended_adaptation": "Abstract the stages to a labeled AC-to-DC functional block with directed input and output, without internal electrical topology or terminal claims.",
+      "limits": "The input/output block is an adaptation, not a symbol copied from the figure; no rating, isolation or circuit topology is implied.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-converter": {
+      "source_ids": [
+        "group-c/ti-inverter"
+      ],
+      "observed_visual_construction": "The figure has DC-link positive and negative rails feeding bridge switches and an optional filter; the output is a three-phase motor marked 3~.",
+      "intended_adaptation": "Abstract the shown DC-to-AC direction to a labeled block with directed input and output.",
+      "limits": "The illustrated inverter has a specific three-phase topology; the local block intentionally asserts no phase count, circuit, ratings or isolation.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-sensor": {
+      "source_ids": [
+        "group-c/ti-sensor1",
+        "group-c/ti-sensor2"
+      ],
+      "observed_visual_construction": "Figure 1 shows incoming acoustic wavefronts meeting a microphone and an outgoing electrical signal; Figure 2 shows a sensor feeding two conductors into a transmitter.",
+      "intended_adaptation": "Use an unlabeled physical-input arrow entering a sensor block and two separate output leads; the specific acoustic waveform and current-loop apparatus are omitted.",
+      "limits": "The cited examples are specific sensors; the pictogram generalizes their input/output pattern and assigns no stimulus, quantity, polarity, or response.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-transducer": {
+      "source_ids": [
+        "group-c/ti-transducer"
+      ],
+      "observed_visual_construction": "Figure 12-1 places an input-variable arrow into a labeled rectangular transducer block, then an arrow out to an amplifier; excitation is an additional separate input.",
+      "intended_adaptation": "Use a rectangular conversion block, with x directed in and y directed out, to preserve the existing generic input/output meaning; omit the rest of the measurement chain.",
+      "limits": "Source specifically depicts a measuring transducer with an electrical output; x and y generalize the example and are not claims of any particular transfer or domain.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-instrumentation": {
+      "source_ids": [
+        "group-c/doe-fig2"
+      ],
+      "observed_visual_construction": "Figure 2 shows a circle containing V with a straight lead touching each side, without open rings at the outer ends.",
+      "intended_adaptation": "Draw the V in a circle and aligned open-ended connection lines; retain no gratuitous endpoint rings.",
+      "limits": "Schematic example only; no measured value, voltage range, accuracy, or standard certification is claimed.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-logic-and": {
+      "source_ids": [
+        "group-c/doe-gates"
+      ],
+      "observed_visual_construction": "The AND row has a flat left boundary, straight top and bottom, rounded right end, multiple straight input lines and a single straight output without a bubble.",
+      "intended_adaptation": "Draw the same logical contour with two inputs and one output, leaving only line ends.",
+      "limits": "The handbook shows a three-input example; the requested icon is its two-input variant and makes no standards-compliance claim.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-logic-or": {
+      "source_ids": [
+        "group-c/doe-gates"
+      ],
+      "observed_visual_construction": "The OR row has a concave input edge and convex outer edges meeting at the right, with multiple straight inputs and a single output; no bubble.",
+      "intended_adaptation": "Draw the curved boundary with two input lines that end exactly on the concave edge and one output line.",
+      "limits": "The handbook shows a three-input example; the requested icon is its two-input variant and makes no standards-compliance claim.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-logic-not": {
+      "source_ids": [
+        "group-c/doe-gates"
+      ],
+      "observed_visual_construction": "The NOT row is a right-pointing triangle with one line in and a small round inversion bubble between its apex and output line.",
+      "intended_adaptation": "Draw the triangle and a single output inversion bubble, with plain input and output line ends.",
+      "limits": "The round output feature denotes inversion; it is not a separate terminal. No formal-standard compliance is asserted.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-logic-nand": {
+      "source_ids": [
+        "group-c/doe-gates"
+      ],
+      "observed_visual_construction": "The NAND row uses the AND outline with one small round inversion bubble at its output, and plain input/output leads.",
+      "intended_adaptation": "Draw a two-input AND outline plus one tangent output bubble and a plain output line.",
+      "limits": "The handbook shows a three-input example; the requested two-input variant is not a standards-compliance claim.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    },
+    "elec-control-circuit": {
+      "source_ids": [
+        "group-c/schneider-control"
+      ],
+      "observed_visual_construction": "The first diagram shows a stop switch and a start switch in a control path driving a contactor coil, with a separate latching branch; the start contact has an open switch gap.",
+      "intended_adaptation": "Isolate only the existing requested normally open switch in series with a coil; omit the source, return, stop, seal-in branch, controlled contacts, and equipment labels.",
+      "limits": "This is an intentionally incomplete control-rung fragment, not a usable wiring diagram or a safety or restart-prevention design.",
+      "access_status": "visually inspected",
+      "group": "group-c"
+    }
+  }
+}

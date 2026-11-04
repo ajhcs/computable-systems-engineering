@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1013.67422" height="234.65859" viewBox="33.16289 516.17852 1013.67422 234.65859" role="img"><defs /><g id="src-interfaces-ifrev-section-terminations" aria-label="Termination symbols">
+    <text x="40" y="540" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#000">Termination symbols</text>
+    <g id="src-interfaces-ifrev-terminations-bar" aria-label="Drawing endpoint" transform="translate(40 564)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="route" d="M55 124 H220 M220 112 V136" /></g>
+      <text x="150" y="34" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Drawing endpoint</text>
+    </g>
+    <g id="src-interfaces-ifrev-terminations-cross" aria-label="Unconnected end" transform="translate(390 564)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="route" d="M55 124 H220 M212 116 L228 132 M212 132 L228 116" /></g>
+      <text x="150" y="34" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Unconnected end</text>
+    </g>
+    <g id="src-interfaces-ifrev-terminations-open-end" aria-label="Tagged endpoint" transform="translate(740 564)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="route" d="M55 124 H202.5" /><circle class="end-marker" cx="210" cy="124" r="7.5" fill="#fff" /><path class="end-bar" d="M217.5 124 H226 M226 117 V131" /><text class="annotation" x="210" y="99" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">END</text></g>
+      <text x="150" y="34" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Tagged endpoint</text>
+    </g>
+  </g>
+  <title>Termination symbols</title></svg>

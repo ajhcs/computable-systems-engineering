@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1363.76797" height="234.65859" viewBox="33.06914 756.17852 1363.76797 234.65859" role="img"><defs /><g id="src-foundation-foundation-junctions" aria-label="Junctions">
+    <text x="40" y="780" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#000">Junctions</text>
+    <g id="src-foundation-foundation-junctions-t" aria-label="T junction" transform="translate(40 804)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M55 125 H245 M150 125 V155" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">T junction</text>
+    </g>
+    <g id="src-foundation-foundation-junctions-t-dot" aria-label="T with dot" transform="translate(390 804)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M55 125 H245 M150 125 V155" /><circle class="junction-dot" cx="150" cy="125" r="4.5" fill="#000" stroke="none" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">T with dot</text>
+    </g>
+    <g id="src-foundation-foundation-junctions-y" aria-label="Y junction" transform="translate(740 804)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M150 153 V126 M150 126 L108 102 M150 126 L192 102" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Y junction</text>
+    </g>
+    <g id="src-foundation-foundation-junctions-four-way" aria-label="Four-way with dot" transform="translate(1090 804)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M60 125 H240 M150 95 V155" /><circle class="junction-dot" cx="150" cy="125" r="4.5" fill="#000" stroke="none" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Four-way with dot</text>
+    </g>
+  </g>
+  <title>Junctions</title></svg>
