@@ -1,0 +1,4 @@
+interface:
+  display_name: "Engineering Diagrams and Components"
+  short_description: "Draw source-linked views; find and reuse engineering symbols"
+  default_prompt: "Use $generate-engineering-diagrams to find or render the requested engineering view or components, preserving model meaning and exact IDs."

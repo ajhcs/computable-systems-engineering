@@ -1,0 +1,191 @@
+{
+  "schema": "cse.component-agent-review/1",
+  "review_date": "2026-11-04",
+  "catalog_sha256": "1a75aae3836202b203f08936d1e6d3f6745c124fd431a24cbe1c26d7f38628c6",
+  "review_type": "implementation self-review; not OpenAI certification",
+  "inputs": {
+    "scripts/icons.py": "405ff8576ef3b7f597cc1c88f51dca474245363da94728e75e34a43767b20014",
+    "scripts/component_agent.py": "9c732f17a0dcee5090680c536ab439c5e8a6a8845275f335663138c59a6da61b",
+    "scripts/component_ui.py": "d1b53c8cd60eef1cc12d2fdd43bfe91497da6f00760907409744e42e96d99e6a",
+    "tests/test_component_agents.py": "c66ea718ab52a86de82d73ee3f4136aefb498f9683c962dd1b361b7aa37206a6",
+    "tests/browser/component_agents.cjs": "89e8a10866076a598e3af6912f75cdb908b7b0ce9f09e6a9e7c38e9224af9574"
+  },
+  "focused_tests": {
+    "status": "pass",
+    "tests": 14
+  },
+  "browser": {
+    "status": "pass",
+    "checks": [
+      "keyboard selection",
+      "catalog-bound reload state",
+      "clipboard fallback",
+      "selection JSON download",
+      "stale state refusal",
+      "stable accessible selectors",
+      "desktop/narrow/200-percent/dark layouts",
+      "no external network"
+    ],
+    "errors": [],
+    "receipts": [
+      {
+        "width": 1100,
+        "scale": 100,
+        "dark": false,
+        "scroll": 1100,
+        "images": [
+          {
+            "alt": "Pulley A \u2014 visible rope path",
+            "loaded": true
+          },
+          {
+            "alt": "Pulley C \u2014 shallow oblique view",
+            "loaded": true
+          },
+          {
+            "alt": "Spring C \u2014 four-turn centerline",
+            "loaded": true
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Copy IDs",
+            "width": 103.828125,
+            "height": 44
+          },
+          {
+            "text": "Download selection",
+            "width": 189.3125,
+            "height": 44
+          }
+        ],
+        "selected": [
+          "mech-pulley-variant-a",
+          "mech-pulley-variant-c"
+        ]
+      },
+      {
+        "width": 390,
+        "scale": 100,
+        "dark": false,
+        "scroll": 390,
+        "images": [
+          {
+            "alt": "Pulley A \u2014 visible rope path",
+            "loaded": true
+          },
+          {
+            "alt": "Pulley C \u2014 shallow oblique view",
+            "loaded": true
+          },
+          {
+            "alt": "Spring C \u2014 four-turn centerline",
+            "loaded": true
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Copy IDs",
+            "width": 103.828125,
+            "height": 44
+          },
+          {
+            "text": "Download selection",
+            "width": 189.3125,
+            "height": 44
+          }
+        ],
+        "selected": [
+          "mech-pulley-variant-a",
+          "mech-pulley-variant-c"
+        ]
+      },
+      {
+        "width": 390,
+        "scale": 200,
+        "dark": false,
+        "scroll": 390,
+        "images": [
+          {
+            "alt": "Pulley A \u2014 visible rope path",
+            "loaded": true
+          },
+          {
+            "alt": "Pulley C \u2014 shallow oblique view",
+            "loaded": true
+          },
+          {
+            "alt": "Spring C \u2014 four-turn centerline",
+            "loaded": true
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Copy IDs",
+            "width": 203.6875,
+            "height": 88
+          },
+          {
+            "text": "Download selection",
+            "width": 326,
+            "height": 132
+          }
+        ],
+        "selected": [
+          "mech-pulley-variant-a",
+          "mech-pulley-variant-c"
+        ]
+      },
+      {
+        "width": 390,
+        "scale": 100,
+        "dark": true,
+        "scroll": 390,
+        "images": [
+          {
+            "alt": "Pulley A \u2014 visible rope path",
+            "loaded": true
+          },
+          {
+            "alt": "Pulley C \u2014 shallow oblique view",
+            "loaded": true
+          },
+          {
+            "alt": "Spring C \u2014 four-turn centerline",
+            "loaded": true
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Copy IDs",
+            "width": 103.828125,
+            "height": 44
+          },
+          {
+            "text": "Download selection",
+            "width": 189.3125,
+            "height": 44
+          }
+        ],
+        "selected": [
+          "mech-pulley-variant-a",
+          "mech-pulley-variant-c"
+        ]
+      }
+    ]
+  },
+  "output_measurement": {
+    "old_default": {
+      "records": 1076,
+      "bytes": 235119
+    },
+    "new_default": {
+      "records": 20,
+      "total": 1076,
+      "bytes": 8083
+    }
+  },
+  "artwork_and_ids": "1076 components and all original asset/mapping records unchanged",
+  "native_chatgpt_widget": "not registered; optional local HTML and headless interfaces only",
+  "full_regression": "Exact-commit CI and the retained local suite log are separate from this focused receipt."
+}

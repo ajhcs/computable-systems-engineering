@@ -21,8 +21,10 @@ The [engineering component library](docs/component-library.md) contains **1076 i
 ```sh
 python3 scripts/icons.py list --query pulley
 python3 scripts/icons.py list --sysml PortUsage
-python3 scripts/icons.py export --format drawio --out /path/to/project/presentation
+python3 scripts/icons.py export --format drawio --all --out /path/to/project/presentation
 ```
+
+Agent-facing search returns ranked, bounded pages and exact IDs. A keyboard-accessible shortlist can export revision-bound selections; see the [agent and UI review](docs/component-agent-review.md).
 
 The index distinguishes presentation artwork from formal model notation. Applying an illustration preserves the model's declared identities, endpoints and meaning. Draw.io imports include editable labels and metadata; Kernspan receives a reusable egui module and atlas for explicit integration.
 

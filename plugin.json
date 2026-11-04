@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "computable-systems-engineering",
-  "version": "0.2.0-alpha.5",
+  "version": "0.2.0-alpha.6",
   "description": "AI-assisted systems engineering with connected models, inspectable checks, and reusable engineering components for SVG, Draw.io and Kernspan.",
   "author": {
     "name": "ajhcs",
@@ -29,7 +29,7 @@
       "interface": {
         "displayName": "Computable Systems Engineering",
         "shortDescription": "Model systems. Check the work.",
-        "longDescription": "Explore how people, software, equipment, and services work together. Eleven focused skills connect concepts, architecture, scenarios, measures and evidence. Deterministic checks cover declared calculations, flows, queues, failures, observations, changes and artifact freshness. Consequential decisions stay with you. A searchable engineering library supplies individually labeled SVG components, explicit SysML/SysE contexts, Draw.io libraries and a Kernspan presentation adapter.",
+        "longDescription": "Explore how people, software, equipment, and services work together. Eleven focused skills connect concepts, architecture, scenarios, measures and evidence. Deterministic checks cover declared calculations, flows, queues, failures, observations, changes and artifact freshness. Consequential decisions stay with you. A searchable engineering library supplies individually labeled SVG components, explicit SysML/SysE contexts, Draw.io libraries and a Kernspan presentation adapter. Agent workflows use bounded discovery, exact IDs and revision-bound component selections.",
         "developerName": "ajhcs and contributors",
         "category": "Productivity",
         "capabilities": [],

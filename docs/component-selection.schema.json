@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CSE component selection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "catalog_sha256", "component_ids"],
+  "properties": {
+    "schema": {"const": "cse.component-selection/1"},
+    "catalog_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "component_ids": {
+      "type": "array", "minItems": 1, "maxItems": 50, "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,199}$"}
+    }
+  }
+}
