@@ -12,13 +12,13 @@ Run from the plugin root, or use absolute paths to its scripts:
 python3 scripts/icons.py list --query pulley
 python3 scripts/icons.py list --sysml PortUsage
 python3 scripts/icons.py show mech-spring-variant-c
-python3 scripts/icons.py export --format drawio --family 'Mechanical and structural' --out /path/to/project/presentation
+python3 scripts/icons.py export --format drawio --ids mech-pulley-variant-c --out /path/to/project/presentation
 python3 scripts/icons.py export --format svg --query microscope --out /path/to/project/presentation
-python3 scripts/icons.py export --format kernspan --out /path/to/project/cse-components
+python3 scripts/icons.py export --format kernspan --all --out /path/to/project/cse-components
 python3 scripts/icons.py check
 ```
 
-Selection uses names, IDs, source metadata and engineering contexts. Exported `components.json` retains that metadata. Use the source SVG in vector editors for geometry changes. Labels, placement and object properties are editable in Draw.io; each icon's vector illustration is embedded intact as an image cell.
+Selection uses ranked names, IDs and declared engineering facets. `list` returns at most 20 records by default, with a maximum of 50 and a catalog-bound cursor. `show` returns full details only for an exact ID. See the [agent command and UI review](component-agent-review.md) for explicit-ID exports, selection JSON and accessible shortlists. Exported `components.json` retains that metadata. Use the source SVG in vector editors for geometry changes. Labels, placement and object properties are editable in Draw.io; each icon's vector illustration is embedded intact as an image cell.
 
 ## Modeling context
 

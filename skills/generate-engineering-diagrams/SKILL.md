@@ -1,6 +1,6 @@
 ---
 name: generate-engineering-diagrams
-description: Generate and review source-grounded engineering diagrams from accepted models, with traceable meaning and actual rendering checks.
+description: Create or review source-linked engineering diagrams, or find, compare and export reusable engineering symbols and icons by ID.
 ---
 
 Use this skill to produce or critique a diagram from supplied or existing accepted engineering meaning. New system-model design, requirements, assumptions, thresholds, allocations and engineering acceptance remain with the engineer. Do not invent a new system merely to fill a diagram family.
@@ -22,3 +22,5 @@ For changes to functions, parts, allocations or interfaces, use [system architec
 For a generated document set, use [artifact freshness](../../docs/artifact-freshness.md) to reject changed sources and stale exports before delivery. Match each legend category to the actual quantity and unit on its connectors.
 
 For reusable illustrations, schematic artwork, connectors, ports and annotations, use the [component library](../../docs/component-library.md). Select stable IDs with `python3 <runtime>/scripts/icons.py list`, inspect each entry’s treatment and engineering context, and bind it to explicit model IDs. Export standalone SVGs, Draw.io libraries or the Kernspan presentation adapter. A component’s context does not create accepted model semantics.
+
+When finding, comparing or exporting reusable components, load [component workflows for agents](references/component-agents.md). Start with bounded search and fetch only relevant records by exact ID. Use the optional shortlist view when visual comparison helps.
