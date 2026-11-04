@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-cam-title mech-cam-desc">
+<title id="mech-cam-title">Cam and follower</title>
+<desc id="mech-cam-desc">An eccentric cam profile contacts a roller follower. The drawn profile does not define lift, timing or a validated contact analysis.</desc>
+<path data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M80 40 C102 42 111 61 111 80 C111 104 94 120 72 120 C50 120 38 105 38 86 C38 64 51 50 80 40 Z" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="70" cy="84" r="7" />
+<circle data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="33" r="7" />
+<line data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" x1="80" y1="26" x2="80" y2="14" />
+<line data-role="center" fill="none" stroke="#282828" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" x1="27" y1="84" x2="115" y2="84" stroke-dasharray="8 2 1.5 2" />
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Resistor — axial physical</title>
+<desc id="desc">Side view of an illustrative axial-leaded resistor with end caps and uncolored band boundaries. No value, tolerance or dimensions are specified.</desc>
+<g fill="none" stroke="black" stroke-width="2.4" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M20 80H46 M114 80H140"/>
+<rect x="46" y="65" width="68" height="30" rx="6"/>
+<path d="M53 66V94 M107 66V94" stroke-width="0.8"/>
+<path d="M64 66V94 M68 66V94 M77 66V94 M81 66V94 M91 66V94 M95 66V94" stroke-width="1.4"/>
+</g>
+</svg>

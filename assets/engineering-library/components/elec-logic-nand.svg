@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">NAND gate — schematic</title>
+<desc id="desc">A NAND logic gate with two inputs and one inverted output. A simplified logic mark; the output bubble means inversion. No formal-standard conformity or particular device is asserted.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M45 47 H72 A33 33 0 0 1 72 113 H45 Z" stroke-width="2.4"/>
+<circle cx="110" cy="80" r="5" stroke-width="2.4"/>
+<path d="M19 63 H45 M19 97 H45 M115 80 H141" stroke-width="2.4"/>
+</g>
+</svg>

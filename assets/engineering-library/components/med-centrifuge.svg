@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Centrifuge</title>
+<desc id="desc">A closed benchtop laboratory centrifuge. No rotor, sample, operating speed or containment capability is represented.</desc>
+<g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M35 115 H125 Q122 121 115 121 H45 Q38 121 35 115 Z" /></g><g fill="none" stroke="#1d2528" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.8"><path d="M30 67 Q30 42 80 42 Q130 42 130 67 V112 Q130 124 116 124 H44 Q30 124 30 112 Z" /><path d="M31 67 Q80 79 129 67" /></g><g stroke-width="1.05"><rect x="48" y="89" width="32" height="15" rx="3" /><circle cx="108" cy="97" r="5" /></g></g>
+</svg>

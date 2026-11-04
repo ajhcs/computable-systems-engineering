@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-attachment-title mech-attachment-desc">
+<title id="mech-attachment-title">Attachment</title>
+<desc id="mech-attachment-desc">A through-bolt and nut clamp two plates together. The simplified joint does not specify thread, preload, washers or approved assembly.</desc>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="46" y="56" width="68" height="20"/>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="46" y="76" width="68" height="22"/>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M68 46 H92 V56 H87 V107 H92 V116 H68 V107 H73 V56 H68 Z"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="73" y1="103" x2="87" y2="103"/>
+</svg>

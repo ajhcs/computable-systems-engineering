@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-cylinder-title mech-cylinder-desc">
+<title id="mech-cylinder-title">Cylinder and piston — section</title>
+<desc id="mech-cylinder-desc">A cutaway actuator cylinder contains a piston and rod. Hatching indicates a section only; seals, ports, fluid and operation are not specified.</desc>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M116 74 V49 H22 V111 H116 V86"/>
+<path data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" d="M108 74 V58 H30 V102 H108 V86"/>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="65" y="58" width="13" height="44"/>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M78 74 H140 V86 H78"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="108" y1="74" x2="116" y2="74"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="108" y1="86" x2="116" y2="86"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="25" y1="57" x2="32" y2="50"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="25" y1="110" x2="32" y2="103"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="37" y1="57" x2="44" y2="50"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="37" y1="110" x2="44" y2="103"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="49" y1="57" x2="56" y2="50"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="49" y1="110" x2="56" y2="103"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="61" y1="57" x2="68" y2="50"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="61" y1="110" x2="68" y2="103"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="73" y1="57" x2="80" y2="50"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="73" y1="110" x2="80" y2="103"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="85" y1="57" x2="92" y2="50"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="85" y1="110" x2="92" y2="103"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="97" y1="57" x2="104" y2="50"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="97" y1="110" x2="104" y2="103"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="109" y1="57" x2="108" y2="50"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="109" y1="110" x2="108" y2="103"/>
+</svg>

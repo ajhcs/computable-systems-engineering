@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="doc-tolerance-title doc-tolerance-desc">
+<title id="doc-tolerance-title">Tolerance placeholder</title>
+<desc id="doc-tolerance-desc">The expression L ± t shows an illustrative nominal quantity and symmetric tolerance. L and t are unbound variables; no numeric limits, units or geometric tolerance are specified.</desc>
+<text x="80" y="86" font-family="Arial, sans-serif" font-size="28" text-anchor="middle" fill="#000000">L ± t</text>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="35" y1="99" x2="125" y2="99"/>
+</svg>

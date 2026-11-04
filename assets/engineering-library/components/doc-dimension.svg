@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="doc-dimension-title doc-dimension-desc">
+<title id="doc-dimension-title">Dimension</title>
+<desc id="doc-dimension-desc">Extension and dimension lines span a part feature with symbolic length L. L has no value or units; the mark is not a manufacturing dimension.</desc>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="40" y="51" width="80" height="42"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="40" y1="99" x2="40" y2="127"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="120" y1="99" x2="120" y2="127"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="40" y1="119" x2="120" y2="119"/>
+<polygon data-role="support" fill="#000000" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" points="40,119 46.0,121.76 46.0,116.24"/>
+<polygon data-role="support" fill="#000000" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" points="120,119 114.0,116.24 114.0,121.76"/>
+<text x="80" y="114" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#000000">L</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Statistical uncertainty — standard error</title>
+<desc id="desc">A sample mean plus or minus its estimated standard error, s divided by the square root of n. A generic notation example; no model, numerical value or result is asserted. For independent identically distributed observations with finite variance, s is the sample standard deviation and n is the number of observations greater than one. This does not specify a confidence interval or nonstatistical uncertainty.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<text x="40" y="97" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="32" font-style="italic" stroke="none" fill="black">x</text><line x1="31" y1="69" x2="50" y2="69" stroke-width="1.4" /><text x="69" y="97" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="30" stroke="none" fill="black">±</text><text x="114" y="97" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="27" font-style="italic" stroke="none" fill="black">s/√n</text>
+</g>
+</svg>

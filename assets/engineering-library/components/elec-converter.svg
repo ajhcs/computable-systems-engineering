@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Converter — DC to AC inverter block</title>
+<desc id="desc">A functional block representing a DC-input to AC-output converter. Functional pictogram only; arrows denote conversion direction and are not terminals. No phase count, ratings, waveform, isolation or circuit topology is specified.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="round">
+<rect x="38" y="51" width="84" height="58" stroke-width="2.4"/>
+<path d="M15 80 H38 M32 76 L38 80 L32 84 M122 80 H145 M139 76 L145 80 L139 84" stroke-width="1.4"/>
+<text x="57" y="87" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" stroke="none" fill="black">DC</text>
+<path d="M76 80 H85 M81 77 L85 80 L81 83" stroke-width="1.4"/>
+<text x="103" y="87" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" stroke="none" fill="black">AC</text>
+</g>
+</svg>

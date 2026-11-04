@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-belt-title mech-belt-desc">
+<title id="mech-belt-title">Belt drive</title>
+<desc id="mech-belt-desc">A continuous belt wraps two wheel rims. Equal drawn wheel sizes do not specify a drive ratio, belt tension or performance.</desc>
+<g id="surface-tone" data-optional="true" fill="#939a9d" fill-opacity="0.16" stroke="none"><path fill-rule="evenodd" d="M49 55 L111 55 A25 25 0 0 1 111 105 L49 105 A25 25 0 0 1 49 55 Z M49 58 L111 58 A22 22 0 0 1 111 102 L49 102 A22 22 0 0 1 49 58 Z" /></g><circle data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" cx="49" cy="80" r="22" />
+<circle data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" cx="111" cy="80" r="22" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="49" cy="80" r="5" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="111" cy="80" r="5" />
+<path data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" d="M49 55 L111 55 A25 25 0 0 1 111 105 L49 105 A25 25 0 0 1 49 55 Z" />
+<path data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" d="M49 58 L111 58 A22 22 0 0 1 111 102 L49 102 A22 22 0 0 1 49 58 Z" />
+</svg>

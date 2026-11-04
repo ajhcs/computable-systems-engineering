@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Leakage — drafting candidate</title>
+<desc id="desc">A broken pipe boundary and a falling drop. Local conceptual picture; not a detection method, operational state or measured condition.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.0"><path d="M24 60 H69 M91 60 H136 M24 91 H69 M91 91 H136" /><path d="M72 60 L78 70 L72 80 L78 91 M88 60 L82 70 L88 80 L82 91" /><path d="M80 105 C77 112 71 118 71 123 A9 9 0 0 0 89 123 C89 118 83 112 80 105 Z" /></g></g>
+</svg>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Clinician — drafting candidate</title>
+<desc id="desc">A person with a stylized stethoscope. The role is contextual and not proof of professional qualification.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.0"><circle cx="80" cy="42" r="17" /><path d="M43 126 Q44 87 64 76 L80 92 L96 76 Q116 87 117 126 Z" /></g><g stroke-width="1.1"><path d="M66 80 V98 Q66 111 80 111 Q94 111 94 98 V80" /><circle cx="80" cy="116" r="5" /></g></g>
+</svg>

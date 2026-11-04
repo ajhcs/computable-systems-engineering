@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Motor — generic schematic</title>
+<desc id="desc">A generic motor represented by M inside a circle, with two electrical connection stubs. Current type and phase are unspecified.</desc>
+<g fill="none" stroke="black" stroke-width="2.4" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M20 80 H52 M108 80 H140"/>
+<circle cx="80" cy="80" r="28"/>
+<text x="80" y="90" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="28" stroke="none" fill="black">M</text>
+</g>
+</svg>

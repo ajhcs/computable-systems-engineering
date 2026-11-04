@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-shaft-title mech-shaft-desc">
+<title id="mech-shaft-title">Stepped shaft</title>
+<desc id="mech-shaft-desc">A longitudinal outline shows a stepped shaft and its axis. Diameters, lengths and surface requirements are unspecified.</desc>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M21 69 H42 V61 H116 V69 H139 V91 H116 V99 H42 V91 H21 Z"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="42" y1="61" x2="42" y2="99"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="116" y1="61" x2="116" y2="99"/>
+<line data-role="center" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="14" y1="80" x2="146" y2="80" stroke-dasharray="8 2 1.5 2"/>
+</svg>

@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="178.25" height="45.10546875" viewBox="52.00000 90.64453 178.25000 45.10547" role="img"><defs /><g id="src-interfaces-ifrev-terminations-open-end" aria-label="Tagged endpoint">
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="route" d="M55 124 H202.5" /><circle class="end-marker" cx="210" cy="124" r="7.5" fill="#fff" /><path class="end-bar" d="M217.5 124 H226 M226 117 V131" /><text class="annotation" x="210" y="99" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">END</text></g>
+      </g>
+  <title>Tagged endpoint</title></svg>

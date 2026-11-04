@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-drill-title mech-drill-desc">
+<title id="mech-drill-title">Drill</title>
+<desc id="mech-drill-desc">A pointed twist drill touches the upper face of a workpiece. The shape indicates a process, not a specified hole or cutting condition.</desc>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M68 23 H92 V70 L80 89 L68 70 Z"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="68" y1="35" x2="92" y2="54"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="68" y1="51" x2="92" y2="70"/>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M29 89 H131 V112 H29 Z"/>
+</svg>

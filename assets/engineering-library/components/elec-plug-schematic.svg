@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Plug — pin contacts schematic</title>
+<desc id="desc">Two separate schematic plug-side pins represented by filled contact tips and plain leads. No contact polarity, physical housing or mating standard is specified.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="40" y1="58" x2="109" y2="58" stroke-width="2.4" /><rect x="109" y="55.6" width="11" height="4.8" stroke-width="0" fill="black" data-role="pin-contact"/><line x1="40" y1="102" x2="109" y2="102" stroke-width="2.4" /><rect x="109" y="99.6" width="11" height="4.8" stroke-width="0" fill="black" data-role="pin-contact"/>
+</g>
+</svg>

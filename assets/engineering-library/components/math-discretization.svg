@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Discretization</title>
+<desc id="desc">A staircase function illustrates a piecewise constant discretization. A generic notation example; no model, numerical value or result is asserted. Step positions and heights are illustrative and do not imply a numerical method.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="27" y1="124" x2="138" y2="124" stroke-width="1.4" /><path d="M 131.79 127.23 L 138 124 L 131.79 120.77" stroke-width="1.4" /><line x1="27" y1="124" x2="27" y2="31" stroke-width="1.4" /><path d="M 30.23 37.21 L 27 31 L 23.77 37.21" stroke-width="1.4" /><path d="M 32 112 H 52 V 96 H 72 V 72 H 92 V 56 H 112 V 44 H 132" stroke-width="2.4" /><text x="140" y="142" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" stroke="none" fill="black">x</text>
+</g>
+</svg>

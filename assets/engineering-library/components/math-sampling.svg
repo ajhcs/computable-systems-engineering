@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Sampling</title>
+<desc id="desc">Discrete sample points on a continuous waveform. A generic notation example; no model, numerical value or result is asserted. Points indicate a concept, not an observed signal or prescribed sampling rate.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="24" y1="91" x2="139" y2="91" stroke-width="1.4" /><path d="M 132.79 94.23 L 139 91 L 132.79 87.77" stroke-width="1.4" /><path d="M 29 91 C 38 48 49 48 58 91 C 67 134 78 134 87 91 C 96 48 107 48 116 91 C 122 117 130 127 137 110" stroke-width="1.4" /><circle cx="29" cy="91" r="3.2" stroke-width="1.4" fill="white"/><circle cx="43.5" cy="59" r="3.2" stroke-width="1.4" fill="white"/><circle cx="58" cy="91" r="3.2" stroke-width="1.4" fill="white"/><circle cx="72.5" cy="123" r="3.2" stroke-width="1.4" fill="white"/><circle cx="87" cy="91" r="3.2" stroke-width="1.4" fill="white"/><circle cx="101.5" cy="59" r="3.2" stroke-width="1.4" fill="white"/><circle cx="116" cy="91" r="3.2" stroke-width="1.4" fill="white"/><circle cx="130.5" cy="121" r="3.2" stroke-width="1.4" fill="white"/><text x="139" y="132" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" stroke="none" fill="black">t</text>
+</g>
+</svg>

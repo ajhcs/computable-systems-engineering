@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc"><title id="title">Portable equipment case — proposed drafting candidate</title><desc id="desc">Generic closed portable case with attached handle, lid seam and two front closures.</desc><g id="artwork" data-symbol="field-field-equipment" stroke="#303030" fill="none" stroke-width="1.8" stroke-linecap="butt" stroke-linejoin="miter">
+<path d="M28 61 L45 49 L130 60 L113 72 Z" fill="white" /><path d="M113 72 L130 60 V114 L113 126 Z" fill="white" /><path d="M28 61 L113 72 V126 L28 115 Z" fill="white" />
+<path d="M66 54 V44 L91 47 V57 M71 54 V49 L86 51 V56" fill="white" stroke-width="1.05" data-part="attached-handle" />
+<path d="M28 83 L113 94 M113 94 L130 82" stroke-width="1.05" />
+<g transform="matrix(1 .129 0 1 28 61)" stroke-width="1.05"><rect x="13" y="16" width="10" height="16" /><rect x="62" y="16" width="10" height="16" /></g><g id="optional-surface-tone" fill="none" stroke="#999999" stroke-width="0.65" data-purpose="removable surface tone; not section hatch"><path d="M119 68 V113" /><path d="M125 64 V109" /></g></g></svg>

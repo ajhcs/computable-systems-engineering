@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Protective earth — reference mark</title>
+<desc id="desc">A circled three-bar protective-earth reference mark with one upper lead. The graphic does not prove bonding, installation, formal conformity or safety qualification.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<circle cx="80" cy="84" r="39" stroke-width="2.4" /><line x1="80" y1="22" x2="80" y2="84" stroke-width="2.4" /><line x1="55" y1="84" x2="105" y2="84" stroke-width="2.4" /><line x1="63" y1="95" x2="97" y2="95" stroke-width="2.4" /><line x1="71" y1="106" x2="89" y2="106" stroke-width="2.4" />
+</g>
+</svg>

@@ -1,0 +1,79 @@
+{
+  "status": "saved typography for the engineering palette",
+  "reference_sheet_width_svg_units": 1430,
+  "reference_stroke_s_svg_units": 2.5,
+  "families": {
+    "reading": "DejaVu Sans",
+    "identifiers": "DejaVu Sans Mono"
+  },
+  "roles": {
+    "title": {
+      "family": "reading",
+      "size": 36,
+      "weight": 700,
+      "underline": true
+    },
+    "subtitle": {
+      "family": "reading",
+      "size": 26,
+      "weight": 400,
+      "underline": false
+    },
+    "component": {
+      "family": "reading",
+      "size": 28,
+      "weight": 700,
+      "underline": false
+    },
+    "attribute": {
+      "family": "reading",
+      "size": 24,
+      "weight": 400,
+      "underline": false
+    },
+    "value": {
+      "family": "reading",
+      "size": 26,
+      "weight": 700,
+      "underline": false
+    },
+    "note": {
+      "family": "reading",
+      "size": 24,
+      "weight": 400,
+      "underline": false
+    },
+    "note_prefix": {
+      "family": "reading",
+      "size": 24,
+      "weight": 700,
+      "underline": false
+    },
+    "reference": {
+      "family": "identifiers",
+      "size": 24,
+      "weight": 400,
+      "underline": false
+    },
+    "dimension_value": {
+      "family": "reading",
+      "size": 24,
+      "weight": 400,
+      "underline": false
+    }
+  },
+  "title_underline": {
+    "stroke_width": 2,
+    "baseline_offset": 14,
+    "length": "rendered text advance",
+    "cap": "butt"
+  },
+  "multiline_baseline_spacing_em_min": 1.4,
+  "identifier_to_connector_ink_clearance_s_min": 2,
+  "case": "Use mixed case for names and notes; preserve the exact case of identifiers, units and acronyms.",
+  "sample_sheet_metadata": {
+    "size": 18,
+    "weight": 400,
+    "purpose": "specimen specification only, not a diagram-role size"
+  }
+}

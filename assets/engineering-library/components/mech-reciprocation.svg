@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-reciprocation-title mech-reciprocation-desc">
+<title id="mech-reciprocation-title">Reciprocation</title>
+<desc id="mech-reciprocation-desc">A slider with opposing straight arrows indicates repeated back-and-forth translation. Stroke, period and actual movement are unspecified.</desc>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="53" y="63" width="54" height="34"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="25" y1="80" x2="50" y2="80"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="110" y1="80" x2="135" y2="80"/>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="28" y1="47" x2="132" y2="47"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="132,47 125.0,43.78 125.0,50.22"/>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="132" y1="113" x2="28" y2="113"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="28,113 35.0,116.22 35.0,109.78"/>
+</svg>

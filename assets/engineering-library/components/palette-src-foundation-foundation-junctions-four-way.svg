@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="311.62500" height="191.62500" viewBox="-5.81250 -5.81250 311.62500 191.62500" role="img"><defs /><g id="src-foundation-foundation-junctions-four-way" aria-label="Four-way with dot">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M60 125 H240 M150 95 V155" /><circle class="junction-dot" cx="150" cy="125" r="4.5" fill="#000" stroke="none" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Four-way with dot</text>
+    </g>
+  <title>Four-way with dot</title></svg>

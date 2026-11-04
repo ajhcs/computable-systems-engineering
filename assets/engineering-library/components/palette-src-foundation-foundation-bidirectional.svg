@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1013.67422" height="234.65859" viewBox="33.16289 256.17852 1013.67422 234.65859" role="img"><defs /><g id="src-foundation-foundation-bidirectional" aria-label="Bidirectional arrows">
+    <text x="40" y="280" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#000">Bidirectional arrows</text>
+    <g id="src-foundation-foundation-bidirectional-open-both" aria-label="Open at both ends" transform="translate(40 304)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M50 125 H250 M64 116 L50 125 L64 134 M236 116 L250 125 L236 134" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Open at both ends</text>
+    </g>
+    <g id="src-foundation-foundation-bidirectional-filled-both" aria-label="Filled at both ends" transform="translate(390 304)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M68 125 H232" /><path d="M50 125 L68 115 L68 135 Z M250 125 L232 115 L232 135 Z" fill="#000" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Filled at both ends</text>
+    </g>
+    <g id="src-foundation-foundation-bidirectional-hollow-both" aria-label="Hollow at both ends" transform="translate(740 304)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"><path d="M68 125 H232" /><path class="hollow-head" d="M50 125 L68 115 L68 135 Z M250 125 L232 115 L232 135 Z" fill="#fff" fill-opacity="1" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Hollow at both ends</text>
+    </g>
+  </g>
+  <title>Bidirectional arrows</title></svg>

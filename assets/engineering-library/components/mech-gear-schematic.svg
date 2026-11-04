@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-gear-schematic-title mech-gear-schematic-desc">
+<title id="mech-gear-schematic-title">Gear pair — abstract</title>
+<desc id="mech-gear-schematic-desc">Two touching pitch circles indicate a conceptual pair of gears. Local shorthand; no tooth geometry, standard compliance or transmission ratio is asserted.</desc>
+<circle data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" cx="56" cy="80" r="28"/>
+<circle data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" cx="112" cy="80" r="28"/>
+<circle data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" cx="56" cy="80" r="3"/>
+<circle data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" cx="112" cy="80" r="3"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="56" y1="80" x2="112" y2="80"/>
+</svg>

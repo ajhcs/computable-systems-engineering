@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Measurement</title>
+<desc id="desc">A symbolic length measurement, with an unknown numerical value in metres. A generic notation example; no model, numerical value or result is asserted. The question mark is a placeholder, not a reading.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<text x="60" y="95" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="30" font-style="italic" stroke="none" fill="black">ℓ = ?</text><text x="122" y="95" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="30" stroke="none" fill="black">m</text>
+</g>
+</svg>

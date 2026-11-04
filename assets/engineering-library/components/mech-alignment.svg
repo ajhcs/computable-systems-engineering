@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-alignment-title mech-alignment-desc">
+<title id="mech-alignment-title">Alignment</title>
+<desc id="mech-alignment-desc">Two separated shaft sections share a patterned axis. A shared drawn axis is an alignment cue, not a tolerance or metrology result.</desc>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M25 64 H48 V57 H63 V103 H48 V96 H25 Z"/>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M97 57 H112 V64 H135 V96 H112 V103 H97 Z"/>
+<line data-role="center" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="15" y1="80" x2="145" y2="80" stroke-dasharray="8 2 1.5 2"/>
+</svg>

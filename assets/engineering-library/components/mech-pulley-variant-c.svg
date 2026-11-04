@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Pulley C — shallow oblique view</title><desc id="desc">Generic shallow parallel-oblique view. Two equal-height end ellipses share the same axle; the rope follows an intermediate projected ellipse with two free tails and is partially hidden by the opaque near face. The body is simplified and does not specify an actual groove cross-section or manufacturer.</desc>
+<g stroke-linecap="round" stroke-linejoin="round">
+<path d="M72 33 H76 L80 37.1 L84 33 H88 A27 37 0 0 1 88 107 H84 L80 102.9 L76 107 H72 A27 37 0 0 1 72 33 Z" fill="white" stroke="#303030" stroke-width="1.05"/>
+<path d="M55.1892 133 V70 A24.8108 34 0 0 1 104.8108 70 V133" fill="none" stroke="#303030" stroke-width="2.2"/>
+<ellipse cx="72" cy="70" rx="27" ry="37" fill="white" stroke="#303030" stroke-width="1.8"/>
+<ellipse cx="72" cy="70" rx="19.5" ry="27" fill="none" stroke="#505050" stroke-width="1.05"/>
+<ellipse cx="72" cy="70" rx="4.4" ry="6" fill="white" stroke="#303030" stroke-width="1.05"/>
+<path d="M38 70 H108" fill="none" stroke="#81888a" stroke-width="0.7" stroke-dasharray="8 2 1.5 2"/>
+</g></svg>

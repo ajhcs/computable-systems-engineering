@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-bearing-title mech-bearing-desc">
+<title id="mech-bearing-title">Rolling-element bearing</title>
+<desc id="mech-bearing-desc">Concentric races and six balls depict a bearing in face view. Simplified geometry does not specify the bearing type, load rating or clearances.</desc>
+<circle data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="80" r="49" />
+<circle data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="80" r="22" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="80" r="40.5" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="80" r="29.5" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="115.0" cy="80.0" r="5.5" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="97.5" cy="110.31" r="5.5" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="62.5" cy="110.31" r="5.5" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="45.0" cy="80.0" r="5.5" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="62.5" cy="49.69" r="5.5" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="97.5" cy="49.69" r="5.5" />
+<line data-role="center" fill="none" stroke="#282828" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" x1="22" y1="80" x2="138" y2="80" stroke-dasharray="8 2 1.5 2" />
+<line data-role="center" fill="none" stroke="#282828" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" x1="80" y1="22" x2="80" y2="138" stroke-dasharray="8 2 1.5 2" />
+</svg>

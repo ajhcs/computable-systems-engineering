@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="317.77656" height="277.16719" viewBox="-8.88828 -28.58359 317.77656 277.16719" role="img"><defs><mask id="diamond-reverse-dots-clearance" maskUnits="userSpaceOnUse" x="-3" y="-23" width="306" height="266">
+      <rect x="-3" y="-23" width="306" height="266" fill="#fff" />
+      <use href="#diamond-reverse-dots-label" fill="#000" stroke="#000" stroke-width="10" stroke-linejoin="round" />
+    </mask>
+    <pattern id="diamond-reverse-dots-pattern" width="21.94" height="21.94" patternUnits="userSpaceOnUse" patternTransform="translate(2.47 6.42)">
+      <circle cx="10.97" cy="10.97" r="1.8" fill="#999" />
+    </pattern>
+    <path id="shape-diamond" d="M150 -20 L300 110 L150 240 L0 110 Z" />
+    </defs><g id="diamond-reverse-dots" fill="#fff" aria-label="Diamond, Dots, Reverse" data-safe-area="65 70 170 80">
+    <use href="#shape-diamond" fill="#000" />
+    <use href="#shape-diamond" fill="url(#diamond-reverse-dots-pattern)" mask="url(#diamond-reverse-dots-clearance)" />
+    <use href="#shape-diamond" fill="none" stroke="#000" stroke-width="3" />
+    <rect id="diamond-reverse-dots-label-backing" x="97" y="73" width="106" height="74" rx="3" fill="#000" data-role="label-backing" /><text id="diamond-reverse-dots-label" x="150" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600" data-max-label-width="160"><tspan x="150" dy="-1.2em">Diamond</tspan><tspan x="150" dy="1.2em">Dots</tspan><tspan x="150" dy="1.2em">Reverse</tspan></text>
+  </g>
+  <title>Diamond Dots Reverse</title></svg>

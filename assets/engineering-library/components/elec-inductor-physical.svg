@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Inductor — coil physical</title>
+<desc id="desc">Illustrative side view of an exposed winding on a bobbin with two axial leads. The winding and axial lead arrangement combine separate visual references and do not depict a specific product.</desc>
+<g id="surface-tone" data-optional="true" fill="#939a9d" fill-opacity="0.13" stroke="none"><path d="M48 62 Q52 58 56 61 Q60 58 64 61 Q68 58 72 61 Q76 58 80 61 Q84 58 88 61 Q92 58 96 61 Q100 58 104 61 Q108 58 112 62 V98 Q108 102 104 99 Q100 102 96 99 Q92 102 88 99 Q84 102 80 99 Q76 102 72 99 Q68 102 64 99 Q60 102 56 99 Q52 102 48 98 Z" /></g><g fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M20 80H40 M120 80H140" stroke-width="1.05" />
+<path d="M40 70H48 V90 H40Z M112 70H120 V90 H112Z" stroke-width="1.05" />
+<path d="M48 62 Q52 58 56 61 Q60 58 64 61 Q68 58 72 61 Q76 58 80 61 Q84 58 88 61 Q92 58 96 61 Q100 58 104 61 Q108 58 112 62 V98 Q108 102 104 99 Q100 102 96 99 Q92 102 88 99 Q84 102 80 99 Q76 102 72 99 Q68 102 64 99 Q60 102 56 99 Q52 102 48 98 Z" />
+<path d="M56 61 C52 70 52 90 56 99 M64 61 C60 70 60 90 64 99 M72 61 C68 70 68 90 72 99 M80 61 C76 70 76 90 80 99 M88 61 C84 70 84 90 88 99 M96 61 C92 70 92 90 96 99 M104 61 C100 70 100 90 104 99" stroke-width="1.05" />
+</g>
+</svg>

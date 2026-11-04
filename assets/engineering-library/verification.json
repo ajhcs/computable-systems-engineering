@@ -1,0 +1,34 @@
+{
+  "schema": "cse.component-library-verification/1",
+  "index_sha256": "1a75aae3836202b203f08936d1e6d3f6745c124fd431a24cbe1c26d7f38628c6",
+  "components": 1076,
+  "primary_icons_preserved": 341,
+  "prior_approved_assets_preserved": 10,
+  "component_checks": "passed; per-ID source hashes, unique IDs, standalone SVG dependencies, modeling contexts and adapter freshness",
+  "drawio": {
+    "status": "pass",
+    "entries": 1076,
+    "codec": "actual app.diagrams.net mxCodec",
+    "rendered_images": 12,
+    "scope": "All library entries decode and preserve identity/binding metadata on native graph XML round trip; 12 entries rendered.",
+    "library_sha256": "a122201a3c3e8826d510a2ea608a0864e3ad54c388445a85262b6b068004892d",
+    "proof_sha256": "3de206c5b4f2e2368cfa947918e18bebd30fed86fed2a9eeb5555cc6c71f751a"
+  },
+  "kernspan_adapter": {
+    "status": "pass",
+    "egui": "0.36.2",
+    "image": "0.25.10",
+    "module_sha256": "f0147f382bd457dffba62be2cfcc912724a30fcc5df0eb22971732433f3010fb",
+    "atlases": 5,
+    "maximum_texture_side": 2048,
+    "test": "Native Rust test loads all five textures, searches IDs and draws an entry using egui; unknown IDs are rejected. The application renderer handles texture deltas.",
+    "scope": "Reusable presentation module; Kernspan application wiring and native project round trip were not performed."
+  },
+  "visual_review": {
+    "reviewer": "assembler",
+    "sample": 12,
+    "scope": "Rendered Draw.io sample plus selected extracted documents; no blanket aesthetic acceptance for all 1076 entries."
+  },
+  "existing_CSE_examples": "Both galleries rebuilt against the new module; all 54 generated content artifacts were byte-identical. Existing pixel/inspection receipts remain bound to unchanged SVGs.",
+  "full_CSE_regression": "Tracked by the exact-commit GitHub Actions checks; this focused receipt does not replace that suite."
+}

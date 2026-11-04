@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="234.15000" height="234.15000" viewBox="32.92500 -7.07500 234.15000 234.15000" role="img"><defs><rect id="shape-square" x="40" y="0" width="220" height="220" />
+    </defs><g id="square-grey-plain" fill="#000" aria-label="Square, Plain, Grey">
+    <use href="#shape-square" fill="#d9d9d9" />
+    <use href="#shape-square" fill="none" stroke="#000" stroke-width="3" />
+    <text id="square-grey-plain-label" x="150" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600"><tspan x="150" dy="-1.2em">Square</tspan><tspan x="150" dy="1.2em">Plain</tspan><tspan x="150" dy="1.2em">Grey</tspan></text>
+  </g>
+  <title>Square Plain Grey</title></svg>

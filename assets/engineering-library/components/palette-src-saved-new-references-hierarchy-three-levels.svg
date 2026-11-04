@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="311.62500" height="191.62500" viewBox="-5.81250 -5.81250 311.62500 191.62500" role="img"><defs /><g id="src-saved-new-references-hierarchy-three-levels" aria-label="Hierarchical connections, Three nested levels">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><rect x="48" y="73" width="204" height="82" /><rect x="108" y="88" width="127" height="55" /><rect x="174" y="103" width="45" height="28" /><path d="M48 119 H174" /><circle cx="48" cy="119" r="5" fill="#fff" /><circle cx="108" cy="119" r="5" fill="#fff" /><circle cx="174" cy="119" r="5" fill="#fff" /><text x="60" y="89" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">P</text><text x="120" y="101" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">C</text><text x="197" y="117" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">L</text></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Three nested levels</text>
+    </g>
+  <title>Three nested levels</title></svg>

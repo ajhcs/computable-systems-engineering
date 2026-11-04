@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Transistor — NPN schematic</title>
+<desc id="desc">An NPN bipolar transistor with base at left, collector at upper right, and emitter at lower right with outward arrow.</desc>
+<g fill="none" stroke="black" stroke-width="2.4" stroke-linecap="butt" stroke-linejoin="round">
+<path d="M20 80 H66 M66 56 V104 M66 66 L102 48 H140 M66 94 L102 112 H140"/>
+<path d="M100 111 L85.2 108.1 L88.8 100.9 Z" fill="black" stroke="none"/>
+</g>
+</svg>

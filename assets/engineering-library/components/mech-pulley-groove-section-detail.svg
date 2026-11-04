@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Pulley groove — explanatory section detail</title><desc id="desc">Schematic section of a rope seated in a sheave groove. Hatching is confined to the cut wheel material. This local detail does not replace the face-view pulley icon and is not a dimensioned or manufacturer-specific section.</desc>
+<defs><clipPath id="cut-material"><path d="M34 42 H54 L65 65 A15 15 0 0 0 95 65 L106 42 H126 V116 H34 Z"/></clipPath></defs>
+<path d="M34 42 H54 L65 65 A15 15 0 0 0 95 65 L106 42 H126 V116 H34 Z" fill="white" stroke="none"/>
+<g clip-path="url(#cut-material)" stroke="#a0a6a8" stroke-width="0.7" fill="none"><path d="M-60 122 L30 32 M-51 122 L39 32 M-42 122 L48 32 M-33 122 L57 32 M-24 122 L66 32 M-15 122 L75 32 M-6 122 L84 32 M3 122 L93 32 M12 122 L102 32 M21 122 L111 32 M30 122 L120 32 M39 122 L129 32 M48 122 L138 32 M57 122 L147 32 M66 122 L156 32 M75 122 L165 32 M84 122 L174 32 M93 122 L183 32 M102 122 L192 32 M111 122 L201 32 M120 122 L210 32 M129 122 L219 32 M138 122 L228 32 M147 122 L237 32"/></g>
+<path d="M34 42 H54 L65 65 A15 15 0 0 0 95 65 L106 42 H126 V116 H34 Z" fill="none" stroke="#303030" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="80" cy="65" r="15" fill="white" stroke="#303030" stroke-width="1.05"/>
+<path d="M80 36 V101" fill="none" stroke="#81888a" stroke-width="0.7" stroke-dasharray="8 2 1.5 2"/>
+</svg>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Cooler — drafting candidate</title>
+<desc id="desc">A generic coil in a cooling-enclosure metaphor; no physical cut face, coolant path or operation is asserted.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.0"><rect x="32" y="43" width="96" height="74" rx="4" /></g><g stroke-width="1.1"><path d="M45 58 H110 Q116 58 116 65 Q116 72 110 72 H50 Q44 72 44 79 Q44 86 50 86 H110 Q116 86 116 93 Q116 100 110 100 H45" /></g></g>
+</svg>

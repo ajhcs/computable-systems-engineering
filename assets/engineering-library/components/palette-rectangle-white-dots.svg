@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="312.65000" height="202.65000" viewBox="-6.32500 8.67500 312.65000 202.65000" role="img"><defs><mask id="rectangle-white-dots-clearance" maskUnits="userSpaceOnUse" x="-3" y="-3" width="306" height="226">
+      <rect x="-3" y="-3" width="306" height="226" fill="#fff" />
+      <use href="#rectangle-white-dots-label" fill="#000" stroke="#000" stroke-width="10" stroke-linejoin="round" />
+    </mask>
+    <pattern id="rectangle-white-dots-pattern" width="21.94" height="21.94" patternUnits="userSpaceOnUse" patternTransform="translate(2.47 6.42)">
+      <circle cx="10.97" cy="10.97" r="1.8" fill="#888" />
+    </pattern>
+    <rect id="shape-rectangle" x="0" y="15" width="300" height="190" />
+    </defs><g id="rectangle-white-dots" fill="#000" aria-label="Rectangle, Dots, White">
+    <use href="#shape-rectangle" fill="#fff" />
+    <use href="#shape-rectangle" fill="url(#rectangle-white-dots-pattern)" mask="url(#rectangle-white-dots-clearance)" />
+    <use href="#shape-rectangle" fill="none" stroke="#000" stroke-width="3" />
+    <rect id="rectangle-white-dots-label-backing" x="91" y="73" width="118" height="74" rx="3" fill="#fff" data-role="label-backing" /><text id="rectangle-white-dots-label" x="150" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600"><tspan x="150" dy="-1.2em">Rectangle</tspan><tspan x="150" dy="1.2em">Dots</tspan><tspan x="150" dy="1.2em">White</tspan></text>
+  </g>
+  <title>Rectangle Dots White</title></svg>

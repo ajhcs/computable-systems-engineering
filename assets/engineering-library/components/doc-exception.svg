@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="doc-exception-title doc-exception-desc">
+<title id="doc-exception-title">Exception</title>
+<desc id="doc-exception-desc">The synthetic wording ALL EXCEPT B illustrates an exception to an otherwise stated scope. No underlying rule or item B is supplied; this is not a formal exception symbol.</desc>
+<text x="80" y="68" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#000000">ALL EXCEPT</text>
+<text x="80" y="100" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" fill="#000000">B</text>
+</svg>

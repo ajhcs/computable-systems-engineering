@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Heat exchanger: schematic — drafting candidate</title>
+<desc id="desc">Two independent, parallel passages in an enclosure. Each of the two drawn lines continues independently; no connection between them, flow direction or duty is implied.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.1"><rect x="47" y="49" width="66" height="62" rx="0" /><path d="M18 66 H47 M113 66 H142 M18 94 H47 M113 94 H142" /></g><g stroke-width="1.2"><path d="M47 66 H113 M47 94 H113" /><line x1="57" y1="78" x2="103" y2="78" /></g></g>
+</svg>

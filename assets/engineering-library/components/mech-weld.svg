@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-weld-title mech-weld-desc">
+<title id="mech-weld-title">Weld</title>
+<desc id="mech-weld-desc">A welding torch points to a fillet at the junction of two plates. No weld symbol, procedure, material, joint quality or completed weld is established.</desc>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M31 105 H129 V118 H31 Z M70 40 H84 V105 H70 Z"/>
+<polygon data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" points="84,105 101,105 84,88"/>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M111 38 L94 71 L102 75 L119 42 Z"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="95" y1="75" x2="89" y2="88"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="89" y1="80" x2="86" y2="77"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="96" y1="86" x2="99" y2="83"/>
+</svg>

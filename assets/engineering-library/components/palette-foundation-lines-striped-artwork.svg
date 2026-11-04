@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="258.0" height="16.0" viewBox="21.00000 117.00000 258.00000 16.00000" role="img"><defs><pattern id="foundation-stripe-pattern" width="18" height="10" patternUnits="userSpaceOnUse" patternTransform="translate(24 120)"><rect width="18" height="10" fill="#000" /><path d="M-5 10 L0 0 H9 L4 10 Z M13 10 L18 0 H27 L22 10 Z" fill="#fff" /></pattern></defs><g id="foundation-lines-striped" aria-label="Striped Lines">
+      <rect x="24" y="120" width="252" height="10" fill="url(#foundation-stripe-pattern)" />
+      </g>
+    <title>Striped Lines</title></svg>

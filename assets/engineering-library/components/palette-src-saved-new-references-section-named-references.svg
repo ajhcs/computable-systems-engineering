@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1013.67422" height="234.65859" viewBox="33.16289 756.17852 1013.67422 234.65859" role="img"><defs /><g id="src-saved-new-references-section-named-references" aria-label="Named connection references">
+    <text x="40" y="780" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#000">Named connection references</text>
+    <g id="src-saved-new-references-named-references-circle" aria-label="Named connection references, Matching circles" transform="translate(40 804)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path d="M45 115 H78 M222 115 H255" /><circle cx="96" cy="115" r="18" fill="#fff" /><circle cx="204" cy="115" r="18" fill="#fff" /><text x="96" y="115" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">N1</text><text x="204" y="115" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">N1</text></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Matching circles</text>
+    </g>
+    <g id="src-saved-new-references-named-references-box" aria-label="Named connection references, Matching boxes" transform="translate(390 804)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path d="M45 115 H78 M222 115 H255" /><rect x="78" y="99" width="41" height="32" fill="#fff" /><rect x="181" y="99" width="41" height="32" fill="#fff" /><text x="98.5" y="115" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">N1</text><text x="201.5" y="115" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">N1</text></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Matching boxes</text>
+    </g>
+    <g id="src-saved-new-references-named-references-tag" aria-label="Named connection references, Matching tags" transform="translate(740 804)">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path d="M45 115 H75 M225 115 H255" /><path d="M75 99 H107 L120 115 L107 131 H75 Z" fill="#fff" /><path d="M225 99 H193 L180 115 L193 131 H225 Z" fill="#fff" /><text x="94" y="115" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">N1</text><text x="206" y="115" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000" stroke="none">N1</text></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Matching tags</text>
+    </g>
+  </g>
+  <title>Named connection references</title></svg>

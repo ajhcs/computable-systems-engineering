@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-lever-title mech-lever-desc">
+<title id="mech-lever-title">Lever</title>
+<desc id="mech-lever-desc">A straight lever rests on a pivot support. No load, fulcrum friction or lever ratio is specified.</desc>
+<polygon data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" points="27,90 124,54 128,64 31,100"/>
+<circle data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" cx="65" cy="81" r="4"/>
+<polygon data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" points="65,85 51,117 79,117"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="46.0" y1="117" x2="84.0" y2="117"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="53" y1="117" x2="48" y2="124"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="59" y1="117" x2="54" y2="124"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="65" y1="117" x2="60" y2="124"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="71" y1="117" x2="66" y2="124"/>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="77" y1="117" x2="72" y2="124"/>
+</svg>

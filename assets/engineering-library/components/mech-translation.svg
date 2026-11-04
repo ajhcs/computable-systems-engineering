@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-translation-title mech-translation-desc">
+<title id="mech-translation-title">Translation</title>
+<desc id="mech-translation-desc">A block and parallel arrows indicate translation along a straight path. The two arrows illustrate a direction at a position, not speed or displacement.</desc>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="58" y="58" width="44" height="44"/>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="28" y1="80" x2="52" y2="80"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="52,80 45.0,76.78 45.0,83.22"/>
+<line data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" x1="108" y1="80" x2="132" y2="80"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="132,80 125.0,76.78 125.0,83.22"/>
+</svg>

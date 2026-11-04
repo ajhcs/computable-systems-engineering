@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-oscillation-title mech-oscillation-desc">
+<title id="mech-oscillation-title">Oscillation</title>
+<desc id="mech-oscillation-desc">A pivoted arm with two arrowheads indicates alternating angular motion. Amplitude, frequency and driver are unspecified.</desc>
+<line data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x1="80" y1="105" x2="80" y2="59"/>
+<circle data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" cx="80" cy="105" r="5"/>
+<path data-role="glyph" fill="none" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" d="M48 64 A47 47 0 0 1 112 64"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="48,64 55.4,61.84 51.17,56.98"/>
+<polygon data-role="glyph" fill="#000000" stroke="#000000" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" points="112,64 108.83,56.98 104.6,61.84"/>
+</svg>

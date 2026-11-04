@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc"><title id="title">Examination table — proposed drafting candidate — graphite</title><desc id="desc">Generic examination table with padded surface and connected support legs. No patient, adjustment mechanism, dimensions or clinical capability is depicted.</desc><g id="artwork" fill="none" stroke="#303030" stroke-width="1.8" stroke-linecap="butt" stroke-linejoin="round"><path data-part="rear-legs" fill="white" d="M45 75 H51 V119 H45 Z M122 68 H128 V112 H122 Z" />
+<path data-part="front-legs" fill="white" d="M36 83 H43 V128 H36 Z M111 83 H118 V128 H111 Z" />
+<path data-part="frame" fill="white" d="M31 76 L42 68 H128 L117 76 V83 H31 Z" /><path stroke-width="1.05" d="M117 76 L128 68 V75 L117 83 M43 114 H111" />
+<path data-part="cushion" fill="white" d="M31 69 L42 62 H126 Q130 62 130 66 L117 76 H31 Q27 76 27 73 Q27 70 31 69 Z" />
+<path data-part="head-cushion" fill="white" d="M37 61 L44 56 H66 L71 62 L63 67 H37 Z" /><path data-part="ground-line" d="M29 128 H131" stroke-width="1.05" /></g><g id="surface-tone" data-optional="true" fill="none" stroke="#858585" stroke-width="0.65" stroke-linecap="butt"><path d="M39 126 V88 M114 125 V88 M46 81 H110" /></g></svg>

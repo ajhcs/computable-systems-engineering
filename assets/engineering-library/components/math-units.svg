@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Units</title>
+<desc id="desc">Metres per second illustrates a coherent SI derived unit. A generic notation example; no model, numerical value or result is asserted. It denotes a unit, not an observed speed.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<text x="80" y="97" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="38" stroke="none" fill="black">m/s</text>
+</g>
+</svg>

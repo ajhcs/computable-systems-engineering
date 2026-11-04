@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc"><title id="title">Specimen — proposed drafting candidate — graphite</title><desc id="desc">A capped generic transparent container with an illustrative sample. The contents do not identify a patient, organism, contamination or hazard.</desc><g id="artwork" fill="none" stroke="#303030" stroke-width="1.8" stroke-linecap="butt" stroke-linejoin="round"><path data-part="container" fill="white" d="M53 48 V113 Q53 127 80 127 Q107 127 107 113 V48 Z"/>
+<path data-part="cap-side" fill="white" d="M49 36 V44 Q49 50 80 50 Q111 50 111 44 V36 Z"/>
+<ellipse data-part="cap-top" cx="80" cy="36" rx="31" ry="6" fill="white"/>
+<path data-part="sample-surface" stroke-width="1.05" d="M56 91 Q67 87 78 91 T104 91"/><circle cx="73" cy="75" r="5" stroke-width="1.05"/><circle cx="87" cy="80" r="4" stroke-width="1.05"/>
+<path stroke-width="1.05" d="M54 113 Q80 120 106 113"/></g><g id="surface-tone" data-optional="true" fill="none" stroke="#858585" stroke-width="0.65" stroke-linecap="butt"><path d="M57 56 V84 M60 57 V84"/></g></svg>

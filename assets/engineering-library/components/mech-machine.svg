@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-machine-title mech-machine-desc">
+<title id="mech-machine-title">Machine — turning</title>
+<desc id="mech-machine-desc">A single-point tool contacts a cylindrical workpiece in a turning setup. Rotation, feed, material, chuck and machining tolerances are unspecified.</desc>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M26 59 H115 V93 H26 Z"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="41" y1="59" x2="41" y2="93"/>
+<line data-role="center" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="17" y1="76" x2="125" y2="76" stroke-dasharray="8 2 1.5 2"/>
+<polygon data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" points="69,122 92,122 92,99 84,93 69,101"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="84" y1="93" x2="91" y2="99"/>
+</svg>

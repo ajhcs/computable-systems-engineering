@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Operators</title>
+<desc id="desc">An addition operator combines two symbolic quantities. A generic notation example; no model, numerical value or result is asserted.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<text x="80" y="94" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="35" font-style="italic" stroke="none" fill="black">a + b</text>
+</g>
+</svg>

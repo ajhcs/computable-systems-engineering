@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Relay — coil and normally open contact</title>
+<desc id="desc">A relay coil and a separate normally open contact are linked by a dashed mechanical association. Local schematic example; the coil and contact remain electrically separate. No contact rating or power supply is specified.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="20" y1="47" x2="55" y2="47" stroke-width="2.4" /><rect x="55" y="36" width="50" height="22" stroke-width="2.4" /><line x1="105" y1="47" x2="140" y2="47" stroke-width="2.4" /><line x1="20" y1="113" x2="59" y2="113" stroke-width="2.4" /><line x1="59" y1="102" x2="59" y2="124" stroke-width="2.4" /><line x1="101" y1="102" x2="101" y2="124" stroke-width="2.4" /><line x1="101" y1="113" x2="140" y2="113" stroke-width="2.4" /><line x1="80" y1="58" x2="80" y2="113" stroke-width="1.4" stroke-dasharray="5 4" data-role="mechanical-link"/>
+</g>
+</svg>

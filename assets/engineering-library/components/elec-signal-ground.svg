@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Ground — signal reference</title>
+<desc id="desc">A downward open triangle with one upper lead represents a local signal reference. The symbol does not establish protective bonding or an earth connection; its convention depends on the drawing legend.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="80" y1="24" x2="80" y2="70" stroke-width="2.4" /><path d="M 54 70 L 106 70 L 80 110 Z" stroke-width="2.4" />
+</g>
+</svg>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="doc-section-marker-title doc-section-marker-desc">
+<title id="doc-section-marker-title">Section view identifier</title>
+<desc id="doc-section-marker-desc">A hatched cut view is identified A–A. The identifier is synthetic; its cutting-plane locator appears in a separate icon.</desc>
+<rect data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" x="39" y="43" width="82" height="60" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="39" y1="55" x2="51" y2="43" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="39" y1="67" x2="63" y2="43" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="39" y1="79" x2="75" y2="43" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="39" y1="91" x2="87" y2="43" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="39" y1="103" x2="99" y2="43" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="111" y1="43" x2="51" y2="103" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="121" y1="45" x2="63" y2="103" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="121" y1="57" x2="75" y2="103" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="121" y1="69" x2="87" y2="103" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="121" y1="81" x2="99" y2="103" />
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="121" y1="93" x2="111" y2="103" />
+<text x="80" y="132" font-family="Arial, sans-serif" font-size="22" text-anchor="middle" fill="#000000">A–A</text>
+</svg>

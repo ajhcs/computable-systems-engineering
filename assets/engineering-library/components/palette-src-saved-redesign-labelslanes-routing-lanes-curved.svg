@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="311.62500" height="191.62500" viewBox="-5.81250 -5.81250 311.62500 191.62500" role="img"><defs /><g id="src-saved-redesign-labelslanes-routing-lanes-curved" aria-label="Parallel routing lanes, Curved lanes">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5" stroke-linejoin="round"><path class="guide" d="M55 135 C125 135 175 101 245 101" stroke="#909090" stroke-width="18" stroke-linecap="butt" /><path class="guide" d="M55 162 C125 162 175 128 245 128" stroke="#909090" stroke-width="18" stroke-linecap="butt" /><path class="route" d="M55 135 C125 135 175 101 245 101" stroke="#000" stroke-width="2.5" stroke-linecap="butt" /><path class="route" d="M55 162 C125 162 175 128 245 128" stroke="#000" stroke-width="2.5" stroke-linecap="butt" /></g>
+      <text x="150" y="45" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#000">Curved lanes</text>
+    </g>
+  <title>Curved lanes</title></svg>

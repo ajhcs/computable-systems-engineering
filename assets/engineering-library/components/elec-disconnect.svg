@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Disconnect — open isolator schematic</title>
+<desc id="desc">An open isolating-switch contact with a diagonal blade and marked fixed contact. Adapted from a switch-disconnector example; the mark does not establish isolation performance or formal conformity.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="20" y1="80" x2="52" y2="80" stroke-width="2.4" /><line x1="52" y1="80" x2="95" y2="54" stroke-width="2.4" data-role="open-blade"/><path d="M 104 80 L 108 76 L 112 80 L 108 84 Z" stroke-width="2.4" data-role="isolating-contact"/><line x1="112" y1="72" x2="112" y2="88" stroke-width="2.4" /><line x1="112" y1="80" x2="140" y2="80" stroke-width="2.4" />
+</g>
+</svg>

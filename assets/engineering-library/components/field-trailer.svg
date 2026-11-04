@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc"><title id="title">Enclosed trailer, side elevation</title><desc id="desc">Generic enclosed trailer in side view, with two visible wheels, a single drawbar and hitch. No second drawbar, load or dimensions are specified.</desc>
+ <g id="artwork" fill="none" stroke="#303030" stroke-linecap="butt" stroke-linejoin="round"><path d="M110 98 L139 104 H146 V108 H138 L110 103 Z" fill="white" stroke-width="1.8" data-part="drawbar"/>
+ <rect x="28" y="56" width="82" height="46" fill="white" stroke-width="1.8" data-part="body"/><path d="M28 94 H110" stroke-width="1.05" data-part="lower-rail"/>
+ <circle cx="49" cy="105" r="9" fill="white" stroke-width="1.8" data-part="rear-wheel"/><circle cx="49" cy="105" r="3" stroke-width="1.05"/>
+ <circle cx="90" cy="105" r="9" fill="white" stroke-width="1.8" data-part="front-wheel"/><circle cx="90" cy="105" r="3" stroke-width="1.05"/></g><g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M30 96 H38 V100 H30 Z M60 96 H79 V100 H60 Z M101 96 H108 V100 H101 Z"/></g></svg>

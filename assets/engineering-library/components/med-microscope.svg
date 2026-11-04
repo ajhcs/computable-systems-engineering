@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Optical microscope — side elevation</title>
+  <desc id="desc">Generic optical microscope in side elevation: an inclined single eyepiece tube enters the head; the nosepiece carries objectives above the stage; a bracket joins the stage to the curved stand, which meets the base. A focus knob is mounted on the stand. Magnification, dimensions and clinical use are unspecified.</desc>
+  <g id="artwork" fill="none" stroke="#282828" stroke-linecap="round" stroke-linejoin="round">
+    <path data-part="stand" d="M86 44 H97 C116 49 126 64 126 84 C126 103 118 117 108 124 H93 C107 113 113 99 113 84 C113 70 106 61 94 58 H86 Z" fill="white" stroke-width="1.8" />
+    <path data-part="base" d="M37 123 H109 Q120 123 124 132 H29 Q31 126 37 123 Z" fill="white" stroke-width="1.8" />
+    <path data-part="eyepiece-tube" d="M40 25 L49 20 L68 40 L61 47 Z" fill="white" stroke-width="1.8" />
+    <path data-part="eyepiece-rim" d="M38 24 L49 18 L53 23 L42 29 Z" fill="white" stroke-width="1.05" />
+    <path data-part="head" d="M61 40 H96 V55 H61 Z" fill="white" stroke-width="1.8" />
+    <path data-part="nosepiece" d="M63 55 H90 L86 62 H66 Z" fill="white" stroke-width="1.8" />
+    <path data-part="objective-vertical" d="M69 61 H77 V77 H69 Z" fill="white" stroke-width="1.05" />
+    <path data-part="objective-oblique" d="M80 61 L86 60 L90 72 L84 74 Z" fill="white" stroke-width="1.05" />
+    <path data-part="stage-bracket" d="M101 91 H116 V100 H108 V96 H101 Z" fill="white" stroke-width="1.8" />
+    <path data-part="stage" d="M39 85 H116 V92 H39 Z" fill="white" stroke-width="1.8" />
+    <circle data-part="focus-knob" cx="116" cy="103" r="8" fill="white" stroke-width="1.8" />
+    <circle data-part="focus-knob-inner" cx="116" cy="103" r="3" stroke-width="1.05" />
+    <path data-part="detail" d="M45 88 H101 M69 74 H77 M84 71 L89 69 M43 128 H106" stroke-width="0.7" />
+  </g>
+<g id="surface-tone" data-optional="true" fill="#777" fill-opacity="0.20" stroke="none"><path d="M118 67 C122 74 124 84 122.5 94 H121 C122 83 120 74 116.5 68 Z M43 129.2 H106 V130.3 H43 Z" /></g></svg>

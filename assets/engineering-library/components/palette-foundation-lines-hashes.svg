@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="311.62500" height="191.62500" viewBox="-5.81250 -5.81250 311.62500 191.62500" role="img"><defs /><g id="foundation-lines-hashes" aria-label="Hashes">
+      <rect width="300" height="180" fill="#fff" stroke="#000" stroke-width="2.5" />
+      <g fill="none" stroke="#000" stroke-width="2.5"><path d="M24 125 H276" /><path d="M38 115 V135" /><path d="M66 115 V135" /><path d="M94 115 V135" /><path d="M122 115 V135" /><path d="M150 115 V135" /><path d="M178 115 V135" /><path d="M206 115 V135" /><path d="M234 115 V135" /><path d="M262 115 V135" /></g>
+      <text x="150" y="52" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" fill="#000">Hashes</text>
+    </g>
+  <title>Hashes</title></svg>

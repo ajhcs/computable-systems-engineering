@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="234.15000" height="234.15000" viewBox="32.92500 -7.07500 234.15000 234.15000" role="img"><defs><rect id="shape-square" x="40" y="0" width="220" height="220" />
+    <mask id="square-reverse-diagonal-clearance" maskUnits="userSpaceOnUse" x="-3" y="-3" width="306" height="226">
+      <rect x="-3" y="-3" width="306" height="226" fill="#fff" />
+      <use href="#square-reverse-diagonal-label" fill="#000" stroke="#000" stroke-width="10" stroke-linejoin="round" />
+    </mask>
+    <pattern id="square-reverse-diagonal-pattern" width="23.7" height="23.7" patternUnits="userSpaceOnUse" patternTransform="translate(7 0)">
+      <path d="M-6 6 L6 -6 M0 23.7 L23.7 0 M17.7 29.7 L29.7 17.7" fill="none" stroke="#999" stroke-width="1.2" />
+    </pattern>
+    </defs><g id="square-reverse-diagonal" fill="#fff" aria-label="Square, Diagonal lines, Reverse">
+    <use href="#shape-square" fill="#000" />
+    <use href="#shape-square" fill="url(#square-reverse-diagonal-pattern)" mask="url(#square-reverse-diagonal-clearance)" />
+    <use href="#shape-square" fill="none" stroke="#000" stroke-width="3" />
+    <rect id="square-reverse-diagonal-label-backing" x="69" y="73" width="162" height="74" rx="3" fill="#000" data-role="label-backing" /><text id="square-reverse-diagonal-label" x="150" y="110" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600"><tspan x="150" dy="-1.2em">Square</tspan><tspan x="150" dy="1.2em">Diagonal lines</tspan><tspan x="150" dy="1.2em">Reverse</tspan></text>
+  </g>
+  <title>Square Diagonal lines Reverse</title></svg>

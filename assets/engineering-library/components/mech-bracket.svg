@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-bracket-title mech-bracket-desc">
+<title id="mech-bracket-title">Bracket</title>
+<desc id="mech-bracket-desc">An L-shaped bracket has holes on its two legs. This simplified outline specifies no mounting hardware, geometry or load capacity.</desc>
+<path data-role="contour" fill="none" stroke="#282828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M42 113 L42 46 L57 46 L57 98 L118 98 L118 113 Z" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="49.5" cy="65" r="3.5" />
+<circle data-role="feature" fill="none" stroke="#282828" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" cx="93" cy="105.5" r="3.5" />
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="doc-scale-indicator-title doc-scale-indicator-desc">
+<title id="doc-scale-indicator-title">Scale indicator</title>
+<desc id="doc-scale-indicator-desc">The ratio 1:n is a symbolic view-scale indicator. n is unspecified; no actual view scale or calibrated bar is claimed.</desc>
+<text x="80" y="80" font-family="Arial, sans-serif" font-size="27" text-anchor="middle" fill="#000000">1 : n</text>
+<line data-role="support" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" x1="52" y1="92" x2="108" y2="92"/>
+</svg>

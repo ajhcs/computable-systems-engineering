@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Calibration</title>
+<desc id="desc">Illustrative observed readings versus reference values on a calibration graph. A generic notation example; no model, numerical value or result is asserted. The plotted positions are illustrative, not calibration data or a fitted result.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="35" y1="122" x2="133" y2="122" stroke-width="1.4" /><path d="M 126.79 125.23 L 133 122 L 126.79 118.77" stroke-width="1.4" /><line x1="35" y1="122" x2="35" y2="29" stroke-width="1.4" /><path d="M 38.23 35.21 L 35 29 L 31.77 35.21" stroke-width="1.4" /><line x1="43" y1="113" x2="121" y2="42" stroke-width="1.4" /><circle cx="57" cy="99" r="3" stroke-width="1.4" fill="white"/><circle cx="80" cy="78" r="3" stroke-width="1.4" fill="white"/><circle cx="105" cy="58" r="3" stroke-width="1.4" fill="white"/><text x="132" y="139" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" stroke="none" fill="black">xᵣ</text><text x="24" y="31" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="18" font-style="italic" stroke="none" fill="black">y</text>
+</g>
+</svg>

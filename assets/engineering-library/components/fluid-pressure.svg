@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Pressure instrument</title>
+<desc id="desc">A round pressure gauge and connection. Needle placement is illustrative and contains no reading, units or calibrated scale.</desc>
+<g fill="none" stroke="#1d2528" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.8"><circle cx="80" cy="70" r="39" /><path d="M72 109 V123 H88 V109" /></g><g stroke-width="1.05"><path d="M55 71 A25 25 0 0 1 105 71" /><line x1="80" y1="70" x2="96" y2="54" /><circle cx="80" cy="70" r="3" /></g></g>
+</svg>

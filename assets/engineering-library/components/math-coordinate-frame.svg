@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Coordinate reference frame</title>
+<desc id="desc">Three labeled axes illustrate a coordinate reference frame. A generic notation example; no model, numerical value or result is asserted.</desc>
+<g fill="none" stroke="black" stroke-linecap="butt" stroke-linejoin="miter">
+<line x1="55" y1="113" x2="127" y2="113" stroke-width="1.4" /><path d="M 119.90 116.69 L 127 113 L 119.90 109.31" stroke-width="1.4" /><line x1="55" y1="113" x2="55" y2="32" stroke-width="1.4" /><path d="M 58.69 39.10 L 55 32 L 51.31 39.10" stroke-width="1.4" /><line x1="55" y1="113" x2="30" y2="137" stroke-width="1.4" /><path d="M 32.56 129.42 L 30 137 L 37.68 134.75" stroke-width="1.4" /><text x="140" y="124" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-style="italic" stroke="none" fill="black">x</text><text x="66" y="30" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-style="italic" stroke="none" fill="black">y</text><text x="20" y="152" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" font-style="italic" stroke="none" fill="black">z</text>
+</g>
+</svg>

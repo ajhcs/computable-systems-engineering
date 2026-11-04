@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Orifice — drafting candidate</title>
+<desc id="desc">An orifice plate between flanges, shown as an explanatory longitudinal section; no plate size, pressure drop or flow direction is specified.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="1.9"><path d="M20 64 H62 M98 64 H140 M20 96 H62 M98 96 H140" /><rect x="62" y="54" width="9" height="52" rx="0" /><rect x="89" y="54" width="9" height="52" rx="0" /><line x1="80" y1="54" x2="80" y2="73" /><line x1="80" y1="87" x2="80" y2="106" /></g><g stroke-width="1.05"><line x1="71" y1="64" x2="89" y2="64" /><line x1="71" y1="96" x2="89" y2="96" /></g><g stroke-width="0.7" stroke-dasharray="8 2 1.5 2"><line x1="15" y1="80" x2="145" y2="80" /></g></g>
+</svg>

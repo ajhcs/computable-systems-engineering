@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="mech-mill-title mech-mill-desc">
+<title id="mech-mill-title">Mill</title>
+<desc id="mech-mill-desc">A flat-ended multi-flute milling cutter meets a workpiece. Tool motion, cutter material and resulting surface are not specified.</desc>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M60 27 H100 V83 H60 Z"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="68" y1="42" x2="68" y2="81"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="78" y1="42" x2="78" y2="81"/>
+<line data-role="feature" fill="none" stroke="#000000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" x1="88" y1="42" x2="88" y2="81"/>
+<path data-role="contour" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M29 83 H131 V111 H29 Z"/>
+</svg>

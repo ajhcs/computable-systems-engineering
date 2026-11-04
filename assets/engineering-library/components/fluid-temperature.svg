@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Temperature instrument — drafting candidate</title>
+<desc id="desc">A generic thermometer bulb and stem drawn as a flat recognition view; no scale or reading is specified.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.0"><path d="M70 34 A10 10 0 0 1 90 34 V98 A22 22 0 1 1 70 98 Z" /></g><g stroke-width="1.1"><line x1="80" y1="39" x2="80" y2="109" /><circle cx="80" cy="115" r="7" /><line x1="90" y1="48" x2="98" y2="48" /><line x1="90" y1="62" x2="98" y2="62" /><line x1="90" y1="76" x2="98" y2="76" /></g></g>
+</svg>

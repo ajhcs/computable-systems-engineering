@@ -1,0 +1,26 @@
+{
+  "schema": "cse.kernspan-presentation-adapter/1",
+  "components": 1076,
+  "atlas": {
+    "file": "atlas.png",
+    "width": 2048,
+    "height": 2048,
+    "cell": 128,
+    "columns": 16,
+    "pages": [
+      "atlas-1.png",
+      "atlas-2.png",
+      "atlas-3.png",
+      "atlas-4.png",
+      "atlas.png"
+    ],
+    "maximum_texture_side": 2048
+  },
+  "rust_module": "cse_components.rs",
+  "model_changes": "none; explicit caller-owned preview/apply only",
+  "upstream_inspection": [
+    "src/engineering_icons.rs",
+    "src/architecture_canvas.rs",
+    "src/architecture.rs"
+  ]
+}

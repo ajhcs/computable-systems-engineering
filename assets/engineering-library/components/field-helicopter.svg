@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc"><title id="title">Helicopter, side elevation</title><desc id="desc">Generic single-main-rotor helicopter in side elevation with attached main-rotor mast, tail rotor and landing skids.</desc>
+ <g id="artwork" fill="none" stroke="#303030" stroke-linecap="butt" stroke-linejoin="round"><path d="M21 84 C22 65 35 53 62 53 H95 L129 66 L139 61 L136 75 L116 80 H104 V101 H48 C32 101 23 96 21 84 Z" fill="white" stroke-width="1.8" data-part="fuselage"/>
+ <path d="M36 58 V80 H66 V55 M76 55 V80 H98 M104 80 L124 72" stroke-width="1.05" data-part="windows"/>
+ <path d="M72 53 V43 M39 42 H119" stroke-width="1.8" data-part="mast-and-main-rotor"/><circle cx="72" cy="42" r="2" fill="white" stroke-width="1.05" data-part="main-rotor-hub"/>
+ <path d="M39 101 L36 113 M91 101 L95 113 M27 114 H108" stroke-width="1.8" data-part="landing-skids"/>
+ <path d="M132 57 V80" stroke-width="1.05" data-part="tail-rotor"/><circle cx="132" cy="68.5" r="2.1" fill="white" stroke-width="1.05" data-part="tail-rotor-hub"/></g><g id="surface-tone" data-optional="true" fill="#dce1e3" stroke="none"><path d="M49 96 H102 V100 H49 Z"/></g></svg>

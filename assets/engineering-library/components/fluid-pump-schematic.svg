@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="35mm" height="35mm" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+<title id="title">Pump: schematic — drafting candidate</title>
+<desc id="desc">A generic pump in a single flow line. Filled triangle shows illustrative left-to-right flow; it is not a verified hydraulic, pneumatic or process-standard symbol.</desc>
+<g fill="none" stroke="#000000" stroke-linecap="butt" stroke-linejoin="round"><g stroke-width="2.1"><line x1="18" y1="80" x2="48" y2="80" /><circle cx="80" cy="80" r="32" /><line x1="112" y1="80" x2="142" y2="80" /></g><path d="M69 64 L99 80 L69 96 Z" fill="#000000" stroke="none" /></g>
+</svg>
