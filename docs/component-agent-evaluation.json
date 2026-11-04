@@ -7,12 +7,13 @@
     "scripts/icons.py": "405ff8576ef3b7f597cc1c88f51dca474245363da94728e75e34a43767b20014",
     "scripts/component_agent.py": "9c732f17a0dcee5090680c536ab439c5e8a6a8845275f335663138c59a6da61b",
     "scripts/component_ui.py": "d1b53c8cd60eef1cc12d2fdd43bfe91497da6f00760907409744e42e96d99e6a",
-    "tests/test_component_agents.py": "c66ea718ab52a86de82d73ee3f4136aefb498f9683c962dd1b361b7aa37206a6",
+    "tests/test_component_agents.py": "f2252faad2a60737c196d7a16c3eb4a2039cca69d0b3c8a323d642310602dc28",
     "tests/browser/component_agents.cjs": "89e8a10866076a598e3af6912f75cdb908b7b0ce9f09e6a9e7c38e9224af9574"
   },
   "focused_tests": {
     "status": "pass",
-    "tests": 14
+    "tests": 14,
+    "fixture_scope": "External project directory, including when the full runner sets TMPDIR inside the runtime."
   },
   "browser": {
     "status": "pass",

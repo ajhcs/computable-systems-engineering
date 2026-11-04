@@ -14,6 +14,12 @@ class Markup(HTMLParser):
     def handle_starttag(self,tag,attrs):self.elements.append((tag,dict(attrs)))
 
 class AgentTests(unittest.TestCase):
+    def setUp(self):
+        # The full runner puts TMPDIR inside the runtime. Export fixtures must
+        # model a separate project rather than weakening the destination guard.
+        self.project=tempfile.TemporaryDirectory(dir=ROOT.parent,prefix=".tmp-component-agent-")
+        self.addCleanup(self.project.cleanup)
+
     def cli(self,*args):
         proc=subprocess.run([sys.executable,'-B',str(ROOT/'scripts/icons.py'),*args],capture_output=True,text=True)
         self.assertFalse(proc.stderr);return proc,json.loads(proc.stdout)
@@ -50,7 +56,7 @@ class AgentTests(unittest.TestCase):
             with self.assertRaises(a.RequestError):a.resolve(ids)
 
     def test_selection_revision_and_unknown_fields(self):
-        with tempfile.TemporaryDirectory() as t:
+        with tempfile.TemporaryDirectory(dir=self.project.name) as t:
             p=Path(t)/'selection.json';d=a.selection(['mech-pulley']);p.write_text(json.dumps(d))
             self.assertEqual(a.read_selection(p)[0]['id'],'mech-pulley')
             d['catalog_sha256']='old';p.write_text(json.dumps(d))
@@ -64,7 +70,7 @@ class AgentTests(unittest.TestCase):
             proc,r=self.cli(*args);self.assertEqual(proc.returncode,2);self.assertEqual(r['error']['code'],code)
 
     def test_exports_require_selection_and_preserve_existing_outputs(self):
-        with tempfile.TemporaryDirectory() as t:
+        with tempfile.TemporaryDirectory(dir=self.project.name) as t:
             p=Path(t)/'exported'
             proc,r=self.cli('export','--format','svg','--out',str(p));self.assertEqual(r['error']['code'],'selection_required');self.assertFalse(p.exists())
             proc,r=self.cli('export','--format','svg','--ids','nonexistent','--out',str(p));self.assertEqual(r['error']['code'],'unknown_component_id');self.assertFalse(p.exists())
@@ -73,25 +79,25 @@ class AgentTests(unittest.TestCase):
             proc,r=self.cli('export','--format','svg','--ids','mech-spring','--out',str(p));self.assertEqual(r['error']['code'],'destination_exists');self.assertEqual((p/'components/mech-pulley.svg').read_bytes(),before)
 
     def test_broad_query_and_protected_destination_refused(self):
-        with tempfile.TemporaryDirectory() as t:
+        with tempfile.TemporaryDirectory(dir=self.project.name) as t:
             proc,r=self.cli('export','--format','svg','--query','','--out',t);self.assertEqual(r['error']['code'],'query_too_broad')
         with self.assertRaises(a.RequestError):a.destination(c.LIBRARY/'bad')
 
     def test_explicit_whole_library_export_remains_available(self):
-        with tempfile.TemporaryDirectory() as t:
+        with tempfile.TemporaryDirectory(dir=self.project.name) as t:
             target=Path(t)/'whole-library'
             proc,r=self.cli('export','--format','svg','--all','--out',str(target))
             self.assertEqual(proc.returncode,0);self.assertEqual(r['count'],1076)
             self.assertEqual(len(list(target.rglob('*.svg'))),1076)
 
     def test_kernspan_partial_selection_is_refused_before_writing(self):
-        with tempfile.TemporaryDirectory() as t:
+        with tempfile.TemporaryDirectory(dir=self.project.name) as t:
             target=Path(t)/'partial'
             proc,r=self.cli('export','--format','kernspan','--ids','mech-pulley','--out',str(target))
             self.assertEqual(r['error']['code'],'requires_full_catalog');self.assertFalse(target.exists())
 
     def test_ui_stable_accessible_ids_and_no_model_mutations(self):
-        with tempfile.TemporaryDirectory() as t:
+        with tempfile.TemporaryDirectory(dir=self.project.name) as t:
             p=Path(t)/'view.html';result=ui.render(['mech-pulley','mech-spring'],p);self.assertFalse(result['model_changes'])
             parser=Markup();parser.feed(p.read_text());els=parser.elements
             ids=[attrs['id'] for _,attrs in els if 'id' in attrs];self.assertEqual(len(ids),len(set(ids)))
@@ -103,7 +109,7 @@ class AgentTests(unittest.TestCase):
             self.assertIn('data-selected-ids',p.read_text())
 
     def test_inline_limit_and_duplicate_ids_write_nothing(self):
-        with tempfile.TemporaryDirectory() as t:
+        with tempfile.TemporaryDirectory(dir=self.project.name) as t:
             p=Path(t)/'view.html'
             for ids in [['mech-pulley']*9,['mech-pulley']*2]:
                 with self.assertRaises(a.RequestError):ui.render(ids,p)
