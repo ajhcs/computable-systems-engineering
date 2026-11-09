@@ -8,6 +8,9 @@ the engineer's measure definitions and data. Keep the service boundary, unit of
 work, resource availability and collection window explicit. Missing rates or
 distribution evidence remain unknown; do not infer them from a diagram.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 Read the selected method in the [queue contract](../../docs/queue-analysis.md).
 Use finite FCFS replay for supplied arrival/service times and one fixed pool.
 Use M/M/c only with its explicit stationary arrival/service assumptions. The

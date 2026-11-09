@@ -8,6 +8,9 @@ A focused plan or review of an intermediate product can be the complete task.
 Reuse the authoritative model, stable IDs and revision; do not require a complete
 CONOPS or turn qualitative intent into an executable requirement.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 Identify the claim, its target and source, applicable conditions, and the decision
 the evidence should inform. Distinguish verification of specified requirements
 from validation of stakeholder needs in intended use. A requirement check alone

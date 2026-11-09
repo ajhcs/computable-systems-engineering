@@ -7,8 +7,15 @@ ELEMENTS = ("part_definitions", "parts", "concerns", "use_cases", "actions", "st
             "requirements", "constraints", "attributes", "events", "event_attributes")
 
 
-def view_sysml(paths, short_id):
+def view_sysml(paths, short_id=None, *, context=False, profile_path=None,
+               element_id=None, native_name=None, workflow='concept', limit=32,
+               sources=None):
     """Retrieve one reviewed element plus the local records it depends on."""
+    if context or profile_path is not None or element_id is not None or native_name is not None or sources:
+        from .context import assembled_context
+        return assembled_context(paths, short_id=short_id, profile_path=profile_path,
+                                 element_id=element_id, native_name=native_name,
+                                 workflow=workflow, limit=limit, sources=sources)
     parsed = check_sysml(paths, syntax_only=True)
     if parsed["status"] != "pass":
         return {"status": parsed["status"], "findings": parsed["findings"],

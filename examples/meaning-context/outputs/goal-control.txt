@@ -1,0 +1,1 @@
+Reduce handoff delay is a goal. This candidate has no mandatory numeric threshold or completion deadline.

@@ -108,6 +108,11 @@ only when selected; the tools run without loading their implementation into the
 conversation. [Coupled calculations](docs/coupled-calculations.md) explain the
 extra checks needed when physical models and sampled controls interact.
 
+Use [meaning and context](docs/meaning-context.md) to retrieve existing concept
+definitions, native bindings and relevant relationships together before drafting.
+Review the delivered claims and behavior against those meanings, with supported
+checks and unresolved interpretation kept explicit.
+
 ## Keep the work connected as it grows
 
 - **Use several model files together.** Shared definitions and current-context declarations can remain separate while the checker evaluates the explicit file set.

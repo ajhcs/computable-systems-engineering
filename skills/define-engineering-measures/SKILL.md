@@ -7,6 +7,9 @@ Define the quantity needed for the engineer's question. Reuse existing measure
 IDs, sources and accepted definitions. Ask only for consequential missing intent;
 keep other gaps explicit. Do not supply targets, acceptance thresholds or modality.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 Read the [record contract](references/record-contract.md) when creating or checking
 a definition. Keep formula, units, population, boundary, aggregation, exclusions,
 window, sampling, conditions and uncertainty together in one versioned record.

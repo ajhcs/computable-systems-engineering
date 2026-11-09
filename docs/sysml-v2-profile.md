@@ -76,6 +76,11 @@ Its `potentially_affected` list follows direct part/subject/constraint links
 conservatively; it does not prove semantic equivalence or identify every
 engineering consequence.
 
+For a view that also assembles existing scoped definitions, role bindings and
+documentary context, use [meaning and context](meaning-context.md). Its optional
+`--context`/`--profile` route preserves the legacy parsed view. Retrieval does
+not narrow the independent model or obligation scope supplied to a checker.
+
 ## Model conventions
 
 Use standard SysML v2 packages, parts, actions, concerns, requirements, use

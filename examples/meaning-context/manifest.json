@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "source_revision": "synthetic-handoff-1",
+  "expected": [
+    {
+      "id": "R_COMPLETE",
+      "constraint": "completionMeaning",
+      "source": "SYN-HANDOFF-1"
+    }
+  ]
+}

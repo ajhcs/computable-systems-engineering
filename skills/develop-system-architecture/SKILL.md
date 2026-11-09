@@ -9,6 +9,9 @@ the existing boundary, stakeholder outcomes, scenarios and accepted decisions;
 use [system-concept development](../develop-system-concept/SKILL.md) only when
 those need investigation. Do not require a complete CONOPS or detailed design.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 The engineer directs intent, applicability, responsibility policies, thresholds
 and selection. Mark inferred functions, allocations and interface obligations as
 proposals with their source or rationale. Repair ordinary draft/check defects

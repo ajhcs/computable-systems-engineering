@@ -5,6 +5,9 @@ description: Help a systems engineer investigate or develop a concept of operati
 
 Assist the engineer with the requested CONOPS question at the depth needed now. Reuse existing work. An investigation, clarification, or small model change can be the whole task; a complete document is optional.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 For changes with several dependent outputs, difficult check failures, or review handoffs, read [planning, diagnosis and review](references/work-review.md) and apply the relevant section. Keep small edits and discussion direct. The user's explicit instructions take precedence over skill guidance. Preserve failed findings during repair and reconcile delivered artifacts and current check evidence with the requested scope before claiming completion.
 
 When multiple engineering skills are requested, apply those skills to one shared SysML model or explicitly imported files with common definitions and IDs. Run the draft-shape checks for each requested skill. Accept natural skill names and handle files, SysML syntax, and commands for the engineer. Read supplied raw material in place; keep raw source and private annotations out of Git and generated model/test reports. Retain concise derived statements and source references needed for review. Keep user-specific models and reports in the selected project's ignored/private work directory (this repository: `work/` on `/workspace`), outside an installed plugin's directory, and inspect Git status before any commit. Surface any raw material already tracked in Git.

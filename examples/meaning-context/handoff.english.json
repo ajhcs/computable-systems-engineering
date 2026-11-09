@@ -1,0 +1,272 @@
+{
+  "version": "foundation-1.0",
+  "source_sha256": "d96608a39a27e94ccf6190c1298dd2595b4b27202cc40e98d281d0fa365ad61d",
+  "terms": {
+    "T_HANDOFF": {
+      "namespace": "Example.Handoff",
+      "revision": "1",
+      "label": "handoff",
+      "definition": "Transfer completion requires receipt of acknowledgement for the same referral from the selected receiving clinic. Sending alone is insufficient.",
+      "kind": "scenario",
+      "part_of_speech": "noun",
+      "approved_forms": [
+        "handoff"
+      ]
+    },
+    "T_CUSTOMS": {
+      "namespace": "Example.Customs",
+      "revision": "1",
+      "label": "handoff",
+      "definition": "Transfer of customs custody, a different scoped concept.",
+      "kind": "scenario",
+      "part_of_speech": "noun",
+      "approved_forms": [
+        "handoff"
+      ]
+    },
+    "T_SEND": {
+      "namespace": "Example.Handoff",
+      "revision": "1",
+      "label": "Send",
+      "definition": "Send the selected referral without establishing handoff completion.",
+      "kind": "function",
+      "part_of_speech": "verb",
+      "approved_forms": [
+        "Send"
+      ]
+    },
+    "T_ACK": {
+      "namespace": "Example.Handoff",
+      "revision": "1",
+      "label": "Acknowledge",
+      "definition": "The selected receiving clinic acknowledges this referral.",
+      "kind": "function",
+      "part_of_speech": "verb",
+      "approved_forms": [
+        "Acknowledge"
+      ]
+    },
+    "T_CLINIC": {
+      "namespace": "Example.Handoff",
+      "revision": "1",
+      "label": "clinic",
+      "definition": "The selected receiving clinic as a resource.",
+      "kind": "resource",
+      "part_of_speech": "noun",
+      "approved_forms": [
+        "clinic"
+      ]
+    },
+    "T_RECEIVER": {
+      "namespace": "Example.Handoff",
+      "revision": "1",
+      "label": "receiver",
+      "definition": "The selected clinic in its external acknowledgement actor role.",
+      "kind": "actor",
+      "part_of_speech": "noun",
+      "approved_forms": [
+        "receiver"
+      ]
+    },
+    "T_DESK": {
+      "namespace": "Example.Handoff",
+      "revision": "1",
+      "label": "sending desk",
+      "definition": "The selected sending service.",
+      "kind": "resource",
+      "part_of_speech": "noun",
+      "approved_forms": [
+        "sending desk"
+      ]
+    },
+    "T_DELAY": {
+      "namespace": "Example.Handoff",
+      "revision": "1",
+      "label": "delay reduction",
+      "definition": "A direction for investigation without a mandatory threshold.",
+      "kind": "objective",
+      "part_of_speech": "noun",
+      "approved_forms": [
+        "delay reduction"
+      ]
+    }
+  },
+  "elements": {
+    "S_HANDOFF": {
+      "kind": "scenario",
+      "term": "T_HANDOFF",
+      "native_name": "HandoffStudy::Handoff"
+    },
+    "S_CUSTOMS": {
+      "kind": "scenario",
+      "term": "T_CUSTOMS",
+      "native_name": "HandoffStudy::CustomsHandoff"
+    },
+    "F_SEND": {
+      "kind": "function",
+      "term": "T_SEND",
+      "native_name": "HandoffStudy::SendReferral"
+    },
+    "F_ACK": {
+      "kind": "function",
+      "term": "T_ACK",
+      "native_name": "HandoffStudy::AcknowledgeReferral"
+    },
+    "R_CLINIC": {
+      "kind": "resource",
+      "term": "T_CLINIC",
+      "native_name": "HandoffStudy::clinic"
+    },
+    "A_CLINIC": {
+      "kind": "actor",
+      "term": "T_RECEIVER",
+      "native_name": "HandoffStudy::clinic"
+    },
+    "R_DESK": {
+      "kind": "resource",
+      "term": "T_DESK",
+      "native_name": "HandoffStudy::desk"
+    },
+    "N_DELAY": {
+      "kind": "objective",
+      "term": "T_DELAY",
+      "native_name": "HandoffStudy::ReduceDelay"
+    }
+  },
+  "relations": [
+    {
+      "kind": "supports",
+      "from": "R_DESK",
+      "to": "F_SEND"
+    },
+    {
+      "kind": "supports",
+      "from": "R_CLINIC",
+      "to": "F_ACK"
+    },
+    {
+      "kind": "motivates",
+      "from": "N_DELAY",
+      "to": "F_SEND"
+    }
+  ],
+  "use_cases": {},
+  "allocations": {
+    "ALLOC_ACK": {
+      "functions": [
+        "F_ACK"
+      ],
+      "resources": [
+        "R_CLINIC"
+      ],
+      "pairs": [
+        {
+          "function": "F_ACK",
+          "resource": "R_CLINIC",
+          "rationale": "Selected synthetic acknowledgement performer."
+        }
+      ],
+      "function_bounds": {
+        "F_ACK": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      "resource_bounds": {
+        "R_CLINIC": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    }
+  },
+  "capabilities": {},
+  "english": {
+    "version": "english-1.0",
+    "revision": "1",
+    "rules": [
+      "ASD-STE100-1.11",
+      "CSE-TERM-POS"
+    ],
+    "terms": {
+      "T_HANDOFF": "3b611bf798fa2adb2903fa4234a79f306003ef831c1069fe8f20544a1511726b",
+      "T_CUSTOMS": "dfd3e7bd26021829b76af3a3c98c7b3e9acf82f83a1a076c334f5841bd41946c",
+      "T_SEND": "99949ca6cf131ff82881367cc474a996dd4ebccc76e168f919f306f2b000b9fc",
+      "T_ACK": "a63b900bdb31fe4afd3bd36f6de6413e54a3288ace448b00710149a49dfaacbf",
+      "T_CLINIC": "e090896b03976b204935646cb2c554e742f983705f07d756b0a3f5ac37ce5e5e"
+    },
+    "views": {
+      "V_HANDOFF": {
+        "element": "S_HANDOFF",
+        "document": "description",
+        "text_sha256": "0b202e73b8589be61a43c30e214dae3cd388a074aebe8ab1c638567b2a228abb",
+        "uses": [
+          {
+            "term": "T_HANDOFF",
+            "slot": "noun",
+            "start": 2,
+            "end": 9
+          }
+        ],
+        "preserved": []
+      },
+      "V_CUSTOMS": {
+        "element": "S_CUSTOMS",
+        "document": "description",
+        "text_sha256": "6506dfbddeeeae8e0fb6b2da2b504e29d49a74a797d81f3b87587affe1f08535",
+        "uses": [
+          {
+            "term": "T_CUSTOMS",
+            "slot": "noun",
+            "start": 2,
+            "end": 9
+          }
+        ],
+        "preserved": []
+      },
+      "V_SEND": {
+        "element": "F_SEND",
+        "document": "description",
+        "text_sha256": "473d1f375b4b88be4c5dbbc6a17719197e1c0e1c04b1a4d8864bd119ecf1edfa",
+        "uses": [
+          {
+            "term": "T_SEND",
+            "slot": "verb",
+            "start": 0,
+            "end": 4
+          }
+        ],
+        "preserved": []
+      },
+      "V_ACK": {
+        "element": "F_ACK",
+        "document": "description",
+        "text_sha256": "b5b6382ef8e5c9a43ce24ce957ccee18e0edea3629c45fbdd5cf05bcc4204c86",
+        "uses": [
+          {
+            "term": "T_ACK",
+            "slot": "verb",
+            "start": 0,
+            "end": 11
+          }
+        ],
+        "preserved": []
+      },
+      "V_CLINIC": {
+        "element": "R_CLINIC",
+        "document": "description",
+        "text_sha256": "3a763ba3496cc26638e7ff3c226228ac96930173beba23051d045be4a4d36ba0",
+        "uses": [
+          {
+            "term": "T_CLINIC",
+            "slot": "noun",
+            "start": 4,
+            "end": 10
+          }
+        ],
+        "preserved": []
+      }
+    },
+    "phrases": {}
+  }
+}

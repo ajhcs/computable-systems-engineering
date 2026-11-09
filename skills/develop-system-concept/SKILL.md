@@ -5,6 +5,9 @@ description: Help a systems engineer investigate or develop a system concept by 
 
 Assist the engineer with the current concept question at the depth needed now. Start from existing work. Framing a need, investigating uncertainty, or comparing one aspect of alternatives can be the whole task; a complete proposal is optional.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 For changes with several dependent outputs, difficult check failures, or review handoffs, read [planning, diagnosis and review](references/work-review.md) and apply the relevant section. Keep small edits and discussion direct. The user's explicit instructions take precedence over skill guidance. Preserve failed findings during repair and reconcile delivered artifacts and current check evidence with the requested scope before claiming completion.
 
 The engineer directs scope, interpretation, priorities, accepted assumptions, tradeoffs, and selection. Prepare evidence, calculations, alternatives, and recommendations. Preserve settled decisions and differing stakeholder perspectives. Elicit missing intent with targeted questions or concrete examples when it affects the current decision. Continue independent work with explicit unknowns; routine edits and checks need no confirmation. Inferred needs, new requirements, and thresholds remain proposals with their basis; weights require actual preferences.

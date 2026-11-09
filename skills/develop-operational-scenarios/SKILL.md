@@ -5,6 +5,9 @@ description: Help a systems engineer elicit, investigate, draft, or revise a par
 
 Assist with the engineer's requested scenario question or set. Reuse known needs, actors, boundaries, constraints, and decisions. A clarification, observation plan, or rough sequence can be the whole task. An exception can be explored directly.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 For changes with several dependent outputs, difficult check failures, or review handoffs, read [planning, diagnosis and review](references/work-review.md) and apply the relevant section. Keep small edits and discussion direct. The user's explicit instructions take precedence over skill guidance. Preserve failed findings during repair and reconcile delivered artifacts and current check evidence with the requested scope before claiming completion.
 
 When multiple engineering skills are requested, apply those skills to one shared SysML model or explicitly imported files with common definitions and IDs. Run the draft-shape checks for each requested skill; concept plus scenario work does not require a full CONOPS. Accept natural skill names and handle files, SysML syntax, and commands for the engineer.

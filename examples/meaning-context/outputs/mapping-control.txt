@@ -1,0 +1,1 @@
+The acknowledgement transport remains unresolved in Q_MAPPING. A webhook is a proposal requiring a defined mapping.

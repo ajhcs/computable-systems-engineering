@@ -7,6 +7,9 @@ Identify the engineer's current question, requested result and existing model.
 Enter at the activity that can answer that question; a complete lifecycle or
 document set is unnecessary. Preserve accepted intent and unresolved facts.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 Select the relevant skill below and read its instructions when starting that
 activity. Do not load the whole pack or traverse every route by default.
 

@@ -1,0 +1,1 @@
+The terminology check covers selected bindings and word uses. Implementation behavior requires separate evidence.

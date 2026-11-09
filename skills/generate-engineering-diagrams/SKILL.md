@@ -5,6 +5,9 @@ description: Create or review source-linked engineering diagrams, or find, compa
 
 Use this skill to produce or critique a diagram from supplied or existing accepted engineering meaning. New system-model design, requirements, assumptions, thresholds, allocations and engineering acceptance remain with the engineer. Do not invent a new system merely to fill a diagram family.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 For changes with several dependent outputs, difficult check failures, or review handoffs, read [planning, diagnosis and review](references/work-review.md) and apply the relevant section. Keep small edits and discussion direct. The user's explicit instructions take precedence over skill guidance. Preserve failed findings during repair and reconcile delivered artifacts and current check evidence with the requested scope before claiming completion.
 
 1. Read the actual project model, source version and applicable repository guidance. Establish the engineering question, selected IDs and boundaries. Inspect the original model, supporting explanation and existing view when supplied. For an appropriate professional precedent, consult the [source-grounded reference library](../../docs/reference-library.md). If the source does not establish a relation, expose the gap. Keep raw/private notes and figures in ignored work paths.

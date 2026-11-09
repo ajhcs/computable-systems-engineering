@@ -9,6 +9,9 @@ before authoring or checking the separate analysis record. Keep unknown causes,
 effects, probabilities and detection methods explicit; propose consequential
 interpretations for engineer judgment.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 For FMEA drafting without a fault-tree anchor, retain the draft and unknown event
 mapping. The current checker needs an authored event/top anchor; do not invent
 a tree to make a standalone FMEA draft pass.

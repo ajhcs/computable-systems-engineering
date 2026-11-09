@@ -1,0 +1,771 @@
+{
+  "version": "meaning-context-evaluation-1.0",
+  "authority": "Synthetic authored study; not an accepted clinical requirement.",
+  "model": "handoff.sysml",
+  "profile": "handoff.english.json",
+  "source": "brief.txt",
+  "native_manifest": "manifest.json",
+  "sampled_manifest": "sampled-obligation-scope.json",
+  "original_clause": "In unit.active = true, whenever unit.complete = true, unit shall always satisfy unit.acknowledged = true.",
+  "cases": [
+    {
+      "id": "prose-completion",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "completion",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "T_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Explain when this project's handoff becomes complete and what sending establishes.",
+      "candidate": "outputs/completion-bad.txt",
+      "control": "outputs/completion-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "conflict",
+        "control": "preserves_selected_meaning",
+        "basis": "Sending is substituted for receipt of the defined acknowledgement."
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "prose-applicability",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "applicability",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "State the applicability of the selected completion invariant without generalizing it.",
+      "candidate": "outputs/applicability-bad.txt",
+      "control": "outputs/applicability-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "conflict",
+        "control": "preserves_selected_meaning",
+        "basis": "A selected active-handoff condition is generalized to all states."
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "prose-goal-to-obligation",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "goal",
+        "obligation",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "N_DELAY",
+        "T_DELAY"
+      ],
+      "question": "Write guidance for reducing handoff delay while preserving whether a mandatory bound exists.",
+      "candidate": "outputs/goal-bad.txt",
+      "control": "outputs/goal-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "conflict",
+        "control": "preserves_selected_meaning",
+        "basis": "A qualitative goal is promoted to a mandatory five-second deadline without a source."
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "prose-evidence-stage",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "evidence",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "E_PLAN",
+        "E_REPORTED"
+      ],
+      "question": "Summarize E_PLAN and E_REPORTED, including their stages and the claims they support.",
+      "candidate": "outputs/evidence-bad.txt",
+      "control": "outputs/evidence-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "conflict",
+        "control": "preserves_selected_meaning",
+        "basis": "A plan and a reported assessment are promoted to operational proof."
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "prose-scoped-homonym",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "scoped_identity",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "T_HANDOFF",
+        "S_CUSTOMS",
+        "T_CUSTOMS"
+      ],
+      "question": "Compare the two concepts named handoff and identify which definition governs referral completion.",
+      "candidate": "outputs/scope-bad.txt",
+      "control": "outputs/scope-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "conflict",
+        "control": "preserves_selected_meaning",
+        "basis": "An equal label in another namespace is treated as the same completion definition."
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "prose-unresolved-mapping",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "missing_mapping",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "Q_MAPPING",
+        "F_ACK",
+        "S_HANDOFF"
+      ],
+      "question": "Describe how to implement acknowledgement receipt using only resolved mappings, and identify missing design decisions.",
+      "candidate": "outputs/mapping-bad.txt",
+      "control": "outputs/mapping-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "conflict",
+        "control": "preserves_selected_meaning",
+        "basis": "An unresolved transport is silently selected as fact."
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "prose-relation-direction",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "relation_direction",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "REL_SEND_ALLOCATION",
+        "F_SEND",
+        "R_DESK"
+      ],
+      "question": "Identify the function and performer in the selected sending allocation and preserve its direction.",
+      "candidate": "outputs/direction-bad.txt",
+      "control": "outputs/direction-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "conflict",
+        "control": "preserves_selected_meaning",
+        "basis": "The allocation reading loses the typed function-to-performer relationship."
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "prose-unsupported-verification",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "unsupported",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "R_COMPLETE",
+        "V_HANDOFF",
+        "T_HANDOFF"
+      ],
+      "question": "Explain what the selected terminology result establishes about an implementation and what still requires review.",
+      "candidate": "outputs/unsupported-bad.txt",
+      "control": "outputs/unsupported-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "conflict",
+        "control": "preserves_selected_meaning",
+        "basis": "A lexical result is promoted to arbitrary implementation verification."
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "repair-identical",
+      "mode": "controlled_repair",
+      "tags": [
+        "valid_control"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "before": "In unit.active = true, whenever unit.complete = true, unit shall always satisfy unit.acknowledged = true.",
+      "after": "In unit.active = true, whenever unit.complete = true, unit shall always satisfy unit.acknowledged = true.",
+      "expected_status": "pass"
+    },
+    {
+      "id": "repair-dropped-applicability",
+      "mode": "controlled_repair",
+      "tags": [
+        "applicability"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "before": "In unit.active = true, whenever unit.complete = true, unit shall always satisfy unit.acknowledged = true.",
+      "after": "Whenever unit.complete = true, unit shall always satisfy unit.acknowledged = true.",
+      "expected_status": "fail"
+    },
+    {
+      "id": "repair-sending-for-ack",
+      "mode": "controlled_repair",
+      "tags": [
+        "completion"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "before": "In unit.active = true, whenever unit.complete = true, unit shall always satisfy unit.acknowledged = true.",
+      "after": "In unit.active = true, whenever unit.complete = true, unit shall always satisfy unit.sent = true.",
+      "expected_status": "fail"
+    },
+    {
+      "id": "repair-negated-ack",
+      "mode": "controlled_repair",
+      "tags": [
+        "negation"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "before": "In unit.active = true, whenever unit.complete = true, unit shall always satisfy unit.acknowledged = true.",
+      "after": "In unit.active = true, whenever unit.complete = true, unit shall always satisfy unit.acknowledged = false.",
+      "expected_status": "fail"
+    },
+    {
+      "id": "repair-weakened-modality",
+      "mode": "controlled_repair",
+      "tags": [
+        "obligation"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "before": "In unit.active = true, whenever unit.complete = true, unit shall always satisfy unit.acknowledged = true.",
+      "after": "In unit.active = true, whenever unit.complete = true, unit should always satisfy unit.acknowledged = true.",
+      "expected_status": "fail"
+    },
+    {
+      "id": "repair-unsupported-source",
+      "mode": "controlled_repair",
+      "tags": [
+        "unsupported"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "before": "A handoff should finish promptly.",
+      "after": "The desk shall finish every handoff immediately.",
+      "expected_status": "unsupported"
+    },
+    {
+      "id": "repair-unit-mismatch",
+      "mode": "controlled_repair",
+      "tags": [
+        "units"
+      ],
+      "source_ids": [
+        "SYN-04",
+        "R_DURATION"
+      ],
+      "question": "Preserve the separate existing synthetic quantity clause, including its exact unit.",
+      "before": "Upon unit.request = true, unit shall within 2 seconds satisfy unit.elapsed <= 2 second.",
+      "after": "Upon unit.request = true, unit shall within 2 seconds satisfy unit.elapsed <= 2 minute.",
+      "expected_status": "fail",
+      "requirement_id": "R_DURATION",
+      "source_model": "examples/sysml/quantity.sysml"
+    },
+    {
+      "id": "repair-quantity-equivalent",
+      "mode": "controlled_repair",
+      "tags": [
+        "units"
+      ],
+      "source_ids": [
+        "SYN-04",
+        "R_DURATION"
+      ],
+      "question": "Preserve the separate existing synthetic quantity clause, including its exact unit.",
+      "before": "Upon unit.request = true, unit shall within 2 seconds satisfy unit.elapsed <= 2 second.",
+      "after": "Upon unit.request = true, unit shall within 2 seconds satisfy unit.elapsed <= 2.0 second.",
+      "expected_status": "pass",
+      "requirement_id": "R_DURATION",
+      "source_model": "examples/sysml/quantity.sysml"
+    },
+    {
+      "id": "trace-premature-completion",
+      "mode": "sampled_trace",
+      "tags": [
+        "completion"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "observations": [
+        {
+          "unit.active": true,
+          "unit.complete": true,
+          "unit.acknowledged": false,
+          "unit.sent": true
+        }
+      ],
+      "complete": true,
+      "expected_status": "fail"
+    },
+    {
+      "id": "trace-matched-ack",
+      "mode": "sampled_trace",
+      "tags": [
+        "completion",
+        "valid_control"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "observations": [
+        {
+          "unit.active": true,
+          "unit.complete": true,
+          "unit.acknowledged": true,
+          "unit.sent": true
+        }
+      ],
+      "complete": true,
+      "expected_status": "pass"
+    },
+    {
+      "id": "trace-waiting-is-not-a-deadline",
+      "mode": "sampled_trace",
+      "tags": [
+        "completion",
+        "waiting"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "observations": [
+        {
+          "unit.active": true,
+          "unit.complete": false,
+          "unit.acknowledged": false,
+          "unit.sent": true
+        }
+      ],
+      "complete": true,
+      "expected_status": "unknown"
+    },
+    {
+      "id": "trace-incomplete-capture",
+      "mode": "sampled_trace",
+      "tags": [
+        "evidence"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "observations": [
+        {
+          "unit.active": true,
+          "unit.complete": true,
+          "unit.acknowledged": true,
+          "unit.sent": true
+        }
+      ],
+      "complete": false,
+      "expected_status": "unknown"
+    },
+    {
+      "id": "trace-inactive-control",
+      "mode": "sampled_trace",
+      "tags": [
+        "applicability",
+        "valid_control"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "observations": [
+        {
+          "unit.active": true,
+          "unit.complete": true,
+          "unit.acknowledged": true,
+          "unit.sent": true
+        },
+        {
+          "unit.active": false,
+          "unit.complete": true,
+          "unit.acknowledged": false,
+          "unit.sent": true
+        }
+      ],
+      "complete": true,
+      "expected_status": "pass"
+    },
+    {
+      "id": "implementation-send-only",
+      "mode": "implementation",
+      "tags": [
+        "implementation",
+        "correlation"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "reference",
+      "sent": true,
+      "acknowledgements": [],
+      "expected_complete": false,
+      "expected_monitor_status": "unknown"
+    },
+    {
+      "id": "implementation-matched-ack",
+      "mode": "implementation",
+      "tags": [
+        "implementation",
+        "correlation"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "reference",
+      "sent": true,
+      "acknowledgements": [
+        {
+          "referral_id": "REF-1",
+          "clinic_id": "CLINIC-A"
+        }
+      ],
+      "expected_complete": true,
+      "expected_monitor_status": "pass"
+    },
+    {
+      "id": "implementation-wrong-referral",
+      "mode": "implementation",
+      "tags": [
+        "implementation",
+        "correlation"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "reference",
+      "sent": true,
+      "acknowledgements": [
+        {
+          "referral_id": "REF-2",
+          "clinic_id": "CLINIC-A"
+        }
+      ],
+      "expected_complete": false,
+      "expected_monitor_status": "unknown"
+    },
+    {
+      "id": "implementation-wrong-clinic",
+      "mode": "implementation",
+      "tags": [
+        "implementation",
+        "correlation"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "reference",
+      "sent": true,
+      "acknowledgements": [
+        {
+          "referral_id": "REF-1",
+          "clinic_id": "CLINIC-B"
+        }
+      ],
+      "expected_complete": false,
+      "expected_monitor_status": "unknown"
+    },
+    {
+      "id": "implementation-send-mutant",
+      "mode": "implementation",
+      "tags": [
+        "implementation",
+        "correlation"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "completes_on_send",
+      "sent": true,
+      "acknowledgements": [],
+      "expected_complete": true,
+      "expected_monitor_status": "fail"
+    },
+    {
+      "id": "implementation-uncorrelated-mutant",
+      "mode": "implementation",
+      "tags": [
+        "implementation",
+        "correlation"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "accepts_any_ack",
+      "sent": true,
+      "acknowledgements": [
+        {
+          "referral_id": "REF-2",
+          "clinic_id": "CLINIC-A"
+        }
+      ],
+      "expected_complete": true,
+      "expected_monitor_status": "fail"
+    },
+    {
+      "id": "context-assembled-control",
+      "mode": "context",
+      "tags": [
+        "context",
+        "valid_control"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "unchanged",
+      "expected_status": "pass"
+    },
+    {
+      "id": "context-multiple-roles",
+      "mode": "context",
+      "tags": [
+        "context",
+        "multiple_roles"
+      ],
+      "source_ids": [
+        "R_CLINIC",
+        "A_CLINIC",
+        "T_CLINIC",
+        "T_RECEIVER"
+      ],
+      "question": "Retrieve the selected clinic while preserving its explicitly different resource and actor roles.",
+      "variant": "roles",
+      "expected_status": "pass"
+    },
+    {
+      "id": "context-scoped-homonym",
+      "mode": "context",
+      "tags": [
+        "context",
+        "scoped_identity"
+      ],
+      "source_ids": [
+        "S_CUSTOMS",
+        "T_CUSTOMS",
+        "S_HANDOFF"
+      ],
+      "question": "Retrieve the customs handoff without applying clinical workflow conditions from a disjoint focus.",
+      "variant": "customs",
+      "expected_status": "unknown"
+    },
+    {
+      "id": "context-reversed-relation",
+      "mode": "context",
+      "tags": [
+        "context",
+        "relation_direction"
+      ],
+      "source_ids": [
+        "REL_SEND_ALLOCATION",
+        "F_SEND",
+        "R_DESK"
+      ],
+      "question": "Does reversing the typed function-to-performer allocation preserve its admitted endpoints?",
+      "variant": "reversed_relation",
+      "expected_status": "fail"
+    },
+    {
+      "id": "context-definition-drift",
+      "mode": "context",
+      "tags": [
+        "context",
+        "definition_drift"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "definition_drift",
+      "expected_status": "fail"
+    },
+    {
+      "id": "context-native-drift",
+      "mode": "context",
+      "tags": [
+        "context",
+        "native_drift"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "native_drift",
+      "expected_status": "fail"
+    },
+    {
+      "id": "context-evidence-promotion",
+      "mode": "context",
+      "tags": [
+        "context",
+        "evidence"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "evidence_promotion",
+      "expected_status": "error"
+    },
+    {
+      "id": "context-missing-definition",
+      "mode": "context",
+      "tags": [
+        "context",
+        "missing_mapping"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Preserve the defined handoff completion meaning.",
+      "variant": "missing_definition",
+      "expected_status": "unknown"
+    },
+    {
+      "id": "context-budget-cutoff",
+      "mode": "context",
+      "tags": [
+        "context",
+        "truncation"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "S_HANDOFF",
+        "R_COMPLETE"
+      ],
+      "question": "Retrieve one bounded element and disclose any omitted defining context.",
+      "variant": "cutoff",
+      "expected_status": "unknown"
+    },
+    {
+      "id": "context-evidence-source-drift",
+      "mode": "context",
+      "tags": [
+        "context",
+        "evidence_drift"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF"
+      ],
+      "question": "Does changed source evidence remain usable for the original context?",
+      "variant": "evidence_drift",
+      "expected_status": "fail"
+    }
+  ],
+  "measurement_status": "Generation ablations and interpretive accuracy are not measured.",
+  "claim_limits": [
+    "Interpretive oracles are authored review expectations, not computed semantic verdicts.",
+    "Native parsing, terminology, controlled-clause and sampled-trace checks retain their existing claim scopes.",
+    "Reference implementation tests demonstrate only this synthetic unit mechanism.",
+    "No paths or executable program text from corpus records are executed."
+  ],
+  "auxiliary_sources": {
+    "quantity_control": {
+      "path": "examples/sysml/quantity.sysml",
+      "sha256": "8fd49d3837c51e6af64af0bafec742d44759e9bbf1c3ee1816e2c9dcf2925769",
+      "basis": "Existing synthetic CSE quantity fixture; its threshold is unrelated to handoff completion."
+    }
+  }
+}
