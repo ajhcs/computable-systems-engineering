@@ -6,6 +6,9 @@ description: Check CSE-authored engineering text against project terminology, se
 Use controlled English and the project's defined terms, meanings and approved
 forms. Keep English authoritative. Write complete sentences with direct actors.
 
+For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
+before drafting and when reviewing the actual output.
+
 When terms cross engineering roles or wording implies a goal, constraint,
 obligation or stopping condition, read
 [concept roles and intent](references/concept-roles-and-intent.md). Reuse the

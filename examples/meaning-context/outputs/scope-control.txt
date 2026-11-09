@@ -1,0 +1,1 @@
+The referral and customs handoff definitions belong to different namespaces and remain distinct.

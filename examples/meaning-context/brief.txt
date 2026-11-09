@@ -1,0 +1,7 @@
+Synthetic handoff study, revision 1. No clinical or operational acceptance is claimed.
+
+A handoff is complete when the sending service receives an acknowledgement for the same referral from the selected receiving clinic. Sending the referral alone does not complete the handoff. The completion invariant applies to active handoffs. Waiting without acknowledgement is allowed; no completion deadline is specified.
+
+Reduce handoff delay is a goal, without a mandatory numeric threshold. The clinic is the selected external acknowledgement performer; the sending desk sends referrals. Customs handoff is a separate concept in a separate namespace.
+
+E_PLAN is a plan to test the handoff and has not run. E_REPORTED is an illustrative reported assessment, not an executed observation. The acknowledgement transport mapping remains an open question. These statements define only this synthetic study.

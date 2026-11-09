@@ -5,6 +5,10 @@ reviewing wording that could change design freedom or obligations. It extends
 the existing [controlled-English workflow](controlled-english.md); it does not
 introduce a new vocabulary file, a new grammar checker or automatic role inference.
 
+Use [meaning and context](../../../docs/meaning-context.md) to assemble these
+existing definitions before generation and compare the actual output with them.
+Its derived view and supported checks remain separate from interpretive review.
+
 ## Reuse identities and role bindings
 
 First inspect the project's `foundation-1.0` terms and selected `english-1.0`

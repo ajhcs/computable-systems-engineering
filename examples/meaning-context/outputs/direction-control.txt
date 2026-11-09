@@ -1,0 +1,1 @@
+The SendReferral function is allocated to the sending desk. The documentary relation does not prove executable behavior.
