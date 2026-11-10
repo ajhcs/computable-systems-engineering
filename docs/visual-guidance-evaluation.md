@@ -27,8 +27,10 @@ aliases. This helper does not start a model, modify permissions or install tools
 The render cases request `output/document.html`, `output/document.pdf` and
 `output/figure-1.svg`. Use the selected profile with the
 [shared renderer](document-rendering.md), keep its receipt in
-`output/render-receipt.json`, and adapt a standalone flow SVG without changing
-the selected component's native primitives. After the session completes:
+`output/render-receipt.json`. Keep selected illustrations in their intended
+document roles; a separate documentary flow need not contain an illustration.
+Each identified selected SVG occurrence in the delivered HTML or standalone SVG
+must retain the selected master's native primitives. After the session completes:
 
 ```sh
 python3 <runtime>/scripts/evaluate_visual_guidance.py check \
@@ -52,7 +54,12 @@ assistant claims. It checks output existence, current output hashes, actual
 glyph font names in renderer evidence, selected graphic identities and roles,
 retained native SVG geometry, and the accepted body's normalized text. Color,
 occurrence IDs, containing transforms and added labels may change; deleting or
-changing a selected native shape fails the geometry comparison.
+changing a selected native shape fails the geometry comparison. Geometry is
+checked separately for every `svg[data-cse-source="comp-process"]` occurrence
+across delivered HTML and SVG. A complete unrelated SVG, or pieces of the master
+split across several incomplete occurrences, cannot satisfy that check. The
+identified occurrence count must match the renderer's inspected inventory;
+source hashes and visibility/bounds checks remain required.
 
 The current HTML, PDF and SVG must all match the renderer's output hashes. The
 PDF receipt must match the current file, contain completed checks and match the
@@ -63,8 +70,15 @@ in order. Retaining hidden HTML while omitting the body from the delivered PDF
 does not pass preservation.
 
 The missing-font case independently checks that the selected required resource
-is unavailable, that a failed profile/render preflight is observable in the
-trace, and that no final PDF was delivered anywhere in the project. The text-only case checks
+is actually absent and that no final PDF was delivered anywhere in the project.
+It also requires a typed failed profile preflight, recorded in
+`output/profile-preflight.json` (or the project-relative `--failure-receipt`) or
+captured JSON from a failed helper command. The recorded profile object, original
+profile hash/path, resource records and missing-font findings must match the
+selected profile and an independent current preflight replay. Generic help,
+argument or environment errors do not establish a missing selected resource.
+This is a recorded and rechecked local result, not authenticated process origin.
+The text-only case checks
 that no visual skill or renderer was invoked and no graphical artifact was
 created; it does not judge the arithmetic answer.
 

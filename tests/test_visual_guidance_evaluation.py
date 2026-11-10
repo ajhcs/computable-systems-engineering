@@ -49,6 +49,14 @@ class VisualGuidanceEvaluationTests(unittest.TestCase):
         (out / "render-receipt.json").write_text(json.dumps(receipt))
         return receipt
 
+    def missing_failure(self, project):
+        from verifier import visual_profile as v
+        path = project / "project-visual-profile.json"
+        profile, digest = v.load(path)
+        receipt = v.preflight(profile, project, ROOT)
+        receipt.update(profile_sha256=digest, profile_path=str(path.resolve()), selection="explicit")
+        return receipt
+
     def test_inventory_includes_routing_override_failure_artwork_and_negative(self):
         self.assertEqual(set(E.cases()), {"direct-profile", "indirect-profile", "client-override",
                                          "missing-font", "artwork-preservation", "text-only-negative"})
@@ -79,7 +87,7 @@ class VisualGuidanceEvaluationTests(unittest.TestCase):
         with trace.open("a") as stream:
             stream.write(json.dumps({"type": "item.completed", "item": {"type": "command_execution", "exit_code": 1,
                 "command": "python3 " + str(ROOT / "scripts/visual_profile.py") + " preflight",
-                "aggregated_output": json.dumps({"status": "fail", "findings": [{"id": "body", "detail": "required font unavailable"}]})}}) + "\n")
+                "aggregated_output": json.dumps(self.missing_failure(project))}}) + "\n")
         result = E.evaluate("missing-font", project, ROOT, trace)
         self.assertEqual(result["status"], "pass")
         self.assertEqual(result["session_freshness"], "not_inferred_from_trace")
@@ -91,7 +99,59 @@ class VisualGuidanceEvaluationTests(unittest.TestCase):
         project = self.prepare("missing-font")
         trace = self.trace(["cat " + str(ROOT / "skills/generate-engineering-diagrams/SKILL.md")])
         result = E.evaluate("missing-font", project, ROOT, trace)
-        self.assertIn({"id": "required_resource_failure_observed", "status": "fail"}, result["checks"])
+        self.assertIn({"id": "required_resource_failure_recorded_and_rechecked", "status": "fail"}, result["checks"])
+
+    def test_missing_font_accepts_profile_bound_sidecar_and_explicit_path(self):
+        project = self.prepare("missing-font")
+        trace = self.trace(["cat " + str(ROOT / "skills/generate-engineering-diagrams/SKILL.md")])
+        (project / "output").mkdir()
+        receipt = self.missing_failure(project)
+        (project / "output/profile-preflight.json").write_text(json.dumps(receipt))
+        self.assertEqual(E.evaluate("missing-font", project, ROOT, trace)["status"], "pass")
+        (project / "output/profile-preflight.json").rename(project / "output/required-font.json")
+        self.assertEqual(E.evaluate("missing-font", project, ROOT, trace, failure_receipt="output/required-font.json")["status"], "pass")
+
+    def test_missing_font_rejects_generic_help_and_argument_errors(self):
+        project = self.prepare("missing-font")
+        trace = self.trace(["cat " + str(ROOT / "skills/generate-engineering-diagrams/SKILL.md")])
+        with trace.open("a") as stream:
+            stream.write(json.dumps({"type": "item.completed", "item": {"type": "command_execution", "exit_code": 1,
+                "command": "node " + str(ROOT / "scripts/render_technical_document.cjs") + " --help",
+                "aggregated_output": json.dumps({"schema": "cse.document-render/1", "status": "error", "findings": ["Mode, --root and --profile are required"]})}}) + "\n")
+        result = E.evaluate("missing-font", project, ROOT, trace)
+        self.assertIn({"id": "required_resource_failure_recorded_and_rechecked", "status": "fail"}, result["checks"])
+
+    def test_missing_font_rejects_wrong_incomplete_or_stale_recorded_profile(self):
+        project = self.prepare("missing-font")
+        trace = self.trace(["cat " + str(ROOT / "skills/generate-engineering-diagrams/SKILL.md")])
+        (project / "output").mkdir()
+        good = self.missing_failure(project)
+        variants = {}
+        for name in ("no-profile", "wrong-profile", "stale-hash", "wrong-path", "no-findings", "wrong-resource", "stale-font-source", "error"):
+            variants[name] = copy.deepcopy(good)
+        variants["no-profile"].pop("profile")
+        variants["wrong-profile"]["profile"]["id"] = "another-project"
+        variants["stale-hash"]["profile_sha256"] = "0" * 64
+        variants["wrong-path"]["profile_path"] = str(project / "another-profile.json")
+        variants["no-findings"]["findings"] = []
+        variants["wrong-resource"]["findings"][0]["id"] = "unselected-font"
+        variants["stale-font-source"]["fonts"][0]["sha256"] = "0" * 64
+        variants["error"]["status"] = "error"
+        for name, receipt in variants.items():
+            with self.subTest(name=name):
+                (project / "output/profile-preflight.json").write_text(json.dumps(receipt))
+                result = E.evaluate("missing-font", project, ROOT, trace)
+                self.assertIn({"id": "required_resource_failure_recorded_and_rechecked", "status": "fail"}, result["checks"])
+
+    def test_recorded_missing_font_failure_is_stale_when_font_is_now_present(self):
+        project = self.prepare("missing-font")
+        trace = self.trace(["cat " + str(ROOT / "skills/generate-engineering-diagrams/SKILL.md")])
+        (project / "output").mkdir()
+        (project / "output/profile-preflight.json").write_text(json.dumps(self.missing_failure(project)))
+        (project / "required-font-not-supplied.woff2").write_bytes((ROOT / "examples/ecosystem-diagram-reference/fonts/IBMPlexSans-Regular.woff2").read_bytes())
+        result = E.evaluate("missing-font", project, ROOT, trace)
+        self.assertIn({"id": "required_font_unavailable", "status": "fail"}, result["checks"])
+        self.assertIn({"id": "required_resource_failure_recorded_and_rechecked", "status": "fail"}, result["checks"])
 
     def test_text_only_case_checks_absence_without_claiming_answer_correctness(self):
         project = self.prepare("text-only-negative")
@@ -123,6 +183,49 @@ class VisualGuidanceEvaluationTests(unittest.TestCase):
         self.assertEqual(E.svg_geometry(first), E.svg_geometry(second))
         second.write_text(second.read_text().replace('width="3"', 'width="9"'))
         self.assertNotEqual(E.svg_geometry(first), E.svg_geometry(second))
+
+    def placement_fixture(self):
+        master = self.work / "master.svg"
+        first = '<rect x="1" y="2" width="3" height="4" fill="#123"/>'
+        second = '<path d="M1 2 L3 4" stroke="#123"/>'
+        master.write_text('<svg xmlns="http://www.w3.org/2000/svg">' + first + second + '</svg>')
+        selected = '<svg xmlns="http://www.w3.org/2000/svg" data-cse-source="comp-process">'
+        return master, first, second, selected
+
+    def test_selected_illustration_may_be_separate_from_standalone_flow(self):
+        master, first, second, selected = self.placement_fixture()
+        html, flow = self.work / "document.html", self.work / "figure.svg"
+        html.write_text('<html><body><figure id="flow">Documentary flow</figure><aside>' + selected + first + second + '</svg></aside></body></html>')
+        flow.write_text('<svg xmlns="http://www.w3.org/2000/svg"><rect x="20" y="30" width="50" height="60"/></svg>')
+        self.assertEqual(E.selected_svg_geometry((html, flow), "comp-process", master),
+                         {"retained": True, "occurrences": 1, "complete_occurrences": 1})
+
+    def test_changed_geometry_in_any_identified_occurrence_fails(self):
+        master, first, second, selected = self.placement_fixture()
+        html, flow = self.work / "document.html", self.work / "figure.svg"
+        html.write_text('<html><body>' + selected + first + second + '</svg></body></html>')
+        flow.write_text(selected + first.replace('width="3"', 'width="9"') + second + '</svg>')
+        self.assertEqual(E.selected_svg_geometry((html, flow), "comp-process", master),
+                         {"retained": False, "occurrences": 2, "complete_occurrences": 1})
+
+    def test_master_cannot_be_split_across_incomplete_occurrences(self):
+        master, first, second, selected = self.placement_fixture()
+        html, flow = self.work / "document.html", self.work / "figure.svg"
+        html.write_text('<html><body>' + selected + first + '</svg></body></html>')
+        flow.write_text(selected + second + '</svg>')
+        self.assertEqual(E.selected_svg_geometry((html, flow), "comp-process", master),
+                         {"retained": False, "occurrences": 2, "complete_occurrences": 0})
+
+    def test_unrelated_master_does_not_satisfy_selected_occurrence(self):
+        master, first, second, selected = self.placement_fixture()
+        html, flow = self.work / "document.html", self.work / "figure.svg"
+        html.write_text('<html><body><svg>' + first + second + '</svg>' + selected + first + '</svg></body></html>')
+        flow.write_text('<svg xmlns="http://www.w3.org/2000/svg" data-cse-source="another-component">' + first + second + '</svg>')
+        self.assertEqual(E.selected_svg_geometry((html, flow), "comp-process", master),
+                         {"retained": False, "occurrences": 1, "complete_occurrences": 0})
+        html.write_text('<html><body><svg>' + first + second + '</svg></body></html>')
+        self.assertEqual(E.selected_svg_geometry((html, flow), "comp-process", master),
+                         {"retained": False, "occurrences": 0, "complete_occurrences": 0})
 
     def test_preservation_compares_region_wording_and_amounts(self):
         first, second = self.work / "first.html", self.work / "second.html"

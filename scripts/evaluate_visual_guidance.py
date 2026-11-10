@@ -185,6 +185,67 @@ def svg_geometry(path):
                    for element in root.iter() if (tag := element.tag.split("}")[-1]) in GEOMETRY)
 
 
+class SelectedSVGParser(HTMLParser):
+    """Collect each explicitly identified SVG occurrence in an HTML document."""
+    def __init__(self, asset_id):
+        super().__init__(convert_charrefs=True)
+        self.asset_id, self.active, self.occurrences = asset_id, [], []
+        self.nodes = 0
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if self.active or tag == "svg":
+            self.nodes += 1
+            if self.nodes > 10000:
+                raise ValueError("SVG exceeds evaluation node limit")
+        if tag == "svg":
+            occurrence = Counter() if attrs.get("data-cse-source") == self.asset_id else None
+            self.active.append(occurrence)
+            if occurrence is not None:
+                self.occurrences.append(occurrence)
+        if tag in GEOMETRY:
+            primitive = (tag, tuple((key, attrs.get(key, "")) for key in (*GEOMETRY[tag], "transform")))
+            for occurrence in self.active:
+                if occurrence is not None:
+                    occurrence[primitive] += 1
+
+    def handle_endtag(self, tag):
+        if tag == "svg":
+            if not self.active:
+                raise ValueError("Unmatched SVG closing tag")
+            self.active.pop()
+
+    def handle_startendtag(self, tag, attrs):
+        self.handle_starttag(tag, attrs)
+        if tag == "svg":
+            self.handle_endtag(tag)
+
+
+def selected_svg_geometry(paths, asset_id, master):
+    """Require the whole master in every identified occurrence, wherever placed."""
+    expected, occurrences = svg_geometry(master), []
+    for path in paths:
+        raw = Path(path).read_bytes()
+        if len(raw) > 33554432 or b"<!ENTITY" in raw.upper():
+            raise ValueError("Unbounded artifact or entity declarations are unsupported")
+        if Path(path).suffix.lower() == ".svg":
+            # Validate XML independently; HTMLParser is deliberately tolerant of HTML.
+            if b"<!DOCTYPE" in raw.upper():
+                raise ValueError("SVG document type declarations are unsupported")
+            root = ET.fromstring(raw)
+            if root.tag.split("}")[-1] != "svg":
+                raise ValueError("Expected SVG root")
+        parser = SelectedSVGParser(asset_id)
+        parser.feed(raw.decode("utf-8"))
+        parser.close()
+        if parser.active:
+            raise ValueError("Unclosed SVG occurrence")
+        occurrences.extend(parser.occurrences)
+    complete = [bool(expected) and not expected - actual for actual in occurrences]
+    return {"retained": bool(occurrences) and all(complete),
+            "occurrences": len(occurrences), "complete_occurrences": sum(complete)}
+
+
 def trace_records(path):
     text = Path(path).read_text(encoding="utf-8")
     try:
@@ -218,7 +279,21 @@ def pdf_contains_region(path, pages, target="accepted-body"):
     return bool(expected) and expected in extracted
 
 
-def evaluate(case_id, project, runtime, trace, receipt_path="output/render-receipt.json", python=None):
+def failure_matches_profile(recorded, profile, profile_path, profile_digest, replay):
+    """Bind a recorded resource failure to the selected profile and current replay."""
+    if not isinstance(recorded, dict):
+        return False
+    if recorded.get("schema") == "cse.document-environment/1":
+        recorded = recorded.get("profile_preflight", {})
+    return (isinstance(recorded, dict) and recorded.get("version") == "cse.visual-profile/1"
+            and recorded.get("status") == "fail" and recorded.get("profile") == profile
+            and recorded.get("profile_sha256") == profile_digest
+            and recorded.get("profile_path") == str(profile_path.resolve())
+            and all(recorded.get(key) == value for key, value in replay.items()))
+
+
+def evaluate(case_id, project, runtime, trace, receipt_path="output/render-receipt.json", python=None,
+             failure_receipt="output/profile-preflight.json"):
     """Check bounded artifacts; never infer correctness from the assistant's final prose."""
     case, root, runtime = selected_case(case_id), Path(project).resolve(), Path(runtime).resolve()
     checks = []
@@ -247,13 +322,24 @@ def evaluate(case_id, project, runtime, trace, receipt_path="output/render-recei
         outputs = [p for p in root.rglob("*") if p.is_file() and p.suffix.lower() in {".pdf", ".svg", ".png", ".html", ".jpg", ".jpeg", ".gif", ".webp"}]
         check("no_graphical_artifacts", not outputs)
     elif case["kind"] == "blocked":
-        from verifier.visual_profile import load, preflight
+        from verifier.visual_profile import load, preflight, resolve_resource
         selected = safe_path(root, manifest["profile"])
-        result = preflight(load(selected)[0], root, runtime)
-        check("required_font_unavailable", result.get("status") != "pass")
-        check("no_final_pdf", not any(p.is_file() for p in root.rglob("*.pdf")))
+        profile, profile_digest = load(selected)
+        result = preflight(profile, root, runtime)
+        missing = set()
+        for font in profile["fonts"]:
+            try:
+                resolve_resource(font["path"], root, runtime)
+            except FileNotFoundError:
+                missing.add(font["id"])
+        failed_ids = {finding.get("id") for finding in result.get("findings", []) if finding.get("status") == "fail"}
+        check("required_font_unavailable", result.get("status") == "fail" and bool(missing) and missing <= failed_ids)
+        check("no_final_pdf", not any(p.is_file() and p.suffix.lower() == ".pdf" for p in root.rglob("*")))
         check("selected_visual_skill_loaded", activated)
-        failed = []
+        recorded_failures = []
+        sidecar = safe_path(root, failure_receipt)
+        if sidecar.is_file():
+            recorded_failures.append(json.loads(sidecar.read_text()))
         for record in trace_records(trace):
             item = record.get("item", {})
             if record.get("type") != "item.completed" or item.get("type") != "command_execution" or item.get("exit_code") in (None, 0):
@@ -264,8 +350,9 @@ def evaluate(case_id, project, runtime, trace, receipt_path="output/render-recei
                 observed = json.loads(item.get("aggregated_output", ""))
             except json.JSONDecodeError:
                 continue
-            failed.append(observed.get("status") in ("fail", "error") and bool(observed.get("findings") or observed.get("detail") or observed.get("profile_preflight", {}).get("findings")))
-        check("required_resource_failure_observed", any(failed))
+            recorded_failures.append(observed)
+        check("required_resource_failure_recorded_and_rechecked", bool(missing) and missing <= failed_ids and
+              any(failure_matches_profile(item, profile, selected, profile_digest, result) for item in recorded_failures))
     else:
         check("selected_visual_skill_loaded", activated)
         check("shared_renderer_invoked", any(str(runtime / "scripts/render_technical_document.cjs") in command for command in commands))
@@ -284,10 +371,11 @@ def evaluate(case_id, project, runtime, trace, receipt_path="output/render-recei
         if case.get("preserve_body"):
             check("accepted_body_preserved", region_text(root / "input.html", "accepted-body") == region_text(root / "output/document.html", "accepted-body"))
         master = runtime / "assets/engineering-library/components/comp-process.svg"
-        expected = svg_geometry(master)
-        actual = svg_geometry(root / "output/figure-1.svg")
-        check("svg_master_geometry_retained", bool(expected) and not expected - actual)
+        geometry = selected_svg_geometry((root / "output/document.html", root / "output/figure-1.svg"), "comp-process", master)
+        check("svg_master_geometry_retained", geometry["retained"], geometry)
         assets = receipt.get("assets", [])
+        check("svg_occurrence_inventory_matches", geometry["occurrences"] > 0 and geometry["occurrences"] ==
+              sum(item.get("occurrences", 0) for item in assets if item.get("id") == "comp-process"))
         for wanted in ("comp-process", "cover-art"):
             records = [item for item in assets if item.get("id") == wanted]
             check("selected_asset_used:" + wanted, bool(records) and all(item.get("occurrences", 0) > 0 for item in records))
@@ -359,6 +447,8 @@ def main():
     check_parser.add_argument("--trace", type=Path, required=True)
     check_parser.add_argument("--render-receipt", default="output/render-receipt.json")
     check_parser.add_argument("--python", help="Existing Python interpreter with PyMuPDF for independent PDF inspection; defaults to this interpreter")
+    check_parser.add_argument("--failure-receipt", default="output/profile-preflight.json",
+                              help="Project-relative typed profile failure receipt for the missing-font case")
     args = parser.parse_args()
     try:
         if args.command == "list":
@@ -366,7 +456,7 @@ def main():
         elif args.command == "prepare":
             result = prepare(args.case, args.output, args.runtime)
         else:
-            result = evaluate(args.case, args.project, args.runtime, args.trace, args.render_receipt, args.python)
+            result = evaluate(args.case, args.project, args.runtime, args.trace, args.render_receipt, args.python, args.failure_receipt)
     except (OSError, ValueError, KeyError, TypeError, ET.ParseError, subprocess.SubprocessError) as error:
         result = {"schema": VERSION, "status": "error", "error": str(error)}
     print(json.dumps(result, indent=2))
