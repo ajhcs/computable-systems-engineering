@@ -2,15 +2,22 @@
 
 Run commands from the complete repository root. For a first conversation and the new current-system example, start with the [README](../README.md).
 
-Three independently invocable drafting skills help a systems engineer develop a system concept, a concept of operations (CONOPS), or an operational scenario. A fourth supports source-grounded diagrams. The engineer directs consequential decisions; the assistant helps investigate, draft, run checks, and revise.
+Eleven independently invocable skills connect concepts, operations, architecture, measures, evidence, analysis, language and diagrams. Use coordination for a question that crosses activities, or select one focused skill. The engineer directs consequential decisions; the assistant helps investigate, draft, run checks, and revise.
 
-**Status: alpha.** The three drafting skills default to authoring SysML v2 textual models for new recorded work. A pinned upstream pilot parser validates those models. A bounded controlled-text profile checks selected sampled Boolean/quantity requirements and correlated event deadlines against supplied evidence. A separate bounded generator exports synthetic pass/fail trace pairs that demonstrate a referenced property's effect on one sampled requirement when it can find such a pair. Existing version-1 JSON helpers and the opt-in finite verifier remain available. General SysML behavior computation, temporal realizability, formal FLIP coverage, hosted Jev integration, and protected acceptance are not implemented. The project source is offered under the [MIT license](../LICENSE); the separately downloaded pilot parser has its own license. Publication details are tracked in [the release handoff](release-handoff.md).
+**Status: alpha.** Concept, CONOPS and scenario drafting default to authoring SysML v2 textual models for new recorded work. A pinned upstream pilot parser validates those models. A bounded controlled-text profile checks selected sampled Boolean/quantity requirements and correlated event deadlines against supplied evidence. A separate bounded generator exports synthetic pass/fail trace pairs that demonstrate a referenced property's effect on one sampled requirement when it can find such a pair. Existing version-1 JSON helpers and the opt-in finite verifier remain available. General SysML behavior computation, temporal realizability, formal FLIP coverage, hosted Jev integration, and protected acceptance are not implemented. The project source is offered under the [MIT license](../LICENSE); the separately downloaded pilot parser has its own license. Publication details are tracked in [the release handoff](release-handoff.md).
 
 | Skill | Useful work unit |
 |---|---|
+| `coordinate-engineering-work` | Connect a question across activities using one shared model and selected checks. |
 | `develop-system-concept` | Frame a problem, identify functions, explore alternatives, and assess evidence for a concept decision. |
 | `develop-conops` | Connect stakeholder needs, boundaries, scenarios, responsibilities, and evaluation plans. |
 | `develop-operational-scenarios` | Develop or investigate one scenario or a selected set. |
+| `develop-system-architecture` | Develop a functional, physical, allocated or interface architecture slice. |
+| `define-engineering-measures` | Define a measure, collection conditions, units and baseline meaning. |
+| `plan-engineering-evidence` | Select evidence methods for requirements or intended-use claims. |
+| `analyze-queues` | Analyze waiting and utilization for an explicit workload or conditional M/M/c model. |
+| `analyze-system-failures` | Check an authored Boolean fault tree or FMEA record and its declared assumptions. |
+| `check-engineering-language` | Review terminology, supported controlled-English rules and meaning-preserving repairs. |
 | `generate-engineering-diagrams` | Produce or review views from established engineering meaning and supporting evidence. |
 
 A complete document is optional. Missing information can remain an explicit unknown. The skills use a system-wide SysML model and selected views rather than requiring the entire model in every model context. The [SysML-first profile](sysml-v2-profile.md) defines the supported parser and checker boundary.
@@ -100,7 +107,7 @@ retain their current checks. Try the neutral fixture with
 
 ## Use the skills
 
-The repository registers its four skills through symlinks under `.agents/skills/`, which Codex discovers when you open this project. A complete plugin can also be installed at user scope through a local Codex marketplace; all four canonical installed skill paths and native commands were checked from another project. Discovery in a fresh session does not prove that an already-running turn has reloaded its instructions. [Codex skill discovery](https://learn.chatgpt.com/docs/build-skills) documents repository scope and symlink support.
+The repository registers its eleven skills through symlinks under `.agents/skills/`, which Codex discovers when you open this project. The [README skill table](../README.md#choose-a-skill) links every current entrypoint. A complete plugin can also be installed at user scope through a separately configured local Codex marketplace; this installation route and selected native commands have been checked from another project. Discovery in a fresh session does not prove that an already-running turn has reloaded its instructions. [Codex skill discovery](https://learn.chatgpt.com/docs/build-skills) documents repository scope and symlink support.
 
 Each drafting skill's `scripts/cse.py` launcher finds the shared parser/engine from its real location, so checks work from subdirectories as well as the repository root. The portable plugin manifest is `plugin.json`, with `.codex-plugin/plugin.json` for compatibility. Both declare the local executor requirement. Installation through a public marketplace remains untested. Copying a drafting skill folder alone preserves its version-1 helper, but does not install the shared SysML engine. Avoid duplicate installations.
 
