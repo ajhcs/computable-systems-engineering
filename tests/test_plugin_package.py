@@ -29,6 +29,7 @@ class PluginPackageTests(unittest.TestCase):
             self.write(f'skills/fixture-{number}/SKILL.md', '---\nname: fixture\n---\n')
         self.write('docs/guide.md', 'Committed wording.\n')
         self.write('assets/master.svg', '<svg/>\n')
+        self.write('prototypes/repair_reuse.py', 'def retained_helper(): return 42\n')
         self.write('.agents/skills/fixture-alias', 'Repository-only alias')
         self.write('.github/workflows/check.yml', 'Source-only CI')
         self.write('.gitignore', 'private/\n')
@@ -57,6 +58,8 @@ class PluginPackageTests(unittest.TestCase):
         self.assertFalse((payload / 'private').exists())
         self.assertFalse((payload / '.agents').exists())
         self.assertFalse((payload / '.github').exists())
+        self.assertEqual((payload / 'prototypes/repair_reuse.py').read_text(),
+                         'def retained_helper(): return 42\n')
         self.assertEqual(receipt['commit'], commit)
         self.assertEqual(len(receipt['skills']), 11)
         self.assertEqual(self.command('status', '--porcelain'), before)

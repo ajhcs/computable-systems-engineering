@@ -10,7 +10,7 @@ python3 scripts/package_plugin.py --ref <reviewed-commit> --out <new-marketplace
 
 The destination must be new and outside the source checkout. The explicit
 selection includes the plugin manifests, eleven skills and their shared runtime,
-tests, docs, examples, licensed assets and tools. Repository discovery aliases,
+tests, docs, examples, prototype helpers, licensed assets and tools. Repository discovery aliases,
 CI and Git metadata are omitted. `source-receipt.json` retains the source commit,
 tree and per-file hashes/modes. Both plugin manifests must agree. A source export
 receipt does not establish passing tests, installation, or engineering acceptance.
