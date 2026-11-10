@@ -1,6 +1,6 @@
 {
   "name": "computable-systems-engineering",
-  "version": "0.2.0-alpha.6",
+  "version": "0.2.0-alpha.7",
   "description": "AI-assisted systems engineering with connected models, inspectable checks, and reusable engineering components for SVG, Draw.io and Kernspan.",
   "author": {
     "name": "ajhcs",

@@ -1,0 +1,11 @@
+{
+  "version": "cse.visual-guidance-cases/1",
+  "cases": [
+    {"id": "direct-profile", "kind": "render", "request": "Use CSE to finish this engineering proposal with the supplied project font and graphics profile.", "font_names": ["IBMPlexSans", "IBMPlexSans-SmBld"], "preserve_body": true},
+    {"id": "indirect-profile", "kind": "render", "request": "Finish this engineering proposal using our supplied visual identity. The kit specimen is a reference; the project profile governs the document and figures.", "font_names": ["IBMPlexSans", "IBMPlexSans-SmBld"], "preserve_body": true},
+    {"id": "client-override", "kind": "render", "request": "Finish this engineering proposal using client-visual-profile.json, which overrides the project profile for this deliverable.", "font_names": ["IBMPlexMono"], "profile": "client-visual-profile.json", "preserve_body": true},
+    {"id": "missing-font", "kind": "blocked", "request": "Prepare this proposal with the required project profile. If a required font is unavailable, preserve the editable input and report the missing resource; do not substitute a font or deliver a final PDF."},
+    {"id": "artwork-preservation", "kind": "render", "request": "Add the supplied editorial artwork to the proposal header and retain the formal flow separately. Keep every word in the accepted body unchanged.", "font_names": ["IBMPlexSans", "IBMPlexSans-SmBld"], "preserve_body": true},
+    {"id": "text-only-negative", "kind": "text", "request": "What is 4 hours at $100 per hour? Reply in text only. Do not create or restyle a document."}
+  ]
+}
