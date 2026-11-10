@@ -752,6 +752,85 @@
       "question": "Does changed source evidence remain usable for the original context?",
       "variant": "evidence_drift",
       "expected_status": "fail"
+    },
+    {
+      "id": "prose-omitted-goal",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "essential_omission",
+        "goal",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "N_DELAY",
+        "T_DELAY"
+      ],
+      "question": "Prepare a handoff evidence note from the supplied project records, preserving the relevant intent and evidence basis.",
+      "candidate": "outputs/goal-omitted.txt",
+      "control": "outputs/coverage-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "essential_omission",
+        "control": "preserves_selected_meaning",
+        "basis": "The no-deadline statement is accurate but omits the qualitative direction to reduce handoff delay.",
+        "affirmative_meaning_contradiction": false,
+        "unsupported_established_claim": false
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "prose-omitted-plan",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "essential_omission",
+        "evidence",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "E_PLAN"
+      ],
+      "question": "Prepare a handoff evidence note from the supplied project records, preserving the relevant intent and evidence basis.",
+      "candidate": "outputs/plan-omitted.txt",
+      "control": "outputs/coverage-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "essential_omission",
+        "control": "preserves_selected_meaning",
+        "basis": "The supplied assessment is accurately bounded, but the available unexecuted E_PLAN and its stage are absent.",
+        "affirmative_meaning_contradiction": false,
+        "unsupported_established_claim": false
+      },
+      "computed_verdict": "not_run"
+    },
+    {
+      "id": "prose-omitted-assessment",
+      "mode": "interpretive",
+      "tags": [
+        "manual_assessment",
+        "essential_omission",
+        "evidence",
+        "prose"
+      ],
+      "source_ids": [
+        "SYN_HANDOFF",
+        "E_REPORTED"
+      ],
+      "question": "Prepare a handoff evidence note from the supplied project records, preserving the relevant intent and evidence basis.",
+      "candidate": "outputs/assessment-omitted.txt",
+      "control": "outputs/coverage-control.txt",
+      "oracle": {
+        "kind": "authored_review_expectation",
+        "candidate": "essential_omission",
+        "control": "preserves_selected_meaning",
+        "basis": "The unexecuted plan is accurately bounded, but the available illustrative E_REPORTED assessment and its stage are absent.",
+        "affirmative_meaning_contradiction": false,
+        "unsupported_established_claim": false
+      },
+      "computed_verdict": "not_run"
     }
   ],
   "measurement_status": "Generation ablations and interpretive accuracy are not measured.",

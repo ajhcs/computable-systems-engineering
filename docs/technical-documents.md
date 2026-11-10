@@ -1,6 +1,6 @@
 # Technical documents
 
-Use this guidance when the requested result is an engineering document, manual,
+Use this guidance when the requested result is an engineering proposal, report, manual,
 or drawing set. Follow the user's document standard and template when supplied.
 Otherwise use a compact technical form suited to the reader's task.
 
@@ -8,6 +8,7 @@ Otherwise use a compact technical form suited to the reader's task.
 
 | Reader's task | Primary content |
 |---|---|
+| Assess a proposal | Proposed work, deliverables, responsibilities, cost basis and acceptance terms |
 | Understand a system or concept | Scope, system boundary, functions and interfaces |
 | Follow a modeled operation | Initial condition, actors, sequence, conditions and outcome |
 | Perform a task | Prerequisites, ordered instructions, expected results and applicable warnings |
@@ -47,16 +48,57 @@ body-text pass. Repair excess wording without dropping engineering conditions.
 Counts enforce the selected lexical budgets; they do not establish grammar,
 complete STE conformity, completeness or technical correctness.
 
+## Select the visual reference
+
+When project branding, custom fonts, SVGs, imagery or an existing graphic kit are
+requested, resolve the intended source before layout. Follow the current request
+and selected template or project profile before a kit's presentation defaults.
+Example typography is not automatically the project's document standard. If
+equally plausible references conflict and context does not resolve the choice,
+ask which governs while continuing work that does not depend on it.
+
+Inspect the relevant specimens and actual font files, color tokens and SVG or
+image masters. Read only the resources needed for this output. Record their
+source, revision and intended roles in the existing output source or evidence
+record. For this pack's example fonts and icon bindings, start with the
+[curated examples](../examples/ecosystem-diagram-reference/README.md) and
+[engineering icon library](../assets/engineering-icons/README.md), as applicable.
+Use other kits only when present in the selected runtime or supplied by the
+project; references in another checkout do not establish package availability.
+
+Prefer suitable existing artwork and preserve its identity, license and recorded
+adaptations. Carry the selected type, spacing and color roles into body text,
+tables and figures. Identify any distinct formal-notation or mathematical font
+needs. A kit's diagram font does not automatically govern document prose, and
+plugin listing icons and colors do not define the document's visual identity.
+
+When editorial illustration or cover art is requested, develop that composition
+as artwork while preserving the meaning of formal model views. Use fitting
+existing assets and create missing artwork as needed. Tables, ruled fields and
+formal diagrams alone do not establish an illustrated composition. Keep the
+page count and any existing content the user asked to preserve.
+
+Render a representative page or figure early, then inspect the completed
+exports at reading size. Compare the selected font families and weights with
+the fonts that actually render or are embedded, and check the selected artwork,
+palette and treatments against their source. Font loading, embedding, contrast
+and bounds checks do not establish that the intended visual identity was used.
+Report unavailable requested resources and identify any fallback instead of
+claiming the requested identity passed. Visual review remains distinct from
+engineering validation and user acceptance.
+
 ## Typeset the document
 
-Use a functional title, document identifier, revision and page numbers. Record
-approval or release status only when established. Choose normal technical body
+Follow the selected template and requested hierarchy. When those are unspecified,
+use a functional title and document identifiers, revision and page numbers as
+appropriate. Record approval or release status only when established. Choose normal technical body
 sizes and a small heading hierarchy. Size the page to the content and print use;
 do not shrink text to meet an arbitrary page count.
 
-Use white paper, dark text, restrained rules and aligned fields as a starting
-point. Add color, shading, texture or dimensional detail when it communicates a
-defined engineering distinction. Select the notation from the model's meaning.
+When no visual identity is selected, use white paper, dark text, restrained rules
+and aligned fields as a starting point. Color, shading, texture and dimensional
+detail may serve the selected visual identity or a defined engineering distinction;
+keep decorative and semantic roles clear. Select the notation from the model's meaning.
 Keep decorative iconography out of formal symbols. A connector, state transition
 and workpiece route need their own meanings and keys.
 

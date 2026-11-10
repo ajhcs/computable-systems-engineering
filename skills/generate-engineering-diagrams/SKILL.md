@@ -1,12 +1,18 @@
 ---
 name: generate-engineering-diagrams
-description: Create or review source-linked engineering diagrams, or find, compare and export reusable engineering symbols and icons by ID.
+description: Create or review source-linked engineering diagrams; find, compare and export engineering symbols and icons by ID; or select reusable SVG graphics and fonts for engineering documents.
 ---
 
 Use this skill to produce or critique a diagram from supplied or existing accepted engineering meaning. New system-model design, requirements, assumptions, thresholds, allocations and engineering acceptance remain with the engineer. Do not invent a new system merely to fill a diagram family.
 
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
 before drafting and when reviewing the actual output.
+
+When project branding, custom fonts, SVGs or imagery are requested, use the
+[visual-reference guidance](../../docs/technical-documents.md#select-the-visual-reference)
+before layout. Identify the applicable assets early; preserve accepted model
+meaning and formal glyphs when applying their presentation. Editorial artwork
+and formal graph content have separate roles.
 
 For changes with several dependent outputs, difficult check failures, or review handoffs, read [planning, diagnosis and review](references/work-review.md) and apply the relevant section. Keep small edits and discussion direct. The user's explicit instructions take precedence over skill guidance. Preserve failed findings during repair and reconcile delivered artifacts and current check evidence with the requested scope before claiming completion.
 

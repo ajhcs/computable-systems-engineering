@@ -50,6 +50,52 @@ claimed general SysML statechart compiler. A future native execution adapter
 would need an explicit supported semantic subset, correspondence evidence and
 concurrency/control tests before it could support stronger claims.
 
+## Discover the sampled-trace input contract
+
+For a directly authored language-version-1 sampled trace, inspect the existing
+monitor's exact input shapes before constructing its JSON:
+
+```text
+python3 scripts/sampled_trace.py schema
+python3 scripts/sampled_trace.py trace TRACE.json --scope RETAINED_SCOPE.json --scope-sha256 RETAINED_SCOPE_BYTE_SHA256
+```
+
+The schema command returns interface help and a generic, incomplete example with
+`status: not_run`. It supplies no project requirement, observation or selected
+engineering meaning. Use the existing authored declarations and controlled
+sentences, then supply actual observations. Actors map to empty objects;
+properties require an explicit `owner` of `input` or `controlled`; Boolean type
+is `bool`; requirements map stable IDs to strings; and clock periods are exact
+decimal **strings**, including `"1"`. The [language contract](requirements-language-v1.md)
+defines supported clauses, property types and finite-sample meanings. Native
+SysML work should continue through its existing model-bound check route rather
+than maintain a second manually inferred contract.
+
+The scope file is the existing independent language manifest, exactly
+`{"version": 1, "required": ["R_ID", "R_OTHER"]}` with the retained obligation
+IDs. Its raw-byte SHA-256 must come from the independently retained scope, not
+from a newly narrowed view or candidate. An optional `--document-sha256` binds
+the trace to previously retained bytes. This is distinct from a native SysML
+manifest with `expected` entries carrying IDs, source and constraint names.
+Keep native manifests on the native check route. A separately governed adapter
+may retain that original manifest and map **every** expected ID into a language
+scope, pinning both files; this helper never guesses that mapping or drops IDs.
+The adapter checks each supplied file's
+size (at most 4 MiB), UTF-8 JSON and optional/required digests, rejects duplicate
+keys, then calls the unchanged language monitor. It does not fill missing
+owners, convert arrays into requirement maps, coerce numeric clocks, synthesize
+observations, or relax obligations. Keep source annotations separately from the
+strict monitor document.
+
+The returned input binding identifies the exact supplied document/scope bytes.
+Missing obligations, no exercised trigger, incomplete samples and pending
+responses retain the monitor's non-success status. Malformed or stale inputs
+produce an error; failed observations retain their counterexample. These hashes
+detect drift relative to retained values, not authenticated acceptance or
+independent protection against a caller who controls both a scope and its pin.
+This wrapper checks supplied observations only, not arbitrary implementation
+correctness or the completeness of a source-to-obligation inventory.
+
 ## Historical method boundary
 
 Harel's 1987 paper identifies hierarchy, concurrency and communication as distinct

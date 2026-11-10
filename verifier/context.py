@@ -67,6 +67,9 @@ def _issue(report, rule, status, ids, detail):
 
 def render_context_json(report):
     """The exact public CLI representation, including its final newline."""
+    from .context_budget import VERSION as COMPACT_VERSION, render_compact_json
+    if report.get('version') == COMPACT_VERSION:
+        return render_compact_json(report)
     return json.dumps(report, sort_keys=True, indent=2, ensure_ascii=True,
                       allow_nan=False) + '\n'
 
@@ -85,6 +88,15 @@ def _bounded(report):
     _issue(refused, 'context_output', 'error', [],
            'Assembled context exceeds output byte cap or cannot be serialized; no large partial view is retained.')
     return refused
+
+
+def _presentation(report, compact, max_bytes):
+    """Keep the historical report by default; package only explicit requests."""
+    report = _bounded(report)
+    if compact or max_bytes is not None:
+        from .context_budget import compact_context
+        return compact_context(report, max_bytes)
+    return report
 
 
 def _workflow_record(native):
@@ -291,7 +303,7 @@ def _workflow_view(record, native, evidence, workflow, identities):
 
 def assemble_context(native, *, profile=None, short_id=None, element_id=None,
                      native_name=None, workflow='concept', limit=32,
-                     source_evidence=None):
+                     source_evidence=None, compact=False, max_bytes=None):
     """Pure assembly from a trusted parser result; synthetic inventories are tests.
 
     External callers use ``assembled_context``. No CLI accepts a saved inventory
@@ -312,7 +324,7 @@ def assemble_context(native, *, profile=None, short_id=None, element_id=None,
             report.update(status=native.get('status', 'error'), retrieval_status=native.get('status', 'error'))
             report['findings'] = deepcopy(native.get('findings', []))
             report['parser_issues'] = deepcopy(native.get('parser_issues', []))
-            return _bounded(report)
+            return _presentation(report, compact, max_bytes)
         report['retrieval_status'] = 'pass'
         report['parser_issues'] = deepcopy(native.get('parser_issues', []))
         inventory = native['inventory']
@@ -330,9 +342,9 @@ def assemble_context(native, *, profile=None, short_id=None, element_id=None,
             if 'english' in profile and len(native.get('model_files', [])) > 1:
                 _issue(report, 'english_bundle', 'unsupported', [],
                        'Selected English profiles over native file bundles are unsupported by the current contract.')
-                return _bounded(report)
+                return _presentation(report, compact, max_bytes)
             if checked['status'] in ('error', 'fail', 'unsupported'):
-                return _bounded(report)
+                return _presentation(report, compact, max_bytes)
         bindings = _bindings(profile, record)
         index = _native_index(inventory)
         root = _select(index, bindings, short_id=short_id, element_id=element_id, native_name=native_name)
@@ -476,11 +488,12 @@ def assemble_context(native, *, profile=None, short_id=None, element_id=None,
             report[field] = {}
         report['elements'] = {'foundation': {}, 'workflow': {}}
         report['relations'] = {'foundation': [], 'workflow': {}}
-    return _bounded(report)
+    return _presentation(report, compact, max_bytes)
 
 
 def assembled_context(paths, *, short_id=None, element_id=None, native_name=None,
-                      profile_path=None, workflow='concept', limit=32, sources=None):
+                      profile_path=None, workflow='concept', limit=32, sources=None,
+                      compact=False, max_bytes=None):
     """Read actual bounded files, parse once, join records and check freshness."""
     report = _base()
     try:
@@ -535,4 +548,4 @@ def assembled_context(paths, *, short_id=None, element_id=None, native_name=None
         report['provenance']['input_stability'] = 'error'
         report['status'] = report['retrieval_status'] = 'error'
         _issue(report, 'context_input', 'error', [], str(exc))
-    return _bounded(report)
+    return _presentation(report, compact, max_bytes)
