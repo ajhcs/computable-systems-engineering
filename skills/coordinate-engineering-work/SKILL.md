@@ -30,10 +30,12 @@ Use one authoritative model or explicitly connected files with stable IDs. Carry
 the relevant question, revision, IDs, assumptions, findings and decisions between
 activities. Preserve selected English terminology rules throughout drafting.
 
-For an engineering document, manual or drawing set, use
-[technical document guidance](../../docs/technical-documents.md). Deliver the
-technical artifact first; keep detailed evidence and the assessment against user
-notes in supporting files.
+For an engineering proposal, report, manual or drawing set, use
+[technical document guidance](../../docs/technical-documents.md). When project
+branding, custom fonts, SVGs or imagery are requested, resolve the applicable
+visual reference before layout and carry it into the document and its figures.
+Deliver the technical artifact first; keep detailed evidence and the assessment
+against user notes in supporting files.
 
 Run the selected activity's checks. Load a computation contract when choosing or
 repairing that computation. A compact context view must not narrow the independent

@@ -13,6 +13,7 @@ COMMANDS = {
     "check": "sysml.py",
     "testgen": "sysml_testgen.py",
     "view": "sysml_view.py",
+    "sampled-trace": "sampled_trace.py",
     "diff": "sysml_diff.py",
     "concept-review": "concept_review.py",
     "configuration-review": "configuration.py",

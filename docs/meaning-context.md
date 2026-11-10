@@ -17,6 +17,12 @@ Keep direction, endpoints, applicability, units, exclusions and evidence status
 where the supplied records express them. A nearby element is not necessarily a
 defining dependency. Expand the view when a condition or mapping is missing.
 
+Include qualitative goals that govern the question, with their direction of
+improvement. A goal to reduce delay remains useful without a mandatory deadline;
+stating that no deadline exists does not communicate that goal. Retain linked
+evidence IDs and their declared stages: a plan, a supplied assessment and an
+executed observation support different claims.
+
 Keep unrepresented meaning explicit. Foundation terms do not have generic
 applicability or evidence fields. Conditions and source basis may instead occur
 in native documents or linked workflow records. Preserve that text and its
@@ -67,6 +73,27 @@ is 512. Inspect omissions and unresolved mappings before relying on the slice.
 A successful lookup is not a claim that the context includes every dependency.
 Increasing a limit does not resolve missing model semantics.
 
+Use `--compact` for a lossless representation that shares repeated values.
+`--max-bytes N` also enables compact output and sets its complete UTF-8 byte
+allowance, including metadata and the final newline (1,024 through 8,000,000
+bytes). For example, append `--compact --max-bytes 19000` to the view command.
+The `context` and `records` fields retain the original report through explicit
+references; `verifier.context_budget.expand_context` recovers it unchanged.
+The package's budget status describes transport only. Inspect the expanded
+context's original statuses, coverage, unresolved mappings and evidence limits.
+When the whole report cannot fit, the command returns a non-success budget
+refusal instead of partial records. It does not select fewer obligations or
+summarize definitions to satisfy the limit. The default full view is unchanged.
+
+When working under a context budget, retain the independent required-check scope
+before optional context expansion. Reuse already retrieved records and reserve
+room for source definitions, governing conditions, qualitative goals and linked
+evidence stages. Inspect omissions before requesting another neighborhood. A
+refused read leaves that source unavailable; it does not make its known meaning
+irrelevant. Describe materially incomplete coverage and retrieve the missing
+records when the remaining allowance permits. The complete model and independent
+scope remain checker inputs even when the drafting view is small.
+
 Expansion follows explicit English-use bindings, allocation scope members,
 selected trade alternatives and criteria, and supported linked native references.
 A recorded zero allocation bound remains an exclusion. Native endpoint paths
@@ -116,6 +143,17 @@ After drafting, read the delivered text, code or view against the same source
 meaning. Check its claims and behavior, not only the vocabulary or an earlier
 draft. Preserve who acts, what changes, under which conditions and what evidence
 supports the claim.
+
+For the selected question, account for the relevant source meanings across the
+actual delivered notes and implementation. Check goal direction as well as
+constraints, and each relevant evidence record's stage as well as local test
+results. A successful local test does not replace an existing plan or promote a
+supplied assessment to an observation. An accurate but incomplete answer can
+omit necessary meaning without making a false claim. Record such omissions
+separately from contradictions and unsupported assertions; retain genuinely
+unspecified decisions as questions. A short source-ID-to-output-location note is
+enough when a coverage record is useful. This comparison is an interpretive
+assessment, not an automatic natural-language verdict.
 
 For a material discrepancy, retain the actual sentence or code location, the
 relevant concept and relationship IDs, the conflicting meaning and its source.

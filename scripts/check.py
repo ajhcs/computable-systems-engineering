@@ -38,6 +38,7 @@ def main():
     suites += ('test_artifacts.py', 'test_components.py', 'test_component_agents.py')
     suites += ('test_context_views.py', 'test_context_evaluation.py')
     suites += ('test_context_inputs.py', 'test_context_native.py', 'test_context_integrity.py')
+    suites += ('test_sampled_trace.py', 'test_context_budget.py')
     for suite in suites:
         result = subprocess.run([sys.executable, "-B", str(ROOT / "tests" / suite)],
                                 cwd=ROOT, env=environment, text=True,

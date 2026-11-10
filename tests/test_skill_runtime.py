@@ -1,6 +1,7 @@
 """Real repo skill discovery paths and CLI use from another working directory."""
 
 import json
+from hashlib import sha256
 import os
 from pathlib import Path
 import subprocess
@@ -17,6 +18,31 @@ PARSER_AVAILABLE = JAR.is_file() and (CLASSES / "SysmlBridge.class").is_file()
 
 
 class RuntimeTests(unittest.TestCase):
+    def test_sampled_trace_schema_and_checks_work_from_each_external_launcher(self):
+        (ROOT / ".tmp").mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / ".tmp") as directory:
+            for name in SKILLS:
+                launcher = ROOT / "skills" / name / "scripts/cse.py"
+                command = [sys.executable, "-B", str(launcher), "sampled-trace"]
+                schema = subprocess.run([*command, "schema"], cwd=directory,
+                                        text=True, capture_output=True, check=True)
+                help_record = json.loads(schema.stdout)
+                self.assertEqual(help_record["status"], "not_run")
+                model = help_record["example_document"]
+                model["complete"] = True
+                model["observations"] = [{"request": True, "response": True}]
+                trace = Path(directory) / "trace.json"
+                scope = Path(directory) / "scope.json"
+                scope.write_text(json.dumps(help_record["example_scope"]))
+                check = [*command, "trace", "trace.json", "--scope", "scope.json",
+                         "--scope-sha256", sha256(scope.read_bytes()).hexdigest()]
+                for response, expected in ((True, "pass"), (False, "fail")):
+                    model["observations"][0]["response"] = response
+                    trace.write_text(json.dumps(model))
+                    result = subprocess.run(check, cwd=directory, text=True, capture_output=True)
+                    self.assertEqual(json.loads(result.stdout)["status"], expected)
+                    self.assertEqual(result.returncode, 0 if expected == "pass" else 1)
+
     def test_configuration_review_available_from_each_independent_launcher(self):
         (ROOT / ".tmp").mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=ROOT / ".tmp") as directory:

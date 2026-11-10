@@ -85,12 +85,12 @@ class CorpusCatalogTests(unittest.TestCase):
                     'definition_drift', 'native_drift', 'missing_mapping', 'truncation',
                     'unsupported', 'implementation', 'valid_control'}
         self.assertTrue(required <= tags, required - tags)
-        self.assertEqual(len(cases('interpretive')), 8)
+        self.assertEqual(len(cases('interpretive')), 11)
         for case in cases('interpretive'):
             with self.subTest(case=case['id']):
                 self.assertEqual(case['computed_verdict'], 'not_run')
                 self.assertEqual(case['oracle']['kind'], 'authored_review_expectation')
-                self.assertEqual(case['oracle']['candidate'], 'conflict')
+                self.assertIn(case['oracle']['candidate'], ('conflict', 'essential_omission'))
                 for role in ('candidate', 'control'):
                     path = EXAMPLE / case[role]
                     self.assertEqual(path.parent, EXAMPLE / 'outputs')

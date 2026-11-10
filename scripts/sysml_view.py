@@ -21,6 +21,8 @@ def main():
     parser.add_argument("--profile", help="existing foundation/English profile; enables assembled context")
     parser.add_argument("--workflow", choices=("concept", "scenarios", "requirements", "architecture", "trade-study"), default="concept")
     parser.add_argument("--limit", type=int, default=32, help="maximum native identities in assembled context, 1..512")
+    parser.add_argument("--compact", action="store_true", help="losslessly deduplicate assembled JSON records")
+    parser.add_argument("--max-bytes", type=int, help="complete compact UTF-8 output budget, including newline, 1024..8000000; enables --compact")
     parser.add_argument("--source", action="append", default=[], metavar="ID=PATH", help="explicit workflow source file; repeat for distinct IDs")
     args = parser.parse_args()
     sources = {}
@@ -33,8 +35,9 @@ def main():
     result = view_sysml(args.model, args.id, context=args.context,
                         profile_path=args.profile, element_id=args.element,
                         native_name=args.native_name, workflow=args.workflow,
-                        limit=args.limit, sources=sources)
-    if result.get('version') == 'assembled-context-1.0':
+                        limit=args.limit, sources=sources,
+                        compact=args.compact, max_bytes=args.max_bytes)
+    if result.get('version') in ('assembled-context-1.0', 'assembled-context-compact-1.0'):
         from verifier.context import render_context_json
         sys.stdout.write(render_context_json(result))
     else:

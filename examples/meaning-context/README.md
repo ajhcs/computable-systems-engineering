@@ -25,7 +25,7 @@ That invariant does not establish eventual completion or the reverse implication
   [sampled-obligation-scope.json](sampled-obligation-scope.json) selects the same
   obligation for the existing pure language monitor. View limits change neither.
 
-- [cases.json](cases.json) names 37 adversarial and valid-control cases. Eight
+- [cases.json](cases.json) names 40 adversarial and valid-control cases. Eleven
   interpretive cases pair actual candidate/control text under [outputs](outputs).
   Their expectations are authored review oracles; `computed_verdict` is `not_run`.
   Other cases exercise existing checks, assembled context and normal unit code.
@@ -37,6 +37,11 @@ That invariant does not establish eventual completion or the reverse implication
 
 `E_PLAN` remains an unexecuted plan. `E_REPORTED` remains a supplied assessment.
 Executing this test suite does not upgrade those model records to observations.
+Three interpretive omission/control pairs distinguish an accurate no-deadline
+statement from carrying the delay-reduction goal, and distinguish missing known
+plans/assessments from false claims about them. Their source is the existing
+brief and workflow records. These authored expectations are not automatic
+prose-coverage checks or measured generation results.
 The open acknowledgement transport mapping remains unresolved. A separate unit
 control reuses the existing `examples/sysml/quantity.sysml` clause; its quantity
 bound is unrelated to handoff completion.
@@ -75,8 +80,8 @@ physical, clinical or operational correctness.
 
 ## Generation comparison protocol
 
-Generation quality remains **unmeasured**. The deterministic suite does not run
-an autonomous agent benchmark or infer scores from authored expectations.
+This corpus's deterministic suite does not measure generation quality, run an
+autonomous agent benchmark or infer scores from authored expectations.
 To evaluate the shared workflow, keep the model, source, retained obligations,
 model version, task prompts and resource budget identical across four arms:
 
