@@ -62,7 +62,7 @@ image masters. Read only the resources needed for this output. Record their
 source, revision and intended roles in the existing output source or evidence
 record. For this pack's example fonts and icon bindings, start with the
 [curated examples](../examples/ecosystem-diagram-reference/README.md) and
-[engineering icon library](../assets/engineering-icons/README.md), as applicable.
+[component library](component-library.md), as applicable.
 Use other kits only when present in the selected runtime or supplied by the
 project; references in another checkout do not establish package availability.
 
