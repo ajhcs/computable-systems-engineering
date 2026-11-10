@@ -111,6 +111,13 @@ The repository registers its eleven skills through symlinks under `.agents/skill
 
 Each drafting skill's `scripts/cse.py` launcher finds the shared parser/engine from its real location, so checks work from subdirectories as well as the repository root. The portable plugin manifest is `plugin.json`, with `.codex-plugin/plugin.json` for compatibility. Both declare the local executor requirement. Installation through a public marketplace remains untested. Copying a drafting skill folder alone preserves its version-1 helper, but does not install the shared SysML engine. Avoid duplicate installations.
 
+For repeatable source builds and user-scope installation, use
+[plugin packaging](plugin-packaging.md). Engineering documents can retain an
+explicit [project visual profile](visual-profiles.md) and use shared
+[HTML/PDF rendering checks](document-rendering.md). The maintained
+[visual-guidance cases](visual-guidance-evaluation.md) distinguish deterministic
+resource checks from observed decisions in a fresh chat.
+
 Example requests:
 
 - “Use the system-concept and CONOPS skills on the material below. Keep my raw materials out of Git.” In this repository, the assistant uses both skills on one model, runs both draft-shape checks, and inspects supported sampled requirements with synthetic test pairs. It reads raw source in place and keeps the source and user-specific model in ignored private workspace paths; the engineer supplies material and reviews consequential interpretations, not commands or SysML syntax.

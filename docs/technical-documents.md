@@ -87,6 +87,16 @@ Report unavailable requested resources and identify any fallback instead of
 claiming the requested identity passed. Visual review remains distinct from
 engineering validation and user acceptance.
 
+For repeatable work, keep the selected identity in a project
+[visual profile](visual-profiles.md). The optional template records font files,
+weights, typography roles, palette, figure treatments and artwork identities;
+it does not select a universal CSE document brand. A current user or client
+override remains authoritative. Use the shared [document renderer and export
+checks](document-rendering.md) for local HTML/PDF work instead of recreating
+font-name and resource checks for each document. Unsupported render environments
+leave the corresponding checks unrun; they do not authorize changing permissions
+or installing software.
+
 ## Typeset the document
 
 Follow the selected template and requested hierarchy. When those are unspecified,

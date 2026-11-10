@@ -13,6 +13,9 @@ When project branding, custom fonts, SVGs or imagery are requested, use the
 before layout. Identify the applicable assets early; preserve accepted model
 meaning and formal glyphs when applying their presentation. Editorial artwork
 and formal graph content have separate roles.
+For a reusable project identity, use [visual profiles](../../docs/visual-profiles.md).
+For local HTML/PDF exports and actual font/asset checks, use
+[document rendering](../../docs/document-rendering.md).
 
 For changes with several dependent outputs, difficult check failures, or review handoffs, read [planning, diagnosis and review](references/work-review.md) and apply the relevant section. Keep small edits and discussion direct. The user's explicit instructions take precedence over skill guidance. Preserve failed findings during repair and reconcile delivered artifacts and current check evidence with the requested scope before claiming completion.
 

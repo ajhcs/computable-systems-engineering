@@ -1,0 +1,36 @@
+{
+  "version": "cse.visual-profile/1",
+  "id": "ProjectVisualProfile",
+  "revision": "draft-1",
+  "authority": {
+    "kind": "project",
+    "source": "Replace with the selected project standard or current request. This is a template, not a CSE brand default."
+  },
+  "fonts": [
+    {
+      "id": "body-font",
+      "family": "Selected Project Sans",
+      "path": "fonts/selected-project-regular.woff2",
+      "weight": 400,
+      "source": "Replace with the font's source and revision",
+      "license": "Replace with the actual font license"
+    },
+    {
+      "id": "heading-font",
+      "family": "Selected Project Sans",
+      "path": "fonts/selected-project-semibold.woff2",
+      "weight": 600,
+      "source": "Replace with the font's source and revision",
+      "license": "Replace with the actual font license"
+    }
+  ],
+  "typography": {
+    "body": {"font": "body-font", "size_pt": 10, "selectors": ["body", "td", "p"]},
+    "heading": {"font": "heading-font", "size_pt": 16, "selectors": ["h1", "h2"]},
+    "figure-label": {"font": "body-font", "size_pt": 10, "selectors": ["svg text"]}
+  },
+  "palette": {"ink": "#222222", "paper": "#ffffff", "rule": "#606060"},
+  "figure": {"selectors": ["figure"], "rule_color": "rule", "rule_width_pt": 0.5, "padding_pt": 6},
+  "table": {"selectors": ["table"], "rule_color": "rule", "rule_width_pt": 0.5, "padding_pt": 4},
+  "assets": []
+}

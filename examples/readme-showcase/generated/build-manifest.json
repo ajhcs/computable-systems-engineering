@@ -53,6 +53,7 @@
     "verifier/validation.py": "904b2c125f5c2d11bdf08cffcaecd3f8553dc3a4fa2604eb8388f41d3f521ffe",
     "verifier/views.py": "dd24f85ca8abdf6dca1d9a2a6fa4d2f10c534a4c28c707481a5ac49ba7df5bce",
     "verifier/visual_labels.py": "f8c11bce35a16866bda22dee58e39c8b4d48cc7c3b285d16781da8f92e317da3",
+    "verifier/visual_profile.py": "1670f169af0c9260b90695ffdd6ef144457e5852ace71df7108332da20e9c5f1",
     "verifier/visual_projection.py": "fd54b2d2504a028800eea636971601f10fce40c98619150deb9b701d50149127",
     "verifier/visual_style.py": "8d935e476be06ef756bf8c4832798616de2729ad1152b936f1f0293977d57dad",
     "verifier/workflow.py": "cf284e42fbf0012b668c2eabf7c5079452a11bec21bcd369fdd278705c41072c"
