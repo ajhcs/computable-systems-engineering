@@ -42,6 +42,8 @@ Computing a digest inside a request cannot authenticate the choice of scope.
 Evidence binds to the checker-reported model digest. Reusing exact filename/text
 sets gives stable multi-file identities in this deployment; local absolute-path
 identities may differ and require explicit reconciliation.
+Record tools serialize the supplied JSON object; their file hashes identify
+those transmitted bytes rather than an original attachment's formatting.
 
 The service processes only the selected submitted text. It cannot read the
 engineer's computer, fetch arbitrary URLs, execute submitted code, retain
@@ -86,3 +88,5 @@ ZIP digest and actual results separately. Public review requires a verified
 developer identity, domain verification, review cases and a real demo recording.
 Upload/approval/publication are distinct account actions in the
 [OpenAI portal](https://platform.openai.com/plugins).
+The [submission handoff](chatgpt-submission.md) supplies the remaining account
+steps and annotation justifications.

@@ -25,7 +25,9 @@ async def check(url):
         advertised = {tool.name for tool in listing.tools}
         assert len(advertised) >= 17
         for tool in listing.tools:
-            assert tool.annotations.read_only_hint and not tool.annotations.open_world_hint
+            readonly = tool.name in ('get_engineering_guidance', 'read_engineering_reference')
+            assert tool.annotations.read_only_hint == readonly
+            assert not tool.annotations.open_world_hint and not tool.annotations.destructive_hint
         async def call(name, arguments, expected='pass'):
             reply = await client.call_tool(name, arguments)
             value = reply.structured_content

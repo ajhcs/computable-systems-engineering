@@ -20,6 +20,8 @@ server = MCPServer('Computable Systems Engineering', version=json.loads((rt.ROOT
     log_level='WARNING')
 READ = types.ToolAnnotations(readOnlyHint=True, destructiveHint=False,
                              idempotentHint=True, openWorldHint=False)
+COMPUTE = types.ToolAnnotations(readOnlyHint=False, destructiveHint=False,
+                                idempotentHint=True, openWorldHint=False)
 
 
 def result(value):
@@ -39,7 +41,7 @@ def read_engineering_reference(path: str) -> types.CallToolResult:
     return result(rt.references(path))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def check_sysml_model(files: dict[str, str], kind: Literal['concept', 'conops', 'scenario'] | None = None,
         syntax_only: bool = False, review: bool = False, manifest: str | None = None,
         evidence: str | None = None) -> types.CallToolResult:
@@ -48,51 +50,51 @@ def check_sysml_model(files: dict[str, str], kind: Literal['concept', 'conops', 
                                 manifest=manifest, evidence=evidence))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def review_system_concept(files: dict[str, str], scope: str, scope_sha256: str,
         sources: dict[str, str] | None = None) -> types.CallToolResult:
     """Review explicit concept coverage against the engineer's retained scope and its SHA-256. Supply all model/scope/source texts in files and explicit source-ID to filename bindings. The caller selects scope; this operation never accepts or invents obligations."""
     return result(rt.scoped_review('concept', files, scope, scope_sha256, sources))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def review_system_configuration(files: dict[str, str], scope: str,
         scope_sha256: str) -> types.CallToolResult:
     """Reconcile supplied SysML configuration against separately retained scope bytes and digest. Return existing architecture findings without changing the model or accepting a design."""
     return result(rt.scoped_review('configuration', files, scope, scope_sha256))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def analyze_engineering_queue(record: dict, required: list[str] | None = None) -> types.CallToolResult:
     """Analyze a declared finite FCFS workload or conditional M/M/c queue using the existing queue record contract. Retain independently selected required IDs; do not infer distributions or staffing suitability."""
     return result(rt.record_check('queues', record, required))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def analyze_system_failures(record: dict, required: list[str] | None = None) -> types.CallToolResult:
     """Check a declared Boolean fault tree, shared events and linked FMEA consistency. Quantitative results require explicit probabilities and independence/mission assumptions. Preserve required fault_tree, probability or fmea checks."""
     return result(rt.record_check('failures', record, required))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def check_engineering_calculations(record: dict, required: list[str] | None = None) -> types.CallToolResult:
     """Check declared equations and units using the CSE calculation record contract and selected required check IDs. No arbitrary code, source URL fetching or inferred physical validity."""
     return result(rt.record_check('calculations', record, required))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def check_function_flow(record: dict) -> types.CallToolResult:
     """Check an explicitly authored functional graph against the existing bounded graph contract. A graph-only result does not establish native SysML correspondence or observed operation."""
     return result(rt.record_check('function-flow', record))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def check_measure_definition(record: dict) -> types.CallToolResult:
     """Check a supplied versioned engineering measure definition, including its declared units, population and conditions. The engineer supplies metric meaning and thresholds."""
     return result(rt.record_check('measures', record))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def check_finite_model(record: dict, review: bool = False, manifest: dict | None = None,
         evidence: dict | None = None) -> types.CallToolResult:
     """Run the existing opt-in version-2 finite verifier on an authored model. Required review needs independently selected scope and evidence; finite caps and unsupported predicates remain explicit non-successes."""
@@ -110,7 +112,7 @@ def check_finite_model(record: dict, review: bool = False, manifest: dict | None
         return result(rt.error('invalid_record', 'Supply finite JSON records.'))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def check_engineering_prose(text: str, kind: Literal['procedure', 'description'],
         sentence_words: int, paragraph_words: int, document_words: int) -> types.CallToolResult:
     """Check actual delivered UTF-8 prose against caller-selected word budgets. This lexical check does not establish STE conformance or preserve meaning without human review."""
@@ -122,7 +124,7 @@ def check_engineering_prose(text: str, kind: Literal['procedure', 'description']
         '--document-words', str(document_words)]))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def generate_property_tests(files: dict[str, str], manifest: str | None = None) -> types.CallToolResult:
     """Generate bounded synthetic variable-influence test pairs from supported SysML clauses. Generated pass/fail witnesses are not captured system observations."""
     try:
@@ -135,7 +137,7 @@ def generate_property_tests(files: dict[str, str], manifest: str | None = None) 
         return result(rt.error('invalid_request', 'Supply model text and an explicitly named manifest.'))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def read_model_context(files: dict[str, str], native_name: str) -> types.CallToolResult:
     """Read one exact native SysML identity and its bounded context from supplied source. A context view does not narrow retained review obligations."""
     try:
@@ -148,7 +150,7 @@ def read_model_context(files: dict[str, str], native_name: str) -> types.CallToo
         return result(rt.error('invalid_request', 'Supply model text and an exact native identity.'))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def render_function_tree(files: dict[str, str], view: str, target_width: int = 2400) -> types.CallToolResult:
     """Render a declared SysML function-tree view as editable SVG/HTML and source receipts. Return generated UTF-8 files inline; no stored public links. Other diagram families remain assistant-authored views with their own source-fidelity review."""
     try:
@@ -163,7 +165,7 @@ def render_function_tree(files: dict[str, str], view: str, target_width: int = 2
         return result(rt.error('invalid_view', 'Select an existing declared view ID.'))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def search_engineering_components(query: str, limit: int = 6,
         cursor: str | None = None) -> types.CallToolResult:
     """Find a bounded shortlist of engineering artwork by concept, with exact IDs and a revision-bound cursor. Catalog artwork does not create engineering model meaning."""
@@ -175,7 +177,7 @@ def search_engineering_components(query: str, limit: int = 6,
     return result(rt.run('icons.py', {'request.json': '{}'}, args))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def inspect_engineering_component(component_id: str) -> types.CallToolResult:
     """Read provenance, treatment and modeling context for one exact artwork ID before selection or export."""
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,199}', component_id):
@@ -183,7 +185,7 @@ def inspect_engineering_component(component_id: str) -> types.CallToolResult:
     return result(rt.run('icons.py', {'request.json': '{}'}, ['show', component_id]))
 
 
-@server.tool(annotations=READ)
+@server.tool(annotations=COMPUTE)
 def export_engineering_components(component_ids: list[str], catalog_sha256: str,
         format: Literal['svg', 'drawio']) -> types.CallToolResult:
     """Export 1..8 exact artwork IDs from the previously inspected catalog revision as editable SVG or Draw.io library files returned inline. IDs refer to artwork, independently of engineering-model IDs."""
