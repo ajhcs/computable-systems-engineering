@@ -28,6 +28,8 @@ async def check(url):
             readonly = tool.name in ('get_engineering_guidance', 'read_engineering_reference')
             assert tool.annotations.read_only_hint == readonly
             assert not tool.annotations.open_world_hint and not tool.annotations.destructive_hint
+            assert tool.output_schema['type'] == 'object'
+            assert 'status' in tool.output_schema['required']
         async def call(name, arguments, expected='pass'):
             reply = await client.call_tool(name, arguments)
             value = reply.structured_content
