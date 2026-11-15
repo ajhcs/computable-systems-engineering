@@ -3,6 +3,8 @@ name: develop-operational-scenarios
 description: Help a systems engineer elicit, investigate, draft, or revise a particular operational scenario or set, including normal operation, exceptions, and lifecycle activities.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Assist with the engineer's requested scenario question or set. Reuse known needs, actors, boundaries, constraints, and decisions. A clarification, observation plan, or rough sequence can be the whole task. An exception can be explored directly.
 
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)

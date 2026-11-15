@@ -8,7 +8,7 @@ Computable Systems Engineering (CSE) is an alpha toolkit for AI-assisted model-b
 
 CSE is useful for a service involving people and software, a piece of equipment, a laboratory operation, or another system with interacting parts. The assistant can organize work, prepare model changes, invoke local tools, and explain findings. **The engineer decides** accepted intent, scope, applicability, units, thresholds, obligations, selection, and acceptance. Inferred requirements or consequential changes are proposals for review.
 
-**Version 0.2.0-alpha.6 · Local execution · [MIT project license](LICENSE)**
+**Version 0.2.0-alpha.9 · Local and hosted adapters · [MIT project license](LICENSE)**
 
 [Start with a question](#start-with-the-question-that-matters-to-you) · [Set up the checkout](#get-started) · [Choose a skill](#choose-a-skill) · [Explore the examples](#examples-you-can-open-and-inspect) · [Understand results](#what-a-result-tells-you)
 
@@ -87,6 +87,12 @@ python3 scripts/check.py --require-sysml
 The [setup and technical guide](docs/technical-guide.md) contains further commands and examples. For an installed or read-only runtime, set `CSE_SYSML_CACHE` to a private writable directory outside the plugin and keep the same setting for parser setup and checks. For a source checkout, the default is its ignored `.cache/sysml` directory.
 
 ### Using the skills outside this checkout
+
+For ChatGPT browser and mobile access, the optional [hosted runtime](docs/hosted-runtime.md)
+connects the eleven workflows to a remote MCP service. Its deployment,
+ChatGPT-client qualification and public Plugin Directory review are separate
+steps. Build a submission ZIP from an exact reviewed commit using
+`scripts/package_chatgpt.py`; the receipt retains outstanding submission gates.
 
 The complete runtime is also packaged as a local-executor plugin. A user-scope installation through a **separately configured local Codex marketplace** has been tested. The repository supplies plugin metadata but does not itself include a marketplace listing; a public marketplace installation is not established.
 

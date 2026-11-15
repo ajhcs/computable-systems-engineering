@@ -3,6 +3,8 @@ name: develop-system-concept
 description: Help a systems engineer investigate or develop a system concept by connecting the problem, desired outcomes, functions, alternatives, and feasibility evidence. Scenario-only and overall CONOPS work have separate skills.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Assist the engineer with the current concept question at the depth needed now. Start from existing work. Framing a need, investigating uncertainty, or comparing one aspect of alternatives can be the whole task; a complete proposal is optional.
 
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)

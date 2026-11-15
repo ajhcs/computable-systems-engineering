@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cse-hosted-runtime",
+  "main": "worker.ts",
+  "account_id": "1e5f92087e779df50f3f3546a0eed22e",
+  "compatibility_date": "2026-11-15",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "cse.open-informatics.org", "custom_domain": true }],
+  "observability": { "enabled": false },
+  "assets": { "directory": "public", "binding": "ASSETS", "run_worker_first": true },
+  "ratelimits": [{ "name": "REQUEST_LIMIT", "namespace_id": "20261115", "simple": { "limit": 30, "period": 60 } }],
+  "containers": [{
+    "class_name": "EngineeringRuntime",
+    "observability": { "logs": { "enabled": false } },
+    "scheduling_policy": "durable_object",
+    "images": { "base": { "dockerfile": "../Dockerfile", "build_context": "../.." } }
+  }],
+  "durable_objects": { "bindings": [{ "name": "RUNTIME", "class_name": "EngineeringRuntime" }] },
+  "exports": { "EngineeringRuntime": { "type": "durable-object", "storage": "sqlite" } }
+}

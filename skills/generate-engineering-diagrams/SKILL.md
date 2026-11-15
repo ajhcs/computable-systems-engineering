@@ -3,6 +3,8 @@ name: generate-engineering-diagrams
 description: Create or review source-linked engineering diagrams; find, compare and export engineering symbols and icons by ID; or select reusable SVG graphics and fonts for engineering documents.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Use this skill to produce or critique a diagram from supplied or existing accepted engineering meaning. New system-model design, requirements, assumptions, thresholds, allocations and engineering acceptance remain with the engineer. Do not invent a new system merely to fill a diagram family.
 
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)

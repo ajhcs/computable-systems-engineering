@@ -3,6 +3,8 @@ name: develop-system-architecture
 description: Develop or review a connected slice of functional, physical, allocated or interface architecture from an engineer's question and existing model. Use for architecture meaning and correspondence; diagram rendering has a separate skill.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Develop the architecture needed for the current engineering decision. A single
 interface, missing function or allocation question can be the whole task. Reuse
 the existing boundary, stakeholder outcomes, scenarios and accepted decisions;

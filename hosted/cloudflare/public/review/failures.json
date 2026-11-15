@@ -1,0 +1,49 @@
+{
+  "version": "failure-analysis-1.0",
+  "id": "QualitativeSharedFailure",
+  "revision": "synthetic-1",
+  "basis": "Synthetic Boolean example; all events refer to the same mission.",
+  "events": {
+    "A": {
+      "description": "A failure",
+      "basis": "Synthetic exact probability",
+      "probability": null
+    },
+    "B": {
+      "description": "B failure",
+      "basis": "Synthetic exact probability",
+      "probability": null
+    },
+    "C": {
+      "description": "C failure",
+      "basis": "Synthetic exact probability",
+      "probability": null
+    }
+  },
+  "gates": {
+    "AB": {
+      "operator": "and",
+      "inputs": [
+        "A",
+        "B"
+      ]
+    },
+    "AC": {
+      "operator": "and",
+      "inputs": [
+        "A",
+        "C"
+      ]
+    },
+    "Top": {
+      "operator": "or",
+      "inputs": [
+        "AB",
+        "AC"
+      ]
+    }
+  },
+  "top_event": "Top",
+  "probability": null,
+  "fmea": {}
+}

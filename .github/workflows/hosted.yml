@@ -1,0 +1,41 @@
+name: Qualify hosted engineering image
+on:
+  push:
+    branches: [main, 'codex/chatgpt-hosted-plugin-*']
+    paths: ['hosted/**', 'verifier/**', 'skills/**', 'scripts/check_hosted.py', '.github/workflows/hosted.yml']
+  pull_request:
+    paths: ['hosted/**', 'verifier/**', 'skills/**', 'scripts/check_hosted.py', '.github/workflows/hosted.yml']
+permissions:
+  contents: read
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Build the exact source image
+        run: docker build -f hosted/Dockerfile -t cse-hosted:${{ github.sha }} .
+      - name: Run the image without outbound Internet
+        run: |
+          docker network create --internal cse-check
+          docker run -d --name cse --network cse-check --mount type=bind,source="$GITHUB_WORKSPACE",target=/qualification,readonly --memory=4g --cpus=0.5 --pids-limit=128 cse-hosted:${{ github.sha }}
+      - name: Exercise every advertised tool
+        run: |
+          docker exec cse python /qualification/scripts/check_hosted.py --out /work/jobs/hosted-image-check.json
+          docker cp cse:/work/jobs/hosted-image-check.json hosted-image-check.json
+      - name: Container diagnostics
+        if: failure()
+        run: |
+          docker inspect --format '{{json .State}}' cse
+          docker logs cse
+      - name: Export the qualified image
+        run: docker save cse-hosted:${{ github.sha }} | gzip -1 > cse-hosted-image.tar.gz
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: cse-hosted-${{ github.sha }}
+          path: |
+            cse-hosted-image.tar.gz
+            hosted-image-check.json
+          retention-days: 3

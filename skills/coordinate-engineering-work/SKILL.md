@@ -3,6 +3,8 @@ name: coordinate-engineering-work
 description: Coordinate connected CSE work across concepts, architecture, scenarios, measures, evidence, language and diagrams. Use for a shared engineering workflow or an unclear entry point; a request for one named activity can use that skill directly.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Identify the engineer's current question, requested result and existing model.
 Enter at the activity that can answer that question; a complete lifecycle or
 document set is unnecessary. Preserve accepted intent and unresolved facts.

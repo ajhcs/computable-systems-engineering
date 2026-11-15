@@ -3,6 +3,8 @@ name: define-engineering-measures
 description: Define or revise an engineering measure, its collection conditions and baseline meaning. Use for measurement dictionaries or changed metric definitions; use evidence planning for a broader evaluation plan.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Define the quantity needed for the engineer's question. Reuse existing measure
 IDs, sources and accepted definitions. Ask only for consequential missing intent;
 keep other gaps explicit. Do not supply targets, acceptance thresholds or modality.

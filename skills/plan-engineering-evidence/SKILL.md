@@ -3,6 +3,8 @@ name: plan-engineering-evidence
 description: Plan verification against specified requirements or validation against intended use, including method selection, early testability and feedback from intermediate products. Use for evidence planning; execution uses the existing CSE checks and selected tools.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Help the engineer answer a specific evidence question at the current design stage.
 A focused plan or review of an intermediate product can be the complete task.
 Reuse the authoritative model, stable IDs and revision; do not require a complete
