@@ -20,11 +20,16 @@ jobs:
       - name: Run the image without outbound Internet
         run: |
           docker network create --internal cse-check
-          docker run -d --name cse --network cse-check -p 127.0.0.1:8080:8080 --memory=4g --cpus=0.5 --pids-limit=128 cse-hosted:${{ github.sha }}
-      - name: Install the integration client
-        run: python -m pip install --require-hashes -r hosted/requirements.lock
+          docker run -d --name cse --network cse-check --mount type=bind,source="$GITHUB_WORKSPACE",target=/qualification,readonly --memory=4g --cpus=0.5 --pids-limit=128 cse-hosted:${{ github.sha }}
       - name: Exercise every advertised tool
-        run: python scripts/check_hosted.py --out hosted-image-check.json
+        run: |
+          docker exec cse python /qualification/scripts/check_hosted.py --out /work/jobs/hosted-image-check.json
+          docker cp cse:/work/jobs/hosted-image-check.json hosted-image-check.json
+      - name: Container diagnostics
+        if: failure()
+        run: |
+          docker inspect --format '{{json .State}}' cse
+          docker logs cse
       - name: Export the qualified image
         run: docker save cse-hosted:${{ github.sha }} | gzip -1 > cse-hosted-image.tar.gz
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
