@@ -16,6 +16,7 @@ build/
 private/
 local/
 node_modules/
+.wrangler/
 
 # Keep original source fragments and broad source-record projections local.
 /examples/engineering-reference/source/*.xml

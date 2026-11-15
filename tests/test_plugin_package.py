@@ -9,6 +9,8 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from package_plugin import build
+from package_chatgpt import package as chatgpt_package
+from zipfile import ZipFile
 
 
 class PluginPackageTests(unittest.TestCase):
@@ -95,6 +97,32 @@ class PluginPackageTests(unittest.TestCase):
         self.command('commit', '-qm', 'Unsafe fixture link')
         with self.assertRaisesRegex(ValueError, 'Nonportable symlink'):
             build(self.repo, 'HEAD', self.base / 'escaping')
+
+    def test_hosted_zip_has_root_manifests_remote_tools_and_exact_committed_skills(self):
+        portable = json.loads((self.repo / 'plugin.json').read_text())
+        portable['extensions'] = {'com.openai': {'requires_local_executor': True,
+                                                'interface': {'displayName': 'Synthetic CSE'}}}
+        self.write('plugin.json', json.dumps(portable))
+        self.command('add', 'plugin.json')
+        self.command('commit', '-qm', 'Synthetic portable presentation metadata')
+        self.write('docs/guide.md', 'Private uncommitted input must stay excluded.')
+        first = chatgpt_package(self.repo, 'HEAD', self.base / 'hosted-one')
+        second = chatgpt_package(self.repo, 'HEAD', self.base / 'hosted-two')
+        self.assertEqual(first['zip_sha256'], second['zip_sha256'])
+        with ZipFile(self.base / 'hosted-one' / first['zip']) as archive:
+            data = json.loads(archive.read('plugin.json'))
+            native = json.loads(archive.read('.codex-plugin/plugin.json'))
+            extension = data['extensions']['com.openai']
+            self.assertFalse(extension['requires_local_executor'])
+            self.assertFalse(native['requires_local_executor'])
+            self.assertEqual(extension['interface'], native['interface'])
+            self.assertEqual(len(extension['review']['test_cases']['positive']), 5)
+            self.assertEqual(len(extension['review']['test_cases']['negative']), 3)
+            self.assertNotIn('demo_recording_url', extension['review'])
+            self.assertTrue(json.loads(archive.read('mcp.json'))['mcpServers']['cse']['url'].endswith('/mcp'))
+            self.assertEqual(archive.read('docs/guide.md').decode(), 'Committed wording.\n')
+            self.assertEqual(sum(name.endswith('/SKILL.md') for name in archive.namelist()), 11)
+        self.assertIn('Real demo recording URL', first['required_before_submission'])
 
 
 if __name__ == '__main__':

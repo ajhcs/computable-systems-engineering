@@ -1,0 +1,15 @@
+.git
+.agents
+.cache
+.tmp
+.venv
+**/node_modules
+**/__pycache__
+**/.env*
+work
+private
+local
+tests
+examples
+dist
+build

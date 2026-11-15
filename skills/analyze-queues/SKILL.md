@@ -3,6 +3,8 @@ name: analyze-queues
 description: Analyze waiting and resource utilization for an explicit workload or a conditional M/M/c queue. Use for queueing questions with stated arrivals, service and capacity; preserve unknown assumptions and measurement boundaries.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Identify the queue, resource pool, operating question and model revision. Reuse
 the engineer's measure definitions and data. Keep the service boundary, unit of
 work, resource availability and collection window explicit. Missing rates or

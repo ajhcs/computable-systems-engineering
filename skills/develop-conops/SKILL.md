@@ -3,6 +3,8 @@ name: develop-conops
 description: Help a systems engineer investigate or develop a concept of operations by connecting stakeholder needs, boundaries, scenarios, and evaluation plans. Use develop-operational-scenarios for scenario-only work.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Assist the engineer with the requested CONOPS question at the depth needed now. Reuse existing work. An investigation, clarification, or small model change can be the whole task; a complete document is optional.
 
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)

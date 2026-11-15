@@ -3,6 +3,8 @@ name: check-engineering-language
 description: Check CSE-authored engineering text against project terminology, selected Simplified Technical English rules and supported meaning-preserving repairs. Use throughout drafting or for an explicit language review; preserve source quotations and literals.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Use controlled English and the project's defined terms, meanings and approved
 forms. Keep English authoritative. Write complete sentences with direct actors.
 

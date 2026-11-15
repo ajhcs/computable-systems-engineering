@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy — Computable Systems Engineering</title><link rel="stylesheet" href="/style.css">
+<main><h1>Privacy</h1><p>Effective November 15, 2026.</p>
+<p>This policy covers the hosted Computable Systems Engineering service at
+<code>cse.open-informatics.org</code>, maintained by the
+<a href="https://github.com/ajhcs/computable-systems-engineering">ajhcs CSE project</a>.</p>
+<h2>Data and purpose</h2>
+<p>The service receives the model text, record contents, selected filenames,
+identifiers and analysis parameters submitted in each tool request. It uses them
+to run the requested engineering check or generate the requested view.
+No account, personal profile, cookies, advertising identifiers or payment details
+are requested. Do not submit PHI, credentials, payment-card data, government
+identifiers or other restricted data.</p>
+<h2>Processing and recipients</h2>
+<p>Requests pass through ChatGPT and Cloudflare to the engineering runtime.
+Cloudflare processes connection metadata, including IP addresses, to deliver,
+secure and rate-limit the service. Application access logging and container logs
+are disabled, and the application does not record request bodies or tool results.
+The runtime cannot fetch arbitrary external URLs. The project does not sell
+request data, build advertising profiles or use submissions to train models.</p>
+<h2>Retention</h2>
+<p>The application has no project database. Request files and generated artifacts
+are deleted when the job finishes, including on a handled failure or timeout.
+Jobs have a 30-second execution limit. If the process crashes before cleanup,
+temporary files can remain until the next job clears the request directory or
+the container filesystem is discarded. No persistent project volume, snapshot
+or application recovery archive is created. Results returned to
+ChatGPT remain subject to your ChatGPT conversation retention and settings.</p>
+<p>Cloudflare and OpenAI have separate infrastructure and platform practices,
+including operational data retention. See
+<a href="https://www.cloudflare.com/privacypolicy/">Cloudflare’s privacy policy</a>
+and <a href="https://openai.com/policies/privacy-policy/">OpenAI’s privacy policy</a>.
+This application does not control those providers’ retention settings.</p>
+<h2>Your controls</h2>
+<p>You choose the material sent with each call and can disconnect the plugin.
+Use the local edition when material must stay on your computer. Keep generated
+files in storage you control and manage conversations through ChatGPT.
+For privacy questions, open a minimal
+<a href="https://github.com/ajhcs/computable-systems-engineering/issues">support issue</a>
+without including private models or personal data. GitHub retains submitted issue
+content under its own policies until it is deleted or otherwise removed.</p>
+<p><a href="/">Return to CSE</a></p></main></html>

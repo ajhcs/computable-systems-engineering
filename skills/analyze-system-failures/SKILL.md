@@ -3,6 +3,8 @@ name: analyze-system-failures
 description: Analyze an explicit Boolean fault tree, shared failure events, or FMEA record consistency with bounded deterministic checks. Use for failure-analysis work; quantitative results require authored probabilities and independence and mission assumptions.
 ---
 
+When CSE hosted MCP tools are connected, use the [hosted runtime route](../../docs/hosted-runtime.md) for supported checks. The local commands below remain the route for local execution; preserve the same model, retained scope and engineering authority.
+
 Identify the engineer's failure question and retain existing event IDs, source
 revisions and intended boundary. Read the [record contract](references/record-contract.md)
 before authoring or checking the separate analysis record. Keep unknown causes,
