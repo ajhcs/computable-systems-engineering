@@ -5,6 +5,9 @@ import os
 from pathlib import Path
 import sys
 import tempfile
+import signal
+import subprocess
+import time
 import unittest
 from unittest.mock import patch
 
@@ -72,12 +75,41 @@ class HostedRuntimeTests(unittest.TestCase):
             self.assertEqual(rt.references(path)['status'], 'error')
 
     def test_concurrent_job_cannot_read_another_request(self):
-        with rt.workspace() as job:
+        with rt.workspace() as (job, _):
             (job / 'private.txt').write_text('Retained only during the first request.')
             result = rt.run('prose.py', {'report.txt': 'A sentence.'}, [])
             self.assertEqual(result['error']['code'], 'busy')
             self.assertTrue((job / 'private.txt').exists())
         self.assertFalse(job.exists())
+
+    def test_service_crash_cannot_release_an_active_jobs_isolation_lock(self):
+        repo = self.synthetic_script("from pathlib import Path\nimport os,time\nPath('.ready').write_text(str(os.getpid()))\ntime.sleep(10)\n")
+        code = ("from pathlib import Path;from hosted import runtime as rt;"
+                f"rt.ROOT=Path({str(repo)!r});rt.run('prose.py',{{'report.txt':'test'}},[],timeout=15)")
+        service = subprocess.Popen([sys.executable, '-c', code], cwd=ROOT,
+                                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        job_pid = None
+        try:
+            marker = self.base / 'jobs/request/.ready'
+            for _ in range(200):
+                if marker.exists():
+                    job_pid = int(marker.read_text())
+                    break
+                time.sleep(0.01)
+            self.assertIsNotNone(job_pid, 'Synthetic isolated job did not start')
+            service.kill()
+            service.wait(timeout=2)
+            result = rt.run('prose.py', {'report.txt': 'A separate request.'}, [])
+            self.assertEqual(result['error']['code'], 'busy')
+        finally:
+            if service.poll() is None:
+                service.kill()
+                service.wait(timeout=2)
+            if job_pid is not None:
+                try:
+                    os.killpg(job_pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
 
     def test_timeout_does_not_pass_and_removes_request_files(self):
         repo = self.synthetic_script("import time\ntime.sleep(10)\nprint('{\"status\":\"pass\"}')\n")

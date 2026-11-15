@@ -96,7 +96,7 @@ def workspace():
             shutil.rmtree(path)
         path.mkdir(mode=0o700)
         try:
-            yield path
+            yield path, lock.fileno()
         finally:
             shutil.rmtree(path)
             fcntl.flock(lock, fcntl.LOCK_UN)
@@ -108,7 +108,7 @@ def run(script, files, arguments, *, artifacts=False, timeout=30):
         if script not in SCRIPTS:
             raise ValueError('Unknown hosted operation.')
         validate_files(files)
-        with workspace() as job:
+        with workspace() as (job, lock_fd):
             for name, content in files.items():
                 (job / name).write_text(content, encoding='utf-8')
             env = {k: os.environ[k] for k in ('PATH', 'JAVA_HOME', 'CSE_SYSML_CACHE') if k in os.environ}
@@ -120,7 +120,7 @@ def run(script, files, arguments, *, artifacts=False, timeout=30):
                        str(ROOT / 'scripts' / script), *arguments]
             with (job / '.stdout').open('w+b') as out, (job / '.stderr').open('w+b') as err:
                 child = subprocess.Popen(command, cwd=job, env=env, stdout=out, stderr=err,
-                                         start_new_session=True)
+                                         start_new_session=True, pass_fds=(lock_fd,))
                 try:
                     child.wait(timeout=timeout)
                 except subprocess.TimeoutExpired:
