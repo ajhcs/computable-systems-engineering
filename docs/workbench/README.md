@@ -27,18 +27,31 @@ support, including literal multiplicity and supported inherited/redefined
 selection. The older five-family renderer's narrower exclusions are interface
 gaps to close, not permission to remove existing engineering support.
 
-The first implementation exposes Pilot-resolved declaration/name/reference
+The implementation exposes Pilot-resolved declaration/name/reference/document
 ranges, explicitly in UTF-16 coordinates. `scripts/composition_edit.py` inspects
-a single-source candidate and prepares a rename using those ranges. An
-independent reparse checks all extracted native facts and resolved reference
+one source or an explicit text bundle and prepares a rename using those ranges.
+An independent reparse checks all extracted native facts and resolved reference
 correspondence. Engineering IDs and project registry IDs survive the operation.
 
-This candidate boundary does not save or commit a project. Multi-file edits,
-linked documentary/analysis adapters, create/reparent/delete/property editing,
+This candidate boundary does not save or commit a project. Remaining linked
+analytical adapters, create/reparent/delete/property editing,
 the graphical editor, host adapters, durable history, cloud storage and actual
-application acceptance remain open matrix cells. Documentary input is refused
-for rename until its binding adapter is implemented; that refusal is an interim
-implementation gap, not the target support boundary.
+application acceptance remain open matrix cells. Supported documentary binding
+updates are part of the same immutable candidate: native CSE workflow/view
+records and linked presentation labels. Plain prose, labels, logical IDs,
+unaffected files, original spacing and line endings are preserved. An unknown
+structured record is refused when its binding semantics are unavailable; that
+is an open adapter obligation, not a reduced target support boundary.
+
+Retained configuration scopes keep their exact bytes and digest. A candidate
+lists affected scope paths for reconciliation and reruns the existing native
+configuration checker. A stale native binding cannot keep an earlier pass,
+including after reconstructing the candidate with its registry. This does not
+accept new scope bytes or infer selection from a rename.
+
+For the explicit bundle transport, see [the bundle contract](composition-bundle.md).
+Bundle file names label supplied texts; they are never instructions to read or
+write another disk path. The source mapping retains each file's original text.
 
 Project registry entries map durable UUIDs to exact native identities. Import
 assigns IDs under a project UUID; subsequent commands must preserve the saved
@@ -60,9 +73,10 @@ reviewed integration; fresh assembled verification remains required.
 ## Next acceptance obligations
 
 1. Finish command/profile mapping, including dynamic launchers and reference tools.
-2. Add the trace-linked composition interaction walkthrough and review its
-   ownership, selection and recovery behavior before UI implementation.
-3. Extend the current source-edit path to atomic multi-file and linked-record edits.
+2. Continue the trace-linked composition interaction walkthrough from the
+   initial Astra-reviewed proposal and user feedback on the existing design kit.
+3. Complete the remaining analytical binding adapters and durable transaction
+   boundary around the multi-file candidate path.
 4. Complete the remaining physical-composition commands, diagram interactions,
    CLI/MCP/site-tool/ChatGPT access and source-preserving persistence together.
 5. Exercise save/restart/reopen in both actual applications and close the matrix

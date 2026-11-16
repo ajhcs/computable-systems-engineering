@@ -1,12 +1,19 @@
 """Native source-edit controls, including Unicode, references and identity."""
 from copy import deepcopy
+from hashlib import sha256
+import json
 from pathlib import Path
 import sys
+import subprocess
+import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from verifier.composition_edit import CompositionDocument, EditError, codepoint_index
+from verifier.composition_records import rebind_json, rebind_document
+from verifier.workflow import empty_record, draft_model
 
 
 SOURCE = '''// 🛰 Sensor and sensor in a comment must survive byte-for-byte.
@@ -80,13 +87,196 @@ class NativeEditTests(unittest.TestCase):
                 self.document.rename(identity, name, expected_source_sha256=revision)
         self.assertEqual(self.document.source, SOURCE)
 
-    def test_documentary_binding_is_not_silently_lost(self):
+    def test_candidate_reparse_timeout_is_structured_and_preserves_original(self):
+        with patch('verifier.composition_edit._parser_output', side_effect=subprocess.TimeoutExpired('pilot', 60)):
+            with self.assertRaises(EditError) as error:
+                self.rename('Composition::Sensor', 'Detector')
+        self.assertEqual(error.exception.code, 'parser_timeout')
+        self.assertEqual(self.document.source, SOURCE)
+
+    def test_prose_documentation_is_preserved_verbatim(self):
         source = 'package Documentary { part def Sensor { doc /* Sensor narrative */ } }'
+        document = CompositionDocument(source)
+        candidate = document.rename(next(iter(document.registry)), 'Detector',
+                                    expected_source_sha256=document.revision)
+        self.assertEqual(candidate.source, source.replace('part def Sensor', 'part def Detector'))
+
+    def test_unknown_computational_document_needs_a_typed_adapter(self):
+        source = 'package Documentary { part def Sensor { doc cseUnknown /* CSE-UNKNOWN/1.0\n{} */ } }'
         document = CompositionDocument(source)
         with self.assertRaises(EditError) as error:
             document.rename(next(iter(document.registry)), 'Detector',
                             expected_source_sha256=document.revision)
         self.assertEqual(error.exception.code, 'linked_records')
+
+
+FILES = {
+    'types/library.sysml': '// 🛰 preserve comments and CRLF\r\npackage Library {\r\n'
+        ' part def Sensor;\r\n part def Base { part <SENSOR> sensor [2] : Sensor; }\r\n'
+        ' part def Assembly :> Base;\r\n}\r\n',
+    'context.sysml': 'package Context { private import Library::*; part current : Assembly; }',
+}
+SCOPE = {'version': 'configuration-1.0',
+         'root': {'native_name': 'Context::current', 'type': 'Library::Assembly'},
+         'selected_roles': {'SensorRole': {'parent': '$root', 'native_name': 'Library::Base::sensor',
+                                           'type': 'Library::Sensor'}},
+         'open_alternatives': [], 'connections': []}
+
+
+def metadata():
+    record = empty_record('Retain prose Library::Base::sensor verbatim.', 'architecture')
+    record['elements']['ROLE'] = {'kind': 'element', 'native_name': 'Library::Base::sensor',
+                                  'label': 'sensor', 'description': 'Library::Base::sensor',
+                                  'basis': None, 'status': 'proposed'}
+    return draft_model(record, 'Metadata', 'package MetadataNote { doc /* Library::Base::sensor */ }')
+
+
+class BundleTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.files = {**FILES, 'notes/metadata.sysml': metadata()}
+        cls.scope_text = json.dumps(SCOPE, indent=2) + '\n'
+        cls.labels = '{"version":1,"view":"PC","title":"Library::Base::sensor","labels": [\n' \
+                     ' { "element" : "Library::Base::sensor", "text" : "sensor" }\n]}\n'
+        cls.linked = {'view.labels.json': {'kind': 'display_labels', 'text': cls.labels},
+                      'scope.json': {'kind': 'retained_configuration', 'text': cls.scope_text}}
+        cls.document = CompositionDocument(cls.files, linked_records=cls.linked,
+                                           project_id='e15ced9c-7db0-4b29-b468-cff52bb49bb3')
+
+    def role_id(self):
+        return next(key for key, value in self.document.registry.items() if value == 'Library::Base::sensor')
+
+    def test_multifile_rename_is_atomic_with_typed_documentary_bindings(self):
+        before = self.document
+        candidate = before.rename(self.role_id(), 'detector', expected_source_sha256=before.revision)
+        self.assertEqual(candidate.files['types/library.sysml'],
+                         self.files['types/library.sysml'].replace('sensor [2]', 'detector [2]'))
+        self.assertEqual(candidate.files['context.sysml'], self.files['context.sysml'])
+        self.assertIn('"native_name": "Library::Base::detector"', candidate.files['notes/metadata.sysml'])
+        self.assertIn('"description": "Library::Base::sensor"', candidate.files['notes/metadata.sysml'])
+        self.assertIn('doc /* Library::Base::sensor */', candidate.files['notes/metadata.sysml'])
+        self.assertEqual(candidate.linked_records['view.labels.json']['text'],
+                         self.labels.replace('"element" : "Library::Base::sensor"',
+                                             '"element" : "Library::Base::detector"'))
+        self.assertEqual(candidate.registry[self.role_id()], 'Library::Base::detector')
+        self.assertEqual(before.files, self.files)
+        self.assertEqual(before.linked_records, self.linked)
+
+    def test_retained_scope_never_silently_changes_or_passes_after_rename(self):
+        before = self.document
+        self.assertEqual(before.configuration_reviews[0]['report']['status'], 'pass')
+        candidate = before.rename(self.role_id(), 'detector', expected_source_sha256=before.revision)
+        self.assertEqual(candidate.linked_records['scope.json']['text'], self.scope_text)
+        self.assertNotEqual(candidate.configuration_reviews[0]['report']['status'], 'pass')
+        item = candidate.reconciliation[0]
+        self.assertEqual(item['status'], 'reconciliation_required')
+        self.assertEqual(item['retained_sha256'], sha256(self.scope_text.encode()).hexdigest())
+        self.assertEqual(item['changes'][0]['path'], ['selected_roles', 'SensorRole', 'native_name'])
+        # Reopening derives the unresolved result again from the exact retained scope.
+        restored = CompositionDocument(candidate.files, registry=candidate.registry,
+                                       linked_records=candidate.linked_records, project_id=candidate.project_id)
+        self.assertNotEqual(restored.configuration_reviews[0]['report']['status'], 'pass')
+
+    def test_source_location_maps_back_to_original_file_and_line(self):
+        role = next(row for row in self.document.inspect()['elements'] if row['element_id'] == self.role_id())
+        location = role['source_location']
+        self.assertEqual(location['file'], 'types/library.sysml')
+        self.assertEqual(location['line'], 4)
+        snippet = self.files[location['file']][location['offset']:location['offset']+location['length']]
+        self.assertEqual(snippet, 'part <SENSOR> sensor [2] : Sensor;')
+
+    def test_bundle_cli_matches_library_and_returns_retained_scope_reconciliation(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT / '.tmp') as directory:
+            directory = Path(directory)
+            bundle = directory / 'bundle.json'
+            bundle.write_text(json.dumps({'version': 'cse-composition-bundle-1', 'models': self.files,
+                                          'linked_records': self.linked}))
+            run = subprocess.run([sys.executable, str(ROOT/'scripts/composition_edit.py'), 'rename',
+                                  '--bundle', str(bundle), '--project-id', self.document.project_id,
+                                  '--element-id', self.role_id(), '--name', 'detector',
+                                  '--expected-bundle-sha256', self.document.revision],
+                                 cwd=directory, capture_output=True, text=True, timeout=60)
+            self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
+            report = json.loads(run.stdout)
+            self.assertEqual(report['claim'], 'candidate_only_not_persisted')
+            self.assertIn('detector [2]', report['files']['types/library.sysml'])
+            self.assertEqual(report['linked_records']['scope.json']['text'], self.scope_text)
+            self.assertEqual(report['reconciliation'][0]['status'], 'reconciliation_required')
+            self.assertFalse((directory / 'types').exists(), 'Bundle paths must never be followed on disk')
+
+
+    def test_bundle_digest_binds_names_and_retained_record_bytes(self):
+        reordered = CompositionDocument(dict(reversed(list(self.files.items()))), linked_records=self.linked,
+                                         project_id=self.document.project_id)
+        self.assertEqual(reordered.revision, self.document.revision)
+        changed = deepcopy(self.linked); changed['scope.json']['text'] += ' '
+        other = CompositionDocument(self.files, linked_records=changed, project_id=self.document.project_id)
+        self.assertNotEqual(other.revision, self.document.revision)
+        with self.assertRaises(EditError):
+            other.rename(self.role_id(), 'detector', expected_source_sha256=self.document.revision)
+
+
+class RecordSafetyTests(unittest.TestCase):
+    def mapped(self, value):
+        return value.replace('Library::Base::sensor', 'Library::Base::detector') if value.startswith('Library::Base::sensor') else value
+
+    def test_json_strings_are_edited_by_typed_path_not_prose_or_dictionary_key(self):
+        text = '{"version":1,"view":"PC","title":"Library::Base::sensor", "labels":[' \
+               '{"element":"Library::Base::sensor", "text":"Library::Base::sensor"}]}'
+        rewritten, findings = rebind_json(text, 'display_labels', self.mapped)
+        self.assertEqual(rewritten, text.replace('"element":"Library::Base::sensor"',
+                                                '"element":"Library::Base::detector"'))
+        self.assertEqual(len(findings), 1)
+
+    def test_duplicate_keys_nonfinite_and_unknown_records_cannot_be_migrated(self):
+        for text, kind in [('{"version":1,"version":1}', 'display_labels'),
+                           ('{"x":NaN}', 'views'), ('{"x":1e999}', 'views'), ('{}', 'unknown')]:
+            with self.subTest(kind=kind), self.assertRaises(ValueError):
+                rebind_json(text, kind, self.mapped)
+
+    def test_paths_are_not_disk_access_and_ambiguous_paths_refuse(self):
+        for name in ['../escape.sysml', '/private/model.sysml', 'a//model.sysml', 'a/./model.sysml', 'C:\\model.sysml']:
+            with self.subTest(name=name), self.assertRaises(EditError):
+                CompositionDocument({name: 'package Safe;'}, project_id='e15ced9c-7db0-4b29-b468-cff52bb49bb3')
+
+
+
+class RecordTests(unittest.TestCase):
+    def mapped(self, text):
+        return text.replace('Library::Base::sensor', 'Library::Base::detector')
+
+    def test_json_escaped_binding_and_prose_have_distinct_ownership(self):
+        source = '{"version":1,"view":"PC","title":"Library::Base::sensor", "labels":[' \
+                 '{"element":"Library\\u003a\\u003aBase::sensor","text":"Library::Base::sensor"}]}'
+        result, changes = rebind_json(source, 'display_labels', self.mapped)
+        self.assertEqual(len(changes), 1)
+        expected = source.replace('"Library\\u003a\\u003aBase::sensor"', '"Library::Base::detector"')
+        self.assertEqual(result, expected)
+
+    def test_duplicate_keys_and_unknown_record_kind_refuse(self):
+        for text, kind in [('{"version":1,"version":1}', 'display_labels'), ('{}', 'unknown')]:
+            with self.subTest(kind=kind), self.assertRaises(ValueError):
+                rebind_json(text, kind, self.mapped)
+
+    def test_unknown_view_binding_cannot_silently_remain_stale(self):
+        record = {'views': [{'id': 'PC', 'kind': 'physical_composition', 'mode': 'usages',
+                             'nodes': [], 'unknown_binding': 'Library::Base::sensor'}]}
+        with self.assertRaises(ValueError):
+            rebind_json(json.dumps(record), 'views', self.mapped)
+
+    def test_all_existing_view_binding_paths_preserve_narrative_and_ids(self):
+        body = '\nCSE-VIEWS/1.1\n'+json.dumps({'views':[
+            {'id':'PC','kind':'physical_composition','mode':'usages','nodes':[
+                {'id':'ROLE','element':'Library::Base::sensor','parent':None,'level':0,'edge':None}]},
+            {'id':'SEQ','kind':'sequence','participants':[{'id':'P','element':'Library::Base::sensor'}],
+             'exchanges':[{'id':'E','from':'P','to':'P','message':'Library::Base::sensor'}]},
+        ]},indent=2)+'\n'
+        result, findings = rebind_document(body, 'cseViews', self.mapped)
+        self.assertEqual(len(findings), 2)
+        record = json.loads(result.split('CSE-VIEWS/1.1',1)[1])
+        self.assertEqual(record['views'][0]['nodes'][0]['element'], 'Library::Base::detector')
+        self.assertEqual(record['views'][1]['exchanges'][0]['message'], 'Library::Base::sensor')
 
 
 if __name__ == '__main__':

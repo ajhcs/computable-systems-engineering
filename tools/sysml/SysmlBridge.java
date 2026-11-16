@@ -80,6 +80,14 @@ public final class SysmlBridge {
                 result.put("name_length", names.get(0).getLength());
             }
         }
+        var bodyFeature = element.eClass().getEStructuralFeature("body");
+        if (bodyFeature != null) {
+            var bodies = NodeModelUtils.findNodesForFeature(element, bodyFeature);
+            if (bodies.size() == 1) {
+                result.put("body_offset", bodies.get(0).getOffset());
+                result.put("body_length", bodies.get(0).getLength());
+            }
+        }
         return result;
     }
 
@@ -459,6 +467,7 @@ public final class SysmlBridge {
                 ConstraintUsage constraint = parent(documentation, ConstraintUsage.class);
                 RequirementUsage requirement = parent(documentation, RequirementUsage.class);
                 Map<String, Object> item = new LinkedHashMap<>();
+                item.put("source_span", sourceFacts(documentation));
                 item.put("name", documentation.getName());
                 item.put("body", documentation.getBody());
                 item.put("constraint", constraint == null || constraint instanceof RequirementUsage

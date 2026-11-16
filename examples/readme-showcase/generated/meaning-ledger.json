@@ -945,7 +945,14 @@
           "line": 5,
           "owner": "WaterSampling",
           "owner_kind": "Package",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 978,
+            "body_offset": 158,
+            "encoding": "utf16",
+            "length": 982,
+            "offset": 154
+          }
         },
         {
           "body": "CSE-CLOCK/2.0\nperiod 1 second ",
@@ -953,14 +960,30 @@
           "name": "cseClock",
           "owner": "WaterSampling",
           "owner_kind": "Package",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 39,
+            "body_offset": 1154,
+            "encoding": "utf16",
+            "length": 52,
+            "name_length": 8,
+            "name_offset": 1145,
+            "offset": 1141
+          }
         },
         {
           "body": "Fictional candidate components: panel accepts requests; register\npreserves provisional or reconciled receipts; rack holds containers.\nThese declarations establish composition only, not connector topology,\nimplementation or physical capacity. A provisional receipt may state\nHELD with identity unresolved; it never authorizes pickup. ",
           "line": 23,
           "owner": "WaterSampling::Station",
           "owner_kind": "PartDefinition",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 378,
+            "body_offset": 1311,
+            "encoding": "utf16",
+            "length": 382,
+            "offset": 1307
+          }
         },
         {
           "body": "CSE-INT/2.0\nrange 0 20 scale 1 unit second ",
@@ -968,7 +991,16 @@
           "name": "cseType",
           "owner": "WaterSampling::Station::processingElapsed",
           "owner_kind": "AttributeUsage",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 60,
+            "body_offset": 1997,
+            "encoding": "utf16",
+            "length": 72,
+            "name_length": 7,
+            "name_offset": 1989,
+            "offset": 1985
+          }
         },
         {
           "body": "Fictional stakeholder need: The operator needs sample identity preserved through custody transfer. ",
@@ -976,7 +1008,14 @@
           "owner": "WaterSampling::PreserveIdentity",
           "owner_kind": "ConcernUsage",
           "requirement": "WaterSampling::PreserveIdentity",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 104,
+            "body_offset": 2475,
+            "encoding": "utf16",
+            "length": 108,
+            "offset": 2471
+          }
         },
         {
           "body": "Fictional stakeholder need: The courier needs a reconciled record of containers accepted for pickup. ",
@@ -984,7 +1023,14 @@
           "owner": "WaterSampling::AccountForContainers",
           "owner_kind": "ConcernUsage",
           "requirement": "WaterSampling::AccountForContainers",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 106,
+            "body_offset": 2633,
+            "encoding": "utf16",
+            "length": 110,
+            "offset": 2629
+          }
         },
         {
           "body": "Fictional stakeholder need: The custodian needs a declared intake pause and controlled restoration. ",
@@ -992,28 +1038,56 @@
           "owner": "WaterSampling::RecoverService",
           "owner_kind": "ConcernUsage",
           "requirement": "WaterSampling::RecoverService",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 105,
+            "body_offset": 2787,
+            "encoding": "utf16",
+            "length": 109,
+            "offset": 2783
+          }
         },
         {
           "body": "Nominal: present labeled container; record receipt; match pickup manifest; record custody transfer. Success means a documentary transfer record, not analytical sample validity. These are documentary exchanges, not executable SysML guards/effects. ",
           "line": 63,
           "owner": "WaterSampling::TransferLabeledSample",
           "owner_kind": "UseCaseUsage",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 252,
+            "body_offset": 3438,
+            "encoding": "utf16",
+            "length": 256,
+            "offset": 3434
+          }
         },
         {
           "body": "Exception and recovery: unreadable label leads to hold; operator supplies corrected identity; station records reconciliation before release. Reconciliation authority is fictional and requires real policy work. These are documentary exchanges, not executable SysML guards/effects. ",
           "line": 64,
           "owner": "WaterSampling::RecoverUnidentifiedSample",
           "owner_kind": "UseCaseUsage",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 285,
+            "body_offset": 3799,
+            "encoding": "utf16",
+            "length": 289,
+            "offset": 3795
+          }
         },
         {
           "body": "Lifecycle: declare pause; suspend intake; inspect and restore equipment; record inspection with return-to-service approval pending. Intake remains suspended at this demonstrated outcome. Operational release is a separate decision; no physical repair simulation or reliability claim. These are documentary exchanges, not executable SysML guards/effects. ",
           "line": 65,
           "owner": "WaterSampling::RecordStationInspection",
           "owner_kind": "UseCaseUsage",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 358,
+            "body_offset": 4195,
+            "encoding": "utf16",
+            "length": 362,
+            "offset": 4191
+          }
         },
         {
           "body": "CSE-SOURCE/2.0\nSYN-WATER-01 ",
@@ -1022,7 +1096,16 @@
           "owner": "WaterSampling::RecordReceiptObligation",
           "owner_kind": "RequirementUsage",
           "requirement": "WaterSampling::RecordReceiptObligation",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 37,
+            "body_offset": 4623,
+            "encoding": "utf16",
+            "length": 51,
+            "name_length": 9,
+            "name_offset": 4613,
+            "offset": 4609
+          }
         },
         {
           "body": "CSE-REQ/2.0\nUpon unit.intakeRequested = true, unit shall within 2 seconds satisfy unit.receiptRecorded = true. ",
@@ -1032,7 +1115,16 @@
           "owner": "WaterSampling::RecordReceiptObligation::receipt",
           "owner_kind": "ConstraintUsage",
           "requirement": "WaterSampling::RecordReceiptObligation",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 120,
+            "body_offset": 4722,
+            "encoding": "utf16",
+            "length": 128,
+            "name_length": 3,
+            "name_offset": 4718,
+            "offset": 4714
+          }
         },
         {
           "body": "CSE-SOURCE/2.0\nSYN-WATER-02 ",
@@ -1041,7 +1133,16 @@
           "owner": "WaterSampling::BoundProcessingObservation",
           "owner_kind": "RequirementUsage",
           "requirement": "WaterSampling::BoundProcessingObservation",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 37,
+            "body_offset": 4918,
+            "encoding": "utf16",
+            "length": 51,
+            "name_length": 9,
+            "name_offset": 4908,
+            "offset": 4904
+          }
         },
         {
           "body": "CSE-REQ/2.0\nWhenever unit.receiptRecorded = true, unit shall always satisfy unit.processingElapsed <= 4 second. ",
@@ -1051,7 +1152,16 @@
           "owner": "WaterSampling::BoundProcessingObservation::duration",
           "owner_kind": "ConstraintUsage",
           "requirement": "WaterSampling::BoundProcessingObservation",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 121,
+            "body_offset": 5018,
+            "encoding": "utf16",
+            "length": 129,
+            "name_length": 3,
+            "name_offset": 5014,
+            "offset": 5010
+          }
         },
         {
           "body": "CSE-SOURCE/2.0\nSYN-WATER-03 ",
@@ -1060,7 +1170,16 @@
           "owner": "WaterSampling::MatchEachReceipt",
           "owner_kind": "RequirementUsage",
           "requirement": "WaterSampling::MatchEachReceipt",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 37,
+            "body_offset": 5209,
+            "encoding": "utf16",
+            "length": 51,
+            "name_length": 9,
+            "name_offset": 5199,
+            "offset": 5195
+          }
         },
         {
           "body": "CSE-EVENT/2.0\nEach unit.containerPresented shall within 2 seconds have unit.receiptIssued with matching correlationId. ",
@@ -1070,7 +1189,16 @@
           "owner": "WaterSampling::MatchEachReceipt::correlation",
           "owner_kind": "ConstraintUsage",
           "requirement": "WaterSampling::MatchEachReceipt",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 128,
+            "body_offset": 5312,
+            "encoding": "utf16",
+            "length": 136,
+            "name_length": 3,
+            "name_offset": 5308,
+            "offset": 5304
+          }
         },
         {
           "body": "CSE-VIEWS/1.0\n{\n\"views\": [\n{\n\"id\": \"FT_STATION\",\n\"kind\": \"function_tree\",\n\"nodes\": [\n{\n\"id\": \"F0\",\n\"element\": \"WaterSampling::ManageSampleHandoff\",\n\"level\": 0,\n\"parent\": null\n},\n{\n\"id\": \"F1\",\n\"element\": \"WaterSampling::ReceiveSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F11\",\n\"element\": \"WaterSampling::IdentifyContainer\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F12\",\n\"element\": \"WaterSampling::RecordReceipt\",\n\"level\": 2,\n\"parent\": \"F1\"\n},\n{\n\"id\": \"F2\",\n\"element\": \"WaterSampling::PreserveHandoffRecord\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F21\",\n\"element\": \"WaterSampling::HoldUnidentifiedContainer\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F22\",\n\"element\": \"WaterSampling::ReconcileLabel\",\n\"level\": 2,\n\"parent\": \"F2\"\n},\n{\n\"id\": \"F3\",\n\"element\": \"WaterSampling::ReleaseSample\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F31\",\n\"element\": \"WaterSampling::MatchCourierManifest\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F32\",\n\"element\": \"WaterSampling::RecordCustodyTransfer\",\n\"level\": 2,\n\"parent\": \"F3\"\n},\n{\n\"id\": \"F4\",\n\"element\": \"WaterSampling::MaintainStation\",\n\"level\": 1,\n\"parent\": \"F0\"\n},\n{\n\"id\": \"F41\",\n\"element\": \"WaterSampling::SuspendIntake\",\n\"level\": 2,\n\"parent\": \"F4\"\n},\n{\n\"id\": \"F42\",\n\"element\": \"WaterSampling::InspectAndRestore\",\n\"level\": 2,\n\"parent\": \"F4\"\n}\n]\n},\n{\n\"id\": \"SQ_NOMINAL\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"courier\",\n\"element\": \"WaterSampling::courier\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_NOMINAL_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present labeled container and sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Return receipt with matching sample ID\"\n},\n{\n\"id\": \"SQ_NOMINAL_E3\",\n\"from\": \"courier\",\n\"to\": \"station\",\n\"message\": \"Present pickup manifest\"\n},\n{\n\"id\": \"SQ_NOMINAL_E4\",\n\"from\": \"station\",\n\"to\": \"courier\",\n\"message\": \"Return custody transfer record\"\n}\n]\n},\n{\n\"id\": \"SQ_RECOVERY\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_RECOVERY_E1\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Present container with unreadable label\"\n},\n{\n\"id\": \"SQ_RECOVERY_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Issue hold notice; container remains unreleased\"\n},\n{\n\"id\": \"SQ_RECOVERY_E3\",\n\"from\": \"operator\",\n\"to\": \"station\",\n\"message\": \"Supply corrected identification\"\n},\n{\n\"id\": \"SQ_RECOVERY_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Confirm reconciliation and receipt\"\n}\n]\n},\n{\n\"id\": \"SQ_MAINTENANCE\",\n\"kind\": \"sequence\",\n\"participants\": [\n{\n\"id\": \"custodian\",\n\"element\": \"WaterSampling::custodian\"\n},\n{\n\"id\": \"station\",\n\"element\": \"WaterSampling::station\"\n},\n{\n\"id\": \"operator\",\n\"element\": \"WaterSampling::operator\"\n}\n],\n\"exchanges\": [\n{\n\"id\": \"SQ_MAINTENANCE_E1\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Request maintenance window\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E2\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Announce intake suspended\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E3\",\n\"from\": \"custodian\",\n\"to\": \"station\",\n\"message\": \"Record inspection and restoration\"\n},\n{\n\"id\": \"SQ_MAINTENANCE_E4\",\n\"from\": \"station\",\n\"to\": \"operator\",\n\"message\": \"Inspection recorded; return-to-service approval pending\"\n}\n]\n}\n]\n}\n",
@@ -1078,7 +1206,16 @@
           "name": "cseViews",
           "owner": "WaterSampling",
           "owner_kind": "Package",
-          "source": "examples/engineering-gallery/water-sampling/station.sysml"
+          "source": "examples/engineering-gallery/water-sampling/station.sysml",
+          "source_span": {
+            "body_length": 5258,
+            "body_offset": 5462,
+            "encoding": "utf16",
+            "length": 5271,
+            "name_length": 8,
+            "name_offset": 5453,
+            "offset": 5449
+          }
         }
       ],
       "event_attributes": [
@@ -3305,7 +3442,7 @@
     "examples/engineering-gallery/water-sampling/generated/native-late.json": "e7030ad08f7d3b8815758d7b770864548b6f2ddb5a92f51d9a5b058cc961b74d",
     "examples/engineering-gallery/water-sampling/generated/native-over-limit.json": "39bc0a19c92397794e86ec2e4c8460e46c8a60b59bac1a3acc846bd6e6132117",
     "examples/engineering-gallery/water-sampling/generated/native-pass.json": "118c48d0c07d7fbdbad84cb2152484a79ec9bbc8386681241352a9e8c1eb2d6a",
-    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "275b62f293597b097228b0c402b66cbec6292cc2b4f36dfebd857093b07952d4",
+    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "9947706a1af7f9f7fb6661ad786d5b1e7bfd369fc941201a4c155fcf05d06bcd",
     "examples/engineering-gallery/water-sampling/scope.json": "818f7f746ca40244b318cb09f6690f7d5ca07c6973ce963c58806b329eb1a956",
     "examples/engineering-gallery/water-sampling/semantic-ledger.json": "5e36dcb1e842dbe9fe1dbbd9cb22a4904175eb43008ef6586b9a8e2885b894b5",
     "examples/engineering-gallery/water-sampling/station.sysml": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",
