@@ -88,6 +88,16 @@ public final class SysmlBridge {
                 result.put("body_length", bodies.get(0).getLength());
             }
         }
+        if (element instanceof Usage usage && usage.getMultiplicity() != null) {
+            var rangeNode = NodeModelUtils.getNode(usage.getMultiplicity());
+            if (rangeNode != null && node != null && rangeNode.getLength() > 0
+                    && usage.getMultiplicity().eResource() == usage.eResource()
+                    && rangeNode.getOffset() >= node.getOffset()
+                    && rangeNode.getOffset() + rangeNode.getLength() <= node.getOffset() + node.getLength()) {
+                result.put("multiplicity_offset", rangeNode.getOffset());
+                result.put("multiplicity_length", rangeNode.getLength());
+            }
+        }
         return result;
     }
 

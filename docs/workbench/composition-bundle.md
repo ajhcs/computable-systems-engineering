@@ -29,6 +29,8 @@ Each linked record is `{ "kind": KIND, "text": EXACT_JSON_TEXT }`. Current kinds
 | Kind | Authored facts and rename behavior |
 |---|---|
 | `display_labels` | Existing version-1 label records; only `labels[].element` changes. Aliases and titles retain exact wording. |
+| `composition_layout` | Existing physical layout geometry; stable view/node/edge IDs, no native-name rewriting. |
+| `composition_appearance` | Existing saved-kit v2 appearance; exact master/swatch IDs and local key, no native-name rewriting. |
 | `retained_configuration` | Existing configuration-1.0/1.1 scope; exact bytes stay fixed. Affected native identity fields become explicit reconciliation findings. |
 
 Native `cseWorkflow` documentation uses the existing CSE-WORKFLOW/1.0 or /1.1
@@ -76,3 +78,6 @@ the existing-support union or qualify a complete physical-composition editor.
 The persistence layer must later commit these model/companion changes together,
 with revision conflict checks, idempotent request receipts and history. That
 obligation remains open in the physical-composition parity matrix.
+
+[Saved physical diagrams](composition-diagrams.md) validate these companions
+against actual native ownership and the source-bound selected view.

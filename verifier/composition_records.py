@@ -110,6 +110,10 @@ def view_slots(record):
 
 
 def slots(record, kind):
+    if kind in ('composition_layout', 'composition_appearance'):
+        from .composition_view import validate_companion
+        validate_companion(record, kind)
+        return set()  # Authored node/view IDs are presentation identities.
     if kind == 'workflow':
         workflow_schema(record)
         return {('elements', key, 'native_name') for key in record['elements']}

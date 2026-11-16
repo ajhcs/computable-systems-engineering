@@ -56,6 +56,12 @@ restart and portable Git history are checked; remote persistence, initialization
 recovery and application acceptance remain open. The selected bare Git directory
 is server-side storage, not a filename supplied inside a model bundle.
 
+The [saved physical diagram path](composition-diagrams.md) now renders native
+definition hierarchies and usage composition with literal bounds, exact
+unresolved-bound syntax, original SVG frames and saved DejaVu typography.
+The reader selects and inspects actual element bindings. Layout transactions
+preserve SysML and identities; connected graphical editing remains open.
+
 For the explicit bundle transport, see [the bundle contract](composition-bundle.md).
 Bundle file names label supplied texts; they are never instructions to read or
 write another disk path. The source mapping retains each file's original text.

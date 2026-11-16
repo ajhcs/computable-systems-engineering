@@ -10,6 +10,12 @@ For the saved engineering SVG and iconography kit, follow the
 Reuse exact masters, fonts, swatches and notation; record source hashes and
 content-fit adaptations.
 
+For the development physical-composition path over a saved local Git project,
+use the [saved native diagram contract](../../docs/workbench/composition-diagrams.md).
+It renders definition hierarchies or declared usage composition with this kit
+and supports source-bound inspection. Connected editing and host parity remain
+open; do not advertise it as a completed workbench capability.
+
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
 before drafting and when reviewing the actual output.
 

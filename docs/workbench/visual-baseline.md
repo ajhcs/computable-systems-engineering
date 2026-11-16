@@ -36,3 +36,11 @@ the integration baseline. Their richer textures, connector labels, document
 tables and glyphs must be reused when the active interaction calls for them.
 This first plain-frame specimen does not qualify that entire kit or close
 physical-composition visual parity.
+
+The saved-native physical renderer now reuses the original font/template helpers
+without changing their bytes; [source pins](composition-kit-source.json) retain
+that provenance. The preserved spacecraft source, layout, labels and appearance
+produce a pixel-identical graph crop in the assembled renderer. This is one
+matched source/graph comparison, not full document or capability qualification.
+The [diagram contract](composition-diagrams.md) separates that evidence from
+new literal-bound display, current reader behavior and remaining parity work.

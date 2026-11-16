@@ -1,6 +1,6 @@
 """Local Git transaction reference for the physical-composition capability.
 
-Only inspect, rename and restoration of this capability's snapshots are admitted.
+Inspect, rename, saved layout and restoration of this capability's snapshots are admitted.
 The bare repository is a trusted server-side location, never a client filename.
 This is not the Cloudflare coordinator or an authenticated application adapter.
 """
@@ -137,7 +137,7 @@ class CompositionProject:
                              'bundle_sha256', 'parent_commit', 'restored_from_revision', 'storage'}
                 or receipt.get('revision') != state['revision'] or receipt.get('project_id') != state['project_id']
                 or receipt.get('storage') != 'local_git_fsync'
-                or receipt.get('operation') not in ('import', 'rename', 'restore')
+                or receipt.get('operation') not in ('import', 'rename', 'restore', 'set_layout')
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('request_sha256')))
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('bundle_sha256')))
                 or receipt.get('parent_commit') is not None and not OID.fullmatch(str(receipt['parent_commit']))):
@@ -166,6 +166,7 @@ class CompositionProject:
                 target[name] = text if group == 'models' else {'kind': item['kind'], 'text': text}
         document = CompositionDocument(files, project_id=state['project_id'],
                                        registry=state['registry'], linked_records=linked)
+        self._presentations(document)
         if document.revision != state['receipt'].get('bundle_sha256'):
             raise EditError('storage_integrity', 'Project bundle digest disagrees')
         return state, document
@@ -267,6 +268,14 @@ class CompositionProject:
         return {**receipt, 'commit': commit}
 
     @staticmethod
+    def _presentations(document):
+        from .composition_view import validate_saved_presentations
+        try:
+            validate_saved_presentations(document)
+        except ValueError as exc:
+            raise EditError('presentation_conflict', str(exc)) from exc
+
+    @staticmethod
     def _request_id(value):
         try:
             if not isinstance(value, str) or str(UUID(value)) != value:
@@ -289,6 +298,7 @@ class CompositionProject:
                 return project, receipt
             raise EditError('project_exists', 'Selected project location already exists')
         document = CompositionDocument(models, project_id=project_id, linked_records=linked_records)
+        project._presentations(document)
         for names in (document.files, document.linked_records):
             for name in names:
                 if any('/'.join(name.split('/')[:i]) in names for i in range(1, len(name.split('/')))):
@@ -307,7 +317,7 @@ class CompositionProject:
         if not isinstance(request, dict):
             raise EditError('input', 'Supply a typed composition operation')
         common = {'operation', 'request_id', 'expected_revision'}
-        fields = {'rename': {'element_id', 'new_name'}, 'restore': {'target_revision'}}
+        fields = {'rename': {'element_id', 'new_name'}, 'restore': {'target_revision'}, 'set_layout': {'layout'}}
         operation = request.get('operation')
         if not isinstance(operation, str) or operation not in fields or set(request) != common | fields[operation]:
             raise EditError('input', 'Unknown composition operation or fields')
@@ -330,12 +340,16 @@ class CompositionProject:
         if operation == 'rename':
             document = document.rename(request['element_id'], request['new_name'],
                                        expected_source_sha256=document.revision)
+        elif operation == 'set_layout':
+            from .composition_view import with_layout
+            document = with_layout(document, request['layout'])
         else:
             restored = request['target_revision']
             if type(restored) is not int or not 1 <= restored <= state['revision']:
                 raise EditError('input', 'Restore must select a published revision of this project')
             target = next(row for row in history if row['revision'] == restored)
             _, document = self._load(target['commit'])
+        self._presentations(document)
         try:
             return self._commit(document, request, state['revision'] + 1, previous, restored)
         except EditError as exc:

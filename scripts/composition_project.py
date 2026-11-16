@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Persist physical-composition inspect/rename snapshots in a local bare Git project.
+"""Persist physical composition and render saved native views from a local Git project.
 
 This local reference has no account authorization, network service or host UI.
 Use an explicit private project directory on the selected workspace filesystem.
@@ -20,14 +20,21 @@ from verifier.foundation import read_regular
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=('import', 'inspect', 'apply', 'history'))
+    parser.add_argument('command', choices=('import', 'inspect', 'apply', 'history', 'render', 'check-render'))
     parser.add_argument('--project', required=True, help='trusted server-side bare Git directory')
     parser.add_argument('--bundle', help='explicit cse-composition-bundle-1 input')
     parser.add_argument('--project-id')
     parser.add_argument('--request-id')
     parser.add_argument('--request', help='exact typed operation JSON file')
+    parser.add_argument('--view-id', help='native CSE-VIEWS/1.1 physical view')
+    parser.add_argument('--output', help='explicit immutable artifact directory')
     args = parser.parse_args()
     try:
+        if args.command in ('render', 'check-render'):
+            if not args.view_id or not args.output or any((args.bundle, args.project_id, args.request_id, args.request)):
+                raise EditError('input', 'Rendering requires a view ID and output directory')
+        elif args.view_id or args.output:
+            raise EditError('input', 'View/output fields apply only to rendering')
         project = CompositionProject(args.project)
         if args.command == 'import':
             if not all((args.bundle, args.project_id, args.request_id)) or args.request:
@@ -51,7 +58,11 @@ def main():
             else:
                 if args.request:
                     raise EditError('input', 'Request JSON applies only to apply')
-                if args.command == 'history':
+                if args.command in ('render', 'check-render'):
+                    from verifier.composition_view import write_artifacts, check_artifacts
+                    operation = write_artifacts if args.command == 'render' else check_artifacts
+                    report = operation(project.snapshot(), args.view_id, args.output)
+                elif args.command == 'history':
                     report = {'history': project.history()}
                 else:
                     snapshot = project.snapshot()

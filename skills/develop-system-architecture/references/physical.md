@@ -35,6 +35,11 @@ or the diagram skill. Reconciled ordinary connections establish scoped undirecte
 adjacency. Direction, payload compatibility, delivery, installation and physical
 fit require their own representation and evidence.
 
+The development [saved physical diagram path](../../../docs/workbench/composition-diagrams.md)
+uses the same native declarations and separately retained scopes in a local Git
+project. Its read-only reader and layout transactions do not yet establish a
+connected Codex/ChatGPT editor or complete physical-capability parity.
+
 Method basis: Buede and Miller, *The Engineering Design of Systems: Models and
 Methods*, fourth edition, Chapter 8, pp. 210–211. The native selection and
 reconciliation rules are CSE implementation choices, not a complete physical

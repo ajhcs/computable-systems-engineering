@@ -84,7 +84,7 @@ an old request's expected revision current again.
 
 - Trusted local filesystem and Unix authority only; no account/project
   authorization, Cloudflare coordinator, R2 publication or application transport.
-- Only inspect, native rename and snapshot restoration; create/delete/reparent,
+- Inspect, native rename, saved layout and snapshot restoration; create/delete/reparent,
   property and presentation changes still need their capability operations.
 - Existing bundle limits apply, plus 2 MB of snapshot metadata and 10,000
   revisions. History currently scans the bounded chain. Scaling and migration
@@ -104,3 +104,7 @@ atomic linked updates, retained-scope findings, pre-publication failure,
 lost response, different/identical request races, stale edits, monotonic restore,
 portable Git history and corrupt-source rejection. This reference must still be
 assembled with the diagram, adapters and remote persistence before any row closes.
+
+The [physical diagram contract](composition-diagrams.md) adds `set_layout` to
+this same transaction path. It also defines saved-artifact render/check commands
+and the remaining connected-interaction gates.
