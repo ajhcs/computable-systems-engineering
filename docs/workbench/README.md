@@ -1,0 +1,69 @@
+# Capability completion ledger
+
+The workbench is in development. Physical composition and selected configuration
+is the only admitted capability. No capability is qualified as complete.
+
+`parity.json` is the operation-level delivery ledger. Its layers cover source,
+meaning, visuals, direct interaction, each agent/application interface,
+persistence, validation and exports. `entrypoints.json` preserves command
+declarations found across main, the supplied dirty checkout, the historical
+diagram work and the hosted branch. Semantic reconciliation of that union is
+still in progress; declarations are not a completeness or execution proof.
+
+Run `python3 scripts/workbench_parity.py` for ledger consistency and evidence
+freshness. Run it with `--require-complete` for the release gate. A consistent
+incomplete ledger passes inspection and fails the release gate. This checker
+does not authenticate results or engineer acceptance.
+
+Only one capability can be active. A later capability cannot become active or
+close while an earlier one remains open. Shared changes reopen affected evidence
+when its bound source hashes no longer match. Required host or visual evidence
+cannot be replaced by a backend test.
+
+## Physical composition increment
+
+The admitted scope is the union of existing composition and configuration
+support, including literal multiplicity and supported inherited/redefined
+selection. The older five-family renderer's narrower exclusions are interface
+gaps to close, not permission to remove existing engineering support.
+
+The first implementation exposes Pilot-resolved declaration/name/reference
+ranges, explicitly in UTF-16 coordinates. `scripts/composition_edit.py` inspects
+a single-source candidate and prepares a rename using those ranges. An
+independent reparse checks all extracted native facts and resolved reference
+correspondence. Engineering IDs and project registry IDs survive the operation.
+
+This candidate boundary does not save or commit a project. Multi-file edits,
+linked documentary/analysis adapters, create/reparent/delete/property editing,
+the graphical editor, host adapters, durable history, cloud storage and actual
+application acceptance remain open matrix cells. Documentary input is refused
+for rename until its binding adapter is implemented; that refusal is an interim
+implementation gap, not the target support boundary.
+
+Project registry entries map durable UUIDs to exact native identities. Import
+assigns IDs under a project UUID; subsequent commands must preserve the saved
+registry. An externally changed source that disagrees with the registry requires
+explicit reconciliation. Source hashes here identify candidates; they are not
+the monotonic project revision needed for durable transactions and undo.
+
+## Preservation
+
+`scripts/workbench_inventory.py` writes an exclusive-create source receipt to a
+selected ignored directory. It records every tracked and nonignored untracked
+file's hash or symlink text, Git HEAD, dirty status and command declarations.
+It follows no symlink into private material and stores no raw sources.
+
+Keep machine-specific receipts in `work/workbench/`. Preserve all original
+worktrees. Reuse historical diagram code and the revision G kit through a
+reviewed integration; fresh assembled verification remains required.
+
+## Next acceptance obligations
+
+1. Finish command/profile mapping, including dynamic launchers and reference tools.
+2. Add the trace-linked composition interaction walkthrough and review its
+   ownership, selection and recovery behavior before UI implementation.
+3. Extend the current source-edit path to atomic multi-file and linked-record edits.
+4. Complete the remaining physical-composition commands, diagram interactions,
+   CLI/MCP/site-tool/ChatGPT access and source-preserving persistence together.
+5. Exercise save/restart/reopen in both actual applications and close the matrix
+   only after every applicable cell has current evidence.

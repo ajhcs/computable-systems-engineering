@@ -414,8 +414,17 @@
         "is_variation": false,
         "line": 19,
         "name": "IntakePanel",
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::IntakePanel",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 21,
+          "name_length": 11,
+          "name_offset": 1207,
+          "offset": 1198
+        },
         "supertypes": []
       },
       {
@@ -423,8 +432,17 @@
         "is_variation": false,
         "line": 20,
         "name": "ReceiptRegister",
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::ReceiptRegister",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 25,
+          "name_length": 15,
+          "name_offset": 1233,
+          "offset": 1224
+        },
         "supertypes": []
       },
       {
@@ -432,8 +450,17 @@
         "is_variation": false,
         "line": 21,
         "name": "HoldingRack",
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::HoldingRack",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 21,
+          "name_length": 11,
+          "name_offset": 1263,
+          "offset": 1254
+        },
         "supertypes": []
       },
       {
@@ -441,8 +468,17 @@
         "is_variation": false,
         "line": 22,
         "name": "Station",
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::Station",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 959,
+          "name_length": 7,
+          "name_offset": 1289,
+          "offset": 1280
+        },
         "supertypes": []
       },
       {
@@ -450,8 +486,17 @@
         "is_variation": false,
         "line": 40,
         "name": "Operator",
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::Operator",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 18,
+          "name_length": 8,
+          "name_offset": 2253,
+          "offset": 2244
+        },
         "supertypes": []
       },
       {
@@ -459,8 +504,17 @@
         "is_variation": false,
         "line": 41,
         "name": "Courier",
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::Courier",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 17,
+          "name_length": 7,
+          "name_offset": 2276,
+          "offset": 2267
+        },
         "supertypes": []
       },
       {
@@ -468,8 +522,17 @@
         "is_variation": false,
         "line": 42,
         "name": "Custodian",
+        "owner": "WaterSampling",
+        "owner_kind": "Package",
         "qualified_name": "WaterSampling::Custodian",
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 19,
+          "name_length": 9,
+          "name_offset": 2298,
+          "offset": 2289
+        },
         "supertypes": []
       }
     ],
@@ -494,6 +557,13 @@
         "qualified_name": "WaterSampling::Station::intakePanel",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 31,
+          "name_length": 11,
+          "name_offset": 1703,
+          "offset": 1698
+        },
         "subsets": [],
         "type": "WaterSampling::IntakePanel",
         "types": [
@@ -520,6 +590,13 @@
         "qualified_name": "WaterSampling::Station::receiptRegister",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 39,
+          "name_length": 15,
+          "name_offset": 1743,
+          "offset": 1738
+        },
         "subsets": [],
         "type": "WaterSampling::ReceiptRegister",
         "types": [
@@ -546,6 +623,13 @@
         "qualified_name": "WaterSampling::Station::holdingRack",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 31,
+          "name_length": 11,
+          "name_offset": 1791,
+          "offset": 1786
+        },
         "subsets": [],
         "type": "WaterSampling::HoldingRack",
         "types": [
@@ -571,6 +655,13 @@
         "qualified_name": "WaterSampling::operator",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 25,
+          "name_length": 8,
+          "name_offset": 2318,
+          "offset": 2313
+        },
         "subsets": [],
         "type": "WaterSampling::Operator",
         "types": [
@@ -596,6 +687,13 @@
         "qualified_name": "WaterSampling::station",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 23,
+          "name_length": 7,
+          "name_offset": 2348,
+          "offset": 2343
+        },
         "subsets": [],
         "type": "WaterSampling::Station",
         "types": [
@@ -621,6 +719,13 @@
         "qualified_name": "WaterSampling::courier",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 23,
+          "name_length": 7,
+          "name_offset": 2376,
+          "offset": 2371
+        },
         "subsets": [],
         "type": "WaterSampling::Courier",
         "types": [
@@ -646,6 +751,13 @@
         "qualified_name": "WaterSampling::custodian",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 27,
+          "name_length": 9,
+          "name_offset": 2404,
+          "offset": 2399
+        },
         "subsets": [],
         "type": "WaterSampling::Custodian",
         "types": [
@@ -671,6 +783,13 @@
         "qualified_name": "WaterSampling::TransferLabeledSample::user",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 22,
+          "name_length": 4,
+          "name_offset": 3417,
+          "offset": 3411
+        },
         "subsets": [],
         "types": []
       },
@@ -693,6 +812,13 @@
         "qualified_name": "WaterSampling::RecoverUnidentifiedSample::user",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 22,
+          "name_length": 4,
+          "name_offset": 3778,
+          "offset": 3772
+        },
         "subsets": [],
         "types": []
       },
@@ -715,6 +841,13 @@
         "qualified_name": "WaterSampling::RecordStationInspection::user",
         "redefines": [],
         "source": "examples/engineering-gallery/water-sampling/station.sysml",
+        "source_span": {
+          "encoding": "utf16",
+          "length": 23,
+          "name_length": 4,
+          "name_offset": 4173,
+          "offset": 4167
+        },
         "subsets": [],
         "types": []
       }

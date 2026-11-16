@@ -12,3 +12,5 @@
 # Preserve the reviewed font notices and their artifact bindings byte for byte.
 /examples/ecosystem-diagram-reference/fonts/LICENSE.txt -text
 /examples/industrial-project-reference/wireless-robot-controller/FONT-OFL-LICENSE.txt -text
+# Retain the upstream font notice byte-for-byte, including its original spaces.
+assets/engineering-library/fonts/DejaVu-COPYRIGHT.txt -text -whitespace

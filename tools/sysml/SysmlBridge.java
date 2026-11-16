@@ -62,11 +62,64 @@ public final class SysmlBridge {
         return node == null ? -1 : node.getStartLine();
     }
 
+    // Offsets use the Java/Xtext UTF-16 coordinate system, not UTF-8 bytes or
+    // Python code-point indices. Consumers must convert explicitly.
+    private static Map<String, Object> sourceFacts(Element element) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("encoding", "utf16");
+        var node = NodeModelUtils.getNode(element);
+        if (node != null) {
+            result.put("offset", node.getOffset());
+            result.put("length", node.getLength());
+        }
+        var feature = element.eClass().getEStructuralFeature("declaredName");
+        if (feature != null) {
+            var names = NodeModelUtils.findNodesForFeature(element, feature);
+            if (names.size() == 1) {
+                result.put("name_offset", names.get(0).getOffset());
+                result.put("name_length", names.get(0).getLength());
+            }
+        }
+        return result;
+    }
+
     private static String typedBy(Feature feature) {
         if (feature.getOwnedTyping().size() != 1) return null;
         FeatureTyping typing = feature.getOwnedTyping().get(0);
         Type type = typing.getType();
         return type == null ? null : type.getQualifiedName();
+    }
+
+    private static List<Map<String, Object>> referenceSpans(List<EObject> all) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        var seen = new java.util.HashSet<String>();
+        for (EObject object : all) {
+            for (var reference : object.eClass().getEAllReferences()) {
+                if (reference.isContainment() || reference.isContainer()) continue;
+                var nodes = NodeModelUtils.findNodesForFeature(object, reference);
+                if (nodes.isEmpty()) continue;
+                Object value = object.eGet(reference, true);
+                List<?> targets = value instanceof List<?> list ? list : java.util.Collections.singletonList(value);
+                for (int i = 0; i < nodes.size(); i++) {
+                    var node = nodes.get(i);
+                    String key = node.getOffset() + ":" + node.getLength();
+                    if (!seen.add(key)) continue;
+                    Map<String, Object> row = new LinkedHashMap<>();
+                    row.put("encoding", "utf16");
+                    row.put("offset", node.getOffset());
+                    row.put("length", node.getLength());
+                    row.put("text", node.getText());
+                    row.put("feature", reference.getName());
+                    row.put("resolved", false);
+                    if (targets.size() == nodes.size() && targets.get(i) instanceof Element target && !target.eIsProxy()) {
+                        row.put("target", target.getQualifiedName());
+                        row.put("resolved", target.getQualifiedName() != null);
+                    }
+                    result.add(row);
+                }
+            }
+        }
+        return result;
     }
 
     private static String referenceTarget(Feature reference) {
@@ -276,6 +329,11 @@ public final class SysmlBridge {
                 }
             } else if (object instanceof PartDefinition partDefinition) {
                 Map<String, Object> item = new LinkedHashMap<>();
+                item.put("source_span", sourceFacts(partDefinition));
+                item.put("id", partDefinition.getDeclaredShortName());
+                var owner = partDefinition.getOwningNamespace();
+                item.put("owner", owner == null ? null : owner.getQualifiedName());
+                item.put("owner_kind", owner == null ? null : owner.eClass().getName());
                 item.put("name", partDefinition.getName());
                 item.put("qualified_name", partDefinition.getQualifiedName());
                 item.put("has_specialization", !partDefinition.getOwnedSpecialization().isEmpty());
@@ -287,6 +345,8 @@ public final class SysmlBridge {
                 partDefinitions.add(item);
             } else if (object instanceof PartUsage part && !(object instanceof Connector)) {
                 Map<String, Object> item = new LinkedHashMap<>();
+                item.put("source_span", sourceFacts(part));
+                item.put("id", part.getDeclaredShortName());
                 item.put("name", part.getName());
                 item.put("qualified_name", part.getQualifiedName());
                 item.put("type", typedBy(part));
@@ -414,6 +474,7 @@ public final class SysmlBridge {
         result.put("attributes", attributes);
         result.put("events", events);
         result.put("event_attributes", eventAttributes);
+        result.put("reference_spans", referenceSpans(all));
         result.put("parts", parts);
         result.put("part_definitions", partDefinitions);
         result.put("concerns", concerns);
