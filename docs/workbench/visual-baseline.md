@@ -20,6 +20,11 @@ Illustrations do not create model elements. Formal glyph meaning, native owner,
 relationship endpoints, labels, counts and units remain independently checked.
 No illustrative icon is added where the current question needs only a frame.
 
+The [full saved design-kit workflow](../../skills/generate-engineering-diagrams/references/design-kit.md)
+is preserved verbatim from revision G and is required by the diagram skill.
+It covers the palette page references, original artwork, boxed labels, textures,
+fonts, exact swatches, document tables and rendered comparison procedure.
+
 References: [component library](../component-library.md),
 [saved typography](../../assets/engineering-library/tokens/typography-spec.json),
 [exact swatches](../../assets/engineering-library/tokens/color-swatches.json),

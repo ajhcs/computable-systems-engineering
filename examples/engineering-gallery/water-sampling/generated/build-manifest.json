@@ -18,6 +18,7 @@
     "verifier/calculations.py": "ae8537e74cfa28cb42d4e27f04c56705fc77aee9204ad26973249ee08323be4a",
     "verifier/components.py": "8f42df519e606396d47c8fe809d50ea5fd486aa9fa43a4ca83e6bf55aefe623f",
     "verifier/composition_edit.py": "397e47afd55c932fd1fc425c3a287faef1c2469795b49ae2b9e85f74808d98a8",
+    "verifier/composition_project.py": "90da7a4b1f95c4e5dc2adb095c8517c1c98d1f453d52a1473314564585355ac7",
     "verifier/composition_records.py": "f0d9d0cb5161678a1fab0df563022b310dcd86b0fe8599c5e93d07634b772591",
     "verifier/concept_review.py": "bfd3267a50d0651d928af442b95264497b174b8e4e8ccfaf84a6e089a2b86c51",
     "verifier/configuration.py": "979e39198002f58aa3c0b3b0d392a6181050f38787c5855c36c0e1c880098a04",

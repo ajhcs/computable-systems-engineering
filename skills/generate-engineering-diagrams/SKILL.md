@@ -5,6 +5,11 @@ description: Create or review source-linked engineering diagrams; find, compare 
 
 Use this skill to produce or critique a diagram from supplied or existing accepted engineering meaning. New system-model design, requirements, assumptions, thresholds, allocations and engineering acceptance remain with the engineer. Do not invent a new system merely to fill a diagram family.
 
+For the saved engineering SVG and iconography kit, follow the
+[engineering design-kit workflow](references/design-kit.md) before layout.
+Reuse exact masters, fonts, swatches and notation; record source hashes and
+content-fit adaptations.
+
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
 before drafting and when reviewing the actual output.
 

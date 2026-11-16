@@ -35,7 +35,7 @@ correspondence. Engineering IDs and project registry IDs survive the operation.
 
 This candidate boundary does not save or commit a project. Remaining linked
 analytical adapters, create/reparent/delete/property editing,
-the graphical editor, host adapters, durable history, cloud storage and actual
+the graphical editor, host adapters, remote durable history, cloud storage and actual
 application acceptance remain open matrix cells. Supported documentary binding
 updates are part of the same immutable candidate: native CSE workflow/view
 records and linked presentation labels. Plain prose, labels, logical IDs,
@@ -48,6 +48,13 @@ lists affected scope paths for reconciliation and reruns the existing native
 configuration checker. A stale native binding cannot keep an earlier pass,
 including after reconstructing the candidate with its registry. This does not
 accept new scope bytes or infer selection from a rename.
+
+A [local Git transaction reference](composition-persistence.md) now persists
+this candidate path, its registry and supported companions. It provides atomic
+head publication, monotonic restoration and retry receipts. Local process
+restart and portable Git history are checked; remote persistence, initialization
+recovery and application acceptance remain open. The selected bare Git directory
+is server-side storage, not a filename supplied inside a model bundle.
 
 For the explicit bundle transport, see [the bundle contract](composition-bundle.md).
 Bundle file names label supplied texts; they are never instructions to read or
@@ -76,7 +83,8 @@ reviewed integration; fresh assembled verification remains required.
 2. Continue the trace-linked composition interaction walkthrough from the
    initial Astra-reviewed proposal and user feedback on the existing design kit.
 3. Complete the remaining analytical binding adapters and durable transaction
-   boundary around the multi-file candidate path.
+   boundary around the multi-file candidate path, extending the local Git reference
+   to the selected remote architecture and initialization recovery.
 4. Complete the remaining physical-composition commands, diagram interactions,
    CLI/MCP/site-tool/ChatGPT access and source-preserving persistence together.
 5. Exercise save/restart/reopen in both actual applications and close the matrix

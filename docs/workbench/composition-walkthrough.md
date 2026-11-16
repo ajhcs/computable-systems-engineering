@@ -7,9 +7,9 @@ not a connected editor or application-acceptance receipt.
 | State | Originating purpose | Data and authority | Command and evidence |
 |---|---|---|---|
 | PC-INSPECT | Inspect the selected subsystem without leaving conversation | Native `Composition::Base::sensor`, short ID SENSOR and separate registry UUID; exact owner/type/multiplicity | Existing parser facts; workbench selection transport remains open |
-| PC-RENAME | Change one selected element through inspector or agent | Name and resolved references in SysML; registry preserves engineering identity | Source candidate implemented in `composition_edit.py`; durable transaction and host equivalence remain open |
-| PC-CONFLICT | Preserve an intervening engineer edit | Expected project revision, exact pending command and current head | Proposed revision-checked command; no overwriting; transaction implementation and race tests remain open |
-| PC-REOPEN | Continue the same project in ChatGPT | Exact SysML, registry, companions and Git history | Proposed durable save/restart/reopen path; actual Codex/ChatGPT tests remain not_run |
+| PC-RENAME | Change one selected element through inspector or agent | Name and resolved references in SysML; registry preserves engineering identity | Source candidate and local Git transaction reference exist; connected graphical/host equivalence remains open |
+| PC-CONFLICT | Preserve an intervening engineer edit | Expected project revision, exact pending command and current head | Local Git publication rejects stale revisions and is race-tested; connected UI/host conflict recovery remains open |
+| PC-REOPEN | Continue the same project in ChatGPT | Exact SysML, registry, companions and Git history | Local restart and portable Git restoration are tested; actual Codex/ChatGPT tests remain not_run |
 | PC-OPTIONAL | Inspect optional multiplicity without claiming installed presence | Native 0..1 bounds and separately retained selected configuration | Existing configuration profile returns unknown; graphical/result integration remains open |
 
 Declaration ownership and inherited selected membership are different facts.
@@ -17,10 +17,12 @@ The sketch labels each independently. Type membership is shown without claiming 
 The stale-request and reopen examples are alternative paths from the rename
 candidate, not sequential states of the same edit history.
 
-The rename adapter currently handles a single native source without documentary
-records. Those restrictions are temporary missing cells. The target includes
-atomic multi-file and linked analytical/documentary bindings. A synthetic
-single-file demonstration cannot close that requirement.
+The rename adapter now prepares multi-file candidates with typed workflow/view
+and display-label binding updates. Retained configuration bytes remain fixed,
+with explicit reconciliation and fresh configuration findings. Remote atomic
+publication, remaining analytical adapters and host equivalence remain open; see the
+[bundle contract](composition-bundle.md). The walkthrough remains a synthetic
+example and cannot close those requirements.
 
 ## Inspected precedent
 
@@ -68,13 +70,17 @@ mixed declaration/usage ownership projection remains an explicit proposal.
 The implemented candidate call is
 `CompositionDocument.rename(element_id, new_name, expected_source_sha256=...)`.
 `element_id` is the stable project registry UUID, not the SysML short ID SENSOR.
-Durable command IDs and monotonic project revisions belong to the proposed
-transaction layer. A source hash does not supply that revision or history.
+The [local transaction reference](composition-persistence.md) now implements
+request IDs, monotonic project revisions and Git receipts. The sketch is not
+connected to it yet; remote publication and both host adapters remain open.
+A source hash does not supply that project revision or history.
 
 Renaming a shared role affects its inherited and redefined consumers. Exact
 `native_name` fields in a retained configuration scope require explicit migration
 or a stale/unresolved finding; preserving the registry alone does not migrate
-that scope. This adapter and impact preview are required before the row closes.
+that scope. Typed workflow/view and display-label adapters now exist at the candidate
+boundary. The retained scope stays unchanged and is checked again. Remote
+commit and an interactive impact preview remain required before the row closes.
 
 Creation, reparenting, deletion, general literal-multiplicity editing and richer
 inherited/redefined selection are unsketched, open interaction obligations.

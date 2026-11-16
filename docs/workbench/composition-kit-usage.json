@@ -26,5 +26,7 @@
   ],
   "model": "examples/workbench/composition/model.sysml",
   "model_sha256": "428cb72b0a54959749dc3b65146976d82ba4c5afcdd323c01a5ec7ea0c1fe6c1",
-  "scope": "Proposed mixed declaration/usage ownership projection; not a complete formal diagram editor"
+  "scope": "Proposed mixed declaration/usage ownership projection; not a complete formal diagram editor",
+  "design_kit_workflow": "skills/generate-engineering-diagrams/references/design-kit.md",
+  "design_kit_workflow_sha256": "c1ad7696f5c3c969c40723b55f6a8d036261851f0c4e48d0a7f3b1cb60e7b3ea"
 }
