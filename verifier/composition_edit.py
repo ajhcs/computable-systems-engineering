@@ -198,6 +198,82 @@ class CompositionDocument:
                 result[name] = result[name][:a] + replacement + result[name][b:]
         return result
 
+    def set_multiplicity(self, element_id, lower, upper, *, expected_source_sha256):
+        """Author finite bounds on one native usage, retaining all source trivia."""
+        if expected_source_sha256 != self.revision:
+            raise EditError('stale_revision', 'Source changed before candidate preparation')
+        if (type(lower) is not int or type(upper) is not int
+                or not 0 <= lower <= upper <= 2_147_483_647):
+            raise EditError('multiplicity', 'Supply integer bounds 0 <= lower <= upper <= 2147483647')
+        if not isinstance(element_id, str) or element_id not in self.registry:
+            raise EditError('identity', 'Unknown engineering element')
+        name = self.registry[element_id]
+        item = elements(self.parsed)[name]
+        if item['kind'] != 'parts':
+            raise EditError('element_kind', 'Multiplicity belongs to a part usage, not its definition')
+        span = item['source_span']
+        declaration = bounds(self.source, span)
+        edited_range = None
+        changes = []
+        if 'multiplicity_offset' in span:
+            edited_range = bounds(self.source, span, 'multiplicity_')
+            a, b = edited_range
+            if not declaration[0] <= a < b <= declaration[1]:
+                raise EditError('source_span', 'Multiplicity is not local to the selected declaration')
+            lo_tokens, hi_tokens = span.get('multiplicity_lower_tokens'), span.get('multiplicity_upper_tokens')
+            if not isinstance(lo_tokens, list) or not isinstance(hi_tokens, list) or not hi_tokens:
+                raise EditError('source_span', 'Native bound token coordinates unavailable')
+            for tokens, value in ((lo_tokens, str(lower)),
+                                  (hi_tokens, str(upper) if lo_tokens or lower == upper else f'{lower}..{upper}')):
+                for index, token in enumerate(tokens):
+                    start, end = bounds(self.source, token)
+                    if not a < start < end < b:
+                        raise EditError('source_span', 'Bound token exceeds its native range')
+                    changes.append((start, end, value if index == 0 else ''))
+        else:
+            offset = codepoint_index(self.source, span.get('multiplicity_insert_offset'))
+            if not declaration[0] < offset < declaration[1]:
+                raise EditError('source_span', 'Native multiplicity insertion anchor unavailable')
+            spelling = str(lower) if lower == upper else f'{lower}..{upper}'
+            changes.append((offset, offset, f' [{spelling}]'))
+        changes.sort()
+        if any(a[1] > b[0] for a, b in zip(changes, changes[1:])):
+            raise EditError('overlapping_edits', 'Native bound tokens overlap')
+        # Identity does not change, but unknown structured contracts cannot be
+        # silently bypassed. Their typed adapters still decide admissibility.
+        try:
+            for document in self.parsed.get('documents', []):
+                rebind_document(document['body'], document.get('name'), lambda value: value)
+            for record in self.linked_records.values():
+                rebind_json(record['text'], record['kind'], lambda value: value)
+        except (ValueError, KeyError, TypeError, RecursionError) as exc:
+            raise EditError('linked_records', str(exc)) from exc
+        files = self.candidate_files(changes)
+        candidate = CompositionDocument(files if self.is_bundle else files['model.sysml'],
+                                        project_id=self.project_id, registry=self.registry,
+                                        linked_records=self.linked_records)
+        expected = fingerprint(self.parsed)
+        for row in expected['parts']:
+            if row['qualified_name'] == name:
+                row['multiplicity'] = {'status': 'literal', 'lower': lower, 'upper': upper}
+        if fingerprint(candidate.parsed) != expected:
+            raise EditError('semantic_delta', 'Reparse changed facts outside the requested multiplicity')
+        references = self.parsed.get('reference_spans')
+        if not isinstance(references, list) or len(references) > 16384:
+            raise EditError('parser_contract', 'Native reference spans unavailable')
+        retained = []
+        for ref in references:
+            if ref.get('resolved') is not True:
+                raise EditError('unresolved_reference', 'Native reference is unresolved')
+            a, b = bounds(self.source, ref)
+            if edited_range and edited_range[0] <= a < b <= edited_range[1]:
+                continue
+            retained.append((ref.get('feature'), ref.get('target')))
+        after = [(r.get('feature'), r.get('target')) for r in candidate.parsed['reference_spans']]
+        if retained != after:
+            raise EditError('reference_delta', 'Resolved references outside the edited bound changed')
+        return candidate
+
     def rename(self, element_id, new_name, *, expected_source_sha256):
         if expected_source_sha256 != self.revision:
             raise EditError('stale_revision', 'Source changed before candidate preparation')

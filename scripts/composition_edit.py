@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Inspect physical composition or prepare a source-preserving rename candidate.
+"""Inspect physical composition or prepare a source-preserving edit candidate.
 
-Candidate output is not committed project state. Project transactions and host
-interfaces remain outstanding parity obligations.
+Candidate output is not committed project state. Use composition_project.py for
+local durable transactions; hosted/application parity remains open.
 """
 import argparse
 import json
@@ -19,13 +19,15 @@ from verifier.foundation import read_regular
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=('inspect', 'rename'))
+    parser.add_argument('command', choices=('inspect', 'rename', 'set-multiplicity'))
     parser.add_argument('model', nargs='?')
     parser.add_argument('--bundle', help='explicit versioned model/linked-record text bundle')
     parser.add_argument('--project-id', required=True)
     parser.add_argument('--registry')
     parser.add_argument('--element-id')
     parser.add_argument('--name')
+    parser.add_argument('--lower', type=int)
+    parser.add_argument('--upper', type=int)
     parser.add_argument('--expected-source-sha256')
     parser.add_argument('--expected-bundle-sha256')
     args = parser.parse_args()
@@ -45,17 +47,20 @@ def main():
         document = CompositionDocument(source, project_id=args.project_id,
                                        registry=load_json(args.registry) if args.registry else None,
                                        linked_records=linked)
-        if args.command == 'rename':
+        if args.command != 'inspect':
             expected = args.expected_bundle_sha256 if args.bundle else args.expected_source_sha256
-            if (not all((args.element_id, args.name, expected))
+            if (not all((args.element_id, expected))
                     or args.bundle and args.expected_source_sha256
                     or not args.bundle and args.expected_bundle_sha256):
-                raise EditError('input', 'Rename needs element ID, name, and expected source SHA-256')
-            document = document.rename(args.element_id, args.name,
-                                       expected_source_sha256=expected)
+                raise EditError('input', 'Edit needs element ID and expected source or bundle SHA-256')
+            if args.command == 'rename':
+                document = document.rename(args.element_id, args.name, expected_source_sha256=expected)
+            else:
+                document = document.set_multiplicity(args.element_id, args.lower, args.upper,
+                                                     expected_source_sha256=expected)
         report = {'status': 'pass', 'claim': 'candidate_only_not_persisted',
                   **document.inspect(), 'registry': document.registry}
-        if args.command == 'rename':
+        if args.command != 'inspect':
             if args.bundle:
                 report['files'] = document.files
                 report['linked_records'] = document.linked_records

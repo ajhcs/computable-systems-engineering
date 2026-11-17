@@ -1430,6 +1430,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 31,
+            "multiplicity_insert_offset": 1714,
             "name_length": 11,
             "name_offset": 1703,
             "offset": 1698
@@ -1463,6 +1464,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 39,
+            "multiplicity_insert_offset": 1758,
             "name_length": 15,
             "name_offset": 1743,
             "offset": 1738
@@ -1496,6 +1498,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 31,
+            "multiplicity_insert_offset": 1802,
             "name_length": 11,
             "name_offset": 1791,
             "offset": 1786
@@ -1528,6 +1531,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 25,
+            "multiplicity_insert_offset": 2326,
             "name_length": 8,
             "name_offset": 2318,
             "offset": 2313
@@ -1560,6 +1564,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 23,
+            "multiplicity_insert_offset": 2355,
             "name_length": 7,
             "name_offset": 2348,
             "offset": 2343
@@ -1592,6 +1597,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 23,
+            "multiplicity_insert_offset": 2383,
             "name_length": 7,
             "name_offset": 2376,
             "offset": 2371
@@ -1624,6 +1630,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 27,
+            "multiplicity_insert_offset": 2413,
             "name_length": 9,
             "name_offset": 2404,
             "offset": 2399
@@ -1656,6 +1663,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 22,
+            "multiplicity_insert_offset": 3421,
             "name_length": 4,
             "name_offset": 3417,
             "offset": 3411
@@ -1685,6 +1693,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 22,
+            "multiplicity_insert_offset": 3782,
             "name_length": 4,
             "name_offset": 3778,
             "offset": 3772
@@ -1714,6 +1723,7 @@
           "source_span": {
             "encoding": "utf16",
             "length": 23,
+            "multiplicity_insert_offset": 4177,
             "name_length": 4,
             "name_offset": 4173,
             "offset": 4167
@@ -3442,7 +3452,7 @@
     "examples/engineering-gallery/water-sampling/generated/native-late.json": "e7030ad08f7d3b8815758d7b770864548b6f2ddb5a92f51d9a5b058cc961b74d",
     "examples/engineering-gallery/water-sampling/generated/native-over-limit.json": "39bc0a19c92397794e86ec2e4c8460e46c8a60b59bac1a3acc846bd6e6132117",
     "examples/engineering-gallery/water-sampling/generated/native-pass.json": "118c48d0c07d7fbdbad84cb2152484a79ec9bbc8386681241352a9e8c1eb2d6a",
-    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "9947706a1af7f9f7fb6661ad786d5b1e7bfd369fc941201a4c155fcf05d06bcd",
+    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "24e94546e0bc4196f1a010b9e6dceca8b0594e94b95343f5f658e39a7bcd54e5",
     "examples/engineering-gallery/water-sampling/scope.json": "818f7f746ca40244b318cb09f6690f7d5ca07c6973ce963c58806b329eb1a956",
     "examples/engineering-gallery/water-sampling/semantic-ledger.json": "5e36dcb1e842dbe9fe1dbbd9cb22a4904175eb43008ef6586b9a8e2885b894b5",
     "examples/engineering-gallery/water-sampling/station.sysml": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",

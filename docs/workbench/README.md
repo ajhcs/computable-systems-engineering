@@ -88,7 +88,7 @@ worktrees. Reuse historical diagram code and the revision G kit through a
 reviewed integration; fresh assembled verification remains required.
 
 The [local connected interaction](composition-interaction.md) adds explicit
-preview/save, native rename, frame move/resize and whole-snapshot restoration
+preview/save, native rename, finite multiplicity, frame move/resize and whole-snapshot restoration
 over the same project. Its loopback transport and embedded saved reader are
 development implementations. The [site adapter](composition-site-tools.md)
 registers selection, preview/save, refresh and receipt recovery around those

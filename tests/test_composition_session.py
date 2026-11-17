@@ -83,6 +83,41 @@ class SessionTests(unittest.TestCase):
         with self.assertRaises(EditError) as error:self.project.preview(request)
         self.assertEqual(error.exception.code,'already_applied')
 
+    def test_multiplicity_preview_commit_retry_refusal_and_restore_share_the_native_model(self):
+        original=self.project.snapshot()
+        request={'operation':'set_multiplicity','request_id':str(uuid4()),'expected_revision':1,
+                 'element_id':self.identity,'lower':0,'upper':1}
+        status,result,_=self.call('POST','/api/preview',request)
+        self.assertEqual(status,200,result)
+        self.assertEqual(result['preview']['configuration_reviews'][0]['report']['status'],'unknown')
+        self.assertEqual(self.project.head(),original['commit'])
+        status,result,_=self.call('POST','/api/apply',request)
+        self.assertEqual(status,200,result)
+        receipt=result['receipt'];self.assertEqual(receipt['operation'],'set_multiplicity')
+        self.assertEqual(receipt['revision'],2)
+        self.assertEqual(self.call('POST','/api/apply',request)[1]['receipt'],receipt)
+        self.assertEqual(self.call('POST','/api/receipt',request)[1]['receipt'],receipt)
+        reopened=CompositionProject(self.project.repository).snapshot()
+        self.assertEqual(reopened['document'].registry,original['document'].registry)
+        self.assertEqual(reopened['document'].linked_records,original['document'].linked_records)
+        self.assertEqual(reopened['document'].configuration_reviews[0]['report']['status'],'unknown')
+        status,svg,_=self.call('GET','/view.svg')
+        self.assertEqual(status,200);self.assertIn(b'[0..1]',svg)
+        definition=next(k for k,v in reopened['document'].registry.items() if v=='DiagramComposition::Device')
+        for fields in ({'lower':True},{'lower':1.0},{'upper':2147483648},{'lower':2,'upper':1},{'element_id':definition}):
+            invalid={**request,'request_id':str(uuid4()),'expected_revision':2,**fields}
+            status,result,_=self.call('POST','/api/apply',invalid)
+            self.assertEqual(status,400,result);self.assertTrue(result['error']['definitive_refusal'])
+            self.assertEqual(self.project.head(),receipt['commit'])
+        status,result,_=self.call('POST','/api/apply',{**request,'request_id':str(uuid4())})
+        self.assertEqual(status,409,result);self.assertEqual(result['error']['code'],'stale_revision')
+        restore={'operation':'restore','request_id':str(uuid4()),'expected_revision':2,'target_revision':1}
+        self.assertEqual(self.call('POST','/api/apply',restore)[0],200)
+        restored=self.project.snapshot()
+        self.assertEqual(restored['revision'],3)
+        self.assertEqual(restored['document'].files,original['document'].files)
+        self.assertEqual(restored['document'].configuration_reviews[0]['report']['status'],'pass')
+
     def test_loopback_origin_session_csrf_and_json_boundaries_do_not_publish(self):
         head=self.project.head()
         self.assertIn('HttpOnly',self.cookie_header)

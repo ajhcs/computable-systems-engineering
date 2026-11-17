@@ -1,6 +1,6 @@
 """Local Git transaction reference for the physical-composition capability.
 
-Inspect, rename, saved layout and restoration of this capability's snapshots are admitted.
+Inspect, rename, finite multiplicity, saved layout and snapshot restoration are admitted.
 The bare repository is a trusted server-side location, never a client filename.
 This is not the Cloudflare coordinator or an authenticated application adapter.
 """
@@ -137,7 +137,7 @@ class CompositionProject:
                              'bundle_sha256', 'parent_commit', 'restored_from_revision', 'storage'}
                 or receipt.get('revision') != state['revision'] or receipt.get('project_id') != state['project_id']
                 or receipt.get('storage') != 'local_git_fsync'
-                or receipt.get('operation') not in ('import', 'rename', 'restore', 'set_layout')
+                or receipt.get('operation') not in ('import', 'rename', 'restore', 'set_layout', 'set_multiplicity')
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('request_sha256')))
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('bundle_sha256')))
                 or receipt.get('parent_commit') is not None and not OID.fullmatch(str(receipt['parent_commit']))):
@@ -331,7 +331,8 @@ class CompositionProject:
         if not isinstance(request, dict):
             raise EditError('input', 'Supply a typed composition operation')
         common = {'operation', 'request_id', 'expected_revision'}
-        fields = {'rename': {'element_id', 'new_name'}, 'restore': {'target_revision'}, 'set_layout': {'layout'}}
+        fields = {'rename': {'element_id', 'new_name'}, 'restore': {'target_revision'}, 'set_layout': {'layout'},
+                  'set_multiplicity': {'element_id', 'lower', 'upper'}}
         operation = request.get('operation')
         if not isinstance(operation, str) or operation not in fields or set(request) != common | fields[operation]:
             raise EditError('input', 'Unknown composition operation or fields')
@@ -340,6 +341,10 @@ class CompositionProject:
             raise EditError('input', 'Expected revision is outside the current history limit')
         if operation == 'rename' and (not isinstance(request['element_id'], str) or not isinstance(request['new_name'], str)):
             raise EditError('input', 'Rename requires an element UUID and a declared name')
+        if operation == 'set_multiplicity' and (not isinstance(request['element_id'], str)
+                or type(request['lower']) is not int or type(request['upper']) is not int
+                or not 0 <= request['lower'] <= request['upper'] <= 2_147_483_647):
+            raise EditError('multiplicity', 'Supply an element UUID and integer bounds 0 <= lower <= upper <= 2147483647')
         if operation == 'restore' and type(request['target_revision']) is not int:
             raise EditError('input', 'Restore requires an integer revision')
         return deepcopy(request)
@@ -351,6 +356,9 @@ class CompositionProject:
         if request['operation'] == 'rename':
             document = document.rename(request['element_id'], request['new_name'],
                                        expected_source_sha256=document.revision)
+        elif request['operation'] == 'set_multiplicity':
+            document = document.set_multiplicity(request['element_id'], request['lower'], request['upper'],
+                                                 expected_source_sha256=document.revision)
         elif request['operation'] == 'set_layout':
             from .composition_view import with_layout
             document = with_layout(document, request['layout'])

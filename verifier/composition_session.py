@@ -20,7 +20,7 @@ from .composition_view import artifact_files, render
 ROOT = Path(__file__).resolve().parents[1]
 MAX_BODY = 1_000_000
 DEFINITE_REFUSALS = frozenset(('stale_revision', 'request_reuse', 'input', 'request_id',
-    'name', 'identity', 'name_collision', 'reference_form', 'unresolved_reference',
+    'name', 'identity', 'name_collision', 'multiplicity', 'element_kind', 'reference_form', 'unresolved_reference',
     'semantic_delta', 'reference_delta', 'overlapping_edits', 'linked_records',
     'source_span', 'native_diagnostics', 'reconciliation', 'presentation_conflict', 'file_name'))
 

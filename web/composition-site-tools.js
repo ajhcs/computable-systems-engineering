@@ -11,8 +11,10 @@
     navigation_revision:{type:'integer',minimum:0},viewport_mode:{enum:['overview','readable']},viewport_left:{type:'number'},viewport_top:{type:'number'}});
   const boxSchema=object(Object.fromEntries(['x','y','width','height'].map(key=>[key,{type:'number'}])));
   const changeFields={operation:text,request_id:text,expected_revision:integer};
+  const multiplicityBound={type:'integer',minimum:0,maximum:2147483647};
   const requestSchema={oneOf:[
     object({...changeFields,operation:{const:'rename'},element_id:text,new_name:text}),
+    object({...changeFields,operation:{const:'set_multiplicity'},element_id:text,lower:multiplicityBound,upper:multiplicityBound}),
     object({...changeFields,operation:{const:'set_layout'},layout:{type:'object'}}),
     object({...changeFields,operation:{const:'restore'},target_revision:integer}),
   ]};
@@ -35,6 +37,7 @@
       selection:found?{occurrence_id:found[0],...found[1],display_label:state.display_labels[found[0]],box:state.layout.nodes[found[0]]}:null,
       editing_target:target?{element_id:editTargetId,occurrence_id:target[0],native_name:target[1].element,
         base_revision:formRevision,base_commit:formCommit,declared_name:byId('rename-name').value,
+        multiplicity:Object.fromEntries(['lower','upper'].map(field=>[field,byId('multiplicity-'+field).value])),
         box:Object.fromEntries(['x','y','width','height'].map(field=>[field,byId('box-'+field).value]))}:null,
       pending_change:pending?{...pending,request:clone(pending.request)}:null,
       restoration_target_revision:Number(byId('restore-target').value)||null,
@@ -80,6 +83,13 @@
       byId('rename-name').value=args.new_name;dirty=true;
       return await previewRename();
     }],
+    ['cse_preview_multiplicity','Prepare explicit finite lower/upper bounds on the selected native part usage. Uses the visible bounds controller and native validator; retains names, ownership, identities and required configuration scope. Definitions have no usage multiplicity. Save separately after reviewing findings.',{guard:guardSchema,element_id:text,lower:multiplicityBound,upper:multiplicityBound},false,async args=>{
+      checkGuard(args.guard);cleanTarget(args.element_id);
+      if(editingNode()?.[1].kind!=='PartUsage')fail('element_kind','Multiplicity belongs to a part usage.');
+      if(!Number.isInteger(args.lower)||!Number.isInteger(args.upper)||args.lower<0||args.upper<args.lower||args.upper>2147483647)fail('multiplicity','Supply integer bounds 0 <= lower <= upper <= 2147483647.');
+      byId('multiplicity-lower').value=args.lower;byId('multiplicity-upper').value=args.upper;dirty=true;
+      return await previewMultiplicity();
+    }],
     ['cse_preview_layout','Prepare unsaved x/y/width/height for the selected frame. Calls the visible layout controller and native geometry checks. Changes presentation only; never changes native ownership.',{guard:guardSchema,element_id:text,box:boxSchema},false,async args=>{
       checkGuard(args.guard);cleanTarget(args.element_id);exact(args.box,['x','y','width','height']);
       if(Object.values(args.box).some(value=>typeof value!=='number'||!Number.isFinite(value)))fail('input','Bounds must be finite numbers.');
@@ -91,11 +101,11 @@
       if(!Number.isInteger(args.target_revision)||!state.history.some(row=>row.revision===args.target_revision))fail('input','Select a saved revision of this project.');
       byId('restore-target').value=args.target_revision;return await previewRestore();
     }],
-    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose declared-name, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['rename','layout','restore']}},false,async args=>{
+    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose declared-name, multiplicity, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['rename','multiplicity','layout','restore']}},false,async args=>{
       checkGuard(args.guard);
       if(unknown||pending||!editingNode())fail('retained_edit','Resolve the pending change or unconfirmed save before another preview.');
-      const previews={rename:previewRename,layout:previewLayout,restore:previewRestore};
-      if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose rename, layout or restore.');
+      const previews={rename:previewRename,multiplicity:previewMultiplicity,layout:previewLayout,restore:previewRestore};
+      if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose rename, multiplicity, layout or restore.');
       const preview=previews[args.kind];
       return await preview();
     }],

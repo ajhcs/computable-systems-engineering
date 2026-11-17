@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
@@ -64,6 +65,21 @@ public final class SysmlBridge {
 
     // Offsets use the Java/Xtext UTF-16 coordinate system, not UTF-8 bytes or
     // Python code-point indices. Consumers must convert explicitly.
+    private static List<Map<String, Object>> expressionTokens(EObject expression) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        var node = expression == null ? null : NodeModelUtils.getNode(expression);
+        if (node != null) for (var leaf : node.getLeafNodes()) {
+            if (!leaf.isHidden() && leaf.getLength() > 0) {
+                Map<String, Object> token = new LinkedHashMap<>();
+                token.put("encoding", "utf16");
+                token.put("offset", leaf.getOffset());
+                token.put("length", leaf.getLength());
+                result.add(token);
+            }
+        }
+        return result;
+    }
+
     private static Map<String, Object> sourceFacts(Element element) {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("encoding", "utf16");
@@ -78,6 +94,8 @@ public final class SysmlBridge {
             if (names.size() == 1) {
                 result.put("name_offset", names.get(0).getOffset());
                 result.put("name_length", names.get(0).getLength());
+                if (element instanceof PartUsage)
+                    result.put("multiplicity_insert_offset", names.get(0).getEndOffset());
             }
         }
         var bodyFeature = element.eClass().getEStructuralFeature("body");
@@ -96,6 +114,23 @@ public final class SysmlBridge {
                     && rangeNode.getOffset() + rangeNode.getLength() <= node.getOffset() + node.getLength()) {
                 result.put("multiplicity_offset", rangeNode.getOffset());
                 result.put("multiplicity_length", rangeNode.getLength());
+                if (element instanceof PartUsage && usage.getMultiplicity() instanceof org.omg.sysml.lang.sysml.MultiplicityRange range) {
+                    result.put("multiplicity_lower_tokens", expressionTokens(range.getLowerBound()));
+                    result.put("multiplicity_upper_tokens", expressionTokens(range.getUpperBound()));
+                }
+            }
+        }
+        if (element instanceof PartUsage && node != null && !result.containsKey("multiplicity_insert_offset")) {
+            var shortFeature = element.eClass().getEStructuralFeature("declaredShortName");
+            var shortNames = NodeModelUtils.findNodesForFeature(element, shortFeature);
+            int shortEnd = shortNames.size() == 1 ? shortNames.get(0).getEndOffset() : -1;
+            for (var leaf : node.getLeafNodes()) {
+                if (leaf.isHidden() || !(leaf.getGrammarElement() instanceof Keyword keyword)) continue;
+                if ((shortEnd >= 0 && leaf.getOffset() >= shortEnd && keyword.getValue().equals(">")) ||
+                        (shortEnd < 0 && keyword.getValue().equals("part"))) {
+                    result.put("multiplicity_insert_offset", leaf.getEndOffset());
+                    break;
+                }
             }
         }
         return result;

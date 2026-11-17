@@ -151,6 +151,38 @@ class NativeViews(unittest.TestCase):
         self.assertEqual(rendered['projection']['nodes']['Left']['element'], 'DiagramComposition::current::left')
         self.assertEqual(d.files, {'model.sysml': SOURCE})
 
+    def test_maximum_literal_range_stays_whole_and_saved_narrow_frames_refuse(self):
+        identity=next(k for k,v in self.document.registry.items() if v=='DiagramComposition::current::left')
+        candidate=self.document.set_multiplicity(identity,2147483646,2147483647,
+            expected_source_sha256=self.document.revision)
+        rendered=view.render(candidate,'PC_USAGE')
+        group=ET.fromstring(rendered['svg']).find('.//s:g[@data-node-id="Left"]',NS)
+        notation='[2147483646..2147483647]'
+        self.assertIn(notation,[t.text for t in group.findall('s:text',NS)])
+        self.assertGreater(rendered['layout']['nodes']['Left']['width'],360)
+        old_layout=view.render(self.document,'PC_USAGE')['layout']
+        with self.assertRaisesRegex(ValueError,'Multiplicity notation does not fit'):
+            view.render(candidate,'PC_USAGE',layout_override=old_layout)
+        enlarged=deepcopy(old_layout)
+        enlarged['nodes']['Left']['width']=rendered['layout']['nodes']['Left']['width']
+        self.assertIn(notation,view.render(candidate,'PC_USAGE',layout_override=enlarged)['svg'])
+
+    def test_one_wide_bound_does_not_expand_every_level_of_a_depth_16_view(self):
+        for all_wide in (False, True):
+            names=['Deep::'+'::'.join(f'p{j}' for j in range(i+1)) for i in range(17)]
+            nodes=[{'id':f'N{i}','element':name,'parent':None if i==0 else f'N{i-1}',
+                    'level':i,'edge':None if i==0 else f'E{i}'} for i,name in enumerate(names)]
+            source='package Deep { '+''.join(f'part p{i}'+(' [2147483646..2147483647]' if all_wide or i==16 else '')+' { ' for i in range(17))+'} '*17
+            source+='doc cseViews /* CSE-VIEWS/1.1\n'+json.dumps({'views':[{'id':'DEEP','kind':'physical_composition','mode':'usages','nodes':nodes}]})+' */ }'
+            rendered=view.render(CompositionDocument({'deep.sysml':source}),'DEEP')
+            with self.subTest(all_wide=all_wide):
+                self.assertLessEqual(rendered['layout']['width'],8192)
+                if not all_wide:self.assertEqual(rendered['layout']['width'],7555)
+                self.assertTrue(all(b['x']+b['width']<=rendered['layout']['width']-32 for b in rendered['layout']['nodes'].values()))
+                root=ET.fromstring(rendered['svg'])
+                literal=root.find('.//s:g[@data-node-id="N16"]/s:text[2]',NS)
+                self.assertEqual(literal.text,'[2147483646..2147483647]')
+
     def test_saved_pattern_and_swatches_are_preserved_and_invisible_patterns_are_refused(self):
         projection = view.project(self.document, 'PC_USAGE')
         appearance = {'version': 'cse-diagram-appearance-2.0', 'kit': 'engineering-palette-complete-05',

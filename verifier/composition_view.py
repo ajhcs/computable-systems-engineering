@@ -207,13 +207,20 @@ def labels(document, projection):
     return names
 
 
+def literal_multiplicity(native):
+    bound = native.get('multiplicity', {})
+    if bound.get('status') != 'literal':
+        return None
+    lower, upper = bound['lower'], bound['upper']
+    return '[' + (str(lower) if lower == upper else str(lower) + '..' + str(upper)) + ']'
+
+
 def annotation(native):
     lines = []
     if 'multiplicity' in native:
         bound = native.get('multiplicity', {})
         if bound.get('status') == 'literal':
-            lower, upper = bound['lower'], bound['upper']
-            lines.append('[' + (str(lower) if lower == upper else str(lower) + '..' + str(upper)) + ']')
+            lines.append(literal_multiplicity(native))
         elif bound.get('status') != 'default':
             if native.get('source_multiplicity'):
                 lines.append(' '.join(native['source_multiplicity'].split()))
@@ -230,13 +237,33 @@ def annotation(native):
 def node_lines(node, name, width):
     result = [(line, 28, 700, 'DejaVu Sans') for line in kit_fonts.wrap_text(name, width - 56, 28, weight=700)]
     for note in annotation(node['native']):
-        result.extend((line, 24, 400, 'DejaVu Sans Mono') for line in
-                      kit_fonts.wrap_text(note, width - 56, 24, 'DejaVu Sans Mono'))
+        if note == literal_multiplicity(node['native']):
+            need(kit_fonts.text_width(note, 24, 'DejaVu Sans Mono') <= width - 56,
+                 'Multiplicity notation does not fit; enlarge its frame width')
+            result.append((note, 24, 400, 'DejaVu Sans Mono'))
+        else:
+            result.extend((line, 24, 400, 'DejaVu Sans Mono') for line in
+                          kit_fonts.wrap_text(note, width - 56, 24, 'DejaVu Sans Mono'))
     return result
 
 
 def default_layout(projection, names):
     boxes, routes, cursor = {}, {}, 160
+    widths = {key: max(360, math.ceil(kit_fonts.text_width(literal_multiplicity(node['native']), 24, 'DejaVu Sans Mono'))+56)
+              if literal_multiplicity(node['native']) else 360 for key, node in projection['nodes'].items()}
+    level_widths = {}
+    for key, node in projection['nodes'].items():
+        level_widths[node['level']] = max(level_widths.get(node['level'], 0), widths[key])
+    levels = max(level_widths)
+    # Keep the established 80-unit gap where it fits. Finite literals can make
+    # every level wider; preserve room for the 30-unit routing trunk without
+    # multiplying one wider frame across otherwise ordinary levels.
+    gap = min(80, math.floor((8192-112-sum(level_widths.values()))/levels)) if levels else 80
+    need(gap >= 40, 'Default hierarchy needs a larger canvas or a detail view')
+    positions, left = {}, 56
+    for level in range(levels+1):
+        positions[level] = left
+        left += level_widths[level] + gap
     def ordered(key):
         yield key
         for child, node in projection['nodes'].items():
@@ -245,9 +272,9 @@ def default_layout(projection, names):
     root = next(key for key, node in projection['nodes'].items() if node['parent'] is None)
     for key in ordered(root):
         node = projection['nodes'][key]
-        lines = node_lines(node, names[node['element']], 360)
+        lines = node_lines(node, names[node['element']], widths[key])
         height = max(90, 40 + sum(math.ceil(size * 1.4) for _, size, _, _ in lines))
-        boxes[key] = {'x': 56 + node['level'] * 440, 'y': cursor, 'width': 360, 'height': height}
+        boxes[key] = {'x': positions[node['level']], 'y': cursor, 'width': widths[key], 'height': height}
         cursor += height + 60
     for key, edge in projection['edges'].items():
         a, b = boxes[edge['source']], boxes[edge['target']]

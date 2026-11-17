@@ -697,6 +697,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 31,
+          "multiplicity_insert_offset": 1714,
           "name_length": 11,
           "name_offset": 1703,
           "offset": 1698
@@ -730,6 +731,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 39,
+          "multiplicity_insert_offset": 1758,
           "name_length": 15,
           "name_offset": 1743,
           "offset": 1738
@@ -763,6 +765,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 31,
+          "multiplicity_insert_offset": 1802,
           "name_length": 11,
           "name_offset": 1791,
           "offset": 1786
@@ -795,6 +798,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 25,
+          "multiplicity_insert_offset": 2326,
           "name_length": 8,
           "name_offset": 2318,
           "offset": 2313
@@ -827,6 +831,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 23,
+          "multiplicity_insert_offset": 2355,
           "name_length": 7,
           "name_offset": 2348,
           "offset": 2343
@@ -859,6 +864,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 23,
+          "multiplicity_insert_offset": 2383,
           "name_length": 7,
           "name_offset": 2376,
           "offset": 2371
@@ -891,6 +897,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 27,
+          "multiplicity_insert_offset": 2413,
           "name_length": 9,
           "name_offset": 2404,
           "offset": 2399
@@ -923,6 +930,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 22,
+          "multiplicity_insert_offset": 3421,
           "name_length": 4,
           "name_offset": 3417,
           "offset": 3411
@@ -952,6 +960,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 22,
+          "multiplicity_insert_offset": 3782,
           "name_length": 4,
           "name_offset": 3778,
           "offset": 3772
@@ -981,6 +990,7 @@
         "source_span": {
           "encoding": "utf16",
           "length": 23,
+          "multiplicity_insert_offset": 4177,
           "name_length": 4,
           "name_offset": 4173,
           "offset": 4167

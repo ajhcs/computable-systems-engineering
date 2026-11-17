@@ -9,10 +9,12 @@ let editTargetId, draftGeneration=0, loadGeneration=0, gestureActive=false, fram
 const key=()=> 'cse-pending-save:'+state.projection.project_id;
 const notice=text=>{byId('notice').textContent=text;};
 const clone=value=>JSON.parse(JSON.stringify(value));
+const editableInputs=['rename-name','multiplicity-lower','multiplicity-upper','box-x','box-y','box-width','box-height','restore-target'];
 function controls(){
   if(frameReady)frame.contentWindow.cseDiagramNavigation?.lock(gestureActive);
   const different=Boolean(editTargetId&&selectedId!==editTargetId);
   byId('edits').disabled=busy||gestureActive||unknown||Boolean(pending)||!selectedId||different;
+  byId('multiplicity-fields').disabled=!state||editingNode()?.[1].kind!=='PartUsage';
   byId('save').disabled=busy||!pending||Boolean(pending.stale);
   byId('save').textContent=unknown?'Retry save with the same request ID':'Save change';
   byId('discard').disabled=busy||unknown;
@@ -41,10 +43,13 @@ function showFields(force=false){
   if(force||!dirty&&!pending){
     editTargetId=selectedId;
     byId('rename-name').value=node.native.name;
+    const quantity=node.native.multiplicity;
+    for(const bound of ['lower','upper'])byId('multiplicity-'+bound).value=node.kind==='PartUsage'&&['default','literal'].includes(quantity?.status)?quantity[bound]:'';
     for(const field of ['x','y','width','height'])byId('box-'+field).value=state.layout.nodes[id][field];
     formRevision=state.revision;formCommit=state.commit;
   }
   const target=editingNode();
+  byId('multiplicity-saved').textContent=target?.[1].kind==='PartUsage'?'Saved multiplicity of '+target[1].element+': '+(target[1].native.source_multiplicity||'no local bounds')+' · '+target[1].native.multiplicity.status:'Part definitions have no usage multiplicity.';
   byId('edit-target').textContent=target?'Editing target: '+target[1].element+' · base revision '+formRevision:'The edit target is absent from this saved view.';
   controls();
 }
@@ -161,8 +166,18 @@ async function loadState(preserve=false,background=false){
   return true;
 }
 function previewRename(){const found=editingNode();if(found)return previewChange(request('rename',{element_id:editTargetId,new_name:byId('rename-name').value}),'Rename '+found[1].element+' → '+byId('rename-name').value);}
+function previewMultiplicity(){
+  const found=editingNode();
+  if(!found||found[1].kind!=='PartUsage')return{outcome:'refused',error:{code:'element_kind',detail:'Multiplicity belongs to a part usage.'}};
+  const raw=['lower','upper'].map(field=>byId('multiplicity-'+field).value),[lower,upper]=raw.map(Number);
+  if(raw.some(value=>!value.trim())||!Number.isInteger(lower)||!Number.isInteger(upper)||lower<0||upper<lower||upper>2147483647){
+    const detail='Supply both integer bounds: 0 ≤ lower ≤ upper ≤ 2147483647.';notice(detail);return{outcome:'refused',error:{code:'multiplicity',detail}};
+  }
+  return previewChange(request('set_multiplicity',{element_id:editTargetId,lower,upper}),'Multiplicity of '+found[1].element+' → ['+lower+(lower===upper?'':'..'+upper)+']');
+}
 function previewRestore(){return previewChange(request('restore',{target_revision:Number(byId('restore-target').value)}),'Restore all source, identity and presentation state from revision '+byId('restore-target').value+' into a new revision.');}
 byId('rename-form').addEventListener('submit',event=>{event.preventDefault();previewRename();});
+byId('multiplicity-form').addEventListener('submit',event=>{event.preventDefault();previewMultiplicity();});
 byId('layout-form').addEventListener('submit',event=>{event.preventDefault();previewLayout();});
 byId('restore-form').addEventListener('submit',event=>{event.preventDefault();previewRestore();});
 byId('edits').addEventListener('input',event=>{if(event.target.id==='drag-action')return;draftGeneration++;dirty=true;if(pending&&!unknown){pending=null;removeGhost();}controls();});
@@ -186,7 +201,8 @@ async function saveChange(){
   const savedRequest=pending.request;
   let acknowledged=null;
   try{
-    sessionStorage.setItem(key(),JSON.stringify({request:savedRequest,selectedId,editTargetId,description:pending.description}));
+    sessionStorage.setItem(key(),JSON.stringify({request:savedRequest,selectedId,editTargetId,description:pending.description,
+      baseCommit:formCommit,fields:Object.fromEntries(editableInputs.map(id=>[id,byId(id).value]))}));
     const result=await api('/api/apply',savedRequest);
     acknowledged=result.receipt;
     sessionStorage.removeItem(key());unknown=false;pending=null;dirty=false;removeGhost();
@@ -206,7 +222,18 @@ async function start(){
     if(access){await api('/session',{access});history.replaceState(null,'',location.pathname);}
     await loadState();
     const saved=sessionStorage.getItem(key());
-    if(saved){const entry=JSON.parse(saved);pending={request:entry.request,description:entry.description,stale:false};selectedId=entry.selectedId;editTargetId=entry.editTargetId||entry.request.element_id||entry.selectedId;restoredSelection=selectedId;unknown=true;byId('pending-indicator').textContent='Unacknowledged save';byId('summary').textContent=(entry.description||entry.request.operation)+'\nRequest '+entry.request.request_id+' · expected revision '+entry.request.expected_revision;notice('A previous save needs acknowledgement. Retry the exact request to recover its receipt.');controls();}
+    if(saved){
+      const entry=JSON.parse(saved);pending={request:entry.request,description:entry.description,stale:false};
+      selectedId=entry.selectedId;editTargetId=entry.editTargetId||entry.request.element_id||entry.selectedId;restoredSelection=selectedId;
+      formRevision=entry.request.expected_revision;formCommit=entry.baseCommit||null;
+      for(const id of editableInputs)if(typeof entry.fields?.[id]==='string')byId(id).value=entry.fields[id];
+      // Older retained intents still expose the exact typed requested values.
+      if(!entry.fields&&entry.request.operation==='set_multiplicity')for(const bound of ['lower','upper'])byId('multiplicity-'+bound).value=entry.request[bound];
+      if(!entry.fields&&entry.request.operation==='rename')byId('rename-name').value=entry.request.new_name;
+      unknown=true;byId('pending-indicator').textContent='Unacknowledged save';
+      byId('summary').textContent=(entry.description||entry.request.operation)+'\nRequest '+entry.request.request_id+' · expected revision '+entry.request.expected_revision;
+      notice('A previous save needs acknowledgement. Retry the exact request to recover its receipt.');controls();
+    }
     else notice('Select a saved element to inspect or edit.');
   }catch(error){notice(error.message);}
 }

@@ -46,6 +46,13 @@ request ID and values; neither selection nor a rename replaces retained scope.
 Registration does not establish actual Codex/ChatGPT execution or complete
 physical-capability parity.
 
+The selected usage's [finite multiplicity edit](../../../docs/workbench/composition-multiplicity.md)
+authors explicit native lower/upper bounds through the same candidate, diagram,
+local transaction and site controller. Retain the configuration scope: optional
+bounds return unknown selected presence, and suppression fails it. Neither the
+count nor a durable edit receipt establishes installed equipment. Part definitions
+have no usage multiplicity.
+
 Method basis: Buede and Miller, *The Engineering Design of Systems: Models and
 Methods*, fourth edition, Chapter 8, pp. 210–211. The native selection and
 reconciliation rules are CSE implementation choices, not a complete physical

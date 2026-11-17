@@ -14,7 +14,7 @@ For the development physical-composition path over a saved local Git project,
 use the [saved native diagram contract](../../docs/workbench/composition-diagrams.md).
 It renders definition hierarchies or declared usage composition with this kit
 and supports source-bound inspection. The [local interaction adapter](../../docs/workbench/composition-interaction.md)
-embeds that same reader for rename/layout/restoration. Full operation and host
+embeds that same reader for rename, finite multiplicity, layout and restoration. Full operation and host
 parity remain open; do not advertise it as a completed workbench capability.
 
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)

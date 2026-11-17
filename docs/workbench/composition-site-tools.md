@@ -47,9 +47,10 @@ independent engineering verdict. A preview is unsaved, and configuration
 | `cse_select_element` | Select/reveal the exact UUID and occurrence; retain edits and scope. |
 | `cse_set_view_mode` | Fit the complete saved SVG overview, or reveal the selection at 100%; retain model, layout and all draft state. |
 | `cse_preview_rename` | Put a declared name into the selected target's form and check the existing native rename. |
+| `cse_preview_multiplicity` | Check explicit finite lower/upper bounds on the selected native part usage through the same visible form controller; retain source identity and required scope. |
 | `cse_preview_layout` | Put finite bounds into that frame's form and check the existing layout operation, including incident endpoints. |
 | `cse_preview_restore` | Check whole-project snapshot restoration as a new monotonic revision. |
-| `cse_preview_current_edit` | Check the retained rename, layout or restoration fields exactly as displayed. |
+| `cse_preview_current_edit` | Check the retained rename, multiplicity, layout or restoration fields exactly as displayed. |
 | `cse_save_change` | Save/retry the exact request ID already checked in this tab. |
 | `cse_discard_change` | Explicitly discard unsaved values; refuse an unconfirmed save. |
 | `cse_refresh_project` | Read saved state while retaining original draft targets and exact unknown requests. |

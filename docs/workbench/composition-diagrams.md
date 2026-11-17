@@ -34,6 +34,12 @@ annotations/properties. Retained configuration checks run independently and keep
 their own scope bytes and statuses. The reader lists declarations outside the
 chosen view. A valid diagram is not a successful required configuration review.
 
+The [native bound edit](composition-multiplicity.md) can author finite literal
+lower/upper bounds on selected usages. Saved graph and inspector values derive
+from its independently reparsed source. Defaults, inherited status and unsupported
+expressions are not invented numeric values; preview and configuration findings
+remain distinct from a saved transaction receipt.
+
 ## Original artwork and typography
 
 The renderer reuses the preserved `kit_fonts.py` and `kit_templates.py`
@@ -138,7 +144,7 @@ access or replace retained review scope.
 ## Remaining physical-capability gates
 
 The [local connected editor](composition-interaction.md) embeds this saved reader
-and invokes existing rename, layout and restoration transactions. Its pointer
+and invokes existing rename, multiplicity, layout and restoration transactions. Its pointer
 move/resize and keyboard bounds controls remain within the physical capability;
 hosted application integration is still open. Creation, deletion, reparenting,
 remaining property editing, collapse/reveal, legacy appearance compatibility, full drawing

@@ -1,7 +1,7 @@
 # Local composition transaction reference
 
-This supporting work belongs to `physical_composition.inspect` and
-`physical_composition.rename`. It addresses their save/restart, concurrent edit,
+This supporting work belongs to physical composition inspect, rename, finite
+multiplicity and saved presentation operations. It addresses their save/restart, concurrent edit,
 lost-response retry and history obligations. It is not an independent platform
 milestone or closure of either operation's persistence cell.
 
@@ -85,8 +85,8 @@ an old request's expected revision current again.
 - Trusted local filesystem and Unix authority only; no hosted account/project
   authorization, Cloudflare coordinator or R2 publication. The
   [loopback interaction adapter](composition-interaction.md) shares these operations.
-- Inspect, native rename, saved layout and snapshot restoration; create/delete/reparent,
-  property and presentation changes still need their capability operations.
+- Inspect, native rename, finite multiplicity, saved layout and snapshot restoration;
+  create/delete/reparent, other property and presentation changes still need their operations.
 - Existing bundle limits apply, plus 2 MB of snapshot metadata and 10,000
   revisions. History currently scans the bounded chain. Scaling and migration
   remain open; these limits do not reduce the target capability.

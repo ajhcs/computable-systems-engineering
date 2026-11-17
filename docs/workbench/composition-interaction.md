@@ -26,6 +26,7 @@ engineering meaning or engineer acceptance.
 | PC-LIVE-INSPECT | Select a saved frame; native properties and editing target identify that element | Exact saved reader embedded unchanged, registry UUID distinct from occurrence ID; project/view/session/revision context | Actual click/keyboard selection, definition/usage cases, source binding and real glyph checks |
 | PC-LIVE-NAVIGATE | Fit the complete saved SVG in overview, then reveal a selected occurrence at readable size | Same reader navigation API in standalone HTML, direct controls and site callbacks. Camera state is transient; source/layout/history stay fixed | Complete bounds, 100% labels, pan-away refresh, resize/refit, fixed draft targets and locked gesture selection |
 | PC-LIVE-RENAME | Enter a declared name, preview, then save explicitly | Existing native rename and full reparse; preview shares the transaction's candidate preparation; exact request UUID reused for save | Saved graph remains unchanged during preview; committed name and references update; identity survives |
+| PC-LIVE-MULTIPLICITY | Edit separate lower/upper bounds on a selected usage, preview, then save | [Native bound editing](composition-multiplicity.md) uses local Xtext token spans, full reparse and the same Git transaction. Definitions have no usage bounds. Scope bytes remain fixed | Exact/optional/suppressed/maximum bounds, comment preservation, current findings, fixed human target, lost-response retry and restore |
 | PC-LIVE-LAYOUT | Drag a frame, or enter bounds through a keyboard form; preview and save | `set_layout` changes the layout companion. Existing native endpoint/clearance/text checks decide validity. A dashed outline is unsaved UI feedback, not model artwork | Mouse move/resize and form edits; saved SysML/registry/scope bytes unchanged; invalid geometry refuses |
 | PC-LIVE-CONFLICT | Another writer publishes before save; the old save conflicts | No automatic rebase or overwrite. Refresh shows current state and retains form values; another explicit preview creates a new request against the reviewed revision | Concurrent CLI edit, HTTP conflict, visible pending value and current native name; explicit re-preview succeeds |
 | PC-LIVE-ACK | A save response is lost; retry the exact request, including after page reload | Pending save intent/request retained in tab session storage. Durable receipt lookup inside `transact` prevents duplication. A received receipt remains acknowledged even if subsequent refresh fails | Drop the HTTP response after publication, reload, retry; one new revision and the original receipt |
@@ -77,7 +78,7 @@ files are retained and cannot reopen a different new server session.
 | `POST /session` | Establish the private local browser session from its bootstrap capability |
 | `GET /api/state` | One revision-bound state/reader pair and local session CSRF value |
 | `GET /api/head` | Current published Git head for live refresh |
-| `POST /api/preview` | Validate one exact typed rename/layout/restore request without writing project objects or reserving a revision |
+| `POST /api/preview` | Validate one exact typed rename/multiplicity/layout/restore request without writing project objects or reserving a revision |
 | `POST /api/apply` | Apply that existing project operation and return its durable receipt; a following read error is separate and cannot revoke the receipt |
 | `POST /api/receipt` | Read the exact prior request's original receipt at a captured published head; never applies or reserves a request |
 | `GET /view.svg?commit=…`, `/view.json?commit=…` | Current saved drawing/bindings only when they match the requested commit; stale drawing requests conflict |
@@ -89,7 +90,7 @@ authorize changing source, engineering obligations or the selected revision.
 
 ## Open capability gates
 
-This local connection does not complete creation, deletion, reparenting, property
+This local connection does not complete creation, deletion, reparenting, other property
 editing, collapse/expand, referenced-resource presentation, inherited/redefined
 configuration manipulation, all diagram occurrences, full drawing/export parity,
 general undo/redo controls, private remote persistence or actual host adapters.

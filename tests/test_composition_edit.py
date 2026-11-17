@@ -217,6 +217,109 @@ class BundleTests(unittest.TestCase):
             other.rename(self.role_id(), 'detector', expected_source_sha256=self.document.revision)
 
 
+class MultiplicityTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.source = ('// 🛰 Keep the original UTF-16/codepoint boundary and CRLF.\r\n'
+            'package Counts {\r\n part def Unit;\r\n attribute n : ScalarValues::Integer = 2;\r\n'
+            ' part named [2 //* count note */] : Unit;\r\n'
+            ' part ranger [1 // range note\r\n ..4] : Unit;\r\n'
+            ' part expression [Counts::n //* reference note */ ..n] : Unit;\r\n'
+            ' part unlimited [1..*] : Unit;\r\n part \'quoted name\' : Unit;\r\n'
+            ' part def Base { part role [2] : Unit; }\r\n'
+            ' part def Derived :> Base { part :>> role : Unit; }\r\n}\r\n')
+        cls.document = CompositionDocument({'counts.sysml': cls.source, 'notes.sysml': 'package Notes { doc /* Keep counts 2 and 4. */ }'})
+
+    def change(self, name, lower, upper, document=None):
+        document = document or self.document
+        identity = next(k for k, value in document.registry.items() if value == name)
+        return document.set_multiplicity(identity, lower, upper, expected_source_sha256=document.revision)
+
+    def test_exact_range_optional_and_suppressed_preserve_trivia_and_identity(self):
+        for lower, upper in [(3, 3), (0, 1), (0, 0)]:
+            candidate = self.change('Counts::named', lower, upper)
+            spelling = str(lower) if lower == upper else f'{lower}..{upper}'
+            self.assertEqual(candidate.files['counts.sysml'], self.source.replace('[2 //* count note */]', f'[{spelling} //* count note */]'))
+            self.assertEqual(candidate.files['notes.sysml'], self.document.files['notes.sysml'])
+            self.assertEqual(candidate.registry, self.document.registry)
+        candidate = self.change('Counts::ranger', 2, 2)
+        self.assertEqual(candidate.files['counts.sysml'], self.source.replace('[1 // range note\r\n ..4]', '[2 // range note\r\n ..2]'))
+
+    def test_replacing_expression_or_infinity_removes_only_bound_references(self):
+        candidate = self.change('Counts::expression', 1, 3)
+        self.assertEqual(candidate.files['counts.sysml'], self.source.replace('[Counts::n //* reference note */ ..n]', '[1 //* reference note */ ..3]'))
+        candidate = self.change('Counts::unlimited', 1, 2_147_483_647)
+        self.assertEqual(candidate.files['counts.sysml'], self.source.replace('[1..*]', '[1..2147483647]'))
+
+    def test_implicit_quoted_and_unnamed_inherited_override_are_local(self):
+        candidate = self.change("Counts::'quoted name'", 0, 0)
+        self.assertEqual(candidate.files['counts.sysml'], self.source.replace("part 'quoted name' :", "part 'quoted name' [0] :"))
+        candidate = self.change('Counts::Derived::role', 2, 2)
+        self.assertEqual(candidate.files['counts.sysml'], self.source.replace('part :>> role', 'part [2] :>> role'))
+        self.assertEqual(candidate.registry, self.document.registry)
+
+    def test_short_only_override_keeps_the_existing_import_identity_gap_explicit(self):
+        # The native declaration is accepted, but has no qualified-name key in
+        # the current registry contract. Do not fabricate one or omit the part.
+        source=self.source.replace('part :>> role', 'part <OVERRIDE> :>> role')
+        from verifier.composition_edit import parse
+        parsed=parse(source)
+        self.assertTrue(any(row.get('id')=='OVERRIDE' and row.get('qualified_name') is None for row in parsed['parts']))
+        with self.assertRaises(EditError) as error:
+            CompositionDocument({'counts.sysml':source})
+        self.assertEqual(error.exception.code,'identity')
+
+    def test_definition_unknown_stale_and_invalid_bounds_refuse(self):
+        role = next(k for k,v in self.document.registry.items() if v == 'Counts::named')
+        definition = next(k for k,v in self.document.registry.items() if v == 'Counts::Unit')
+        for lower, upper in [(True, 2), (1, False), (1.0, 2), ('1', 2), (None, 2), (-1, 1), (2, 1), (0, 2_147_483_648)]:
+            with self.subTest(lower=lower,upper=upper), self.assertRaises(EditError) as error:
+                self.document.set_multiplicity(role, lower, upper, expected_source_sha256=self.document.revision)
+            self.assertEqual(error.exception.code, 'multiplicity')
+        for identity, revision, expected in [(definition, self.document.revision, 'element_kind'), ('missing', self.document.revision, 'identity'), (role, 'stale', 'stale_revision')]:
+            with self.assertRaises(EditError) as error:
+                self.document.set_multiplicity(identity, 1, 2, expected_source_sha256=revision)
+            self.assertEqual(error.exception.code, expected)
+
+    def test_configuration_scope_bytes_stay_fixed_and_status_is_recomputed(self):
+        linked = {'scope.json': {'kind': 'retained_configuration', 'text': json.dumps(SCOPE, indent=2)+'\n'}}
+        document = CompositionDocument(FILES, linked_records=linked)
+        self.assertEqual(document.configuration_reviews[0]['report']['status'], 'pass')
+        for lower, upper, status in [(0, 1, 'unknown'), (0, 0, 'fail'), (3, 3, 'pass')]:
+            candidate = self.change('Library::Base::sensor', lower, upper, document)
+            self.assertEqual(candidate.linked_records, linked)
+            self.assertEqual(candidate.configuration_reviews[0]['report']['status'], status)
+
+    def test_unadapted_computational_document_is_not_silently_bypassed(self):
+        document = CompositionDocument('package Unknown { part role; doc cseUnknown /* CSE-UNKNOWN/1.0\n{} */ }')
+        with self.assertRaises(EditError) as error:
+            self.change('Unknown::role', 1, 2, document)
+        self.assertEqual(error.exception.code, 'linked_records')
+
+    def test_native_maximum_and_candidate_cli_preserve_the_explicit_bundle(self):
+        expected=self.change('Counts::named',2147483647,2147483647)
+        (ROOT/'.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as name:
+            bundle=Path(name)/'bundle.json'
+            bundle.write_text(json.dumps({'version':'cse-composition-bundle-1','models':self.document.files,'linked_records':{}}))
+            identity=next(k for k,v in self.document.registry.items() if v=='Counts::named')
+            run=subprocess.run([sys.executable,str(ROOT/'scripts/composition_edit.py'),'set-multiplicity',
+                '--bundle',str(bundle),'--project-id',self.document.project_id,'--element-id',identity,
+                '--lower','2147483647','--upper','2147483647','--expected-bundle-sha256',self.document.revision],
+                cwd=name,capture_output=True,text=True,timeout=60)
+            self.assertEqual(run.returncode,0,run.stdout+run.stderr)
+            report=json.loads(run.stdout)
+            self.assertEqual(report['claim'],'candidate_only_not_persisted')
+            self.assertEqual(report['files'],expected.files)
+            self.assertEqual(report['registry'],self.document.registry)
+
+    def test_native_coordinates_serialize_identically_across_parser_processes(self):
+        from verifier.composition_edit import parse
+        original=json.dumps(self.document.parsed,ensure_ascii=False)
+        for _ in range(2):
+            self.assertEqual(json.dumps(parse(self.document.source),ensure_ascii=False),original)
+
+
 class RecordSafetyTests(unittest.TestCase):
     def mapped(self, value):
         return value.replace('Library::Base::sensor', 'Library::Base::detector') if value.startswith('Library::Base::sensor') else value

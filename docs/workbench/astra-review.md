@@ -1,5 +1,28 @@
 # Composition walkthrough review
 
+## Native multiplicity and whole-notation review
+
+Astra reviewed the finite-bound source edit, separate inspector controls, typed
+site operations and desktop/mobile native diagrams. Duplicate control IDs found
+during assembly were removed. Lost-response recovery now retains displayed form
+values and their original base revision/commit alongside the exact request.
+
+The pixel review found that a maximum integer could split across lines. Literal
+multiplicity now remains one annotation at the saved Mono size. Default frames
+fit actual metrics; an undersized saved frame refuses. The follow-up found that
+one widened frame expanded every hierarchy level. Cumulative per-level widths
+now preserve the ordinary layout and keep the depth-16 maximum cases within the
+existing canvas limit. The original kit helpers and assets remain unchanged.
+
+The final r5 review verified all source pins, ten image hashes and custom DejaVu
+glyph suppliers. It found no new actionable defect in that bounded recheck.
+Native HTTP/Git/browser results and full assembled regression remain separate
+evidence. Earlier failed fixtures, metadata serialization and browser harness
+attempts are retained privately; none counts as passing full qualification.
+
+Short-name-only native identity/import, MCP/actual host journeys, remote
+persistence and full drawing/export fidelity remain open physical obligations.
+
 ## SVG and iconography preservation recheck
 
 Astra compared the current walkthrough and saved-native renderer with the
