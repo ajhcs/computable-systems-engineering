@@ -116,6 +116,188 @@ FILES = {
         ' part def Assembly :> Base;\r\n}\r\n',
     'context.sysml': 'package Context { private import Library::*; part current : Assembly; }',
 }
+
+REFERENCE_SOURCE = (ROOT/'examples/workbench/composition/reference-names.sysml').read_text()
+REFERENCE_SCOPE = {'version': 'configuration-1.0',
+                   'root': {'native_name': 'ReferenceComposition::current', 'type': 'ReferenceComposition::Base'},
+                   'selected_roles': {'Role': {'parent': '$root', 'native_name': 'ReferenceComposition::Base::role',
+                                              'type': "ReferenceComposition::'Sénsor::unit'"}},
+                   'open_alternatives': [], 'connections': []}
+
+
+class ReferenceNameTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.document = CompositionDocument(REFERENCE_SOURCE, project_id='d6e6fc68-52f5-4a97-bbd7-2e5aaf6cc322')
+
+    def rename(self, document, old, new):
+        identity = next(k for k, value in document.registry.items() if value == old)
+        result = document.rename(identity, new, expected_source_sha256=document.revision)
+        self.assertEqual(set(result.registry), set(document.registry))
+        self.assertEqual(document.registry[identity], old)
+        return result
+
+    def test_declared_name_short_ids_alias_names_and_alias_short_ids_have_native_bindings(self):
+        selected = [r for r in self.document.parsed['reference_spans']
+                    if r['text'].strip() in ["'Sénsor::unit'", 'S', 'DetectorAlias', 'AS']]
+        self.assertTrue(selected)
+        kinds = {r['name_binding']['segments'][-1]['kind'] for r in selected}
+        self.assertEqual(kinds, {'name', 'short_name', 'alias_name', 'alias_short_name'})
+        for ref in selected:
+            self.assertEqual(ref['name_binding']['status'], 'resolved')
+            self.assertEqual(ref['name_binding']['segments'][-1]['target'], ref['target'])
+
+    def test_type_rename_preserves_alias_declarations_consumers_and_short_spellings(self):
+        result = self.rename(self.document, "ReferenceComposition::'Sénsor::unit'", 'Detector')
+        expected = REFERENCE_SOURCE.replace("part def <S> 'Sénsor::unit';", 'part def <S> Detector;')
+        expected = expected.replace("for 'Sénsor::unit';", 'for Detector;')
+        expected = expected.replace("part direct : 'Sénsor::unit';", 'part direct : Detector;')
+        expected = expected.replace("ReferenceComposition::'Sénsor::unit'", 'ReferenceComposition::Detector')
+        self.assertEqual(result.source, expected)
+        self.assertIn("alias 'Sénsor::unit' for ReferenceComposition::Detector;", result.source)
+        self.assertIn("part aliasConsumer : 'Sénsor::unit';", result.source)
+        for name in ['S', 'DetectorAlias', 'AS']:
+            self.assertIn(': '+name+';', result.source)
+
+    def test_owner_prefix_updates_even_when_final_aliased_target_keeps_its_name(self):
+        result = self.rename(self.document, 'ReferenceComposition::Outer', 'Platform')
+        expected = REFERENCE_SOURCE.replace('part def <O> Outer {', 'part def <O> Platform {')
+        expected = expected.replace('alias OuterAlias for Outer;', 'alias OuterAlias for Platform;')
+        expected = expected.replace('part remote : Outer::Remote;', 'part remote : Platform::Remote;')
+        expected = expected.replace('ReferenceComposition::Outer', 'ReferenceComposition::Platform')
+        self.assertEqual(result.source, expected)
+        self.assertIn('part shortPath : O::I;', result.source)
+        before = next(r for r in self.document.parsed['reference_spans'] if r['text'].strip() == 'Outer::Remote')
+        after = next(r for r in result.parsed['reference_spans'] if r['text'].strip() == 'Platform::Remote')
+        self.assertEqual(before['target'], after['target'])
+
+    def test_quoted_name_with_colons_keeps_source_trivia_and_mixed_short_path(self):
+        result = self.rename(self.document, "ReferenceComposition::Outer::'Inner::device'", 'Module')
+        expected = REFERENCE_SOURCE.replace("part def <I> 'Inner::device';", 'part def <I> Module;')
+        expected = expected.replace("OuterAlias::'Inner::device';", 'OuterAlias::Module;')
+        expected = expected.replace("ReferenceComposition::Outer::'Inner::device'", 'ReferenceComposition::Outer::Module')
+        self.assertEqual(result.source, expected)
+        self.assertIn('OuterAlias::Module; //* retain qualifier note */', result.source)
+        self.assertIn('part shortPath : O::I;', result.source)
+
+    def test_redefinition_by_short_id_survives_renamed_inherited_role(self):
+        result = self.rename(self.document, 'ReferenceComposition::Base::role', 'detector')
+        self.assertEqual(result.source, REFERENCE_SOURCE.replace('part <ROLE> role [2]', 'part <ROLE> detector [2]'))
+        self.assertIn('part :>> ROLE : S;', result.source)
+        self.assertIn('ReferenceComposition::Derived::detector', result.registry.values())
+
+    def test_native_owner_handles_roots_and_quoted_namespace_colons(self):
+        cases = [("part def <R> 'Root::frame'; part direct : 'Root::frame'; part byId : R;",
+                  "'Root::frame'", 'part def <R> Detector; part direct : Detector; part byId : R;'),
+                 ("package 'Pkg::box' { part def <R> 'Root::frame'; part direct : R; }",
+                  "'Pkg::box'::'Root::frame'", "package 'Pkg::box' { part def <R> Detector; part direct : R; }")]
+        for source, old, expected in cases:
+            with self.subTest(old=old):
+                document = CompositionDocument(source)
+                result = self.rename(document, old, 'Detector')
+                self.assertEqual(result.source, expected)
+
+    def test_equal_declared_name_and_short_id_preserves_the_short_reference_spelling(self):
+        source = 'package Equal { part def <Same> Same; alias First for Same; alias Second for First; part direct : Same; part chained : Second; }'
+        document = CompositionDocument(source)
+        result = self.rename(document, 'Equal::Same', 'Detector')
+        self.assertEqual(result.source, source.replace('part def <Same> Same;', 'part def <Same> Detector;'))
+
+    def test_root_identity_does_not_rewrite_equal_short_ids_local_names_or_literal_statuses(self):
+        cases = [('part def <Same> Same; part usage [2] : Same;', 'Same',
+                  'part def <Same> Detector; part usage [2] : Same;'),
+                 ('part def literal; part usage [2] : literal;', 'literal',
+                  'part def Detector; part usage [2] : Detector;'),
+                 ('part def unsupported; part usage [1..*] : unsupported;', 'unsupported',
+                  'part def Detector; part usage [1..*] : Detector;'),
+                 ('part def role; part def Container { part role : $::role; }', 'role',
+                  'part def Detector; part def Container { part role : $::Detector; }')]
+        for source, old, expected in cases:
+            with self.subTest(old=old):
+                document = CompositionDocument(source)
+                result = self.rename(document, old, 'Detector')
+                self.assertEqual(result.source, expected)
+
+    def test_unnamed_redefinition_chain_changes_names_but_named_redefinition_keeps_its_name(self):
+        source = 'package Chain { part def <S> Sensor; part def Base { part <ROLE> role : S; } '
+        source += 'part def Mid :> Base { part :>> ROLE : S; } part def Leaf :> Mid { part :>> role : S; } '
+        source += 'part def Named :> Base { part explicit :>> ROLE : S; } }'
+        document = CompositionDocument(source)
+        result = self.rename(document, 'Chain::Base::role', 'detector')
+        expected = source.replace('<ROLE> role :', '<ROLE> detector :').replace('part :>> role :', 'part :>> detector :')
+        self.assertEqual(result.source, expected)
+        for name in ['Chain::Mid::detector', 'Chain::Leaf::detector', 'Chain::Named::explicit']:
+            self.assertIn(name, result.registry.values())
+
+    def test_renamed_type_prefix_does_not_change_inherited_members_native_owner(self):
+        source = 'package Inherited { part def Sensor; part def Base { part role : Sensor; } '
+        source += 'part def Mid :> Base; alias Exposed for Mid::role; }'
+        document = CompositionDocument(source)
+        result = self.rename(document, 'Inherited::Mid', 'Middle')
+        self.assertEqual(result.source, source.replace('part def Mid :>', 'part def Middle :>').replace('for Mid::role;', 'for Middle::role;'))
+        before = next(r for r in document.parsed['reference_spans'] if r['text'].strip() == 'Mid::role')
+        after = next(r for r in result.parsed['reference_spans'] if r['text'].strip() == 'Middle::role')
+        self.assertEqual(before['target'], 'Inherited::Base::role')
+        self.assertEqual(after['target'], before['target'])
+
+    def test_multifile_crlf_and_unrelated_source_bytes_are_exact(self):
+        source = REFERENCE_SOURCE.replace('\n', '\r\n')
+        files = {'types.sysml': source, 'unrelated.sysml': '// untouched 🛰\r\npackage Unrelated;\r\n'}
+        document = CompositionDocument(files)
+        result = self.rename(document, "ReferenceComposition::Outer::'Inner::device'", 'Module')
+        self.assertEqual(result.files['unrelated.sysml'], files['unrelated.sysml'])
+        expected = source.replace("part def <I> 'Inner::device';", 'part def <I> Module;').replace("OuterAlias::'Inner::device';", 'OuterAlias::Module;')
+        expected = expected.replace("ReferenceComposition::Outer::'Inner::device'", 'ReferenceComposition::Outer::Module')
+        self.assertEqual(result.files['types.sysml'], expected)
+
+    def test_affected_missing_native_binding_is_refused_without_changing_source(self):
+        document = deepcopy(self.document)
+        ref = next(r for r in document.parsed['reference_spans'] if r['target'] == "ReferenceComposition::'Sénsor::unit'")
+        ref.pop('name_binding')
+        with self.assertRaises(EditError) as error:
+            self.rename(document, "ReferenceComposition::'Sénsor::unit'", 'Detector')
+        self.assertEqual(error.exception.code, 'reference_form')
+        self.assertEqual(document.source, REFERENCE_SOURCE)
+
+    def test_native_segment_span_mismatch_cannot_edit_an_unrelated_token(self):
+        document = deepcopy(self.document)
+        ref = next(r for r in document.parsed['reference_spans'] if r['target'] == "ReferenceComposition::'Sénsor::unit'")
+        ref['name_binding']['segments'][0]['text'] = 'unrelated token'
+        with self.assertRaises(EditError) as error:
+            self.rename(document, "ReferenceComposition::'Sénsor::unit'", 'Detector')
+        self.assertEqual(error.exception.code, 'parser_contract')
+        self.assertEqual(document.source, REFERENCE_SOURCE)
+
+    def test_full_native_fingerprint_rejects_an_unrequested_semantic_delta(self):
+        from verifier.composition_edit import parse as native_parse
+        def changed_fact(source):
+            result = native_parse(source)
+            result['parts'][0]['is_composite'] = not result['parts'][0]['is_composite']
+            return result
+        with patch('verifier.composition_edit.parse', side_effect=changed_fact), self.assertRaises(EditError) as error:
+            self.rename(self.document, "ReferenceComposition::Outer::'Inner::device'", 'Module')
+        self.assertEqual(error.exception.code, 'semantic_delta')
+        self.assertEqual(self.document.source, REFERENCE_SOURCE)
+
+    def test_source_cli_matches_the_independently_expected_reference_edit(self):
+        (ROOT/'.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            path = Path(directory)/'source.sysml'
+            path.write_text(REFERENCE_SOURCE)
+            old = "ReferenceComposition::Outer::'Inner::device'"
+            identity = next(k for k, v in self.document.registry.items() if v == old)
+            result = subprocess.run([sys.executable, '-B', str(ROOT/'scripts/composition_edit.py'),
+                'rename', str(path), '--project-id', self.document.project_id, '--element-id', identity,
+                '--name', 'Module', '--expected-source-sha256', self.document.revision],
+                capture_output=True, text=True, check=True)
+            report = json.loads(result.stdout)
+            expected = REFERENCE_SOURCE.replace("part def <I> 'Inner::device';", 'part def <I> Module;')
+            expected = expected.replace("OuterAlias::'Inner::device';", 'OuterAlias::Module;')
+            expected = expected.replace(old, 'ReferenceComposition::Outer::Module')
+            self.assertEqual(report['source'], expected)
+            self.assertEqual(report['registry'][identity], 'ReferenceComposition::Outer::Module')
+            self.assertEqual(path.read_text(), REFERENCE_SOURCE)
+            self.assertEqual(report['claim'], 'candidate_only_not_persisted')
 SCOPE = {'version': 'configuration-1.0',
          'root': {'native_name': 'Context::current', 'type': 'Library::Assembly'},
          'selected_roles': {'SensorRole': {'parent': '$root', 'native_name': 'Library::Base::sensor',

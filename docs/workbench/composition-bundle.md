@@ -68,16 +68,20 @@ preparation succeeded; configuration findings can remain unsuccessful and
 must be read independently. Required-review success is not supplied by this
 candidate command.
 
+The [native name adapter](composition-native-names.md) handles resolved alias,
+short-ID and quoted/Unicode source references through native Membership and
+Name-token bindings, including mixed paths and renamed namespace prefixes.
 Current open edit obligations include quoted/Unicode replacement names and
-reference spellings outside simple resolved namespace suffixes. The current
+unadapted native reference forms. The current
 replacement name is bounded to 64 ASCII identifier characters. Unadapted
 structured CSE records and native parser diagnostics still refuse a rename.
 These are implementation gaps in the active capability; they do not narrow
 the existing-support union or qualify a complete physical-composition editor.
 
-The persistence layer must later commit these model/companion changes together,
-with revision conflict checks, idempotent request receipts and history. That
-obligation remains open in the physical-composition parity matrix.
+The [local Git transaction](composition-persistence.md) commits the admitted
+model/companion changes together with revision conflicts, retry receipts and
+history. Remote persistence and actual application journeys remain open in the
+physical-composition parity matrix.
 
 [Saved physical diagrams](composition-diagrams.md) validate these companions
 against actual native ownership and the source-bound selected view.

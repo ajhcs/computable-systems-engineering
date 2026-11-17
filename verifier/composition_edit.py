@@ -85,6 +85,25 @@ def fingerprint(parsed):
     return clean(parsed)
 
 
+def renamed_native_facts(value, mapped):
+    """Transform only the bridge's typed qualified-identity fields.
+
+    A root's qualified name can equal a short ID, local name, literal status
+    or prose. Those values are independent facts and must remain unchanged.
+    New native identity fields require an explicit adapter; they cannot be
+    inferred by globally replacing strings in the expected fingerprint.
+    """
+    identities = {'qualified_name', 'owner', 'type', 'part_definition', 'event',
+                  'requirement', 'constraint', 'original_port_definition', 'target', 'reference_target'}
+    identity_lists = {'types', 'redefines', 'subsets', 'supertypes', 'path'}
+    if isinstance(value, dict):
+        return {key: mapped(item) if key in identities | identity_lists else renamed_native_facts(item, mapped)
+                for key, item in value.items()}
+    if isinstance(value, list):
+        return [renamed_native_facts(item, mapped) for item in value]
+    return value
+
+
 def replace_identity(value, before, after):
     if isinstance(value, str):
         return after + value[len(before):] if value == before or value.startswith(before + '::') else value
@@ -283,7 +302,7 @@ class CompositionDocument:
             raise EditError('identity', 'Unknown engineering element')
         old = self.registry[element_id]
         item = elements(self.parsed)[old]
-        new = old.rsplit('::', 1)[0] + '::' + new_name
+        new = (item['owner'] + '::' if item.get('owner') else '') + new_name
         if new == old:
             return self
         if new in elements(self.parsed):
@@ -299,7 +318,7 @@ class CompositionDocument:
                 targets = row.get('redefines', [])
                 if (name not in renames and len(targets) == 1 and targets[0] in renames
                         and 'name_offset' not in row['source_span']):
-                    renames[name] = name.rsplit('::', 1)[0] + '::' + new_name
+                    renames[name] = (row['owner'] + '::' if row.get('owner') else '') + new_name
                     added = True
             if not added:
                 break
@@ -325,19 +344,31 @@ class CompositionDocument:
             if ref.get('resolved') is not True:
                 raise EditError('unresolved_reference', 'Native reference is unresolved')
             target = ref['target']
-            if mapped(target) == target:
-                continue
             a, b = bounds(self.source, ref)
-            text = self.source[a:b]
-            matches = list(re.finditer(r'[A-Za-z][A-Za-z0-9_]*', text))
-            tokens = [m.group() for m in matches]
-            target_tokens = target.split('::')
-            if not tokens or tokens != target_tokens[-len(tokens):]:
-                raise EditError('reference_form', 'Reference spelling needs an explicit adapter')
-            spellings = mapped(target).split('::')[-len(tokens):]
-            for token, replacement in zip(matches, spellings):
-                if token.group() != replacement:
-                    changes.append((a + token.start(), a + token.end(), replacement))
+            binding = ref.get('name_binding', {})
+            if not isinstance(binding, dict):
+                raise EditError('parser_contract', 'Invalid native reference-name binding')
+            segments = binding.get('segments', [])
+            if binding.get('status') != 'resolved':
+                if mapped(target) != target or any(s.get('kind') == 'name' and s.get('target') in renames
+                                                   for s in segments):
+                    raise EditError('reference_form', 'Native name-segment binding is unavailable for an affected reference')
+                continue
+            if not isinstance(segments, list) or not segments:
+                raise EditError('parser_contract', 'Native reference-name segments unavailable')
+            previous = a
+            for segment in segments:
+                start, end = bounds(self.source, segment)
+                if not (previous <= start < end <= b and self.source[start:end] == segment.get('text')
+                        and segment.get('kind') in ('name', 'short_name', 'alias_name', 'alias_short_name')
+                        and isinstance(segment.get('target'), str)):
+                    raise EditError('parser_contract', 'Invalid native reference-name segment')
+                previous = end
+                # A namespace prefix can change even when the final target is
+                # external and keeps its qualified identity. Alias and short-ID
+                # spellings remain independent from the renamed declared name.
+                if segment['kind'] == 'name' and segment['target'] in renames:
+                    changes.append((start, end, new_name))
         expected_bodies = []
         for document in self.parsed.get('documents', []):
             try:
@@ -379,7 +410,7 @@ class CompositionDocument:
         candidate = CompositionDocument(files if self.is_bundle else files['model.sysml'],
                                         project_id=self.project_id, registry=registry, linked_records=linked)
         candidate.reconciliation = reconciliation
-        expected = mapped(fingerprint(self.parsed))
+        expected = renamed_native_facts(fingerprint(self.parsed), mapped)
         for document, body in zip(expected.get('documents', []), expected_bodies):
             document['body'] = body
         # Only the selected declaration's local name changes. The independent

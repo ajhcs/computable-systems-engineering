@@ -14,7 +14,7 @@ are presentation copies with source-bound text and recorded provenance.
 | Requirement | Current implementation and verification |
 |---|---|
 | Exact SVG masters | Catalog-pinned rectangle, pattern, figure-heading, crossing-gap and legend masters; output `kit-usage.json` records selected hashes and content-fit adaptations. |
-| Typography | Exact DejaVu Sans and Mono TTF files, native advances, 28-unit component names, 24-unit references and at least 1.4em baseline spacing; Chromium checks actual glyph suppliers. |
+| Typography | Exact DejaVu Sans and Mono TTF files, native advances, 28-unit component names, 24-unit references and at least 1.4em baseline spacing; Chromium checks actual glyph suppliers. A physical-view adapter adds fixed Latin/Greek/Cyrillic/symbol metrics from the original fonts while delegating original ASCII behavior unchanged. |
 | Swatches and textures | Exact saved IDs, checked contrast and opaque label backing; an authored local key explains presentation choices without inventing model properties. |
 | Relationship notation | Unarrowed native ownership; retained endpoint identities; independent routes have at least 15 units of visible-ink separation. Shared-parent fanout and marked nonconnecting crossings have explicit treatments. |
 | Local key | Original ruled legend master with fitted heading/body cells, authored text and reserved space; routes and frames cannot intrude. |

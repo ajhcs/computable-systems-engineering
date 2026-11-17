@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from uuid import uuid4
 from xml.etree import ElementTree as ET
 
@@ -17,6 +18,7 @@ from verifier.composition_edit import CompositionDocument, EditError
 from verifier.composition_project import CompositionProject
 from verifier import composition_view as view
 from verifier import kit_templates
+from verifier import composition_fonts, kit_fonts
 
 SOURCE = '// 🛰 Preserve Unicode before native ranges.\n' + (ROOT/'examples/workbench/composition/diagram-model.sysml').read_text()
 PROJECT = '18eaecb4-a089-47c1-9288-630083464bed'
@@ -26,6 +28,52 @@ SCOPE = {'version': 'configuration-1.0',
                                      'type': 'DiagramComposition::Device'}},
          'open_alternatives': [], 'connections': []}
 NS = {'s': 'http://www.w3.org/2000/svg'}
+
+
+class CompositionFontTests(unittest.TestCase):
+    def test_added_glyph_ink_clearance_preserves_original_text_backing(self):
+        self.assertEqual(composition_fonts.backing_padding('IF-201 · S2/B4'), 8)
+        # Actual Chromium ink extends nine units left at the 24-unit role.
+        self.assertGreater(composition_fonts.backing_padding('Ἢ'*21), 9)
+
+    def test_original_ascii_widths_wrapping_fonts_and_notices_remain_exact(self):
+        self.assertEqual(composition_fonts.font_css(), kit_fonts.font_css())
+        for family in ['DejaVu Sans', 'DejaVu Sans Mono']:
+            for weight in [400, 700]:
+                for text in ['Physical parts', 'IF-201 · S2/B4', '[2147483646..2147483647]', 'AV ffi W']:
+                    self.assertEqual(composition_fonts.text_width(text, 24, family, weight),
+                                     kit_fonts.text_width(text, 24, family, weight))
+                    self.assertEqual(composition_fonts.wrap_text(text, 95, 24, family, weight),
+                                     kit_fonts.wrap_text(text, 95, 24, family, weight))
+
+    def test_fixed_unicode_profile_uses_source_advances_and_preserves_wrapped_text(self):
+        # Source TTF advances, independently cross-checked against real browser
+        # glyph suppliers and getComputedTextLength in the rename harness.
+        self.assertEqual(composition_fonts.text_width('éΩЖ', 24), (1260+1565+2206)*24/2048)
+        self.assertEqual(composition_fonts.text_width('éΩЖ', 24, weight=700), (1389+1741+2507)*24/2048)
+        self.assertEqual(composition_fonts.text_width('éΩЖ', 24, 'DejaVu Sans Mono'), 3*1233*24/2048)
+        for family in ['DejaVu Sans', 'DejaVu Sans Mono']:
+            for weight in [400, 700]:
+                text = 'Sénsor::unit Ω Ж façade'
+                lines = composition_fonts.wrap_text(text, 120, 28, family, weight)
+                self.assertEqual(''.join(lines), text)
+                self.assertTrue(all(composition_fonts.text_width(line, 28, family, weight) <= 120 for line in lines))
+
+    def test_absent_glyphs_controls_combining_and_unqualified_shaping_refuse(self):
+        for text in ['未', 'العربية', 'e\u0301', '\u200e', '\n', '']:
+            with self.subTest(text=text), self.assertRaises(ValueError):
+                composition_fonts.text_width(text, 24)
+
+    def test_changed_extension_after_a_cached_read_cannot_keep_a_previous_pass(self):
+        (ROOT/'.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            path = Path(directory)/'profile.json'
+            path.write_bytes(composition_fonts.profile_bytes())
+            with patch.object(composition_fonts, 'PROFILE_PATH', path):
+                self.assertGreater(composition_fonts.text_width('é', 24), 0)
+                path.write_bytes(path.read_bytes()+b' ')
+                with self.assertRaisesRegex(ValueError, 'font-profile digest'):
+                    composition_fonts.text_width('é', 24)
 
 
 def keyed_definition(document, legend):
@@ -102,6 +150,25 @@ class NativeViews(unittest.TestCase):
         self.assertIn('DiagramComposition::Base::inherited', [r['element'] for r in p['omitted_elements']])
         self.assertNotIn('marker-end', rendered['svg'])
         self.assertNotIn('marker-start', rendered['svg'])
+
+    def test_wrapped_unicode_reference_ink_stays_inside_the_saved_pattern_backing(self):
+        name = 'Ἢ'*40
+        source = "package Greek { part def '"+name+"'; part def Derived :> '"+name+"'; "
+        record = {'views': [{'id': 'PC_INK', 'kind': 'physical_composition', 'mode': 'definitions',
+                            'nodes': [{'id': 'Root', 'element': 'Greek::Derived', 'parent': None, 'level': 0, 'edge': None}]}]}
+        source += 'doc cseViews /* CSE-VIEWS/1.1\n'+json.dumps(record)+' */ }'
+        appearance = {'version': 'cse-diagram-appearance-2.0', 'kit': 'engineering-palette-complete-05', 'view': 'PC_INK',
+                      'nodes': {'Root': {'template': 'palette-rectangle-white-dots', 'fill': 'C18-L92',
+                                         'stroke': 'N100', 'text': 'N100', 'align': 'center'}},
+                      'edges': {}, 'legend': ['Dots distinguish the root field.']}
+        document = CompositionDocument(source, linked_records={'appearance.json': {'kind': 'composition_appearance', 'text': json.dumps(appearance)}})
+        rendered = view.render(document, 'PC_INK')
+        group = ET.fromstring(rendered['svg']).find('.//s:g[@data-node-id="Root"]', NS)
+        backing = group.find('.//s:rect[@data-role="label-backing"]', NS)
+        line = next(t for t in group.findall('s:text', NS) if t.text == 'Ἢ'*21)
+        left = float(line.get('x'))-composition_fonts.text_width(line.text, 24, 'DejaVu Sans Mono')/2
+        self.assertGreaterEqual(left-float(backing.get('x')), 9)
+        self.assertEqual(rendered['projection']['nodes']['Root']['native']['supertypes'], ["Greek::'"+name+"'"])
 
     def test_definitions_retain_their_separate_hierarchy_and_native_kind(self):
         rendered = view.render(self.document, 'PC_DEFINITION')

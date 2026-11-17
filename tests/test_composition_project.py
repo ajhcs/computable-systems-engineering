@@ -50,6 +50,63 @@ class ProjectTests(unittest.TestCase):
         return {'operation': 'rename', 'request_id': str(uuid4()), 'expected_revision': revision,
                 'element_id': self.identity, 'new_name': name}
 
+    def test_native_alias_qualified_and_short_references_survive_git_retry_reopen_and_restore(self):
+        from tests.test_composition_edit import REFERENCE_SOURCE, REFERENCE_SCOPE
+        from verifier.composition_view import render
+        files = {'reference.sysml': REFERENCE_SOURCE, 'unrelated.sysml': '// exact 🛰\r\npackage Unrelated;\r\n'}
+        records = {'scope.json': {'kind': 'retained_configuration', 'text': json.dumps(REFERENCE_SCOPE, indent=2)+'\n'},
+                   'labels.json': {'kind': 'display_labels', 'text': json.dumps({'version': 1, 'view': 'PC_REFERENCE',
+                       'title': 'Physical hierarchy', 'labels': [{'element': "ReferenceComposition::Outer::'Inner::device'",
+                                                                'text': 'Original caption'}]})}}
+        project, _ = CompositionProject.create(self.work/'references.git', files, project_id=PROJECT,
+            request_id=str(uuid4()), linked_records=records)
+        initial = project.snapshot()
+        self.assertEqual(initial['document'].configuration_reviews[0]['report']['status'], 'pass')
+        initial_svg = render(initial['document'], 'PC_REFERENCE')['svg']
+        registry = initial['document'].registry
+        ids = {value: key for key, value in registry.items()}
+        for revision, old, new in [(1, 'ReferenceComposition::Outer', 'Platform'),
+                (2, "ReferenceComposition::Outer::'Inner::device'", 'Module'),
+                (3, "ReferenceComposition::'Sénsor::unit'", 'Detector')]:
+            request = {'operation': 'rename', 'request_id': str(uuid4()), 'expected_revision': revision,
+                       'element_id': ids[old], 'new_name': new}
+            preview = project.preview(request)
+            receipt = project.transact(request)
+            self.assertEqual(project.transact(request), receipt)
+            self.assertEqual(project.snapshot()['document'].files, preview['document'].files)
+        saved = CompositionProject(project.repository).snapshot()
+        document = saved['document']
+        self.assertEqual(saved['revision'], 4)
+        self.assertEqual(set(document.registry), set(registry))
+        self.assertEqual(document.registry[ids["ReferenceComposition::Outer::'Inner::device'"]],
+                         'ReferenceComposition::Platform::Module')
+        self.assertEqual(document.linked_records['scope.json'], records['scope.json'])
+        self.assertEqual(document.configuration_reviews[0]['report']['status'], 'fail')
+        self.assertEqual(document.files['unrelated.sysml'], files['unrelated.sysml'])
+        self.assertIn('part remote : Platform::Remote;', document.source)
+        self.assertIn('part shortPath : O::I;', document.source)
+        self.assertIn('part aliasShortRef : AS;', document.source)
+        rendered = render(document, 'PC_REFERENCE')
+        self.assertEqual(rendered['display_labels']['Inner'], 'Original caption')
+        self.assertEqual(rendered['projection']['nodes']['Inner']['native']['name'], 'Module')
+        stale = {**request, 'request_id': str(uuid4()), 'expected_revision': 2}
+        with self.assertRaises(EditError):
+            project.transact(stale)
+        self.assertEqual(project.head(), saved['commit'])
+        result = subprocess.run([sys.executable, '-B', 'scripts/composition_project.py', 'inspect',
+                                 '--project', str(project.repository)], cwd=ROOT, capture_output=True, text=True, check=True)
+        reopened = json.loads(result.stdout)
+        self.assertEqual(reopened['revision'], 4)
+        self.assertEqual(reopened['registry'], document.registry)
+        restore = {'operation': 'restore', 'request_id': str(uuid4()), 'expected_revision': 4, 'target_revision': 1}
+        receipt = project.transact(restore)
+        self.assertEqual(receipt['revision'], 5)
+        restored = CompositionProject(project.repository).snapshot()['document']
+        self.assertEqual(restored.files, files)
+        self.assertEqual(restored.registry, registry)
+        self.assertEqual(restored.linked_records, records)
+        self.assertEqual(render(restored, 'PC_REFERENCE')['svg'], initial_svg)
+
     def test_exact_sources_registry_and_findings_survive_a_fresh_process(self):
         code = '''import json,sys
 from verifier.composition_project import CompositionProject

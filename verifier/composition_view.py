@@ -12,7 +12,8 @@ from pathlib import Path
 import re
 from xml.etree import ElementTree as ET
 
-from . import kit_fonts, kit_templates
+from . import composition_fonts as kit_fonts
+from . import kit_templates
 from .composition_records import strict_json
 from .visual_style import contrast
 
@@ -426,7 +427,8 @@ def render(document, view_id, *, layout_override=None):
     ET.SubElement(root, ns+'style').text = kit_fonts.font_css() + '\ntext{font-kerning:none;font-variant-ligatures:none;white-space:pre;text-rendering:geometricPrecision}'
     ET.SubElement(root, ns+'rect', {'width': str(layout['width']), 'height': str(layout['height']), 'fill': colors['N0']})
     usage = {'version': 1, 'kit': 'engineering-palette-complete-05', 'view': view_id, 'components': {},
-             'token_sha256': TOKENS, 'font_manifest_sha256': kit_fonts.MANIFEST_SHA256, 'adaptations': []}
+             'token_sha256': TOKENS, 'font_manifest_sha256': kit_fonts.MANIFEST_SHA256,
+             'font_profile_sha256': kit_fonts.PROFILE_SHA256, 'adaptations': []}
     heading_width = math.ceil(kit_fonts.text_width(title, 24, weight=700)) + 40
     need(heading_width <= layout['width']-64, 'Heading does not fit the canvas')
     heading = kit_templates.document_frame(kit_templates.FIGURE_HEADING, x=32, y=28,
@@ -468,13 +470,15 @@ def render(document, view_id, *, layout_override=None):
         left = box['x']+28 if item['align'] == 'left' else box['x']+(box['width']-word_width)/2
         top = min(y-size-5 for y, (_, size, _, _) in zip(positions, lines))
         bottom = max(y+9 for y in positions)
+        padding = max(kit_fonts.backing_padding(text) for text, _, _, _ in lines)
         # Preserve the original pattern, then use its saved opaque text backing.
         frame = kit_templates.frame(item['template'], **box, fill=colors[item['fill']], stroke=colors[item['stroke']],
                                     stroke_width=3, prefix='composition-'+key,
-                                    text_bounds=[left-8, top, word_width+16, bottom-top])
+                                    text_bounds=[left-padding, top, word_width+2*padding, bottom-top])
         group.append(ET.fromstring(frame))
         usage['components'][item['template']] = kit_templates.source_record(item['template'])['sha256']
         usage['adaptations'].append({'node': key, 'element_id': node['element_id'], 'template': item['template'], 'geometry': box, 'stroke_width': 3,
+                                     'label_backing_padding': padding,
                                      'edits': ['content-fit geometry', 'exact saved swatches', 'independent bound labels', 'unique SVG identities']})
         for baseline, (text, size, weight, family) in zip(positions, lines):
             x = box['x']+28 if item['align'] == 'left' else box['x']+box['width']/2
@@ -551,6 +555,7 @@ def artifact_files(snapshot, view_id):
         files['artwork/'+master+'.svg'] = kit_templates.source_record(master)['svg'].encode('utf-8')
     for name in kit_fonts._FILES:
         files['fonts/'+name] = (kit_fonts.ASSETS / name).read_bytes()
+    files['fonts/composition-font-metrics.json'] = kit_fonts.profile_bytes()
     from .sysml_batch import runtime_identity
     from .sysml import CACHE
     engines, backend = {}, {}

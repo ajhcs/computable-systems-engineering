@@ -10,8 +10,19 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.RuleCall;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.scoping.IScopeProvider;
+import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NamespaceUtil;
+import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
@@ -143,6 +154,76 @@ public final class SysmlBridge {
         return type == null ? null : type.getQualifiedName();
     }
 
+    private static Map<String, Object> referenceNames(EObject object, EReference reference, INode node, Element target) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        List<Map<String, Object>> segments = new ArrayList<>();
+        result.put("status", "unsupported");
+        result.put("segments", segments);
+        result.put("reason", "Native qualified-name binding unavailable");
+        try {
+            if (!(object.eResource() instanceof XtextResource resource)) return result;
+            var provider = resource.getResourceServiceProvider().get(IScopeProvider.class);
+            var membershipReference = SysMLPackage.eINSTANCE.getNamespace_Membership();
+            var scope = provider.getScope(object, membershipReference);
+            if (reference == SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature()
+                    && provider instanceof KerMLScopeProvider nativeProvider
+                    && object.eContainer() instanceof Element owner && object instanceof Element skip) {
+                // The pinned provider selects this context for redefinedFeature.
+                // Keep its redefinition/skip flags while asking it for Membership
+                // results, so aliases remain distinct from their member element.
+                var namespace = NamespaceUtil.getParentNamespaceOf(owner);
+                if (namespace != null)
+                    scope = nativeProvider.scopeFor(namespace, membershipReference, owner, true, true, true, skip);
+            }
+            var converter = new SysMLQualifiedNameConverter();
+            StringBuilder prefix = new StringBuilder();
+            Element last = null;
+            for (var leaf : node.getLeafNodes()) {
+                if (leaf.isHidden()) continue;
+                prefix.append(leaf.getText());
+                if (leaf.getGrammarElement() instanceof Keyword keyword
+                        && (keyword.getValue().equals("::") || keyword.getValue().equals("$"))) continue;
+                if (!(leaf.getGrammarElement() instanceof RuleCall call)
+                        || !(call.getRule().getName().equals("ID") || call.getRule().getName().equals("UNRESTRICTED_NAME")))
+                    return result;
+                var decoded = converter.toQualifiedName(leaf.getText());
+                if (decoded.getSegmentCount() != 1) return result;
+                String name = decoded.getFirstSegment();
+                var description = scope.getSingleElement(converter.toQualifiedName(prefix.toString()));
+                if (description == null) return result;
+                var found = EcoreUtil.resolve(description.getEObjectOrProxy(), object);
+                if (!(found instanceof Membership membership)) return result;
+                Element element = membership.getMemberElement();
+                if (element == null || element.eIsProxy() || element.getQualifiedName() == null) return result;
+                String kind;
+                if (name.equals(membership.getMemberShortName()) && !NodeModelUtils.findNodesForFeature(membership,
+                        membership.eClass().getEStructuralFeature("memberShortName")).isEmpty()) kind = "alias_short_name";
+                else if (name.equals(membership.getMemberName()) && !NodeModelUtils.findNodesForFeature(membership,
+                        membership.eClass().getEStructuralFeature("memberName")).isEmpty()) kind = "alias_name";
+                else if (name.equals(element.getShortName())) kind = "short_name";
+                else if (name.equals(element.getName())) kind = "name";
+                else return result;
+                Map<String, Object> segment = new LinkedHashMap<>();
+                segment.put("encoding", "utf16");
+                segment.put("offset", leaf.getOffset());
+                segment.put("length", leaf.getLength());
+                segment.put("text", leaf.getText());
+                segment.put("name", name);
+                segment.put("kind", kind);
+                segment.put("target", element.getQualifiedName());
+                segments.add(segment);
+                last = element;
+            }
+            if (segments.isEmpty() || last != target) return result;
+            result.put("status", "resolved");
+            result.remove("reason");
+        } catch (RuntimeException exc) {
+            result.put("status", "error");
+            result.put("reason", "Native name-binding extraction: " + exc.getClass().getSimpleName());
+        }
+        return result;
+    }
+
     private static List<Map<String, Object>> referenceSpans(List<EObject> all) {
         List<Map<String, Object>> result = new ArrayList<>();
         var seen = new java.util.HashSet<String>();
@@ -167,6 +248,7 @@ public final class SysmlBridge {
                     if (targets.size() == nodes.size() && targets.get(i) instanceof Element target && !target.eIsProxy()) {
                         row.put("target", target.getQualifiedName());
                         row.put("resolved", target.getQualifiedName() != null);
+                        row.put("name_binding", referenceNames(object, reference, node, target));
                     }
                     result.add(row);
                 }

@@ -33,6 +33,11 @@ one source or an explicit text bundle and prepares a rename using those ranges.
 An independent reparse checks all extracted native facts and resolved reference
 correspondence. Engineering IDs and project registry IDs survive the operation.
 
+The [native-name adapter](composition-native-names.md) binds exact source Name
+segments through native Memberships, preserving aliases and short IDs across
+qualified, quoted and root-name edits. Diagram and retained-scope bindings use
+the same native identity change; a presentation alias remains independent.
+
 This candidate boundary does not save or commit a project. Remaining linked
 analytical adapters, create/reparent/delete/property editing,
 the graphical editor, host adapters, remote durable history, cloud storage and actual

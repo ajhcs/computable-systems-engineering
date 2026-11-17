@@ -50,7 +50,17 @@ and nonconnecting crossing-gap artwork. No arrowhead is assigned to native
 ownership. Unrelated overlapping routes are refused rather than joined.
 
 DejaVu Sans and Mono use the exact saved TTF bytes, real advance metrics and
-notices. Node labels retain the prior 28-unit bold treatment, 1.4-em minimum
+notices. A physical-view adapter delegates original ASCII measurements unchanged
+and adds a fixed Latin, Greek, Cyrillic and engineering-symbol profile derived
+from those same four TTFs. Its [metrics](../../assets/workbench/composition-font-metrics.json)
+stay outside the original kit; exports include their exact bytes and hash.
+Absent glyphs, combining/RTL/complex shaping and other unqualified characters
+refuse explicitly. There is no automatic normalization or system-font fallback.
+At the fixed 28/24-unit roles, original text keeps its eight-unit opaque backing
+padding. Added glyphs use twelve units to cover detached accent overhang,
+including wrapped monospace references; text advances and positions stay fixed.
+Each node records that content-fit adaptation alongside its original master.
+Node labels retain the prior 28-unit bold treatment, 1.4-em minimum
 baseline spacing, content-fit wrapping and the preserved renderer's centering.
 Node rules retain its 3-unit adaptation; hierarchy routes retain 2.5-unit rules.
 Colors select saved swatch IDs. Text, boundary and pattern contrast are checked.
