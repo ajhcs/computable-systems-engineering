@@ -84,6 +84,12 @@ selected context, full findings and fixed draft occurrences. Its synthetic
 fixtures and connected execution receipts remain distinct from MCP, private
 hosted persistence and actual application acceptance, which stay open.
 
+The [physical host contract](composition-host-contract.md) binds the next MCP
+and component work to that same native reader and saved project. It specifies
+original-font refusal, current selection/draft context, exact retry recovery,
+private durable publication and actual-host acceptance. The local SDK experiment
+informs this contract; it does not close a production interface or capability.
+
 For the explicit bundle transport, see [the bundle contract](composition-bundle.md).
 Bundle file names label supplied texts; they are never instructions to read or
 write another disk path. The source mapping retains each file's original text.

@@ -34,3 +34,10 @@ appearance compatibility remain open obligations. Actual Codex and ChatGPT
 journeys remain separate required evidence. The initial
 [walkthrough](composition-walkthrough.md) remains an interaction proposal; its
 kit-usage record is not proof of a connected application.
+
+The [physical host contract](composition-host-contract.md) carries these same
+requirements into MCP Apps. Original-font loading, actual displayed glyph
+suppliers and exact raw saved SVG bytes require separate evidence. A host that
+cannot render the original fonts must report an unsupported view. The private
+SDK experiment exercises this boundary; production component integration,
+candidate-font coverage and actual-host acceptance remain open.
