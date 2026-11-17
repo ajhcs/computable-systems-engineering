@@ -6,11 +6,11 @@ not a connected editor or application-acceptance receipt.
 
 | State | Originating purpose | Data and authority | Command and evidence |
 |---|---|---|---|
-| PC-INSPECT | Inspect the selected subsystem without leaving conversation | Native `Composition::Base::sensor`, short ID SENSOR and separate registry UUID; exact owner/type/multiplicity | Existing parser facts; workbench selection transport remains open |
-| PC-RENAME | Change one selected element through inspector or agent | Name and resolved references in SysML; registry preserves engineering identity | Source candidate and local Git transaction reference exist; connected graphical/host equivalence remains open |
-| PC-CONFLICT | Preserve an intervening engineer edit | Expected project revision, exact pending command and current head | Local Git publication rejects stale revisions and is race-tested; connected UI/host conflict recovery remains open |
+| PC-INSPECT | Inspect the selected subsystem without leaving conversation | Native `Composition::Base::sensor`, short ID SENSOR and separate registry UUID; exact owner/type/multiplicity | Local graphical selection, native properties and guarded site context are implemented; actual application journeys remain unverified |
+| PC-RENAME | Change one selected element through inspector or agent | Name and resolved references in SysML; registry preserves engineering identity | Local form and site callback use the same candidate and Git transaction; local browser equivalence is tested with synthetic site registrations; actual hosts remain open |
+| PC-CONFLICT | Preserve an intervening engineer edit | Expected project revision, exact pending command and current head | Local Git and browser checks cover stale refusal, retained drafts and exact lost-response retry; actual-host recovery remains unverified |
 | PC-REOPEN | Continue the same project in ChatGPT | Exact SysML, registry, companions and Git history | Local restart and portable Git restoration are tested; actual Codex/ChatGPT tests remain not_run |
-| PC-OPTIONAL | Inspect optional multiplicity without claiming installed presence | Native 0..1 bounds and separately retained selected configuration | Existing configuration profile returns unknown; graphical/result integration remains open |
+| PC-OPTIONAL | Inspect optional multiplicity without claiming installed presence | Native 0..1 bounds and separately retained selected configuration | Local diagram and inspector expose exact bounds and fresh retained-scope findings; this sketch executes no check |
 
 Declaration ownership and inherited selected membership are different facts.
 The sketch labels each independently. Type membership is shown without claiming that a retained configuration scope has been checked. Moving a box must not change its owner.
@@ -23,6 +23,14 @@ with explicit reconciliation and fresh configuration findings. Remote atomic
 publication, remaining analytical adapters and host equivalence remain open; see the
 [bundle contract](composition-bundle.md). The walkthrough remains a synthetic
 example and cannot close those requirements.
+
+The separate [local interaction adapter](composition-interaction.md) connects
+the saved native renderer to preview, save, retry, restoration and live refresh.
+Its [persistence contract](composition-persistence.md) covers durable Git receipts;
+its [multiplicity editor](composition-multiplicity.md) uses separate lower/upper
+fields. Those local implementations do not connect this proposal to a project
+or establish actual Codex/ChatGPT acceptance. The [SVG fidelity contract](composition-svg-fidelity.md)
+applies to the implementation and each operation's parity evidence.
 
 ## Inspected precedent
 
@@ -49,9 +57,9 @@ SysML rule. The raw precedent screenshot stays in ignored research storage.
   bounds and model bindings are recorded in `composition-kit-usage.json`.
   Production visual acceptance remains open.
 
-Before substantial UI implementation, present this concrete proposal to the
-engineer and record feedback under the repository's interaction walkthrough
-guidance. Backend candidate and source-preservation work can continue meanwhile.
+This proposal was presented for review; the engineer requested Astra review and
+preservation of the SVG and iconography guidelines. Further interaction expansion
+must follow the repository's walkthrough guidance within the active capability.
 
 ## Review corrections and remaining dispositions
 
@@ -80,11 +88,13 @@ Renaming a shared role affects its inherited and redefined consumers. Exact
 or a stale/unresolved finding; preserving the registry alone does not migrate
 that scope. Typed workflow/view and display-label adapters now exist at the candidate
 boundary. The retained scope stays unchanged and is checked again. Remote
-commit and an interactive impact preview remain required before the row closes.
+commit, a complete interactive impact preview and actual-host evidence remain
+required before the row closes.
 
-Creation, reparenting, deletion, general literal-multiplicity editing and richer
-inherited/redefined selection are unsketched, open interaction obligations.
-The sketch does not waive them or freeze the old renderer exclusions.
+Creation, reparenting, deletion and richer inherited/redefined selection remain
+open interaction obligations. Finite literal-multiplicity editing is implemented
+in the linked local adapter, outside this initial sketch's controls. The sketch
+does not waive remaining obligations or freeze the old renderer exclusions.
 
 Astra reviewed the revised desktop/mobile preview and conflict pixels. The
 remaining 24px multiline spacing discrepancy was corrected from 31px to 34px
