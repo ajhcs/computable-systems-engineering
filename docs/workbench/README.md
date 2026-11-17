@@ -87,6 +87,11 @@ Keep machine-specific receipts in `work/workbench/`. Preserve all original
 worktrees. Reuse historical diagram code and the revision G kit through a
 reviewed integration; fresh assembled verification remains required.
 
+The [physical SVG fidelity contract](composition-svg-fidelity.md) maps the
+saved masters, typography, swatches, routes and annotation treatments to current
+checks and remaining gaps. Apply it within each physical operation's parity
+cells before admitting another capability.
+
 The [local connected interaction](composition-interaction.md) adds explicit
 preview/save, native rename, finite multiplicity, frame move/resize and whole-snapshot restoration
 over the same project. Its loopback transport and embedded saved reader are

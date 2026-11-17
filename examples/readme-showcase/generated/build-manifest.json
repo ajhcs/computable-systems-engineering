@@ -21,7 +21,7 @@
     "verifier/composition_project.py": "6ba07aabba94023c10f9669df8c8571d0589bf9310e6e3f1cc841e2ebfb47095",
     "verifier/composition_records.py": "76691a5e021103702ca2cd3fe346e5c460ec97a95a6f81b8ea8641886618dedf",
     "verifier/composition_session.py": "c372a3b798e9986c2c71d7881c7968ffc5a58abd6aba3a5a1ea29f94f4b63be0",
-    "verifier/composition_view.py": "5ecedab22c208696bd5cf2b7e2ff4c7a61b1ade00c6a46b0883c2bf93b471659",
+    "verifier/composition_view.py": "196bba8313d304536bb59c93427a88c7b986a94d83d92d097bd67abecef44193",
     "verifier/concept_review.py": "bfd3267a50d0651d928af442b95264497b174b8e4e8ccfaf84a6e089a2b86c51",
     "verifier/configuration.py": "979e39198002f58aa3c0b3b0d392a6181050f38787c5855c36c0e1c880098a04",
     "verifier/configuration_view.py": "8eb414e75e0d0986f20ae281979c3feecdb5ac0ef51f9f4aa625ee5afd826b9c",

@@ -77,11 +77,22 @@ identity are checked. This physical path has no state occurrences or sequence
 rows. It does not expose another engineering capability.
 
 An authored local key reserves a full-width footer, with 32 units of clearance
-above its first line for frames and routes. This also covers detours and shared
+above its saved legend table for frames and routes. The table reuses the original
+`palette-refined-documents-documents-page1-navigation-legend` rules, with
+content-fit heading/body cells and independently editable authored text. This also covers detours and shared
 trunks; native endpoint validity alone cannot prevent a route from crossing a
 key. A colliding candidate is refused before saving. Reroute it above the footer
 or explicitly enlarge its canvas; the renderer never moves authored geometry
 or hides key text to make it pass.
+
+Unrelated routes require the saved routing policy's 15-unit visible-ink gap
+(6s at s=2.5). At the current 2.5-unit connector stroke, parallel centrelines
+therefore need 17.5 units of separation. The same finite-segment check covers
+diagonal routes and near-missing endpoints. Intentional fanout from one native
+parent and explicitly marked nonconnecting crossings retain their distinct
+treatments. Crossing artwork needs room before bends and endpoints. These are
+graphic clearances; they do not create engineering connections or physical
+installation requirements. Invalid candidates are refused before publication.
 
 An explicit layout operation uses the existing project transaction boundary:
 

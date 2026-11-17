@@ -20,9 +20,11 @@ from .visual_style import contrast
 ROOT = Path(__file__).resolve().parents[1]
 ID = re.compile(r'[A-Za-z_][A-Za-z0-9_.-]{0,127}\Z')
 RECT = 'palette-rectangle-white-plain'
+ROUTE_STROKE = 2.5
 TOKENS = {
     'typography-spec.json': 'f637d78b0c1d2f83558724b57a7fceb94fc3e49370bed1e76dba727275fb7f76',
     'color-swatches.json': '0e5e5137edb8a541b7d608f70473fdd0b4f1351253a91788a9850270c18a7c49',
+    'routing-policy.json': '35ffc6cf3a701fe904df3b125585cd959f42dd1a523ad1d4bbeb50a576c25ada',
 }
 
 
@@ -43,12 +45,14 @@ def finite(value):
     return type(value) in (int, float) and math.isfinite(value)
 
 
+def token(name):
+    raw = (ROOT / 'assets/engineering-library/tokens' / name).read_bytes()
+    need(sha256(raw).hexdigest() == TOKENS[name], 'Saved design-kit token digest mismatch')
+    return json.loads(raw)
+
+
 def tokens():
-    values = {}
-    for name, digest in TOKENS.items():
-        raw = (ROOT / 'assets/engineering-library/tokens' / name).read_bytes()
-        need(sha256(raw).hexdigest() == digest, 'Saved design-kit token digest mismatch')
-        values[name] = json.loads(raw)
+    values = {name: token(name) for name in TOKENS}
     colors = {row['id']: row['hex_srgb'] for row in values['color-swatches.json']['colors']}
     colors.update(N0='#FFFFFF', N10='#E6E6E6', N25='#BFBFBF', N50='#808080', N75='#404040', N100='#000000')
     return colors, values['typography-spec.json']
@@ -338,8 +342,22 @@ def geometry(projection, layout, names):
 def crossings(projection, layout):
     result = []
     routes = list(layout['edges'].items())
+    policy = token('routing-policy.json')
+    # The policy measures visible ink. Two 2.5-unit strokes add one full
+    # stroke to the centreline distance required for a 6s clear gap.
+    clearance = policy['connector_to_connector_clearance_ink_s'] * policy['reference_stroke_s'] + ROUTE_STROKE
     def cross(a, b):
         return a[0]*b[1]-a[1]*b[0]
+    def point_distance(p, a, b):
+        delta = [b[k]-a[k] for k in (0, 1)]
+        length = sum(v*v for v in delta)
+        need(length > 0, 'Physical routes must have nonempty segments')
+        t = max(0, min(1, sum((p[k]-a[k])*delta[k] for k in (0, 1))/length))
+        return math.hypot(*(p[k]-a[k]-t*delta[k] for k in (0, 1)))
+    def separated(a, b, c, d):
+        distance = min(point_distance(a, c, d), point_distance(b, c, d),
+                       point_distance(c, a, b), point_distance(d, a, b))
+        need(distance + 1e-7 >= clearance, 'Unrelated ownership routes violate saved connector ink clearance')
     for i, (under, first) in enumerate(routes):
         for over, second in routes[i+1:]:
             # Shared native-parent trunks are intentional fanout. Other route
@@ -358,9 +376,11 @@ def crossings(projection, layout):
                             need(min(max(a[axis], b[axis]), max(c[axis], d[axis])) <=
                                  max(min(a[axis], b[axis]), min(c[axis], d[axis])) + 1e-7,
                                  'Unrelated ownership routes overlap; route them separately')
+                        separated(a, b, c, d)
                         continue
                     t, s = cross(offset, v)/denominator, cross(offset, u)/denominator
                     if not (-1e-7 <= t <= 1+1e-7 and -1e-7 <= s <= 1+1e-7):
+                        separated(a, b, c, d)
                         continue
                     need(1e-7 < t < 1-1e-7 and 1e-7 < s < 1-1e-7,
                          'Nonconnecting crossings need clearance from route bends and endpoints')
@@ -368,6 +388,8 @@ def crossings(projection, layout):
                     angle = abs(math.degrees(math.atan2(v[1], v[0])-math.atan2(u[1], u[0]))) % 180
                     need(20-1e-7 <= angle <= 160+1e-7, 'Crossing angle is outside the saved gap treatment')
                     radius = math.ceil(10/abs(math.sin(math.radians(angle)))+5)
+                    need(min(math.hypot(x-p[0], y-p[1]) for p in (a, b, c, d)) >= radius,
+                         'Nonconnecting crossings need clearance from route bends and endpoints')
                     area = {'x': x-radius, 'y': y-radius, 'width': 2*radius, 'height': 2*radius}
                     need(not any(overlaps(area, box) for box in layout['nodes'].values()), 'Crossing needs clearance from native frames')
                     need(not any(abs(x-r['x']) < radius+r['radius'] and abs(y-r['y']) < radius+r['radius'] for r in result),
@@ -386,7 +408,7 @@ def render(document, view_id, *, layout_override=None):
     default = layout_override is None and layout is None
     layout = deepcopy(layout_override if layout_override is not None else layout or default_layout(projection, names))
     if default and appearance:
-        layout['height'] += len(appearance['legend'])*34+32
+        layout['height'] += len(appearance['legend'])*34+100
     geometry(projection, layout, names)
     colors, _ = tokens()
     if appearance:
@@ -419,12 +441,12 @@ def render(document, view_id, *, layout_override=None):
         color = colors[appearance['edges'].get(key, 'N100')] if appearance else colors['N100']
         group = ET.SubElement(root, ns+'g', {'data-edge-id': key, 'data-source-node': edge['source'], 'data-target-node': edge['target'], 'data-relation': 'native_ownership'})
         ET.SubElement(group, ns+'path', {'d': 'M' + ' L'.join(' '.join(str(v) for v in p) for p in route['points']),
-                                       'fill': 'none', 'stroke': color, 'stroke-width': '2.5'})
+                                       'fill': 'none', 'stroke': color, 'stroke-width': str(ROUTE_STROKE)})
     for index, crossing in enumerate(crossings(projection, layout)):
         color = colors[appearance['edges'].get(crossing['over'], 'N100')] if appearance else colors['N100']
         raw = kit_templates.gap_marker(prefix='composition-crossing-'+str(index),
                                        x=crossing['x'], y=crossing['y'], under_angle=crossing['under_angle'],
-                                       over_angle=crossing['over_angle'], colour=color, stroke_width=2.5)
+                                       over_angle=crossing['over_angle'], colour=color, stroke_width=ROUTE_STROKE)
         root.append(ET.fromstring(raw))
         usage['components'][kit_templates.GAP] = kit_templates.source_record(kit_templates.GAP)['sha256']
         usage['adaptations'].append({'role': 'nonconnecting crossing', **crossing})
@@ -464,13 +486,26 @@ def render(document, view_id, *, layout_override=None):
         # for both frames and routes. Endpoint/obstacle checks alone cannot
         # prevent a detour from crossing these authored annotations.
         count = len(appearance['legend'])
-        top = layout['height']-48-count*34
+        heading_height, body_height = 44, count*34+24
+        top = layout['height']-48-heading_height-body_height
         need(max(b['y']+b['height'] for b in layout['nodes'].values())+32 < top, 'Reserve space for the authored local key')
         need(all(point[1]+32 < top for route in layout['edges'].values() for point in route['points']),
              'Route enters the reserved local key area; reroute it or enlarge the canvas')
+        width = math.ceil(max(kit_fonts.text_width('Local key', 24, weight=700),
+                              *(kit_fonts.text_width(line, 24) for line in appearance['legend'])))+32
+        need(width <= layout['width']-64, 'Local key does not fit')
+        frame = kit_templates.document_frame(kit_templates.LEGEND, x=32, y=top,
+                    column_widths=[width], row_heights=[heading_height, body_height], prefix='composition-key')
+        group = ET.SubElement(root, ns+'g', {'data-role': 'local-key', 'data-view-id': view_id})
+        group.append(ET.fromstring(frame['svg']))
+        usage['components'][frame['template']] = frame['sha256']
+        usage['adaptations'].append({'role': 'local key', 'view': view_id, 'template': frame['template'],
+                                    'geometry': {k: frame[k] for k in ('x', 'y', 'width', 'height')},
+                                    'edits': ['content-fit cells', 'preserved source rule topology', 'authored key text']})
+        ET.SubElement(group, ns+'text', {'x': '48', 'y': str(top+30), 'font-family': 'DejaVu Sans',
+                                       'font-size': '24', 'font-weight': '700', 'fill': colors['N100']}).text = 'Local key'
         for index, line in enumerate(appearance['legend']):
-            need(kit_fonts.text_width(line, 24) <= layout['width']-96, 'Local key does not fit')
-            ET.SubElement(root, ns+'text', {'x': '48', 'y': str(top+24+index*34), 'font-family': 'DejaVu Sans', 'font-size': '24', 'fill': colors['N100']}).text = line
+            ET.SubElement(group, ns+'text', {'x': '48', 'y': str(top+heading_height+28+index*34), 'font-family': 'DejaVu Sans', 'font-size': '24', 'fill': colors['N100']}).text = line
     return {'projection': projection, 'layout': layout, 'kit_usage': usage, 'display_title': title,
             'display_labels': {key: names[node['element']] for key, node in projection['nodes'].items()},
             'svg': ET.tostring(root, encoding='unicode')+'\n'}

@@ -49,6 +49,25 @@ def footer_detour(layout, y):
     return result
 
 
+def crossing_example():
+    parents = {'R': None, 'A': 'R', 'B': 'R', 'C': 'A', 'D': 'B'}
+    names = {'R': 'Cross::R', 'A': 'Cross::R::A', 'B': 'Cross::R::B',
+             'C': 'Cross::R::A::C', 'D': 'Cross::R::B::D'}
+    nodes = [{'id': key, 'element': names[key], 'parent': parent, 'level': 0 if parent is None else 1 if parent == 'R' else 2,
+              'edge': None if parent is None else 'E'+key} for key, parent in parents.items()]
+    source = 'package Cross { part def R { part def A { part def C; } part def B { part def D; } } '
+    source += 'doc cseViews /* CSE-VIEWS/1.1\n'+json.dumps({'views': [{'id': 'CROSS', 'kind': 'physical_composition', 'mode': 'definitions', 'nodes': nodes}]})+' */ }'
+    d = CompositionDocument({'model.sysml': source})
+    layout = {'version': 'cse-diagram-layout-1.0', 'view': 'CROSS', 'width': 1000, 'height': 900,
+              'nodes': {key: {'x': x, 'y': y, 'width': 200, 'height': 90}
+                        for key, x, y in [('R', 40, 160), ('A', 400, 160), ('B', 40, 600), ('C', 700, 400), ('D', 700, 300)]},
+              'edges': {'EA': {'points': [[240, 205], [400, 205]]},
+                        'EB': {'points': [[40, 205], [10, 205], [10, 645], [40, 645]]},
+                        'EC': {'points': [[500, 250], [500, 445], [700, 445]]},
+                        'ED': {'points': [[240, 645], [650, 645], [650, 345], [700, 345]]}}}
+    return d, layout
+
+
 class NativeViews(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -207,21 +226,7 @@ class NativeViews(unittest.TestCase):
             view.validate_companion(bad, 'composition_appearance')
 
     def test_nonconnecting_crossing_uses_the_saved_gap_master(self):
-        parents = {'R': None, 'A': 'R', 'B': 'R', 'C': 'A', 'D': 'B'}
-        names = {'R': 'Cross::R', 'A': 'Cross::R::A', 'B': 'Cross::R::B',
-                 'C': 'Cross::R::A::C', 'D': 'Cross::R::B::D'}
-        nodes = [{'id': key, 'element': names[key], 'parent': parent, 'level': 0 if parent is None else 1 if parent == 'R' else 2,
-                  'edge': None if parent is None else 'E'+key} for key, parent in parents.items()]
-        source = 'package Cross { part def R { part def A { part def C; } part def B { part def D; } } '
-        source += 'doc cseViews /* CSE-VIEWS/1.1\n'+json.dumps({'views': [{'id': 'CROSS', 'kind': 'physical_composition', 'mode': 'definitions', 'nodes': nodes}]})+' */ }'
-        d = CompositionDocument({'model.sysml': source})
-        layout = {'version': 'cse-diagram-layout-1.0', 'view': 'CROSS', 'width': 1000, 'height': 900,
-                  'nodes': {key: {'x': x, 'y': y, 'width': 200, 'height': 90}
-                            for key, x, y in [('R', 40, 160), ('A', 400, 160), ('B', 40, 600), ('C', 700, 400), ('D', 700, 300)]},
-                  'edges': {'EA': {'points': [[240, 205], [400, 205]]},
-                            'EB': {'points': [[40, 205], [10, 205], [10, 645], [40, 645]]},
-                            'EC': {'points': [[500, 250], [500, 445], [700, 445]]},
-                            'ED': {'points': [[240, 645], [650, 645], [650, 345], [700, 345]]}}}
+        d, layout = crossing_example()
         rendered = view.render(d, 'CROSS', layout_override=layout)
         gaps = [r for r in rendered['kit_usage']['adaptations'] if r.get('role') == 'nonconnecting crossing']
         self.assertEqual([(r['under'], r['over'], r['x'], r['y']) for r in gaps], [('EC', 'ED', 650, 445)])
@@ -235,12 +240,62 @@ class NativeViews(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'overlap'):
             view.crossings(projection, layout)
 
+    def test_independent_routes_keep_fifteen_units_of_visible_ink_clearance(self):
+        projection = {'edges': {'a': {'source': 'A'}, 'b': {'source': 'B'}}}
+        # Independently expected centreline clearance is 15 + 1.25 + 1.25.
+        cases = [
+            ([[0, 200], [300, 200]], [[100, 204], [400, 204]], False),
+            ([[0, 200], [300, 200]], [[100, 217.49], [400, 217.49]], False),
+            ([[0, 200], [300, 200]], [[100, 217.5], [400, 217.5]], True),
+            ([[0, 200], [0, 400]], [[17.5, 200], [17.5, 400]], True),
+            ([[0, 200], [200, 400]], [[0, 224], [200, 424]], False),
+            ([[0, 200], [200, 400]], [[0, 225], [200, 425]], True),
+            ([[0, 200], [100, 200]], [[117, 200], [200, 200]], False),
+            ([[0, 200], [100, 200]], [[117.5, 200], [200, 200]], True),
+            ([[0, 200], [100, 200]], [[104, 204], [104, 300]], False),
+        ]
+        for a, b, accepted in cases:
+            layout = {'nodes': {}, 'edges': {'a': {'points': a}, 'b': {'points': b}}}
+            with self.subTest(a=a, b=b):
+                if accepted:
+                    self.assertEqual(view.crossings(projection, layout), [])
+                else:
+                    with self.assertRaisesRegex(ValueError, 'ink clearance'):
+                        view.crossings(projection, layout)
+        # Fanout from one native parent retains its intentional shared trunk.
+        projection['edges']['b']['source'] = 'A'
+        layout['edges'] = {'a': {'points': [[0, 200], [100, 200], [100, 300]]},
+                           'b': {'points': [[0, 200], [100, 200], [100, 400]]}}
+        self.assertEqual(view.crossings(projection, layout), [])
+
+    def test_crossing_gap_cannot_erase_a_nearby_endpoint_or_bend(self):
+        projection = {'edges': {'a': {'source': 'A'}, 'b': {'source': 'B'}}}
+        layout = {'nodes': {}, 'edges': {'a': {'points': [[0, 200], [300, 200]]},
+                                         'b': {'points': [[150, 190], [150, 300]]}}}
+        with self.assertRaisesRegex(ValueError, 'clearance from route bends and endpoints'):
+            view.crossings(projection, layout)
+
+    def test_local_key_reuses_the_original_ruled_legend_with_source_bound_text(self):
+        lines = ['Pattern distinguishes selected scope.', 'Color carries no material meaning.']
+        document = keyed_definition(self.document, lines)
+        rendered = view.render(document, 'PC_DEFINITION')
+        root = ET.fromstring(rendered['svg'])
+        key = root.find('.//s:g[@data-role="local-key"]', NS)
+        self.assertEqual(key.get('data-view-id'), 'PC_DEFINITION')
+        self.assertEqual([text.text for text in key.findall('s:text', NS)], ['Local key', *lines])
+        self.assertIsNotNone(key.find('s:g[@data-kit-template="'+kit_templates.LEGEND+'"]', NS))
+        self.assertEqual(rendered['kit_usage']['components'][kit_templates.LEGEND],
+                         kit_templates.source_record(kit_templates.LEGEND)['sha256'])
+        self.assertEqual(json.loads(document.linked_records['appearance.json']['text'])['legend'], lines)
+        self.assertTrue(all(row.get('role') != 'local key' for row in
+                            view.render(self.document, 'PC_DEFINITION')['kit_usage']['adaptations']))
+
     def test_routes_cannot_cross_or_encroach_on_the_authored_local_key(self):
         # Independently supplied route passes native endpoints/node obstacles,
-        # but y=495 intersects the actual one-line key's 502 baseline.
+        # but y=495 enters the one-line legend table beginning at y=478.
         document = keyed_definition(self.document, ['Pattern distinguishes selected scope.'])
         layout = view.render(self.document, 'PC_DEFINITION')['layout']
-        layout['height'] = 560
+        layout['height'] = 628
         for y in (495, 450, 446):
             candidate = footer_detour(layout, y)
             projection = view.project(document, 'PC_DEFINITION')
@@ -255,7 +310,7 @@ class NativeViews(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'reserved local key area'):
             view.render(two_lines, 'PC_DEFINITION', layout_override=clear)
         taller = footer_detour(layout, 495)
-        taller['height'] = 660
+        taller['height'] = 728
         self.assertEqual(view.render(two_lines, 'PC_DEFINITION', layout_override=taller)['layout'], taller)
         # There is no key to collide with in a plain view. Authored appearance
         # cannot bypass key requirements by supplying an empty list.
@@ -288,6 +343,37 @@ class PersistenceViews(unittest.TestCase):
         self.project, _ = CompositionProject.create(self.work/'project.git', {'model.sysml': SOURCE},
                                                     project_id=PROJECT, request_id=str(uuid4()))
 
+    def test_close_independent_routes_refuse_atomically_and_separated_routes_reopen(self):
+        document, layout = crossing_example()
+        layout['nodes']['D']['y'] = 600
+        layout['edges']['ED']['points'] = [[240, 645], [650, 645], [650, 449],
+                                          [690, 449], [690, 645], [700, 645]]
+        # These four-unit-separated routes still have correct native endpoints
+        # and miss all node interiors. Their visible ink is only 1.5 apart.
+        projection = view.project(document, 'CROSS')
+        view.geometry(projection, layout, view.labels(document, projection))
+        project, _ = CompositionProject.create(self.work/'clearance.git', document.files,
+            project_id=PROJECT, request_id=str(uuid4()))
+        first = project.snapshot()
+        request = {'operation': 'set_layout', 'request_id': str(uuid4()),
+                   'expected_revision': 1, 'layout': layout}
+        objects = project._git('count-objects', '-v').stdout
+        for action in (project.preview, project.transact):
+            with self.subTest(action=action.__name__), self.assertRaisesRegex(ValueError, 'ink clearance'):
+                action(request)
+            self.assertEqual(project.head(), first['commit'])
+            self.assertEqual(project._git('count-objects', '-v').stdout, objects)
+        request['layout']['edges']['ED']['points'][2][1] = 520
+        request['layout']['edges']['ED']['points'][3][1] = 520
+        preview = project.preview(request)
+        receipt = project.transact(request)
+        self.assertEqual(project.transact(request), receipt)
+        saved = CompositionProject(project.repository).snapshot()
+        self.assertEqual(saved['document'].files, document.files)
+        self.assertEqual(saved['document'].registry, first['document'].registry)
+        self.assertEqual(view.render(saved['document'], 'CROSS')['svg'],
+                         view.render(preview['document'], 'CROSS')['svg'])
+
     def test_key_collision_is_refused_before_preview_or_publication_and_safe_routes_reopen(self):
         original = self.project.snapshot()['document']
         keyed = keyed_definition(original, ['Pattern distinguishes selected scope.'])
@@ -295,6 +381,7 @@ class PersistenceViews(unittest.TestCase):
             project_id=PROJECT, request_id=str(uuid4()), linked_records=keyed.linked_records)
         first = project.snapshot()
         layout = view.render(original, 'PC_DEFINITION')['layout']
+        layout['height'] = 628
         request = {'operation': 'set_layout', 'request_id': str(uuid4()),
                    'expected_revision': 1, 'layout': footer_detour(layout, 495)}
         objects = project._git('count-objects', '-v').stdout
