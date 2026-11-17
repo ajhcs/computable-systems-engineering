@@ -28,9 +28,11 @@ fonts, exact swatches, document tables and rendered comparison procedure.
 The complete revision G readable-presentation guidance is also preserved
 verbatim. Its connector-label placement, drawing-identification tables, intended
 reading size, detail-sheet coverage and explicit overview requirements remain
-part of this capability's target. The initial local reader does not yet provide
-all of those interactions or exports; preserving plain frames alone cannot close
-the visual cells in the parity matrix.
+part of this capability's target. The [navigation increment](composition-navigation.md)
+now provides complete-SVG overview and readable-size reveal in the local and
+standalone readers, with matching site callbacks. Drawing-identification tables,
+complete detail/export coverage and actual host behavior remain unfinished;
+preserving plain frames alone cannot close the visual cells in the parity matrix.
 
 References: [component library](../component-library.md),
 [saved typography](../../assets/engineering-library/tokens/typography-spec.json),

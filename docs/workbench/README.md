@@ -59,7 +59,11 @@ is server-side storage, not a filename supplied inside a model bundle.
 The [saved physical diagram path](composition-diagrams.md) now renders native
 definition hierarchies and usage composition with literal bounds, exact
 unresolved-bound syntax, original SVG frames and saved DejaVu typography.
-The reader selects and inspects actual element bindings. Layout transactions
+The reader selects and inspects actual element bindings. Its
+[overview/readable navigation](composition-navigation.md) operates on that same
+saved SVG in the editor and standalone CLI artifact, with a corresponding site
+callback; native fonts and stored geometry retain their reading-size authority.
+Layout transactions
 preserve SysML and identities; connected graphical editing remains open.
 
 For the explicit bundle transport, see [the bundle contract](composition-bundle.md).

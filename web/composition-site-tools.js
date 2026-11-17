@@ -7,7 +7,8 @@
   const text={type:'string'}, nullableText={type:['string','null']}, integer={type:'integer',minimum:1};
   const guardSchema=object({project_id:text,view_id:text,ui_session_id:text,model_revision:integer,
     commit:text,bundle_sha256:text,interaction_revision:{type:'integer',minimum:0},
-    selected_element_id:nullableText,selected_occurrence_id:nullableText,editing_element_id:nullableText});
+    selected_element_id:nullableText,selected_occurrence_id:nullableText,editing_element_id:nullableText,
+    navigation_revision:{type:'integer',minimum:0},viewport_mode:{enum:['overview','readable']},viewport_left:{type:'number'},viewport_top:{type:'number'}});
   const boxSchema=object(Object.fromEntries(['x','y','width','height'].map(key=>[key,{type:'number'}])));
   const changeFields={operation:text,request_id:text,expected_revision:integer};
   const requestSchema={oneOf:[
@@ -22,11 +23,14 @@
   function context(){
     if(!state)return{ready:false,claim:'local_site_adapter_not_application_qualified'};
     const found=selectedNode(),target=editingNode();
+    const navigation=frameReady?frame.contentWindow.cseDiagramNavigation.state():null;
     return clone({ready:frameReady,
       guard:{project_id:state.projection.project_id,view_id:state.projection.id,ui_session_id:uiSession,
         model_revision:state.revision,commit:state.commit,bundle_sha256:state.projection.bundle_sha256,
         interaction_revision:draftGeneration,selected_element_id:found?.[1].element_id||null,
-        selected_occurrence_id:found?.[0]||null,editing_element_id:editTargetId||null},
+        selected_occurrence_id:found?.[0]||null,editing_element_id:editTargetId||null,
+        navigation_revision:navigation?.revision||0,viewport_mode:navigation?.mode||'readable',viewport_left:navigation?.scroll_left||0,viewport_top:navigation?.scroll_top||0},
+      navigation,
       busy,gesture_active:gestureActive,has_form_draft:dirty,unconfirmed_save:unknown,
       selection:found?{occurrence_id:found[0],...found[1],display_label:state.display_labels[found[0]],box:state.layout.nodes[found[0]]}:null,
       editing_target:target?{element_id:editTargetId,occurrence_id:target[0],native_name:target[1].element,
@@ -56,7 +60,7 @@
     const group=[...frame.contentDocument.querySelectorAll('g[data-node-id]')].find(item=>item.dataset.nodeId===occurrence);
     if(!group)fail('view_not_ready','The saved frame is unavailable.');
     group.dispatchEvent(new MouseEvent('click',{bubbles:true}));
-    group.scrollIntoView({block:'nearest',inline:'nearest'});
+    frame.contentWindow.cseDiagramNavigation.reveal(occurrence);
     selectionChanged();
     return{outcome:'selected'};
   }
@@ -66,6 +70,9 @@
     }],
     ['cse_select_element','Select and reveal an exact engineering UUID and diagram occurrence in the saved view. Retains existing edits and review scope; changes inspection only.',{guard:guardSchema,element_id:text,occurrence_id:text},false,args=>{
       checkGuard(args.guard);return select(args.element_id,args.occurrence_id);
+    }],
+    ['cse_set_view_mode','Show the complete saved SVG overview or reveal the selection at readable size (100%). Changes this browser viewport only; retains drafts, native source, saved layout, identities and review scope.',{guard:guardSchema,mode:{enum:['overview','readable']}},false,args=>{
+      checkGuard(args.guard);return{outcome:'navigated',navigation:frame.contentWindow.cseDiagramNavigation.mode(args.mode)};
     }],
     ['cse_preview_rename','Prepare an unsaved declared-name change on the selected editing target using the native validator. Refuses to replace any existing draft. Save separately after reviewing impact and retained configuration findings.',{guard:guardSchema,element_id:text,new_name:{type:'string',minLength:1,maxLength:64}},false,async args=>{
       checkGuard(args.guard);cleanTarget(args.element_id);

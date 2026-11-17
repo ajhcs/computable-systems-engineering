@@ -111,3 +111,25 @@ DejaVu glyph suppliers. No new actionable kit regression was found. Mobile
 scrolling does not close the restored overview, drawing-identification or
 detail/export requirements. Site-r3 uses synthetic host callbacks; only desktop
 usage composition carries the full r7 recovery journey.
+
+## Complete-SVG overview and readable reveal
+
+Astra reviewed the navigation source and all eight desktop/mobile definition/
+usage overview/readable images. Its source finding was that refreshing a
+manually panned readable view restored the camera and then overrode it by
+revealing the old selection. Ordinary refresh now preserves the camera; an
+explicit return to a different retained edit target remains a reveal operation.
+All four recorded pan-offset pairs agree after refresh.
+
+The first browser assertion accepted any frame/viewport intersection. Astra
+identified that as weak evidence. The repository-owned runner now requires full
+padded containment for fitting frames, or centering and accessible scroll bounds
+for genuinely oversized frames. Additional 250-by-250 standalone cases exercise
+oversized width in both views and oversized height in usage composition.
+
+Astra verified the refreshed driver, fixture, seven source hashes and all eight
+image hashes, and rechecked representative renders. No new actionable finding
+remained in that scope. Actual DejaVu suppliers, unchanged source/layout/SVG,
+fixed gesture targets and standalone behavior are recorded separately from the
+broader site-r4/editor-r8 recovery regressions. Synthetic host callbacks and
+local browser evidence do not establish actual host or engineering acceptance.

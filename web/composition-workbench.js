@@ -4,12 +4,13 @@
 const byId=id=>document.getElementById(id), frame=byId('view');
 const uiSession=crypto.randomUUID();
 let state, csrf, selectedId, busy=false, dirty=false, pending=null, unknown=false, polling=false, ghost=null;
-let formRevision, formCommit, restoredSelection;
+let formRevision, formCommit, restoredSelection, restoredNavigation, restoredInspection;
 let editTargetId, draftGeneration=0, loadGeneration=0, gestureActive=false, frameReady=false;
 const key=()=> 'cse-pending-save:'+state.projection.project_id;
 const notice=text=>{byId('notice').textContent=text;};
 const clone=value=>JSON.parse(JSON.stringify(value));
 function controls(){
+  if(frameReady)frame.contentWindow.cseDiagramNavigation?.lock(gestureActive);
   const different=Boolean(editTargetId&&selectedId!==editTargetId);
   byId('edits').disabled=busy||gestureActive||unknown||Boolean(pending)||!selectedId||different;
   byId('save').disabled=busy||!pending||Boolean(pending.stale);
@@ -113,6 +114,7 @@ function bindDragging(){
   const doc=frame.contentDocument, svg=doc.querySelector('svg');
   for(const group of doc.querySelectorAll('g[data-node-id]'))group.addEventListener('pointerdown',event=>{
     if(event.button!==0||busy||pending||unknown||dirty||gestureActive)return;
+    if(frame.contentWindow.cseDiagramNavigation.state().mode==='overview')return;
     group.dispatchEvent(new MouseEvent('click',{bubbles:true}));
     selectionChanged();
     gestureActive=true;draftGeneration++;controls();
@@ -133,14 +135,21 @@ frame.addEventListener('load',()=>{
   const doc=frame.contentDocument;if(!doc.querySelector('#cse-data'))return;
   for(const link of doc.querySelectorAll('a')){link.href=new URL(link.getAttribute('href'),location.origin).href+'?commit='+state.commit;link.target='_blank';link.rel='noopener';}
   doc.addEventListener('click',selectionChanged);doc.addEventListener('keyup',selectionChanged);
+  doc.addEventListener('cse-navigation-change',()=>{if(frameReady)selectionChanged();});
   const wanted=restoredSelection&&Object.entries(state.projection.nodes).find(([,node])=>node.element_id===restoredSelection);
-  if(wanted){const element=doc.querySelector('g[data-node-id="'+wanted[0]+'"]');element?.dispatchEvent(new MouseEvent('click',{bubbles:true}));element?.scrollIntoView({block:'nearest',inline:'nearest'});}
+  if(wanted){const element=doc.querySelector('g[data-node-id="'+wanted[0]+'"]');element?.dispatchEvent(new MouseEvent('click',{bubbles:true}));}
+  const navigation=frame.contentWindow.cseDiagramNavigation;
+  if(restoredNavigation)navigation.restore(restoredNavigation);
+  if(restoredNavigation?.mode!=='overview'&&wanted&&(!restoredNavigation||restoredSelection!==restoredInspection))navigation.reveal(wanted[0]);
+  restoredNavigation=null;
   restoredSelection=null;selectionChanged();bindDragging();frameReady=true;
 });
 async function loadState(preserve=false,background=false){
   const generation=draftGeneration,ticket=++loadGeneration;
   const result=await api('/api/state');
   if(ticket!==loadGeneration||background&&(busy||gestureActive||dirty||pending||generation!==draftGeneration))return false;
+  restoredNavigation=frameReady?frame.contentWindow.cseDiagramNavigation.state():null;
+  restoredInspection=selectedId;
   state=result.state;csrf=result.csrf;restoredSelection=selectedId;
   byId('saved').textContent='Saved revision '+state.revision+' · '+state.projection.id+' · '+state.commit.slice(0,12);
   const restoreTarget=preserve?byId('restore-target').value:null;

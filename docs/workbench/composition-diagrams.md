@@ -117,7 +117,12 @@ or a later model/layout revision fail correspondence. An existing export folder
 is never replaced. The artifact is not a project transaction acknowledgement or
 a lossless external-tool import claim.
 
-The reader keeps readable scrolling on narrow screens. Mouse and keyboard
+The reader keeps readable scrolling on narrow screens. Its
+[overview/readable navigation](composition-navigation.md) uniformly scales the
+same complete SVG for orientation, then returns to native 100% scale for reading
+and selection. Screen navigation does not alter the layout companion or the
+exported SVG. Native selection and mode changes lock during an active gesture.
+Mouse and keyboard
 selection expose a context containing project, view, UI session, saved model
 revision, commit, bundle identity, element UUID and occurrence ID. That context
 describes an artifact selection. It does not register WebMCP, grant project

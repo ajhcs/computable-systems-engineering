@@ -19,7 +19,7 @@ registered callback as a connected Codex session.
 
 `cse_get_context` returns the visible saved revision, project/view/UI-session
 identities, native selection and occurrence, fixed editing target, retained form
-values (including the selected restoration revision), pending exact request,
+values (including the selected restoration revision), current viewport state, pending exact request,
 saved history and independently retained
 configuration findings. It also reads the latest published head without
 refreshing the displayed model. An intervening publication can therefore be
@@ -27,7 +27,8 @@ visible as a different head; the native expected-revision check remains decisive
 
 Every UI-changing call supplies the exact returned guard: project, view, UI
 session, saved revision, commit, bundle digest, interaction generation, selected
-engineering UUID, occurrence ID and editing UUID. A changed selection, draft,
+engineering UUID, occurrence ID and editing UUID. Navigation revision, mode and
+scroll offsets additionally bind the current viewport. A changed selection, draft,
 gesture or session invalidates the old guard. An in-flight action or active
 pointer gesture refuses a competing command. Selection can inspect a different
 element while preserving the fixed editing target. It cannot replace required
@@ -44,6 +45,7 @@ independent engineering verdict. A preview is unsaved, and configuration
 |---|---|
 | `cse_get_context` | Read visible selection, draft, history and saved native findings; observe the latest head. |
 | `cse_select_element` | Select/reveal the exact UUID and occurrence; retain edits and scope. |
+| `cse_set_view_mode` | Fit the complete saved SVG overview, or reveal the selection at 100%; retain model, layout and all draft state. |
 | `cse_preview_rename` | Put a declared name into the selected target's form and check the existing native rename. |
 | `cse_preview_layout` | Put finite bounds into that frame's form and check the existing layout operation, including incident endpoints. |
 | `cse_preview_restore` | Check whole-project snapshot restoration as a new monotonic revision. |
@@ -57,6 +59,13 @@ The first and last tools have a read-only hint. Other tools describe their UI or
 durable side effects. All use the existing authenticated loopback boundary;
 returned context excludes bootstrap access, cookies, CSRF values and server-side
 repository paths. Model and label content remains untrusted data.
+
+Navigation uses the [saved reader's viewport API](composition-navigation.md).
+Ordinary refresh retains a manually panned readable viewport, including when
+the selection is elsewhere. An explicit return to a different retained editing
+target reveals that target. Overview refits after resize or refresh. The camera
+does not enter SysML, saved layout or Git history. Actual host support remains
+unqualified by these local callbacks.
 
 ## Save and recovery outcomes
 
