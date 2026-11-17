@@ -137,7 +137,7 @@ class CompositionProject:
                              'bundle_sha256', 'parent_commit', 'restored_from_revision', 'storage'}
                 or receipt.get('revision') != state['revision'] or receipt.get('project_id') != state['project_id']
                 or receipt.get('storage') != 'local_git_fsync'
-                or receipt.get('operation') not in ('import', 'rename', 'restore', 'set_layout', 'set_multiplicity', 'create_definition', 'create_usage')
+                or receipt.get('operation') not in ('import', 'rename', 'restore', 'set_layout', 'set_multiplicity', 'set_types', 'create_definition', 'create_usage')
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('request_sha256')))
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('bundle_sha256')))
                 or receipt.get('parent_commit') is not None and not OID.fullmatch(str(receipt['parent_commit']))):
@@ -334,7 +334,8 @@ class CompositionProject:
         fields = {'rename': {'element_id', 'new_name'}, 'restore': {'target_revision'}, 'set_layout': {'layout'},
                   'create_definition': {'owner_id', 'element_id', 'new_name', 'short_id', 'view_id', 'placement'},
                   'create_usage': {'owner_id', 'element_id', 'new_name', 'short_id', 'type_id', 'is_composite', 'multiplicity', 'view_id', 'placement'},
-                  'set_multiplicity': {'element_id', 'lower', 'upper'}}
+                  'set_multiplicity': {'element_id', 'lower', 'upper'},
+                  'set_types': {'element_id', 'type_ids'}}
         operation = request.get('operation')
         if not isinstance(operation, str) or operation not in fields or set(request) != common | fields[operation]:
             raise EditError('input', 'Unknown composition operation or fields')
@@ -359,6 +360,11 @@ class CompositionProject:
                 or type(request['lower']) is not int or type(request['upper']) is not int
                 or not 0 <= request['lower'] <= request['upper'] <= 2_147_483_647):
             raise EditError('multiplicity', 'Supply an element UUID and integer bounds 0 <= lower <= upper <= 2147483647')
+        if operation == 'set_types' and (not isinstance(request['element_id'], str)
+                or not isinstance(request['type_ids'], list) or len(request['type_ids']) > 128
+                or any(not isinstance(value, str) for value in request['type_ids'])
+                or len(set(request['type_ids'])) != len(request['type_ids'])):
+            raise EditError('typing', 'Supply an element UUID and zero through 128 distinct part-definition UUIDs in order')
         if operation == 'restore' and type(request['target_revision']) is not int:
             raise EditError('input', 'Restore requires an integer revision')
         return deepcopy(request)
@@ -380,6 +386,9 @@ class CompositionProject:
         elif request['operation'] == 'set_multiplicity':
             document = document.set_multiplicity(request['element_id'], request['lower'], request['upper'],
                                                  expected_source_sha256=document.revision)
+        elif request['operation'] == 'set_types':
+            document = document.set_types(request['element_id'], request['type_ids'],
+                                          expected_source_sha256=document.revision)
         elif request['operation'] == 'set_layout':
             from .composition_view import with_layout
             document = with_layout(document, request['layout'])

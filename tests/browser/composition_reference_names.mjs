@@ -31,7 +31,7 @@ try{for(const width of [1440,390])for(const view of ['PC_REFERENCE','PC_SENSOR']
  try{
   for(let n=0;!fs.existsSync(path.join(folder,'connection.json'));n++){if(terminal||n>900)throw Error('Fixture startup');await sleep(100)}
   let connection=JSON.parse(fs.readFileSync(path.join(folder,'connection.json')));const project=connection.project;
-  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&globalThis.cseSelectionContext?.selected_element_ids?.length===1&&globalThis.cseSiteTools?.registered.length===15);
+  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&globalThis.cseSelectionContext?.selected_element_ids?.length===1&&globalThis.cseSiteTools?.registered.length===16);
   const tool=(name,args={})=>page.evaluate(async({name,args})=>await __tools.get(name).execute(args),{name,args});
   const context=async()=>(await tool('cse_get_context')).context,state=()=>page.evaluate(async()=>(await(await fetch('/api/state')).json()).state);
   const select=async occurrence=>{const c=await context(),id=(await state()).projection.nodes[occurrence].element_id,r=await tool('cse_select_element',{guard:c.guard,element_id:id,occurrence_id:occurrence});assert(r.outcome==='selected','Native selection refused');return r.context};

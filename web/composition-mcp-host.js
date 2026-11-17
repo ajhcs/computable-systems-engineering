@@ -30,7 +30,7 @@ export function compositionModelContext(context){
   const {ready,host_transport,view_status,guard,editing_target,has_form_draft,draft_kind,unconfirmed_save,notice,last_acknowledged_receipt}=context;
   const request=context.pending_change?.request;
   return{ready,host_transport,view_status,guard,editing_target,has_form_draft,draft_kind,unconfirmed_save,notice,last_acknowledged_receipt,
-    selected_occurrence:context.selection,creation_draft:context.creation_draft,usage_creation_draft:context.usage_creation_draft,restoration_target_revision:context.restoration_target_revision,
+    selected_occurrence:context.selection,typing_draft:context.typing_draft,creation_draft:context.creation_draft,usage_creation_draft:context.usage_creation_draft,restoration_target_revision:context.restoration_target_revision,
     pending_request:request?{request_id:request.request_id,operation:request.operation,expected_revision:request.expected_revision}:null,
     retained_review_identities:(context.configuration_reviews||[]).map(review=>({file:review.file,scope_sha256:review.scope_sha256,status:review.report.status})),
     scope:'selected_ui_context_never_replaces_complete_retained_review'};

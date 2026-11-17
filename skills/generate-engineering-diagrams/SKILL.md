@@ -17,11 +17,14 @@ and supports source-bound inspection. The [local interaction adapter](../../docs
 embeds that same reader for rename, finite multiplicity, layout and restoration.
 [Owned definition creation](../../docs/workbench/composition-creation.md) adds
 native source and a checked occurrence together, retaining the original kit and
-old geometry. Package/root, usage and other creation routes remain open. Full operation and host
+old geometry. Package/root and other creation routes remain open. Full operation and host
 parity remain open; do not advertise it as a completed workbench capability.
 [Part-usage creation](../../docs/workbench/composition-usage-creation.md) preserves
 composite ownership frames versus definition-owned/reference declaration rows,
 optional native typing and retained configuration scope.
+[Explicit usage typing](../../docs/workbench/composition-typing.md) edits its
+complete authored type list through the same native preview/save path, retaining
+shared declaration ownership, original-kit geometry and separately checked scope.
 
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
 before drafting and when reviewing the actual output.

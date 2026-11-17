@@ -16,7 +16,7 @@ async function fixture(name,caseId,work){
  const page=await browser.newPage({viewport:{width:1440,height:1100}});page.setDefaultTimeout(90000);page.on('pageerror',e=>errors.push(String(e)));
  await page.addInitScript(()=>{globalThis.__tools=new Map();Object.defineProperty(document,'modelContext',{value:{registerTool:async t=>__tools.set(t.name,t)}})});
  const waitConnection=async file=>{for(let i=0;!fs.existsSync(file);i++){if(terminal||i>900)throw Error('Fixture startup');await sleep(100)}return JSON.parse(fs.readFileSync(file))};
- const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&cseSiteTools.registered.length===15);
+ const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&cseSiteTools.registered.length===16);
  const tool=(name,args={})=>page.evaluate(async({name,args})=>__tools.get(name).execute(args),{name,args}),context=async()=>(await tool('cse_get_context')).context;
  const state=()=>page.evaluate(async()=>(await(await fetch('/api/state')).json()).state),svg=()=>page.evaluate(async()=>await(await fetch('/view.svg')).text());
  const select=async row=>{const r=await tool('cse_select_element',{guard:(await context()).guard,element_id:row.element_id,occurrence_id:row.id});assert(r.outcome==='selected','Selection refused: '+JSON.stringify(r.error));return r.context};

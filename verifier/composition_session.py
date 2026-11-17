@@ -87,6 +87,9 @@ class CompositionSession:
                 candidate['created_element'] = next((node for node in drawing['projection']['nodes'].values()
                     if node['element_id'] == request['element_id']),
                     drawing['projection']['inspection']['occurrences']['decl:'+request['element_id']])
+            if request.get('operation') == 'set_types':
+                candidate['candidate_svg'] = drawing['svg']
+                candidate['edited_element'] = drawing['projection']['inspection']['occurrences']['decl:'+request['element_id']]
             return {**candidate, 'candidate_bundle_sha256': document.revision,
                     'configuration_reviews': deepcopy(document.configuration_reviews),
                     'reconciliation': deepcopy(document.reconciliation),

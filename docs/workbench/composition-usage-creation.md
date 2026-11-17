@@ -101,7 +101,8 @@ restore; native exports and original-kit pixel/font checks. Actual Codex and
 ChatGPT, hosted private durability and the remaining export/font obligations
 stay separate required gates.
 
-Package/root and new-view creation, semantic ownership/type edits, deletion and
+[Existing usage typing](composition-typing.md) is a separate local development
+operation. Package/root and new-view creation, semantic ownership edits, deletion and
 other unfinished physical operations remain in the parity matrix. This increment
 must not narrow that target.
 

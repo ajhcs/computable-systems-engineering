@@ -9,7 +9,9 @@ from verifier.composition_project import CompositionProject
 from verifier.composition_session import CompositionHTTPServer
 folder=Path(sys.argv[1]).resolve();folder.mkdir(mode=0o700)
 data=json.loads((ROOT/'tests/fixtures/composition-role-inspection.json').read_text())
-case=next(c for c in data['cases'] if c['id']==('inherited' if sys.argv[2]=='large' else sys.argv[2]))
+case=next(c for c in data['cases'] if c['id']==('inherited' if sys.argv[2] in ('large','typing') else sys.argv[2]))
+if sys.argv[2]=='typing':
+    case['models']['model.sysml']=case['models']['model.sysml'].replace('part def Sensor;', 'part def Sensor;\n    part def Other;')
 if sys.argv[2]=='large':
     case['models']['model.sysml']=case['models']['model.sysml'].replace('part def Base {',
         'part def Base {\n'+''.join(f'part extra{i:03} : Sensor;\n' for i in range(110)))

@@ -19,7 +19,7 @@ from verifier.foundation import read_regular
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=('inspect', 'rename', 'set-multiplicity', 'create-definition', 'create-usage'))
+    parser.add_argument('command', choices=('inspect', 'rename', 'set-multiplicity', 'set-types', 'create-definition', 'create-usage'))
     parser.add_argument('model', nargs='?')
     parser.add_argument('--bundle', help='explicit versioned model/linked-record text bundle')
     parser.add_argument('--project-id', required=True)
@@ -29,6 +29,7 @@ def main():
     parser.add_argument('--owner-id')
     parser.add_argument('--short-id')
     parser.add_argument('--type-id', help='part-definition UUID; omit for no explicit typing')
+    parser.add_argument('--type-ids', help='JSON array of part-definition UUIDs; [] explicitly removes local typing')
     parser.add_argument('--usage-kind', choices=('composite', 'reference'))
     parser.add_argument('--view-id')
     parser.add_argument('--placement', help='optional exact box/points JSON; otherwise checked automatic placement')
@@ -71,6 +72,10 @@ def main():
                     args.type_id, args.usage_kind == 'composite',
                     None if args.lower is None else {'lower':args.lower, 'upper':args.upper},
                     args.view_id, load_json(args.placement) if args.placement else None, expected_source_sha256=expected)
+            elif args.command == 'set-types':
+                if args.type_ids is None:
+                    raise EditError('input', 'Supply --type-ids JSON, including [] for explicit removal')
+                document = document.set_types(args.element_id, json.loads(args.type_ids), expected_source_sha256=expected)
             else:
                 document = document.set_multiplicity(args.element_id, args.lower, args.upper,
                                                      expected_source_sha256=expected)

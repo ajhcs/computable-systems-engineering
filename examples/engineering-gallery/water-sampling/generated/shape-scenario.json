@@ -748,7 +748,32 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 1728,
           "namespace_end_text": ";",
-          "offset": 1698
+          "offset": 1698,
+          "typing_sources": [
+            {
+              "encoding": "utf16",
+              "length": 11,
+              "offset": 1717,
+              "prefix_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 1,
+                  "offset": 1715,
+                  "text": ":"
+                }
+              ],
+              "reference_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 11,
+                  "offset": 1717,
+                  "text": "IntakePanel"
+                }
+              ],
+              "status": "direct_reference",
+              "target": "WaterSampling::IntakePanel"
+            }
+          ]
         },
         "subsets": [],
         "type": "WaterSampling::IntakePanel",
@@ -786,7 +811,32 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 1776,
           "namespace_end_text": ";",
-          "offset": 1738
+          "offset": 1738,
+          "typing_sources": [
+            {
+              "encoding": "utf16",
+              "length": 15,
+              "offset": 1761,
+              "prefix_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 1,
+                  "offset": 1759,
+                  "text": ":"
+                }
+              ],
+              "reference_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 15,
+                  "offset": 1761,
+                  "text": "ReceiptRegister"
+                }
+              ],
+              "status": "direct_reference",
+              "target": "WaterSampling::ReceiptRegister"
+            }
+          ]
         },
         "subsets": [],
         "type": "WaterSampling::ReceiptRegister",
@@ -824,7 +874,32 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 1816,
           "namespace_end_text": ";",
-          "offset": 1786
+          "offset": 1786,
+          "typing_sources": [
+            {
+              "encoding": "utf16",
+              "length": 11,
+              "offset": 1805,
+              "prefix_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 1,
+                  "offset": 1803,
+                  "text": ":"
+                }
+              ],
+              "reference_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 11,
+                  "offset": 1805,
+                  "text": "HoldingRack"
+                }
+              ],
+              "status": "direct_reference",
+              "target": "WaterSampling::HoldingRack"
+            }
+          ]
         },
         "subsets": [],
         "type": "WaterSampling::HoldingRack",
@@ -861,7 +936,32 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 2337,
           "namespace_end_text": ";",
-          "offset": 2313
+          "offset": 2313,
+          "typing_sources": [
+            {
+              "encoding": "utf16",
+              "length": 8,
+              "offset": 2329,
+              "prefix_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 1,
+                  "offset": 2327,
+                  "text": ":"
+                }
+              ],
+              "reference_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 8,
+                  "offset": 2329,
+                  "text": "Operator"
+                }
+              ],
+              "status": "direct_reference",
+              "target": "WaterSampling::Operator"
+            }
+          ]
         },
         "subsets": [],
         "type": "WaterSampling::Operator",
@@ -898,7 +998,32 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 2365,
           "namespace_end_text": ";",
-          "offset": 2343
+          "offset": 2343,
+          "typing_sources": [
+            {
+              "encoding": "utf16",
+              "length": 7,
+              "offset": 2358,
+              "prefix_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 1,
+                  "offset": 2356,
+                  "text": ":"
+                }
+              ],
+              "reference_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 7,
+                  "offset": 2358,
+                  "text": "Station"
+                }
+              ],
+              "status": "direct_reference",
+              "target": "WaterSampling::Station"
+            }
+          ]
         },
         "subsets": [],
         "type": "WaterSampling::Station",
@@ -935,7 +1060,32 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 2393,
           "namespace_end_text": ";",
-          "offset": 2371
+          "offset": 2371,
+          "typing_sources": [
+            {
+              "encoding": "utf16",
+              "length": 7,
+              "offset": 2386,
+              "prefix_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 1,
+                  "offset": 2384,
+                  "text": ":"
+                }
+              ],
+              "reference_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 7,
+                  "offset": 2386,
+                  "text": "Courier"
+                }
+              ],
+              "status": "direct_reference",
+              "target": "WaterSampling::Courier"
+            }
+          ]
         },
         "subsets": [],
         "type": "WaterSampling::Courier",
@@ -972,7 +1122,32 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 2425,
           "namespace_end_text": ";",
-          "offset": 2399
+          "offset": 2399,
+          "typing_sources": [
+            {
+              "encoding": "utf16",
+              "length": 9,
+              "offset": 2416,
+              "prefix_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 1,
+                  "offset": 2414,
+                  "text": ":"
+                }
+              ],
+              "reference_tokens": [
+                {
+                  "encoding": "utf16",
+                  "length": 9,
+                  "offset": 2416,
+                  "text": "Custodian"
+                }
+              ],
+              "status": "direct_reference",
+              "target": "WaterSampling::Custodian"
+            }
+          ]
         },
         "subsets": [],
         "type": "WaterSampling::Custodian",
@@ -1009,7 +1184,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 3432,
           "namespace_end_text": ";",
-          "offset": 3411
+          "offset": 3411,
+          "typing_sources": []
         },
         "subsets": [],
         "types": []
@@ -1043,7 +1219,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 3793,
           "namespace_end_text": ";",
-          "offset": 3772
+          "offset": 3772,
+          "typing_sources": []
         },
         "subsets": [],
         "types": []
@@ -1077,7 +1254,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 4189,
           "namespace_end_text": ";",
-          "offset": 4167
+          "offset": 4167,
+          "typing_sources": []
         },
         "subsets": [],
         "types": []

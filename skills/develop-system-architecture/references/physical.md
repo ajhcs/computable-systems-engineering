@@ -74,3 +74,9 @@ Method basis: Buede and Miller, *The Engineering Design of Systems: Models and
 Methods*, fourth edition, Chapter 8, pp. 210–211. The native selection and
 reconciliation rules are CSE implementation choices, not a complete physical
 design method.
+
+For local workbench drafting, [part-usage creation](../../../docs/workbench/composition-usage-creation.md)
+and [explicit usage typing](../../../docs/workbench/composition-typing.md) retain
+native declaration ownership and the independently retained configuration scope.
+These development operations do not establish actual-host acceptance or complete
+physical-composition parity.

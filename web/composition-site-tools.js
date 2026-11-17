@@ -18,6 +18,7 @@
     object({...changeFields,operation:{const:'rename'},element_id:text,new_name:text}),
     object({...changeFields,operation:{const:'create_definition'},owner_id:text,element_id:text,new_name:text,short_id:nullableText,view_id:text,placement:placementSchema}),
     object({...changeFields,operation:{const:'create_usage'},owner_id:text,element_id:text,new_name:text,short_id:nullableText,type_id:nullableText,is_composite:{type:'boolean'},multiplicity:usageMultiplicitySchema,view_id:text,placement:placementSchema}),
+    object({...changeFields,operation:{const:'set_types'},element_id:text,type_ids:{type:'array',maxItems:128,uniqueItems:true,items:text}}),
     object({...changeFields,operation:{const:'set_multiplicity'},element_id:text,lower:multiplicityBound,upper:multiplicityBound}),
     object({...changeFields,operation:{const:'set_layout'},layout:{type:'object'}}),
     object({...changeFields,operation:{const:'restore'},target_revision:integer}),
@@ -93,6 +94,13 @@
       if(args.placement!==null){for(const [key,value]of Object.entries(args.placement.box))byId('usage-'+key).value=value;byId('usage-points').value=args.placement.points.map(p=>p.join(',')).join('\n');}
       dirty=true;return await previewCreateUsage();
     }],
+    ['cse_preview_types','Prepare the complete explicit typing list on the selected native part usage. Supply distinct existing part-definition UUIDs in order, or [] to remove explicit typing. Implied/inherited types and retained configuration scope remain separate; editing a shared declaration affects its consumers. Preview and save use the same native controller as the form.',{guard:guardSchema,element_id:text,type_ids:{type:'array',maxItems:128,uniqueItems:true,items:text}},false,async args=>{
+      checkGuard(args.guard);cleanTarget(args.element_id);
+      if(editingNode()?.[1].kind!=='PartUsage')fail('element_kind','Explicit feature typing belongs to a part usage.');
+      if(!Array.isArray(args.type_ids)||args.type_ids.length>128||args.type_ids.some(id=>typeof id!=='string')||new Set(args.type_ids).size!==args.type_ids.length)fail('typing','Supply zero through 128 distinct part-definition UUIDs.');
+      if(args.type_ids.some(id=>!typeDefinitions().some(row=>row.element_id===id)))fail('identity','Choose existing part-definition UUIDs; no form values were changed.');
+      setTypingRows(args.type_ids.map(id=>({type_id:id,native_name:typeDefinitions().find(row=>row.element_id===id)?.element||null})));dirty=true;return await previewTyping();
+    }],
     ['cse_preview_multiplicity','Prepare explicit finite lower/upper bounds on the selected native part usage. Uses the visible bounds controller and native validator; retains names, ownership, identities and required configuration scope. Definitions have no usage multiplicity. Save separately after reviewing findings.',{guard:guardSchema,element_id:text,lower:multiplicityBound,upper:multiplicityBound},false,async args=>{
       checkGuard(args.guard);cleanTarget(args.element_id);
       if(editingNode()?.[1].kind!=='PartUsage')fail('element_kind','Multiplicity belongs to a part usage.');
@@ -111,12 +119,12 @@
       if(!Number.isInteger(args.target_revision)||!state.history.some(row=>row.revision===args.target_revision))fail('input','Select a saved revision of this project.');
       byId('restore-target').value=args.target_revision;return await previewRestore();
     }],
-    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose owned-definition creation, declared-name, multiplicity, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['create_definition','create_usage','rename','multiplicity','layout','restore']}},false,async args=>{
+    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose owned-definition creation, declared-name, multiplicity, explicit typing, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['create_definition','create_usage','rename','multiplicity','typing','layout','restore']}},false,async args=>{
       checkGuard(args.guard);
       if(unknown||pending||!editingNode()&&args.kind!=='restore')fail('retained_edit','Resolve the pending change or unconfirmed save before another preview.');
       if(dirty&&draftKind&&draftKind!==args.kind)fail('retained_edit','Check the existing draft in its own form, or explicitly discard it first.');
-      const previews={create_definition:previewCreateDefinition,create_usage:previewCreateUsage,rename:previewRename,multiplicity:previewMultiplicity,layout:previewLayout,restore:previewRestore};
-      if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose create_definition, create_usage, rename, multiplicity, layout or restore.');
+      const previews={create_definition:previewCreateDefinition,create_usage:previewCreateUsage,rename:previewRename,multiplicity:previewMultiplicity,typing:previewTyping,layout:previewLayout,restore:previewRestore};
+      if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose create_definition, create_usage, rename, multiplicity, typing, layout or restore.');
       const preview=previews[args.kind];
       return await preview();
     }],

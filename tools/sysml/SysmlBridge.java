@@ -95,6 +95,71 @@ public final class SysmlBridge {
         return result;
     }
 
+    private static List<Map<String, Object>> sourceTokens(INode node) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        if (node != null) for (var leaf : node.getLeafNodes()) {
+            if (!leaf.isHidden() && leaf.getLength() > 0) {
+                Map<String, Object> token = new LinkedHashMap<>();
+                token.put("encoding", "utf16");
+                token.put("offset", leaf.getOffset());
+                token.put("length", leaf.getLength());
+                token.put("text", leaf.getText());
+                result.add(token);
+            }
+        }
+        return result;
+    }
+
+    // Native FeatureTyping nodes own references, while their TypedBy/Typings
+    // grammar nodes own ':' / 'defined by' / ',' delimiters. Hidden leaves are
+    // deliberately absent so source editors can preserve every comment.
+    private static List<Map<String, Object>> typingSourceFacts(PartUsage usage) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (var typing : usage.getOwnedTyping()) {
+            Map<String, Object> item = new LinkedHashMap<>();
+            item.put("target", typing.getType() == null ? null : typing.getType().getQualifiedName());
+            item.put("status", "unsupported");
+            item.put("reason", "Typing has no direct native reference/delimiter binding");
+            result.add(item);
+            var references = NodeModelUtils.findNodesForFeature(typing, SysMLPackage.eINSTANCE.getFeatureTyping_Type());
+            var node = NodeModelUtils.getNode(typing);
+            if (typing.isImplied() || typing.getTypedFeature() != usage || node == null || references.size() != 1) continue;
+            var reference = references.get(0);
+            INode group = node.getParent();
+            while (group != null && !(group.getGrammarElement() instanceof RuleCall call
+                    && (call.getRule().getName().equals("TypedBy") || call.getRule().getName().equals("Typings"))))
+                group = group.getParent();
+            if (group == null) continue;
+            var before = new ArrayList<org.eclipse.xtext.nodemodel.ILeafNode>();
+            for (var leaf : group.getLeafNodes())
+                if (!leaf.isHidden() && leaf.getLength() > 0 && leaf.getEndOffset() <= node.getOffset()) before.add(leaf);
+            if (before.isEmpty()) continue;
+            var last = before.get(before.size() - 1);
+            if (!(last.getGrammarElement() instanceof Keyword)) continue;
+            var prefix = new ArrayList<org.eclipse.xtext.nodemodel.ILeafNode>();
+            String rule = ((RuleCall) group.getGrammarElement()).getRule().getName();
+            if (rule.equals("TypedBy") && last.getText().equals(":")) prefix.add(last);
+            else if (rule.equals("Typings") && last.getText().equals(",")) prefix.add(last);
+            else if (rule.equals("TypedBy") && last.getText().equals("by") && before.size() >= 2) {
+                var first = before.get(before.size() - 2);
+                if (first.getGrammarElement() instanceof Keyword && first.getText().equals("defined")) {
+                    prefix.add(first); prefix.add(last);
+                }
+            }
+            if (prefix.isEmpty()) continue;
+            var delimiters = new ArrayList<Map<String,Object>>();
+            for (var leaf : prefix) delimiters.addAll(sourceTokens(leaf));
+            item.put("reference_tokens", sourceTokens(reference));
+            item.put("prefix_tokens", delimiters);
+            item.put("encoding", "utf16");
+            item.put("offset", reference.getOffset());
+            item.put("length", reference.getLength());
+            item.put("status", "direct_reference");
+            item.remove("reason");
+        }
+        return result;
+    }
+
     private static Map<String, Object> sourceFacts(Element element) {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("encoding", "utf16");
@@ -128,6 +193,7 @@ public final class SysmlBridge {
                         .map(SysmlBridge::sourceName).collect(java.util.stream.Collectors.joining("::")));
             }
         }
+        if (element instanceof PartUsage part) result.put("typing_sources", typingSourceFacts(part));
         var feature = element.eClass().getEStructuralFeature("declaredName");
         if (feature != null) {
             var names = NodeModelUtils.findNodesForFeature(element, feature);
