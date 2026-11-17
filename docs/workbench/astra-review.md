@@ -1,5 +1,27 @@
 # Composition walkthrough review
 
+## SVG and iconography preservation recheck
+
+Astra compared the current walkthrough and saved-native renderer with the
+preserved Revision G design-kit and readable-presentation guidance, original
+SVG/font helpers, selected assets and rendered definition/usage examples. The
+selected frames, fonts, swatches and patterns use that kit. Broader drawing-table
+and export obligations remain explicitly open.
+
+The review found a connector detour that passed native endpoint and frame
+clearance checks but crossed the authored local key. The repair extends the
+existing full-width footer reservation to every route, including shared trunks.
+Astra's bounded source/previously parsed fixture recheck confirmed refusal of
+the collision, exact clearance boundary and diagonal detours. Safe routes and
+all four existing desktop/mobile definition/usage render results retained
+identical SVG bytes. It found no further actionable issue in that recheck.
+
+The native regression separately covers preview refusal before Git writes and
+safe save, retry and reopen with unchanged model/identity/appearance bytes.
+Current pixel/font evidence remains separately bound in ignored
+`work/workbench/composition-key-qualification-20261117/`. This review does not
+close full visual parity, actual application behavior or engineer acceptance.
+
 Astra independently inspected the native source, configuration contract,
 capability ledger, kit usage, desktop preview and mobile conflict renders.
 The review is bounded feedback on the proposed interaction, not engineer

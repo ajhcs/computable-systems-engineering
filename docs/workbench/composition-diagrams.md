@@ -70,6 +70,13 @@ text fit, frame overlap, exact endpoint contacts, route clearance and crossing
 identity are checked. This physical path has no state occurrences or sequence
 rows. It does not expose another engineering capability.
 
+An authored local key reserves a full-width footer, with 32 units of clearance
+above its first line for frames and routes. This also covers detours and shared
+trunks; native endpoint validity alone cannot prevent a route from crossing a
+key. A colliding candidate is refused before saving. Reroute it above the footer
+or explicitly enlarge its canvas; the renderer never moves authored geometry
+or hides key text to make it pass.
+
 An explicit layout operation uses the existing project transaction boundary:
 
 ```json

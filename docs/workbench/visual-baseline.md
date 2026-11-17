@@ -46,6 +46,14 @@ tables and glyphs must be reused when the active interaction calls for them.
 This first plain-frame specimen does not qualify that entire kit or close
 physical-composition visual parity.
 
+Astra's additional kit review found that an otherwise valid connector detour
+could cross the authored local key. Frames and routes now share the existing
+32-unit clearance above the key's reserved footer. The change preserves master,
+font, swatch, texture and label-placement bytes; it refuses colliding layout
+candidates rather than redrawing or concealing their annotations. The bounded
+regression includes the original collision, clearance boundary, multiple key
+lines, explicit canvas enlargement and native Git preview/save/reopen behavior.
+
 The saved-native physical renderer now reuses the original font/template helpers
 without changing their bytes; [source pins](composition-kit-source.json) retain
 that provenance. The preserved spacecraft source, layout, labels and appearance

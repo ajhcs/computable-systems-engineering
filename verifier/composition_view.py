@@ -433,10 +433,14 @@ def render(document, view_id, *, layout_override=None):
                                            'font-weight': str(weight), 'text-anchor': 'start' if item['align'] == 'left' else 'middle',
                                            'fill': colors[item['text']]}).text = text
     if appearance:
-        # The authored local key is retained in the artifact; reserve its space.
+        # Reserve the key's full-width footer with the same 32-unit clearance
+        # for both frames and routes. Endpoint/obstacle checks alone cannot
+        # prevent a detour from crossing these authored annotations.
         count = len(appearance['legend'])
         top = layout['height']-48-count*34
         need(max(b['y']+b['height'] for b in layout['nodes'].values())+32 < top, 'Reserve space for the authored local key')
+        need(all(point[1]+32 < top for route in layout['edges'].values() for point in route['points']),
+             'Route enters the reserved local key area; reroute it or enlarge the canvas')
         for index, line in enumerate(appearance['legend']):
             need(kit_fonts.text_width(line, 24) <= layout['width']-96, 'Local key does not fit')
             ET.SubElement(root, ns+'text', {'x': '48', 'y': str(top+24+index*34), 'font-family': 'DejaVu Sans', 'font-size': '24', 'fill': colors['N100']}).text = line

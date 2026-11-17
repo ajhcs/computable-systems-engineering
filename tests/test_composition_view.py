@@ -28,6 +28,27 @@ SCOPE = {'version': 'configuration-1.0',
 NS = {'s': 'http://www.w3.org/2000/svg'}
 
 
+def keyed_definition(document, legend):
+    projection = view.project(document, 'PC_DEFINITION')
+    appearance = {'version': 'cse-diagram-appearance-2.0', 'kit': 'engineering-palette-complete-05',
+                  'view': 'PC_DEFINITION',
+                  'nodes': {key: {'template': view.RECT, 'fill': 'N0', 'stroke': 'N100',
+                                  'text': 'N100', 'align': 'center'} for key in projection['nodes']},
+                  'edges': {}, 'legend': legend}
+    root = next(key for key, node in projection['nodes'].items() if node['parent'] is None)
+    appearance['nodes'][root].update(template='palette-rectangle-white-dots', fill='C18-L92')
+    return CompositionDocument(document.files, project_id=document.project_id, registry=document.registry,
+        linked_records={**document.linked_records,
+                        'appearance.json': {'kind': 'composition_appearance', 'text': json.dumps(appearance)}})
+
+
+def footer_detour(layout, y):
+    result = deepcopy(layout)
+    result['edges']['OwnModule']['points'] = [[416, 205], [446, 205], [446, y],
+                                            [480, y], [480, 355], [496, 355]]
+    return result
+
+
 class NativeViews(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -182,6 +203,35 @@ class NativeViews(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'overlap'):
             view.crossings(projection, layout)
 
+    def test_routes_cannot_cross_or_encroach_on_the_authored_local_key(self):
+        # Independently supplied route passes native endpoints/node obstacles,
+        # but y=495 intersects the actual one-line key's 502 baseline.
+        document = keyed_definition(self.document, ['Pattern distinguishes selected scope.'])
+        layout = view.render(self.document, 'PC_DEFINITION')['layout']
+        layout['height'] = 560
+        for y in (495, 450, 446):
+            candidate = footer_detour(layout, y)
+            projection = view.project(document, 'PC_DEFINITION')
+            view.geometry(projection, candidate, view.labels(document, projection))
+            with self.subTest(y=y), self.assertRaisesRegex(ValueError, 'reserved local key area'):
+                view.render(document, 'PC_DEFINITION', layout_override=candidate)
+        clear = footer_detour(layout, 445)
+        self.assertIn('Pattern distinguishes selected scope.',
+                      view.render(document, 'PC_DEFINITION', layout_override=clear)['svg'])
+        # Two lines start 34 units earlier and need correspondingly more space.
+        two_lines = keyed_definition(self.document, ['Pattern distinguishes selected scope.', 'A second local key line.'])
+        with self.assertRaisesRegex(ValueError, 'reserved local key area'):
+            view.render(two_lines, 'PC_DEFINITION', layout_override=clear)
+        taller = footer_detour(layout, 495)
+        taller['height'] = 660
+        self.assertEqual(view.render(two_lines, 'PC_DEFINITION', layout_override=taller)['layout'], taller)
+        # There is no key to collide with in a plain view. Authored appearance
+        # cannot bypass key requirements by supplying an empty list.
+        detour = footer_detour(layout, 495)
+        self.assertEqual(view.render(self.document, 'PC_DEFINITION', layout_override=detour)['layout'], detour)
+        with self.assertRaisesRegex(EditError, 'needs its local key'):
+            keyed_definition(self.document, [])
+
 
     def test_reader_preserves_literal_alias_text_without_executing_model_markup(self):
         alias = 'A < B & </script><script>throw 1</script>'
@@ -205,6 +255,33 @@ class PersistenceViews(unittest.TestCase):
         self.work = Path(self.temp.name)
         self.project, _ = CompositionProject.create(self.work/'project.git', {'model.sysml': SOURCE},
                                                     project_id=PROJECT, request_id=str(uuid4()))
+
+    def test_key_collision_is_refused_before_preview_or_publication_and_safe_routes_reopen(self):
+        original = self.project.snapshot()['document']
+        keyed = keyed_definition(original, ['Pattern distinguishes selected scope.'])
+        project, _ = CompositionProject.create(self.work/'keyed.git', keyed.files,
+            project_id=PROJECT, request_id=str(uuid4()), linked_records=keyed.linked_records)
+        first = project.snapshot()
+        layout = view.render(original, 'PC_DEFINITION')['layout']
+        request = {'operation': 'set_layout', 'request_id': str(uuid4()),
+                   'expected_revision': 1, 'layout': footer_detour(layout, 495)}
+        objects = project._git('count-objects', '-v').stdout
+        for action in (project.preview, project.transact):
+            with self.subTest(action=action.__name__), self.assertRaisesRegex(ValueError, 'reserved local key area'):
+                action(request)
+            self.assertEqual(project.head(), first['commit'])
+            self.assertEqual(project._git('count-objects', '-v').stdout, objects)
+        request['layout'] = footer_detour(layout, 445)
+        preview = project.preview(request)
+        receipt = project.transact(request)
+        self.assertEqual(receipt['revision'], 2)
+        self.assertEqual(project.transact(request), receipt)
+        reopened = CompositionProject(project.repository).snapshot()
+        self.assertEqual(reopened['document'].files, original.files)
+        self.assertEqual(reopened['document'].registry, original.registry)
+        self.assertEqual(reopened['document'].linked_records['appearance.json'], keyed.linked_records['appearance.json'])
+        self.assertEqual(view.render(reopened['document'], 'PC_DEFINITION')['svg'],
+                         view.render(preview['document'], 'PC_DEFINITION')['svg'])
 
     def test_move_resize_rename_and_restart_preserve_model_identity_and_saved_geometry(self):
         first = self.project.snapshot()
