@@ -128,8 +128,10 @@ companion, not SysML, the registry or configuration obligations. The server
 checks the whole candidate and commits it atomically with the usual monotonic
 revision and idempotent receipt. Reload and restore retain the saved geometry.
 
-Renames retain presentation IDs and update native view bindings. Retained
-presentation companions are revalidated before publication. A rename that would
+Renames retain presentation IDs and update native view bindings. Every declared
+version-1.1 physical view is rendered before project preview or publication,
+including default layouts without appearance/layout companions. Retained
+presentation companions are revalidated through that same path. A rename that would
 clip an explicitly saved frame currently returns `presentation_conflict` without
 advancing the head; enlarge the saved frame first. Automatic content-fit repair
 of manually authored layouts remains an open obligation, not a reduced name

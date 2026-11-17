@@ -50,6 +50,43 @@ class ProjectTests(unittest.TestCase):
         return {'operation': 'rename', 'request_id': str(uuid4()), 'expected_revision': revision,
                 'element_id': self.identity, 'new_name': name}
 
+    def test_quoted_unicode_name_survives_preview_retry_restart_and_monotonic_restore(self):
+        from tests.test_composition_edit import REFERENCE_SOURCE, REFERENCE_SCOPE
+        from verifier.composition_view import render
+        records = {'scope.json': {'kind': 'retained_configuration', 'text': json.dumps(REFERENCE_SCOPE, indent=2)+'\n'}}
+        project, _ = CompositionProject.create(self.work/'replacement.git', {'reference.sysml': REFERENCE_SOURCE},
+            project_id=PROJECT, request_id=str(uuid4()), linked_records=records)
+        initial = project.snapshot()
+        identity = next(k for k,v in initial['document'].registry.items() if v == "ReferenceComposition::'Sénsor::unit'")
+        request = {'operation': 'rename', 'request_id': str(uuid4()), 'expected_revision': 1,
+                   'element_id': identity, 'new_name': "Δetector's unit"}
+        preview = project.preview(request)
+        self.assertEqual(project.head(), initial['commit'])
+        receipt = project.transact(request)
+        self.assertEqual(project.transact(request), receipt)
+        saved = CompositionProject(project.repository).snapshot()
+        document = saved['document']
+        self.assertEqual(document.files, preview['document'].files)
+        self.assertEqual(document.registry[identity], "ReferenceComposition::'Δetector\\'s unit'")
+        self.assertEqual(set(document.registry), set(initial['document'].registry))
+        self.assertEqual(document.linked_records['scope.json'], records['scope.json'])
+        self.assertEqual(document.configuration_reviews[0]['report']['status'], 'fail')
+        drawing = render(document, 'PC_SENSOR')
+        self.assertEqual(drawing['projection']['nodes']['Sensor']['native']['name'], "Δetector's unit")
+        self.assertIn('Δetector', drawing['svg'])
+        # A semantically valid but unqualified glyph cannot publish a saved view.
+        refused = {**request, 'request_id': str(uuid4()), 'expected_revision': 2, 'new_name': '🛰 Sensor'}
+        for action in (project.preview, project.transact):
+            with self.assertRaises(EditError) as error:
+                action(refused)
+            self.assertEqual(error.exception.code, 'presentation_conflict')
+            self.assertEqual(project.head(), receipt['commit'])
+        restored = project.transact({'operation': 'restore', 'request_id': str(uuid4()), 'expected_revision': 2, 'target_revision': 1})
+        self.assertEqual(restored['revision'], 3)
+        reopened = CompositionProject(project.repository).snapshot()
+        self.assertEqual(reopened['document'].files, initial['document'].files)
+        self.assertEqual(reopened['document'].registry, initial['document'].registry)
+
     def test_native_alias_qualified_and_short_references_survive_git_retry_reopen_and_restore(self):
         from tests.test_composition_edit import REFERENCE_SOURCE, REFERENCE_SCOPE
         from verifier.composition_view import render

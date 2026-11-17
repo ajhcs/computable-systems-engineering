@@ -9,10 +9,11 @@ from hashlib import sha256
 import json
 import re
 import subprocess
+import unicodedata
 from pathlib import PurePosixPath
 from uuid import UUID, uuid4, uuid5
 
-from .sysml import _parser_output
+from .sysml import _parser_output, _native_name
 from .composition_records import rebind_document, rebind_json, strict_json, slots
 from .configuration import reconcile as reconcile_configuration
 
@@ -296,13 +297,23 @@ class CompositionDocument:
     def rename(self, element_id, new_name, *, expected_source_sha256):
         if expected_source_sha256 != self.revision:
             raise EditError('stale_revision', 'Source changed before candidate preparation')
-        if not isinstance(new_name, str) or not re.fullmatch(r'[A-Za-z][A-Za-z0-9_]{0,63}', new_name):
-            raise EditError('name', 'Supply a simple SysML name of at most 64 characters')
+        if (not isinstance(new_name, str) or not 1 <= len(new_name) <= 64
+                or any(unicodedata.category(char) in ('Cc', 'Cs', 'Zl', 'Zp') for char in new_name)):
+            raise EditError('name', 'Supply a nonempty single-line declared name of at most 64 characters, without control characters')
         if element_id not in self.registry:
             raise EditError('identity', 'Unknown engineering element')
         old = self.registry[element_id]
         item = elements(self.parsed)[old]
-        new = (item['owner'] + '::' if item.get('owner') else '') + new_name
+        if item.get('name') == new_name:
+            return self
+        try:
+            spelling = _native_name(new_name)
+        except subprocess.TimeoutExpired as exc:
+            raise EditError('parser_timeout', 'Native name serialization exceeded its limit; no candidate was published') from exc
+        except (RuntimeError, ValueError, OSError) as exc:
+            raise EditError('parser', str(exc)) from exc
+        token, segment = spelling['source_token'], spelling['qualified_segment']
+        new = (item['owner'] + '::' if item.get('owner') else '') + segment
         if new == old:
             return self
         if new in elements(self.parsed):
@@ -318,7 +329,7 @@ class CompositionDocument:
                 targets = row.get('redefines', [])
                 if (name not in renames and len(targets) == 1 and targets[0] in renames
                         and 'name_offset' not in row['source_span']):
-                    renames[name] = (row['owner'] + '::' if row.get('owner') else '') + new_name
+                    renames[name] = (row['owner'] + '::' if row.get('owner') else '') + segment
                     added = True
             if not added:
                 break
@@ -336,7 +347,7 @@ class CompositionDocument:
                 return [mapped(v) for v in value]
             return value
         start, end = bounds(self.source, item['source_span'], 'name_')
-        changes = [(start, end, new_name)]
+        changes = [(start, end, token)]
         references = self.parsed.get('reference_spans')
         if not isinstance(references, list) or len(references) > 16384:
             raise EditError('parser_contract', 'Native reference spans unavailable')
@@ -368,7 +379,7 @@ class CompositionDocument:
                 # external and keeps its qualified identity. Alias and short-ID
                 # spellings remain independent from the renamed declared name.
                 if segment['kind'] == 'name' and segment['target'] in renames:
-                    changes.append((start, end, new_name))
+                    changes.append((start, end, token))
         expected_bodies = []
         for document in self.parsed.get('documents', []):
             try:

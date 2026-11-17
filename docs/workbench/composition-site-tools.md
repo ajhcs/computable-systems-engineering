@@ -61,6 +61,14 @@ durable side effects. All use the existing authenticated loopback boundary;
 returned context excludes bootstrap access, cookies, CSRF values and server-side
 repository paths. Model and label content remains untrusted data.
 
+Rename input is the name itself, including any spaces, punctuation or literal
+quotes. The shared native operation supplies source quoting; a delimiter entered
+as part of the input remains a literal character in the name. The existing form,
+site callback and source/project CLIs use this same decoded-name contract.
+Text that the form would alter, including CR/LF, is refused before changing the
+draft. Saved-view font and layout refusals apply before publication; see
+[native names](composition-native-names.md).
+
 Navigation uses the [saved reader's viewport API](composition-navigation.md).
 Ordinary refresh retains a manually panned readable viewport, including when
 the selection is elsewhere. An explicit return to a different retained editing

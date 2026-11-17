@@ -77,9 +77,11 @@
     ['cse_set_view_mode','Show the complete saved SVG overview or reveal the selection at readable size (100%). Changes this browser viewport only; retains drafts, native source, saved layout, identities and review scope.',{guard:guardSchema,mode:{enum:['overview','readable']}},false,args=>{
       checkGuard(args.guard);return{outcome:'navigated',navigation:frame.contentWindow.cseDiagramNavigation.mode(args.mode)};
     }],
-    ['cse_preview_rename','Prepare an unsaved declared-name change on the selected editing target using the native validator. Refuses to replace any existing draft. Save separately after reviewing impact and retained configuration findings.',{guard:guardSchema,element_id:text,new_name:{type:'string',minLength:1,maxLength:64}},false,async args=>{
+    ['cse_preview_rename','Prepare an unsaved declared-name change on the selected editing target using the native validator. Supply the name itself; spaces, punctuation and literal quotes are retained, and source quoting is automatic. Refuses to replace any existing draft. Save separately after reviewing impact and retained configuration findings.',{guard:guardSchema,element_id:text,new_name:{type:'string',minLength:1,maxLength:64}},false,async args=>{
       checkGuard(args.guard);cleanTarget(args.element_id);
       if(typeof args.new_name!=='string')fail('input','Declared name must be text.');
+      const input=byId('rename-name'),probe=input.cloneNode(false);probe.value=args.new_name;
+      if(probe.value!==args.new_name)fail('name','The declared name must be a single line. The requested text was not changed or applied.');
       byId('rename-name').value=args.new_name;dirty=true;
       return await previewRename();
     }],

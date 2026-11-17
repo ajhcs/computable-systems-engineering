@@ -27,6 +27,14 @@ The final selected Membership's element must be the original linked EObject.
 spellings, name kinds and target identities. Unsupported or errored extraction
 is explicit; an affected reference cannot be repaired by guessing its spelling.
 
+Replacement input is the decoded local name, not a source fragment. The pinned
+native lexer distinguishes identifiers from keywords; native string escaping
+supplies a quoted Name token where required. Native `escapeName` supplies the
+canonical local identity separately: for example, `part` is written as `'part'`
+in source but keeps the canonical segment `part`. Spaces, punctuation, literal
+quotes, backslashes and Unicode remain exact; no trimming or normalization
+occurs. A name containing `::` remains one name, without adding ownership.
+
 New qualified identities use the exact native owner. Root declarations and
 quoted names or owners containing `::` therefore do not depend on string
 splitting. The expected native fingerprint changes only typed identity fields;
@@ -51,9 +59,16 @@ and glyphs outside that qualified profile remain open.
 Site callbacks in that harness are synthetic host registrations; they do not
 establish actual Codex or ChatGPT acceptance.
 
-Replacement names retain the current limit: one ASCII identifier beginning with
-a letter, at most 64 characters. Authoring quoted/Unicode replacement names,
-short-only declarations without a native qualified identity, conjugated and
+Replacement names are nonempty single-line text of at most 64 Unicode characters;
+control characters, surrogate code points and Unicode line/paragraph separators
+are refused. Existing ordinary identifiers retain their original unquoted
+source treatment. A source-only candidate can carry a native name outside the
+qualified font profile; project preview and publication validate every declared
+version-1.1 physical view, including default layouts without appearance/layout
+companions. Unsupported glyphs cannot publish through an affected view and do
+not trigger silent font substitution. The site adapter also refuses input text
+that an HTML field would alter, before changing the visible field or draft.
+Short-only declarations without a native qualified identity, conjugated and
 other unadapted reference forms, and native qualified-name linker limitations
 remain open obligations. A diagnostic input is refused, not silently normalized.
 These boundaries do not reduce the agreed union of existing support or close

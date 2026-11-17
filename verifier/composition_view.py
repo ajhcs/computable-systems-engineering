@@ -530,6 +530,22 @@ def with_layout(document, layout):
 def validate_saved_presentations(document):
     selected = {strict_json(record['text'])['view'] for record in document.linked_records.values()
                 if record['kind'] in ('composition_layout', 'composition_appearance')}
+    # A source-declared view also promises a presentation, even without an
+    # authored layout/appearance companion. Validate those defaults through the
+    # same renderer before preview/publication from any project interface.
+    for row in document.parsed.get('documents', []):
+        if row.get('name') != 'cseViews':
+            continue
+        marker = re.match(r'\s*CSE-VIEWS/1\.1\s*\r?\n', row['body'])
+        if marker is None:
+            continue  # Other versioned view records keep their existing boundary.
+        record = strict_json(row['body'][marker.end():])
+        exact(record, ('views',))
+        need(isinstance(record['views'], list) and 1 <= len(record['views']) <= 128, 'Invalid native view inventory')
+        for entry in record['views']:
+            if isinstance(entry, dict) and entry.get('kind') == 'physical_composition':
+                identifier(entry.get('id'))
+                selected.add(entry['id'])
     for view_id in sorted(selected):
         render(document, view_id)
 

@@ -81,7 +81,7 @@ class NativeEditTests(unittest.TestCase):
         cases = [(self.identity('Composition::Sensor'), 'Detector', 'stale'),
                  (self.identity('Composition::Sensor'), 'Base', self.document.revision),
                  ('missing', 'Detector', self.document.revision),
-                 (self.identity('Composition::Sensor'), 'bad name', self.document.revision)]
+                 (self.identity('Composition::Sensor'), 'bad\nname', self.document.revision)]
         for identity, name, revision in cases:
             with self.subTest(name=name, revision=revision), self.assertRaises(EditError):
                 self.document.rename(identity, name, expected_source_sha256=revision)
@@ -298,6 +298,95 @@ class ReferenceNameTests(unittest.TestCase):
             self.assertEqual(report['registry'][identity], 'ReferenceComposition::Outer::Module')
             self.assertEqual(path.read_text(), REFERENCE_SOURCE)
             self.assertEqual(report['claim'], 'candidate_only_not_persisted')
+class ReplacementNameTests(unittest.TestCase):
+    SOURCE = "// Sensor prose and 🛰 stay exact.\r\npackage 'Owner::box' {\r\n part def <S> Sensor;\r\n part direct : Sensor;\r\n part short : S;\r\n}\r\n"
+
+    @classmethod
+    def setUpClass(cls):
+        cls.document = CompositionDocument(cls.SOURCE)
+        cls.identity = next(k for k, v in cls.document.registry.items() if v == "'Owner::box'::Sensor")
+
+    def rename(self, name):
+        return self.document.rename(self.identity, name, expected_source_sha256=self.document.revision)
+
+    def test_native_tokens_and_identities_preserve_exact_decoded_names(self):
+        # Independent expected spellings; keywords differ from their identity.
+        cases = [('Detector', 'Detector', 'Detector'), ('_unit', '_unit', '_unit'),
+                 ('part', "'part'", 'part'), ('123', "'123'", "'123'"),
+                 ('12 volt', "'12 volt'", "'12 volt'"),
+                 ('Sénsor::array', "'Sénsor::array'", "'Sénsor::array'"),
+                 ('Αισθητήρας', "'Αισθητήρας'", "'Αισθητήρας'"),
+                 ('Датчик', "'Датчик'", "'Датчик'"),
+                 ("engineer's unit", "'engineer\\'s unit'", "'engineer\\'s unit'"),
+                 ('path\\unit', "'path\\\\unit'", "'path\\\\unit'"),
+                 (' Sensor ', "' Sensor '", "' Sensor '"),
+                 ("'quoted'", "'\\'quoted\\''", "'\\'quoted\\''"),
+                 ('a;b } part def Injected; //', "'a;b } part def Injected; //'", "'a;b } part def Injected; //'")]
+        for name, token, segment in cases:
+            with self.subTest(name=name):
+                result = self.rename(name)
+                expected = self.SOURCE.replace('part def <S> Sensor;', 'part def <S> '+token+';')
+                expected = expected.replace('part direct : Sensor;', 'part direct : '+token+';')
+                self.assertEqual(result.source, expected)
+                self.assertEqual(result.registry[self.identity], "'Owner::box'::"+segment)
+                self.assertEqual(set(result.registry), set(self.document.registry))
+                row = next(r for r in result.parsed['part_definitions'] if r['qualified_name'] == result.registry[self.identity])
+                self.assertEqual(row['name'], name)
+                self.assertEqual(row['id'], 'S')
+
+    def test_new_quoted_owner_and_keyword_child_keep_descendant_uuid(self):
+        document = CompositionDocument('part def <O> Outer { part def <I> Inner; } part direct : Outer::Inner; part short : O::I;')
+        ids = {v:k for k,v in document.registry.items()}
+        changed = document.rename(ids['Outer'], 'Sénsor::frame', expected_source_sha256=document.revision)
+        changed = changed.rename(ids['Outer::Inner'], 'part', expected_source_sha256=changed.revision)
+        self.assertEqual(changed.source, "part def <O> 'Sénsor::frame' { part def <I> 'part'; } part direct : 'Sénsor::frame'::'part'; part short : O::I;")
+        self.assertEqual(changed.registry[ids['Outer::Inner']], "'Sénsor::frame'::part")
+        self.assertEqual(set(changed.registry), set(document.registry))
+
+    def test_quoted_role_updates_unnamed_redefinitions_but_preserves_short_binding(self):
+        source = 'package Roles { part def Sensor; part def Base { part <ROLE> role : Sensor; } part def Derived :> Base { part :>> ROLE : Sensor; } }'
+        document = CompositionDocument(source)
+        ids = {v:k for k,v in document.registry.items()}
+        result = document.rename(ids['Roles::Base::role'], "Δetector's unit", expected_source_sha256=document.revision)
+        self.assertEqual(result.source, source.replace('part <ROLE> role :', "part <ROLE> 'Δetector\\'s unit' :"))
+        self.assertEqual(result.registry[ids['Roles::Derived::role']], "Roles::Derived::'Δetector\\'s unit'")
+
+    def test_quoted_sibling_collision_noop_and_invalid_names_preserve_original(self):
+        document = CompositionDocument("package Names { part def Sensor; part def 'Sénsor::array'; }")
+        identity = next(k for k,v in document.registry.items() if v == 'Names::Sensor')
+        with self.assertRaises(EditError) as error:
+            document.rename(identity, 'Sénsor::array', expected_source_sha256=document.revision)
+        self.assertEqual(error.exception.code, 'name_collision')
+        self.assertIs(self.rename('Sensor'), self.document)
+        for name in ['', 'x'*65, 'bad\nname', 'bad\tname', 'bad\x00name', 'bad\ud800name', 'bad\u2028name', None, True]:
+            with self.subTest(name=repr(name)), self.assertRaises(EditError) as error:
+                self.rename(name)
+            self.assertEqual(error.exception.code, 'name')
+        self.assertEqual(self.document.source, self.SOURCE)
+
+    def test_native_serializer_errors_cannot_publish_a_candidate(self):
+        for failure, code in [(subprocess.TimeoutExpired('native-name', 10), 'parser_timeout'),
+                              (RuntimeError('serializer unavailable'), 'parser')]:
+            with patch('verifier.composition_edit._native_name', side_effect=failure), self.assertRaises(EditError) as error:
+                self.rename('Detector')
+            self.assertEqual(error.exception.code, code)
+        self.assertEqual(self.document.source, self.SOURCE)
+
+    def test_source_cli_accepts_decoded_quoted_name_without_editing_input(self):
+        (ROOT/'.tmp').mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=ROOT/'.tmp') as directory:
+            path = Path(directory)/'source.sysml'
+            path.write_bytes(self.SOURCE.encode('utf-8'))
+            result = subprocess.run([sys.executable, '-B', str(ROOT/'scripts/composition_edit.py'), 'rename', str(path),
+                '--project-id', self.document.project_id, '--element-id', self.identity,
+                '--name', "Δetector's unit", '--expected-source-sha256', self.document.revision],
+                capture_output=True, text=True, check=True)
+            report = json.loads(result.stdout)
+            self.assertEqual(report['source'], self.SOURCE.replace('part def <S> Sensor;', "part def <S> 'Δetector\\'s unit';").replace('part direct : Sensor;', "part direct : 'Δetector\\'s unit';"))
+            self.assertEqual(report['registry'][self.identity], "'Owner::box'::'Δetector\\'s unit'")
+            self.assertEqual(path.read_bytes(), self.SOURCE.encode('utf-8'))
+
+
 SCOPE = {'version': 'configuration-1.0',
          'root': {'native_name': 'Context::current', 'type': 'Library::Assembly'},
          'selected_roles': {'SensorRole': {'parent': '$root', 'native_name': 'Library::Base::sensor',

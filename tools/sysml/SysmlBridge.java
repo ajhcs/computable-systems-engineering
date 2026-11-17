@@ -22,7 +22,11 @@ import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NamespaceUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter;
+import org.omg.sysml.xtext.parser.antlr.internal.InternalSysMLLexer;
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.Token;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
@@ -626,7 +630,35 @@ public final class SysmlBridge {
         return result;
     }
 
+    private static void serializeName(PrintStream output) {
+        Map<String, Object> response = new LinkedHashMap<>();
+        try {
+            String name = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);
+            // The native canonical segment is not necessarily a source token:
+            // keywords have ordinary identities but require quotes in source.
+            String sourceToken = "'" + ElementUtil.escapeString(name) + "'";
+            if (ElementUtil.isIdentifier(name)) {
+                var lexer = new InternalSysMLLexer(new ANTLRStringStream(name));
+                var token = lexer.nextToken();
+                if (token.getType() == InternalSysMLLexer.RULE_ID
+                        && name.equals(token.getText()) && lexer.nextToken().getType() == Token.EOF)
+                    sourceToken = name;
+            }
+            response.put("name", name);
+            response.put("source_token", sourceToken);
+            response.put("qualified_segment", ElementUtil.escapeName(name));
+        } catch (Exception exc) {
+            response.put("error", exc.toString());
+        }
+        output.println(JSON.toJson(response));
+    }
+
     public static void main(String[] args) {
+        if (args.length == 1 && args[0].equals("--name")) {
+            // Pure native spelling conversion: no library or model is loaded.
+            serializeName(System.out);
+            return;
+        }
         if (args.length != 2) {
             System.err.println("usage: SysmlBridge LIBRARY_DIRECTORY MODEL.sysml");
             System.exit(2);
