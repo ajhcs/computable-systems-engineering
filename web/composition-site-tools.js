@@ -24,33 +24,7 @@
   function exact(value,keys){
     if(!value||typeof value!=='object'||Array.isArray(value)||Object.keys(value).length!==keys.length||keys.some(key=>!Object.hasOwn(value,key)))fail('input','Supply exactly the documented fields.');
   }
-  function context(){
-    if(!state)return{ready:false,claim:'local_site_adapter_not_application_qualified'};
-    const found=selectedNode(),target=editingNode();
-    const navigation=frameReady?frame.contentWindow.cseDiagramNavigation.state():null;
-    return clone({ready:frameReady,
-      guard:{project_id:state.projection.project_id,view_id:state.projection.id,ui_session_id:uiSession,
-        model_revision:state.revision,commit:state.commit,bundle_sha256:state.projection.bundle_sha256,
-        interaction_revision:draftGeneration,selected_element_id:found?.[1].element_id||null,
-        selected_occurrence_id:found?.[0]||null,editing_element_id:editTargetId||null,editing_occurrence_id:editTargetOccurrenceId||null,
-        navigation_revision:navigation?.revision||0,viewport_mode:navigation?.mode||'readable',viewport_left:navigation?.scroll_left||0,viewport_top:navigation?.scroll_top||0},
-      navigation,
-      busy,gesture_active:gestureActive,has_form_draft:dirty,draft_kind:draftKind,unconfirmed_save:unknown,
-      selection:found?{occurrence_id:found[0],...found[1],display_label:found[1].frame_id?state.display_labels[found[1].frame_id]:found[1].native?.name||found[1].element,box:found[1].frame_id?state.layout.nodes[found[1].frame_id]:null}:null,
-      editing_target:editTargetId?{element_id:editTargetId,occurrence_id:editTargetOccurrenceId,native_name:target?.[1].element||editTargetName,present:Boolean(target),
-        base_revision:formRevision,base_commit:formCommit,declared_name:byId('rename-name').value,
-        multiplicity:Object.fromEntries(['lower','upper'].map(field=>[field,byId('multiplicity-'+field).value])),
-        box:Object.fromEntries(['x','y','width','height'].map(field=>[field,byId('box-'+field).value]))}:null,
-      pending_change:pending?{...pending,request:clone(pending.request)}:null,
-      creation_draft:{declared_name:byId('create-name').value,short_id:byId('create-short').value||null,placement_mode:byId('create-placement').value,
-        box:Object.fromEntries(['x','y','width','height'].map(key=>[key,byId('create-'+key).value])),route_text:byId('create-points').value},
-      restoration_target_revision:Number(byId('restore-target').value)||null,
-      visible_elements:Object.entries(state.projection.nodes).map(([id,node])=>({occurrence_id:id,element_id:node.element_id,native_name:node.element,kind:node.kind})),
-      inspection_counts:state.projection.inspection.counts,visible_elements_scope:'diagram_frames; declaration and retained-role occurrences use cse_list_inspection_occurrences',
-      history:state.history,configuration_reviews:state.configuration_reviews,reconciliation:state.reconciliation,
-      scope:'visible_saved_selection_never_replaces_retained_review_scope',
-      claim:'local_site_adapter_not_application_qualified'});
-  }
+  const context=()=>globalThis.cseWorkbench.context();
   function checkGuard(expected){
     const actual=context();
     if(!actual.ready)fail('view_not_ready','Wait for the saved view, then read its context.');

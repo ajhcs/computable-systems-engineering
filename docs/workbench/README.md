@@ -90,6 +90,12 @@ original-font refusal, current selection/draft context, exact retry recovery,
 private durable publication and actual-host acceptance. The local SDK experiment
 informs this contract; it does not close a production interface or capability.
 
+The [shared application provider](composition-provider.md) now connects the
+controller to loopback or an explicitly supplied MCP client. Shared context,
+async exact-intent recovery, matching-receipt checks and saved-font readiness
+remain in that controller. Server authorization, hosted persistence, artifact
+transfer and actual application acceptance remain required completion gates.
+
 For the explicit bundle transport, see [the bundle contract](composition-bundle.md).
 Bundle file names label supplied texts; they are never instructions to read or
 write another disk path. The source mapping retains each file's original text.

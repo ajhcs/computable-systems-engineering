@@ -43,10 +43,12 @@ The application provider needs four explicit responsibilities:
 | Temporary state | Isolate each app instance's drafts and exact pending intent. A reopen/reload must either recover that intent or explicitly disclose that it cannot; another widget must never consume it. |
 | Artifact transfer | Deliver the exact requested source-bound artifact and manifest through a supported host route. Refusal, cancellation and unavailable transfer remain explicit. |
 
-Replace the experiment's global fetch/storage interception with this provider
-boundary around the existing controller. Keep the ordinary loopback provider
-and the feature-detected Codex site adapter working. Host behavior must not be
-implemented by copying the controller or by maintaining a second model.
+The [shared application provider](composition-provider.md) now supplies this
+boundary around the existing controller, including an MCP client adapter.
+It retains the ordinary loopback provider and feature-detected Codex site
+adapter without intercepting global fetch/storage APIs. Complete the server,
+artifact-transfer and actual-host obligations against that same implementation;
+do not copy the controller or maintain a second model.
 
 Use focused MCP data tools, separate from the explicit open-view tool. A tool
 user without a rendered component must be able to obtain the project snapshot

@@ -25,6 +25,11 @@ configuration findings. It also reads the latest published head without
 refreshing the displayed model. An intervening publication can therefore be
 visible as a different head; the native expected-revision check remains decisive.
 
+This is the [shared controller snapshot](composition-provider.md), also consumed
+by the MCP client context publisher. Subscriber failures cannot alter findings
+or acknowledgement. A loading snapshot can identify a newer revision while
+`ready` remains false; actions still require its ready guarded context.
+
 Every UI-changing call supplies the exact returned guard: project, view, UI
 session, saved revision, commit, bundle digest, interaction generation, selected
 engineering UUID, occurrence ID, editing UUID and editing occurrence. Navigation revision, mode and
@@ -93,6 +98,12 @@ exact request in tab session storage for retry, including after reload. An old
 UI guard cannot be reused in the new page session. An acknowledged request can
 also be looked up after losing the tool response, using its original full
 request rather than creating another request ID.
+
+The shared provider awaits exact-intent persistence before sending apply. A
+preparation/storage failure returns `not_sent` for that attempt and preserves an
+earlier unconfirmed outcome. Receipt acknowledgement also matches project and
+the native canonical request digest. Temporary cleanup failure cannot revoke a
+known commit; a retained entry can be recovered and retried without duplication.
 
 The new `CompositionProject.lookup_receipt(request)`, CLI `receipt --request …`
 and authenticated `POST /api/receipt` share the same read-only lookup. It

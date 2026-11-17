@@ -39,5 +39,7 @@ The [physical host contract](composition-host-contract.md) carries these same
 requirements into MCP Apps. Original-font loading, actual displayed glyph
 suppliers and exact raw saved SVG bytes require separate evidence. A host that
 cannot render the original fonts must report an unsupported view. The private
-SDK experiment exercises this boundary; production component integration,
-candidate-font coverage and actual-host acceptance remain open.
+SDK qualification exercises this boundary. The [shared controller](composition-provider.md)
+now enforces saved-font readiness for local and supplied MCP transports.
+Production server/component integration, candidate/export-font coverage and
+actual-host acceptance remain open.
