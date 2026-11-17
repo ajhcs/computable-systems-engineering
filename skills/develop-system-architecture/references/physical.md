@@ -60,6 +60,13 @@ saving the exact request. Retain the scope and captured owner through inspection
 conflict or lost acknowledgement. This path does not infer an installed part or
 silently create a usage, package root, type or new view.
 
+For definition-owned or inherited/redefined role inspection, follow the
+[role-inspection contract](../../../docs/workbench/composition-role-inspection.md).
+Keep native declaration ownership, retained selected parent/context and each
+inspection occurrence distinct. Inspection cannot accept new scope or retarget
+a shared declaration draft. The reviewed proposal does not yet implement
+production role-row selection or editing.
+
 Method basis: Buede and Miller, *The Engineering Design of Systems: Models and
 Methods*, fourth edition, Chapter 8, pp. 210–211. The native selection and
 reconciliation rules are CSE implementation choices, not a complete physical

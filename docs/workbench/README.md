@@ -77,6 +77,12 @@ registry UUID, selected-view occurrence and original-kit frame/route in one
 checked candidate. Existing geometry, appearance and retained scope remain
 intact. Package/root, usage and new-view creation are separate open obligations.
 
+The [role-inspection contract](composition-role-inspection.md) extends the
+inspection plan to definition-owned declarations, inherited/redefined selected
+roles and external peers. Its source-bound proposal and synthetic fixtures
+preserve native ownership and complete scope findings. Production row selection,
+editing and host parity remain open.
+
 For the explicit bundle transport, see [the bundle contract](composition-bundle.md).
 Bundle file names label supplied texts; they are never instructions to read or
 write another disk path. The source mapping retains each file's original text.
