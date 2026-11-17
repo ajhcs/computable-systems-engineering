@@ -25,6 +25,13 @@ is preserved verbatim from revision G and is required by the diagram skill.
 It covers the palette page references, original artwork, boxed labels, textures,
 fonts, exact swatches, document tables and rendered comparison procedure.
 
+The complete revision G readable-presentation guidance is also preserved
+verbatim. Its connector-label placement, drawing-identification tables, intended
+reading size, detail-sheet coverage and explicit overview requirements remain
+part of this capability's target. The initial local reader does not yet provide
+all of those interactions or exports; preserving plain frames alone cannot close
+the visual cells in the parity matrix.
+
 References: [component library](../component-library.md),
 [saved typography](../../assets/engineering-library/tokens/typography-spec.json),
 [exact swatches](../../assets/engineering-library/tokens/color-swatches.json),

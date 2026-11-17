@@ -40,6 +40,8 @@ class CompositionSession:
             state = {'revision': snapshot['revision'], 'commit': snapshot['commit'],
                      'projection': drawing['projection'], 'layout': drawing['layout'],
                      'display_title': drawing['display_title'], 'display_labels': drawing['display_labels'],
+                     'configuration_reviews': deepcopy(snapshot['document'].configuration_reviews),
+                     'reconciliation': deepcopy(snapshot['document'].reconciliation),
                      'history': [{key: row[key] for key in ('revision', 'operation', 'restored_from_revision')}
                                  for row in self.project.history()],
                      'claim': 'local_saved_project_not_hosted_or_application_qualified'}
@@ -194,8 +196,9 @@ class CompositionHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         try:
             self._boundary()
-            if self.path in ('/', '/app.js'):
-                name = 'composition-workbench.html' if self.path == '/' else 'composition-workbench.js'
+            if self.path in ('/', '/app.js', '/site-tools.js'):
+                name = {'/': 'composition-workbench.html', '/app.js': 'composition-workbench.js',
+                        '/site-tools.js': 'composition-site-tools.js'}[self.path]
                 kind = 'text/html; charset=utf-8' if self.path == '/' else 'text/javascript; charset=utf-8'
                 return self._send(200, (ROOT/'web'/name).read_bytes(), kind)
             if not self._authorized():
@@ -235,6 +238,8 @@ class CompositionHandler(BaseHTTPRequestHandler):
                 return self._send(200, {'preview': self.server.session.preview(body)})
             if self.path == '/api/apply':
                 return self._send(200, self.server.session.apply(body))
+            if self.path == '/api/receipt':
+                return self._send(200, self.server.session.project.lookup_receipt(body))
             return self._send(404, {'error': {'code': 'not_found', 'detail': 'Unknown route'}})
         except (ValueError, OSError, TypeError, RecursionError) as exc:
             self._error(exc)

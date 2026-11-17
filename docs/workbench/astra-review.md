@@ -83,3 +83,31 @@ fieldset disabled assertion, route-handler ordering mistakes and the source
 assertion that omitted the correctly preserved `<LEFT>` short ID. None is
 silently relabelled as a passing final run. Local interaction qualification
 does not close physical composition, hosted access or engineer acceptance.
+
+## Site-adapter and original-kit follow-up
+
+At the engineer's explicit SVG/iconography request, Astra compared the saved
+physical views and their actual r6/reopen screenshots with the preserved
+historical kit. The component files, font/provenance files, tokens and both kit
+helpers matched their originals. It found no new actionable kit defect in that
+reviewed revision. Those receipts stay bound to `e66f52b`; later source changes
+require fresh assembled evidence. Older internally intact exports with stale
+engine pins are not presented as current qualification.
+
+The following site-adapter source review found two recovery defects. An
+unavailable receipt read could be labelled as a refused save; it now returns
+`unconfirmed` with the exact request. Refresh also replaced a human's retained
+restoration target with the newest option. Draft-preserving reads now reselect
+the exact revision, expose it in context and refuse an absent choice. Astra's
+narrow rechecks found those corrections addressed. The native renderer and
+reader remain unchanged. Synthetic host-API callback checks and refreshed
+desktop/mobile evidence qualify local assembled behavior separately; actual
+Codex/ChatGPT execution and engineer acceptance remain open.
+
+Astra inspected the fresh site-r3 and editor-r7 evidence against the current
+source. All five image hashes, both source-hash sets and all 1,157 preserved
+asset/helper/guidance entries matched. All four r7 cases recorded actual custom
+DejaVu glyph suppliers. No new actionable kit regression was found. Mobile
+scrolling does not close the restored overview, drawing-identification or
+detail/export requirements. Site-r3 uses synthetic host callbacks; only desktop
+usage composition carries the full r7 recovery journey.

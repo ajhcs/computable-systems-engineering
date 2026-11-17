@@ -5,8 +5,10 @@ was a browser action changing the same authoritative saved project as the CLI.
 The supporting adapter is a single loopback process around `CompositionProject`;
 it supplies no competing model, hosted account system or independent database.
 Actual browser actions, raw project state and a fresh process must agree before
-this increment is considered verified. Cloudflare, remote project authorization,
-WebMCP, MCP Apps and both actual application journeys remain required later.
+this increment is considered verified. The [site adapter](composition-site-tools.md)
+now registers existing controller operations when the host API is present.
+Cloudflare, remote project authorization, full MCP/MCP Apps and both actual
+application journeys remain required capability gates.
 
 The engineer has already received the trace-linked
 [walkthrough](composition-walkthrough.md), requested Astra review and required
@@ -76,6 +78,7 @@ files are retained and cannot reopen a different new server session.
 | `GET /api/head` | Current published Git head for live refresh |
 | `POST /api/preview` | Validate one exact typed rename/layout/restore request without writing project objects or reserving a revision |
 | `POST /api/apply` | Apply that existing project operation and return its durable receipt; a following read error is separate and cannot revoke the receipt |
+| `POST /api/receipt` | Read the exact prior request's original receipt at a captured published head; never applies or reserves a request |
 | `GET /view.svg?commit=…`, `/view.json?commit=…` | Current saved drawing/bindings only when they match the requested commit; stale drawing requests conflict |
 
 Preview is also available through `scripts/composition_project.py preview

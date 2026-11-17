@@ -196,6 +196,19 @@ class CompositionProject:
     def history(self):
         return self._history(self.head())
 
+    def lookup_receipt(self, request):
+        """Read one exact request's receipt without applying or reserving it.
+
+        Absence describes the captured head only. Another writer can publish
+        after this read; clients must retain the original idempotent request.
+        """
+        request = self._validate_request(request)
+        history = self.history()
+        return {'observed_commit': history[0]['commit'],
+                'observed_revision': history[0]['revision'],
+                'request_sha256': request_digest(request),
+                'receipt': self._retry(history, request)}
+
     def _retry(self, history, request):
         digest = request_digest(request)
         matches = [row for row in history if row['request_id'] == request['request_id']]

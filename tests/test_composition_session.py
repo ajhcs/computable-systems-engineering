@@ -144,6 +144,43 @@ class SessionTests(unittest.TestCase):
         self.assertEqual(status,200)
         self.assertEqual(current['state']['projection']['nodes']['Left']['native']['name'],'intervening')
 
+    def test_receipt_lookup_is_read_only_bound_to_observed_head_and_exact_payload(self):
+        request=self.rename()
+        head=self.project.head()
+        objects=self.project._git('count-objects','-v').stdout
+        status,absent,_=self.call('POST','/api/receipt',request)
+        self.assertEqual(status,200,absent)
+        self.assertIsNone(absent['receipt'])
+        self.assertEqual(absent['observed_commit'],head)
+        self.assertEqual(absent['observed_revision'],1)
+        self.assertEqual(self.project._git('count-objects','-v').stdout,objects)
+        self.assertEqual(self.call('POST','/api/receipt',request,headers={'X-CSE-CSRF':''})[0],403)
+        status,saved,_=self.call('POST','/api/apply',request)
+        self.assertEqual(status,200,saved)
+        later=self.project.transact({'operation':'restore','request_id':str(uuid4()),
+                                     'expected_revision':2,'target_revision':1})
+        objects=self.project._git('count-objects','-v').stdout
+        status,found,_=self.call('POST','/api/receipt',request)
+        self.assertEqual(status,200,found)
+        self.assertEqual(found['receipt'],saved['receipt'])
+        self.assertEqual(found['request_sha256'],saved['receipt']['request_sha256'])
+        self.assertEqual(found['observed_revision'],3)
+        self.assertEqual(found['observed_commit'],later['commit'])
+        self.assertEqual(self.project.head(),later['commit'])
+        self.assertEqual(self.project._git('count-objects','-v').stdout,objects)
+        status,reused,_=self.call('POST','/api/receipt',{**request,'new_name':'changedPayload'})
+        self.assertEqual(status,409,reused)
+        self.assertEqual(reused['error']['code'],'request_reuse')
+        for invalid in ({}, {**request,'unknown':True}):
+            self.assertEqual(self.call('POST','/api/receipt',invalid)[0],400)
+        status,script,_=self.call('GET','/site-tools.js')
+        self.assertEqual(status,200)
+        self.assertIn(b'document.modelContext',script)
+        self.assertNotIn(str(self.project.repository).encode(),script)
+        status,page,_=self.call('GET','/api/state')
+        self.assertEqual(status,200)
+        self.assertEqual(page['state']['configuration_reviews'][0]['report']['status'],'pass')
+
     def test_layout_retries_restoration_and_reopen_preserve_sources_and_identity(self):
         original=self.project.snapshot()
         layout=deepcopy(self.server.session.state()['layout'])

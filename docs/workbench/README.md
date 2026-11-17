@@ -86,8 +86,11 @@ reviewed integration; fresh assembled verification remains required.
 The [local connected interaction](composition-interaction.md) adds explicit
 preview/save, native rename, frame move/resize and whole-snapshot restoration
 over the same project. Its loopback transport and embedded saved reader are
-development implementations. Hosted authorization, full operation coverage,
-WebMCP/MCP Apps and actual application journeys remain open.
+development implementations. The [site adapter](composition-site-tools.md)
+registers selection, preview/save, refresh and receipt recovery around those
+same controls when `document.modelContext` is available. Synthetic host-API
+browser checks are distinct from actual host execution. Hosted authorization,
+full operation coverage, MCP/MCP Apps and actual application journeys remain open.
 
 ## Next acceptance obligations
 

@@ -20,7 +20,7 @@ from verifier.foundation import read_regular
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=('import', 'inspect', 'apply', 'preview', 'history', 'render', 'check-render'))
+    parser.add_argument('command', choices=('import', 'inspect', 'apply', 'preview', 'receipt', 'history', 'render', 'check-render'))
     parser.add_argument('--project', required=True, help='trusted server-side bare Git directory')
     parser.add_argument('--bundle', help='explicit cse-composition-bundle-1 input')
     parser.add_argument('--project-id')
@@ -50,12 +50,14 @@ def main():
         else:
             if args.bundle or args.project_id or args.request_id:
                 raise EditError('input', 'These import fields do not apply to this command')
-            if args.command in ('apply', 'preview'):
+            if args.command in ('apply', 'preview', 'receipt'):
                 if not args.request:
-                    raise EditError('input', 'Apply/preview requires an operation JSON file')
+                    raise EditError('input', 'Apply/preview/receipt requires an operation JSON file')
                 request = strict_json(read_regular(args.request, 1_000_000).decode('utf-8'))
                 if args.command == 'apply':
                     report = {'receipt': project.transact(request)}
+                elif args.command == 'receipt':
+                    report = project.lookup_receipt(request)
                 else:
                     candidate = project.preview(request)
                     document = candidate.pop('document')
@@ -64,7 +66,7 @@ def main():
                               'claim': 'unsaved_candidate_not_a_transaction_receipt'}
             else:
                 if args.request:
-                    raise EditError('input', 'Request JSON applies only to apply/preview')
+                    raise EditError('input', 'Request JSON applies only to apply/preview/receipt')
                 if args.command in ('render', 'check-render'):
                     from verifier.composition_view import write_artifacts, check_artifacts
                     operation = write_artifacts if args.command == 'render' else check_artifacts

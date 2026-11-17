@@ -5,7 +5,7 @@ const byId=id=>document.getElementById(id), frame=byId('view');
 const uiSession=crypto.randomUUID();
 let state, csrf, selectedId, busy=false, dirty=false, pending=null, unknown=false, polling=false, ghost=null;
 let formRevision, formCommit, restoredSelection;
-let editTargetId, draftGeneration=0, loadGeneration=0, gestureActive=false;
+let editTargetId, draftGeneration=0, loadGeneration=0, gestureActive=false, frameReady=false;
 const key=()=> 'cse-pending-save:'+state.projection.project_id;
 const notice=text=>{byId('notice').textContent=text;};
 const clone=value=>JSON.parse(JSON.stringify(value));
@@ -51,6 +51,7 @@ function selectionChanged(){
   const inner=frame.contentWindow.cseSelectionContext;
   if(!inner)return;
   const next=inner.selected_element_ids[0];
+  if(next!==selectedId)draftGeneration++;
   if(next!==selectedId&&(dirty||pending))notice('Inspection selection changed. The retained edit still targets its original element.');
   selectedId=next;
   globalThis.cseSelectionContext={...inner,ui_session_id:uiSession,scope:'local_connected_saved_selection'};
@@ -98,7 +99,8 @@ async function previewChange(change,description,layoutBox){
     byId('pending-indicator').textContent='Unsaved change · saved model below remains authoritative';
     if(layoutBox)drawGhost(layoutBox.id,layoutBox.box);
     notice('Candidate checked. Review it, then save or discard.');
-  }catch(error){removeGhost();pending=null;notice(error.code==='stale_revision'?'Conflict: '+error.message+'. Your form values remain available. Refresh before another preview.':error.message);}
+    return{outcome:'previewed',request:clone(change),preview:clone(result.preview)};
+  }catch(error){removeGhost();pending=null;notice(error.code==='stale_revision'?'Conflict: '+error.message+'. Your form values remain available. Refresh before another preview.':error.message);return{outcome:'refused',error:{code:error.code||'preview_unavailable',detail:error.message}};}
   finally{busy=false;controls();}
 }
 function previewLayout(){
@@ -133,7 +135,7 @@ frame.addEventListener('load',()=>{
   doc.addEventListener('click',selectionChanged);doc.addEventListener('keyup',selectionChanged);
   const wanted=restoredSelection&&Object.entries(state.projection.nodes).find(([,node])=>node.element_id===restoredSelection);
   if(wanted){const element=doc.querySelector('g[data-node-id="'+wanted[0]+'"]');element?.dispatchEvent(new MouseEvent('click',{bubbles:true}));element?.scrollIntoView({block:'nearest',inline:'nearest'});}
-  restoredSelection=null;selectionChanged();bindDragging();
+  restoredSelection=null;selectionChanged();bindDragging();frameReady=true;
 });
 async function loadState(preserve=false,background=false){
   const generation=draftGeneration,ticket=++loadGeneration;
@@ -141,24 +143,35 @@ async function loadState(preserve=false,background=false){
   if(ticket!==loadGeneration||background&&(busy||gestureActive||dirty||pending||generation!==draftGeneration))return false;
   state=result.state;csrf=result.csrf;restoredSelection=selectedId;
   byId('saved').textContent='Saved revision '+state.revision+' · '+state.projection.id+' · '+state.commit.slice(0,12);
+  const restoreTarget=preserve?byId('restore-target').value:null;
   byId('restore-target').replaceChildren(...state.history.map(row=>{const option=document.createElement('option');option.value=row.revision;option.textContent='Revision '+row.revision+' · '+row.operation;return option;}));
+  if(restoreTarget!==null)byId('restore-target').value=restoreTarget;
   if(!preserve){dirty=false;pending=null;removeGhost();formRevision=state.revision;formCommit=state.commit;}
-  frame.srcdoc=result.view_html;
+  frameReady=false;frame.srcdoc=result.view_html;
   controls();
   return true;
 }
-byId('rename-form').addEventListener('submit',event=>{event.preventDefault();const found=editingNode();if(found)previewChange(request('rename',{element_id:editTargetId,new_name:byId('rename-name').value}),'Rename '+found[1].element+' → '+byId('rename-name').value);});
+function previewRename(){const found=editingNode();if(found)return previewChange(request('rename',{element_id:editTargetId,new_name:byId('rename-name').value}),'Rename '+found[1].element+' → '+byId('rename-name').value);}
+function previewRestore(){return previewChange(request('restore',{target_revision:Number(byId('restore-target').value)}),'Restore all source, identity and presentation state from revision '+byId('restore-target').value+' into a new revision.');}
+byId('rename-form').addEventListener('submit',event=>{event.preventDefault();previewRename();});
 byId('layout-form').addEventListener('submit',event=>{event.preventDefault();previewLayout();});
-byId('restore-form').addEventListener('submit',event=>{event.preventDefault();previewChange(request('restore',{target_revision:Number(byId('restore-target').value)}),'Restore all source, identity and presentation state from revision '+byId('restore-target').value+' into a new revision.');});
+byId('restore-form').addEventListener('submit',event=>{event.preventDefault();previewRestore();});
 byId('edits').addEventListener('input',event=>{if(event.target.id==='drag-action')return;draftGeneration++;dirty=true;if(pending&&!unknown){pending=null;removeGhost();}controls();});
 function discard(){if(unknown||busy)return;draftGeneration++;pending=null;dirty=false;removeGhost();showFields(true);notice('Pending values discarded. Saved state is unchanged.');controls();}
 byId('discard').addEventListener('click',discard);
 byId('discard-draft').addEventListener('click',discard);
 byId('edit-selected').addEventListener('click',discard);
 byId('return-target').addEventListener('click',()=>{const found=editingNode();if(!found)return;const group=frame.contentDocument.querySelector('g[data-node-id="'+found[0]+'"]');group?.dispatchEvent(new MouseEvent('click',{bubbles:true}));group?.scrollIntoView({block:'nearest',inline:'nearest'});});
-byId('refresh').addEventListener('click',async()=>{draftGeneration++;busy=true;controls();try{const keepValues=dirty||Boolean(pending),target=editTargetId;await loadState(true);if(!unknown){pending=null;dirty=keepValues;formRevision=state.revision;formCommit=state.commit;if(keepValues)restoredSelection=target;else showFields(true);}notice(unknown?'Saved state refreshed. Retry the pending save to recover its durable receipt.':'Saved state refreshed. Form values retain their original target; review it, then preview against revision '+state.revision+'.');}catch(error){notice(error.message);}finally{busy=false;controls();}});
-byId('save').addEventListener('click',async()=>{
-  if(!pending||busy)return;
+async function refreshSaved(){
+  if(busy||gestureActive)return{outcome:'refused',error:{code:'interaction_busy',detail:'Finish the current interaction first.'}};
+  draftGeneration++;busy=true;controls();
+  try{const keepValues=dirty||Boolean(pending),target=editTargetId;await loadState(true);if(!unknown){pending=null;dirty=keepValues;formRevision=state.revision;formCommit=state.commit;if(keepValues)restoredSelection=target;else showFields(true);}notice(unknown?'Saved state refreshed. Retry the pending save to recover its durable receipt.':'Saved state refreshed. Form values retain their original target; review it, then preview against revision '+state.revision+'.');return{outcome:'refreshed',revision:state.revision,commit:state.commit};}
+  catch(error){notice(error.message);return{outcome:'refused',error:{code:error.code||'refresh_unavailable',detail:error.message}};}
+  finally{busy=false;controls();}
+}
+byId('refresh').addEventListener('click',refreshSaved);
+async function saveChange(){
+  if(!pending||busy||gestureActive||pending.stale)return{outcome:'refused',error:{code:'save_unavailable',detail:'Inspect and preview a current change before saving.'}};
   draftGeneration++;
   busy=true;controls();notice('Saving the checked request…');
   const savedRequest=pending.request;
@@ -170,12 +183,14 @@ byId('save').addEventListener('click',async()=>{
     sessionStorage.removeItem(key());unknown=false;pending=null;dirty=false;removeGhost();
     await loadState();
     notice('Saved revision '+result.receipt.revision+'. Request '+result.receipt.request_id+'.'+(state.revision!==result.receipt.revision?' The current project is now at revision '+state.revision+'.':''));
+    return{outcome:'committed',receipt:clone(acknowledged)};
   }catch(error){
-    if(acknowledged){notice('Saved revision '+acknowledged.revision+'. Refresh is unavailable: '+error.message);}
-    else if(error.definitiveRefusal){sessionStorage.removeItem(key());unknown=false;if(pending)pending.stale=error.code==='stale_revision';notice((error.code==='stale_revision'?'Conflict: ':'Save refused: ')+error.message+' Pending values are retained.');}
-    else{unknown=true;notice('Save acknowledgement was not received. Retry with the same request ID to recover its outcome.');}
+    if(acknowledged){notice('Saved revision '+acknowledged.revision+'. Refresh is unavailable: '+error.message);return{outcome:'committed',receipt:clone(acknowledged),refresh_error:{code:error.code||'refresh_unavailable',detail:error.message}};}
+    else if(error.definitiveRefusal){sessionStorage.removeItem(key());unknown=false;if(pending)pending.stale=error.code==='stale_revision';notice((error.code==='stale_revision'?'Conflict: ':'Save refused: ')+error.message+' Pending values are retained.');return{outcome:'refused',error:{code:error.code,detail:error.message},request:clone(savedRequest)};}
+    else{unknown=true;notice('Save acknowledgement was not received. Retry with the same request ID to recover its outcome.');return{outcome:'unconfirmed',request:clone(savedRequest),error:{code:'outcome_unknown',detail:'Retry this exact request or look up its durable receipt.'}};}
   }finally{busy=false;controls();}
-});
+}
+byId('save').addEventListener('click',saveChange);
 async function start(){
   try{
     const access=new URLSearchParams(location.hash.slice(1)).get('access');

@@ -38,8 +38,13 @@ fit require their own representation and evidence.
 The development [saved physical diagram path](../../../docs/workbench/composition-diagrams.md)
 uses the same native declarations and separately retained scopes in a local Git
 project. Its [loopback interaction](../../../docs/workbench/composition-interaction.md)
-uses those same native transactions. This does not yet establish a connected
-Codex/ChatGPT editor or complete physical-capability parity.
+uses those same native transactions. Its [site adapter](../../../docs/workbench/composition-site-tools.md)
+can expose the same selection and checked edits when the host API is available.
+Read current context, preserve a human draft's fixed target, and treat a preview
+separately from a durable save receipt. An unconfirmed save retains its exact
+request ID and values; neither selection nor a rename replaces retained scope.
+Registration does not establish actual Codex/ChatGPT execution or complete
+physical-capability parity.
 
 Method basis: Buede and Miller, *The Engineering Design of Systems: Models and
 Methods*, fourth edition, Chapter 8, pp. 210–211. The native selection and
