@@ -6,7 +6,7 @@ if(!process.argv[2]||!process.env.TMPDIR)throw Error('Supply a fresh output dire
 const root=fileURLToPath(new URL('../../',import.meta.url)),output=path.resolve(process.argv[2]);fs.mkdirSync(output,{mode:0o700});
 const replacementNames=process.argv.includes('--replacement-names');
 const hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex'),assert=(ok,m)=>{if(!ok)throw Error(m)},sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const sourceNames=['tools/sysml/SysmlBridge.java','verifier/sysml.py','verifier/composition_edit.py','verifier/composition_project.py','verifier/composition_session.py','verifier/composition_view.py','verifier/kit_fonts.py','verifier/kit_templates.py','verifier/composition_fonts.py','assets/workbench/composition-font-metrics.json','web/composition-reader.html','web/composition-workbench.js','web/composition-site-tools.js','examples/workbench/composition/reference-names.sysml','tests/test_composition_edit.py','tests/browser/composition_reference_fixture.py'];
+const sourceNames=['tools/sysml/SysmlBridge.java','verifier/sysml.py','verifier/composition_edit.py','verifier/composition_project.py','verifier/composition_session.py','verifier/composition_view.py','verifier/kit_fonts.py','verifier/kit_templates.py','verifier/composition_fonts.py','assets/workbench/composition-font-metrics.json','web/composition-reader.html','web/composition-workbench.html','web/composition-workbench.js','web/composition-site-tools.js','examples/workbench/composition/reference-names.sysml','tests/test_composition_edit.py','tests/browser/composition_reference_fixture.py'];
 const inputs=Object.fromEntries(sourceNames.map(p=>[p,hash(path.join(root,p))])),observations=[];
 const original=fs.readFileSync(path.join(root,'examples/workbench/composition/reference-names.sysml'),'utf8');
 function expectedSource(view){
@@ -31,7 +31,7 @@ try{for(const width of [1440,390])for(const view of ['PC_REFERENCE','PC_SENSOR']
  try{
   for(let n=0;!fs.existsSync(path.join(folder,'connection.json'));n++){if(terminal||n>900)throw Error('Fixture startup');await sleep(100)}
   let connection=JSON.parse(fs.readFileSync(path.join(folder,'connection.json')));const project=connection.project;
-  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&globalThis.cseSelectionContext?.selected_element_ids?.length===1&&globalThis.cseSiteTools?.registered.length===12);
+  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&globalThis.cseSelectionContext?.selected_element_ids?.length===1&&globalThis.cseSiteTools?.registered.length===13);
   const tool=(name,args={})=>page.evaluate(async({name,args})=>await __tools.get(name).execute(args),{name,args});
   const context=async()=>(await tool('cse_get_context')).context,state=()=>page.evaluate(async()=>(await(await fetch('/api/state')).json()).state);
   const select=async occurrence=>{const c=await context(),id=(await state()).projection.nodes[occurrence].element_id,r=await tool('cse_select_element',{guard:c.guard,element_id:id,occurrence_id:occurrence});assert(r.outcome==='selected','Native selection refused');return r.context};
@@ -41,9 +41,9 @@ try{for(const width of [1440,390])for(const view of ['PC_REFERENCE','PC_SENSOR']
   const firstNode=view==='PC_SENSOR'?'Sensor':'Outer',secondNode=view==='PC_SENSOR'?'Sensor':'Inner',firstName=replacementNames?(view==='PC_SENSOR'?'Sénsor::array':'Assembly::frame'):(view==='PC_SENSOR'?'Detector':'Platform'),secondName=replacementNames?(view==='PC_SENSOR'?"Δetector's unit":'part'):(view==='PC_SENSOR'?'SensingUnit':'Module');
   const initialContext=await select(firstNode);const firstId=initialContext.guard.selected_element_id,secondId=first.projection.nodes[secondNode].element_id,scope=first.configuration_reviews[0].scope_sha256;
   assert(first.configuration_reviews[0].report.status==='pass','Initial retained scope did not reconcile');
-  const inner=()=>page.frames().find(f=>f.parentFrame()===page.mainFrame());
+  const inner=()=>page.frame({name:'cse-saved-view'});
   const cdp=await page.context().newCDPSession(page);await cdp.send('DOM.enable');await cdp.send('CSS.enable');
-  function frameDocument(n){if(n.nodeName==='IFRAME'&&n.contentDocument)return n.contentDocument;for(const c of n.children||[]){const found=frameDocument(c);if(found)return found}return null}
+  function frameDocument(n){if(n.nodeName==='IFRAME'&&n.attributes?.includes('cse-saved-view')&&n.contentDocument)return n.contentDocument;for(const c of n.children||[]){const found=frameDocument(c);if(found)return found}return null}
   const inspectFonts=async()=>{
   await inner().evaluate(()=>document.fonts.ready);const {root:dom}=await cdp.send('DOM.getDocument',{depth:-1,pierce:true});
   const {nodeIds}=await cdp.send('DOM.querySelectorAll',{nodeId:frameDocument(dom).nodeId,selector:'g[data-node-id] > text'}),fonts=[];

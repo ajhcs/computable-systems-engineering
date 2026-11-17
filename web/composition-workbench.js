@@ -5,21 +5,41 @@ const byId=id=>document.getElementById(id), frame=byId('view');
 const uiSession=crypto.randomUUID();
 let state, csrf, selectedId, busy=false, dirty=false, pending=null, unknown=false, polling=false, ghost=null;
 let formRevision, formCommit, restoredSelection, restoredNavigation, restoredInspection;
-let editTargetId, draftGeneration=0, loadGeneration=0, gestureActive=false, frameReady=false;
+let editTargetId, draftGeneration=0, loadGeneration=0, gestureActive=false, frameReady=false, creationDraft=false;
+let candidateSvg=null,candidateMode='readable';
 const key=()=> 'cse-pending-save:'+state.projection.project_id;
 const notice=text=>{byId('notice').textContent=text;};
 const clone=value=>JSON.parse(JSON.stringify(value));
-const editableInputs=['rename-name','multiplicity-lower','multiplicity-upper','box-x','box-y','box-width','box-height','restore-target'];
+const editableInputs=['rename-name','multiplicity-lower','multiplicity-upper','box-x','box-y','box-width','box-height','restore-target','create-name','create-short','create-placement','create-x','create-y','create-width','create-height','create-points'];
+function showCandidate(svg,mode='readable'){
+  candidateSvg=svg;candidateMode=mode;
+  byId('candidate-diagram').hidden=!svg;byId('candidate-navigation').hidden=!svg;
+  if(!svg){byId('candidate-diagram').srcdoc='';return;}
+  const parsed=new DOMParser().parseFromString(svg,'image/svg+xml').documentElement;
+  const width=Number(parsed.getAttribute('width')),height=Number(parsed.getAttribute('height'));
+  if(parsed.localName!=='svg'||!Number.isFinite(width)||!Number.isFinite(height)||width<=0||height<=0)throw Error('Invalid native candidate drawing');
+  const scale=mode==='overview'?Math.min(1,byId('candidate-diagram').clientWidth/width,byId('candidate-diagram').clientHeight/height):1;
+  byId('candidate-scale').textContent=mode==='overview'?'Overview · use readable size for labels':'Readable size · 100%';
+  byId('candidate-diagram').srcdoc='<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;font:16px "DejaVu Sans",sans-serif}svg{display:block;width:'+width*scale+'px;height:'+height*scale+'px}</style>'+svg;
+}
+byId('candidate-overview').addEventListener('click',()=>showCandidate(candidateSvg,'overview'));
+byId('candidate-readable').addEventListener('click',()=>showCandidate(candidateSvg,'readable'));
+window.addEventListener('resize',()=>{if(candidateSvg&&candidateMode==='overview')showCandidate(candidateSvg,'overview');});
 function controls(){
   if(frameReady)frame.contentWindow.cseDiagramNavigation?.lock(gestureActive);
   const different=Boolean(editTargetId&&selectedId!==editTargetId);
   byId('edits').disabled=busy||gestureActive||unknown||Boolean(pending)||!selectedId||different;
-  byId('multiplicity-fields').disabled=!state||editingNode()?.[1].kind!=='PartUsage';
+  byId('multiplicity-fields').disabled=creationDraft||!state||editingNode()?.[1].kind!=='PartUsage';
+  byId('create-definition-fields').disabled=!state||state.projection.mode!=='definitions'||editingNode()?.[1].kind!=='PartDefinition'||dirty&&!creationDraft;
+  for(const id of ['rename-form','layout-form','restore-form'])for(const input of byId(id).querySelectorAll('input,button,select'))input.disabled=creationDraft;
+  byId('create-coordinates').hidden=byId('create-placement').value!=='manual';
   byId('save').disabled=busy||!pending||Boolean(pending.stale);
   byId('save').textContent=unknown?'Retry save with the same request ID':'Save change';
   byId('discard').disabled=busy||unknown;
   byId('refresh').disabled=busy||gestureActive;
   byId('preview').hidden=!pending;
+  if(!pending&&candidateSvg)showCandidate(null);
+  if(pending)byId('pending-indicator').textContent=unknown?'Unacknowledged save · retain this exact request':pending.stale?'Stale candidate · current saved model is separate':'Unsaved change · saved model below remains authoritative';
   byId('return-target').hidden=!different;
   byId('edit-selected').hidden=!different;
   byId('edit-selected').disabled=busy||unknown||Boolean(pending);
@@ -47,8 +67,11 @@ function showFields(force=false){
     for(const bound of ['lower','upper'])byId('multiplicity-'+bound).value=node.kind==='PartUsage'&&['default','literal'].includes(quantity?.status)?quantity[bound]:'';
     for(const field of ['x','y','width','height'])byId('box-'+field).value=state.layout.nodes[id][field];
     formRevision=state.revision;formCommit=state.commit;
+    byId('create-name').value='';byId('create-short').value='';byId('create-placement').value='automatic';
+    for(const field of ['x','y','width','height','points'])byId('create-'+field).value='';
   }
   const target=editingNode();
+  byId('create-owner').textContent=target?'Native owner: '+target[1].element+' · captured revision '+formRevision:'';
   byId('multiplicity-saved').textContent=target?.[1].kind==='PartUsage'?'Saved multiplicity of '+target[1].element+': '+(target[1].native.source_multiplicity||'no local bounds')+' · '+target[1].native.multiplicity.status:'Part definitions have no usage multiplicity.';
   byId('edit-target').textContent=target?'Editing target: '+target[1].element+' · base revision '+formRevision:'The edit target is absent from this saved view.';
   controls();
@@ -99,13 +122,15 @@ async function previewChange(change,description,layoutBox){
   busy=true;controls();notice('Checking the unsaved candidate…');
   try{
     const result=await api('/api/preview',change);
-    pending={request:change,description,preview:result.preview,stale:false};
+    const {candidate_svg,...metadata}=result.preview;
+    pending={request:change,description,preview:metadata,stale:false};
+    showCandidate(candidate_svg||null);
     const reviewLines=result.preview.configuration_reviews.map(review=>review.file+': '+review.report.status);
     byId('summary').textContent=description+'\nBase revision: '+result.preview.base_revision+'\nChanged model files: '+(result.preview.changed_model_files.join(', ')||'none')+'\nChanged companion files: '+(result.preview.changed_linked_records.join(', ')||'none')+(reviewLines.length?'\nRetained configuration reviews:\n'+reviewLines.join('\n'):'');
     byId('pending-indicator').textContent='Unsaved change · saved model below remains authoritative';
     if(layoutBox)drawGhost(layoutBox.id,layoutBox.box);
     notice('Candidate checked. Review it, then save or discard.');
-    return{outcome:'previewed',request:clone(change),preview:clone(result.preview)};
+    return{outcome:'previewed',request:clone(change),preview:clone(metadata)};
   }catch(error){removeGhost();pending=null;notice(error.code==='stale_revision'?'Conflict: '+error.message+'. Your form values remain available. Refresh before another preview.':error.message);return{outcome:'refused',error:{code:error.code||'preview_unavailable',detail:error.message}};}
   finally{busy=false;controls();}
 }
@@ -160,12 +185,24 @@ async function loadState(preserve=false,background=false){
   const restoreTarget=preserve?byId('restore-target').value:null;
   byId('restore-target').replaceChildren(...state.history.map(row=>{const option=document.createElement('option');option.value=row.revision;option.textContent='Revision '+row.revision+' · '+row.operation;return option;}));
   if(restoreTarget!==null)byId('restore-target').value=restoreTarget;
-  if(!preserve){dirty=false;pending=null;removeGhost();formRevision=state.revision;formCommit=state.commit;}
+  if(!preserve){dirty=false;creationDraft=false;pending=null;removeGhost();formRevision=state.revision;formCommit=state.commit;}
   frameReady=false;frame.srcdoc=result.view_html;
   controls();
   return true;
 }
 function previewRename(){const found=editingNode();if(found)return previewChange(request('rename',{element_id:editTargetId,new_name:byId('rename-name').value}),'Rename '+found[1].element+' → '+byId('rename-name').value);}
+function previewCreateDefinition(){
+  const found=editingNode();if(!found)return;
+  creationDraft=true;
+  let placement=null;
+  if(byId('create-placement').value==='manual'){
+    const fields=['x','y','width','height'],box=Object.fromEntries(fields.map(key=>[key,Number(byId('create-'+key).value)]));
+    const lines=byId('create-points').value.split(/\r?\n/),points=lines.map(line=>line.split(',').map(value=>value.trim()===''?NaN:Number(value)));
+    if(fields.some(key=>byId('create-'+key).value==='')||!Object.values(box).every(Number.isFinite)||points.length<2||points.length>128||points.some(p=>p.length!==2||!p.every(Number.isFinite))){notice('Supply frame coordinates and two to 128 finite x,y route points.');return{outcome:'refused',error:{code:'input',detail:'Invalid creation placement'}};}
+    placement={box,points};
+  }
+  return previewChange(request('create_definition',{owner_id:editTargetId,element_id:crypto.randomUUID(),new_name:byId('create-name').value,short_id:byId('create-short').value===''?null:byId('create-short').value,view_id:state.projection.id,placement}),'Create owned part definition '+byId('create-name').value+' under '+found[1].element);
+}
 function previewMultiplicity(){
   const found=editingNode();
   if(!found||found[1].kind!=='PartUsage')return{outcome:'refused',error:{code:'element_kind',detail:'Multiplicity belongs to a part usage.'}};
@@ -177,11 +214,12 @@ function previewMultiplicity(){
 }
 function previewRestore(){return previewChange(request('restore',{target_revision:Number(byId('restore-target').value)}),'Restore all source, identity and presentation state from revision '+byId('restore-target').value+' into a new revision.');}
 byId('rename-form').addEventListener('submit',event=>{event.preventDefault();previewRename();});
+byId('create-definition-form').addEventListener('submit',event=>{event.preventDefault();previewCreateDefinition();});
 byId('multiplicity-form').addEventListener('submit',event=>{event.preventDefault();previewMultiplicity();});
 byId('layout-form').addEventListener('submit',event=>{event.preventDefault();previewLayout();});
 byId('restore-form').addEventListener('submit',event=>{event.preventDefault();previewRestore();});
-byId('edits').addEventListener('input',event=>{if(event.target.id==='drag-action')return;draftGeneration++;dirty=true;if(pending&&!unknown){pending=null;removeGhost();}controls();});
-function discard(){if(unknown||busy)return;draftGeneration++;pending=null;dirty=false;removeGhost();showFields(true);notice('Pending values discarded. Saved state is unchanged.');controls();}
+byId('edits').addEventListener('input',event=>{if(event.target.id==='drag-action')return;if(event.target.closest('#create-definition-form'))creationDraft=true;draftGeneration++;dirty=true;if(pending&&!unknown){pending=null;removeGhost();}controls();});
+function discard(){if(unknown||busy)return;draftGeneration++;pending=null;dirty=false;creationDraft=false;removeGhost();showFields(true);notice('Pending values discarded. Saved state is unchanged.');controls();}
 byId('discard').addEventListener('click',discard);
 byId('discard-draft').addEventListener('click',discard);
 byId('edit-selected').addEventListener('click',discard);
@@ -205,7 +243,8 @@ async function saveChange(){
       baseCommit:formCommit,fields:Object.fromEntries(editableInputs.map(id=>[id,byId(id).value]))}));
     const result=await api('/api/apply',savedRequest);
     acknowledged=result.receipt;
-    sessionStorage.removeItem(key());unknown=false;pending=null;dirty=false;removeGhost();
+    sessionStorage.removeItem(key());unknown=false;pending=null;dirty=false;creationDraft=false;removeGhost();
+    if(savedRequest.operation==='create_definition')selectedId=savedRequest.element_id;
     await loadState();
     notice('Saved revision '+result.receipt.revision+'. Request '+result.receipt.request_id+'.'+(state.revision!==result.receipt.revision?' The current project is now at revision '+state.revision+'.':''));
     return{outcome:'committed',receipt:clone(acknowledged)};
@@ -224,13 +263,14 @@ async function start(){
     const saved=sessionStorage.getItem(key());
     if(saved){
       const entry=JSON.parse(saved);pending={request:entry.request,description:entry.description,stale:false};
-      selectedId=entry.selectedId;editTargetId=entry.editTargetId||entry.request.element_id||entry.selectedId;restoredSelection=selectedId;
+      selectedId=entry.selectedId;editTargetId=entry.editTargetId||entry.request.owner_id||entry.request.element_id||entry.selectedId;restoredSelection=selectedId;
       formRevision=entry.request.expected_revision;formCommit=entry.baseCommit||null;
       for(const id of editableInputs)if(typeof entry.fields?.[id]==='string')byId(id).value=entry.fields[id];
       // Older retained intents still expose the exact typed requested values.
       if(!entry.fields&&entry.request.operation==='set_multiplicity')for(const bound of ['lower','upper'])byId('multiplicity-'+bound).value=entry.request[bound];
       if(!entry.fields&&entry.request.operation==='rename')byId('rename-name').value=entry.request.new_name;
       unknown=true;byId('pending-indicator').textContent='Unacknowledged save';
+      creationDraft=entry.request.operation==='create_definition';
       byId('summary').textContent=(entry.description||entry.request.operation)+'\nRequest '+entry.request.request_id+' · expected revision '+entry.request.expected_revision;
       notice('A previous save needs acknowledgement. Retry the exact request to recover its receipt.');controls();
     }

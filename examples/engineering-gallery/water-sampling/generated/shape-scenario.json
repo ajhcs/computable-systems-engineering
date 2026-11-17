@@ -558,8 +558,12 @@
         "source_span": {
           "encoding": "utf16",
           "length": 21,
+          "member_names": [],
           "name_length": 11,
           "name_offset": 1207,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 1218,
+          "namespace_end_text": ";",
           "offset": 1198
         },
         "supertypes": []
@@ -576,8 +580,12 @@
         "source_span": {
           "encoding": "utf16",
           "length": 25,
+          "member_names": [],
           "name_length": 15,
           "name_offset": 1233,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 1248,
+          "namespace_end_text": ";",
           "offset": 1224
         },
         "supertypes": []
@@ -594,8 +602,12 @@
         "source_span": {
           "encoding": "utf16",
           "length": 21,
+          "member_names": [],
           "name_length": 11,
           "name_offset": 1263,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 1274,
+          "namespace_end_text": ";",
           "offset": 1254
         },
         "supertypes": []
@@ -612,8 +624,21 @@
         "source_span": {
           "encoding": "utf16",
           "length": 959,
+          "member_names": [
+            "intakePanel",
+            "receiptRegister",
+            "holdingRack",
+            "intakeRequested",
+            "receiptRecorded",
+            "processingElapsed",
+            "containerPresented",
+            "receiptIssued"
+          ],
           "name_length": 7,
           "name_offset": 1289,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 2238,
+          "namespace_end_text": "}",
           "offset": 1280
         },
         "supertypes": []
@@ -630,8 +655,12 @@
         "source_span": {
           "encoding": "utf16",
           "length": 18,
+          "member_names": [],
           "name_length": 8,
           "name_offset": 2253,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 2261,
+          "namespace_end_text": ";",
           "offset": 2244
         },
         "supertypes": []
@@ -648,8 +677,12 @@
         "source_span": {
           "encoding": "utf16",
           "length": 17,
+          "member_names": [],
           "name_length": 7,
           "name_offset": 2276,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 2283,
+          "namespace_end_text": ";",
           "offset": 2267
         },
         "supertypes": []
@@ -666,8 +699,12 @@
         "source_span": {
           "encoding": "utf16",
           "length": 19,
+          "member_names": [],
           "name_length": 9,
           "name_offset": 2298,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 2307,
+          "namespace_end_text": ";",
           "offset": 2289
         },
         "supertypes": []

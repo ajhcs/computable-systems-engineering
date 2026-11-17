@@ -24,6 +24,22 @@ class EditError(ValueError):
         self.code = code
 
 
+def validate_name(name):
+    if (not isinstance(name, str) or not 1 <= len(name) <= 64
+            or any(unicodedata.category(char) in ('Cc', 'Cs', 'Zl', 'Zp') for char in name)):
+        raise EditError('name', 'Supply a nonempty single-line declared name of at most 64 characters, without control characters')
+
+
+def name_spelling(name):
+    validate_name(name)
+    try:
+        return _native_name(name)
+    except subprocess.TimeoutExpired as exc:
+        raise EditError('parser_timeout', 'Native name serialization exceeded its limit; no candidate was published') from exc
+    except (RuntimeError, ValueError, OSError) as exc:
+        raise EditError('parser', str(exc)) from exc
+
+
 def codepoint_index(source, offset):
     """Convert an Xtext UTF-16 boundary; refuse a split surrogate pair."""
     if type(offset) is not int or offset < 0:
@@ -218,6 +234,76 @@ class CompositionDocument:
                 result[name] = result[name][:a] + replacement + result[name][b:]
         return result
 
+    def _create_definition_source(self, owner_id, element_id, new_name, short_id, *, expected_source_sha256):
+        """Internal source step; the public operation also binds its diagram."""
+        if expected_source_sha256 != self.revision:
+            raise EditError('stale_revision', 'Source changed before candidate preparation')
+        try:
+            if not isinstance(element_id, str) or str(UUID(element_id)) != element_id or element_id in self.registry:
+                raise ValueError('New identity must be distinct')
+        except (ValueError, TypeError, AttributeError) as exc:
+            raise EditError('identity', 'Supply a distinct canonical engineering UUID') from exc
+        if not isinstance(owner_id, str) or owner_id not in self.registry:
+            raise EditError('identity', 'Unknown native owner')
+        owner_name = self.registry[owner_id]
+        owner = elements(self.parsed)[owner_name]
+        if owner['kind'] != 'part_definitions':
+            raise EditError('element_kind', 'Owned definition creation requires an existing part definition')
+        spelling = name_spelling(new_name)
+        short = name_spelling(short_id)['source_token'] if short_id is not None else None
+        members = owner['source_span'].get('member_names')
+        if not isinstance(members, list) or not all(isinstance(value, str) for value in members):
+            raise EditError('parser_contract', 'Native owner membership names unavailable')
+        if new_name in members or short_id is not None and short_id in members:
+            raise EditError('name_collision', 'An owned member or alias already uses that name or short ID')
+        qualified = owner_name+'::'+spelling['qualified_segment']
+        if qualified in elements(self.parsed):
+            raise EditError('name_collision', 'Native qualified identity already exists')
+        span = owner['source_span']
+        start, end = bounds(self.source, span, 'namespace_end_')
+        owner_start, owner_end = bounds(self.source, span)
+        if not owner_start <= start < end <= owner_end:
+            raise EditError('source_span', 'Native namespace boundary is outside its owner')
+        terminal = self.source[start:end]
+        if terminal != span.get('namespace_end_text') or terminal not in (';', '}'):
+            raise EditError('source_span', 'Native owner boundary does not match its source token')
+        a, _, file = self.file_range(start, end)
+        text = self.files[file]
+        newline = '\r\n' if '\r\n' in text else '\n'
+        line_start = self.source.rfind('\n', a, owner_start)+1
+        indent = re.match(r'[ \t]*', self.source[line_start:owner_start]).group()
+        declaration = 'part def '+('<'+short+'> ' if short is not None else '')+spelling['source_token']+';'
+        if terminal == ';':
+            replacement = ' {'+newline+indent+'    '+declaration+newline+indent+'}'
+            changes = [(start, end, replacement)]
+        else:
+            # Leave every existing byte in place, including comments/indentation.
+            changes = [(start, start, newline+indent+'    '+declaration+newline+indent)]
+        files = self.candidate_files(changes)
+        registry = {**self.registry, element_id: qualified}
+        candidate = type(self)(files if self.is_bundle else files['model.sysml'], project_id=self.project_id,
+                               registry=registry, linked_records=self.linked_records)
+        expected = {'owner': owner_name, 'owner_kind': 'PartDefinition', 'name': new_name,
+                    'qualified_name': qualified, 'has_specialization': False, 'is_variation': False, 'supertypes': []}
+        if short_id is not None:
+            expected['id'] = short_id
+        before, after = fingerprint(self.parsed), fingerprint(candidate.parsed)
+        added = [row for row in after['part_definitions'] if row['qualified_name'] == qualified]
+        if added != [expected]:
+            raise EditError('semantic_delta', 'Native creation does not match the requested ordinary owned definition')
+        after['part_definitions'] = [row for row in after['part_definitions'] if row['qualified_name'] != qualified]
+        if before != after:
+            raise EditError('semantic_delta', 'Native creation changed existing model facts')
+        refs = lambda parsed: [(row.get('feature'), row.get('target')) for row in parsed['reference_spans']]
+        if refs(self.parsed) != refs(candidate.parsed):
+            raise EditError('reference_delta', 'Native creation changed existing resolved references')
+        return candidate
+
+    def create_definition(self, owner_id, element_id, new_name, short_id, view_id, placement, *, expected_source_sha256):
+        from .composition_create import create_definition
+        return create_definition(self, owner_id, element_id, new_name, short_id, view_id, placement,
+                                 expected_source_sha256=expected_source_sha256)
+
     def set_multiplicity(self, element_id, lower, upper, *, expected_source_sha256):
         """Author finite bounds on one native usage, retaining all source trivia."""
         if expected_source_sha256 != self.revision:
@@ -297,21 +383,14 @@ class CompositionDocument:
     def rename(self, element_id, new_name, *, expected_source_sha256):
         if expected_source_sha256 != self.revision:
             raise EditError('stale_revision', 'Source changed before candidate preparation')
-        if (not isinstance(new_name, str) or not 1 <= len(new_name) <= 64
-                or any(unicodedata.category(char) in ('Cc', 'Cs', 'Zl', 'Zp') for char in new_name)):
-            raise EditError('name', 'Supply a nonempty single-line declared name of at most 64 characters, without control characters')
+        validate_name(new_name)
         if element_id not in self.registry:
             raise EditError('identity', 'Unknown engineering element')
         old = self.registry[element_id]
         item = elements(self.parsed)[old]
         if item.get('name') == new_name:
             return self
-        try:
-            spelling = _native_name(new_name)
-        except subprocess.TimeoutExpired as exc:
-            raise EditError('parser_timeout', 'Native name serialization exceeded its limit; no candidate was published') from exc
-        except (RuntimeError, ValueError, OSError) as exc:
-            raise EditError('parser', str(exc)) from exc
+        spelling = name_spelling(new_name)
         token, segment = spelling['source_token'], spelling['qualified_segment']
         new = (item['owner'] + '::' if item.get('owner') else '') + segment
         if new == old:

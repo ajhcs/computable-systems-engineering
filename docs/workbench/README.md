@@ -39,8 +39,8 @@ qualified, quoted and root-name edits. Diagram and retained-scope bindings use
 the same native identity change; a presentation alias remains independent.
 
 This candidate boundary does not save or commit a project. Remaining linked
-analytical adapters, create/reparent/delete/property editing,
-the graphical editor, host adapters, remote durable history, cloud storage and actual
+analytical adapters, full creation/reparent/delete/property editing,
+graphical operations, host adapters, remote durable history, cloud storage and actual
 application acceptance remain open matrix cells. Supported documentary binding
 updates are part of the same immutable candidate: native CSE workflow/view
 records and linked presentation labels. Plain prose, labels, logical IDs,
@@ -68,8 +68,14 @@ The reader selects and inspects actual element bindings. Its
 [overview/readable navigation](composition-navigation.md) operates on that same
 saved SVG in the editor and standalone CLI artifact, with a corresponding site
 callback; native fonts and stored geometry retain their reading-size authority.
-Layout transactions
-preserve SysML and identities; connected graphical editing remains open.
+Layout transactions preserve SysML and identities. The connected editor uses
+that same reader for its admitted operations; remaining graphical operations
+stay open.
+
+[Owned definition creation](composition-creation.md) adds a native definition,
+registry UUID, selected-view occurrence and original-kit frame/route in one
+checked candidate. Existing geometry, appearance and retained scope remain
+intact. Package/root, usage and new-view creation are separate open obligations.
 
 For the explicit bundle transport, see [the bundle contract](composition-bundle.md).
 Bundle file names label supplied texts; they are never instructions to read or
@@ -98,7 +104,8 @@ checks and remaining gaps. Apply it within each physical operation's parity
 cells before admitting another capability.
 
 The [local connected interaction](composition-interaction.md) adds explicit
-preview/save, native rename, finite multiplicity, frame move/resize and whole-snapshot restoration
+preview/save, owned definition creation, native rename, finite multiplicity,
+frame move/resize and whole-snapshot restoration
 over the same project. Its loopback transport and embedded saved reader are
 development implementations. The [site adapter](composition-site-tools.md)
 registers selection, preview/save, refresh and receipt recovery around those

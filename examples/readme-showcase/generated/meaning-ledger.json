@@ -1291,8 +1291,12 @@
           "source_span": {
             "encoding": "utf16",
             "length": 21,
+            "member_names": [],
             "name_length": 11,
             "name_offset": 1207,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 1218,
+            "namespace_end_text": ";",
             "offset": 1198
           },
           "supertypes": []
@@ -1309,8 +1313,12 @@
           "source_span": {
             "encoding": "utf16",
             "length": 25,
+            "member_names": [],
             "name_length": 15,
             "name_offset": 1233,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 1248,
+            "namespace_end_text": ";",
             "offset": 1224
           },
           "supertypes": []
@@ -1327,8 +1335,12 @@
           "source_span": {
             "encoding": "utf16",
             "length": 21,
+            "member_names": [],
             "name_length": 11,
             "name_offset": 1263,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 1274,
+            "namespace_end_text": ";",
             "offset": 1254
           },
           "supertypes": []
@@ -1345,8 +1357,21 @@
           "source_span": {
             "encoding": "utf16",
             "length": 959,
+            "member_names": [
+              "intakePanel",
+              "receiptRegister",
+              "holdingRack",
+              "intakeRequested",
+              "receiptRecorded",
+              "processingElapsed",
+              "containerPresented",
+              "receiptIssued"
+            ],
             "name_length": 7,
             "name_offset": 1289,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 2238,
+            "namespace_end_text": "}",
             "offset": 1280
           },
           "supertypes": []
@@ -1363,8 +1388,12 @@
           "source_span": {
             "encoding": "utf16",
             "length": 18,
+            "member_names": [],
             "name_length": 8,
             "name_offset": 2253,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 2261,
+            "namespace_end_text": ";",
             "offset": 2244
           },
           "supertypes": []
@@ -1381,8 +1410,12 @@
           "source_span": {
             "encoding": "utf16",
             "length": 17,
+            "member_names": [],
             "name_length": 7,
             "name_offset": 2276,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 2283,
+            "namespace_end_text": ";",
             "offset": 2267
           },
           "supertypes": []
@@ -1399,8 +1432,12 @@
           "source_span": {
             "encoding": "utf16",
             "length": 19,
+            "member_names": [],
             "name_length": 9,
             "name_offset": 2298,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 2307,
+            "namespace_end_text": ";",
             "offset": 2289
           },
           "supertypes": []
@@ -3452,7 +3489,7 @@
     "examples/engineering-gallery/water-sampling/generated/native-late.json": "e7030ad08f7d3b8815758d7b770864548b6f2ddb5a92f51d9a5b058cc961b74d",
     "examples/engineering-gallery/water-sampling/generated/native-over-limit.json": "39bc0a19c92397794e86ec2e4c8460e46c8a60b59bac1a3acc846bd6e6132117",
     "examples/engineering-gallery/water-sampling/generated/native-pass.json": "118c48d0c07d7fbdbad84cb2152484a79ec9bbc8386681241352a9e8c1eb2d6a",
-    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "24e94546e0bc4196f1a010b9e6dceca8b0594e94b95343f5f658e39a7bcd54e5",
+    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "b24a4c4e35cd73e9d61bf92e5d79a2996c5ed2e5292c472942d41b14c7b006dd",
     "examples/engineering-gallery/water-sampling/scope.json": "818f7f746ca40244b318cb09f6690f7d5ca07c6973ce963c58806b329eb1a956",
     "examples/engineering-gallery/water-sampling/semantic-ledger.json": "5e36dcb1e842dbe9fe1dbbd9cb22a4904175eb43008ef6586b9a8e2885b894b5",
     "examples/engineering-gallery/water-sampling/station.sysml": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",

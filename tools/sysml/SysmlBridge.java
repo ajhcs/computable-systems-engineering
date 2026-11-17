@@ -102,6 +102,22 @@ public final class SysmlBridge {
         if (node != null) {
             result.put("offset", node.getOffset());
             result.put("length", node.getLength());
+            if (element instanceof PartDefinition definition) {
+                INode last = null;
+                for (var leaf : node.getLeafNodes()) if (!leaf.isHidden() && leaf.getLength() > 0) last = leaf;
+                if (last != null && last.getGrammarElement() instanceof Keyword
+                        && (last.getText().equals("}") || last.getText().equals(";"))) {
+                    result.put("namespace_end_offset", last.getOffset());
+                    result.put("namespace_end_length", last.getLength());
+                    result.put("namespace_end_text", last.getText());
+                }
+                var names = new java.util.LinkedHashSet<String>();
+                for (var membership : definition.getOwnedMembership()) {
+                    if (membership.getMemberName() != null) names.add(membership.getMemberName());
+                    if (membership.getMemberShortName() != null) names.add(membership.getMemberShortName());
+                }
+                result.put("member_names", new ArrayList<>(names));
+            }
         }
         var feature = element.eClass().getEStructuralFeature("declaredName");
         if (feature != null) {

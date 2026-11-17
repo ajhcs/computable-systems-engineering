@@ -53,6 +53,13 @@ bounds return unknown selected presence, and suppression fails it. Neither the
 count nor a durable edit receipt establishes installed equipment. Part definitions
 have no usage multiplicity.
 
+[Owned definition creation](../../../docs/workbench/composition-creation.md)
+uses an explicit selected native owner, decoded name, optional short ID and
+prospective UUID. Preview the model and original-kit occurrence together before
+saving the exact request. Retain the scope and captured owner through inspection,
+conflict or lost acknowledgement. This path does not infer an installed part or
+silently create a usage, package root, type or new view.
+
 Method basis: Buede and Miller, *The Engineering Design of Systems: Models and
 Methods*, fourth edition, Chapter 8, pp. 210–211. The native selection and
 reconciliation rules are CSE implementation choices, not a complete physical

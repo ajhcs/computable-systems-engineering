@@ -137,7 +137,7 @@ class CompositionProject:
                              'bundle_sha256', 'parent_commit', 'restored_from_revision', 'storage'}
                 or receipt.get('revision') != state['revision'] or receipt.get('project_id') != state['project_id']
                 or receipt.get('storage') != 'local_git_fsync'
-                or receipt.get('operation') not in ('import', 'rename', 'restore', 'set_layout', 'set_multiplicity')
+                or receipt.get('operation') not in ('import', 'rename', 'restore', 'set_layout', 'set_multiplicity', 'create_definition')
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('request_sha256')))
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('bundle_sha256')))
                 or receipt.get('parent_commit') is not None and not OID.fullmatch(str(receipt['parent_commit']))):
@@ -332,6 +332,7 @@ class CompositionProject:
             raise EditError('input', 'Supply a typed composition operation')
         common = {'operation', 'request_id', 'expected_revision'}
         fields = {'rename': {'element_id', 'new_name'}, 'restore': {'target_revision'}, 'set_layout': {'layout'},
+                  'create_definition': {'owner_id', 'element_id', 'new_name', 'short_id', 'view_id', 'placement'},
                   'set_multiplicity': {'element_id', 'lower', 'upper'}}
         operation = request.get('operation')
         if not isinstance(operation, str) or operation not in fields or set(request) != common | fields[operation]:
@@ -341,6 +342,11 @@ class CompositionProject:
             raise EditError('input', 'Expected revision is outside the current history limit')
         if operation == 'rename' and (not isinstance(request['element_id'], str) or not isinstance(request['new_name'], str)):
             raise EditError('input', 'Rename requires an element UUID and a declared name')
+        if operation == 'create_definition' and (not all(isinstance(request[key], str)
+                for key in ('owner_id', 'element_id', 'new_name', 'view_id'))
+                or request['short_id'] is not None and not isinstance(request['short_id'], str)
+                or request['placement'] is not None and not isinstance(request['placement'], dict)):
+            raise EditError('input', 'Creation requires explicit owner/element UUIDs, name, optional short ID, view and placement')
         if operation == 'set_multiplicity' and (not isinstance(request['element_id'], str)
                 or type(request['lower']) is not int or type(request['upper']) is not int
                 or not 0 <= request['lower'] <= request['upper'] <= 2_147_483_647):
@@ -356,6 +362,9 @@ class CompositionProject:
         if request['operation'] == 'rename':
             document = document.rename(request['element_id'], request['new_name'],
                                        expected_source_sha256=document.revision)
+        elif request['operation'] == 'create_definition':
+            document = document.create_definition(request['owner_id'], request['element_id'], request['new_name'],
+                request['short_id'], request['view_id'], request['placement'], expected_source_sha256=document.revision)
         elif request['operation'] == 'set_multiplicity':
             document = document.set_multiplicity(request['element_id'], request['lower'], request['upper'],
                                                  expected_source_sha256=document.revision)

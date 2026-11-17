@@ -10,10 +10,12 @@
     selected_element_id:nullableText,selected_occurrence_id:nullableText,editing_element_id:nullableText,
     navigation_revision:{type:'integer',minimum:0},viewport_mode:{enum:['overview','readable']},viewport_left:{type:'number'},viewport_top:{type:'number'}});
   const boxSchema=object(Object.fromEntries(['x','y','width','height'].map(key=>[key,{type:'number'}])));
+  const placementSchema={anyOf:[{type:'null'},object({box:boxSchema,points:{type:'array',minItems:2,maxItems:128,items:{type:'array',minItems:2,maxItems:2,items:{type:'number'}}}})]};
   const changeFields={operation:text,request_id:text,expected_revision:integer};
   const multiplicityBound={type:'integer',minimum:0,maximum:2147483647};
   const requestSchema={oneOf:[
     object({...changeFields,operation:{const:'rename'},element_id:text,new_name:text}),
+    object({...changeFields,operation:{const:'create_definition'},owner_id:text,element_id:text,new_name:text,short_id:nullableText,view_id:text,placement:placementSchema}),
     object({...changeFields,operation:{const:'set_multiplicity'},element_id:text,lower:multiplicityBound,upper:multiplicityBound}),
     object({...changeFields,operation:{const:'set_layout'},layout:{type:'object'}}),
     object({...changeFields,operation:{const:'restore'},target_revision:integer}),
@@ -40,6 +42,8 @@
         multiplicity:Object.fromEntries(['lower','upper'].map(field=>[field,byId('multiplicity-'+field).value])),
         box:Object.fromEntries(['x','y','width','height'].map(field=>[field,byId('box-'+field).value]))}:null,
       pending_change:pending?{...pending,request:clone(pending.request)}:null,
+      creation_draft:{declared_name:byId('create-name').value,short_id:byId('create-short').value||null,placement_mode:byId('create-placement').value,
+        box:Object.fromEntries(['x','y','width','height'].map(key=>[key,byId('create-'+key).value])),route_text:byId('create-points').value},
       restoration_target_revision:Number(byId('restore-target').value)||null,
       visible_elements:Object.entries(state.projection.nodes).map(([id,node])=>({occurrence_id:id,element_id:node.element_id,native_name:node.element,kind:node.kind})),
       history:state.history,configuration_reviews:state.configuration_reviews,reconciliation:state.reconciliation,
@@ -85,6 +89,18 @@
       byId('rename-name').value=args.new_name;dirty=true;
       return await previewRename();
     }],
+    ['cse_preview_create_definition','Prepare one native part definition owned by the selected definition, with a candidate diagram. Supply decoded name/optional short ID and automatic (null) or exact frame/route placement. Preserves existing geometry and retained scope. Save separately.',{guard:guardSchema,owner_id:text,new_name:{type:'string',minLength:1,maxLength:64},short_id:nullableText,placement:placementSchema},false,async args=>{
+      checkGuard(args.guard);cleanTarget(args.owner_id);
+      if(state.projection.mode!=='definitions'||editingNode()?.[1].kind!=='PartDefinition')fail('element_kind','Select an owner in a definition hierarchy.');
+      const values={'create-name':args.new_name,'create-short':args.short_id===null?'':args.short_id};
+      if(typeof args.new_name!=='string'||args.short_id!==null&&(typeof args.short_id!=='string'||args.short_id===''))fail('name','Supply name text and either a nonempty short ID or null.');
+      for(const [id,value]of Object.entries(values)){const probe=byId(id).cloneNode(false);probe.value=value;if(probe.value!==value)fail('name','Creation names must be single-line text; no values were changed.');}
+      if(args.placement!==null){exact(args.placement,['box','points']);exact(args.placement.box,['x','y','width','height']);if(!Object.values(args.placement.box).every(Number.isFinite)||!Array.isArray(args.placement.points)||args.placement.points.length<2||args.placement.points.length>128||args.placement.points.some(p=>!Array.isArray(p)||p.length!==2||!p.every(Number.isFinite)))fail('input','Supply finite frame coordinates and route points.');}
+      for(const [id,value]of Object.entries(values))byId(id).value=value;
+      byId('create-placement').value=args.placement===null?'automatic':'manual';
+      if(args.placement!==null){for(const [key,value]of Object.entries(args.placement.box))byId('create-'+key).value=value;byId('create-points').value=args.placement.points.map(p=>p.join(',')).join('\n');}
+      dirty=true;return await previewCreateDefinition();
+    }],
     ['cse_preview_multiplicity','Prepare explicit finite lower/upper bounds on the selected native part usage. Uses the visible bounds controller and native validator; retains names, ownership, identities and required configuration scope. Definitions have no usage multiplicity. Save separately after reviewing findings.',{guard:guardSchema,element_id:text,lower:multiplicityBound,upper:multiplicityBound},false,async args=>{
       checkGuard(args.guard);cleanTarget(args.element_id);
       if(editingNode()?.[1].kind!=='PartUsage')fail('element_kind','Multiplicity belongs to a part usage.');
@@ -103,11 +119,12 @@
       if(!Number.isInteger(args.target_revision)||!state.history.some(row=>row.revision===args.target_revision))fail('input','Select a saved revision of this project.');
       byId('restore-target').value=args.target_revision;return await previewRestore();
     }],
-    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose declared-name, multiplicity, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['rename','multiplicity','layout','restore']}},false,async args=>{
+    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose owned-definition creation, declared-name, multiplicity, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['create_definition','rename','multiplicity','layout','restore']}},false,async args=>{
       checkGuard(args.guard);
       if(unknown||pending||!editingNode())fail('retained_edit','Resolve the pending change or unconfirmed save before another preview.');
-      const previews={rename:previewRename,multiplicity:previewMultiplicity,layout:previewLayout,restore:previewRestore};
-      if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose rename, multiplicity, layout or restore.');
+      if(dirty&&(creationDraft!==(args.kind==='create_definition')))fail('retained_edit','Check the existing draft in its own form, or explicitly discard it first.');
+      const previews={create_definition:previewCreateDefinition,rename:previewRename,multiplicity:previewMultiplicity,layout:previewLayout,restore:previewRestore};
+      if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose create_definition, rename, multiplicity, layout or restore.');
       const preview=previews[args.kind];
       return await preview();
     }],

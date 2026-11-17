@@ -4,6 +4,7 @@
 <title>CSE local physical composition</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#fff;color:#111;font:16px system-ui,sans-serif}header,section{padding:12px 20px;border-bottom:1px solid #888}h1{font-size:20px;margin:0 0 6px}p{margin:8px 0;overflow-wrap:anywhere}fieldset{border:0;padding:0;margin:0}form{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:end;margin:10px 0}label{display:flex;flex-direction:column;gap:4px}input,button,select{font:inherit;color:inherit;background:#fff;border:1px solid #555;padding:7px}button{cursor:pointer}button:disabled{color:#666;cursor:default}input[type=number]{width:105px}#rename-name{width:220px}#notice{font-weight:600}#preview{border:1px solid #888;padding:12px;margin:12px 0}#summary{white-space:pre-wrap}iframe{width:100%;height:calc(100vh - 120px);min-height:680px;border:0;display:block}.actions{display:flex;flex-wrap:wrap;gap:10px}#pending-indicator{font-weight:600}@media(max-width:600px){header,section{padding:12px}form{align-items:start}#rename-name{max-width:100%}iframe{min-height:800px}button{min-height:42px}}
+textarea{font:inherit;max-width:100%}#candidate-diagram[hidden],#create-coordinates[hidden]{display:none}
 </style>
 <header><h1>CSE physical composition · local development</h1><p id="saved">Connecting to the private project…</p><p id="notice" role="status" aria-live="polite"></p></header>
 <section aria-label="Edit the selected model element">
@@ -11,16 +12,17 @@
 <p id="edit-target"></p><div class="actions"><button id="return-target" type="button" hidden>Return to the edit target</button><button id="edit-selected" type="button" hidden>Start a new edit on the selection (discard draft)</button><button id="discard-draft" type="button" hidden>Discard form draft</button></div>
 <fieldset id="edits" disabled>
 <form id="rename-form"><label>Declared name<input id="rename-name" autocomplete="off" required></label><button id="preview-rename">Preview rename</button></form>
+<form id="create-definition-form"><fieldset id="create-definition-fields"><legend>Add an owned part definition</legend><p id="create-owner"></p><div class="actions"><label>New declared name<input id="create-name" autocomplete="off" required></label><label>Short ID (optional)<input id="create-short" autocomplete="off"></label><label>Placement<select id="create-placement"><option value="automatic">Automatic</option><option value="manual">Specify coordinates</option></select></label></div><fieldset id="create-coordinates" hidden><div class="actions"><label>X<input id="create-x" type="number" step="any"></label><label>Y<input id="create-y" type="number" step="any"></label><label>Width<input id="create-width" type="number" step="any"></label><label>Height<input id="create-height" type="number" step="any"></label><label>Ownership route (x,y per line)<textarea id="create-points" rows="4" cols="24"></textarea></label></div></fieldset><button id="preview-create-definition">Preview creation</button></fieldset></form>
 <p id="multiplicity-saved"></p>
 <form id="multiplicity-form"><fieldset id="multiplicity-fields" style="display:flex;flex-wrap:wrap;gap:8px 12px;align-items:end"><label>Lower bound<input id="multiplicity-lower" type="number" min="0" max="2147483647" step="1" required style="width:160px"></label><label>Upper bound<input id="multiplicity-upper" type="number" min="0" max="2147483647" step="1" required style="width:160px"></label><button id="preview-multiplicity">Preview multiplicity</button></fieldset></form>
 <form id="layout-form"><label>X<input id="box-x" type="number" step="any" required></label><label>Y<input id="box-y" type="number" step="any" required></label><label>Width<input id="box-width" type="number" step="any" required></label><label>Height<input id="box-height" type="number" step="any" required></label><button id="preview-layout">Preview layout</button><label>Drag action<select id="drag-action"><option value="move">Move frame</option><option value="resize">Resize frame</option></select></label></form>
 <p>Dragging changes layout. Native ownership and retained configuration scope stay separate.</p>
 <form id="restore-form"><label>Saved revision<select id="restore-target" required></select></label><button>Preview restoration</button></form>
 </fieldset>
-<div id="preview" hidden><p id="pending-indicator">Unsaved change</p><p id="summary"></p><div class="actions"><button id="save" type="button">Save change</button><button id="discard" type="button">Discard pending change</button></div></div>
+<div id="preview" hidden><p id="pending-indicator">Unsaved change</p><p id="summary"></p><div id="candidate-navigation" hidden><button id="candidate-overview" type="button">Candidate overview</button><button id="candidate-readable" type="button">Candidate readable size</button><span id="candidate-scale"></span></div><iframe id="candidate-diagram" title="Native creation candidate; saved model is separate" sandbox="" hidden style="height:560px;min-height:400px"></iframe><div class="actions"><button id="save" type="button">Save change</button><button id="discard" type="button">Discard pending change</button></div></div>
 <button id="refresh" type="button">Refresh saved project</button>
 </section>
-<iframe id="view" title="Saved physical composition and native properties" referrerpolicy="no-referrer"></iframe>
+<iframe id="view" name="cse-saved-view" title="Saved physical composition and native properties" referrerpolicy="no-referrer"></iframe>
 <script src="/app.js"></script>
 <script src="/site-tools.js"></script>
 </html>

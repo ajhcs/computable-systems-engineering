@@ -20,7 +20,7 @@ try{for(const width of [1440,390])for(const view of ['PC_USAGE','PC_DEFINITION']
   for(let n=0;!fs.existsSync(path.join(folder,'connection.json'));n++){if(terminal||n>900)throw Error('Fixture startup');await sleep(100);}
   let connection=JSON.parse(fs.readFileSync(path.join(folder,'connection.json')));
   const projectPath=connection.project;
-  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&globalThis.cseSelectionContext?.selected_element_ids?.length===1&&globalThis.cseSiteTools?.registered.length===12);
+  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&globalThis.cseSelectionContext?.selected_element_ids?.length===1&&globalThis.cseSiteTools?.registered.length===13);
   await page.goto(connection.url);await ready();
   const tool=(name,args={})=>page.evaluate(async({name,args})=>await __tools.get(name).execute(args),{name,args});
   const context=async()=> (await tool('cse_get_context')).context;
@@ -70,10 +70,10 @@ try{for(const width of [1440,390])for(const view of ['PC_USAGE','PC_DEFINITION']
   const group=page.frameLocator('#view').locator('g[data-node-id="Left"]');await group.scrollIntoViewIfNeeded();
   const fit=await group.evaluate(group=>{const box=group.getBoundingClientRect(),texts=[...group.querySelectorAll(':scope > text')];return{lines:texts.map(t=>t.textContent),fits:texts.every(t=>{const r=t.getBoundingClientRect();return r.left>=box.left&&r.right<=box.right&&r.top>=box.top&&r.bottom<=box.bottom;})};});
   assert(fit.fits&&fit.lines.includes('[2147483646..2147483647]'),'Maximum range clipped or fragmented in original SVG');
-  const inner=page.frames().find(f=>f.parentFrame()===page.mainFrame());await inner.evaluate(()=>document.fonts.ready);
+  const inner=page.frame({name:'cse-saved-view'});await inner.evaluate(()=>document.fonts.ready);
   const cdp=await page.context().newCDPSession(page);await cdp.send('DOM.enable');await cdp.send('CSS.enable');
   const {root:dom}=await cdp.send('DOM.getDocument',{depth:-1,pierce:true});
-  function frameDocument(n){if(n.nodeName==='IFRAME'&&n.contentDocument)return n.contentDocument;for(const c of n.children||[]){const found=frameDocument(c);if(found)return found;}return null;}
+  function frameDocument(n){if(n.nodeName==='IFRAME'&&n.attributes?.includes('cse-saved-view')&&n.contentDocument)return n.contentDocument;for(const c of n.children||[]){const found=frameDocument(c);if(found)return found;}return null;}
   const {nodeIds}=await cdp.send('DOM.querySelectorAll',{nodeId:frameDocument(dom).nodeId,selector:'g[data-node-id="Left"] > text'}),fonts=[];
   for(const nodeId of nodeIds){const data=await cdp.send('CSS.getPlatformFontsForNode',{nodeId});fonts.push(...data.fonts.filter(f=>f.glyphCount));}
   assert(fonts.length&&fonts.every(f=>f.isCustomFont&&f.familyName.startsWith('DejaVu Sans')),'Maximum-bound glyph font substitution');await screenshot('maximum');
