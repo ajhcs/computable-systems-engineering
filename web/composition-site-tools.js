@@ -13,9 +13,11 @@
   const placementSchema={anyOf:[{type:'null'},object({box:boxSchema,points:{type:'array',minItems:2,maxItems:128,items:{type:'array',minItems:2,maxItems:2,items:{type:'number'}}}})]};
   const changeFields={operation:text,request_id:text,expected_revision:integer};
   const multiplicityBound={type:'integer',minimum:0,maximum:2147483647};
+  const usageMultiplicitySchema={anyOf:[{type:'null'},object({lower:multiplicityBound,upper:multiplicityBound})]};
   const requestSchema={oneOf:[
     object({...changeFields,operation:{const:'rename'},element_id:text,new_name:text}),
     object({...changeFields,operation:{const:'create_definition'},owner_id:text,element_id:text,new_name:text,short_id:nullableText,view_id:text,placement:placementSchema}),
+    object({...changeFields,operation:{const:'create_usage'},owner_id:text,element_id:text,new_name:text,short_id:nullableText,type_id:nullableText,is_composite:{type:'boolean'},multiplicity:usageMultiplicitySchema,view_id:text,placement:placementSchema}),
     object({...changeFields,operation:{const:'set_multiplicity'},element_id:text,lower:multiplicityBound,upper:multiplicityBound}),
     object({...changeFields,operation:{const:'set_layout'},layout:{type:'object'}}),
     object({...changeFields,operation:{const:'restore'},target_revision:integer}),
@@ -75,6 +77,22 @@
       if(args.placement!==null){for(const [key,value]of Object.entries(args.placement.box))byId('create-'+key).value=value;byId('create-points').value=args.placement.points.map(p=>p.join(',')).join('\n');}
       dirty=true;return await previewCreateDefinition();
     }],
+    ['cse_preview_create_usage','Prepare one native part usage under the selected native owner. Choose composite/reference, an existing definition UUID or null for no explicit typing, and native default or finite multiplicity. Owned usage frames and declaration-only rows remain distinct; retained configuration scope is unchanged. Save separately.',{guard:guardSchema,owner_id:text,new_name:{type:'string',minLength:1,maxLength:64},short_id:nullableText,type_id:nullableText,is_composite:{type:'boolean'},multiplicity:usageMultiplicitySchema,placement:placementSchema},false,async args=>{
+      checkGuard(args.guard);cleanTarget(args.owner_id);
+      if(typeof args.new_name!=='string'||args.short_id!==null&&(typeof args.short_id!=='string'||args.short_id===''))fail('name','Supply name text and either a nonempty short ID or null.');
+      const values={'usage-name':args.new_name,'usage-short':args.short_id===null?'':args.short_id};
+      for(const [id,value]of Object.entries(values)){const probe=byId(id).cloneNode(false);probe.value=value;if(probe.value!==value)fail('name','Creation names must be single-line text; no values were changed.');}
+      if(typeof args.is_composite!=='boolean')fail('input','Choose composite or reference explicitly.');
+      if(args.type_id!==null&&(typeof args.type_id!=='string'||!state.projection.inspection.declarations.some(id=>{const row=state.projection.inspection.occurrences[id];return row.element_id===args.type_id&&row.kind==='PartDefinition'})))fail('identity','Choose an existing part-definition UUID or null for no explicit typing.');
+      if(args.multiplicity!==null){exact(args.multiplicity,['lower','upper']);const {lower,upper}=args.multiplicity;if(!Number.isInteger(lower)||!Number.isInteger(upper)||lower<0||upper<lower||upper>2147483647)fail('multiplicity','Supply finite integer bounds 0 <= lower <= upper <= 2147483647.');}
+      if(args.placement!==null){exact(args.placement,['box','points']);exact(args.placement.box,['x','y','width','height']);if(!Object.values(args.placement.box).every(Number.isFinite)||!Array.isArray(args.placement.points)||args.placement.points.length<2||args.placement.points.length>128||args.placement.points.some(p=>!Array.isArray(p)||p.length!==2||!p.every(Number.isFinite)))fail('input','Supply finite frame coordinates and route points.');}
+      for(const [id,value]of Object.entries(values))byId(id).value=value;
+      byId('usage-type').value=args.type_id||'';byId('usage-kind').value=args.is_composite?'composite':'reference';byId('usage-multiplicity').value=args.multiplicity===null?'default':'finite';
+      for(const bound of ['lower','upper'])byId('usage-'+bound).value=args.multiplicity===null?'':args.multiplicity[bound];
+      byId('usage-placement').value=args.placement===null?'automatic':'manual';
+      if(args.placement!==null){for(const [key,value]of Object.entries(args.placement.box))byId('usage-'+key).value=value;byId('usage-points').value=args.placement.points.map(p=>p.join(',')).join('\n');}
+      dirty=true;return await previewCreateUsage();
+    }],
     ['cse_preview_multiplicity','Prepare explicit finite lower/upper bounds on the selected native part usage. Uses the visible bounds controller and native validator; retains names, ownership, identities and required configuration scope. Definitions have no usage multiplicity. Save separately after reviewing findings.',{guard:guardSchema,element_id:text,lower:multiplicityBound,upper:multiplicityBound},false,async args=>{
       checkGuard(args.guard);cleanTarget(args.element_id);
       if(editingNode()?.[1].kind!=='PartUsage')fail('element_kind','Multiplicity belongs to a part usage.');
@@ -93,12 +111,12 @@
       if(!Number.isInteger(args.target_revision)||!state.history.some(row=>row.revision===args.target_revision))fail('input','Select a saved revision of this project.');
       byId('restore-target').value=args.target_revision;return await previewRestore();
     }],
-    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose owned-definition creation, declared-name, multiplicity, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['create_definition','rename','multiplicity','layout','restore']}},false,async args=>{
+    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose owned-definition creation, declared-name, multiplicity, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['create_definition','create_usage','rename','multiplicity','layout','restore']}},false,async args=>{
       checkGuard(args.guard);
       if(unknown||pending||!editingNode()&&args.kind!=='restore')fail('retained_edit','Resolve the pending change or unconfirmed save before another preview.');
       if(dirty&&draftKind&&draftKind!==args.kind)fail('retained_edit','Check the existing draft in its own form, or explicitly discard it first.');
-      const previews={create_definition:previewCreateDefinition,rename:previewRename,multiplicity:previewMultiplicity,layout:previewLayout,restore:previewRestore};
-      if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose create_definition, rename, multiplicity, layout or restore.');
+      const previews={create_definition:previewCreateDefinition,create_usage:previewCreateUsage,rename:previewRename,multiplicity:previewMultiplicity,layout:previewLayout,restore:previewRestore};
+      if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose create_definition, create_usage, rename, multiplicity, layout or restore.');
       const preview=previews[args.kind];
       return await preview();
     }],

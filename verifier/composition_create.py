@@ -5,7 +5,7 @@ import math
 import re
 
 from .composition_edit import EditError, bounds, fingerprint
-from .composition_records import strict_json, STRING, strings
+from .composition_records import strict_json, STRING, strings, embedded_json
 from . import composition_view as view
 
 
@@ -53,7 +53,7 @@ def _append_node(document, view_id, node):
     if insert_at is None:
         raise EditError('linked_records', 'View node array unavailable')
     newline = '\r\n' if '\r\n' in raw else '\n'
-    addition = ','+newline+'      '+json.dumps(node, ensure_ascii=True, separators=(',', ':'))
+    addition = ','+newline+'      '+embedded_json(node, ensure_ascii=True, separators=(',', ':'))
     at = a+2+marker.end()+insert_at
     files = document.candidate_files([(at, at, addition)])
     result = type(document)(files if document.is_bundle else files['model.sysml'], project_id=document.project_id,
@@ -85,52 +85,60 @@ def create_definition(document, owner_id, element_id, new_name, short_id, view_i
             raise EditError('presentation_conflict', 'The physical view node or depth limit would be exceeded')
         candidate = document._create_definition_source(owner_id, element_id, new_name, short_id,
             expected_source_sha256=expected_source_sha256)
-        candidate.reconciliation = deepcopy(document.reconciliation)
-        occurrence, edge = 'N'+element_id.replace('-', ''), 'E'+element_id.replace('-', '')
-        if {occurrence, edge} & (projection['nodes'].keys() | projection['edges'].keys()):
-            raise EditError('identity', 'Generated presentation identity collides with this view')
-        node = {'id': occurrence, 'element': candidate.registry[element_id], 'parent': parent_id,
-                'level': parent['level']+1, 'edge': edge}
-        candidate = _append_node(candidate, view_id, node)
-        added_projection = view.project(candidate, view_id)
-        names = view.labels(candidate, added_projection)
-        layout = deepcopy(old['layout'])
-        if placement is None:
-            width = 360
-            height = max(90, 40+sum(math.ceil(size*1.4) for _, size, _, _ in
-                view.node_lines(added_projection['nodes'][occurrence], names[node['element']], width)))
-            owner = layout['nodes'][parent_id]
-            bottom = max([box['y']+box['height'] for box in layout['nodes'].values()]+
-                         [point[1] for route in layout['edges'].values() for point in route['points']])
-            box = {'x': owner['x']+owner['width']+80, 'y': bottom+60, 'width': width, 'height': height}
-            x, y = owner['x']+owner['width'], owner['y']+owner['height']/2
-            points = [[x, y], [x+30, y], [x+30, box['y']+height/2], [box['x'], box['y']+height/2]]
-        else:
-            view.exact(placement, ('box', 'points'))
-            box, points = deepcopy(placement['box']), deepcopy(placement['points'])
-        layout['nodes'][occurrence] = box
-        layout['edges'][edge] = {'points': points}
-        records = deepcopy(candidate.linked_records)
-        appearance_name, appearance = view.companion(candidate, 'composition_appearance', view_id)
-        if appearance is not None:
-            appearance['nodes'][occurrence] = {'template': view.RECT, 'fill': 'N0', 'stroke': 'N100', 'text': 'N100', 'align': 'center'}
-            records[appearance_name]['text'] = json.dumps(appearance, indent=2)+'\n'
-        # Existing boxes/routes remain exact. Only the canvas may grow for the
-        # new frame, route and existing authored footer key.
-        footer = 160+34*len(appearance['legend']) if appearance is not None else 100
-        layout['width'] = max(layout['width'], box['x']+box['width']+56, max(p[0] for p in points)+56)
-        layout['height'] = max(layout['height'], box['y']+box['height']+footer, max(p[1] for p in points)+footer)
-        layout_name, _ = view.companion(candidate, 'composition_layout', view_id)
-        layout_name = layout_name or 'presentation/'+view_id+'.layout.json'
-        if layout_name in candidate.files or layout_name in records and records[layout_name]['kind'] != 'composition_layout':
-            raise EditError('file_name', 'Presentation filename collides with an authoritative file')
-        records[layout_name] = {'kind': 'composition_layout', 'text': json.dumps(layout, indent=2, allow_nan=False)+'\n'}
-        result = type(document)(candidate.files if document.is_bundle else candidate.files['model.sysml'],
-            project_id=document.project_id, registry=candidate.registry, linked_records=records)
-        result.reconciliation = deepcopy(document.reconciliation)
-        view.validate_saved_presentations(result)
-        return result
+        return add_owned_frame(document, candidate, old, view_id, owner_id, element_id, placement)
     except EditError:
         raise
     except (ValueError, KeyError, TypeError, StopIteration, RecursionError) as exc:
         raise EditError('presentation_conflict', str(exc)) from exc
+
+
+def add_owned_frame(document, candidate, old, view_id, owner_id, element_id, placement):
+    """Shared original-kit frame/route addition; never changes old geometry."""
+    projection = old['projection']
+    parent_id, parent = next((key, node) for key, node in projection['nodes'].items() if node['element_id'] == owner_id)
+    candidate.reconciliation = deepcopy(document.reconciliation)
+    occurrence, edge = 'N'+element_id.replace('-', ''), 'E'+element_id.replace('-', '')
+    if {occurrence, edge} & (projection['nodes'].keys() | projection['edges'].keys()):
+        raise EditError('identity', 'Generated presentation identity collides with this view')
+    node = {'id': occurrence, 'element': candidate.registry[element_id], 'parent': parent_id,
+            'level': parent['level']+1, 'edge': edge}
+    candidate = _append_node(candidate, view_id, node)
+    added_projection = view.project(candidate, view_id)
+    names = view.labels(candidate, added_projection)
+    layout = deepcopy(old['layout'])
+    if placement is None:
+        notation = view.literal_multiplicity(added_projection['nodes'][occurrence]['native'])
+        width = max(360, math.ceil(view.kit_fonts.text_width(notation, 24, 'DejaVu Sans Mono'))+56) if notation else 360
+        height = max(90, 40+sum(math.ceil(size*1.4) for _, size, _, _ in
+            view.node_lines(added_projection['nodes'][occurrence], names[node['element']], width)))
+        owner = layout['nodes'][parent_id]
+        bottom = max([box['y']+box['height'] for box in layout['nodes'].values()]+
+                     [point[1] for route in layout['edges'].values() for point in route['points']])
+        box = {'x': owner['x']+owner['width']+80, 'y': bottom+60, 'width': width, 'height': height}
+        x, y = owner['x']+owner['width'], owner['y']+owner['height']/2
+        points = [[x, y], [x+30, y], [x+30, box['y']+height/2], [box['x'], box['y']+height/2]]
+    else:
+        view.exact(placement, ('box', 'points'))
+        box, points = deepcopy(placement['box']), deepcopy(placement['points'])
+    layout['nodes'][occurrence] = box
+    layout['edges'][edge] = {'points': points}
+    records = deepcopy(candidate.linked_records)
+    appearance_name, appearance = view.companion(candidate, 'composition_appearance', view_id)
+    if appearance is not None:
+        appearance['nodes'][occurrence] = {'template': view.RECT, 'fill': 'N0', 'stroke': 'N100', 'text': 'N100', 'align': 'center'}
+        records[appearance_name]['text'] = json.dumps(appearance, indent=2)+'\n'
+    # Existing boxes/routes remain exact. Only the canvas may grow for the
+    # new frame, route and existing authored footer key.
+    footer = 160+34*len(appearance['legend']) if appearance is not None else 100
+    layout['width'] = max(layout['width'], box['x']+box['width']+56, max(p[0] for p in points)+56)
+    layout['height'] = max(layout['height'], box['y']+box['height']+footer, max(p[1] for p in points)+footer)
+    layout_name, _ = view.companion(candidate, 'composition_layout', view_id)
+    layout_name = layout_name or 'presentation/'+view_id+'.layout.json'
+    if layout_name in candidate.files or layout_name in records and records[layout_name]['kind'] != 'composition_layout':
+        raise EditError('file_name', 'Presentation filename collides with an authoritative file')
+    records[layout_name] = {'kind': 'composition_layout', 'text': json.dumps(layout, indent=2, allow_nan=False)+'\n'}
+    result = type(document)(candidate.files if document.is_bundle else candidate.files['model.sysml'],
+        project_id=document.project_id, registry=candidate.registry, linked_records=records)
+    result.reconciliation = deepcopy(document.reconciliation)
+    view.validate_saved_presentations(result)
+    return result

@@ -102,7 +102,8 @@ public final class SysmlBridge {
         if (node != null) {
             result.put("offset", node.getOffset());
             result.put("length", node.getLength());
-            if (element instanceof PartDefinition definition) {
+            if ((element instanceof PartDefinition || element instanceof PartUsage)
+                    && element instanceof org.omg.sysml.lang.sysml.Namespace namespace) {
                 INode last = null;
                 for (var leaf : node.getLeafNodes()) if (!leaf.isHidden() && leaf.getLength() > 0) last = leaf;
                 if (last != null && last.getGrammarElement() instanceof Keyword
@@ -112,11 +113,19 @@ public final class SysmlBridge {
                     result.put("namespace_end_text", last.getText());
                 }
                 var names = new java.util.LinkedHashSet<String>();
-                for (var membership : definition.getOwnedMembership()) {
+                for (var membership : namespace.getOwnedMembership()) {
                     if (membership.getMemberName() != null) names.add(membership.getMemberName());
                     if (membership.getMemberShortName() != null) names.add(membership.getMemberShortName());
                 }
                 result.put("member_names", new ArrayList<>(names));
+            }
+            if (element instanceof PartDefinition && element.getQualifiedName() != null) {
+                // Canonical identities may contain quoted separators or source
+                // keywords. Let the native converter recover their segments;
+                // never split a qualified identity on a textual delimiter.
+                var qualified = new SysMLQualifiedNameConverter().toQualifiedName(element.getQualifiedName());
+                result.put("qualified_reference", qualified.getSegments().stream()
+                        .map(SysmlBridge::sourceName).collect(java.util.stream.Collectors.joining("::")));
             }
         }
         var feature = element.eClass().getEStructuralFeature("declaredName");
@@ -646,20 +655,25 @@ public final class SysmlBridge {
         return result;
     }
 
+    private static String sourceName(String name) {
+        String sourceToken = "'" + ElementUtil.escapeString(name) + "'";
+        if (ElementUtil.isIdentifier(name)) {
+            var lexer = new InternalSysMLLexer(new ANTLRStringStream(name));
+            var token = lexer.nextToken();
+            if (token.getType() == InternalSysMLLexer.RULE_ID
+                    && name.equals(token.getText()) && lexer.nextToken().getType() == Token.EOF)
+                sourceToken = name;
+        }
+        return sourceToken;
+    }
+
     private static void serializeName(PrintStream output) {
         Map<String, Object> response = new LinkedHashMap<>();
         try {
             String name = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);
             // The native canonical segment is not necessarily a source token:
             // keywords have ordinary identities but require quotes in source.
-            String sourceToken = "'" + ElementUtil.escapeString(name) + "'";
-            if (ElementUtil.isIdentifier(name)) {
-                var lexer = new InternalSysMLLexer(new ANTLRStringStream(name));
-                var token = lexer.nextToken();
-                if (token.getType() == InternalSysMLLexer.RULE_ID
-                        && name.equals(token.getText()) && lexer.nextToken().getType() == Token.EOF)
-                    sourceToken = name;
-            }
+            String sourceToken = sourceName(name);
             response.put("name", name);
             response.put("source_token", sourceToken);
             response.put("qualified_segment", ElementUtil.escapeName(name));

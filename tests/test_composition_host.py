@@ -76,11 +76,11 @@ await assert.rejects(host.request({operation:'state'}),/native composition respo
 
     def test_selected_context_never_becomes_complete_review(self):
         self.run_js("""
-const context=compositionModelContext({ready:true,guard:{model_revision:4},selection:{element_id:'native-id',origin:'selected_role',native:{owner:'Base'}},creation_draft:{declared_name:'Human draft'},restoration_target_revision:2,pending_change:{request:{request_id:'retained',operation:'set_layout',expected_revision:4,layout:{large:'not copied'}}},configuration_reviews:[{file:'scope.json',scope_sha256:'scope-hash',report:{status:'unknown',checked:['A'],findings:[]}}]});
+const context=compositionModelContext({ready:true,guard:{model_revision:4},selection:{element_id:'native-id',origin:'selected_role',native:{owner:'Base'}},creation_draft:{declared_name:'Human draft'},usage_creation_draft:{declared_name:'Retained usage',type_id:null,is_composite:false,lower:'0'},restoration_target_revision:2,pending_change:{request:{request_id:'retained',operation:'set_layout',expected_revision:4,layout:{large:'not copied'}}},configuration_reviews:[{file:'scope.json',scope_sha256:'scope-hash',report:{status:'unknown',checked:['A'],findings:[]}}]});
 assert.equal(context.scope,'selected_ui_context_never_replaces_complete_retained_review');
 assert.equal(context.retained_review_identities[0].status,'unknown');assert.equal(context.pending_request.request_id,'retained');
 assert.equal(Object.hasOwn(context.pending_request,'layout'),false);assert.equal(Object.hasOwn(context,'configuration_reviews'),false);
-assert.equal(context.selected_occurrence.native.owner,'Base');assert.equal(context.creation_draft.declared_name,'Human draft');assert.equal(context.restoration_target_revision,2);
+assert.equal(context.selected_occurrence.native.owner,'Base');assert.equal(context.creation_draft.declared_name,'Human draft');assert.equal(context.restoration_target_revision,2);assert.deepEqual(context.usage_creation_draft,{declared_name:'Retained usage',type_id:null,is_composite:false,lower:'0'});
 """)
 
     def test_context_retry_needs_no_new_event(self):

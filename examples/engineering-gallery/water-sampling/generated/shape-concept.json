@@ -564,7 +564,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 1218,
           "namespace_end_text": ";",
-          "offset": 1198
+          "offset": 1198,
+          "qualified_reference": "WaterSampling::IntakePanel"
         },
         "supertypes": []
       },
@@ -586,7 +587,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 1248,
           "namespace_end_text": ";",
-          "offset": 1224
+          "offset": 1224,
+          "qualified_reference": "WaterSampling::ReceiptRegister"
         },
         "supertypes": []
       },
@@ -608,7 +610,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 1274,
           "namespace_end_text": ";",
-          "offset": 1254
+          "offset": 1254,
+          "qualified_reference": "WaterSampling::HoldingRack"
         },
         "supertypes": []
       },
@@ -639,7 +642,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 2238,
           "namespace_end_text": "}",
-          "offset": 1280
+          "offset": 1280,
+          "qualified_reference": "WaterSampling::Station"
         },
         "supertypes": []
       },
@@ -661,7 +665,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 2261,
           "namespace_end_text": ";",
-          "offset": 2244
+          "offset": 2244,
+          "qualified_reference": "WaterSampling::Operator"
         },
         "supertypes": []
       },
@@ -683,7 +688,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 2283,
           "namespace_end_text": ";",
-          "offset": 2267
+          "offset": 2267,
+          "qualified_reference": "WaterSampling::Courier"
         },
         "supertypes": []
       },
@@ -705,7 +711,8 @@
           "namespace_end_length": 1,
           "namespace_end_offset": 2307,
           "namespace_end_text": ";",
-          "offset": 2289
+          "offset": 2289,
+          "qualified_reference": "WaterSampling::Custodian"
         },
         "supertypes": []
       }
@@ -734,9 +741,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 31,
+          "member_names": [],
           "multiplicity_insert_offset": 1714,
           "name_length": 11,
           "name_offset": 1703,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 1728,
+          "namespace_end_text": ";",
           "offset": 1698
         },
         "subsets": [],
@@ -768,9 +779,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 39,
+          "member_names": [],
           "multiplicity_insert_offset": 1758,
           "name_length": 15,
           "name_offset": 1743,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 1776,
+          "namespace_end_text": ";",
           "offset": 1738
         },
         "subsets": [],
@@ -802,9 +817,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 31,
+          "member_names": [],
           "multiplicity_insert_offset": 1802,
           "name_length": 11,
           "name_offset": 1791,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 1816,
+          "namespace_end_text": ";",
           "offset": 1786
         },
         "subsets": [],
@@ -835,9 +854,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 25,
+          "member_names": [],
           "multiplicity_insert_offset": 2326,
           "name_length": 8,
           "name_offset": 2318,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 2337,
+          "namespace_end_text": ";",
           "offset": 2313
         },
         "subsets": [],
@@ -868,9 +891,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 23,
+          "member_names": [],
           "multiplicity_insert_offset": 2355,
           "name_length": 7,
           "name_offset": 2348,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 2365,
+          "namespace_end_text": ";",
           "offset": 2343
         },
         "subsets": [],
@@ -901,9 +928,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 23,
+          "member_names": [],
           "multiplicity_insert_offset": 2383,
           "name_length": 7,
           "name_offset": 2376,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 2393,
+          "namespace_end_text": ";",
           "offset": 2371
         },
         "subsets": [],
@@ -934,9 +965,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 27,
+          "member_names": [],
           "multiplicity_insert_offset": 2413,
           "name_length": 9,
           "name_offset": 2404,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 2425,
+          "namespace_end_text": ";",
           "offset": 2399
         },
         "subsets": [],
@@ -967,9 +1002,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 22,
+          "member_names": [],
           "multiplicity_insert_offset": 3421,
           "name_length": 4,
           "name_offset": 3417,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 3432,
+          "namespace_end_text": ";",
           "offset": 3411
         },
         "subsets": [],
@@ -997,9 +1036,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 22,
+          "member_names": [],
           "multiplicity_insert_offset": 3782,
           "name_length": 4,
           "name_offset": 3778,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 3793,
+          "namespace_end_text": ";",
           "offset": 3772
         },
         "subsets": [],
@@ -1027,9 +1070,13 @@
         "source_span": {
           "encoding": "utf16",
           "length": 23,
+          "member_names": [],
           "multiplicity_insert_offset": 4177,
           "name_length": 4,
           "name_offset": 4173,
+          "namespace_end_length": 1,
+          "namespace_end_offset": 4189,
+          "namespace_end_text": ";",
           "offset": 4167
         },
         "subsets": [],

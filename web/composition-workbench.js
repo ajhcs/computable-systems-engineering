@@ -40,9 +40,9 @@ function notifyContext(){
     try{const result=subscriber(workbenchContext());if(result&&typeof result.then==='function')Promise.resolve(result).catch(failed);}catch(error){failed();}
   }});
 }
-const formKinds={'rename-form':'rename','multiplicity-form':'multiplicity','layout-form':'layout','restore-form':'restore','create-definition-form':'create_definition'};
+const formKinds={'rename-form':'rename','multiplicity-form':'multiplicity','layout-form':'layout','restore-form':'restore','create-definition-form':'create_definition','create-usage-form':'create_usage'};
 const operationKind=operation=>({set_layout:'layout',set_multiplicity:'multiplicity'}[operation]||operation);
-const editableInputs=['rename-name','multiplicity-lower','multiplicity-upper','box-x','box-y','box-width','box-height','restore-target','create-name','create-short','create-placement','create-x','create-y','create-width','create-height','create-points'];
+const editableInputs=['rename-name','multiplicity-lower','multiplicity-upper','box-x','box-y','box-width','box-height','restore-target','create-name','create-short','create-placement','create-x','create-y','create-width','create-height','create-points','usage-name','usage-short','usage-type','usage-kind','usage-multiplicity','usage-lower','usage-upper','usage-placement','usage-x','usage-y','usage-width','usage-height','usage-points'];
 function showCandidate(svg,mode='readable'){
   candidateSvg=svg;candidateMode=mode;
   byId('candidate-diagram').hidden=!svg;byId('candidate-navigation').hidden=!svg;
@@ -65,6 +65,11 @@ function controls(){
   byId('create-definition-fields').disabled=!state||state.projection.mode!=='definitions'||editingNode()?.[1].kind!=='PartDefinition'||!Object.values(state.projection.nodes).some(n=>n.element_id===editTargetId)||Boolean(draftKind&&draftKind!=='create_definition');
   for(const id of ['rename-form','layout-form','restore-form'])for(const input of byId(id).querySelectorAll('input,button,select'))input.disabled=Boolean(draftKind&&draftKind!==formKinds[id])||(id==='rename-form'&&!editingNode())||(id==='layout-form'&&!editingNode()?.[1].frame_id);
   byId('create-coordinates').hidden=byId('create-placement').value!=='manual';
+  byId('create-usage-fields').disabled=!editingNode()||Boolean(draftKind&&draftKind!=='create_usage');
+  byId('usage-coordinates').hidden=byId('usage-placement').value!=='manual';
+  byId('usage-bounds').hidden=byId('usage-multiplicity').value!=='finite';
+  const typeId=byId('usage-type').value;byId('usage-type-availability').textContent=typeId&&!state?.projection.inspection.declarations.some(id=>{const row=state.projection.inspection.occurrences[id];return row.element_id===typeId&&row.kind==='PartDefinition'})?'Selected type is unavailable: '+typeId+'. Choose an existing definition explicitly or retain this draft until the type is restored.':'';
+  byId('usage-presentation').textContent=state?.projection.mode==='usages'&&editingNode()?.[1].kind==='PartUsage'&&Object.values(state.projection.nodes).some(n=>n.element_id===editTargetId)&&byId('usage-kind').value==='composite'?'A new composite child gets an ownership frame and declaration row.':'The new usage appears in the declaration table; no ownership frame or route is added. Manual frame placement will be refused.';
   byId('save').disabled=busy||!pending||Boolean(pending.stale)||!frameReady;
   byId('save').textContent=unknown?'Retry save with the same request ID':'Save change';
   byId('discard').disabled=busy||unknown;
@@ -109,10 +114,12 @@ function showFields(force=false){
     for(const bound of ['lower','upper'])byId('multiplicity-'+bound).value=node.kind==='PartUsage'&&['default','literal'].includes(quantity?.status)?quantity[bound]:'';
     for(const field of ['x','y','width','height'])byId('box-'+field).value=node.frame_id?state.layout.nodes[node.frame_id][field]:'';
     formRevision=state.revision;formCommit=state.commit;
+    for(const id of ['usage-name','usage-short','usage-type','usage-lower','usage-upper','usage-x','usage-y','usage-width','usage-height','usage-points'])byId(id).value='';byId('usage-kind').value='composite';byId('usage-multiplicity').value='default';byId('usage-placement').value='automatic';
     byId('create-name').value='';byId('create-short').value='';byId('create-placement').value='automatic';
     for(const field of ['x','y','width','height','points'])byId('create-'+field).value='';
   }
   const target=editingNode();
+  byId('usage-owner').textContent=target?'Captured native owner: '+target[1].element+' · revision '+formRevision:'Select a native owner.';
   byId('create-owner').textContent=target&&state.projection.mode==='definitions'&&target[1].kind==='PartDefinition'&&Object.values(state.projection.nodes).some(n=>n.element_id===editTargetId)?'Native owner: '+target[1].element+' · captured revision '+formRevision:'Owned-definition creation requires a part definition represented in this definition hierarchy.';
   byId('layout-applicability').textContent=target?.[1].frame_id?'Geometry applies to this framed occurrence.':'This inspection row has no frame geometry.';
   byId('multiplicity-saved').textContent=target?.[1].kind==='PartUsage'?'Saved multiplicity of '+target[1].element+': '+(target[1].native.source_multiplicity||'no local bounds')+' · '+target[1].native.multiplicity.status:target?'Part definitions have no usage multiplicity.':'No native declaration is available for editing.';
@@ -162,7 +169,7 @@ function request(operation,fields){return{operation,request_id:crypto.randomUUID
 async function previewChange(change,description,layoutBox){
   if(busy||unknown)return;
   const kind=operationKind(change.operation);if(dirty&&draftKind&&draftKind!==kind)return{outcome:'refused',error:{code:'retained_edit',detail:'Preview the retained draft in its own form, or explicitly discard it first.'}};
-  draftKind=kind;creationDraft=kind==='create_definition';dirty=true;
+  draftKind=kind;creationDraft=['create_definition','create_usage'].includes(kind);dirty=true;
   draftGeneration++;
   busy=true;controls();notice('Checking the unsaved candidate…');
   try{
@@ -172,6 +179,7 @@ async function previewChange(change,description,layoutBox){
     showCandidate(candidate_svg||null);
     const reviewLines=result.preview.configuration_reviews.map(review=>review.file+': '+review.report.status);
     byId('summary').textContent=description+'\nBase revision: '+result.preview.base_revision+'\nChanged model files: '+(result.preview.changed_model_files.join(', ')||'none')+'\nChanged companion files: '+(result.preview.changed_linked_records.join(', ')||'none')+(reviewLines.length?'\nRetained configuration reviews:\n'+reviewLines.join('\n'):'');
+    const created=result.preview.created_element;if(created){const native=created.native;byId('summary').textContent+='\nNew native declaration: '+created.element+'\nNative owner: '+native.owner;if(created.kind==='PartUsage')byId('summary').textContent+='\nDeclaration kind: '+(native.is_composite?'composite part':'reference part')+'\nExplicit type: '+(native.type||'none')+'\nMultiplicity: '+native.multiplicity.status+' ['+native.multiplicity.lower+'..'+native.multiplicity.upper+']';}
     byId('pending-indicator').textContent='Unsaved change · saved model below remains authoritative';
     if(layoutBox)drawGhost(layoutBox.id,layoutBox.box);
     notice('Candidate checked. Review it, then save or discard.');
@@ -238,7 +246,7 @@ frame.addEventListener('load',async()=>{
   const occurrences=state.projection.inspection.occurrences;
   let wanted=restoredOccurrence&&Object.hasOwn(occurrences,restoredOccurrence)?occurrences[restoredOccurrence]:null;
   if(wanted&&wanted.origin==='frame'&&wanted.element_id!==restoredSelection)wanted=null;
-  if(!wanted&&restoredSelection&&!restoredOccurrence){const found=Object.entries(state.projection.nodes).find(([,n])=>n.element_id===restoredSelection);if(found)wanted=occurrences[found[0]];}
+  if(!wanted&&restoredSelection&&!restoredOccurrence){const found=Object.entries(state.projection.nodes).find(([,n])=>n.element_id===restoredSelection);wanted=found?occurrences[found[0]]:occurrences['decl:'+restoredSelection];}
   if(wanted)frame.contentWindow.cseReaderSelection.select(wanted.id);
   const navigation=frame.contentWindow.cseDiagramNavigation;
   if(restoredNavigation)navigation.restore(restoredNavigation);
@@ -253,7 +261,11 @@ async function loadState(preserve=false,background=false,recover=false){
   if(ticket!==loadGeneration||background&&(busy||gestureActive||dirty||pending||generation!==draftGeneration))return false;
   restoredNavigation=frameReady?frame.contentWindow.cseDiagramNavigation.state():null;
   restoredInspection=selectedId;restoredInspectionOccurrence=selectedOccurrenceId;
-  state=result.state;csrf=result.csrf;restoredSelection=selectedId;restoredOccurrence=selectedOccurrenceId;
+  state=result.state;csrf=result.csrf;
+  const retainedType=preserve?byId('usage-type').value:'';
+  const typeOptions=[['','No explicit typing'],...state.projection.inspection.declarations.map(id=>state.projection.inspection.occurrences[id]).filter(row=>row.kind==='PartDefinition').map(row=>[row.element_id,row.element])];
+  if(retainedType&&!typeOptions.some(([id])=>id===retainedType))typeOptions.push([retainedType,'Unavailable saved type · '+retainedType]);
+  byId('usage-type').replaceChildren(...typeOptions.map(([id,label])=>{const option=document.createElement('option');option.value=id;option.textContent=label;return option;}));byId('usage-type').value=retainedType;restoredSelection=selectedId;restoredOccurrence=selectedOccurrenceId;
   byId('saved').textContent='Saved revision '+state.revision+' · '+state.projection.id+' · '+state.commit.slice(0,12);
   const restoreTarget=preserve?byId('restore-target').value:null;
   byId('restore-target').replaceChildren(...state.history.map(row=>{const option=document.createElement('option');option.value=row.revision;option.textContent='Revision '+row.revision+' · '+row.operation;return option;}));
@@ -277,6 +289,23 @@ function previewCreateDefinition(){
   }
   return previewChange(request('create_definition',{owner_id:editTargetId,element_id:crypto.randomUUID(),new_name:byId('create-name').value,short_id:byId('create-short').value===''?null:byId('create-short').value,view_id:state.projection.id,placement}),'Create owned part definition '+byId('create-name').value+' under '+found[1].element);
 }
+function previewCreateUsage(){
+  const found=editingNode();if(!found)return;
+  let placement=null,multiplicity=null;
+  const refuse=(code,detail)=>{notice(detail);return{outcome:'refused',error:{code,detail}};};
+  if(byId('usage-multiplicity').value==='finite'){
+    const raw=['lower','upper'].map(key=>byId('usage-'+key).value),[lower,upper]=raw.map(Number);
+    if(raw.some(value=>!value.trim())||!Number.isInteger(lower)||!Number.isInteger(upper)||lower<0||upper<lower||upper>2147483647)return refuse('multiplicity','Supply both finite integer bounds: 0 ≤ lower ≤ upper ≤ 2147483647.');
+    multiplicity={lower,upper};
+  }
+  if(byId('usage-placement').value==='manual'){
+    const fields=['x','y','width','height'],box=Object.fromEntries(fields.map(key=>[key,Number(byId('usage-'+key).value)]));
+    const points=byId('usage-points').value.split(/\r?\n/).map(line=>line.split(',').map(value=>value.trim()===''?NaN:Number(value)));
+    if(fields.some(key=>byId('usage-'+key).value==='')||!Object.values(box).every(Number.isFinite)||points.length<2||points.length>128||points.some(p=>p.length!==2||!p.every(Number.isFinite)))return refuse('input','Supply frame coordinates and two to 128 finite x,y route points.');
+    placement={box,points};
+  }
+  return previewChange(request('create_usage',{owner_id:editTargetId,element_id:crypto.randomUUID(),new_name:byId('usage-name').value,short_id:byId('usage-short').value||null,type_id:byId('usage-type').value||null,is_composite:byId('usage-kind').value==='composite',multiplicity,view_id:state.projection.id,placement}),'Create part usage '+byId('usage-name').value+' under '+found[1].element);
+}
 function previewMultiplicity(){
   const found=editingNode();
   if(!found||found[1].kind!=='PartUsage')return{outcome:'refused',error:{code:'element_kind',detail:'Multiplicity belongs to a part usage.'}};
@@ -288,16 +317,17 @@ function previewMultiplicity(){
 }
 function previewRestore(){return previewChange(request('restore',{target_revision:Number(byId('restore-target').value)}),'Restore all source, identity and presentation state from revision '+byId('restore-target').value+' into a new revision.');}
 byId('rename-form').addEventListener('submit',event=>{event.preventDefault();previewRename();});
+byId('create-usage-form').addEventListener('submit',event=>{event.preventDefault();previewCreateUsage();});
 byId('create-definition-form').addEventListener('submit',event=>{event.preventDefault();previewCreateDefinition();});
 byId('multiplicity-form').addEventListener('submit',event=>{event.preventDefault();previewMultiplicity();});
 byId('layout-form').addEventListener('submit',event=>{event.preventDefault();previewLayout();});
 byId('restore-form').addEventListener('submit',event=>{event.preventDefault();previewRestore();});
-byId('edits').addEventListener('input',event=>{if(event.target.id==='drag-action')return;draftKind=formKinds[event.target.closest('form')?.id]||draftKind;creationDraft=draftKind==='create_definition';draftGeneration++;dirty=true;if(pending&&!unknown){pending=null;removeGhost();}controls();});
+byId('edits').addEventListener('input',event=>{if(event.target.id==='drag-action')return;draftKind=formKinds[event.target.closest('form')?.id]||draftKind;creationDraft=['create_definition','create_usage'].includes(draftKind);draftGeneration++;dirty=true;if(pending&&!unknown){pending=null;removeGhost();}controls();});
 function discard(){if(unknown||busy)return;draftGeneration++;pending=null;dirty=false;creationDraft=false;draftKind=null;removeGhost();showFields(true);notice('Pending values discarded. Saved state is unchanged.');controls();}
 byId('discard').addEventListener('click',discard);
 byId('discard-draft').addEventListener('click',discard);
 byId('edit-selected').addEventListener('click',discard);
-byId('return-target').addEventListener('click',()=>{const found=editingNode();if(!found)return;frame.contentWindow.cseReaderSelection.select(found[0],{reveal:true});selectionChanged();const input=byId({create_definition:'create-name',multiplicity:'multiplicity-lower',layout:'box-x',restore:'restore-target'}[draftKind]||'rename-name');input.focus({preventScroll:true});input.scrollIntoView({block:'nearest',inline:'nearest'});});
+byId('return-target').addEventListener('click',()=>{const found=editingNode();if(!found)return;frame.contentWindow.cseReaderSelection.select(found[0],{reveal:true});selectionChanged();const input=byId({create_definition:'create-name',create_usage:'usage-name',multiplicity:'multiplicity-lower',layout:'box-x',restore:'restore-target'}[draftKind]||'rename-name');input.focus({preventScroll:true});input.scrollIntoView({block:'nearest',inline:'nearest'});});
 async function refreshSaved(){
   if(busy||gestureActive)return{outcome:'refused',error:{code:'interaction_busy',detail:'Finish the current interaction first.'}};
   if(!initialized)return await start();
@@ -325,7 +355,7 @@ async function saveChange(){
     acknowledged=result.receipt;lastReceipt=clone(acknowledged);
     let cleanupError=null;try{await provider.intentStorage.removeItem(key());}catch(error){cleanupError=error;}
     unknown=false;pending=null;dirty=false;creationDraft=false;draftKind=null;removeGhost();
-    if(savedRequest.operation==='create_definition'){selectedId=savedRequest.element_id;selectedOccurrenceId=null;}
+    if(['create_definition','create_usage'].includes(savedRequest.operation)){selectedId=savedRequest.element_id;selectedOccurrenceId=null;}
     await loadState();
     notice('Saved revision '+result.receipt.revision+'. Request '+result.receipt.request_id+'.'+(state.revision!==result.receipt.revision?' The current project is now at revision '+state.revision+'.':'')+(cleanupError?' Pending-intent cleanup failed; reopening may offer the same acknowledged request for recovery.':''));
     return{outcome:'committed',receipt:clone(acknowledged)};
@@ -357,12 +387,17 @@ function restoreIntent(saved){
       selectedId=entry.selectedId;selectedOccurrenceId=entry.selectedOccurrenceId||null;editTargetOccurrenceId=entry.editTargetOccurrenceId||null;editTargetName=entry.editTargetName||null;editTargetId=entry.editTargetId||entry.request.owner_id||entry.request.element_id||entry.selectedId;restoredSelection=selectedId;restoredOccurrence=selectedOccurrenceId;
       if(!editTargetOccurrenceId){const found=Object.entries(state.projection.nodes).find(([,n])=>n.element_id===editTargetId);if(found)editTargetOccurrenceId=found[0];}
       formRevision=entry.request.expected_revision;formCommit=entry.baseCommit||null;
+      const retainedType=typeof entry.fields?.['usage-type']==='string'?entry.fields['usage-type']:entry.request.operation==='create_usage'?entry.request.type_id:null;
+      if(retainedType&&![...byId('usage-type').options].some(option=>option.value===retainedType)){
+        const option=document.createElement('option');option.value=retainedType;option.textContent='Unavailable saved type · '+retainedType;byId('usage-type').append(option);
+      }
       for(const id of editableInputs)if(typeof entry.fields?.[id]==='string')byId(id).value=entry.fields[id];
+      if(!entry.fields&&entry.request.operation==='create_usage')byId('usage-type').value=retainedType||'';
       // Older retained intents still expose the exact typed requested values.
       if(!entry.fields&&entry.request.operation==='set_multiplicity')for(const bound of ['lower','upper'])byId('multiplicity-'+bound).value=entry.request[bound];
       if(!entry.fields&&entry.request.operation==='rename')byId('rename-name').value=entry.request.new_name;
       unknown=true;byId('pending-indicator').textContent='Unacknowledged save';
-      draftKind=entry.draftKind||operationKind(entry.request.operation);creationDraft=draftKind==='create_definition';
+      draftKind=entry.draftKind||operationKind(entry.request.operation);creationDraft=['create_definition','create_usage'].includes(draftKind);
       byId('summary').textContent=(entry.description||entry.request.operation)+'\nRequest '+entry.request.request_id+' · expected revision '+entry.request.expected_revision;
       notice('A previous save needs acknowledgement. Retry the exact request to recover its receipt.');controls();
     }
@@ -385,6 +420,7 @@ function workbenchContext(){
       multiplicity:Object.fromEntries(['lower','upper'].map(field=>[field,byId('multiplicity-'+field).value])),
       box:Object.fromEntries(['x','y','width','height'].map(field=>[field,byId('box-'+field).value]))}:null,
     pending_change:pending?{...pending,request:clone(pending.request)}:null,
+    usage_creation_draft:{declared_name:byId('usage-name').value,short_id:byId('usage-short').value||null,type_id:byId('usage-type').value||null,type_available:!byId('usage-type').value||state.projection.inspection.declarations.some(id=>state.projection.inspection.occurrences[id].element_id===byId('usage-type').value),is_composite:byId('usage-kind').value==='composite',multiplicity_mode:byId('usage-multiplicity').value,multiplicity:Object.fromEntries(['lower','upper'].map(key=>[key,byId('usage-'+key).value])),placement_mode:byId('usage-placement').value,box:Object.fromEntries(['x','y','width','height'].map(key=>[key,byId('usage-'+key).value])),route_text:byId('usage-points').value},
     creation_draft:{declared_name:byId('create-name').value,short_id:byId('create-short').value||null,placement_mode:byId('create-placement').value,
       box:Object.fromEntries(['x','y','width','height'].map(key=>[key,byId('create-'+key).value])),route_text:byId('create-points').value},
     restoration_target_revision:Number(byId('restore-target').value)||null,

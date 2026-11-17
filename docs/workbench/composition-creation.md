@@ -94,8 +94,9 @@ or establish engineering acceptance.
 
 ## Remaining creation coverage
 
-Package/root and new-view creation, usages and type/multiplicity inputs,
-definition-owned role-table selection, richer inherited/configuration edits,
+The [part-usage increment](composition-usage-creation.md) adds local owned and
+referenced usages, optional typing and finite bounds, with frame/table selection.
+Package/root and new-view creation, richer inherited/configuration edits,
 complete artwork/drawing/export coverage, MCP/MCP Apps, remote private storage
 and actual Codex/ChatGPT journeys remain required. This path does not silently
 mix definition and usage projections or close the broader creation matrix row.

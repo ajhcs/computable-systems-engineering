@@ -19,7 +19,7 @@ from verifier.foundation import read_regular
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=('inspect', 'rename', 'set-multiplicity', 'create-definition'))
+    parser.add_argument('command', choices=('inspect', 'rename', 'set-multiplicity', 'create-definition', 'create-usage'))
     parser.add_argument('model', nargs='?')
     parser.add_argument('--bundle', help='explicit versioned model/linked-record text bundle')
     parser.add_argument('--project-id', required=True)
@@ -28,6 +28,8 @@ def main():
     parser.add_argument('--name')
     parser.add_argument('--owner-id')
     parser.add_argument('--short-id')
+    parser.add_argument('--type-id', help='part-definition UUID; omit for no explicit typing')
+    parser.add_argument('--usage-kind', choices=('composite', 'reference'))
     parser.add_argument('--view-id')
     parser.add_argument('--placement', help='optional exact box/points JSON; otherwise checked automatic placement')
     parser.add_argument('--lower', type=int)
@@ -61,6 +63,13 @@ def main():
                 document = document.rename(args.element_id, args.name, expected_source_sha256=expected)
             elif args.command == 'create-definition':
                 document = document.create_definition(args.owner_id, args.element_id, args.name, args.short_id,
+                    args.view_id, load_json(args.placement) if args.placement else None, expected_source_sha256=expected)
+            elif args.command == 'create-usage':
+                if args.usage_kind is None or (args.lower is None) != (args.upper is None):
+                    raise EditError('input', 'Choose --usage-kind and supply both bounds or neither')
+                document = document.create_usage(args.owner_id, args.element_id, args.name, args.short_id,
+                    args.type_id, args.usage_kind == 'composite',
+                    None if args.lower is None else {'lower':args.lower, 'upper':args.upper},
                     args.view_id, load_json(args.placement) if args.placement else None, expected_source_sha256=expected)
             else:
                 document = document.set_multiplicity(args.element_id, args.lower, args.upper,

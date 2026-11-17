@@ -75,17 +75,18 @@ class CompositionSession:
 
     def preview(self, request):
         with self.lock:
-            if isinstance(request, dict) and request.get('operation') == 'create_definition' and request.get('view_id') != self.view_id:
+            if isinstance(request, dict) and request.get('operation') in ('create_definition', 'create_usage') and request.get('view_id') != self.view_id:
                 raise EditError('input', 'Creation must use this session view')
             candidate = self.project.preview(request)
             document = candidate.pop('document')
             drawing = render(document, self.view_id)
-            if request.get('operation') == 'create_definition':
+            if request.get('operation') in ('create_definition', 'create_usage'):
                 if request['view_id'] != self.view_id:
                     raise EditError('input', 'Creation must use this session view')
                 candidate['candidate_svg'] = drawing['svg']
-                candidate['created_element'] = next(node for node in drawing['projection']['nodes'].values()
-                                                    if node['element_id'] == request['element_id'])
+                candidate['created_element'] = next((node for node in drawing['projection']['nodes'].values()
+                    if node['element_id'] == request['element_id']),
+                    drawing['projection']['inspection']['occurrences']['decl:'+request['element_id']])
             return {**candidate, 'candidate_bundle_sha256': document.revision,
                     'configuration_reviews': deepcopy(document.configuration_reviews),
                     'reconciliation': deepcopy(document.reconciliation),

@@ -17,6 +17,16 @@ from .configuration import schema as configuration_schema
 STRING = re.compile(r'"(?:[^"\\\x00-\x1f]|\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4}))*"')
 
 
+def embedded_json(value, **options):
+    """JSON for a native documentation comment, preserving decoded values.
+
+    Native names may contain either comment delimiter inside their quoted
+    source token. Unicode-escape the slash so embedded JSON cannot open or
+    close the surrounding documentation token.
+    """
+    return json.dumps(value, **options).replace('/', r'\u002f')
+
+
 def strict_json(text):
     if not isinstance(text, str) or len(text.encode('utf-8')) > 1_000_000:
         raise ValueError('Linked JSON needs UTF-8 text within 1 MB')
@@ -141,7 +151,7 @@ def slots(record, kind):
     raise ValueError('Unknown linked-record role')
 
 
-def rebind_json(text, kind, mapped):
+def rebind_json(text, kind, mapped, *, native_document=False):
     record = strict_json(text)
     allowed = slots(record, kind)
     tokens = list(STRING.finditer(text))
@@ -158,7 +168,8 @@ def rebind_json(text, kind, mapped):
         if replacement != value:
             findings.append({'path': list(path), 'before': value, 'after': replacement})
             if kind != 'retained_configuration':
-                changes.append((token.start(), token.end(), json.dumps(replacement, ensure_ascii=True)))
+                encode = embedded_json if native_document else json.dumps
+                changes.append((token.start(), token.end(), encode(replacement, ensure_ascii=True)))
     result = text
     for a, b, replacement in reversed(changes):
         result = result[:a] + replacement + result[b:]
@@ -185,5 +196,5 @@ def rebind_document(body, name, mapped):
         record = strict_json(body[match.end():])
         if match.group(1).strip().replace('CSE-WORKFLOW/', 'workflow-') != record.get('version'):
             raise ValueError('Workflow marker and record version disagree')
-    rewritten, findings = rebind_json(body[match.end():], kind, mapped)
+    rewritten, findings = rebind_json(body[match.end():], kind, mapped, native_document=True)
     return body[:match.end()] + rewritten, findings

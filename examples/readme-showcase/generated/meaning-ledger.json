@@ -1297,7 +1297,8 @@
             "namespace_end_length": 1,
             "namespace_end_offset": 1218,
             "namespace_end_text": ";",
-            "offset": 1198
+            "offset": 1198,
+            "qualified_reference": "WaterSampling::IntakePanel"
           },
           "supertypes": []
         },
@@ -1319,7 +1320,8 @@
             "namespace_end_length": 1,
             "namespace_end_offset": 1248,
             "namespace_end_text": ";",
-            "offset": 1224
+            "offset": 1224,
+            "qualified_reference": "WaterSampling::ReceiptRegister"
           },
           "supertypes": []
         },
@@ -1341,7 +1343,8 @@
             "namespace_end_length": 1,
             "namespace_end_offset": 1274,
             "namespace_end_text": ";",
-            "offset": 1254
+            "offset": 1254,
+            "qualified_reference": "WaterSampling::HoldingRack"
           },
           "supertypes": []
         },
@@ -1372,7 +1375,8 @@
             "namespace_end_length": 1,
             "namespace_end_offset": 2238,
             "namespace_end_text": "}",
-            "offset": 1280
+            "offset": 1280,
+            "qualified_reference": "WaterSampling::Station"
           },
           "supertypes": []
         },
@@ -1394,7 +1398,8 @@
             "namespace_end_length": 1,
             "namespace_end_offset": 2261,
             "namespace_end_text": ";",
-            "offset": 2244
+            "offset": 2244,
+            "qualified_reference": "WaterSampling::Operator"
           },
           "supertypes": []
         },
@@ -1416,7 +1421,8 @@
             "namespace_end_length": 1,
             "namespace_end_offset": 2283,
             "namespace_end_text": ";",
-            "offset": 2267
+            "offset": 2267,
+            "qualified_reference": "WaterSampling::Courier"
           },
           "supertypes": []
         },
@@ -1438,7 +1444,8 @@
             "namespace_end_length": 1,
             "namespace_end_offset": 2307,
             "namespace_end_text": ";",
-            "offset": 2289
+            "offset": 2289,
+            "qualified_reference": "WaterSampling::Custodian"
           },
           "supertypes": []
         }
@@ -1467,9 +1474,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 31,
+            "member_names": [],
             "multiplicity_insert_offset": 1714,
             "name_length": 11,
             "name_offset": 1703,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 1728,
+            "namespace_end_text": ";",
             "offset": 1698
           },
           "subsets": [],
@@ -1501,9 +1512,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 39,
+            "member_names": [],
             "multiplicity_insert_offset": 1758,
             "name_length": 15,
             "name_offset": 1743,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 1776,
+            "namespace_end_text": ";",
             "offset": 1738
           },
           "subsets": [],
@@ -1535,9 +1550,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 31,
+            "member_names": [],
             "multiplicity_insert_offset": 1802,
             "name_length": 11,
             "name_offset": 1791,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 1816,
+            "namespace_end_text": ";",
             "offset": 1786
           },
           "subsets": [],
@@ -1568,9 +1587,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 25,
+            "member_names": [],
             "multiplicity_insert_offset": 2326,
             "name_length": 8,
             "name_offset": 2318,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 2337,
+            "namespace_end_text": ";",
             "offset": 2313
           },
           "subsets": [],
@@ -1601,9 +1624,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 23,
+            "member_names": [],
             "multiplicity_insert_offset": 2355,
             "name_length": 7,
             "name_offset": 2348,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 2365,
+            "namespace_end_text": ";",
             "offset": 2343
           },
           "subsets": [],
@@ -1634,9 +1661,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 23,
+            "member_names": [],
             "multiplicity_insert_offset": 2383,
             "name_length": 7,
             "name_offset": 2376,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 2393,
+            "namespace_end_text": ";",
             "offset": 2371
           },
           "subsets": [],
@@ -1667,9 +1698,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 27,
+            "member_names": [],
             "multiplicity_insert_offset": 2413,
             "name_length": 9,
             "name_offset": 2404,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 2425,
+            "namespace_end_text": ";",
             "offset": 2399
           },
           "subsets": [],
@@ -1700,9 +1735,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 22,
+            "member_names": [],
             "multiplicity_insert_offset": 3421,
             "name_length": 4,
             "name_offset": 3417,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 3432,
+            "namespace_end_text": ";",
             "offset": 3411
           },
           "subsets": [],
@@ -1730,9 +1769,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 22,
+            "member_names": [],
             "multiplicity_insert_offset": 3782,
             "name_length": 4,
             "name_offset": 3778,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 3793,
+            "namespace_end_text": ";",
             "offset": 3772
           },
           "subsets": [],
@@ -1760,9 +1803,13 @@
           "source_span": {
             "encoding": "utf16",
             "length": 23,
+            "member_names": [],
             "multiplicity_insert_offset": 4177,
             "name_length": 4,
             "name_offset": 4173,
+            "namespace_end_length": 1,
+            "namespace_end_offset": 4189,
+            "namespace_end_text": ";",
             "offset": 4167
           },
           "subsets": [],
@@ -3489,7 +3536,7 @@
     "examples/engineering-gallery/water-sampling/generated/native-late.json": "e7030ad08f7d3b8815758d7b770864548b6f2ddb5a92f51d9a5b058cc961b74d",
     "examples/engineering-gallery/water-sampling/generated/native-over-limit.json": "39bc0a19c92397794e86ec2e4c8460e46c8a60b59bac1a3acc846bd6e6132117",
     "examples/engineering-gallery/water-sampling/generated/native-pass.json": "118c48d0c07d7fbdbad84cb2152484a79ec9bbc8386681241352a9e8c1eb2d6a",
-    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "b24a4c4e35cd73e9d61bf92e5d79a2996c5ed2e5292c472942d41b14c7b006dd",
+    "examples/engineering-gallery/water-sampling/generated/shape-concept.json": "eb5a81e4677b3230178fbc30abdef2e0c05d5f379b4b012d89a4a36c7d94ac49",
     "examples/engineering-gallery/water-sampling/scope.json": "818f7f746ca40244b318cb09f6690f7d5ca07c6973ce963c58806b329eb1a956",
     "examples/engineering-gallery/water-sampling/semantic-ledger.json": "5e36dcb1e842dbe9fe1dbbd9cb22a4904175eb43008ef6586b9a8e2885b894b5",
     "examples/engineering-gallery/water-sampling/station.sysml": "ce9bdb5744ec85176f583cd319fe1586fb3e9ab106747c084ba2b6bd43845f99",

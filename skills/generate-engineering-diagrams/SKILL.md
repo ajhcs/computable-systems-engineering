@@ -19,6 +19,9 @@ embeds that same reader for rename, finite multiplicity, layout and restoration.
 native source and a checked occurrence together, retaining the original kit and
 old geometry. Package/root, usage and other creation routes remain open. Full operation and host
 parity remain open; do not advertise it as a completed workbench capability.
+[Part-usage creation](../../docs/workbench/composition-usage-creation.md) preserves
+composite ownership frames versus definition-owned/reference declaration rows,
+optional native typing and retained configuration scope.
 
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
 before drafting and when reviewing the actual output.

@@ -304,6 +304,13 @@ class CompositionDocument:
         return create_definition(self, owner_id, element_id, new_name, short_id, view_id, placement,
                                  expected_source_sha256=expected_source_sha256)
 
+    def create_usage(self, owner_id, element_id, new_name, short_id, type_id,
+                     is_composite, multiplicity, view_id, placement, *, expected_source_sha256):
+        from .composition_usage import create_usage
+        return create_usage(self, owner_id, element_id, new_name, short_id, type_id,
+                            is_composite, multiplicity, view_id, placement,
+                            expected_source_sha256=expected_source_sha256)
+
     def set_multiplicity(self, element_id, lower, upper, *, expected_source_sha256):
         """Author finite bounds on one native usage, retaining all source trivia."""
         if expected_source_sha256 != self.revision:
