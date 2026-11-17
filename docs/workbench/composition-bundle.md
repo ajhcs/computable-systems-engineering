@@ -71,9 +71,12 @@ candidate command.
 The [native name adapter](composition-native-names.md) handles resolved alias,
 short-ID and quoted/Unicode source references through native Membership and
 Name-token bindings, including mixed paths and renamed namespace prefixes.
-Current open edit obligations include quoted/Unicode replacement names and
-unadapted native reference forms. The current
-replacement name is bounded to 64 ASCII identifier characters. Unadapted
+Replacement names accept decoded single-line text of 1 to 64 Unicode
+characters, with native source quoting where needed. A source-only candidate
+can retain names outside the qualified font profile; saved physical views must
+pass their existing glyph and geometry checks. Current open edit obligations
+include short-only declarations without native qualified identities and
+unadapted native reference forms. Unadapted
 structured CSE records and native parser diagnostics still refuse a rename.
 These are implementation gaps in the active capability; they do not narrow
 the existing-support union or qualify a complete physical-composition editor.
