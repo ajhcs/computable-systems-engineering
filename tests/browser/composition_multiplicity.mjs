@@ -6,7 +6,7 @@ const {chromium}=createRequire(import.meta.url)(process.env.CSE_BROWSER_MODULE||
 if(!process.argv[2]||!process.env.TMPDIR)throw Error('Supply a fresh output directory and explicit TMPDIR.');
 const root=fileURLToPath(new URL('../../',import.meta.url)),output=path.resolve(process.argv[2]);fs.mkdirSync(output);
 const hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex'),assert=(c,m)=>{if(!c)throw Error(m);},sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const sourceNames=['tools/sysml/SysmlBridge.java','verifier/composition_edit.py','verifier/composition_project.py','verifier/composition_session.py','verifier/composition_view.py','web/composition-reader.html','web/composition-workbench.html','web/composition-workbench.js','web/composition-site-tools.js'];
+const sourceNames=['tools/sysml/SysmlBridge.java','verifier/composition_edit.py','verifier/composition_project.py','verifier/composition_session.py','verifier/composition_view.py','verifier/composition_inspection.py','web/composition-reader.html','web/composition-workbench.html','web/composition-workbench.js','web/composition-site-tools.js'];
 const sourcePins=Object.fromEntries(sourceNames.map(name=>[name,hash(path.join(root,name))]));
 const browser=await chromium.launch({executablePath:process.env.CSE_BROWSER_EXECUTABLE,headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
 const observations=[];
@@ -20,7 +20,7 @@ try{for(const width of [1440,390])for(const view of ['PC_USAGE','PC_DEFINITION']
   for(let n=0;!fs.existsSync(path.join(folder,'connection.json'));n++){if(terminal||n>900)throw Error('Fixture startup');await sleep(100);}
   let connection=JSON.parse(fs.readFileSync(path.join(folder,'connection.json')));
   const projectPath=connection.project;
-  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&globalThis.cseSelectionContext?.selected_element_ids?.length===1&&globalThis.cseSiteTools?.registered.length===13);
+  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&globalThis.cseSelectionContext?.selected_element_ids?.length===1&&globalThis.cseSiteTools?.registered.length===14);
   await page.goto(connection.url);await ready();
   const tool=(name,args={})=>page.evaluate(async({name,args})=>await __tools.get(name).execute(args),{name,args});
   const context=async()=> (await tool('cse_get_context')).context;

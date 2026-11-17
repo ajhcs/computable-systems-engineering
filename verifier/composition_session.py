@@ -52,6 +52,18 @@ class CompositionSession:
         with self.lock:
             return deepcopy(self._refresh()['state'])
 
+    def inspect_page(self, *, expected_revision, expected_bundle_sha256, origin, offset, limit):
+        from .composition_inspection import page
+        with self.lock:
+            if type(expected_revision) is not int or expected_revision < 1 or not isinstance(expected_bundle_sha256, str):
+                raise EditError('input', 'Inspection needs an explicit saved revision and bundle digest')
+            state = self._refresh()['state']
+            if expected_revision != state['revision']:
+                raise EditError('stale_revision', 'The saved project changed before inspection')
+            return {'revision': state['revision'], 'commit': state['commit'],
+                    'inspection_page': page(state['projection']['inspection'], origin=origin,
+                        offset=offset, limit=limit, expected_bundle_sha256=expected_bundle_sha256)}
+
     def file(self, name):
         with self.lock:
             return self._refresh()['files'][name]
@@ -248,6 +260,10 @@ class CompositionHandler(BaseHTTPRequestHandler):
                 return self._send(200, self.server.session.apply(body))
             if self.path == '/api/receipt':
                 return self._send(200, self.server.session.project.lookup_receipt(body))
+            if self.path == '/api/inspection':
+                if set(body) != {'expected_revision', 'expected_bundle_sha256', 'origin', 'offset', 'limit'}:
+                    raise EditError('input', 'Supply exactly the inspection snapshot and page fields')
+                return self._send(200, self.server.session.inspect_page(**body))
             return self._send(404, {'error': {'code': 'not_found', 'detail': 'Unknown route'}})
         except (ValueError, OSError, TypeError, RecursionError) as exc:
             self._error(exc)

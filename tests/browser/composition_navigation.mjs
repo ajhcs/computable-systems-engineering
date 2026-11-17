@@ -6,6 +6,8 @@ const {chromium}=createRequire(import.meta.url)(process.env.CSE_BROWSER_MODULE||
 if(!process.argv[2]||!process.env.TMPDIR)throw new Error('Supply a fresh output directory and explicit writable TMPDIR.');
 const root=fileURLToPath(new URL('../../',import.meta.url)),output=path.resolve(process.argv[2]);fs.mkdirSync(output);
 const hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');const assert=(c,m)=>{if(!c)throw new Error(m);};const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const sourceNames=['web/composition-reader.html','web/composition-workbench.js','web/composition-workbench.html','web/composition-site-tools.js','verifier/composition_view.py','verifier/composition_inspection.py','verifier/composition_project.py','verifier/composition_session.py'];
+const sourcePins=Object.fromEntries(sourceNames.map(p=>[p,hash(path.join(root,p))]));
 function readableGeometry(){
  const vp=document.getElementById('diagram-viewport'),a=vp.getBoundingClientRect(),id=cseSelectionContext.selected_occurrence_ids[0],r=[...vp.querySelectorAll('g[data-node-id]')].find(e=>e.dataset.nodeId===id).getBoundingClientRect();
  const left=a.left+vp.clientLeft+12,right=a.left+vp.clientLeft+vp.clientWidth-12,top=a.top+vp.clientTop+12,bottom=a.top+vp.clientTop+vp.clientHeight-12;
@@ -35,7 +37,8 @@ try{for(const width of [1440,390])for(const view of ['PC_USAGE','PC_DEFINITION']
   };
   await page.frameLocator('#view').locator('#overview').click();const fit=await checkFit();const overviewImage=path.join(output,name+'-overview.png');await page.screenshot({path:overviewImage,fullPage:true});
   await page.setViewportSize({width:width+120,height:1200});await checkFit();await page.setViewportSize({width,height:1100});await checkFit();
-  let c=await context(),r=await tool('cse_select_element',{guard:c.guard,element_id:identity,occurrence_id:expectedNode});assert(r.outcome==='selected'&&r.context.navigation.mode==='readable'&&r.context.navigation.scale===1,'Agent did not reveal readable selection');
+  await inner().evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));await sleep(100);
+  let c=await context(),r=await tool('cse_select_element',{guard:c.guard,element_id:identity,occurrence_id:expectedNode});assert(r.outcome==='selected'&&r.context.navigation.mode==='readable'&&r.context.navigation.scale===1,'Agent did not reveal readable selection: '+JSON.stringify(r));
   r=await tool('cse_set_view_mode',{guard:r.context.guard,mode:'overview'});assert(r.outcome==='navigated','Own reveal returned unstable navigation guard: '+JSON.stringify(r));await checkFit();
   await page.frameLocator('#view').locator('g[data-node-id="'+expectedNode+'"]').click();assert((await navigation()).mode==='readable'&&(await context()).guard.selected_element_id===identity,'Human overview selection lost native identity');assert(mutations.length===0,'Navigation created engineering request');
   // A manually panned viewport survives unchanged-model refresh, without following the selection.
@@ -69,5 +72,6 @@ try{for(const width of [1440,390])for(const view of ['PC_USAGE','PC_DEFINITION']
  }catch(e){await page.screenshot({path:path.join(output,name+'-failed.png'),fullPage:true}).catch(()=>{});throw e;}
  finally{await page.close();if(!terminal){server.kill('SIGINT');await new Promise(r=>server.once('exit',r));}fs.closeSync(log);}
 }
-fs.writeFileSync(path.join(output,'receipt.json'),JSON.stringify({claim:'Actual local Chromium navigation/gesture/source-preservation checks; synthetic host callbacks only, not actual Codex/ChatGPT or engineering acceptance',browser:browser.version(),source_sha256:Object.fromEntries(['web/composition-reader.html','web/composition-workbench.js','web/composition-workbench.html','web/composition-site-tools.js','verifier/composition_view.py','verifier/composition_project.py','verifier/composition_session.py'].map(p=>[p,hash(path.join(root,p))])),driver_sha256:hash(fileURLToPath(import.meta.url)),fixture_sha256:hash(path.join(root,'tests/browser/composition_fixture.py')),observations},null,2)+'\n');
+assert(sourceNames.every(p=>hash(path.join(root,p))===sourcePins[p]),'Source changed during navigation checks');
+fs.writeFileSync(path.join(output,'receipt.json'),JSON.stringify({claim:'Actual local Chromium navigation/gesture/source-preservation checks; synthetic host callbacks only, not actual Codex/ChatGPT or engineering acceptance',browser:browser.version(),source_sha256:sourcePins,driver_sha256:hash(fileURLToPath(import.meta.url)),fixture_sha256:hash(path.join(root,'tests/browser/composition_fixture.py')),observations},null,2)+'\n');
 }finally{await browser.close();}

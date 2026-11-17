@@ -3,13 +3,15 @@
 // submits existing typed project operations; it supplies no engineering verdict.
 const byId=id=>document.getElementById(id), frame=byId('view');
 const uiSession=crypto.randomUUID();
-let state, csrf, selectedId, busy=false, dirty=false, pending=null, unknown=false, polling=false, ghost=null;
-let formRevision, formCommit, restoredSelection, restoredNavigation, restoredInspection;
-let editTargetId, draftGeneration=0, loadGeneration=0, gestureActive=false, frameReady=false, creationDraft=false;
+let state, csrf, selectedId, selectedOccurrenceId, busy=false, dirty=false, pending=null, unknown=false, polling=false, ghost=null;
+let formRevision, formCommit, restoredSelection, restoredNavigation, restoredInspection, restoredOccurrence, restoredInspectionOccurrence;
+let editTargetId, editTargetOccurrenceId, editTargetName, draftGeneration=0, loadGeneration=0, gestureActive=false, frameReady=false, creationDraft=false, draftKind=null;
 let candidateSvg=null,candidateMode='readable';
 const key=()=> 'cse-pending-save:'+state.projection.project_id;
 const notice=text=>{byId('notice').textContent=text;};
 const clone=value=>JSON.parse(JSON.stringify(value));
+const formKinds={'rename-form':'rename','multiplicity-form':'multiplicity','layout-form':'layout','restore-form':'restore','create-definition-form':'create_definition'};
+const operationKind=operation=>({set_layout:'layout',set_multiplicity:'multiplicity'}[operation]||operation);
 const editableInputs=['rename-name','multiplicity-lower','multiplicity-upper','box-x','box-y','box-width','box-height','restore-target','create-name','create-short','create-placement','create-x','create-y','create-width','create-height','create-points'];
 function showCandidate(svg,mode='readable'){
   candidateSvg=svg;candidateMode=mode;
@@ -27,11 +29,11 @@ byId('candidate-readable').addEventListener('click',()=>showCandidate(candidateS
 window.addEventListener('resize',()=>{if(candidateSvg&&candidateMode==='overview')showCandidate(candidateSvg,'overview');});
 function controls(){
   if(frameReady)frame.contentWindow.cseDiagramNavigation?.lock(gestureActive);
-  const different=Boolean(editTargetId&&selectedId!==editTargetId);
-  byId('edits').disabled=busy||gestureActive||unknown||Boolean(pending)||!selectedId||different;
-  byId('multiplicity-fields').disabled=creationDraft||!state||editingNode()?.[1].kind!=='PartUsage';
-  byId('create-definition-fields').disabled=!state||state.projection.mode!=='definitions'||editingNode()?.[1].kind!=='PartDefinition'||dirty&&!creationDraft;
-  for(const id of ['rename-form','layout-form','restore-form'])for(const input of byId(id).querySelectorAll('input,button,select'))input.disabled=creationDraft;
+  const different=Boolean(editTargetOccurrenceId&&(selectedId!==editTargetId||selectedOccurrenceId!==editTargetOccurrenceId));
+  byId('edits').disabled=busy||gestureActive||unknown||Boolean(pending)||!frameReady||different;
+  byId('multiplicity-fields').disabled=Boolean(draftKind&&draftKind!=='multiplicity')||!state||editingNode()?.[1].kind!=='PartUsage';
+  byId('create-definition-fields').disabled=!state||state.projection.mode!=='definitions'||editingNode()?.[1].kind!=='PartDefinition'||!Object.values(state.projection.nodes).some(n=>n.element_id===editTargetId)||Boolean(draftKind&&draftKind!=='create_definition');
+  for(const id of ['rename-form','layout-form','restore-form'])for(const input of byId(id).querySelectorAll('input,button,select'))input.disabled=Boolean(draftKind&&draftKind!==formKinds[id])||(id==='rename-form'&&!editingNode())||(id==='layout-form'&&!editingNode()?.[1].frame_id);
   byId('create-coordinates').hidden=byId('create-placement').value!=='manual';
   byId('save').disabled=busy||!pending||Boolean(pending.stale);
   byId('save').textContent=unknown?'Retry save with the same request ID':'Save change';
@@ -40,7 +42,7 @@ function controls(){
   byId('preview').hidden=!pending;
   if(!pending&&candidateSvg)showCandidate(null);
   if(pending)byId('pending-indicator').textContent=unknown?'Unacknowledged save · retain this exact request':pending.stale?'Stale candidate · current saved model is separate':'Unsaved change · saved model below remains authoritative';
-  byId('return-target').hidden=!different;
+  byId('return-target').hidden=!different;byId('return-target').disabled=busy||gestureActive||!editingNode();
   byId('edit-selected').hidden=!different;
   byId('edit-selected').disabled=busy||unknown||Boolean(pending);
   byId('discard-draft').hidden=!dirty||Boolean(pending);
@@ -53,36 +55,37 @@ async function api(path,body){
   if(!response.ok){const error=new Error(result.error?.detail||'Request failed');error.code=result.error?.code;error.definitiveRefusal=result.error?.definitive_refusal===true;throw error;}
   return result;
 }
-function selectedNode(){return Object.entries(state.projection.nodes).find(([,node])=>node.element_id===selectedId);}
-function editingNode(){return Object.entries(state.projection.nodes).find(([,node])=>node.element_id===editTargetId);}
+function selectedNode(){const rows=state?.projection.inspection.occurrences,node=rows&&Object.hasOwn(rows,selectedOccurrenceId)?rows[selectedOccurrenceId]:null;return node&&node.element_id===(selectedId||null)?[selectedOccurrenceId,node]:undefined;}
+function editingNode(){const rows=state?.projection.inspection.occurrences,node=rows&&Object.hasOwn(rows,editTargetOccurrenceId)?rows[editTargetOccurrenceId]:null;return editTargetId&&node?.element_id===editTargetId?[editTargetOccurrenceId,node]:undefined;}
 function showFields(force=false){
   const found=selectedNode();
   if(!found)return;
   const [id,node]=found;
   byId('selected').textContent='Selected saved element: '+node.element+' · revision '+state.revision;
   if(force||!dirty&&!pending){
-    editTargetId=selectedId;
-    byId('rename-name').value=node.native.name;
-    const quantity=node.native.multiplicity;
+    editTargetId=selectedId||null;editTargetOccurrenceId=id;editTargetName=node.element;
+    byId('rename-name').value=node.native?.name||'';
+    const quantity=node.native?.multiplicity;
     for(const bound of ['lower','upper'])byId('multiplicity-'+bound).value=node.kind==='PartUsage'&&['default','literal'].includes(quantity?.status)?quantity[bound]:'';
-    for(const field of ['x','y','width','height'])byId('box-'+field).value=state.layout.nodes[id][field];
+    for(const field of ['x','y','width','height'])byId('box-'+field).value=node.frame_id?state.layout.nodes[node.frame_id][field]:'';
     formRevision=state.revision;formCommit=state.commit;
     byId('create-name').value='';byId('create-short').value='';byId('create-placement').value='automatic';
     for(const field of ['x','y','width','height','points'])byId('create-'+field).value='';
   }
   const target=editingNode();
-  byId('create-owner').textContent=target?'Native owner: '+target[1].element+' · captured revision '+formRevision:'';
-  byId('multiplicity-saved').textContent=target?.[1].kind==='PartUsage'?'Saved multiplicity of '+target[1].element+': '+(target[1].native.source_multiplicity||'no local bounds')+' · '+target[1].native.multiplicity.status:'Part definitions have no usage multiplicity.';
-  byId('edit-target').textContent=target?'Editing target: '+target[1].element+' · base revision '+formRevision:'The edit target is absent from this saved view.';
+  byId('create-owner').textContent=target&&state.projection.mode==='definitions'&&target[1].kind==='PartDefinition'&&Object.values(state.projection.nodes).some(n=>n.element_id===editTargetId)?'Native owner: '+target[1].element+' · captured revision '+formRevision:'Owned-definition creation requires a part definition represented in this definition hierarchy.';
+  byId('layout-applicability').textContent=target?.[1].frame_id?'Geometry applies to this framed occurrence.':'This inspection row has no frame geometry.';
+  byId('multiplicity-saved').textContent=target?.[1].kind==='PartUsage'?'Saved multiplicity of '+target[1].element+': '+(target[1].native.source_multiplicity||'no local bounds')+' · '+target[1].native.multiplicity.status:target?'Part definitions have no usage multiplicity.':'No native declaration is available for editing.';
+  byId('edit-target').textContent=target?'Editing target: '+target[1].element+' · base revision '+formRevision:editTargetId?'The retained edit target '+(editTargetName||editTargetId)+' is absent from this saved inspection.':'No native declaration is available for editing.';
   controls();
 }
 function selectionChanged(){
   const inner=frame.contentWindow.cseSelectionContext;
   if(!inner)return;
-  const next=inner.selected_element_ids[0];
-  if(next!==selectedId)draftGeneration++;
-  if(next!==selectedId&&(dirty||pending))notice('Inspection selection changed. The retained edit still targets its original element.');
-  selectedId=next;
+  const next=inner.selected_element_ids[0]||null,nextOccurrence=inner.selected_occurrence_ids[0];
+  if(next!==selectedId||nextOccurrence!==selectedOccurrenceId)draftGeneration++;
+  if((next!==selectedId||nextOccurrence!==selectedOccurrenceId)&&(dirty||pending))notice('Inspection selection changed. The retained edit still targets its original element.');
+  selectedId=next;selectedOccurrenceId=nextOccurrence;
   globalThis.cseSelectionContext={...inner,ui_session_id:uiSession,scope:'local_connected_saved_selection'};
   showFields();
 }
@@ -118,6 +121,8 @@ function transformedLayout(id,box){
 function request(operation,fields){return{operation,request_id:crypto.randomUUID(),expected_revision:formRevision,...fields};}
 async function previewChange(change,description,layoutBox){
   if(busy||unknown)return;
+  const kind=operationKind(change.operation);if(dirty&&draftKind&&draftKind!==kind)return{outcome:'refused',error:{code:'retained_edit',detail:'Preview the retained draft in its own form, or explicitly discard it first.'}};
+  draftKind=kind;creationDraft=kind==='create_definition';dirty=true;
   draftGeneration++;
   busy=true;controls();notice('Checking the unsaved candidate…');
   try{
@@ -135,9 +140,9 @@ async function previewChange(change,description,layoutBox){
   finally{busy=false;controls();}
 }
 function previewLayout(){
-  const found=editingNode();if(!found)return;
+  const found=editingNode();if(!found?.[1].frame_id)return{outcome:'refused',error:{code:'not_framed',detail:'This inspection row has no frame geometry.'}};
   const box=Object.fromEntries(['x','y','width','height'].map(field=>[field,Number(byId('box-'+field).value)]));
-  const [id,node]=found;
+  const [occurrence,node]=found,id=node.frame_id;
   return previewChange(request('set_layout',{layout:transformedLayout(id,box)}),'Layout of '+node.element+' → x '+box.x+', y '+box.y+', width '+box.width+', height '+box.height,{id,box});
 }
 function bindDragging(){
@@ -164,28 +169,31 @@ function bindDragging(){
 frame.addEventListener('load',()=>{
   const doc=frame.contentDocument;if(!doc.querySelector('#cse-data'))return;
   for(const link of doc.querySelectorAll('a')){link.href=new URL(link.getAttribute('href'),location.origin).href+'?commit='+state.commit;link.target='_blank';link.rel='noopener';}
-  doc.addEventListener('click',selectionChanged);doc.addEventListener('keyup',selectionChanged);
+  doc.addEventListener('cse-selection-change',selectionChanged);
   doc.addEventListener('cse-navigation-change',()=>{if(frameReady)selectionChanged();});
-  const wanted=restoredSelection&&Object.entries(state.projection.nodes).find(([,node])=>node.element_id===restoredSelection);
-  if(wanted){const element=doc.querySelector('g[data-node-id="'+wanted[0]+'"]');element?.dispatchEvent(new MouseEvent('click',{bubbles:true}));}
+  const occurrences=state.projection.inspection.occurrences;
+  let wanted=restoredOccurrence&&Object.hasOwn(occurrences,restoredOccurrence)?occurrences[restoredOccurrence]:null;
+  if(wanted&&wanted.origin==='frame'&&wanted.element_id!==restoredSelection)wanted=null;
+  if(!wanted&&restoredSelection&&!restoredOccurrence){const found=Object.entries(state.projection.nodes).find(([,n])=>n.element_id===restoredSelection);if(found)wanted=occurrences[found[0]];}
+  if(wanted)frame.contentWindow.cseReaderSelection.select(wanted.id);
   const navigation=frame.contentWindow.cseDiagramNavigation;
   if(restoredNavigation)navigation.restore(restoredNavigation);
-  if(restoredNavigation?.mode!=='overview'&&wanted&&(!restoredNavigation||restoredSelection!==restoredInspection))navigation.reveal(wanted[0]);
+  if(restoredNavigation?.mode!=='overview'&&wanted&&(!restoredNavigation||wanted.id!==restoredInspectionOccurrence))frame.contentWindow.cseReaderSelection.reveal(wanted.id);
   restoredNavigation=null;
-  restoredSelection=null;selectionChanged();bindDragging();frameReady=true;
+  restoredSelection=null;restoredOccurrence=null;frameReady=true;selectionChanged();bindDragging();
 });
 async function loadState(preserve=false,background=false){
   const generation=draftGeneration,ticket=++loadGeneration;
   const result=await api('/api/state');
   if(ticket!==loadGeneration||background&&(busy||gestureActive||dirty||pending||generation!==draftGeneration))return false;
   restoredNavigation=frameReady?frame.contentWindow.cseDiagramNavigation.state():null;
-  restoredInspection=selectedId;
-  state=result.state;csrf=result.csrf;restoredSelection=selectedId;
+  restoredInspection=selectedId;restoredInspectionOccurrence=selectedOccurrenceId;
+  state=result.state;csrf=result.csrf;restoredSelection=selectedId;restoredOccurrence=selectedOccurrenceId;
   byId('saved').textContent='Saved revision '+state.revision+' · '+state.projection.id+' · '+state.commit.slice(0,12);
   const restoreTarget=preserve?byId('restore-target').value:null;
   byId('restore-target').replaceChildren(...state.history.map(row=>{const option=document.createElement('option');option.value=row.revision;option.textContent='Revision '+row.revision+' · '+row.operation;return option;}));
   if(restoreTarget!==null)byId('restore-target').value=restoreTarget;
-  if(!preserve){dirty=false;creationDraft=false;pending=null;removeGhost();formRevision=state.revision;formCommit=state.commit;}
+  if(!preserve){dirty=false;creationDraft=false;draftKind=null;pending=null;removeGhost();formRevision=state.revision;formCommit=state.commit;}
   frameReady=false;frame.srcdoc=result.view_html;
   controls();
   return true;
@@ -218,16 +226,16 @@ byId('create-definition-form').addEventListener('submit',event=>{event.preventDe
 byId('multiplicity-form').addEventListener('submit',event=>{event.preventDefault();previewMultiplicity();});
 byId('layout-form').addEventListener('submit',event=>{event.preventDefault();previewLayout();});
 byId('restore-form').addEventListener('submit',event=>{event.preventDefault();previewRestore();});
-byId('edits').addEventListener('input',event=>{if(event.target.id==='drag-action')return;if(event.target.closest('#create-definition-form'))creationDraft=true;draftGeneration++;dirty=true;if(pending&&!unknown){pending=null;removeGhost();}controls();});
-function discard(){if(unknown||busy)return;draftGeneration++;pending=null;dirty=false;creationDraft=false;removeGhost();showFields(true);notice('Pending values discarded. Saved state is unchanged.');controls();}
+byId('edits').addEventListener('input',event=>{if(event.target.id==='drag-action')return;draftKind=formKinds[event.target.closest('form')?.id]||draftKind;creationDraft=draftKind==='create_definition';draftGeneration++;dirty=true;if(pending&&!unknown){pending=null;removeGhost();}controls();});
+function discard(){if(unknown||busy)return;draftGeneration++;pending=null;dirty=false;creationDraft=false;draftKind=null;removeGhost();showFields(true);notice('Pending values discarded. Saved state is unchanged.');controls();}
 byId('discard').addEventListener('click',discard);
 byId('discard-draft').addEventListener('click',discard);
 byId('edit-selected').addEventListener('click',discard);
-byId('return-target').addEventListener('click',()=>{const found=editingNode();if(!found)return;const group=frame.contentDocument.querySelector('g[data-node-id="'+found[0]+'"]');group?.dispatchEvent(new MouseEvent('click',{bubbles:true}));group?.scrollIntoView({block:'nearest',inline:'nearest'});});
+byId('return-target').addEventListener('click',()=>{const found=editingNode();if(!found)return;frame.contentWindow.cseReaderSelection.select(found[0],{reveal:true});selectionChanged();const input=byId({create_definition:'create-name',multiplicity:'multiplicity-lower',layout:'box-x',restore:'restore-target'}[draftKind]||'rename-name');input.focus({preventScroll:true});input.scrollIntoView({block:'nearest',inline:'nearest'});});
 async function refreshSaved(){
   if(busy||gestureActive)return{outcome:'refused',error:{code:'interaction_busy',detail:'Finish the current interaction first.'}};
   draftGeneration++;busy=true;controls();
-  try{const keepValues=dirty||Boolean(pending),target=editTargetId;await loadState(true);if(!unknown){pending=null;dirty=keepValues;formRevision=state.revision;formCommit=state.commit;if(keepValues)restoredSelection=target;else showFields(true);}notice(unknown?'Saved state refreshed. Retry the pending save to recover its durable receipt.':'Saved state refreshed. Form values retain their original target; review it, then preview against revision '+state.revision+'.');return{outcome:'refreshed',revision:state.revision,commit:state.commit};}
+  try{const keepValues=dirty||Boolean(pending),target=editTargetId,targetOccurrence=editTargetOccurrenceId;await loadState(true);if(!unknown){pending=null;dirty=keepValues;formRevision=state.revision;formCommit=state.commit;if(keepValues){restoredSelection=target;restoredOccurrence=targetOccurrence;}else showFields(true);}notice(unknown?'Saved state refreshed. Retry the pending save to recover its durable receipt.':'Saved state refreshed. Form values retain their original target; review it, then preview against revision '+state.revision+'.');return{outcome:'refreshed',revision:state.revision,commit:state.commit};}
   catch(error){notice(error.message);return{outcome:'refused',error:{code:error.code||'refresh_unavailable',detail:error.message}};}
   finally{busy=false;controls();}
 }
@@ -239,12 +247,12 @@ async function saveChange(){
   const savedRequest=pending.request;
   let acknowledged=null;
   try{
-    sessionStorage.setItem(key(),JSON.stringify({request:savedRequest,selectedId,editTargetId,description:pending.description,
+    sessionStorage.setItem(key(),JSON.stringify({request:savedRequest,selectedId,selectedOccurrenceId,editTargetId,editTargetOccurrenceId,editTargetName,draftKind,description:pending.description,
       baseCommit:formCommit,fields:Object.fromEntries(editableInputs.map(id=>[id,byId(id).value]))}));
     const result=await api('/api/apply',savedRequest);
     acknowledged=result.receipt;
-    sessionStorage.removeItem(key());unknown=false;pending=null;dirty=false;creationDraft=false;removeGhost();
-    if(savedRequest.operation==='create_definition')selectedId=savedRequest.element_id;
+    sessionStorage.removeItem(key());unknown=false;pending=null;dirty=false;creationDraft=false;draftKind=null;removeGhost();
+    if(savedRequest.operation==='create_definition'){selectedId=savedRequest.element_id;selectedOccurrenceId=null;}
     await loadState();
     notice('Saved revision '+result.receipt.revision+'. Request '+result.receipt.request_id+'.'+(state.revision!==result.receipt.revision?' The current project is now at revision '+state.revision+'.':''));
     return{outcome:'committed',receipt:clone(acknowledged)};
@@ -263,14 +271,15 @@ async function start(){
     const saved=sessionStorage.getItem(key());
     if(saved){
       const entry=JSON.parse(saved);pending={request:entry.request,description:entry.description,stale:false};
-      selectedId=entry.selectedId;editTargetId=entry.editTargetId||entry.request.owner_id||entry.request.element_id||entry.selectedId;restoredSelection=selectedId;
+      selectedId=entry.selectedId;selectedOccurrenceId=entry.selectedOccurrenceId||null;editTargetOccurrenceId=entry.editTargetOccurrenceId||null;editTargetName=entry.editTargetName||null;editTargetId=entry.editTargetId||entry.request.owner_id||entry.request.element_id||entry.selectedId;restoredSelection=selectedId;restoredOccurrence=selectedOccurrenceId;
+      if(!editTargetOccurrenceId){const found=Object.entries(state.projection.nodes).find(([,n])=>n.element_id===editTargetId);if(found)editTargetOccurrenceId=found[0];}
       formRevision=entry.request.expected_revision;formCommit=entry.baseCommit||null;
       for(const id of editableInputs)if(typeof entry.fields?.[id]==='string')byId(id).value=entry.fields[id];
       // Older retained intents still expose the exact typed requested values.
       if(!entry.fields&&entry.request.operation==='set_multiplicity')for(const bound of ['lower','upper'])byId('multiplicity-'+bound).value=entry.request[bound];
       if(!entry.fields&&entry.request.operation==='rename')byId('rename-name').value=entry.request.new_name;
       unknown=true;byId('pending-indicator').textContent='Unacknowledged save';
-      creationDraft=entry.request.operation==='create_definition';
+      draftKind=entry.draftKind||operationKind(entry.request.operation);creationDraft=draftKind==='create_definition';
       byId('summary').textContent=(entry.description||entry.request.operation)+'\nRequest '+entry.request.request_id+' · expected revision '+entry.request.expected_revision;
       notice('A previous save needs acknowledgement. Retry the exact request to recover its receipt.');controls();
     }

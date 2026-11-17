@@ -1,10 +1,11 @@
 # Definition-owned and retained-role inspection
 
-This is the next inspection contract within physical composition and selected
-configuration. Its source-bound walkthrough has been reviewed; production row
-selection and editing are not implemented yet. Existing frame inspection and
-native ownership validation retain their current behavior. The inspect row in
-the parity matrix stays active.
+This development path extends inspection within physical composition and
+selected configuration. The shared projection, saved reader, local controller,
+CLI and site callbacks expose declaration and retained-role occurrences.
+Assembled qualification is recorded separately in the parity matrix; MCP,
+the ChatGPT component, private hosted persistence and actual application
+journeys remain open. The inspect row stays active.
 
 ## Existing authority
 
@@ -28,21 +29,28 @@ remains a separate projection with its own contract.
 
 ## Source and projection work
 
-Add one shared read projection over the saved `CompositionDocument`, its
+The shared read projection uses the saved `CompositionDocument`, its
 registry, native inventory, exact scope files and existing reconciliation
-reports. Do not implement a second inheritance or selection verdict engine.
+reports. It supplies no second inheritance or selection verdict engine.
 
-Represent native declaration rows, retained selected roles and external peers
-separately. Each occurrence must retain its origin, view/context, native UUID
+Native declaration rows, retained selected roles and external peers remain
+separate. Each occurrence retains its origin, view/context, native UUID
 when resolvable, exact native identity and owner, direct type, multiplicity
 status/source, short ID and redefinition links. A retained role also needs its
 file/digest, logical role ID, requested parent/type and per-ID findings. Preserve
 the complete overall report independently of each row's result.
 
-Use stable presentation occurrences distinct from engineering UUIDs. The same
+Presentation occurrences remain distinct from engineering UUIDs. The same
 declaration can appear as a frame, declaration row and retained-role occurrence.
 Unresolved logical roles remain inspectable without inventing native edit
-targets. Do not split quoted native names to derive ownership.
+targets. Ownership comes from the native inventory, including quoted names.
+
+`verifier/composition_inspection.py` supplies this projection to the existing
+view builder. Frame descriptors preserve their existing fields. Declaration
+occurrences bind the persistent UUID; scope occurrences bind the exact file,
+scope digest, kind and logical ID. A shared rename leaves the old role binding
+unresolved until an explicit scope decision; it does not transfer that role to
+the renamed declaration automatically.
 
 ## Direct interaction and fidelity
 
@@ -67,6 +75,28 @@ A row without a diagram frame has no frame geometry. Move/resize controls must
 explain that applicability; they cannot move another occurrence implicitly.
 Native semantic edits remain applicable according to the selected declaration's
 kind and the existing operation contracts.
+
+The local controller captures both the native UUID and inspection occurrence.
+Each form draft retains its operation kind, so another form cannot consume its
+values. A refused preview leaves a visible discard path. Lost-save reload keeps
+the exact request, raw fields and original target pair, including when the saved
+edit makes that logical role unresolved. Whole-project restoration remains
+available from an unresolved selection; semantic edits require a native target.
+
+The reader pages declaration and scope tables in groups of 25. Keyboard paging
+focuses the corresponding enabled page control or a returned row. The bounded
+read API pages by origin, with limits from 1 through 100, without changing full
+review scope. For a saved local project:
+
+```sh
+python3 scripts/composition_project.py inspect-view --project work/private-composition.git --view-id PC_CONTEXT --origin selected_role --offset 0 --limit 25 --expected-revision 1
+```
+
+The result includes the captured revision, commit and source bundle digest.
+Supply `--expected-bundle-sha256` to bind a subsequent read to that source.
+The authenticated `POST /api/inspection` and
+`cse_list_inspection_occurrences` callback use the same projection and page
+helper. These local paths do not establish MCP or actual-host parity.
 
 ## Complete the operation across interfaces
 
@@ -97,12 +127,15 @@ binding, mixed row/overall outcomes and an external referenced peer. It also
 retains the negative source view that must refuse an inherited role as a native
 ownership child. These are software fixtures, not accepted system designs.
 
-The disconnected proposal was checked at desktop and narrow widths, including
+The historical disconnected proposal was checked at desktop and narrow widths, including
 same-UUID/different-occurrence drafts, keyboard return focus, original DejaVu
 glyph suppliers and unchanged source/scope bytes. Astra's return-focus finding
 was repaired and reviewed. Those observations establish the proposal's named
-scope; they do not prove production row editing, recovery, MCP, actual hosts or
-complete physical-capability parity.
+scope; they do not prove connected row editing, recovery, MCP, actual hosts or
+complete physical-capability parity. Connected checks are
+`tests/test_composition_inspection.py`, the authenticated session tests and
+`tests/browser/composition_roles.mjs`. Keep their source-bound execution receipts
+separate from that proposal and from actual application acceptance.
 
 The inspected [SysON v2026.5.0 General view documentation](https://doc.mbse-syson.org/syson/v2026.5.0/user-manual/features/general-view.html)
 and linked compartment/overview screenshots informed member/context inspection.

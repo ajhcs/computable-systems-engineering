@@ -27,7 +27,7 @@ visible as a different head; the native expected-revision check remains decisive
 
 Every UI-changing call supplies the exact returned guard: project, view, UI
 session, saved revision, commit, bundle digest, interaction generation, selected
-engineering UUID, occurrence ID and editing UUID. Navigation revision, mode and
+engineering UUID, occurrence ID, editing UUID and editing occurrence. Navigation revision, mode and
 scroll offsets additionally bind the current viewport. A changed selection, draft,
 gesture or session invalidates the old guard. An in-flight action or active
 pointer gesture refuses a competing command. Selection can inspect a different
@@ -45,6 +45,7 @@ independent engineering verdict. A preview is unsaved, and configuration
 |---|---|
 | `cse_get_context` | Read visible selection, draft, history and saved native findings; observe the latest head. |
 | `cse_select_element` | Select/reveal the exact UUID and occurrence; retain edits and scope. |
+| `cse_list_inspection_occurrences` | Read a bounded, revision-bound page of frames, native declarations or retained roles; preserve full required review scope. |
 | `cse_set_view_mode` | Fit the complete saved SVG overview, or reveal the selection at 100%; retain model, layout and all draft state. |
 | `cse_preview_rename` | Put a declared name into the selected target's form and check the existing native rename. |
 | `cse_preview_create_definition` | Preview a new definition under the fixed selected owner, with exact name/short ID, checked placement and original-kit candidate diagram. |
@@ -57,10 +58,17 @@ independent engineering verdict. A preview is unsaved, and configuration
 | `cse_refresh_project` | Read saved state while retaining original draft targets and exact unknown requests. |
 | `cse_lookup_receipt` | Read an exact prior request's durable receipt without applying it. |
 
-The first and last tools have a read-only hint. Other tools describe their UI or
+Context, inspection paging and receipt lookup have a read-only hint. Other tools describe their UI or
 durable side effects. All use the existing authenticated loopback boundary;
 returned context excludes bootstrap access, cookies, CSRF values and server-side
 repository paths. Model and label content remains untrusted data.
+
+The [role inspector](composition-role-inspection.md) distinguishes a native
+declaration from each retained context occurrence. Unresolved roles return a
+null native UUID and cannot become semantic edit targets. Unframed rows refuse
+layout before changing form values. The fixed draft captures UUID and occurrence,
+including when inspection moves to another occurrence of that same UUID.
+Draft kinds remain separate; a refused preview retains a visible discard path.
 
 Rename input is the name itself, including any spaces, punctuation or literal
 quotes. The shared native operation supplies source quoting; a delimiter entered

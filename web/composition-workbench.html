@@ -16,6 +16,7 @@ textarea{font:inherit;max-width:100%}#candidate-diagram[hidden],#create-coordina
 <p id="multiplicity-saved"></p>
 <form id="multiplicity-form"><fieldset id="multiplicity-fields" style="display:flex;flex-wrap:wrap;gap:8px 12px;align-items:end"><label>Lower bound<input id="multiplicity-lower" type="number" min="0" max="2147483647" step="1" required style="width:160px"></label><label>Upper bound<input id="multiplicity-upper" type="number" min="0" max="2147483647" step="1" required style="width:160px"></label><button id="preview-multiplicity">Preview multiplicity</button></fieldset></form>
 <form id="layout-form"><label>X<input id="box-x" type="number" step="any" required></label><label>Y<input id="box-y" type="number" step="any" required></label><label>Width<input id="box-width" type="number" step="any" required></label><label>Height<input id="box-height" type="number" step="any" required></label><button id="preview-layout">Preview layout</button><label>Drag action<select id="drag-action"><option value="move">Move frame</option><option value="resize">Resize frame</option></select></label></form>
+<p id="layout-applicability"></p>
 <p>Dragging changes layout. Native ownership and retained configuration scope stay separate.</p>
 <form id="restore-form"><label>Saved revision<select id="restore-target" required></select></label><button>Preview restoration</button></form>
 </fieldset>

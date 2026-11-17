@@ -7,7 +7,7 @@
   const text={type:'string'}, nullableText={type:['string','null']}, integer={type:'integer',minimum:1};
   const guardSchema=object({project_id:text,view_id:text,ui_session_id:text,model_revision:integer,
     commit:text,bundle_sha256:text,interaction_revision:{type:'integer',minimum:0},
-    selected_element_id:nullableText,selected_occurrence_id:nullableText,editing_element_id:nullableText,
+    selected_element_id:nullableText,selected_occurrence_id:nullableText,editing_element_id:nullableText,editing_occurrence_id:nullableText,
     navigation_revision:{type:'integer',minimum:0},viewport_mode:{enum:['overview','readable']},viewport_left:{type:'number'},viewport_top:{type:'number'}});
   const boxSchema=object(Object.fromEntries(['x','y','width','height'].map(key=>[key,{type:'number'}])));
   const placementSchema={anyOf:[{type:'null'},object({box:boxSchema,points:{type:'array',minItems:2,maxItems:128,items:{type:'array',minItems:2,maxItems:2,items:{type:'number'}}}})]};
@@ -32,12 +32,12 @@
       guard:{project_id:state.projection.project_id,view_id:state.projection.id,ui_session_id:uiSession,
         model_revision:state.revision,commit:state.commit,bundle_sha256:state.projection.bundle_sha256,
         interaction_revision:draftGeneration,selected_element_id:found?.[1].element_id||null,
-        selected_occurrence_id:found?.[0]||null,editing_element_id:editTargetId||null,
+        selected_occurrence_id:found?.[0]||null,editing_element_id:editTargetId||null,editing_occurrence_id:editTargetOccurrenceId||null,
         navigation_revision:navigation?.revision||0,viewport_mode:navigation?.mode||'readable',viewport_left:navigation?.scroll_left||0,viewport_top:navigation?.scroll_top||0},
       navigation,
-      busy,gesture_active:gestureActive,has_form_draft:dirty,unconfirmed_save:unknown,
-      selection:found?{occurrence_id:found[0],...found[1],display_label:state.display_labels[found[0]],box:state.layout.nodes[found[0]]}:null,
-      editing_target:target?{element_id:editTargetId,occurrence_id:target[0],native_name:target[1].element,
+      busy,gesture_active:gestureActive,has_form_draft:dirty,draft_kind:draftKind,unconfirmed_save:unknown,
+      selection:found?{occurrence_id:found[0],...found[1],display_label:found[1].frame_id?state.display_labels[found[1].frame_id]:found[1].native?.name||found[1].element,box:found[1].frame_id?state.layout.nodes[found[1].frame_id]:null}:null,
+      editing_target:editTargetId?{element_id:editTargetId,occurrence_id:editTargetOccurrenceId,native_name:target?.[1].element||editTargetName,present:Boolean(target),
         base_revision:formRevision,base_commit:formCommit,declared_name:byId('rename-name').value,
         multiplicity:Object.fromEntries(['lower','upper'].map(field=>[field,byId('multiplicity-'+field).value])),
         box:Object.fromEntries(['x','y','width','height'].map(field=>[field,byId('box-'+field).value]))}:null,
@@ -46,6 +46,7 @@
         box:Object.fromEntries(['x','y','width','height'].map(key=>[key,byId('create-'+key).value])),route_text:byId('create-points').value},
       restoration_target_revision:Number(byId('restore-target').value)||null,
       visible_elements:Object.entries(state.projection.nodes).map(([id,node])=>({occurrence_id:id,element_id:node.element_id,native_name:node.element,kind:node.kind})),
+      inspection_counts:state.projection.inspection.counts,visible_elements_scope:'diagram_frames; declaration and retained-role occurrences use cse_list_inspection_occurrences',
       history:state.history,configuration_reviews:state.configuration_reviews,reconciliation:state.reconciliation,
       scope:'visible_saved_selection_never_replaces_retained_review_scope',
       claim:'local_site_adapter_not_application_qualified'});
@@ -59,24 +60,23 @@
   }
   function cleanTarget(element){
     if(unknown||pending||dirty)fail('retained_edit','An existing draft, checked change or unconfirmed save must be resolved explicitly.');
-    if(!selectedId||element!==selectedId||element!==editTargetId)fail('target','Inspect and select the exact editing target before preparing this change.');
+    if(!selectedId||element!==selectedId||element!==editTargetId||selectedOccurrenceId!==editTargetOccurrenceId||!editingNode())fail('target','Inspect and select the exact editing target before preparing this change.');
   }
   function select(element,occurrence){
-    const node=state.projection.nodes[occurrence];
-    if(!node||node.element_id!==element)fail('target','Element and occurrence must identify the same saved frame.');
-    const group=[...frame.contentDocument.querySelectorAll('g[data-node-id]')].find(item=>item.dataset.nodeId===occurrence);
-    if(!group)fail('view_not_ready','The saved frame is unavailable.');
-    group.dispatchEvent(new MouseEvent('click',{bubbles:true}));
-    frame.contentWindow.cseDiagramNavigation.reveal(occurrence);
-    selectionChanged();
-    return{outcome:'selected'};
+    const rows=state.projection.inspection.occurrences,row=Object.hasOwn(rows,occurrence)?rows[occurrence]:null;
+    if(!row||row.element_id!==element)fail('target','Native UUID (or null) and occurrence must identify the same saved inspection.');
+    if(!frame.contentWindow.cseReaderSelection.select(occurrence,{reveal:true,focus:true}))fail('interaction_busy','Finish the active gesture first.');
+    selectionChanged();frame.scrollIntoView({block:'nearest',inline:'nearest'});return{outcome:'selected'};
   }
   const definitions=[
     ['cse_get_context','Read the visible saved physical model, native selection, fixed edit target, draft, history and separately retained configuration findings. Does not refresh or mutate.',{},true,async()=>{
       const head=await api('/api/head');return{outcome:'observed',latest_observed_commit:head.commit};
     }],
-    ['cse_select_element','Select and reveal an exact engineering UUID and diagram occurrence in the saved view. Retains existing edits and review scope; changes inspection only.',{guard:guardSchema,element_id:text,occurrence_id:text},false,args=>{
+    ['cse_select_element','Select an exact saved frame, declaration row or retained-role occurrence. Supply its native UUID, or null for an unresolved logical role. Retains draft target and review scope; inspection never accepts a new selection.',{guard:guardSchema,element_id:nullableText,occurrence_id:text},false,args=>{
       checkGuard(args.guard);return select(args.element_id,args.occurrence_id);
+    }],
+    ['cse_list_inspection_occurrences','Read a bounded page of source-bound frames, declarations or retained roles from this exact saved revision. This never narrows complete retained review scope. Use an exact returned occurrence and native UUID/null for inspection.',{guard:guardSchema,origin:{enum:[null,'frame','declaration','configuration_root','selected_role','external_role']},offset:{type:'integer',minimum:0},limit:{type:'integer',minimum:1,maximum:100}},true,async args=>{
+      checkGuard(args.guard);const result=await api('/api/inspection',{expected_revision:state.revision,expected_bundle_sha256:state.projection.bundle_sha256,origin:args.origin,offset:args.offset,limit:args.limit});return{outcome:'observed',...result};
     }],
     ['cse_set_view_mode','Show the complete saved SVG overview or reveal the selection at readable size (100%). Changes this browser viewport only; retains drafts, native source, saved layout, identities and review scope.',{guard:guardSchema,mode:{enum:['overview','readable']}},false,args=>{
       checkGuard(args.guard);return{outcome:'navigated',navigation:frame.contentWindow.cseDiagramNavigation.mode(args.mode)};
@@ -91,7 +91,7 @@
     }],
     ['cse_preview_create_definition','Prepare one native part definition owned by the selected definition, with a candidate diagram. Supply decoded name/optional short ID and automatic (null) or exact frame/route placement. Preserves existing geometry and retained scope. Save separately.',{guard:guardSchema,owner_id:text,new_name:{type:'string',minLength:1,maxLength:64},short_id:nullableText,placement:placementSchema},false,async args=>{
       checkGuard(args.guard);cleanTarget(args.owner_id);
-      if(state.projection.mode!=='definitions'||editingNode()?.[1].kind!=='PartDefinition')fail('element_kind','Select an owner in a definition hierarchy.');
+      if(state.projection.mode!=='definitions'||editingNode()?.[1].kind!=='PartDefinition'||!Object.values(state.projection.nodes).some(n=>n.element_id===args.owner_id))fail('element_kind','Select an owner in a definition hierarchy.');
       const values={'create-name':args.new_name,'create-short':args.short_id===null?'':args.short_id};
       if(typeof args.new_name!=='string'||args.short_id!==null&&(typeof args.short_id!=='string'||args.short_id===''))fail('name','Supply name text and either a nonempty short ID or null.');
       for(const [id,value]of Object.entries(values)){const probe=byId(id).cloneNode(false);probe.value=value;if(probe.value!==value)fail('name','Creation names must be single-line text; no values were changed.');}
@@ -109,20 +109,20 @@
       return await previewMultiplicity();
     }],
     ['cse_preview_layout','Prepare unsaved x/y/width/height for the selected frame. Calls the visible layout controller and native geometry checks. Changes presentation only; never changes native ownership.',{guard:guardSchema,element_id:text,box:boxSchema},false,async args=>{
-      checkGuard(args.guard);cleanTarget(args.element_id);exact(args.box,['x','y','width','height']);
+      checkGuard(args.guard);cleanTarget(args.element_id);if(!editingNode()?.[1].frame_id)fail('not_framed','This inspection row has no frame geometry.');exact(args.box,['x','y','width','height']);
       if(Object.values(args.box).some(value=>typeof value!=='number'||!Number.isFinite(value)))fail('input','Bounds must be finite numbers.');
       for(const field of Object.keys(args.box))byId('box-'+field).value=args.box[field];
       dirty=true;return await previewLayout();
     }],
     ['cse_preview_restore','Prepare restoration of all model, identity and presentation state from a saved revision into a NEW monotonic revision. Refuses to replace existing drafts. This is whole-project snapshot restoration.',{guard:guardSchema,target_revision:integer},false,async args=>{
-      checkGuard(args.guard);cleanTarget(selectedId);
+      checkGuard(args.guard);if(unknown||pending||dirty)fail('retained_edit','Resolve the existing draft, checked change or unconfirmed save explicitly.');
       if(!Number.isInteger(args.target_revision)||!state.history.some(row=>row.revision===args.target_revision))fail('input','Select a saved revision of this project.');
       byId('restore-target').value=args.target_revision;return await previewRestore();
     }],
     ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose owned-definition creation, declared-name, multiplicity, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['create_definition','rename','multiplicity','layout','restore']}},false,async args=>{
       checkGuard(args.guard);
-      if(unknown||pending||!editingNode())fail('retained_edit','Resolve the pending change or unconfirmed save before another preview.');
-      if(dirty&&(creationDraft!==(args.kind==='create_definition')))fail('retained_edit','Check the existing draft in its own form, or explicitly discard it first.');
+      if(unknown||pending||!editingNode()&&args.kind!=='restore')fail('retained_edit','Resolve the pending change or unconfirmed save before another preview.');
+      if(dirty&&draftKind&&draftKind!==args.kind)fail('retained_edit','Check the existing draft in its own form, or explicitly discard it first.');
       const previews={create_definition:previewCreateDefinition,rename:previewRename,multiplicity:previewMultiplicity,layout:previewLayout,restore:previewRestore};
       if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose create_definition, rename, multiplicity, layout or restore.');
       const preview=previews[args.kind];

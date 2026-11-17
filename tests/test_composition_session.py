@@ -168,6 +168,33 @@ class SessionTests(unittest.TestCase):
         self.assertTrue(reused['error']['definitive_refusal'])
         self.assertEqual(self.project.snapshot()['revision'],2)
 
+    def test_inspection_pages_are_authenticated_read_only_and_snapshot_bound(self):
+        before=self.project.snapshot()
+        request={'expected_revision':1,'expected_bundle_sha256':before['document'].revision,
+                 'origin':'selected_role','offset':0,'limit':25}
+        objects=self.project._git('count-objects','-v').stdout
+        status,result,_=self.call('POST','/api/inspection',request)
+        self.assertEqual(status,200,result)
+        row=result['inspection_page']['items'][0]
+        self.assertEqual(row['element_id'],self.identity)
+        self.assertEqual(row['role']['membership'],'usage_owned')
+        self.assertEqual(result['revision'],1)
+        self.assertNotIn(str(self.project.repository),json.dumps(result))
+        self.assertEqual(self.project._git('count-objects','-v').stdout,objects)
+        for headers in ({'Cookie':''},{'X-CSE-CSRF':''},{'Origin':'https://example.invalid'}):
+            self.assertEqual(self.call('POST','/api/inspection',request,headers=headers)[0],403)
+        for invalid in ({**request,'extra':True},{**request,'limit':True},{**request,'expected_revision':True}):
+            self.assertEqual(self.call('POST','/api/inspection',invalid)[0],400)
+        self.project.transact(self.rename())
+        self.assertEqual(self.call('POST','/api/inspection',request)[0],409)
+        current=self.project.snapshot()
+        status,result,_=self.call('POST','/api/inspection',{**request,'expected_revision':2,
+            'expected_bundle_sha256':current['document'].revision})
+        self.assertEqual(status,200,result)
+        row=result['inspection_page']['items'][0]
+        self.assertIsNone(row['element_id'])
+        self.assertEqual(row['role']['findings'][0]['rule'],'native_identity')
+
     def test_an_external_edit_invalidates_preview_without_rebasing(self):
         pending=self.rename('pending')
         saved=self.project.transact(self.rename('intervening'))

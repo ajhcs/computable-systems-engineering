@@ -77,11 +77,12 @@ registry UUID, selected-view occurrence and original-kit frame/route in one
 checked candidate. Existing geometry, appearance and retained scope remain
 intact. Package/root, usage and new-view creation are separate open obligations.
 
-The [role-inspection contract](composition-role-inspection.md) extends the
-inspection plan to definition-owned declarations, inherited/redefined selected
-roles and external peers. Its source-bound proposal and synthetic fixtures
-preserve native ownership and complete scope findings. Production row selection,
-editing and host parity remain open.
+The [role inspector](composition-role-inspection.md) adds source-bound declaration
+and retained-role tables beside the unchanged ownership SVG. The local reader,
+controller, inspection CLI and site callbacks preserve native owner versus
+selected context, full findings and fixed draft occurrences. Its synthetic
+fixtures and connected execution receipts remain distinct from MCP, private
+hosted persistence and actual application acceptance, which stay open.
 
 For the explicit bundle transport, see [the bundle contract](composition-bundle.md).
 Bundle file names label supplied texts; they are never instructions to read or

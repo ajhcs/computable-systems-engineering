@@ -24,6 +24,7 @@ engineering meaning or engineer acceptance.
 | State | Action and visible result | Authority and validation | Acceptance evidence |
 |---|---|---|---|
 | PC-LIVE-INSPECT | Select a saved frame; native properties and editing target identify that element | Exact saved reader embedded unchanged, registry UUID distinct from occurrence ID; project/view/session/revision context | Actual click/keyboard selection, definition/usage cases, source binding and real glyph checks |
+| PC-LIVE-ROLE-INSPECT | Inspect native declarations and retained selected/external roles beside the unchanged ownership SVG | [Shared role projection](composition-role-inspection.md) retains native owner, selected parent, exact source and complete findings independently; missing bindings have no invented UUID | Paged keyboard selection, same-UUID/different-occurrence draft targets, native row edits, lost-response recovery, export/restart and unresolved-context restoration |
 | PC-LIVE-CREATE-DEFINITION | Add an ordinary definition under the fixed selected definition owner; preview native source and original-kit occurrence together | [Owned creation](composition-creation.md) preserves old geometry and source, accepts optional short ID and checked placement, and uses the same transaction | Native facts, alias/identity refusal, current scope, exact request/UUID recovery and source-bound candidate/saved diagrams; whole creation coverage remains open |
 | PC-LIVE-NAVIGATE | Fit the complete saved SVG in overview, then reveal a selected occurrence at readable size | Same reader navigation API in standalone HTML, direct controls and site callbacks. Camera state is transient; source/layout/history stay fixed | Complete bounds, 100% labels, pan-away refresh, resize/refit, fixed draft targets and locked gesture selection |
 | PC-LIVE-RENAME | Enter a declared name, preview, then save explicitly | Existing native rename and full reparse; preview shares the transaction's candidate preparation; exact request UUID reused for save | Saved graph remains unchanged during preview; committed name and references update; identity survives |
@@ -82,6 +83,7 @@ files are retained and cannot reopen a different new server session.
 | `POST /api/preview` | Validate one exact typed owned-definition creation/rename/multiplicity/layout/restore request without writing project objects or reserving a revision |
 | `POST /api/apply` | Apply that existing project operation and return its durable receipt; a following read error is separate and cannot revoke the receipt |
 | `POST /api/receipt` | Read the exact prior request's original receipt at a captured published head; never applies or reserves a request |
+| `POST /api/inspection` | Read a bounded page from the expected saved revision and bundle digest; never changes retained review scope |
 | `GET /view.svg?commit=…`, `/view.json?commit=…` | Current saved drawing/bindings only when they match the requested commit; stale drawing requests conflict |
 
 Preview is also available through `scripts/composition_project.py preview

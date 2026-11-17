@@ -20,7 +20,7 @@ from verifier.foundation import read_regular
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=('import', 'inspect', 'apply', 'preview', 'receipt', 'history', 'render', 'check-render'))
+    parser.add_argument('command', choices=('import', 'inspect', 'inspect-view', 'apply', 'preview', 'receipt', 'history', 'render', 'check-render'))
     parser.add_argument('--project', required=True, help='trusted server-side bare Git directory')
     parser.add_argument('--bundle', help='explicit cse-composition-bundle-1 input')
     parser.add_argument('--project-id')
@@ -28,12 +28,23 @@ def main():
     parser.add_argument('--request', help='exact typed operation JSON file')
     parser.add_argument('--view-id', help='native CSE-VIEWS/1.1 physical view')
     parser.add_argument('--output', help='explicit immutable artifact directory')
+    parser.add_argument('--origin', choices=('frame', 'declaration', 'configuration_root', 'selected_role', 'external_role'))
+    parser.add_argument('--offset', type=int, default=0)
+    parser.add_argument('--limit', type=int, default=25)
+    parser.add_argument('--expected-bundle-sha256')
+    parser.add_argument('--expected-revision', type=int)
     args = parser.parse_args()
     try:
+        if args.command == 'inspect-view':
+            if not args.view_id or any((args.output, args.bundle, args.project_id, args.request_id, args.request)):
+                raise EditError('input', 'View inspection requires a view ID and inspection page fields only')
+        elif any((args.origin is not None, args.offset != 0, args.limit != 25,
+                  args.expected_bundle_sha256 is not None, args.expected_revision is not None)):
+            raise EditError('input', 'Inspection page fields apply only to inspect-view')
         if args.command in ('render', 'check-render'):
             if not args.view_id or not args.output or any((args.bundle, args.project_id, args.request_id, args.request)):
                 raise EditError('input', 'Rendering requires a view ID and output directory')
-        elif args.view_id or args.output:
+        elif args.command != 'inspect-view' and (args.view_id or args.output):
             raise EditError('input', 'View/output fields apply only to rendering')
         project = CompositionProject(args.project)
         if args.command == 'import':
@@ -67,7 +78,17 @@ def main():
             else:
                 if args.request:
                     raise EditError('input', 'Request JSON applies only to apply/preview/receipt')
-                if args.command in ('render', 'check-render'):
+                if args.command == 'inspect-view':
+                    from verifier.composition_view import project as project_view
+                    from verifier.composition_inspection import page
+                    snapshot = project.snapshot()
+                    if args.expected_revision is not None and args.expected_revision != snapshot['revision']:
+                        raise EditError('stale_revision', 'Saved project revision changed before inspection')
+                    inspection = project_view(snapshot['document'], args.view_id)['inspection']
+                    report = {'revision': snapshot['revision'], 'commit': snapshot['commit'],
+                              'inspection_page': page(inspection, origin=args.origin, offset=args.offset,
+                                  limit=args.limit, expected_bundle_sha256=args.expected_bundle_sha256)}
+                elif args.command in ('render', 'check-render'):
                     from verifier.composition_view import write_artifacts, check_artifacts
                     operation = write_artifacts if args.command == 'render' else check_artifacts
                     report = operation(project.snapshot(), args.view_id, args.output)

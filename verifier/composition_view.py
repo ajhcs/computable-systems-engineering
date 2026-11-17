@@ -181,9 +181,11 @@ def project(document, view_id):
                               'directed': True, 'arrowheads': False}
     need(len(edges) == len(nodes) - 1, 'Invalid native ownership tree')
     # Native ownership + strictly increasing bounded levels excludes cycles.
+    from .composition_inspection import project as inspect_roles
     return {'version': 'cse-composition-view-1', 'id': view_id, 'mode': view['mode'],
             'project_id': document.project_id, 'bundle_sha256': document.revision,
             'nodes': nodes, 'edges': edges,
+            'inspection': inspect_roles(document, view_id, nodes),
             'omitted_elements': [{'element': name, 'owner': row.get('owner'), 'is_composite': row.get('is_composite')}
                                  for name, row in sorted(inventory.items()) if name not in bindings],
             'configuration_reviews': [{**deepcopy(review),

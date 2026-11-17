@@ -64,8 +64,11 @@ For definition-owned or inherited/redefined role inspection, follow the
 [role-inspection contract](../../../docs/workbench/composition-role-inspection.md).
 Keep native declaration ownership, retained selected parent/context and each
 inspection occurrence distinct. Inspection cannot accept new scope or retarget
-a shared declaration draft. The reviewed proposal does not yet implement
-production role-row selection or editing.
+a shared declaration draft. The local reader/controller, inspection CLI and
+site callbacks share the source-bound projection; MCP, private hosted persistence
+and actual application parity remain open. A missing binding has no native edit
+target. Preserve its logical occurrence and complete findings; whole-project
+restoration remains distinct from accepting or repairing that selection.
 
 Method basis: Buede and Miller, *The Engineering Design of Systems: Models and
 Methods*, fourth edition, Chapter 8, pp. 210–211. The native selection and

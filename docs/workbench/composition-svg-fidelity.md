@@ -18,7 +18,7 @@ are presentation copies with source-bound text and recorded provenance.
 | Swatches and textures | Exact saved IDs, checked contrast and opaque label backing; an authored local key explains presentation choices without inventing model properties. |
 | Relationship notation | Unarrowed native ownership; retained endpoint identities; independent routes have at least 15 units of visible-ink separation. Shared-parent fanout and marked nonconnecting crossings have explicit treatments. |
 | Local key | Original ruled legend master with fitted heading/body cells, authored text and reserved space; routes and frames cannot intrude. |
-| Readable navigation | The same complete SVG supports overview and native-size scrolling on desktop and narrow screens. Navigation cannot change model or saved geometry. |
+| Readable navigation | The same complete SVG supports overview and native-size scrolling on desktop and narrow screens. Revealing a frame from the inspection tables preserves a 12px document margin for its visible ink. Navigation cannot change model or saved geometry. |
 | Saved artifacts | Exact sources, identity registry, companions, used original masters and fonts accompany the SVG; reconstruction checks reject changed bytes or revisions. |
 
 Astra's 2026-11-17 review found missing independent-route clearance enforcement
