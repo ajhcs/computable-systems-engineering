@@ -83,6 +83,12 @@ Keep machine-specific receipts in `work/workbench/`. Preserve all original
 worktrees. Reuse historical diagram code and the revision G kit through a
 reviewed integration; fresh assembled verification remains required.
 
+The [local connected interaction](composition-interaction.md) adds explicit
+preview/save, native rename, frame move/resize and whole-snapshot restoration
+over the same project. Its loopback transport and embedded saved reader are
+development implementations. Hosted authorization, full operation coverage,
+WebMCP/MCP Apps and actual application journeys remain open.
+
 ## Next acceptance obligations
 
 1. Finish command/profile mapping, including dynamic launchers and reference tools.

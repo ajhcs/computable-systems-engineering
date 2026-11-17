@@ -313,7 +313,8 @@ class CompositionProject:
             os.close(fd)
         return project, project._commit(document, request, 1, None)
 
-    def transact(self, request):
+    @classmethod
+    def _validate_request(cls, request):
         if not isinstance(request, dict):
             raise EditError('input', 'Supply a typed composition operation')
         common = {'operation', 'request_id', 'expected_revision'}
@@ -321,26 +322,23 @@ class CompositionProject:
         operation = request.get('operation')
         if not isinstance(operation, str) or operation not in fields or set(request) != common | fields[operation]:
             raise EditError('input', 'Unknown composition operation or fields')
-        self._request_id(request['request_id'])
+        cls._request_id(request['request_id'])
         if type(request['expected_revision']) is not int or not 1 <= request['expected_revision'] < MAX_HISTORY:
             raise EditError('input', 'Expected revision is outside the current history limit')
         if operation == 'rename' and (not isinstance(request['element_id'], str) or not isinstance(request['new_name'], str)):
             raise EditError('input', 'Rename requires an element UUID and a declared name')
         if operation == 'restore' and type(request['target_revision']) is not int:
             raise EditError('input', 'Restore requires an integer revision')
-        previous = self.head()
-        history = self._history(previous)
-        retried = self._retry(history, request)
-        if retried:
-            return retried
-        state, document = self._load(previous)
+        return deepcopy(request)
+
+    def _candidate(self, request, state, document, history):
         if state['revision'] != request['expected_revision']:
             raise EditError('stale_revision', 'Project changed; inspect current state before preparing another operation')
         restored = None
-        if operation == 'rename':
+        if request['operation'] == 'rename':
             document = document.rename(request['element_id'], request['new_name'],
                                        expected_source_sha256=document.revision)
-        elif operation == 'set_layout':
+        elif request['operation'] == 'set_layout':
             from .composition_view import with_layout
             document = with_layout(document, request['layout'])
         else:
@@ -350,6 +348,39 @@ class CompositionProject:
             target = next(row for row in history if row['revision'] == restored)
             _, document = self._load(target['commit'])
         self._presentations(document)
+        return document, restored
+
+    def preview(self, request):
+        """Reparse an unsaved candidate through the publication validation path.
+
+        Preview neither reserves a revision nor writes project objects. The
+        caller must submit the same request to transact; publication rechecks
+        the current revision, all native facts and retained presentations.
+        """
+        request = self._validate_request(request)
+        previous = self.head()
+        history = self._history(previous)
+        if self._retry(history, request):
+            raise EditError('already_applied', 'Request was already saved; inspect its durable receipt')
+        state, original = self._load(previous)
+        document, restored = self._candidate(request, state, original, history)
+        return {'base_commit': previous, 'base_revision': state['revision'],
+                'base_bundle_sha256': original.revision, 'request_sha256': request_digest(request),
+                'document': document, 'restored_from_revision': restored,
+                'changed_model_files': sorted(name for name in original.files.keys() | document.files.keys()
+                                              if original.files.get(name) != document.files.get(name)),
+                'changed_linked_records': sorted(name for name in original.linked_records.keys() | document.linked_records.keys()
+                                                 if original.linked_records.get(name) != document.linked_records.get(name))}
+
+    def transact(self, request):
+        request = self._validate_request(request)
+        previous = self.head()
+        history = self._history(previous)
+        retried = self._retry(history, request)
+        if retried:
+            return retried
+        state, original = self._load(previous)
+        document, restored = self._candidate(request, state, original, history)
         try:
             return self._commit(document, request, state['revision'] + 1, previous, restored)
         except EditError as exc:

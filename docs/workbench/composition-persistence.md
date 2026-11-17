@@ -82,8 +82,9 @@ an old request's expected revision current again.
 
 ## Current limits and open acceptance
 
-- Trusted local filesystem and Unix authority only; no account/project
-  authorization, Cloudflare coordinator, R2 publication or application transport.
+- Trusted local filesystem and Unix authority only; no hosted account/project
+  authorization, Cloudflare coordinator or R2 publication. The
+  [loopback interaction adapter](composition-interaction.md) shares these operations.
 - Inspect, native rename, saved layout and snapshot restoration; create/delete/reparent,
   property and presentation changes still need their capability operations.
 - Existing bundle limits apply, plus 2 MB of snapshot metadata and 10,000
@@ -94,8 +95,8 @@ an old request's expected revision current again.
   protocol; an incomplete directory is refused rather than silently replaced.
 - The project is a storage container for the admitted records. Unknown companion
   roles still require adapters; source hashes do not authenticate engineer assent.
-- Layout, appearance, view-session state, revision-bound analysis jobs and both
-  actual application journeys remain open. The SVG/iconography kit remains
+- Complete appearance/view-session behavior, revision-bound analysis jobs and
+  both actual application journeys remain open. The SVG/iconography kit remains
   governed by the [saved design-kit workflow](../../skills/generate-engineering-diagrams/references/design-kit.md).
 
 Run the native parser with an isolated project cache. Relevant test coverage is
@@ -108,3 +109,9 @@ assembled with the diagram, adapters and remote persistence before any row close
 The [physical diagram contract](composition-diagrams.md) adds `set_layout` to
 this same transaction path. It also defines saved-artifact render/check commands
 and the remaining connected-interaction gates.
+
+`CompositionProject.preview()` now prepares the same candidate as publication
+without writing project objects or reserving a revision. Apply rechecks its
+original base; a preview can become stale. A committed request returns its durable
+receipt even if a following redraw/read fails. That read failure is separate from
+the successful transaction acknowledgement.

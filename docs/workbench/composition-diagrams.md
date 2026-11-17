@@ -125,8 +125,11 @@ access or replace retained review scope.
 
 ## Remaining physical-capability gates
 
-The connected editor, pointer-based move/resize, creation, deletion, reparenting,
-property editing, collapse/reveal, legacy appearance compatibility, full drawing
+The [local connected editor](composition-interaction.md) embeds this saved reader
+and invokes existing rename, layout and restoration transactions. Its pointer
+move/resize and keyboard bounds controls remain within the physical capability;
+hosted application integration is still open. Creation, deletion, reparenting,
+remaining property editing, collapse/reveal, legacy appearance compatibility, full drawing
 identification/Draw.io export, quoted/Unicode glyph qualification, remote
 persistence and both actual application journeys remain open. Referenced
 resources need their own appropriate presentation; they are not converted to

@@ -53,3 +53,33 @@ owner-to-member direction independently from the unarrowed drawing convention:
 and the unarrowed SVG path remain consistent. Astra found no new actionable
 issue in that correction; fresh artifact generation and regression qualification
 remain separate checks.
+
+## Connected local editing follow-up
+
+Astra reviewed the loopback adapter and controller against the same native
+ownership, retained-scope and saved-kit contract. It identified three defects:
+following-read failures could obscure durable save acknowledgement, inspecting
+another element could retarget retained input during refresh, and delayed reads
+could erase newer drafts. The last path also applied during an active drag.
+
+The controller now separates inspection from the fixed edit target and guards
+asynchronous reads with draft/load generations and the full pointer lifecycle.
+The adapter separates durable publication from rendering and distinguishes a
+definite refusal from an unresolved receipt lookup. Storage exceptions before
+or after publication, preliminary retry reads and failed receipt resolution
+retain uncertainty. Proven request-ID reuse remains a distinct refusal. The
+client clears retry intent only when the adapter explicitly proves refusal.
+
+The narrow source rechecks addressed those findings. Native/HTTP fault-injection
+checks and real browser interleavings qualify the assembled behavior separately.
+Astra also inspected the four r5 desktop/mobile images and verified their hashes;
+those images predate the final outcome-classification extension. Full recovery
+coverage in that run applied to desktop usage composition; the other three cases
+covered narrower editing and visual behavior. Final-source receipts and any
+later image review remain separately identified in ignored `work/workbench/`.
+
+Earlier failed browser harness attempts are retained, including the unsupported
+fieldset disabled assertion, route-handler ordering mistakes and the source
+assertion that omitted the correctly preserved `<LEFT>` short ID. None is
+silently relabelled as a passing final run. Local interaction qualification
+does not close physical composition, hosted access or engineer acceptance.
