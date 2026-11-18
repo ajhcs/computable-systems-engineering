@@ -146,4 +146,6 @@ remain required before the applicable parity cells can be proved.
 
 The frozen source passed the full native regression across 95 suites and 1,472 reported cases, with four optional skips. The 70 Chromium journeys passed. The 390 px official MCP SDK reference journey exercised manual and keyboard ownership, checked source and artwork, exact replay after a lost response, and two restored native SVG exports. Astra independently verified the retained alias binding when another alias resolved to the same terminal type. The parity ledger records the scope and exact source and receipt digests.
 
-Packaged CLI smoke, production MCP data tools, actual Codex and ChatGPT, and private Cloudflare restart recovery remain open.
+The package from commit `095b9f542a90d225dd52a95216ccd14113cd8ba0` passed a CLI smoke test using checked preview and apply, exact receipt replay, two saved artifact exports and exact restoration. Its manifest retains all eleven skills.
+
+Production MCP data tools, actual Codex and ChatGPT, and private Cloudflare restart recovery remain open.
