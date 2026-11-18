@@ -57,7 +57,7 @@ accept new scope bytes or infer selection from a rename.
 A [local Git transaction reference](composition-persistence.md) now persists
 this candidate path, its registry and supported companions. It provides atomic
 head publication, monotonic restoration and retry receipts. Local process
-restart and portable Git history are checked; remote persistence, initialization
+restart and portable Git history are checked; remote persistence, legacy import
 recovery and application acceptance remain open. The selected bare Git directory
 is server-side storage, not a filename supplied inside a model bundle.
 
@@ -75,7 +75,20 @@ stay open.
 [Owned definition creation](composition-creation.md) adds a native definition,
 registry UUID, selected-view occurrence and original-kit frame/route in one
 checked candidate. Existing geometry, appearance and retained scope remain
-intact. Package/root, usage and new-view creation are separate open obligations.
+intact. [Part-usage creation](composition-usage-creation.md) and
+[explicit typing](composition-typing.md) share that same native transaction,
+retained scope and original-kit reader. Later package/root/view authoring remains
+separate from these owned-declaration operations.
+
+[Initial project authoring](composition-initial-project.md) creates the first
+definition or ordinary usage and its physical view with a supplied stable UUID.
+The source CLI, direct form, site callbacks and supplied MCP client use one
+checked native candidate and no-replace first Git transaction. A global root
+keeps its unnamed namespace; a root usage has no physical parent, no explicit
+type and native default `1..1`. Recovery retains the exact first request and
+hands off to the existing saved editor without resetting later history.
+Local/native/browser and official-SDK evidence remains distinct from production
+MCP, actual applications and private hosted acceptance. No capability closes here.
 
 The [role inspector](composition-role-inspection.md) adds source-bound declaration
 and retained-role tables beside the unchanged ownership SVG. The local reader,

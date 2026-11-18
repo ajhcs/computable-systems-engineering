@@ -137,14 +137,14 @@ class CompositionProject:
                              'bundle_sha256', 'parent_commit', 'restored_from_revision', 'storage'}
                 or receipt.get('revision') != state['revision'] or receipt.get('project_id') != state['project_id']
                 or receipt.get('storage') != 'local_git_fsync'
-                or receipt.get('operation') not in ('import', 'rename', 'restore', 'set_layout', 'set_multiplicity', 'set_types', 'create_definition', 'create_usage')
+                or receipt.get('operation') not in ('import', 'initialize_physical_project', 'rename', 'restore', 'set_layout', 'set_multiplicity', 'set_types', 'create_definition', 'create_usage')
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('request_sha256')))
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('bundle_sha256')))
                 or receipt.get('parent_commit') is not None and not OID.fullmatch(str(receipt['parent_commit']))):
             raise EditError('storage_integrity', 'Receipt and state disagree')
         self._request_id(receipt['request_id'])
-        if (receipt['operation'] == 'import') != (state['revision'] == 1):
-            raise EditError('storage_integrity', 'Import is not the initial revision')
+        if (receipt['operation'] in ('import', 'initialize_physical_project')) != (state['revision'] == 1):
+            raise EditError('storage_integrity', 'Initial creation/import is not the initial revision')
         restored = receipt['restored_from_revision']
         if ((receipt['operation'] == 'restore' and (type(restored) is not int or not 1 <= restored < state['revision']))
                 or receipt['operation'] != 'restore' and restored is not None):
@@ -202,6 +202,9 @@ class CompositionProject:
         Absence describes the captured head only. Another writer can publish
         after this read; clients must retain the original idempotent request.
         """
+        if isinstance(request, dict) and request.get('operation') == 'initialize_physical_project':
+            from .composition_initial import lookup
+            return lookup(self.repository, request)
         request = self._validate_request(request)
         history = self.history()
         return {'observed_commit': history[0]['commit'],

@@ -6,6 +6,13 @@ intent storage and artifact transfer. It supplies no model or engineering
 verdict. Hosted persistence, the complete MCP data-tool contract and actual
 Codex/ChatGPT acceptance remain open in the [parity ledger](parity.json).
 
+Before a saved model exists, [initial authoring](composition-initial-project.md)
+uses a separate prospective controller and `cse-initial-host-1` provider. It has
+no revision-zero engineering projection. Its checked first request and receipt
+explicitly hand off to this saved-model controller, using the same SDK client
+and stable project/root/view grant. Local reference-protocol checks do not
+establish production data tools or actual application acceptance.
+
 ## Requests and provider selection
 
 An ordinary local page uses the existing authenticated loopback transport,

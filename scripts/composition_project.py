@@ -20,7 +20,7 @@ from verifier.foundation import read_regular
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=('import', 'inspect', 'inspect-view', 'apply', 'preview', 'receipt', 'history', 'render', 'check-render'))
+    parser.add_argument('command', choices=('import', 'prepare-initial', 'initialize', 'inspect', 'inspect-view', 'apply', 'preview', 'receipt', 'history', 'render', 'check-render'))
     parser.add_argument('--project', required=True, help='trusted server-side bare Git directory')
     parser.add_argument('--bundle', help='explicit cse-composition-bundle-1 input')
     parser.add_argument('--project-id')
@@ -47,7 +47,21 @@ def main():
         elif args.command != 'inspect-view' and (args.view_id or args.output):
             raise EditError('input', 'View/output fields apply only to rendering')
         project = CompositionProject(args.project)
-        if args.command == 'import':
+        if args.command in ('prepare-initial', 'initialize'):
+            if not args.request or any((args.bundle, args.project_id, args.request_id)):
+                raise EditError('input', 'Initial authoring requires exactly the typed request JSON and trusted target')
+            from verifier.composition_initial import prepare, initialize
+            request = strict_json(read_regular(args.request, 1_000_000).decode('utf-8'))
+            if args.command == 'prepare-initial':
+                document, checked = prepare(request)
+                report = {'request': checked, 'candidate': document.inspect(),
+                          'files': document.files, 'linked_records': document.linked_records,
+                          'registry': document.registry,
+                          'claim': 'unsaved_initial_candidate_no_project_created'}
+            else:
+                _, receipt = initialize(args.project, request)
+                report = {'receipt': receipt}
+        elif args.command == 'import':
             if not all((args.bundle, args.project_id, args.request_id)) or args.request:
                 raise EditError('input', 'Import requires bundle, project UUID and request UUID')
             bundle = json.loads(read_regular(args.bundle, 32_000_000).decode('utf-8'), object_pairs_hook=_pairs,

@@ -16,7 +16,7 @@ class HostTests(unittest.TestCase):
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const source=fs.readFileSync(SOURCE_PATH);
-const {createMcpCompositionHost,compositionModelContext,publishMcpCompositionContext}=await import('data:text/javascript;base64,'+source.toString('base64'));
+const {createMcpCompositionHost,createMcpInitialCompositionHost,compositionModelContext,publishMcpCompositionContext}=await import('data:text/javascript;base64,'+source.toString('base64'));
 const boot={project_id:'36c89b0c-a94b-4f3e-86e0-b2940d040928',view_id:'PC_CONTEXT',app_instance_id:'da4e6a7d-b229-4bd0-9be9-2263998d0f61'};
 const values=new Map(),storage={getItem:async key=>values.get(key)??null,setItem:async(key,value)=>{values.set(key,value)},removeItem:async key=>{values.delete(key)}};
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -72,6 +72,39 @@ assert.deepEqual(result,{status:409,body:native.body});assert.equal(result.body.
         self.run_js("""
 const host=createMcpCompositionHost({callServerTool:async()=>({content:[{type:'text',text:'success'}]})},boot,storage);
 await assert.rejects(host.request({operation:'state'}),/native composition response/);
+""")
+
+    def test_initial_grant_and_async_intent_are_isolated_from_saved_controller(self):
+        self.run_js("""
+const initialBoot={...boot,root_element_id:'438daf62-7334-43e2-a401-5def698d62b8'};
+let calls=0,opened=0;const app={callServerTool:async()=>{calls++;throw Error('Unexpected transport')}};
+assert.throws(()=>createMcpInitialCompositionHost(app,boot,storage,()=>{}));
+assert.throws(()=>createMcpInitialCompositionHost(app,{...initialBoot,root_element_id:'../../other'},storage,()=>{}));
+assert.throws(()=>createMcpInitialCompositionHost(app,initialBoot,storage,null));
+const initial=createMcpInitialCompositionHost(app,initialBoot,storage,()=>{opened++});
+const saved=createMcpCompositionHost(app,boot,storage);
+await initial.intentStorage.setItem('pending','exact-initial');
+assert.equal(await initial.intentStorage.getItem('pending'),'exact-initial');
+assert.equal(await saved.intentStorage.getItem('pending'),null);
+assert.deepEqual(initial.grant,{project_id:boot.project_id,view_id:boot.view_id,root_element_id:initialBoot.root_element_id});
+await assert.rejects(initial.request({operation:'session',payload:{access:'not-forwarded'}}));
+await assert.rejects(initial.request({operation:'constructor'}));
+await assert.rejects(initial.request({operation:'initial_state',payload:{}}));
+for(const field of ['project_id','root_element_id','view_id'])await assert.rejects(initial.request({operation:'initial_preview',payload:{project_id:boot.project_id,root_element_id:initialBoot.root_element_id,view_id:boot.view_id,[field]:'other'}}));
+assert.equal(calls,0);assert.equal(opened,0);
+""")
+
+    def test_initial_native_protocol_keeps_revision_zero_and_exact_checked_request(self):
+        self.run_js("""
+const root='438daf62-7334-43e2-a401-5def698d62b8',calls=[];
+const native={http_status:503,body:{error:{code:'outcome_unknown',detail:'Retain exact initial request',definitive_refusal:false}}};
+const host=createMcpInitialCompositionHost({callServerTool:async args=>{calls.push(args);return{isError:true,_meta:{cse_native:native}}}},{...boot,root_element_id:root},storage,()=>{});
+const request={operation:'initialize_physical_project',project_id:boot.project_id,root_element_id:root,view_id:boot.view_id,request_id:'29cb2592-a695-4fdf-9bf2-a4a0cf275d05',expected_revision:0,root_kind:'usage',new_name:'current',short_id:null,namespace_name:null,expected_bundle_sha256:'a'.repeat(64)};
+const response=await host.request({operation:'initial_apply',payload:request});
+assert.equal(calls[0].name,'cse_initialize_composition_project');assert.equal(calls[0].arguments.root_element_id,root);assert.deepEqual(calls[0].arguments.request,request);
+assert.deepEqual(response,{status:503,body:native.body});
+const context=compositionModelContext({ready:true,phase:'initial',guard:{model_revision:0},initial_state:{projection:null,revision:0},raw_draft:{new_name:'Retained root'},candidate_ready:true,pending_change:{request}});
+assert.equal(context.phase,'initial');assert.equal(context.initial_state.projection,null);assert.equal(context.pending_request.expected_revision,0);assert.equal(context.pending_request.expected_bundle_sha256,request.expected_bundle_sha256);assert.equal(context.scope,'selected_ui_context_never_replaces_complete_retained_review');assert.equal(context.retained_review_identities.length,0);
 """)
 
     def test_selected_context_never_becomes_complete_review(self):

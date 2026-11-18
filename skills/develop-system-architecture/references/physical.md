@@ -80,3 +80,12 @@ and [explicit usage typing](../../../docs/workbench/composition-typing.md) retai
 native declaration ownership and the independently retained configuration scope.
 These development operations do not establish actual-host acceptance or complete
 physical-composition parity.
+
+For the first physical root in a new project, use
+[initial authoring](../../../docs/workbench/composition-initial-project.md).
+The engineer chooses definition versus usage and unnamed versus named package;
+do not infer those choices from a diagram frame. Preview and retain the exact
+checked request before creating the project, then continue in the same saved
+editor. The default namespace/package-owned usage is noncomposite, has no explicit
+typing and has native `1..1`; neither declaration nor storage receipt proves installation.
+Later package/root/view editing and complete actual-host parity remain open.
