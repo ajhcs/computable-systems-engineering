@@ -7,6 +7,8 @@ let state, csrf, selectedId, selectedOccurrenceId, busy=false, dirty=false, pend
 let formRevision, formCommit, restoredSelection, restoredNavigation, restoredInspection, restoredOccurrence, restoredInspectionOccurrence;
 let editTargetId, editTargetOccurrenceId, editTargetName, draftGeneration=0, loadGeneration=0, gestureActive=false, frameReady=false, creationDraft=false, draftKind=null;
 let candidateSvg=null,candidateMode='readable';
+let ownershipContext=null,ownershipGeneration=0,ownershipOffset=0;
+let sourceGeneration=0,sourceReadBusy=false,sourceReadState=null,sourceOptionsKey=null;
 let initialized=false,viewStatus='loading',viewGeneration=0,lastReceipt=null;
 const contextSubscribers=new Set();let contextQueued=false;
 let provider,providerError;
@@ -19,7 +21,7 @@ function compositionProvider(){
     kind:'loopback',localArtifacts:true,
     intentStorage:{getItem:key=>sessionStorage.getItem(key),setItem:(key,value)=>sessionStorage.setItem(key,value),removeItem:key=>sessionStorage.removeItem(key)},
     request:async({operation,payload})=>{
-      const path={session:'/session',state:'/api/state',head:'/api/head',inspection:'/api/inspection',preview:'/api/preview',apply:'/api/apply',receipt:'/api/receipt'}[operation];
+      const path={session:'/session',state:'/api/state',head:'/api/head',inspection:'/api/inspection',ownership_context:'/api/ownership-context',source:'/api/source',preview_view:'/api/preview-view',preview:'/api/preview',apply:'/api/apply',receipt:'/api/receipt'}[operation];
       const options={credentials:'same-origin',cache:'no-store'};
       if(payload!==undefined)Object.assign(options,{method:'POST',headers:{'Content-Type':'application/json','X-CSE-CSRF':csrf||''},body:JSON.stringify(payload)});
       const response=await fetch(path,options);return{status:response.status,body:await response.json()};
@@ -40,9 +42,9 @@ function notifyContext(){
     try{const result=subscriber(workbenchContext());if(result&&typeof result.then==='function')Promise.resolve(result).catch(failed);}catch(error){failed();}
   }});
 }
-const formKinds={'rename-form':'rename','multiplicity-form':'multiplicity','typing-form':'typing','layout-form':'layout','restore-form':'restore','create-definition-form':'create_definition','create-usage-form':'create_usage'};
+const formKinds={'rename-form':'rename','multiplicity-form':'multiplicity','typing-form':'typing','layout-form':'layout','restore-form':'restore','create-definition-form':'create_definition','create-usage-form':'create_usage','ownership-form':'reparent'};
 const operationKind=operation=>({set_layout:'layout',set_multiplicity:'multiplicity',set_types:'typing'}[operation]||operation);
-const editableInputs=['typing-values','rename-name','multiplicity-lower','multiplicity-upper','box-x','box-y','box-width','box-height','restore-target','create-name','create-short','create-placement','create-x','create-y','create-width','create-height','create-points','usage-name','usage-short','usage-type','usage-kind','usage-multiplicity','usage-lower','usage-upper','usage-placement','usage-x','usage-y','usage-width','usage-height','usage-points'];
+const editableInputs=['ownership-values','typing-values','rename-name','multiplicity-lower','multiplicity-upper','box-x','box-y','box-width','box-height','restore-target','create-name','create-short','create-placement','create-x','create-y','create-width','create-height','create-points','usage-name','usage-short','usage-type','usage-kind','usage-multiplicity','usage-lower','usage-upper','usage-placement','usage-x','usage-y','usage-width','usage-height','usage-points'];
 function typeDefinitions(){return state?state.projection.inspection.declarations.map(id=>state.projection.inspection.occurrences[id]).filter(row=>row.kind==='PartDefinition'):[];}
 function typingRows(){
   const rows=JSON.parse(byId('typing-values').value);
@@ -87,6 +89,7 @@ byId('candidate-overview').addEventListener('click',()=>showCandidate(candidateS
 byId('candidate-readable').addEventListener('click',()=>showCandidate(candidateSvg,'readable'));
 window.addEventListener('resize',()=>{if(candidateSvg&&candidateMode==='overview')showCandidate(candidateSvg,'overview');});
 function controls(){
+  sourceControls();
   if(frameReady)frame.contentWindow.cseDiagramNavigation?.lock(gestureActive);
   const different=Boolean(editTargetOccurrenceId&&(selectedId!==editTargetId||selectedOccurrenceId!==editTargetOccurrenceId));
   byId('edits').disabled=busy||gestureActive||unknown||Boolean(pending)||!initialized||!frameReady||different;
@@ -100,7 +103,11 @@ function controls(){
   byId('usage-bounds').hidden=byId('usage-multiplicity').value!=='finite';
   const typeId=byId('usage-type').value;byId('usage-type-availability').textContent=typeId&&!state?.projection.inspection.declarations.some(id=>{const row=state.projection.inspection.occurrences[id];return row.element_id===typeId&&row.kind==='PartDefinition'})?'Selected type is unavailable: '+typeId+'. Choose an existing definition explicitly or retain this draft until the type is restored.':'';
   byId('usage-presentation').textContent=state?.projection.mode==='usages'&&editingNode()?.[1].kind==='PartUsage'&&Object.values(state.projection.nodes).some(n=>n.element_id===editTargetId)&&byId('usage-kind').value==='composite'?'A new composite child gets an ownership frame and declaration row.':'The new usage appears in the declaration table; no ownership frame or route is added. Manual frame placement will be refused.';
-  byId('save').disabled=busy||!pending||Boolean(pending.stale)||!frameReady;
+  byId('ownership-fields').disabled=!editingNode()||Boolean(draftKind&&draftKind!=='reparent');
+  byId('ownership-candidate-controls').hidden=pending?.request.operation!=='reparent';
+  byId('save').disabled=busy||!pending||Boolean(pending.stale)||!frameReady||(!unknown&&pending?.request.operation==='reparent'&&!byId('ownership-candidate-ack').checked);
+  byId('ownership-candidate-ack').disabled=busy||unknown;
+  byId('ownership-show-candidate').disabled=busy||unknown||Boolean(pending?.stale)||!byId('ownership-candidate-view').value;
   byId('save').textContent=unknown?'Retry save with the same request ID':'Save change';
   byId('discard').disabled=busy||unknown;
   byId('refresh').disabled=busy||gestureActive;
@@ -116,7 +123,7 @@ function controls(){
 }
 async function api(path,body,requestDigest){
   if(providerError)throw providerError;
-  const operation={'/session':'session','/api/state':'state','/api/head':'head','/api/inspection':'inspection','/api/preview':'preview','/api/apply':'apply','/api/receipt':'receipt'}[path];
+  const operation={'/session':'session','/api/state':'state','/api/head':'head','/api/inspection':'inspection','/api/ownership-context':'ownership_context','/api/source':'source','/api/preview-view':'preview_view','/api/preview':'preview','/api/apply':'apply','/api/receipt':'receipt'}[path];
   if(!operation)throw Error('Unsupported physical-composition operation.');
   const response=await provider.request({operation,payload:body}),result=response?.body;
   if(!Number.isInteger(response?.status)||response.status<100||response.status>599||!result||typeof result!=='object'||Array.isArray(result))throw Error('Invalid physical-composition transport response.');
@@ -145,6 +152,7 @@ function showFields(force=false){
     for(const bound of ['lower','upper'])byId('multiplicity-'+bound).value=node.kind==='PartUsage'&&['default','literal'].includes(quantity?.status)?quantity[bound]:'';
     for(const field of ['x','y','width','height'])byId('box-'+field).value=node.frame_id?state.layout.nodes[node.frame_id][field]:'';
     formRevision=state.revision;formCommit=state.commit;
+    resetOwnershipFields();
     for(const id of ['usage-name','usage-short','usage-type','usage-lower','usage-upper','usage-x','usage-y','usage-width','usage-height','usage-points'])byId(id).value='';byId('usage-kind').value='composite';byId('usage-multiplicity').value='default';byId('usage-placement').value='automatic';
     byId('create-name').value='';byId('create-short').value='';byId('create-placement').value='automatic';
     for(const field of ['x','y','width','height','points'])byId('create-'+field).value='';
@@ -207,16 +215,23 @@ async function previewChange(change,description,layoutBox){
   try{
     const result=await api('/api/preview',change);
     const {candidate_svg,...metadata}=result.preview;
-    pending={request:change,description,preview:metadata,stale:false};
-    showCandidate(candidate_svg||null);
+    const checked=result.preview.checked_request||change;
+    if(change.operation==='reparent'&&(JSON.stringify(orderedOwnership({...checked,checked_bundle_sha256:null}))!==JSON.stringify(orderedOwnership(change))||!/^[a-f0-9]{64}$/.test(checked.checked_bundle_sha256||'')))throw Error('Ownership preview returned a different request or missing candidate binding.');
+    pending={request:checked,description,preview:metadata,stale:false};
+    byId('ownership-candidate-ack').checked=false;
+    prepareOwnershipCandidateViews();
+    const affected=result.preview.affected_views||{},showCurrent=change.operation!=='reparent'||!Object.keys(affected).length||Object.hasOwn(affected,state.projection.id);
+    showCandidate(showCurrent?candidate_svg||null:null);
+    if(!showCurrent)byId('ownership-candidate-status').textContent='The current saved view does not show the moved declaration. Inspect the selected affected candidate view explicitly.';
     const reviewLines=result.preview.configuration_reviews.map(review=>review.file+': '+review.report.status);
     byId('summary').textContent=description+'\nBase revision: '+result.preview.base_revision+'\nChanged model files: '+(result.preview.changed_model_files.join(', ')||'none')+'\nChanged companion files: '+(result.preview.changed_linked_records.join(', ')||'none')+(reviewLines.length?'\nRetained configuration reviews:\n'+reviewLines.join('\n'):'');
-    const edited=result.preview.edited_element;if(edited)byId('summary').textContent+='\nCandidate native declaration: '+edited.element+'\nNative owner: '+edited.native.owner+'\nExplicit types: '+(edited.native.types.join(', ')||'No explicit typing');
+    const edited=result.preview.edited_element;if(edited)byId('summary').textContent+='\nCandidate native declaration: '+edited.element+'\nNative owner: '+(edited.native.owner||(edited.native.owner_kind==='Namespace'?'Unnamed namespace':'Unresolved'))+(edited.kind==='PartDefinition'?'\nDeclared supertypes: '+((edited.native.supertypes||[]).join(', ')||'None'):'\nExplicit types: '+((edited.native.types||[]).join(', ')||'No explicit typing'));
+    if(result.preview.ownership_change)byId('summary').textContent+='\nOwnership/source/view consequences:\n'+JSON.stringify(result.preview.ownership_change,null,2);
     const created=result.preview.created_element;if(created){const native=created.native;byId('summary').textContent+='\nNew native declaration: '+created.element+'\nNative owner: '+native.owner;if(created.kind==='PartUsage')byId('summary').textContent+='\nDeclaration kind: '+(native.is_composite?'composite part':'reference part')+'\nExplicit type: '+(native.type||'none')+'\nMultiplicity: '+native.multiplicity.status+' ['+native.multiplicity.lower+'..'+native.multiplicity.upper+']';}
     byId('pending-indicator').textContent='Unsaved change · saved model below remains authoritative';
     if(layoutBox)drawGhost(layoutBox.id,layoutBox.box);
     notice('Candidate checked. Review it, then save or discard.');
-    return{outcome:'previewed',request:clone(change),preview:clone(metadata)};
+    return{outcome:'previewed',request:clone(checked),preview:clone(metadata)};
   }catch(error){removeGhost();pending=null;notice(error.code==='stale_revision'?'Conflict: '+error.message+'. Your form values remain available. Refresh before another preview.':error.message);return{outcome:'refused',error:{code:error.code||'preview_unavailable',detail:error.message}};}
   finally{busy=false;controls();}
 }
@@ -359,6 +374,7 @@ function previewRestore(){return previewChange(request('restore',{target_revisio
 byId('rename-form').addEventListener('submit',event=>{event.preventDefault();previewRename();});
 byId('create-usage-form').addEventListener('submit',event=>{event.preventDefault();previewCreateUsage();});
 byId('create-definition-form').addEventListener('submit',event=>{event.preventDefault();previewCreateDefinition();});
+byId('ownership-form').addEventListener('submit',event=>{event.preventDefault();previewOwnership();});
 byId('typing-form').addEventListener('submit',event=>{event.preventDefault();previewTyping();});
 byId('multiplicity-form').addEventListener('submit',event=>{event.preventDefault();previewMultiplicity();});
 byId('layout-form').addEventListener('submit',event=>{event.preventDefault();previewLayout();});
@@ -368,7 +384,7 @@ function discard(){if(unknown||busy)return;draftGeneration++;pending=null;dirty=
 byId('discard').addEventListener('click',discard);
 byId('discard-draft').addEventListener('click',discard);
 byId('edit-selected').addEventListener('click',discard);
-byId('return-target').addEventListener('click',()=>{const found=editingNode();if(!found)return;frame.contentWindow.cseReaderSelection.select(found[0],{reveal:true});selectionChanged();const input=byId({create_definition:'create-name',create_usage:'usage-name',multiplicity:'multiplicity-lower',typing:'typing-add',layout:'box-x',restore:'restore-target'}[draftKind]||'rename-name');input.focus({preventScroll:true});input.scrollIntoView({block:'nearest',inline:'nearest'});});
+byId('return-target').addEventListener('click',()=>{const found=editingNode();if(!found)return;frame.contentWindow.cseReaderSelection.select(found[0],{reveal:true});selectionChanged();const input=byId({create_definition:'create-name',create_usage:'usage-name',multiplicity:'multiplicity-lower',typing:'typing-add',reparent:'ownership-load',layout:'box-x',restore:'restore-target'}[draftKind]||'rename-name');input.focus({preventScroll:true});input.scrollIntoView({block:'nearest',inline:'nearest'});});
 async function refreshSaved(){
   if(busy||gestureActive)return{outcome:'refused',error:{code:'interaction_busy',detail:'Finish the current interaction first.'}};
   if(!initialized)return await start();
@@ -379,7 +395,7 @@ async function refreshSaved(){
 }
 byId('refresh').addEventListener('click',refreshSaved);
 async function saveChange(){
-  if(!pending||busy||gestureActive||pending.stale)return{outcome:'refused',error:{code:'save_unavailable',detail:'Inspect and preview a current change before saving.'}};
+  if(!pending||busy||gestureActive||pending.stale||!unknown&&pending.request.operation==='reparent'&&!byId('ownership-candidate-ack').checked)return{outcome:'refused',error:{code:'save_unavailable',detail:'Inspect and preview a current change before saving.'}};
   draftGeneration++;
   busy=true;controls();notice('Saving the checked request…');
   const savedRequest=pending.request;
@@ -462,7 +478,10 @@ function workbenchContext(){
       base_revision:formRevision,base_commit:formCommit,declared_name:byId('rename-name').value,
       multiplicity:Object.fromEntries(['lower','upper'].map(field=>[field,byId('multiplicity-'+field).value])),
       box:Object.fromEntries(['x','y','width','height'].map(field=>[field,byId('box-'+field).value]))}:null,
+    model_sources:state.model_sources,
+    source_inspection:sourceReadState?{snapshot:sourceReadState.mode,file:sourceReadState.file,bundle_sha256:sourceReadState.bundle_sha256,request_sha256:sourceReadState.request_sha256,loaded_codepoints:[...sourceReadState.text].length,next_offset:sourceReadState.next_offset}:null,
     pending_change:pending?{...pending,request:clone(pending.request)}:null,
+    ownership_draft:{raw_values:byId('ownership-values').value,candidate_reviewed:byId('ownership-candidate-ack').checked},
     typing_draft:{rows:typingRows().map(row=>({...row,available:Boolean(row.type_id&&typeDefinitions().some(def=>def.element_id===row.type_id))}))},
     usage_creation_draft:{declared_name:byId('usage-name').value,short_id:byId('usage-short').value||null,type_id:byId('usage-type').value||null,type_available:!byId('usage-type').value||state.projection.inspection.declarations.some(id=>state.projection.inspection.occurrences[id].element_id===byId('usage-type').value),is_composite:byId('usage-kind').value==='composite',multiplicity_mode:byId('usage-multiplicity').value,multiplicity:Object.fromEntries(['lower','upper'].map(key=>[key,byId('usage-'+key).value])),placement_mode:byId('usage-placement').value,box:Object.fromEntries(['x','y','width','height'].map(key=>[key,byId('usage-'+key).value])),route_text:byId('usage-points').value},
     creation_draft:{declared_name:byId('create-name').value,short_id:byId('create-short').value||null,placement_mode:byId('create-placement').value,
@@ -474,6 +493,486 @@ function workbenchContext(){
     scope:'visible_saved_selection_never_replaces_retained_review_scope',
     claim:'application_context_not_host_qualification'});
 }
+function orderedOwnership(value) {
+  return Array.isArray(value) ? value.map(orderedOwnership) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map(key => [
+    key,
+    orderedOwnership(value[key])
+  ])) : value;
+}
+function ownershipDraft() {
+  return JSON.parse(byId('ownership-values').value || '{}');
+}
+function retainOwnershipDraft(value, changed = true) {
+  byId('ownership-values').value = JSON.stringify(value);
+  if (changed)
+    byId('ownership-values').dispatchEvent(new Event('input', { bubbles: true }));
+}
+function resetOwnershipFields() {
+  ownershipGeneration++;
+  ownershipContext = null;
+  ownershipOffset = 0;
+  retainOwnershipDraft({}, false);
+  byId('ownership-view-effects').replaceChildren();
+  byId('ownership-destination').replaceChildren(new Option('Choose a captured native destination', ''));
+  byId('ownership-context-status').textContent = 'Inspect source-bound owners before choosing a destination.';
+  byId('ownership-destination-detail').textContent = '';
+  byId('ownership-composition').textContent = '';
+  byId('ownership-transition-label').hidden = true;
+  byId('ownership-transition').checked = false;
+  byId('ownership-previous').disabled = true;
+  byId('ownership-next').disabled = true;
+  byId('ownership-target').textContent = editingNode() ? 'Captured native declaration: ' + editingNode()[1].element + ' \xB7 revision ' + formRevision : '';
+}
+function ownershipTransition(draft) {
+  const native = editingNode()?.[1].native;
+  if (!draft.destination || editingNode()?.[1].kind !== 'PartUsage')
+    return null;
+  if (typeof native?.source_span?.authored_reference !== 'boolean')
+    throw Error('Native authored declaration form is unavailable; refresh the source-bound inspection.');
+  const after = !native.source_span.authored_reference && [
+    'PartDefinition',
+    'PartUsage'
+  ].includes(draft.destination.kind);
+  return after === native.is_composite ? null : {
+    before: native.is_composite,
+    after
+  };
+}
+function ownershipComposition() {
+  try {
+    const draft = ownershipDraft(), transition = ownershipTransition(draft);
+    byId('ownership-transition-label').hidden = !transition;
+    byId('ownership-transition').checked = draft.transition_ack === true;
+    byId('ownership-composition').textContent = transition ? 'Native composition changes ' + transition.before + ' \u2192 ' + transition.after + '. The authored part/ref part form stays fixed.' : 'This choice does not change the declaration\u2019s native composite value.';
+  } catch (error) {
+    byId('ownership-composition').textContent = error.message;
+  }
+}
+function ownershipOptions() {
+  const select = byId('ownership-destination'), draft = ownershipDraft();
+  select.replaceChildren(new Option('Choose a captured native destination', ''));
+  for (const row of ownershipContext?.destinations || []) {
+    const option = new Option((row.native_name || 'Unnamed namespace') + ' \xB7 ' + row.target.kind + ' \xB7 ' + row.target.file, JSON.stringify(row.target));
+    option.dataset.nativeName = row.native_name || '';
+    select.append(option);
+  }
+  const wanted = draft.destination && JSON.stringify(draft.destination);
+  if (wanted && ![...select.options].some(option => option.value === wanted)) {
+    const option = new Option('Retained destination \xB7 ' + (draft.destination_name || draft.destination.identity) + ' \xB7 review its original bundle', wanted);
+    option.dataset.nativeName = draft.destination_name || '';
+    select.append(option);
+  }
+  select.value = wanted || '';
+  byId('ownership-destination-detail').textContent = draft.destination ? 'Captured ' + draft.destination.kind + ' identity: ' + draft.destination.identity + ' \xB7 source ' + draft.destination.file + ' \xB7 bundle ' + draft.destination.bundle_sha256 : '';
+  ownershipComposition();
+}
+async function loadOwnershipContext(offset = 0, viewId = null) {
+  if (busy || unknown || pending || !editingNode() || dirty && draftKind && draftKind !== 'reparent')
+    return {
+      outcome: 'refused',
+      error: {
+        code: 'retained_edit',
+        detail: 'Resolve the existing edit before inspecting another ownership draft.'
+      }
+    };
+  const ticket = ++ownershipGeneration, targetId = editTargetId, revision = formRevision, bundle = state.projection.bundle_sha256;
+  busy = true;
+  controls();
+  byId('ownership-context-status').textContent = 'Reading source-bound owners and affected views\u2026';
+  try {
+    const result = await api('/api/ownership-context', {
+      element_id: targetId,
+      expected_revision: revision,
+      expected_bundle_sha256: bundle,
+      offset,
+      limit: 25,
+      view_id: viewId
+    });
+    if (ticket !== ownershipGeneration || editTargetId !== targetId || formRevision !== revision || state.projection.bundle_sha256 !== bundle)
+      return { outcome: 'superseded' };
+    ownershipContext = result;
+    ownershipOffset = offset;
+    byId('ownership-context-status').textContent = 'Revision ' + result.revision + ' \xB7 ' + result.total_destinations + ' native destination/file choices \xB7 ' + result.affected_views.length + ' affected physical views.';
+    byId('ownership-previous').disabled = offset === 0;
+    byId('ownership-next').disabled = result.next_offset === null;
+    const draft = ownershipDraft();
+    if (!Array.isArray(draft.views)) {
+      draft.views = result.affected_views.map(row => ({
+        view_id: row.view_id,
+        action: row.required_action === 'preserve_boundary_or_structure' ? 'preserve_structure' : '',
+        parent_node: '',
+        points_text: ''
+      }));
+      retainOwnershipDraft(draft, false);
+    }
+    ownershipOptions();
+    renderOwnershipEffects();
+    return {
+      outcome: 'observed',
+      context: clone(result)
+    };
+  } catch (error) {
+    byId('ownership-context-status').textContent = error.message;
+    return {
+      outcome: 'refused',
+      error: {
+        code: error.code || 'ownership_context',
+        detail: error.message
+      }
+    };
+  } finally {
+    busy = false;
+    controls();
+  }
+}
+function renderOwnershipEffects() {
+  const container = byId('ownership-view-effects'), draft = ownershipDraft();
+  container.replaceChildren();
+  for (const impact of ownershipContext?.affected_views || []) {
+    const row = draft.views.find(row => row.view_id === impact.view_id);
+    if (!row)
+      continue;
+    const field = document.createElement('fieldset'), title = document.createElement('legend');
+    title.textContent = impact.view_id + ' \xB7 ' + (impact.subject_node || 'subtree boundary');
+    field.append(title);
+    const text = document.createElement('p');
+    text.textContent = 'Affected occurrences: ' + impact.affected_nodes.join(', ') + '. Incoming relationship: ' + (impact.incoming_edge || 'none \xB7 view boundary') + '.';
+    field.append(text);
+    if (impact.required_action === 'preserve_boundary_or_structure') {
+      const p = document.createElement('p');
+      p.textContent = 'Retain this view boundary and its existing structure explicitly; native bindings update by engineering identity.';
+      field.append(p);
+    } else {
+      const label = document.createElement('label');
+      label.textContent = 'Explicit view consequence';
+      const action = document.createElement('select');
+      for (const [value, name] of [
+          [
+            '',
+            'Choose a consequence'
+          ],
+          [
+            'reparent',
+            'Retain subtree with the exact new owner frame and a specified route'
+          ],
+          [
+            'remove_occurrences',
+            'Remove these occurrences from this view only'
+          ]
+        ])
+        action.append(new Option(name, value));
+      action.value = row.action;
+      action.onchange = () => {
+        const value = ownershipDraft();
+        value.views.find(v => v.view_id === impact.view_id).action = action.value;
+        retainOwnershipDraft(value);
+        renderOwnershipEffects();
+      };
+      label.append(action);
+      field.append(label);
+      const inspect = document.createElement('button');
+      inspect.type = 'button';
+      inspect.textContent = 'Inspect ' + impact.view_id + ' owner frames and routes';
+      inspect.onclick = () => loadOwnershipContext(ownershipOffset, impact.view_id);
+      field.append(inspect);
+      if (ownershipContext.view_detail?.view_id === impact.view_id) {
+        const detail = ownershipContext.view_detail, pre = document.createElement('pre');
+        pre.style.cssText = 'white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto';
+        pre.textContent = JSON.stringify({
+          view_id: impact.view_id,
+          nodes: Object.fromEntries(Object.entries(detail.projection.nodes).map(([id, node]) => [
+            id,
+            {
+              element: node.element,
+              element_id: node.element_id,
+              parent: node.parent,
+              box: detail.current_layout.nodes[id]
+            }
+          ])),
+          routes: detail.current_layout.edges
+        }, null, 2);
+        field.append(pre);
+        if (row.action === 'reparent') {
+          const parentLabel = document.createElement('label');
+          parentLabel.textContent = 'Exact destination owner occurrence';
+          const parent = document.createElement('select');
+          parent.append(new Option('Choose the native destination frame', ''));
+          for (const [id, node] of Object.entries(detail.projection.nodes))
+            if (node.element === draft.destination_name && !impact.affected_nodes.includes(id))
+              parent.append(new Option(id + ' \xB7 ' + node.element, id));
+          parent.value = row.parent_node;
+          parent.onchange = () => {
+            const value = ownershipDraft();
+            value.views.find(v => v.view_id === impact.view_id).parent_node = parent.value;
+            retainOwnershipDraft(value);
+          };
+          parentLabel.append(parent);
+          field.append(parentLabel);
+          const routeLabel = document.createElement('label');
+          routeLabel.textContent = 'Ownership route (x,y per line; retained boxes stay fixed)';
+          const points = document.createElement('textarea');
+          points.rows = 5;
+          points.cols = 32;
+          points.value = row.points_text || '';
+          points.oninput = () => {
+            const value = ownershipDraft();
+            value.views.find(v => v.view_id === impact.view_id).points_text = points.value;
+            retainOwnershipDraft(value);
+          };
+          routeLabel.append(points);
+          field.append(routeLabel);
+        }
+      }
+      if (row.action === 'remove_occurrences') {
+        const p = document.createElement('p');
+        p.textContent = 'Only these diagram occurrences, their incoming routes and corresponding presentation entries are removed. All engineering declarations and UUIDs remain.';
+        field.append(p);
+      }
+    }
+    container.append(field);
+  }
+}
+byId('ownership-load').onclick = () => loadOwnershipContext();
+byId('ownership-previous').onclick = () => loadOwnershipContext(Math.max(0, ownershipOffset - 25));
+byId('ownership-next').onclick = () => {
+  if (ownershipContext?.next_offset !== null)
+    loadOwnershipContext(ownershipContext.next_offset);
+};
+byId('ownership-destination').onchange = () => {
+  const select = byId('ownership-destination'), draft = ownershipDraft();
+  draft.destination = select.value ? JSON.parse(select.value) : null;
+  draft.destination_name = select.selectedOptions[0]?.dataset.nativeName || null;
+  draft.transition_ack = false;
+  for (const row of draft.views || [])
+    row.parent_node = '';
+  retainOwnershipDraft(draft);
+  ownershipOptions();
+  renderOwnershipEffects();
+};
+byId('ownership-transition').onchange = () => {
+  const draft = ownershipDraft();
+  draft.transition_ack = byId('ownership-transition').checked;
+  retainOwnershipDraft(draft);
+};
+function ownershipPoints(text) {
+  const lines = text.split(/\r?\n/).filter(line => line.trim());
+  if (lines.length < 2 || lines.length > 128)
+    throw Error('Supply 2 through 128 route points.');
+  return lines.map(line => {
+    const pair = line.split(',');
+    if (pair.length !== 2 || pair.some(value => !value.trim() || !Number.isFinite(Number(value))))
+      throw Error('Each route point needs exactly two finite coordinates x,y.');
+    return pair.map(Number);
+  });
+}
+function previewOwnership() {
+  try {
+    const draft = ownershipDraft();
+    if (!editingNode() || !draft.destination)
+      throw Error('Choose a captured native destination.');
+    const transition = ownershipTransition(draft);
+    if (transition && !draft.transition_ack)
+      throw Error('Review and acknowledge the displayed native composition transition.');
+    const viewEffects = (draft.views || []).map(row => row.action === 'reparent' ? {
+      view_id: row.view_id,
+      action: row.action,
+      parent_node: row.parent_node,
+      points: ownershipPoints(row.points_text)
+    } : {
+      view_id: row.view_id,
+      action: row.action
+    });
+    return previewChange(request('reparent', {
+      element_id: editTargetId,
+      destination: draft.destination,
+      composition_transition: transition,
+      view_effects: viewEffects,
+      checked_bundle_sha256: null
+    }), 'Native owner of ' + editingNode()[1].element + ' \u2192 ' + (draft.destination_name || 'Unnamed namespace') + ' \xB7 ' + draft.destination.file);
+  } catch (error) {
+    notice(error.message);
+    return {
+      outcome: 'refused',
+      error: {
+        code: error.code || 'ownership_input',
+        detail: error.message
+      }
+    };
+  }
+}
+function prepareOwnershipCandidateViews() {
+  const select = byId('ownership-candidate-view');
+  select.replaceChildren();
+  if (pending?.request.operation !== 'reparent')
+    return;
+  for (const id of Object.keys(pending.preview.affected_views || {}))
+    select.append(new Option(id, id));
+  if ([...select.options].some(option => option.value === state.projection.id))
+    select.value = state.projection.id;
+  byId('ownership-candidate-status').textContent = 'Checked bundle ' + pending.request.checked_bundle_sha256 + '. Inspect every affected view and complete retained findings before saving.';
+}
+byId('ownership-candidate-view').onchange = () => {
+  showCandidate(null);
+  byId('ownership-candidate-status').textContent = 'Inspect this affected view to display its checked SVG.';
+  controls();
+};
+byId('ownership-candidate-ack').onchange = () => {
+  draftGeneration++;
+  controls();
+};
+byId('ownership-show-candidate').onclick = async () => {
+  if (busy || unknown || !pending || pending.stale || pending.request.operation !== 'reparent')
+    return;
+  const captured = pending, view = byId('ownership-candidate-view').value;
+  if (!view)
+    return;
+  busy = true;
+  controls();
+  showCandidate(null);
+  try {
+    const result = await api('/api/preview-view', {
+      request: captured.request,
+      view_id: view
+    });
+    if (pending !== captured || unknown || byId('ownership-candidate-view').value !== view)
+      return;
+    if (result.candidate_bundle_sha256 !== captured.request.checked_bundle_sha256 || result.request_sha256 !== captured.preview.request_sha256 || result.view_id !== view)
+      throw Error('Affected drawing does not match the captured candidate request.');
+    const actual = [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(result.candidate_svg)))].map(v => v.toString(16).padStart(2, '0')).join('');
+    if (pending !== captured || unknown || byId('ownership-candidate-view').value !== view)
+      return;
+    if (actual !== captured.preview.affected_views[view].candidate_svg_sha256)
+      throw Error('Affected candidate SVG digest changed.');
+    showCandidate(result.candidate_svg);
+    byId('ownership-candidate-status').textContent = view + ' \xB7 checked unsaved bundle ' + result.candidate_bundle_sha256;
+  } catch (error) {
+    byId('ownership-candidate-status').textContent = error.message;
+  } finally {
+    busy = false;
+    controls();
+  }
+};
+function sourceHeaders() {
+  return byId('source-mode').value === 'candidate' ? pending?.preview?.candidate_model_sources || [] : state?.model_sources || [];
+}
+function clearSourceRead() {
+  sourceGeneration++;
+  sourceReadBusy = false;
+  sourceReadState = null;
+  byId('source-text').textContent = '';
+  byId('source-text').hidden = true;
+  byId('source-status').textContent = 'Choose a source snapshot and file. Read chunks without changing the model or retained review scope.';
+}
+function sourceControls() {
+  const mode = byId('source-mode'), select = byId('source-file');
+  mode.querySelector('[value=candidate]').disabled = !pending;
+  if (mode.value === 'candidate' && !pending)
+    mode.value = 'saved';
+  const headers = sourceHeaders(), key = JSON.stringify([
+      mode.value,
+      state?.commit,
+      mode.value === 'candidate' ? pending?.preview?.request_sha256 : null,
+      headers
+    ]);
+  if (key !== sourceOptionsKey) {
+    const selected = select.value;
+    sourceOptionsKey = key;
+    clearSourceRead();
+    select.replaceChildren();
+    for (const row of headers)
+      select.append(new Option(row.file + ' \xB7 ' + row.codepoints + ' codepoints', row.file));
+    if ([...select.options].some(option => option.value === selected))
+      select.value = selected;
+  }
+  byId('source-read').disabled = !state || !select.value || sourceReadBusy || unknown && mode.value === 'candidate';
+  byId('source-next').disabled = !sourceReadState || sourceReadState.next_offset === null || sourceReadBusy || unknown && mode.value === 'candidate';
+}
+async function sourceHash(text) {
+  return [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)))].map(v => v.toString(16).padStart(2, '0')).join('');
+}
+async function readSource(next = false) {
+  if (!state || sourceReadBusy)
+    return;
+  const mode = byId('source-mode').value, file = byId('source-file').value, header = sourceHeaders().find(row => row.file === file), captured = mode === 'candidate' ? pending : null;
+  if (!header || mode === 'candidate' && (!captured || unknown))
+    return;
+  if (!next) {
+    clearSourceRead();
+    sourceReadState = {
+      mode,
+      file,
+      text: '',
+      next_offset: 0,
+      header,
+      commit: state.commit,
+      request_sha256: captured?.preview?.request_sha256 || null,
+      bundle_sha256: captured?.preview?.candidate_bundle_sha256 || state.projection.bundle_sha256
+    };
+  }
+  const retained = sourceReadState;
+  if (!retained || retained.next_offset === null)
+    return;
+  const ticket = sourceGeneration, commit = state.commit, offset = retained.next_offset;
+  const current = () => ticket === sourceGeneration && sourceReadState === retained && state.commit === commit && byId('source-mode').value === mode && byId('source-file').value === file && (mode !== 'candidate' || pending === captured);
+  sourceReadBusy = true;
+  sourceControls();
+  byId('source-status').textContent = 'Reading exact ' + mode + ' SysML\u2026';
+  try {
+    const response = await api('/api/source', {
+      expected_revision: state.revision,
+      expected_bundle_sha256: state.projection.bundle_sha256,
+      request: captured?.request || null,
+      file,
+      offset,
+      limit: 32768
+    });
+    if (!current())
+      return;
+    if (response.snapshot !== mode || response.base_commit !== commit || response.bundle_sha256 !== retained.bundle_sha256 || response.request_sha256 !== retained.request_sha256 || response.file !== file || response.file_sha256 !== header.sha256 || response.file_codepoints !== header.codepoints || response.offset !== offset || response.offset_units !== 'unicode_codepoints' || typeof response.text !== 'string')
+      throw Error('Source response does not match the captured snapshot/file.');
+    const count = [...response.text].length, end = offset + count;
+    if (end > header.codepoints || response.next_offset !== (end < header.codepoints ? end : null))
+      throw Error('Source page boundaries do not match the exact file.');
+    const digest = await sourceHash(response.text);
+    if (!current())
+      return;
+    if (digest !== response.chunk_sha256)
+      throw Error('Source chunk bytes changed.');
+    const text = retained.text + response.text;
+    if (response.next_offset === null) {
+      const complete = await sourceHash(text);
+      if (!current())
+        return;
+      if (complete !== header.sha256)
+        throw Error('Complete source bytes do not match their file digest.');
+    }
+    retained.text = text;
+    retained.next_offset = response.next_offset;
+    byId('source-text').textContent = text;
+    byId('source-text').hidden = false;
+    byId('source-status').textContent = (mode === 'candidate' ? 'Checked candidate snapshot' : 'Saved revision ' + response.revision) + ' \xB7 ' + file + ' \xB7 ' + end + '/' + header.codepoints + ' codepoints \xB7 ' + header.sha256 + (response.next_offset === null ? ' \xB7 complete exact file' : ' \xB7 more source remains');
+    notifyContext();
+  } catch (error) {
+    if (current())
+      byId('source-status').textContent = 'Source read unavailable: ' + error.message;
+  } finally {
+    if (current()) {
+      sourceReadBusy = false;
+      sourceControls();
+    }
+  }
+}
+byId('source-mode').onchange = () => {
+  sourceOptionsKey = null;
+  sourceControls();
+};
+byId('source-file').onchange = () => {
+  clearSourceRead();
+  sourceControls();
+};
+byId('source-read').onclick = () => readSource();
+byId('source-next').onclick = () => readSource(true);
+
 globalThis.cseWorkbench=Object.freeze({
   context:workbenchContext,
   subscribe(subscriber){if(typeof subscriber!=='function')throw TypeError('Supply a context listener.');contextSubscribers.add(subscriber);notifyContext();return()=>contextSubscribers.delete(subscriber);},

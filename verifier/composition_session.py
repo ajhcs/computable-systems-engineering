@@ -4,6 +4,7 @@ This adapter exercises direct interaction against the existing Git transactions.
 It does not implement hosted account authorization or either application host.
 """
 from copy import deepcopy
+from hashlib import sha256
 from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -13,16 +14,18 @@ from threading import RLock
 from urllib.parse import urlsplit, parse_qs
 
 from .composition_edit import EditError
-from .composition_project import CompositionProject
+from .composition_project import CompositionProject, request_digest
 from .composition_records import strict_json
 from .composition_view import artifact_files, render
+from .composition_source import files as source_files
 
 ROOT = Path(__file__).resolve().parents[1]
 MAX_BODY = 1_000_000
 DEFINITE_REFUSALS = frozenset(('stale_revision', 'request_reuse', 'input', 'request_id',
     'name', 'identity', 'name_collision', 'multiplicity', 'element_kind', 'reference_form', 'unresolved_reference',
     'semantic_delta', 'reference_delta', 'overlapping_edits', 'linked_records',
-    'source_span', 'native_diagnostics', 'reconciliation', 'presentation_conflict', 'file_name'))
+    'source_span', 'native_diagnostics', 'reconciliation', 'presentation_conflict', 'file_name',
+    'owner', 'same_owner', 'ownership_cycle', 'composition_transition', 'checked_candidate', 'reference_limit'))
 
 
 class CompositionSession:
@@ -31,6 +34,7 @@ class CompositionSession:
         self.view_id = view_id
         self.lock = RLock()
         self.cache = None
+        self.prepared = None
 
     def _refresh(self):
         if self.cache is None or self.cache['state']['commit'] != self.project.head():
@@ -42,10 +46,11 @@ class CompositionSession:
                      'display_title': drawing['display_title'], 'display_labels': drawing['display_labels'],
                      'configuration_reviews': deepcopy(snapshot['document'].configuration_reviews),
                      'reconciliation': deepcopy(snapshot['document'].reconciliation),
+                     'model_sources': source_files(snapshot['document']),
                      'history': [{key: row[key] for key in ('revision', 'operation', 'restored_from_revision')}
                                  for row in self.project.history()],
                      'claim': 'local_saved_project_not_hosted_or_application_qualified'}
-            self.cache = {'state': state, 'files': files}
+            self.cache = {'state': state, 'files': files, 'document': snapshot['document']}
         return self.cache
 
     def state(self):
@@ -68,6 +73,71 @@ class CompositionSession:
         with self.lock:
             return self._refresh()['files'][name]
 
+    def ownership_context(self, *, element_id, expected_revision, expected_bundle_sha256, offset, limit, view_id):
+        from .composition_ownership import destinations
+        from .composition_ownership_views import consequences
+        with self.lock:
+            cache = self._refresh()
+            state, document = cache['state'], cache['document']
+            if (type(expected_revision) is not int or not isinstance(expected_bundle_sha256, str)
+                    or type(offset) is not int or offset < 0 or type(limit) is not int or not 1 <= limit <= 100
+                    or not isinstance(element_id, str) or view_id is not None and not isinstance(view_id, str)):
+                raise EditError('input', 'Ownership context needs a captured target/revision/bundle and bounded destination page')
+            if expected_revision != state['revision'] or expected_bundle_sha256 != document.revision:
+                raise EditError('stale_revision', 'Project changed before ownership context inspection')
+            impacts, choices = consequences(document, element_id), destinations(document)
+            if offset > len(choices):
+                raise EditError('input', 'Ownership destination offset exceeds its inventory')
+            selected = next((row for row in impacts if row['view_id'] == view_id), None)
+            if view_id is not None and selected is None:
+                raise EditError('input', 'Requested ownership view is not affected by this captured declaration')
+            return {'project_id': document.project_id, 'element_id': element_id,
+                    'revision': state['revision'], 'commit': state['commit'], 'bundle_sha256': document.revision,
+                    'destinations': choices[offset:offset+limit], 'total_destinations': len(choices),
+                    'next_offset': offset+limit if offset+limit < len(choices) else None,
+                    'affected_views': [{key: value for key, value in row.items() if key != 'current_layout'} for row in impacts],
+                    'view_detail': {**selected, 'projection': render(document, view_id)['projection']} if selected else None}
+
+    def preview_view(self, request, view_id):
+        with self.lock:
+            if (not isinstance(request, dict) or request.get('operation') != 'reparent'
+                    or request.get('checked_bundle_sha256') is None or not isinstance(view_id, str)
+                    or view_id not in {row.get('view_id') for row in request.get('view_effects', []) if isinstance(row, dict)}):
+                raise EditError('input', 'Choose one affected view from the exact checked ownership request')
+            candidate = self._prepared_candidate(request)
+            drawing = render(candidate['document'], view_id)
+            return {'view_id': view_id, 'candidate_svg': drawing['svg'],
+                    'candidate_bundle_sha256': candidate['document'].revision,
+                    'base_revision': candidate['base_revision'], 'request_sha256': candidate['request_sha256'],
+                    'claim': 'one_unsaved_checked_view_not_a_transaction_receipt'}
+
+    def _prepared_candidate(self, request):
+        request = self.project._validate_request(request)
+        head, digest = self.project.head(), request_digest(request)
+        if self.prepared and self.prepared['base_commit'] == head and self.prepared['request_sha256'] == digest:
+            return self.prepared
+        candidate = self.project.preview(request)
+        self.prepared = candidate
+        return candidate
+
+    def read_source(self, *, expected_revision, expected_bundle_sha256, request, file, offset, limit):
+        from .composition_source import chunk
+        with self.lock:
+            saved = self._refresh()
+            state, document = saved['state'], saved['document']
+            if (type(expected_revision) is not int or not isinstance(expected_bundle_sha256, str)
+                    or request is not None and not isinstance(request, dict)):
+                raise EditError('input', 'Source inspection needs its captured revision/bundle and optional exact candidate request')
+            if expected_revision != state['revision'] or expected_bundle_sha256 != document.revision:
+                raise EditError('stale_revision', 'Project changed before source inspection')
+            digest = None
+            if request is not None:
+                candidate = self._prepared_candidate(request)
+                document, digest = candidate['document'], candidate['request_sha256']
+            return {**chunk(document, file, offset, limit), 'revision': state['revision'],
+                    'base_commit': state['commit'], 'snapshot': 'candidate' if request is not None else 'saved',
+                    'request_sha256': digest}
+
     def page_state(self):
         with self.lock:
             cache = self._refresh()
@@ -77,8 +147,9 @@ class CompositionSession:
         with self.lock:
             if isinstance(request, dict) and request.get('operation') in ('create_definition', 'create_usage') and request.get('view_id') != self.view_id:
                 raise EditError('input', 'Creation must use this session view')
-            candidate = self.project.preview(request)
-            document = candidate.pop('document')
+            prepared = self._prepared_candidate(request)
+            document = prepared['document']
+            candidate = {key: deepcopy(value) for key, value in prepared.items() if key != 'document'}
             drawing = render(document, self.view_id)
             if request.get('operation') in ('create_definition', 'create_usage'):
                 if request['view_id'] != self.view_id:
@@ -87,10 +158,16 @@ class CompositionSession:
                 candidate['created_element'] = next((node for node in drawing['projection']['nodes'].values()
                     if node['element_id'] == request['element_id']),
                     drawing['projection']['inspection']['occurrences']['decl:'+request['element_id']])
-            if request.get('operation') == 'set_types':
+            if request.get('operation') in ('set_types', 'reparent'):
                 candidate['candidate_svg'] = drawing['svg']
                 candidate['edited_element'] = drawing['projection']['inspection']['occurrences']['decl:'+request['element_id']]
+            if request.get('operation') == 'reparent':
+                candidate['ownership_change'] = deepcopy(document.ownership_change)
+                candidate['affected_views'] = {effect['view_id']: {
+                    'candidate_svg_sha256': sha256(render(document, effect['view_id'])['svg'].encode()).hexdigest(),
+                    'view_effect': deepcopy(effect)} for effect in request['view_effects']}
             return {**candidate, 'candidate_bundle_sha256': document.revision,
+                    'candidate_model_sources': source_files(document),
                     'configuration_reviews': deepcopy(document.configuration_reviews),
                     'reconciliation': deepcopy(document.reconciliation),
                     'claim': 'unsaved_candidate_not_a_transaction_receipt'}
@@ -268,6 +345,18 @@ class CompositionHandler(BaseHTTPRequestHandler):
                 if set(body) != {'expected_revision', 'expected_bundle_sha256', 'origin', 'offset', 'limit'}:
                     raise EditError('input', 'Supply exactly the inspection snapshot and page fields')
                 return self._send(200, self.server.session.inspect_page(**body))
+            if self.path == '/api/ownership-context':
+                if set(body) != {'element_id', 'expected_revision', 'expected_bundle_sha256', 'offset', 'limit', 'view_id'}:
+                    raise EditError('input', 'Supply exactly the ownership target/snapshot, destination page and selected affected view')
+                return self._send(200, self.server.session.ownership_context(**body))
+            if self.path == '/api/preview-view':
+                if set(body) != {'request', 'view_id'}:
+                    raise EditError('input', 'Supply exactly the checked ownership request and one affected view')
+                return self._send(200, self.server.session.preview_view(body['request'], body['view_id']))
+            if self.path == '/api/source':
+                if set(body) != {'expected_revision', 'expected_bundle_sha256', 'request', 'file', 'offset', 'limit'}:
+                    raise EditError('input', 'Supply exactly the source snapshot, optional checked request, file and bounded page')
+                return self._send(200, self.server.session.read_source(**body))
             return self._send(404, {'error': {'code': 'not_found', 'detail': 'Unknown route'}})
         except (ValueError, OSError, TypeError, RecursionError) as exc:
             self._error(exc)

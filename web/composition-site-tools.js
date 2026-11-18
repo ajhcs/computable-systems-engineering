@@ -11,6 +11,9 @@
     navigation_revision:{type:'integer',minimum:0},viewport_mode:{enum:['overview','readable']},viewport_left:{type:'number'},viewport_top:{type:'number'}});
   const boxSchema=object(Object.fromEntries(['x','y','width','height'].map(key=>[key,{type:'number'}])));
   const placementSchema={anyOf:[{type:'null'},object({box:boxSchema,points:{type:'array',minItems:2,maxItems:128,items:{type:'array',minItems:2,maxItems:2,items:{type:'number'}}}})]};
+  const ownerTarget=object({kind:{enum:['PartDefinition','PartUsage','Package','Namespace']},identity:text,file:text,bundle_sha256:text});
+  const compositionTransition={anyOf:[{type:'null'},object({before:{type:'boolean'},after:{type:'boolean'}})]};
+  const ownershipEffects={type:'array',maxItems:128,items:{oneOf:[object({view_id:text,action:{enum:['preserve_structure','remove_occurrences']}}),object({view_id:text,action:{const:'reparent'},parent_node:text,points:{type:'array',minItems:2,maxItems:128,items:{type:'array',minItems:2,maxItems:2,items:{type:'number'}}}})]}};
   const changeFields={operation:text,request_id:text,expected_revision:integer};
   const multiplicityBound={type:'integer',minimum:0,maximum:2147483647};
   const usageMultiplicitySchema={anyOf:[{type:'null'},object({lower:multiplicityBound,upper:multiplicityBound})]};
@@ -18,6 +21,7 @@
     object({...changeFields,operation:{const:'rename'},element_id:text,new_name:text}),
     object({...changeFields,operation:{const:'create_definition'},owner_id:text,element_id:text,new_name:text,short_id:nullableText,view_id:text,placement:placementSchema}),
     object({...changeFields,operation:{const:'create_usage'},owner_id:text,element_id:text,new_name:text,short_id:nullableText,type_id:nullableText,is_composite:{type:'boolean'},multiplicity:usageMultiplicitySchema,view_id:text,placement:placementSchema}),
+    object({...changeFields,operation:{const:'reparent'},element_id:text,destination:ownerTarget,composition_transition:compositionTransition,view_effects:ownershipEffects,checked_bundle_sha256:nullableText}),
     object({...changeFields,operation:{const:'set_types'},element_id:text,type_ids:{type:'array',maxItems:128,uniqueItems:true,items:text}}),
     object({...changeFields,operation:{const:'set_multiplicity'},element_id:text,lower:multiplicityBound,upper:multiplicityBound}),
     object({...changeFields,operation:{const:'set_layout'},layout:{type:'object'}}),
@@ -94,6 +98,26 @@
       if(args.placement!==null){for(const [key,value]of Object.entries(args.placement.box))byId('usage-'+key).value=value;byId('usage-points').value=args.placement.points.map(p=>p.join(',')).join('\n');}
       dirty=true;return await previewCreateUsage();
     }],
+    ['cse_read_model_source','Read an exact bounded SysML chunk from the captured saved project or an exact checked candidate. Codepoint offsets and chunk/file digests preserve Unicode and line endings. Source selection never replaces complete retained review scope. Available without requiring a rendered diagram when model context is initialized.',{guard:guardSchema,request:{anyOf:[{type:'null'},requestSchema]},file:text,offset:{type:'integer',minimum:0},limit:{type:'integer',minimum:1,maximum:65536}},true,async args=>{
+      const actual=context();if(!initialized||!state)fail('source_unavailable','Wait for native model context.');exact(args.guard,Object.keys(actual.guard));if(Object.keys(actual.guard).some(key=>args.guard[key]!==actual.guard[key]))fail('stale_context','Read current model context before source inspection.');return{outcome:'observed',...await api('/api/source',{expected_revision:state.revision,expected_bundle_sha256:state.projection.bundle_sha256,request:args.request,file:args.file,offset:args.offset,limit:args.limit})};
+    }],
+    ['cse_read_ownership_context','Read a bounded native owner/file page and every affected physical view for a captured declaration. Namespace source locators are valid only for their returned bundle. Optionally inspect one affected view’s exact frame bindings and geometry. This does not select an owner, edit a draft, or change retained review scope.',{guard:guardSchema,element_id:text,offset:{type:'integer',minimum:0},limit:{type:'integer',minimum:1,maximum:100},affected_view:nullableText},true,async args=>{
+      checkGuard(args.guard);return{outcome:'observed',...await api('/api/ownership-context',{element_id:args.element_id,expected_revision:state.revision,expected_bundle_sha256:state.projection.bundle_sha256,offset:args.offset,limit:args.limit,view_id:args.affected_view})};
+    }],
+    ['cse_preview_ownership','Preview a native owner change on the exact selected declaration and its subtree, preserving UUIDs. Use a bundle-bound destination and explicit consequences for every affected physical view. Preserve diagram boxes; supply the new owner frame/route or remove occurrences only. Scope remains unchanged and is checked again. Review the checked candidate before saving.',{guard:guardSchema,element_id:text,destination:ownerTarget,composition_transition:compositionTransition,view_effects:ownershipEffects},false,async args=>{
+      checkGuard(args.guard);cleanTarget(args.element_id);exact(args.destination,['kind','identity','file','bundle_sha256']);
+      if(args.destination.bundle_sha256!==state.projection.bundle_sha256)fail('stale_context','Inspect native destinations again for this source bundle.');
+      if(!Array.isArray(args.view_effects)||args.view_effects.length>128)fail('input','Supply complete explicit affected-view consequences.');
+      const views=args.view_effects.map(effect=>{if(effect.action==='reparent'){exact(effect,['view_id','action','parent_node','points']);if(!Array.isArray(effect.points)||effect.points.length<2||effect.points.length>128||effect.points.some(p=>!Array.isArray(p)||p.length!==2||!p.every(Number.isFinite)))fail('input','Ownership routes need 2 through 128 finite coordinate pairs.');}else{exact(effect,['view_id','action']);if(!['remove_occurrences','preserve_structure'].includes(effect.action))fail('input','Choose the documented explicit view consequence.');}return{view_id:effect.view_id,action:effect.action,parent_node:effect.parent_node||'',points_text:effect.points?.map(p=>p.join(',')).join('\n')||''}});
+      if(args.composition_transition!==null){exact(args.composition_transition,['before','after']);if(Object.values(args.composition_transition).some(value=>typeof value!=='boolean'))fail('input','Composition transition needs exact native booleans.');}
+      const row=state.projection.inspection.occurrences['decl:'+args.destination.identity];
+      const draft={destination:args.destination,destination_name:row?.element||args.destination.kind+' '+args.destination.identity,transition_ack:args.composition_transition!==null,views};
+      const actual=ownershipTransition(draft);if(JSON.stringify(actual)!==JSON.stringify(args.composition_transition))fail('composition_transition','Supplied composition transition differs from the captured declaration and owner kind.');
+      retainOwnershipDraft(draft);ownershipOptions();return await previewOwnership();
+    }],
+    ['cse_acknowledge_ownership_candidate','Confirm review of the exact checked ownership candidate and all affected view consequences. Acknowledgement is bound to this pending request and bundle; it is separate from a durable save, successful retained review or engineering acceptance.',{guard:guardSchema,request_id:text,checked_bundle_sha256:text},false,args=>{
+      checkGuard(args.guard);if(unknown||!pending||pending.stale||pending.request.operation!=='reparent'||pending.request.request_id!==args.request_id||pending.request.checked_bundle_sha256!==args.checked_bundle_sha256)fail('pending_request','Review the current exact ownership candidate before acknowledging it.');byId('ownership-candidate-ack').checked=true;byId('ownership-candidate-ack').dispatchEvent(new Event('change'));return{outcome:'reviewed',request_id:args.request_id,checked_bundle_sha256:args.checked_bundle_sha256};
+    }],
     ['cse_preview_types','Prepare the complete explicit typing list on the selected native part usage. Supply distinct existing part-definition UUIDs in order, or [] to remove explicit typing. Implied/inherited types and retained configuration scope remain separate; editing a shared declaration affects its consumers. Preview and save use the same native controller as the form.',{guard:guardSchema,element_id:text,type_ids:{type:'array',maxItems:128,uniqueItems:true,items:text}},false,async args=>{
       checkGuard(args.guard);cleanTarget(args.element_id);
       if(editingNode()?.[1].kind!=='PartUsage')fail('element_kind','Explicit feature typing belongs to a part usage.');
@@ -119,11 +143,11 @@
       if(!Number.isInteger(args.target_revision)||!state.history.some(row=>row.revision===args.target_revision))fail('input','Select a saved revision of this project.');
       byId('restore-target').value=args.target_revision;return await previewRestore();
     }],
-    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose owned-definition creation, declared-name, multiplicity, explicit typing, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['create_definition','create_usage','rename','multiplicity','typing','layout','restore']}},false,async args=>{
+    ['cse_preview_current_edit','Check the existing visible form values on their retained editing target. Does not replace or retarget a human draft. Choose owned-definition creation, declared-name, multiplicity, explicit typing, frame-layout or whole-project restoration explicitly; save separately.',{guard:guardSchema,kind:{enum:['create_definition','create_usage','rename','multiplicity','typing','reparent','layout','restore']}},false,async args=>{
       checkGuard(args.guard);
       if(unknown||pending||!editingNode()&&args.kind!=='restore')fail('retained_edit','Resolve the pending change or unconfirmed save before another preview.');
       if(dirty&&draftKind&&draftKind!==args.kind)fail('retained_edit','Check the existing draft in its own form, or explicitly discard it first.');
-      const previews={create_definition:previewCreateDefinition,create_usage:previewCreateUsage,rename:previewRename,multiplicity:previewMultiplicity,typing:previewTyping,layout:previewLayout,restore:previewRestore};
+      const previews={create_definition:previewCreateDefinition,create_usage:previewCreateUsage,rename:previewRename,multiplicity:previewMultiplicity,typing:previewTyping,reparent:previewOwnership,layout:previewLayout,restore:previewRestore};
       if(typeof args.kind!=='string'||!Object.hasOwn(previews,args.kind))fail('input','Choose create_definition, create_usage, rename, multiplicity, typing, layout or restore.');
       const preview=previews[args.kind];
       return await preview();

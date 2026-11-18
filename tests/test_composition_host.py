@@ -68,6 +68,44 @@ assert.equal(called.name,'cse_apply_composition_change');assert.deepEqual(called
 assert.deepEqual(result,{status:409,body:native.body});assert.equal(result.body.error.definitive_refusal,true);
 """)
 
+    def test_ownership_reads_keep_granted_view_distinct_from_affected_view(self):
+        self.run_js("""
+const calls=[],app={callServerTool:async args=>{calls.push(args);return{_meta:{cse_native:{http_status:200,body:{revision:4}}}}}};
+const host=createMcpCompositionHost(app,boot,storage);
+const payload={element_id:'captured',expected_revision:4,expected_bundle_sha256:'source',offset:0,limit:25,view_id:'PC_DETAIL_LEFT'};
+await host.request({operation:'ownership_context',payload});
+assert.equal(calls[0].name,'cse_read_composition_ownership_context');
+assert.equal(calls[0].arguments.project_id,boot.project_id);
+assert.equal(calls[0].arguments.view_id,boot.view_id);
+assert.equal(calls[0].arguments.affected_view_id,'PC_DETAIL_LEFT');
+assert.equal(calls[0].arguments.element_id,'captured');
+await assert.rejects(host.request({operation:'ownership_context',payload:{...payload,project_id:'other'}}));
+assert.equal(calls.length,1);
+const request={operation:'reparent',request_id:'same',checked_bundle_sha256:'checked'};
+await host.request({operation:'preview_view',payload:{request,view_id:'PC_DETAIL_LEFT'}});
+assert.equal(calls[1].name,'cse_read_composition_candidate_view');
+assert.equal(calls[1].arguments.view_id,boot.view_id);
+assert.equal(calls[1].arguments.affected_view_id,'PC_DETAIL_LEFT');
+assert.deepEqual(calls[1].arguments.request,request);
+await assert.rejects(host.request({operation:'preview_view',payload:{request,view_id:'PC_DETAIL_LEFT',project_id:'other'}}));
+assert.equal(calls.length,2);
+""")
+
+    def test_source_chunks_cannot_replace_granted_project_or_view(self):
+        self.run_js("""
+const calls=[],app={callServerTool:async args=>{calls.push(args);return{_meta:{cse_native:{http_status:200,body:{text:'exact',offset:0}}}}}};
+const host=createMcpCompositionHost(app,boot,storage);
+const payload={expected_revision:4,expected_bundle_sha256:'snapshot',request:null,file:'model.sysml',offset:0,limit:25};
+const result=await host.request({operation:'source',payload});
+assert.equal(calls[0].name,'cse_read_composition_source');
+assert.equal(calls[0].arguments.project_id,boot.project_id);assert.equal(calls[0].arguments.view_id,boot.view_id);
+assert.equal(calls[0].arguments.file,'model.sysml');assert.equal(calls[0].arguments.request,null);
+assert.equal(result.body.text,'exact');
+await assert.rejects(host.request({operation:'source',payload:{...payload,project_id:'other'}}));
+await assert.rejects(host.request({operation:'source',payload:{...payload,view_id:'other'}}));
+assert.equal(calls.length,1);
+""")
+
     def test_missing_native_response_is_unknown_transport(self):
         self.run_js("""
 const host=createMcpCompositionHost({callServerTool:async()=>({content:[{type:'text',text:'success'}]})},boot,storage);

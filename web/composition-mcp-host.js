@@ -1,7 +1,7 @@
 // Transport and context only. The supplied MCP client owns authentication;
 // the server owns project authorization, native findings and durable receipts.
 const toolNames=Object.freeze({state:'cse_read_composition_state',head:'cse_read_composition_head',
-  inspection:'cse_read_composition_occurrences',preview:'cse_preview_composition_change',
+  inspection:'cse_read_composition_occurrences',source:'cse_read_composition_source',ownership_context:'cse_read_composition_ownership_context',preview_view:'cse_read_composition_candidate_view',preview:'cse_preview_composition_change',
   apply:'cse_apply_composition_change',receipt:'cse_lookup_composition_receipt'});
 export function createMcpCompositionHost(app,boot,storage){
   const uuid=value=>typeof value==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
@@ -16,6 +16,19 @@ export function createMcpCompositionHost(app,boot,storage){
       if(operation==='inspection'){
         if(!payload||Object.hasOwn(payload,'project_id')||Object.hasOwn(payload,'view_id'))throw Error('Inspection cannot replace the granted project or view.');
         Object.assign(args,payload);
+      }else if(operation==='source'){
+        const keys=['expected_revision','expected_bundle_sha256','request','file','offset','limit'];
+        if(!payload||Object.keys(payload).length!==keys.length||keys.some(key=>!Object.hasOwn(payload,key)))throw Error('Source read needs the exact snapshot, optional candidate request, file and bounded chunk.');
+        Object.assign(args,payload);
+      }else if(operation==='ownership_context'){
+        const keys=['element_id','expected_revision','expected_bundle_sha256','offset','limit','view_id'];
+        if(!payload||Object.keys(payload).length!==keys.length||keys.some(key=>!Object.hasOwn(payload,key))||
+            payload.view_id!==null&&typeof payload.view_id!=='string')throw Error('Ownership inspection needs its captured target, bounded page and optional affected view.');
+        const {view_id:affected_view_id,...fields}=payload;
+        Object.assign(args,fields,{affected_view_id});
+      }else if(operation==='preview_view'){
+        if(!payload||Object.keys(payload).length!==2||!Object.hasOwn(payload,'request')||typeof payload.view_id!=='string')throw Error('Choose one affected candidate view and exact checked request.');
+        args.request=payload.request;args.affected_view_id=payload.view_id;
       }else if(payload!==undefined)args.request=payload;
       const result=await app.callServerTool({name:toolNames[operation],arguments:args});
       const native=result._meta?.cse_native;
@@ -59,9 +72,10 @@ export function compositionModelContext(context){
   const {ready,host_transport,view_status,guard,editing_target,has_form_draft,draft_kind,unconfirmed_save,notice,last_acknowledged_receipt}=context;
   const request=context.pending_change?.request;
   return{ready,host_transport,view_status,guard,editing_target,has_form_draft,draft_kind,unconfirmed_save,notice,last_acknowledged_receipt,
-    selected_occurrence:context.selection,typing_draft:context.typing_draft,creation_draft:context.creation_draft,usage_creation_draft:context.usage_creation_draft,restoration_target_revision:context.restoration_target_revision,
+    selected_occurrence:context.selection,source_inspection:context.source_inspection,model_sources:context.model_sources,typing_draft:context.typing_draft,ownership_draft:context.ownership_draft,creation_draft:context.creation_draft,usage_creation_draft:context.usage_creation_draft,restoration_target_revision:context.restoration_target_revision,
     phase:context.phase,initial_state:context.initial_state,raw_draft:context.raw_draft,candidate_ready:context.candidate_ready,
     pending_request:request?{request_id:request.request_id,operation:request.operation,expected_revision:request.expected_revision,
+      ...(request.operation==='reparent'?{checked_bundle_sha256:request.checked_bundle_sha256}:{}),
       ...(request.operation==='initialize_physical_project'?{expected_bundle_sha256:request.expected_bundle_sha256}:{} )}:null,
     retained_review_identities:(context.configuration_reviews||[]).map(review=>({file:review.file,scope_sha256:review.scope_sha256,status:review.report.status})),
     scope:'selected_ui_context_never_replaces_complete_retained_review'};

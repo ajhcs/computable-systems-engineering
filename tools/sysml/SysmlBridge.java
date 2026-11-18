@@ -164,10 +164,16 @@ public final class SysmlBridge {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("encoding", "utf16");
         var node = NodeModelUtils.getNode(element);
+        if (element instanceof org.omg.sysml.lang.sysml.Namespace) {
+            var definition = parent(element, PartDefinition.class);
+            result.put("enclosing_part_definition", definition == null ? null : definition.getQualifiedName());
+            result.put("has_part_usage_ancestor", parent(element, PartUsage.class) != null);
+        }
         if (node != null) {
             result.put("offset", node.getOffset());
             result.put("length", node.getLength());
-            if ((element instanceof PartDefinition || element instanceof PartUsage)
+            if ((element instanceof PartDefinition || element instanceof PartUsage
+                    || element instanceof org.omg.sysml.lang.sysml.Package)
                     && element instanceof org.omg.sysml.lang.sysml.Namespace namespace) {
                 INode last = null;
                 for (var leaf : node.getLeafNodes()) if (!leaf.isHidden() && leaf.getLength() > 0) last = leaf;
@@ -184,16 +190,26 @@ public final class SysmlBridge {
                 }
                 result.put("member_names", new ArrayList<>(names));
             }
-            if (element instanceof PartDefinition && element.getQualifiedName() != null) {
+            if (element instanceof org.omg.sysml.lang.sysml.Namespace && element.getQualifiedName() != null) {
                 // Canonical identities may contain quoted separators or source
                 // keywords. Let the native converter recover their segments;
                 // never split a qualified identity on a textual delimiter.
+                result.put("qualified_reference", sourceReference(element.getQualifiedName()));
                 var qualified = new SysMLQualifiedNameConverter().toQualifiedName(element.getQualifiedName());
-                result.put("qualified_reference", qualified.getSegments().stream()
-                        .map(SysmlBridge::sourceName).collect(java.util.stream.Collectors.joining("::")));
+                result.put("local_reference", sourceName(qualified.getLastSegment()));
+                result.put("local_identity", ElementUtil.escapeName(qualified.getLastSegment()));
             }
         }
-        if (element instanceof PartUsage part) result.put("typing_sources", typingSourceFacts(part));
+        if (element instanceof PartUsage part) {
+            result.put("typing_sources", typingSourceFacts(part));
+            boolean authoredReference = false;
+            if (node != null) for (var leaf : node.getLeafNodes()) {
+                if (leaf.isHidden() || !(leaf.getGrammarElement() instanceof Keyword)) continue;
+                if (leaf.getText().equals("part")) break;
+                if (leaf.getText().equals("ref")) authoredReference = true;
+            }
+            result.put("authored_reference", authoredReference);
+        }
         var feature = element.eClass().getEStructuralFeature("declaredName");
         if (feature != null) {
             var names = NodeModelUtils.findNodesForFeature(element, feature);
@@ -306,6 +322,19 @@ public final class SysmlBridge {
                 segment.put("name", name);
                 segment.put("kind", kind);
                 segment.put("target", element.getQualifiedName());
+                if (kind.equals("alias_name") || kind.equals("alias_short_name")) {
+                    var alias = NodeModelUtils.getNode(membership);
+                    boolean external = membership.eResource() != object.eResource();
+                    segment.put("alias_is_external", external);
+                    var aliasOwner = membership.getMembershipOwningNamespace();
+                    if (aliasOwner != null && aliasOwner.getQualifiedName() != null) {
+                        segment.put("alias_owner", aliasOwner.getQualifiedName());
+                        segment.put("alias_owner_reference", sourceReference(aliasOwner.getQualifiedName()));
+                        segment.put("alias_local_reference", sourceName(name));
+                    }
+                    if (!external && alias != null) segment.put("alias_source_span", Map.of(
+                            "encoding", "utf16", "offset", alias.getOffset(), "length", alias.getLength()));
+                }
                 segments.add(segment);
                 last = element;
             }
@@ -338,11 +367,14 @@ public final class SysmlBridge {
                     row.put("offset", node.getOffset());
                     row.put("length", node.getLength());
                     row.put("text", node.getText());
+                    row.put("source_tokens", sourceTokens(node));
                     row.put("feature", reference.getName());
                     row.put("resolved", false);
                     if (targets.size() == nodes.size() && targets.get(i) instanceof Element target && !target.eIsProxy()) {
                         row.put("target", target.getQualifiedName());
                         row.put("resolved", target.getQualifiedName() != null);
+                        if (target.getQualifiedName() != null)
+                            row.put("target_reference", sourceReference(target.getQualifiedName()));
                         row.put("name_binding", referenceNames(object, reference, node, target));
                     }
                     result.add(row);
@@ -489,10 +521,31 @@ public final class SysmlBridge {
         List<Map<String, Object>> ports = new ArrayList<>();
         List<Map<String, Object>> portDefinitions = new ArrayList<>();
         List<Map<String, Object>> connections = new ArrayList<>();
+        List<Map<String, Object>> namespaceSources = new ArrayList<>();
         List<EObject> all = new ArrayList<>();
         all.add(root);
         for (var iterator = root.eAllContents(); iterator.hasNext();) all.add(iterator.next());
         for (EObject object : all) {
+            // Revision-bound source locators, not persisted engineering IDs.
+            // The implicit root is not a package and has no closing brace.
+            if (object instanceof org.omg.sysml.lang.sysml.Namespace namespace
+                    && (object == root || object instanceof org.omg.sysml.lang.sysml.Package)) {
+                Map<String, Object> item = new LinkedHashMap<>();
+                item.put("kind", object.eClass().getName());
+                item.put("is_root", object == root);
+                item.put("qualified_name", namespace.getQualifiedName());
+                item.put("native_fragment", EcoreUtil.getURI(object).fragment());
+                item.put("owner", namespace.getOwner() == null ? null : namespace.getOwner().getQualifiedName());
+                item.put("owner_kind", namespace.getOwner() == null ? null : namespace.getOwner().eClass().getName());
+                item.put("source_span", sourceFacts(namespace));
+                var names = new java.util.LinkedHashSet<String>();
+                for (var membership : namespace.getOwnedMembership()) {
+                    if (membership.getMemberName() != null) names.add(membership.getMemberName());
+                    if (membership.getMemberShortName() != null) names.add(membership.getMemberShortName());
+                }
+                item.put("member_names", new ArrayList<>(names));
+                namespaceSources.add(item);
+            }
             if (object instanceof PortUsage port) ports.add(portFacts(port));
             if (object instanceof PortDefinition portDefinition) {
                 Map<String, Object> item = new LinkedHashMap<>();
@@ -702,6 +755,9 @@ public final class SysmlBridge {
             }
         }
         Map<String, Object> result = new LinkedHashMap<>();
+        // Keep location/traversal metadata inside the existing source boundary.
+        // It must not become an engineering fact in semantic fingerprints.
+        result.put("source_span", Map.of("namespace_sources", namespaceSources));
         result.put("attributes", attributes);
         result.put("events", events);
         result.put("event_attributes", eventAttributes);
@@ -719,6 +775,12 @@ public final class SysmlBridge {
         result.put("port_definitions", portDefinitions);
         result.put("connections", connections);
         return result;
+    }
+
+    private static String sourceReference(String qualifiedName) {
+        var qualified = new SysMLQualifiedNameConverter().toQualifiedName(qualifiedName);
+        return qualified.getSegments().stream().map(SysmlBridge::sourceName)
+                .collect(java.util.stream.Collectors.joining("::"));
     }
 
     private static String sourceName(String name) {

@@ -16,7 +16,7 @@ try{for(const width of[1440,390])for(const ownerOccurrence of['Outer','Inner']){
  try{
   for(let i=0;!fs.existsSync(path.join(folder,'connection.json'));i++){if(terminal||i>900)throw Error('Fixture startup');await sleep(100)}
   let connection=JSON.parse(fs.readFileSync(path.join(folder,'connection.json')));const project=connection.project;
-  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&cseSiteTools.registered.length===16&&cseSelectionContext?.selected_element_ids?.length===1);
+  const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&cseSiteTools.registered.length===20&&cseSelectionContext?.selected_element_ids?.length===1);
   const state=()=>page.evaluate(async()=>(await(await fetch('/api/state')).json()).state),tool=(name,args={})=>page.evaluate(async({name,args})=>__tools.get(name).execute(args),{name,args}),context=async()=>(await tool('cse_get_context')).context;
   const shot=async tag=>{const p=path.join(output,name+'-'+tag+'.png');await page.screenshot({path:p,fullPage:true});images.push({path:p,sha256:hash(p)})};
   await page.goto(connection.url);await ready();const initial=projectState(project),first=await state(),svgFirst=await page.evaluate(async()=>await(await fetch('/view.svg')).text());

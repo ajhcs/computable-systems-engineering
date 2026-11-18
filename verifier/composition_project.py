@@ -137,7 +137,7 @@ class CompositionProject:
                              'bundle_sha256', 'parent_commit', 'restored_from_revision', 'storage'}
                 or receipt.get('revision') != state['revision'] or receipt.get('project_id') != state['project_id']
                 or receipt.get('storage') != 'local_git_fsync'
-                or receipt.get('operation') not in ('import', 'initialize_physical_project', 'rename', 'restore', 'set_layout', 'set_multiplicity', 'set_types', 'create_definition', 'create_usage')
+                or receipt.get('operation') not in ('import', 'initialize_physical_project', 'rename', 'restore', 'set_layout', 'set_multiplicity', 'set_types', 'create_definition', 'create_usage', 'reparent')
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('request_sha256')))
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('bundle_sha256')))
                 or receipt.get('parent_commit') is not None and not OID.fullmatch(str(receipt['parent_commit']))):
@@ -338,7 +338,8 @@ class CompositionProject:
                   'create_definition': {'owner_id', 'element_id', 'new_name', 'short_id', 'view_id', 'placement'},
                   'create_usage': {'owner_id', 'element_id', 'new_name', 'short_id', 'type_id', 'is_composite', 'multiplicity', 'view_id', 'placement'},
                   'set_multiplicity': {'element_id', 'lower', 'upper'},
-                  'set_types': {'element_id', 'type_ids'}}
+                  'set_types': {'element_id', 'type_ids'},
+                  'reparent': {'element_id', 'destination', 'composition_transition', 'view_effects', 'checked_bundle_sha256'}}
         operation = request.get('operation')
         if not isinstance(operation, str) or operation not in fields or set(request) != common | fields[operation]:
             raise EditError('input', 'Unknown composition operation or fields')
@@ -370,7 +371,20 @@ class CompositionProject:
             raise EditError('typing', 'Supply an element UUID and zero through 128 distinct part-definition UUIDs in order')
         if operation == 'restore' and type(request['target_revision']) is not int:
             raise EditError('input', 'Restore requires an integer revision')
-        return deepcopy(request)
+        if operation == 'reparent' and (not isinstance(request['element_id'], str)
+                or not isinstance(request['destination'], dict)
+                or not isinstance(request['view_effects'], list)
+                or request['composition_transition'] is not None and not isinstance(request['composition_transition'], dict)
+                or request['checked_bundle_sha256'] is not None and (not isinstance(request['checked_bundle_sha256'], str)
+                    or re.fullmatch('[0-9a-f]{64}', request['checked_bundle_sha256']) is None)):
+            raise EditError('input', 'Ownership change needs captured element/destination, composition acknowledgement, complete view consequences and a checked candidate digest')
+        request = deepcopy(request)
+        if operation == 'reparent':
+            from .composition_ownership_views import normalize_route_points
+            if len(request['view_effects']) > 128:
+                raise EditError('input', 'Supply at most 128 ownership view consequences')
+            normalize_route_points(request['view_effects'])
+        return request
 
     def _candidate(self, request, state, document, history):
         if state['revision'] != request['expected_revision']:
@@ -395,6 +409,11 @@ class CompositionProject:
         elif request['operation'] == 'set_layout':
             from .composition_view import with_layout
             document = with_layout(document, request['layout'])
+        elif request['operation'] == 'reparent':
+            document = document.reparent(request['element_id'], request['destination'],
+                request['composition_transition'], request['view_effects'], expected_source_sha256=document.revision)
+            if request['checked_bundle_sha256'] is not None and request['checked_bundle_sha256'] != document.revision:
+                raise EditError('checked_candidate', 'Ownership candidate differs from the exact reviewed source/view bundle')
         else:
             restored = request['target_revision']
             if type(restored) is not int or not 1 <= restored <= state['revision']:
@@ -418,9 +437,14 @@ class CompositionProject:
             raise EditError('already_applied', 'Request was already saved; inspect its durable receipt')
         state, original = self._load(previous)
         document, restored = self._candidate(request, state, original, history)
+        checked_request = None
+        if request['operation'] == 'reparent':
+            checked_request = {**request, 'checked_bundle_sha256': document.revision}
+            request = checked_request
         return {'base_commit': previous, 'base_revision': state['revision'],
                 'base_bundle_sha256': original.revision, 'request_sha256': request_digest(request),
                 'document': document, 'restored_from_revision': restored,
+                **({'checked_request': checked_request} if checked_request is not None else {}),
                 'changed_model_files': sorted(name for name in original.files.keys() | document.files.keys()
                                               if original.files.get(name) != document.files.get(name)),
                 'changed_linked_records': sorted(name for name in original.linked_records.keys() | document.linked_records.keys()
@@ -428,6 +452,8 @@ class CompositionProject:
 
     def transact(self, request):
         request = self._validate_request(request)
+        if request['operation'] == 'reparent' and request['checked_bundle_sha256'] is None:
+            raise EditError('checked_candidate', 'Preview the ownership change and save its exact checked_request')
         previous = self.head()
         history = self._history(previous)
         retried = self._retry(history, request)

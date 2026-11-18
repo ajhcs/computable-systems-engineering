@@ -12,7 +12,7 @@ try{for(const width of[1440,390])for(const kind of['composite','reference','unty
  let ended=false;const server=spawn('python3',['-B','tests/browser/composition_roles_fixture.py',folder,'inherited'],{cwd:root,env:process.env,stdio:['ignore',log,log]});server.on('exit',()=>ended=true);
  const page=await browser.newPage({viewport:{width,height:1100}});page.setDefaultTimeout(90000);page.on('pageerror',e=>errors.push(String(e)));
  await page.addInitScript(()=>{globalThis.__tools=new Map();Object.defineProperty(document,'modelContext',{value:{registerTool:async tool=>__tools.set(tool.name,tool)}})});
- const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&cseSiteTools.registered.length===16),tool=(name,args={})=>page.evaluate(async({name,args})=>__tools.get(name).execute(args),{name,args}),context=async()=>(await tool('cse_get_context')).context;
+ const ready=()=>page.waitForFunction(()=>typeof frameReady!=='undefined'&&frameReady&&!busy&&cseSiteTools.registered.length===20),tool=(name,args={})=>page.evaluate(async({name,args})=>__tools.get(name).execute(args),{name,args}),context=async()=>(await tool('cse_get_context')).context;
  const shot=async tag=>{const p=path.join(output,name+'-'+tag+'.png');await page.screenshot({path:p,fullPage:true});images.push({path:p,sha256:hash(p)})};
  try{
   for(let i=0;!fs.existsSync(path.join(folder,'connection.json'));i++){if(ended||i>900)throw Error('Fixture startup');await sleep(100)}

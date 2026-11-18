@@ -315,6 +315,11 @@ class CompositionDocument:
         from .composition_typing import set_types
         return set_types(self, element_id, type_ids, expected_source_sha256=expected_source_sha256)
 
+    def reparent(self, element_id, destination, composition_transition, view_effects, *, expected_source_sha256):
+        from .composition_ownership_views import reparent
+        return reparent(self, element_id, destination, composition_transition, view_effects,
+                        expected_source_sha256=expected_source_sha256)
+
     def set_multiplicity(self, element_id, lower, upper, *, expected_source_sha256):
         """Author finite bounds on one native usage, retaining all source trivia."""
         if expected_source_sha256 != self.revision:

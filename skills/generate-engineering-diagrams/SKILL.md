@@ -25,6 +25,11 @@ optional native typing and retained configuration scope.
 [Explicit usage typing](../../docs/workbench/composition-typing.md) edits its
 complete authored type list through the same native preview/save path, retaining
 shared declaration ownership, original-kit geometry and separately checked scope.
+[Native ownership changes](../../docs/workbench/composition-ownership.md) are under
+development: move a captured declaration/subtree and supply explicit consequences
+for every affected physical view. Preserve original reference spelling, geometry,
+masters and scope; inspect the exact candidate before saving. This active work
+is not assembled or actual-host qualification.
 [Initial project authoring](../../docs/workbench/composition-initial-project.md)
 creates the first native root and view through the same original-kit renderer.
 Preview exact sources before first save; retain the prospective UUID and checked

@@ -89,3 +89,9 @@ checked request before creating the project, then continue in the same saved
 editor. The default namespace/package-owned usage is noncomposite, has no explicit
 typing and has native `1..1`; neither declaration nor storage receipt proves installation.
 Later package/root/view editing and complete actual-host parity remain open.
+
+For the active [native ownership increment](../../../docs/workbench/composition-ownership.md),
+retain declaration UUIDs, complete affected-view consequences and exact scope.
+A namespace source locator is valid only for its captured bundle. Reparenting
+never silently changes declaration form or accepts a failed configuration review.
+The ownership work remains unqualified while its parity cells are active.

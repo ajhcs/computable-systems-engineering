@@ -322,6 +322,16 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
                                ("part_definitions", "parts", "concerns", "use_cases", "actions", "states",
                                 "requirements", "constraints", "attributes", "events",
                                 "event_attributes", "documents", "ports", "port_definitions", "connections")}
+        # Native ownership editing uses additional source locators. Keep the
+        # existing public draft-shape inventory stable for its current clients.
+        ownership_locators = {'local_identity', 'local_reference', 'enclosing_part_definition',
+                              'has_part_usage_ancestor', 'authored_reference'}
+        for key in ('parts', 'part_definitions'):
+            omitted = ownership_locators | ({'qualified_reference'} if key == 'parts' else set())
+            report['inventory'][key] = [
+                {**row, 'source_span': {name: value for name, value in row['source_span'].items()
+                                       if name not in omitted}}
+                if isinstance(row.get('source_span'), dict) else row for row in parsed[key]]
         return report
 
     for category in ("requirements", "parts", "part_definitions", "constraints"):

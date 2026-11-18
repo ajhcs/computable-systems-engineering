@@ -42,7 +42,7 @@ def main():
     suites += ('test_visual_profile.py', 'test_document_rendering.py', 'test_visual_guidance_evaluation.py', 'test_plugin_package.py')
     suites += ('test_workbench_inventory.py', 'test_workbench_parity.py', 'test_composition_edit.py', 'test_composition_visuals.py', 'test_composition_project.py', 'test_kit_fonts.py', 'test_composition_view.py')
     suites += ('test_composition_session.py', 'test_composition_startup.py', 'test_composition_inspection.py')
-    suites += ('test_composition_create.py', 'test_composition_usage.py', 'test_composition_typing.py', 'test_composition_initial.py', 'test_composition_host.py')
+    suites += ('test_composition_create.py', 'test_composition_usage.py', 'test_composition_typing.py', 'test_composition_ownership.py', 'test_composition_ownership_preservation.py', 'test_composition_source.py', 'test_composition_initial.py', 'test_composition_host.py')
     for suite in suites:
         result = subprocess.run([sys.executable, "-B", str(ROOT / "tests" / suite)],
                                 cwd=ROOT, env=environment, text=True,
