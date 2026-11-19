@@ -456,7 +456,8 @@ class CompositionHandler(BaseHTTPRequestHandler):
                      '/view.svg': ('view.svg', 'image/svg+xml'), '/view.json': ('view.json', 'application/json; charset=utf-8')}
             route = urlsplit(self.path)
             if route.path in files:
-                query = parse_qs(route.query, strict_parsing=True)
+                # Python 3.10 rejects an empty string in strict query parsing.
+                query = parse_qs(route.query, strict_parsing=True) if route.query else {}
                 requested = query.pop('view', None)
                 if requested is not None and len(requested) != 1:
                     raise EditError('input', 'Choose one saved view ID')

@@ -103,7 +103,11 @@ class SessionTests(unittest.TestCase):
         self.assertEqual(reopened['document'].linked_records,original['document'].linked_records)
         self.assertEqual(reopened['document'].configuration_reviews[0]['report']['status'],'unknown')
         status,svg,_=self.call('GET','/view.svg')
-        self.assertEqual(status,200);self.assertIn(b'[0..1]',svg)
+        self.assertEqual(status,200,svg)
+        self.assertIn(b'[0..1]',svg)
+        status,result,_=self.call('GET','/view.svg?commit')
+        self.assertEqual(status,400,result)
+        self.assertEqual(result['error']['code'],'input')
         definition=next(k for k,v in reopened['document'].registry.items() if v=='DiagramComposition::Device')
         for fields in ({'lower':True},{'lower':1.0},{'upper':2147483648},{'lower':2,'upper':1},{'element_id':definition}):
             invalid={**request,'request_id':str(uuid4()),'expected_revision':2,**fields}
