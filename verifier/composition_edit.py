@@ -1,0 +1,534 @@
+"""Source-preserving candidate edits for physical composition.
+
+This is an in-memory edit boundary, not project persistence or an acceptance
+service. All engineering facts come from the pinned Pilot parser. The bounded
+token handling below edits parser-selected ranges; it is not a SysML parser.
+"""
+from copy import deepcopy
+from hashlib import sha256
+import json
+import re
+import subprocess
+import unicodedata
+from pathlib import PurePosixPath
+from uuid import UUID, uuid4, uuid5
+
+from .sysml import _parser_output, _native_name
+from .composition_records import rebind_document, rebind_json, strict_json, slots
+from .configuration import reconcile as reconcile_configuration
+
+
+class EditError(ValueError):
+    def __init__(self, code, detail):
+        super().__init__(detail)
+        self.code = code
+
+
+def validate_name(name):
+    if (not isinstance(name, str) or not 1 <= len(name) <= 64
+            or any(unicodedata.category(char) in ('Cc', 'Cs', 'Zl', 'Zp') for char in name)):
+        raise EditError('name', 'Supply a nonempty single-line declared name of at most 64 characters, without control characters')
+
+
+def name_spelling(name):
+    validate_name(name)
+    try:
+        return _native_name(name)
+    except subprocess.TimeoutExpired as exc:
+        raise EditError('parser_timeout', 'Native name serialization exceeded its limit; no candidate was published') from exc
+    except (RuntimeError, ValueError, OSError) as exc:
+        raise EditError('parser', str(exc)) from exc
+
+
+def codepoint_index(source, offset):
+    """Convert an Xtext UTF-16 boundary; refuse a split surrogate pair."""
+    if type(offset) is not int or offset < 0:
+        raise EditError('source_span', 'Invalid UTF-16 offset')
+    raw = source.encode('utf-16-le')
+    if offset * 2 > len(raw):
+        raise EditError('source_span', 'Offset exceeds source')
+    try:
+        return len(raw[:offset * 2].decode('utf-16-le'))
+    except UnicodeError as exc:
+        raise EditError('source_span', 'Offset splits a Unicode character') from exc
+
+
+def bounds(source, span, prefix=''):
+    if span.get('encoding') != 'utf16':
+        raise EditError('source_span', 'Unknown coordinate encoding')
+    offset, length = span.get(prefix + 'offset'), span.get(prefix + 'length')
+    if type(length) is not int or length <= 0:
+        raise EditError('source_span', 'Missing or empty source span')
+    return codepoint_index(source, offset), codepoint_index(source, offset + length)
+
+
+def parse(source):
+    if not isinstance(source, str) or len(source.encode('utf-8')) > 5_000_000:
+        raise EditError('input', 'Source must be UTF-8 text at most 5 MB')
+    try:
+        parsed = _parser_output(source, 60, removal_sources=True)
+    except subprocess.TimeoutExpired as exc:
+        raise EditError('parser_timeout', 'Native parsing exceeded its 60-second limit; no candidate was published') from exc
+    except (RuntimeError, ValueError, OSError) as exc:
+        raise EditError('parser', str(exc)) from exc
+    # An unresolved reference can be a warning. Never author over such input.
+    if parsed.get('error') or parsed.get('issues'):
+        raise EditError('native_diagnostics', json.dumps(parsed.get('issues', [])))
+    if not isinstance(parsed.get('parts'), list) or not isinstance(parsed.get('part_definitions'), list):
+        raise EditError('parser_contract', 'Missing native part inventory')
+    return parsed
+
+
+def elements(parsed):
+    result = {}
+    for group in ('parts', 'part_definitions'):
+        for row in parsed[group]:
+            name = row.get('qualified_name')
+            if not name or name in result:
+                raise EditError('identity', 'Missing or duplicate resolved part identity')
+            result[name] = {'kind': group, **row}
+    return result
+
+
+def fingerprint(parsed):
+    """Compare all extracted native facts, excluding presentation coordinates."""
+    def clean(value):
+        if isinstance(value, dict):
+            return {k: clean(v) for k, v in value.items()
+                    if k not in ('source_span', 'line', 'reference_spans')}
+        if isinstance(value, list):
+            return [clean(v) for v in value]
+        return value
+    return clean(parsed)
+
+
+def renamed_native_facts(value, mapped):
+    """Transform only the bridge's typed qualified-identity fields.
+
+    A root's qualified name can equal a short ID, local name, literal status
+    or prose. Those values are independent facts and must remain unchanged.
+    New native identity fields require an explicit adapter; they cannot be
+    inferred by globally replacing strings in the expected fingerprint.
+    """
+    identities = {'qualified_name', 'owner', 'type', 'part_definition', 'event',
+                  'requirement', 'constraint', 'original_port_definition', 'target', 'reference_target'}
+    identity_lists = {'types', 'redefines', 'subsets', 'supertypes', 'path'}
+    if isinstance(value, dict):
+        return {key: mapped(item) if key in identities | identity_lists else renamed_native_facts(item, mapped)
+                for key, item in value.items()}
+    if isinstance(value, list):
+        return [renamed_native_facts(item, mapped) for item in value]
+    return value
+
+
+def replace_identity(value, before, after):
+    if isinstance(value, str):
+        return after + value[len(before):] if value == before or value.startswith(before + '::') else value
+    if isinstance(value, dict):
+        return {k: replace_identity(v, before, after) for k, v in value.items()}
+    if isinstance(value, list):
+        return [replace_identity(v, before, after) for v in value]
+    return value
+
+
+def project_name(name):
+    if (not isinstance(name, str) or not name or len(name) > 512 or '\\' in name
+            or '\x00' in name or ':' in name or PurePosixPath(name).is_absolute()
+            or any(p in ('', '.', '..') for p in name.split('/'))):
+        raise EditError('file_name', 'Use a normalized project-relative POSIX filename')
+    return name
+
+
+class CompositionDocument:
+    """Candidate document whose registry persists explicitly with its sources."""
+
+    def __init__(self, source, *, project_id=None, registry=None, linked_records=None):
+        self.project_id = str(UUID(project_id)) if project_id else str(uuid4())
+        self.is_bundle = isinstance(source, dict)
+        self.files = dict(source) if self.is_bundle else {'model.sysml': source}
+        if not self.files or len(self.files) > 128:
+            raise EditError('input', 'Supply 1 through 128 explicit model files')
+        for name in self.files:
+            project_name(name)
+        self.linked_records = deepcopy(linked_records) if linked_records is not None else {}
+        if not isinstance(self.linked_records, dict) or len(self.files) + len(self.linked_records) > 128:
+            raise EditError('input', 'Too many project files or invalid linked-record map')
+        self.ranges, chunks, cursor, total = [], [], 0, 0
+        for name, text in sorted(self.files.items()):
+            project_name(name)
+            if not isinstance(text, str):
+                raise EditError('input', 'Model files must be UTF-8 text')
+            total += len(text.encode('utf-8'))
+            self.ranges.append((cursor, cursor + len(text), name))
+            chunk = text if text.endswith('\n') else text + '\n'
+            chunks.append(chunk)
+            cursor += len(chunk) + 1
+        self.source = '\n'.join(chunks) if self.is_bundle else source
+        # A single source preserves its existing coordinates and digest contract.
+        if not self.is_bundle:
+            self.ranges = [(0, len(source), 'model.sysml')]
+        for name, record in self.linked_records.items():
+            project_name(name)
+            if name in self.files or not isinstance(record, dict) or set(record) != {'kind', 'text'}:
+                raise EditError('linked_records', 'Each distinct linked file needs kind and exact text')
+            try:
+                slots(strict_json(record['text']), record['kind'])
+            except (ValueError, TypeError, KeyError, RecursionError) as exc:
+                raise EditError('linked_records', str(exc)) from exc
+            total += len(record['text'].encode('utf-8'))
+        if total > 5_000_000:
+            raise EditError('input', 'Combined project input exceeds 5 MB')
+        self.parsed = parse(self.source)
+        native = elements(self.parsed)
+        if registry is None:
+            self.registry = {str(uuid5(UUID(self.project_id), name)): name for name in native}
+        else:
+            self.registry = dict(registry)
+            if (len(set(self.registry.values())) != len(self.registry)
+                    or set(self.registry.values()) != set(native)):
+                raise EditError('reconciliation', 'Registry and parsed identities disagree')
+            for identity in self.registry:
+                UUID(identity)
+        manifest = [{'path': name, 'sha256': sha256(text.encode('utf-8')).hexdigest()}
+                    for name, text in sorted(self.files.items())]
+        manifest += [{'path': name, 'kind': record['kind'],
+                      'sha256': sha256(record['text'].encode('utf-8')).hexdigest()}
+                     for name, record in sorted(self.linked_records.items())]
+        self.revision = (sha256(source.encode('utf-8')).hexdigest() if not self.is_bundle and not self.linked_records
+                         else sha256(json.dumps(manifest, sort_keys=True, separators=(',', ':')).encode()).hexdigest())
+        self.reconciliation = []
+        self.configuration_reviews = [
+            {'file': name, 'scope_sha256': sha256(record['text'].encode('utf-8')).hexdigest(),
+             'report': reconcile_configuration(strict_json(record['text']), self.parsed)}
+            for name, record in sorted(self.linked_records.items()) if record['kind'] == 'retained_configuration']
+
+    def inspect(self):
+        native = elements(self.parsed)
+        rows = []
+        for identity, name in self.registry.items():
+            row = {'element_id': identity, **native[name]}
+            start, end = bounds(self.source, row['source_span'])
+            a, b, file = self.file_range(start, end)
+            row['source_location'] = {'file': file, 'line': self.files[file][:start-a].count('\n') + 1,
+                                     'offset': start-a, 'length': end-start, 'encoding': 'codepoints'}
+            rows.append(row)
+        return {'project_id': self.project_id,
+                'bundle_sha256' if self.is_bundle or self.linked_records else 'source_sha256': self.revision,
+                'elements': rows, 'configuration_reviews': deepcopy(self.configuration_reviews),
+                'reconciliation': deepcopy(self.reconciliation)}
+
+    def file_range(self, start, end):
+        for a, b, name in self.ranges:
+            if a <= start <= end <= b:
+                return a, b, name
+        raise EditError('source_span', 'Edit crosses a source boundary or synthetic separator')
+
+    def candidate_files(self, changes):
+        local = {name: [] for name in self.files}
+        for start, end, text in changes:
+            a, b, name = self.file_range(start, end)
+            local[name].append((start-a, end-a, text))
+        result = dict(self.files)
+        for name, edits in local.items():
+            for a, b, replacement in reversed(sorted(edits)):
+                result[name] = result[name][:a] + replacement + result[name][b:]
+        return result
+
+    def _create_definition_source(self, owner_id, element_id, new_name, short_id, *, expected_source_sha256):
+        """Internal source step; the public operation also binds its diagram."""
+        if expected_source_sha256 != self.revision:
+            raise EditError('stale_revision', 'Source changed before candidate preparation')
+        try:
+            if not isinstance(element_id, str) or str(UUID(element_id)) != element_id or element_id in self.registry:
+                raise ValueError('New identity must be distinct')
+        except (ValueError, TypeError, AttributeError) as exc:
+            raise EditError('identity', 'Supply a distinct canonical engineering UUID') from exc
+        if not isinstance(owner_id, str) or owner_id not in self.registry:
+            raise EditError('identity', 'Unknown native owner')
+        owner_name = self.registry[owner_id]
+        owner = elements(self.parsed)[owner_name]
+        if owner['kind'] != 'part_definitions':
+            raise EditError('element_kind', 'Owned definition creation requires an existing part definition')
+        spelling = name_spelling(new_name)
+        short = name_spelling(short_id)['source_token'] if short_id is not None else None
+        members = owner['source_span'].get('member_names')
+        if not isinstance(members, list) or not all(isinstance(value, str) for value in members):
+            raise EditError('parser_contract', 'Native owner membership names unavailable')
+        if new_name in members or short_id is not None and short_id in members:
+            raise EditError('name_collision', 'An owned member or alias already uses that name or short ID')
+        qualified = owner_name+'::'+spelling['qualified_segment']
+        if qualified in elements(self.parsed):
+            raise EditError('name_collision', 'Native qualified identity already exists')
+        span = owner['source_span']
+        start, end = bounds(self.source, span, 'namespace_end_')
+        owner_start, owner_end = bounds(self.source, span)
+        if not owner_start <= start < end <= owner_end:
+            raise EditError('source_span', 'Native namespace boundary is outside its owner')
+        terminal = self.source[start:end]
+        if terminal != span.get('namespace_end_text') or terminal not in (';', '}'):
+            raise EditError('source_span', 'Native owner boundary does not match its source token')
+        a, _, file = self.file_range(start, end)
+        text = self.files[file]
+        newline = '\r\n' if '\r\n' in text else '\n'
+        line_start = self.source.rfind('\n', a, owner_start)+1
+        indent = re.match(r'[ \t]*', self.source[line_start:owner_start]).group()
+        declaration = 'part def '+('<'+short+'> ' if short is not None else '')+spelling['source_token']+';'
+        if terminal == ';':
+            replacement = ' {'+newline+indent+'    '+declaration+newline+indent+'}'
+            changes = [(start, end, replacement)]
+        else:
+            # Leave every existing byte in place, including comments/indentation.
+            changes = [(start, start, newline+indent+'    '+declaration+newline+indent)]
+        files = self.candidate_files(changes)
+        registry = {**self.registry, element_id: qualified}
+        candidate = type(self)(files if self.is_bundle else files['model.sysml'], project_id=self.project_id,
+                               registry=registry, linked_records=self.linked_records)
+        expected = {'owner': owner_name, 'owner_kind': 'PartDefinition', 'name': new_name,
+                    'qualified_name': qualified, 'has_specialization': False, 'is_variation': False, 'supertypes': []}
+        if short_id is not None:
+            expected['id'] = short_id
+        before, after = fingerprint(self.parsed), fingerprint(candidate.parsed)
+        added = [row for row in after['part_definitions'] if row['qualified_name'] == qualified]
+        if added != [expected]:
+            raise EditError('semantic_delta', 'Native creation does not match the requested ordinary owned definition')
+        after['part_definitions'] = [row for row in after['part_definitions'] if row['qualified_name'] != qualified]
+        if before != after:
+            raise EditError('semantic_delta', 'Native creation changed existing model facts')
+        refs = lambda parsed: [(row.get('feature'), row.get('target')) for row in parsed['reference_spans']]
+        if refs(self.parsed) != refs(candidate.parsed):
+            raise EditError('reference_delta', 'Native creation changed existing resolved references')
+        return candidate
+
+    def create_definition(self, owner_id, element_id, new_name, short_id, view_id, placement, *, expected_source_sha256):
+        from .composition_create import create_definition
+        return create_definition(self, owner_id, element_id, new_name, short_id, view_id, placement,
+                                 expected_source_sha256=expected_source_sha256)
+
+    def create_usage(self, owner_id, element_id, new_name, short_id, type_id,
+                     is_composite, multiplicity, view_id, placement, *, expected_source_sha256):
+        from .composition_usage import create_usage
+        return create_usage(self, owner_id, element_id, new_name, short_id, type_id,
+                            is_composite, multiplicity, view_id, placement,
+                            expected_source_sha256=expected_source_sha256)
+
+    def set_types(self, element_id, type_ids, *, expected_source_sha256):
+        from .composition_typing import set_types
+        return set_types(self, element_id, type_ids, expected_source_sha256=expected_source_sha256)
+
+    def reparent(self, element_id, destination, composition_transition, view_effects, *, expected_source_sha256):
+        from .composition_ownership_views import reparent
+        return reparent(self, element_id, destination, composition_transition, view_effects,
+                        expected_source_sha256=expected_source_sha256)
+
+    def set_multiplicity(self, element_id, lower, upper, *, expected_source_sha256):
+        """Author finite bounds on one native usage, retaining all source trivia."""
+        if expected_source_sha256 != self.revision:
+            raise EditError('stale_revision', 'Source changed before candidate preparation')
+        if (type(lower) is not int or type(upper) is not int
+                or not 0 <= lower <= upper <= 2_147_483_647):
+            raise EditError('multiplicity', 'Supply integer bounds 0 <= lower <= upper <= 2147483647')
+        if not isinstance(element_id, str) or element_id not in self.registry:
+            raise EditError('identity', 'Unknown engineering element')
+        name = self.registry[element_id]
+        item = elements(self.parsed)[name]
+        if item['kind'] != 'parts':
+            raise EditError('element_kind', 'Multiplicity belongs to a part usage, not its definition')
+        span = item['source_span']
+        declaration = bounds(self.source, span)
+        edited_range = None
+        changes = []
+        if 'multiplicity_offset' in span:
+            edited_range = bounds(self.source, span, 'multiplicity_')
+            a, b = edited_range
+            if not declaration[0] <= a < b <= declaration[1]:
+                raise EditError('source_span', 'Multiplicity is not local to the selected declaration')
+            lo_tokens, hi_tokens = span.get('multiplicity_lower_tokens'), span.get('multiplicity_upper_tokens')
+            if not isinstance(lo_tokens, list) or not isinstance(hi_tokens, list) or not hi_tokens:
+                raise EditError('source_span', 'Native bound token coordinates unavailable')
+            for tokens, value in ((lo_tokens, str(lower)),
+                                  (hi_tokens, str(upper) if lo_tokens or lower == upper else f'{lower}..{upper}')):
+                for index, token in enumerate(tokens):
+                    start, end = bounds(self.source, token)
+                    if not a < start < end < b:
+                        raise EditError('source_span', 'Bound token exceeds its native range')
+                    changes.append((start, end, value if index == 0 else ''))
+        else:
+            offset = codepoint_index(self.source, span.get('multiplicity_insert_offset'))
+            if not declaration[0] < offset < declaration[1]:
+                raise EditError('source_span', 'Native multiplicity insertion anchor unavailable')
+            spelling = str(lower) if lower == upper else f'{lower}..{upper}'
+            changes.append((offset, offset, f' [{spelling}]'))
+        changes.sort()
+        if any(a[1] > b[0] for a, b in zip(changes, changes[1:])):
+            raise EditError('overlapping_edits', 'Native bound tokens overlap')
+        # Identity does not change, but unknown structured contracts cannot be
+        # silently bypassed. Their typed adapters still decide admissibility.
+        try:
+            for document in self.parsed.get('documents', []):
+                rebind_document(document['body'], document.get('name'), lambda value: value)
+            for record in self.linked_records.values():
+                rebind_json(record['text'], record['kind'], lambda value: value)
+        except (ValueError, KeyError, TypeError, RecursionError) as exc:
+            raise EditError('linked_records', str(exc)) from exc
+        files = self.candidate_files(changes)
+        candidate = CompositionDocument(files if self.is_bundle else files['model.sysml'],
+                                        project_id=self.project_id, registry=self.registry,
+                                        linked_records=self.linked_records)
+        expected = fingerprint(self.parsed)
+        for row in expected['parts']:
+            if row['qualified_name'] == name:
+                row['multiplicity'] = {'status': 'literal', 'lower': lower, 'upper': upper}
+        if fingerprint(candidate.parsed) != expected:
+            raise EditError('semantic_delta', 'Reparse changed facts outside the requested multiplicity')
+        references = self.parsed.get('reference_spans')
+        if not isinstance(references, list) or len(references) > 16384:
+            raise EditError('parser_contract', 'Native reference spans unavailable')
+        retained = []
+        for ref in references:
+            if ref.get('resolved') is not True:
+                raise EditError('unresolved_reference', 'Native reference is unresolved')
+            a, b = bounds(self.source, ref)
+            if edited_range and edited_range[0] <= a < b <= edited_range[1]:
+                continue
+            retained.append((ref.get('feature'), ref.get('target')))
+        after = [(r.get('feature'), r.get('target')) for r in candidate.parsed['reference_spans']]
+        if retained != after:
+            raise EditError('reference_delta', 'Resolved references outside the edited bound changed')
+        return candidate
+
+    def rename(self, element_id, new_name, *, expected_source_sha256):
+        if expected_source_sha256 != self.revision:
+            raise EditError('stale_revision', 'Source changed before candidate preparation')
+        validate_name(new_name)
+        if element_id not in self.registry:
+            raise EditError('identity', 'Unknown engineering element')
+        old = self.registry[element_id]
+        item = elements(self.parsed)[old]
+        if item.get('name') == new_name:
+            return self
+        spelling = name_spelling(new_name)
+        token, segment = spelling['source_token'], spelling['qualified_segment']
+        new = (item['owner'] + '::' if item.get('owner') else '') + segment
+        if new == old:
+            return self
+        if new in elements(self.parsed):
+            raise EditError('name_collision', 'Sibling identity already exists')
+        # Documentary/analytical bindings require their own typed atomic adapter.
+        # Refuse those candidates until that adapter exists, rather than miss one.
+        renames = {old: new}
+        # An unnamed redefinition derives its local name from the renamed role.
+        # Preserve that overriding element's identity as well as the base role.
+        for _ in range(len(self.registry)):
+            added = False
+            for name, row in elements(self.parsed).items():
+                targets = row.get('redefines', [])
+                if (name not in renames and len(targets) == 1 and targets[0] in renames
+                        and 'name_offset' not in row['source_span']):
+                    renames[name] = (row['owner'] + '::' if row.get('owner') else '') + segment
+                    added = True
+            if not added:
+                break
+
+        def mapped(value):
+            # Apply longest exact namespace prefixes first; no fuzzy matching.
+            if isinstance(value, str):
+                for before in sorted(renames, key=len, reverse=True):
+                    if value == before or value.startswith(before + '::'):
+                        return renames[before] + value[len(before):]
+                return value
+            if isinstance(value, dict):
+                return {k: mapped(v) for k, v in value.items()}
+            if isinstance(value, list):
+                return [mapped(v) for v in value]
+            return value
+        start, end = bounds(self.source, item['source_span'], 'name_')
+        changes = [(start, end, token)]
+        references = self.parsed.get('reference_spans')
+        if not isinstance(references, list) or len(references) > 16384:
+            raise EditError('parser_contract', 'Native reference spans unavailable')
+        for ref in references:
+            if ref.get('resolved') is not True:
+                raise EditError('unresolved_reference', 'Native reference is unresolved')
+            target = ref['target']
+            a, b = bounds(self.source, ref)
+            binding = ref.get('name_binding', {})
+            if not isinstance(binding, dict):
+                raise EditError('parser_contract', 'Invalid native reference-name binding')
+            segments = binding.get('segments', [])
+            if binding.get('status') != 'resolved':
+                if mapped(target) != target or any(s.get('kind') == 'name' and s.get('target') in renames
+                                                   for s in segments):
+                    raise EditError('reference_form', 'Native name-segment binding is unavailable for an affected reference')
+                continue
+            if not isinstance(segments, list) or not segments:
+                raise EditError('parser_contract', 'Native reference-name segments unavailable')
+            previous = a
+            for segment in segments:
+                start, end = bounds(self.source, segment)
+                if not (previous <= start < end <= b and self.source[start:end] == segment.get('text')
+                        and segment.get('kind') in ('name', 'short_name', 'alias_name', 'alias_short_name')
+                        and isinstance(segment.get('target'), str)):
+                    raise EditError('parser_contract', 'Invalid native reference-name segment')
+                previous = end
+                # A namespace prefix can change even when the final target is
+                # external and keeps its qualified identity. Alias and short-ID
+                # spellings remain independent from the renamed declared name.
+                if segment['kind'] == 'name' and segment['target'] in renames:
+                    changes.append((start, end, token))
+        expected_bodies = []
+        for document in self.parsed.get('documents', []):
+            try:
+                body, findings = rebind_document(document['body'], document.get('name'), mapped)
+                expected_bodies.append(body)
+                if body != document['body']:
+                    a, b = bounds(self.source, document['source_span'], 'body_')
+                    token = self.source[a:b]
+                    if not token.startswith('/*') or not token.endswith('*/'):
+                        raise EditError('source_span', 'Unsupported documentation body token')
+                    raw, raw_findings = rebind_document(token[2:-2], document.get('name'), mapped)
+                    # Pilot normalizes leading whitespace on documentation lines.
+                    # Compare the complete JSON meaning, then retain the exact
+                    # source formatting; do not reconstruct it from getBody().
+                    raw_payload = raw.lstrip().split('\n', 1)[1]
+                    parsed_payload = body.lstrip().split('\n', 1)[1]
+                    if raw_findings != findings or strict_json(raw_payload) != strict_json(parsed_payload):
+                        raise EditError('source_span', 'Documentation token and parsed body disagree')
+                    changes.append((a+2, b-2, raw))
+            except (ValueError, KeyError, TypeError, RecursionError) as exc:
+                raise EditError('linked_records', str(exc)) from exc
+        linked = deepcopy(self.linked_records)
+        reconciliation = []
+        for name, record in linked.items():
+            try:
+                rewritten, findings = rebind_json(record['text'], record['kind'], mapped)
+                if findings and record['kind'] == 'retained_configuration':
+                    reconciliation.append({'file': name, 'status': 'reconciliation_required',
+                                           'retained_sha256': sha256(record['text'].encode('utf-8')).hexdigest(),
+                                           'changes': findings})
+                record['text'] = rewritten
+            except (ValueError, KeyError, TypeError, RecursionError) as exc:
+                raise EditError('linked_records', str(exc)) from exc
+        changes.sort()
+        if any(a[1] > b[0] for a, b in zip(changes, changes[1:])):
+            raise EditError('overlapping_edits', 'Native edit spans overlap')
+        files = self.candidate_files(changes)
+        registry = {identity: mapped(name) for identity, name in self.registry.items()}
+        candidate = CompositionDocument(files if self.is_bundle else files['model.sysml'],
+                                        project_id=self.project_id, registry=registry, linked_records=linked)
+        candidate.reconciliation = reconciliation
+        expected = renamed_native_facts(fingerprint(self.parsed), mapped)
+        for document, body in zip(expected.get('documents', []), expected_bodies):
+            document['body'] = body
+        # Only the selected declaration's local name changes. The independent
+        # reparse must retain every other fact exposed by the current bridge.
+        for group in ('parts', 'part_definitions'):
+            for row in expected[group]:
+                if row['qualified_name'] in renames.values():
+                    row['name'] = new_name
+        if fingerprint(candidate.parsed) != expected:
+            raise EditError('semantic_delta', 'Reparse changed facts outside the requested rename')
+        before_refs = [(r.get('feature'), mapped(r.get('target'))) for r in references]
+        after_refs = [(r.get('feature'), r.get('target')) for r in candidate.parsed['reference_spans']]
+        if before_refs != after_refs:
+            raise EditError('reference_delta', 'Resolved reference correspondence changed')
+        return candidate

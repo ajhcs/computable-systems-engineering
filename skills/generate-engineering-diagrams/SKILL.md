@@ -5,6 +5,39 @@ description: Create or review source-linked engineering diagrams; find, compare 
 
 Use this skill to produce or critique a diagram from supplied or existing accepted engineering meaning. New system-model design, requirements, assumptions, thresholds, allocations and engineering acceptance remain with the engineer. Do not invent a new system merely to fill a diagram family.
 
+For the saved engineering SVG and iconography kit, follow the
+[engineering design-kit workflow](references/design-kit.md) before layout.
+Reuse exact masters, fonts, swatches and notation; record source hashes and
+content-fit adaptations.
+
+For the development physical-composition path over a saved local Git project,
+use the [saved native diagram contract](../../docs/workbench/composition-diagrams.md).
+It renders definition hierarchies or declared usage composition with this kit
+and supports source-bound inspection. The [local interaction adapter](../../docs/workbench/composition-interaction.md)
+embeds that same reader for rename, finite multiplicity, layout and restoration.
+[Owned definition creation](../../docs/workbench/composition-creation.md) adds
+native source and a checked occurrence together, retaining the original kit and
+old geometry. Later package/root/view authoring and other creation routes remain open. Full operation and host
+parity remain open; do not advertise it as a completed workbench capability.
+[Part-usage creation](../../docs/workbench/composition-usage-creation.md) preserves
+composite ownership frames versus definition-owned/reference declaration rows,
+optional native typing and retained configuration scope.
+[Explicit usage typing](../../docs/workbench/composition-typing.md) edits its
+complete authored type list through the same native preview/save path, retaining
+shared declaration ownership, original-kit geometry and separately checked scope.
+[Native ownership changes](../../docs/workbench/composition-ownership.md) are under
+development: move a captured declaration/subtree and supply explicit consequences
+for every affected physical view. Preserve original reference spelling, geometry,
+masters and scope; inspect the exact candidate before saving. This active work
+is not assembled or actual-host qualification.
+[Initial project authoring](../../docs/workbench/composition-initial-project.md)
+creates the first native root and view through the same original-kit renderer.
+Preview exact sources before first save; retain the prospective UUID and checked
+request across recovery. A global root remains in its unnamed namespace. A
+namespace/package-owned root usage is noncomposite and defaults to untyped
+`1..1`; it does not assert installation. Local and SDK checks do not close actual
+application or private hosted acceptance.
+
 For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
 before drafting and when reviewing the actual output.
 

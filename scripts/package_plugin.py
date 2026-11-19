@@ -9,7 +9,7 @@ import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = frozenset({'.codex-plugin', 'assets', 'docs', 'examples', 'prototypes', 'scripts',
-                         'skills', 'tests', 'tools', 'verifier'})
+                         'skills', 'tests', 'tools', 'verifier', 'web'})
 FILES = frozenset({'AGENTS.md', 'CONTRIBUTING.md', 'LICENSE', 'README.md',
                    'plugin.json', 'requirements-analysis.txt'})
 

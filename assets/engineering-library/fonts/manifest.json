@@ -1,0 +1,67 @@
+{
+  "coverage": "printable ASCII plus middle dot",
+  "faces": [
+    {
+      "bytes": 759720,
+      "family": "DejaVu Sans",
+      "file": "DejaVuSans.ttf",
+      "format": "truetype",
+      "mime_type": "font/ttf",
+      "modifications": "none",
+      "notice": "DejaVu-COPYRIGHT.txt",
+      "notice_sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9",
+      "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+      "source_package": "fonts-dejavu-core",
+      "source_package_version": "2.37-8",
+      "weight": 400
+    },
+    {
+      "bytes": 708920,
+      "family": "DejaVu Sans",
+      "file": "DejaVuSans-Bold.ttf",
+      "format": "truetype",
+      "mime_type": "font/ttf",
+      "modifications": "none",
+      "notice": "DejaVu-COPYRIGHT.txt",
+      "notice_sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9",
+      "sha256": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895",
+      "source_package": "fonts-dejavu-core",
+      "source_package_version": "2.37-8",
+      "weight": 700
+    },
+    {
+      "bytes": 343140,
+      "family": "DejaVu Sans Mono",
+      "file": "DejaVuSansMono.ttf",
+      "format": "truetype",
+      "mime_type": "font/ttf",
+      "modifications": "none",
+      "notice": "DejaVu-COPYRIGHT.txt",
+      "notice_sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9",
+      "sha256": "c805f9436dbc268644c1d9584f01a601a653e028e08fd74b9b949f6cf8304d88",
+      "source_package": "fonts-dejavu-mono",
+      "source_package_version": "2.37-8",
+      "weight": 400
+    },
+    {
+      "bytes": 334268,
+      "family": "DejaVu Sans Mono",
+      "file": "DejaVuSansMono-Bold.ttf",
+      "format": "truetype",
+      "mime_type": "font/ttf",
+      "modifications": "none",
+      "notice": "DejaVu-COPYRIGHT.txt",
+      "notice_sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9",
+      "sha256": "3a3c502eeff669a231549e80df9f7c49de109bafe303170409e905d0b31a38fe",
+      "source_package": "fonts-dejavu-mono",
+      "source_package_version": "2.37-8",
+      "weight": 700
+    }
+  ],
+  "license": "Bitstream Vera license; DejaVu changes public domain; exact distribution notice retained",
+  "metrics": {
+    "file": "metrics.json",
+    "sha256": "78d3ee5c323c1d2f590f3cd32a376b6637f166b421cacb7f2e45bc280901bab0"
+  },
+  "version": 1
+}

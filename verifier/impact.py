@@ -284,7 +284,9 @@ def snapshot_native(paths, revision_id, *, relation_directions=None, workflow='c
     result = snapshot_workflow(report['record'], revision, relation_directions=relation_directions)
     def facts(value):
         if type(value) is dict:
-            return {key: facts(item) for key, item in value.items() if key not in ('source', 'line')}
+            # Source-edit coordinates locate text; a shifted offset does not
+            # change the engineering meaning of an otherwise unchanged node.
+            return {key: facts(item) for key, item in value.items() if key not in ('source', 'line', 'source_span')}
         if type(value) is list: return [facts(item) for item in value]
         return value
     for key, element in report['record']['elements'].items():
