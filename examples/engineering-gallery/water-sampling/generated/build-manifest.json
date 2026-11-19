@@ -29,7 +29,7 @@
     "verifier/composition_records.py": "8adcf76cf6ae6735426926d2a9fea35076d35658d3df605ad929947615ec51c7",
     "verifier/composition_removal.py": "85fccecdc89cdd33df6bbfffe1f72ea96d95cb19a09ad92b28dc3e167d13f5ab",
     "verifier/composition_removal_views.py": "b161be7173337ce0a10374c321579b6fa025a321903706236c79ce6e54f56c8d",
-    "verifier/composition_session.py": "e723fb797cd4e6d4167479d4b34201535481709494130d1747947a5889bf10c4",
+    "verifier/composition_session.py": "4b98f9306d6aa8b7ac7cbbfaa7c9ee973fbeecf7569789ae9301306b9926d03b",
     "verifier/composition_source.py": "3c331ef66233a3ecc96c2a0e7f0599c0d8ecb5573eb975509a1befc8beaabb1d",
     "verifier/composition_startup.py": "ae02294d41c0889056b2423e37dd03d1dc00df66e3e11b6d196ab0a0690ea763",
     "verifier/composition_typing.py": "1074d78aa8fc0671002ee7969e4832dc3f21dae7ad8e51b0db2341da1c769384",
