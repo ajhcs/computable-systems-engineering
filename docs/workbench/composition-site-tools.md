@@ -49,6 +49,18 @@ independent engineering verdict. A preview is unsaved, and configuration
 | Tool | Concrete effect |
 |---|---|
 | `cse_get_context` | Read visible selection, draft, history and saved native findings; observe the latest head. |
+| `cse_read_retained_review` | Read a page of saved findings using the guarded revision, review file and scope digest. Pass the returned `next_offset` with the same revision and scope until it is null. The page includes the report status, check count and current guard. |
+| `cse_search_component_catalog` | Read a ranked artwork page filtered by query, family or SysML context. Reuse the original filters when paging. |
+| `cse_inspect_component_catalog` | Read treatment, source, applicability and SVG digest for the exact catalog ID and revision. |
+| `cse_validate_component_selection` | Validate explicit exact IDs and return the portable selection record. |
+| `cse_get_component_selection` | Read the current artwork selection and its interaction revision. |
+| `cse_set_component_selection` | Replace or clear the visible artwork selection using the current workbench guard and artwork selection revision. |
+| `cse_preview_frame_master` | Preview a pinned rectangle master on the captured physical frame. The request pairs the occurrence and native UUID and carries the current catalog and artwork digests. |
+| `cse_preview_frame_style` | Preview a pinned rectangle master with explicit saved swatch IDs and text alignment. Get the palette and current frame style from the workbench context. |
+| `cse_preview_connector_style` | Preview a saved swatch on a captured ownership connector. Supply the view and connector IDs, both native endpoint UUIDs, and the palette digest. |
+| `cse_preview_view_key` | Preview the local key text on the saved view using the original legend master digest from context. |
+| `cse_preview_display_alias` | Preview the alias for the selected frame using its exact view, frame and native identities. Pass null to show the declared name. |
+| `cse_export_saved_view` | Request an SVG or source-binding JSON download for the guarded saved view. The diagram links use the same verified transfer. A host transfer handler and the saved artifact digest are required. |
 | `cse_select_element` | Select/reveal the exact UUID and occurrence; retain edits and scope. |
 | `cse_list_inspection_occurrences` | Read a bounded, revision-bound page of frames, native declarations or retained roles; preserve full required review scope. |
 | `cse_set_view_mode` | Fit the complete saved SVG overview, or reveal the selection at 100%; retain model, layout and all draft state. |

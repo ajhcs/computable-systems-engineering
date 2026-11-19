@@ -22,6 +22,22 @@ python3 scripts/composition_project.py apply --project work/private-composition.
 python3 scripts/composition_project.py history --project work/private-composition.git
 ```
 
+Use `inspect` to obtain the saved revision, bundle digest and retained scope
+identities. The bounded review read uses the same implementation as
+`cse_read_retained_composition_review` in MCP and
+`cse_read_retained_review` in the workbench site adapter.
+
+```sh
+python3 scripts/composition_project.py inspect-review --project work/private-composition.git \
+  --project-id PROJECT_UUID --expected-revision REVISION --expected-bundle-sha256 BUNDLE_SHA256 \
+  --scope-file SCOPE_FILE --scope-sha256 SCOPE_SHA256 --offset 0 --limit 25
+```
+
+A successful read reports the command status and the separately retained
+review status. Use `retained_review.next_offset` with the same saved revision
+and scope to continue. A stale revision or mismatched scope produces a
+structured refusal.
+
 ## Commit and retry
 
 A successful operation writes the exact UTF-8 blobs, a manifest with SHA-256
@@ -42,7 +58,9 @@ project state. The store does not delete those objects automatically.
 
 A mutation must supply the expected monotonic project revision. Concurrent
 different operations have one successful publication and one explicit conflict;
-concurrent copies of one request converge on the same receipt. The source digest
+concurrent copies of one request converge on the same receipt. Git waits up to
+five seconds when another transaction holds the publication lock, then checks
+the expected head. The source digest
 and Git commit identity remain distinct from this monotonic revision.
 
 ## Supported operation requests
@@ -79,6 +97,14 @@ it never rewinds the branch. It provides the primitive for global undo/redo,
 not selective per-user undo. Intervening changes require a fresh explicit
 operation against the current head. Restoring earlier source bytes cannot make
 an old request's expected revision current again.
+
+The workbench preview shows the target revision's available views, checked
+source and retained findings. If the target contains the open view, the
+preview displays its exact SVG with the original fonts before Save becomes
+available. A target without that view displays its absence explicitly.
+Choose the preceding snapshot for undo or the later retained snapshot for
+redo. The saved revision remains the active drawing until Save returns a
+matching receipt.
 
 ## Current limits and open acceptance
 

@@ -20,6 +20,7 @@ from .core import _pairs
 REF = 'refs/heads/main'
 OID = re.compile(r'[0-9a-f]{40}\Z')
 MAX_HISTORY = 10_000
+CHECKED_OPERATIONS = frozenset(('reparent', 'delete', 'remove_occurrence'))
 
 
 def encoded(value):
@@ -137,7 +138,7 @@ class CompositionProject:
                              'bundle_sha256', 'parent_commit', 'restored_from_revision', 'storage'}
                 or receipt.get('revision') != state['revision'] or receipt.get('project_id') != state['project_id']
                 or receipt.get('storage') != 'local_git_fsync'
-                or receipt.get('operation') not in ('import', 'initialize_physical_project', 'rename', 'restore', 'set_layout', 'set_multiplicity', 'set_types', 'create_definition', 'create_usage', 'reparent')
+                or receipt.get('operation') not in ('import', 'initialize_physical_project', 'rename', 'restore', 'set_layout', 'set_frame_master', 'set_connector_style', 'set_view_key', 'set_display_alias', 'set_multiplicity', 'set_types', 'create_definition', 'create_usage', 'reparent', 'delete', 'remove_occurrence')
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('request_sha256')))
                 or not re.fullmatch('[0-9a-f]{64}', str(receipt.get('bundle_sha256')))
                 or receipt.get('parent_commit') is not None and not OID.fullmatch(str(receipt['parent_commit']))):
@@ -245,7 +246,9 @@ class CompositionProject:
         return tree(root).decode()
 
     def _publish(self, commit, previous):
-        result = self._git('update-ref', '-m', 'CSE composition transaction', REF, commit,
+        # A competing writer can hold the lock while the old head is still visible.
+        result = self._git('-c', 'core.filesRefLockTimeout=5000',
+                           'update-ref', '-m', 'CSE composition transaction', REF, commit,
                            previous or '0' * 40, check=False)
         if result.returncode:
             # A concurrent winner is a conflict; other failures stay errors.
@@ -335,13 +338,23 @@ class CompositionProject:
             raise EditError('input', 'Supply a typed composition operation')
         common = {'operation', 'request_id', 'expected_revision'}
         fields = {'rename': {'element_id', 'new_name'}, 'restore': {'target_revision'}, 'set_layout': {'layout'},
+                  'set_frame_master': {'view_id', 'node_id', 'element_id', 'component_id', 'catalog_sha256', 'svg_sha256', 'legend'},
+                  'set_connector_style': {'view_id', 'edge_id', 'source_id', 'target_id', 'swatch', 'palette_sha256', 'legend'},
+                  'set_view_key': {'view_id', 'master_sha256', 'legend'},
+                  'set_display_alias': {'view_id', 'node_id', 'element_id', 'alias'},
                   'create_definition': {'owner_id', 'element_id', 'new_name', 'short_id', 'view_id', 'placement'},
                   'create_usage': {'owner_id', 'element_id', 'new_name', 'short_id', 'type_id', 'is_composite', 'multiplicity', 'view_id', 'placement'},
                   'set_multiplicity': {'element_id', 'lower', 'upper'},
                   'set_types': {'element_id', 'type_ids'},
-                  'reparent': {'element_id', 'destination', 'composition_transition', 'view_effects', 'checked_bundle_sha256'}}
+                  'reparent': {'element_id', 'destination', 'composition_transition', 'view_effects', 'checked_bundle_sha256'},
+                  'delete': {'element_id', 'reference_effects', 'view_effects', 'checked_bundle_sha256'},
+                  'remove_occurrence': {'view_id', 'node_id', 'view_effects', 'checked_bundle_sha256'}}
         operation = request.get('operation')
-        if not isinstance(operation, str) or operation not in fields or set(request) != common | fields[operation]:
+        if not isinstance(operation, str) or operation not in fields:
+            raise EditError('input', 'Unknown composition operation or fields')
+        required = common | fields[operation]
+        allowed = required | {'style'} if operation == 'set_frame_master' else required
+        if not required <= request.keys() <= allowed:
             raise EditError('input', 'Unknown composition operation or fields')
         cls._request_id(request['request_id'])
         if type(request['expected_revision']) is not int or not 1 <= request['expected_revision'] < MAX_HISTORY:
@@ -371,18 +384,44 @@ class CompositionProject:
             raise EditError('typing', 'Supply an element UUID and zero through 128 distinct part-definition UUIDs in order')
         if operation == 'restore' and type(request['target_revision']) is not int:
             raise EditError('input', 'Restore requires an integer revision')
+        if operation == 'set_display_alias' and (
+                any(not isinstance(request[key], str) or not 1 <= len(request[key]) <= 200
+                    for key in ('view_id', 'node_id', 'element_id'))
+                or request['alias'] is not None and (not isinstance(request['alias'], str)
+                    or not 1 <= len(request['alias']) <= 256 or request['alias'] != request['alias'].strip()
+                    or any(ord(char) < 32 for char in request['alias']))):
+            raise EditError('input', 'Supply the exact view, frame and native identity with one line of alias text or null')
+        if operation in ('set_frame_master', 'set_connector_style', 'set_view_key') and (
+                any(not isinstance(request[key], str) or not 1 <= len(request[key]) <= 200
+                    for key in fields[operation] - {'legend'})
+                or any(not re.fullmatch(r'[0-9a-f]{64}', request[key])
+                       for key in fields[operation] & {'catalog_sha256', 'svg_sha256', 'palette_sha256', 'master_sha256'})
+                or (request['legend'] is not None or operation == 'set_view_key') and (not isinstance(request['legend'], list)
+                    or not 1 <= len(request['legend']) <= 5
+                    or any(not isinstance(line, str) or not line.strip() or len(line) > 256 for line in request['legend']))):
+            raise EditError('input', 'Supply the exact saved artwork target, palette identity and optional authored key')
+        if operation == 'set_frame_master' and 'style' in request:
+            style = request['style']
+            if (not isinstance(style, dict) or set(style) != {'fill', 'stroke', 'text', 'align'}
+                    or any(not isinstance(value, str) or not 1 <= len(value) <= 64 for value in style.values())):
+                raise EditError('input', 'Supply exact fill, boundary and text swatch IDs and an alignment')
         if operation == 'reparent' and (not isinstance(request['element_id'], str)
                 or not isinstance(request['destination'], dict)
-                or not isinstance(request['view_effects'], list)
-                or request['composition_transition'] is not None and not isinstance(request['composition_transition'], dict)
-                or request['checked_bundle_sha256'] is not None and (not isinstance(request['checked_bundle_sha256'], str)
-                    or re.fullmatch('[0-9a-f]{64}', request['checked_bundle_sha256']) is None)):
-            raise EditError('input', 'Ownership change needs captured element/destination, composition acknowledgement, complete view consequences and a checked candidate digest')
+                or request['composition_transition'] is not None and not isinstance(request['composition_transition'], dict)):
+            raise EditError('input', 'Ownership change needs captured element, destination and composition acknowledgement')
+        if operation == 'delete' and (not isinstance(request['element_id'], str)
+                or not isinstance(request['reference_effects'], list) or len(request['reference_effects']) > 16_384):
+            raise EditError('input', 'Deletion needs an element UUID and bounded explicit reference effects')
+        if operation == 'remove_occurrence' and not all(isinstance(request[field], str) for field in ('view_id', 'node_id')):
+            raise EditError('input', 'Occurrence removal needs a saved view and occurrence ID')
+        if operation in CHECKED_OPERATIONS and (not isinstance(request['view_effects'], list)
+                or len(request['view_effects']) > 128 or request['checked_bundle_sha256'] is not None
+                and (not isinstance(request['checked_bundle_sha256'], str)
+                    or re.fullmatch(r'[0-9a-f]{64}', request['checked_bundle_sha256']) is None)):
+            raise EditError('input', 'Supply bounded view consequences and a checked candidate digest')
         request = deepcopy(request)
         if operation == 'reparent':
             from .composition_ownership_views import normalize_route_points
-            if len(request['view_effects']) > 128:
-                raise EditError('input', 'Supply at most 128 ownership view consequences')
             normalize_route_points(request['view_effects'])
         return request
 
@@ -409,19 +448,63 @@ class CompositionProject:
         elif request['operation'] == 'set_layout':
             from .composition_view import with_layout
             document = with_layout(document, request['layout'])
+        elif request['operation'] in ('set_frame_master', 'set_connector_style', 'set_view_key', 'set_display_alias'):
+            from . import composition_view
+            handlers = {'set_frame_master': composition_view.with_frame_master,
+                        'set_connector_style': composition_view.with_connector_style,
+                        'set_view_key': composition_view.with_view_key,
+                        'set_display_alias': composition_view.with_display_alias}
+            fields = {key: value for key, value in request.items()
+                      if key not in ('operation', 'request_id', 'expected_revision')}
+            try:
+                document = handlers[request['operation']](document, **fields)
+            except EditError:
+                raise
+            except ValueError as exc:
+                raise EditError('presentation_conflict', str(exc)) from exc
         elif request['operation'] == 'reparent':
             document = document.reparent(request['element_id'], request['destination'],
                 request['composition_transition'], request['view_effects'], expected_source_sha256=document.revision)
-            if request['checked_bundle_sha256'] is not None and request['checked_bundle_sha256'] != document.revision:
-                raise EditError('checked_candidate', 'Ownership candidate differs from the exact reviewed source/view bundle')
+        elif request['operation'] == 'delete':
+            from .composition_removal_views import delete_element
+            document, impact = delete_element(document, request['element_id'], request['reference_effects'],
+                request['view_effects'], expected_source_sha256=document.revision)
+            document.removal_change = impact
+        elif request['operation'] == 'remove_occurrence':
+            from .composition_removal_views import remove_occurrence
+            document, impact = remove_occurrence(document, request['view_id'], request['node_id'],
+                request['view_effects'], expected_source_sha256=document.revision)
+            document.removal_change = impact
         else:
             restored = request['target_revision']
             if type(restored) is not int or not 1 <= restored <= state['revision']:
                 raise EditError('input', 'Restore must select a published revision of this project')
             target = next(row for row in history if row['revision'] == restored)
             _, document = self._load(target['commit'])
+        if (request['operation'] in CHECKED_OPERATIONS and request['checked_bundle_sha256'] is not None
+                and request['checked_bundle_sha256'] != document.revision):
+            raise EditError('checked_candidate', 'Candidate differs from the exact reviewed source and view bundle')
         self._presentations(document)
         return document, restored
+
+    def removal_context(self, request):
+        from .composition_removal_views import model_removal_impact, occurrence_removal_impact
+        shared = {'expected_revision', 'expected_bundle_sha256'}
+        if (not isinstance(request, dict)
+                or set(request) not in (shared | {'element_id'}, shared | {'view_id', 'node_id'})
+                or type(request['expected_revision']) is not int
+                or any(not isinstance(value, str) for key, value in request.items() if key != 'expected_revision')):
+            raise EditError('input', 'Removal inspection needs a captured revision, bundle and one target')
+        snapshot = self.snapshot()
+        document = snapshot['document']
+        if request['expected_revision'] != snapshot['revision'] or request['expected_bundle_sha256'] != document.revision:
+            raise EditError('stale_revision', 'Reload the current project before inspecting removal')
+        if 'element_id' in request:
+            impact = model_removal_impact(document, request['element_id'], expected_source_sha256=document.revision)
+        else:
+            impact = occurrence_removal_impact(document, request['view_id'], request['node_id'],
+                                               expected_source_sha256=document.revision)
+        return {'project_id': document.project_id, 'revision': snapshot['revision'], 'commit': snapshot['commit'], **impact}
 
     def preview(self, request):
         """Reparse an unsaved candidate through the publication validation path.
@@ -438,13 +521,14 @@ class CompositionProject:
         state, original = self._load(previous)
         document, restored = self._candidate(request, state, original, history)
         checked_request = None
-        if request['operation'] == 'reparent':
+        if request['operation'] in CHECKED_OPERATIONS:
             checked_request = {**request, 'checked_bundle_sha256': document.revision}
             request = checked_request
         return {'base_commit': previous, 'base_revision': state['revision'],
                 'base_bundle_sha256': original.revision, 'request_sha256': request_digest(request),
                 'document': document, 'restored_from_revision': restored,
                 **({'checked_request': checked_request} if checked_request is not None else {}),
+                **({'removal': document.removal_change} if hasattr(document, 'removal_change') else {}),
                 'changed_model_files': sorted(name for name in original.files.keys() | document.files.keys()
                                               if original.files.get(name) != document.files.get(name)),
                 'changed_linked_records': sorted(name for name in original.linked_records.keys() | document.linked_records.keys()
@@ -452,8 +536,8 @@ class CompositionProject:
 
     def transact(self, request):
         request = self._validate_request(request)
-        if request['operation'] == 'reparent' and request['checked_bundle_sha256'] is None:
-            raise EditError('checked_candidate', 'Preview the ownership change and save its exact checked_request')
+        if request['operation'] in CHECKED_OPERATIONS and request['checked_bundle_sha256'] is None:
+            raise EditError('checked_candidate', 'Preview the operation and save its exact checked_request')
         previous = self.head()
         history = self._history(previous)
         retried = self._retry(history, request)

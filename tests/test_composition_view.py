@@ -125,6 +125,38 @@ class NativeViews(unittest.TestCase):
                       'optional.scope.json': {'kind': 'retained_configuration', 'text': json.dumps(optional)}}
         cls.document = CompositionDocument({'model.sysml': SOURCE}, project_id=PROJECT, linked_records=cls.linked)
 
+    def test_frame_master_refuses_companion_filename_owned_by_another_view(self):
+        other_layout = view.render(self.document, 'PC_DEFINITION')['layout']
+        name = 'presentation/PC_USAGE.layout.json'
+        records = dict(self.linked)
+        records[name] = {'kind': 'composition_layout', 'text': json.dumps(other_layout)}
+        original = CompositionDocument({'model.sysml': SOURCE}, project_id=PROJECT, linked_records=records)
+        left = view.project(original, 'PC_USAGE')['nodes']['Left']['element_id']
+        master = kit_templates.source_record('palette-rectangle-grey-dots')
+        with self.assertRaises(EditError) as caught:
+            view.with_frame_master(original, view_id='PC_USAGE', node_id='Left', element_id=left,
+                                   component_id=master['id'], catalog_sha256=master['catalog_sha256'],
+                                   svg_sha256=master['sha256'], legend=['Authored frame treatment.'])
+        self.assertEqual(caught.exception.code, 'file_name')
+        self.assertEqual(original.linked_records[name], records[name])
+
+    def test_frame_master_legacy_request_preserves_saved_style(self):
+        left = view.project(self.document, 'PC_USAGE')['nodes']['Left']['element_id']
+        master = kit_templates.source_record('palette-rectangle-grey-dots')
+        fields = {'view_id': 'PC_USAGE', 'node_id': 'Left', 'element_id': left,
+                  'component_id': master['id'], 'catalog_sha256': master['catalog_sha256'],
+                  'svg_sha256': master['sha256'], 'legend': ['Authored frame treatment.']}
+        legacy = {'operation': 'set_frame_master', 'request_id': str(uuid4()), 'expected_revision': 1, **fields}
+        self.assertEqual(CompositionProject._validate_request(legacy), legacy)
+        original_style = {'fill': 'N10', 'stroke': 'N100', 'text': 'N100', 'align': 'left'}
+        candidate = view.with_frame_master(self.document, **fields, style=original_style)
+        diagonal = kit_templates.source_record('palette-rectangle-grey-diagonal')
+        changed = view.with_frame_master(candidate, **{**fields, 'component_id': diagonal['id'],
+                                                     'svg_sha256': diagonal['sha256'], 'legend': None})
+        _, appearance = view.companion(changed, 'composition_appearance', 'PC_USAGE')
+        self.assertEqual(appearance['nodes']['Left'], {'template': diagonal['id'], **original_style})
+        self.assertEqual(changed.files, self.document.files)
+
     def test_real_bounds_native_owners_and_scope_findings_are_not_conflated(self):
         rendered = view.render(self.document, 'PC_USAGE')
         p = rendered['projection']
@@ -300,6 +332,25 @@ class NativeViews(unittest.TestCase):
         self.assertIn(kit_templates.GAP, rendered['kit_usage']['components'])
         self.assertIn('data-kit-template="'+kit_templates.GAP+'"', rendered['svg'])
         self.assertEqual(rendered['layout'], layout)
+
+    def test_connector_swatch_uses_the_saved_over_route_at_a_crossing(self):
+        document, layout = crossing_example()
+        original = view.with_layout(document, layout)
+        before = view.render(original, 'CROSS')
+        nodes = before['projection']['nodes']
+        edited = view.with_connector_style(original, view_id='CROSS', edge_id='ED',
+            source_id=nodes['B']['element_id'], target_id=nodes['D']['element_id'],
+            swatch='C13-L36', palette_sha256=view.appearance_palette()['swatches_sha256'], legend=['Connector styling.'])
+        result = view.render(edited, 'CROSS')
+        self.assertEqual(result['layout'], layout)
+        self.assertEqual(edited.files, original.files)
+        self.assertEqual(edited.registry, original.registry)
+        svg = ET.fromstring(result['svg'])
+        self.assertEqual(svg.find('.//s:g[@data-edge-id="ED"]/s:path', NS).get('stroke'), '#493C00')
+        self.assertEqual(svg.find('.//s:g[@data-edge-id="EC"]/s:path', NS).get('stroke'), '#000000')
+        self.assertEqual(svg.find('.//s:g[@data-kit-template="'+kit_templates.GAP+'"]/s:path[@class="crossing-line"]',
+                                  NS).get('stroke'), '#493C00')
+        self.assertIsNone(svg.find('.//s:g[@data-edge-id="ED"]/s:path', NS).get('marker-end'))
 
     def test_unrelated_collinear_routes_cannot_create_an_apparent_shared_junction(self):
         projection = {'edges': {'a': {'source': 'A'}, 'b': {'source': 'B'}}}
@@ -539,6 +590,28 @@ class PersistenceViews(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'existing artifact'):
             view.write_artifacts(snapshot, 'PC_USAGE', target)
         (target/'view.svg').write_text((target/'view.svg').read_text().replace('[2]', '[3]'))
+        with self.assertRaisesRegex(ValueError, 'Stale or changed'):
+            view.check_artifacts(snapshot, 'PC_USAGE', target)
+
+    def test_view_bindings_export_exact_retained_scope_bytes(self):
+        text = '\r\n' + json.dumps(SCOPE, indent=2).replace('\n', '\r\n') + '\r\n'
+        project, _ = CompositionProject.create(self.work/'review.git', {'model.sysml': SOURCE},
+            project_id=PROJECT, request_id=str(uuid4()),
+            linked_records={'selection.json': {'kind': 'retained_configuration', 'text': text}})
+        snapshot = project.snapshot()
+        target = self.work/'review-artifacts'
+        view.write_artifacts(snapshot, 'PC_USAGE', target)
+        exported = json.loads((target/'view.json').read_bytes())
+        digest = sha256(text.encode('utf-8')).hexdigest()
+        self.assertEqual(exported['retained_scope_sources'],
+                         [{'file': 'selection.json', 'scope_sha256': digest, 'text': text}])
+        self.assertEqual((target/'companions/selection.json').read_bytes(), text.encode('utf-8'))
+        review, = exported['projection']['configuration_reviews']
+        self.assertEqual(review['scope_sha256'], digest)
+        self.assertEqual(review['report']['status'], 'pass')
+        view.check_artifacts(snapshot, 'PC_USAGE', target)
+        exported['retained_scope_sources'][0]['text'] = text.strip()
+        (target/'view.json').write_text(json.dumps(exported))
         with self.assertRaisesRegex(ValueError, 'Stale or changed'):
             view.check_artifacts(snapshot, 'PC_USAGE', target)
 

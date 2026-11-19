@@ -21,19 +21,28 @@ async function pageFor(connection,options={}){
   if(!options.proxy)return;
   let csrf,firstState,releaseRead,releaseWrite;
   const readGate=new Promise(resolve=>releaseRead=resolve),writeGate=new Promise(resolve=>releaseWrite=resolve),originalFetch=globalThis.fetch;
-  const test={requests:[],readStarted:false,writeStarted:false,failWrite:false,failCleanup:false,
+  const test={requests:[],artifacts:[],readStarted:false,writeStarted:false,failWrite:false,failCleanup:false,
    releaseRead:()=>releaseRead(),releaseWrite:()=>releaseWrite(),originalFetch};globalThis.providerTest=test;
-  globalThis.cseCompositionHost={version:'cse-composition-host-1',kind:'test_proxy',openArtifact:null,
+  globalThis.cseCompositionHost={version:'cse-composition-host-1',kind:'test_proxy',
+   openArtifact:options.artifact?async artifact=>{test.artifacts.push(artifact);return{isError:false};}:null,
    async request({operation,payload}){
     test.requests.push(operation);const routes={session:'/session',state:'/api/state',head:'/api/head',inspection:'/api/inspection',preview:'/api/preview',apply:'/api/apply',receipt:'/api/receipt'};
     const init={credentials:'same-origin',cache:'no-store'};
     if(payload!==undefined)Object.assign(init,{method:'POST',headers:{'Content-Type':'application/json','X-CSE-CSRF':csrf||''},body:JSON.stringify(payload)});
     const response=await originalFetch(routes[operation],init),body=await response.json();if(body.csrf)csrf=body.csrf;if(operation==='state'&&!firstState)firstState=body.state;
+    if(operation==='state'&&options.artifact&&!test.omitArtifactHash){
+     const bytes=await (await originalFetch('/view.svg')).arrayBuffer();
+     const digest=await crypto.subtle.digest('SHA-256',bytes);
+     test.artifactHash=[...new Uint8Array(digest)].map(byte=>byte.toString(16).padStart(2,'0')).join('');
+     body.state.artifact_hashes={'view.svg':test.artifactHash};
+    }
+    if(operation==='state'&&test.omitArtifactHash)delete body.state.artifact_hashes;
     if(operation==='apply'&&body.receipt){if(test.corruptProject)body.receipt.project_id='00000000-0000-0000-0000-000000000000';if(test.corruptDigest)body.receipt.request_sha256='0'.repeat(64);}
     return{status:response.status,body};
    },intentStorage:{
     async getItem(key){
      test.readStarted=true;await readGate;const old=sessionStorage.getItem(key);if(old!==null)return old;
+     if(options.artifact)return null;
      const row=Object.values(firstState.projection.inspection.occurrences).find(row=>row.origin==='selected_role');
      const request={operation:'rename',request_id:crypto.randomUUID(),expected_revision:1,element_id:row.element_id,new_name:'sensorArray'};
      return JSON.stringify({request,selectedId:row.element_id,selectedOccurrenceId:row.id,editTargetId:row.element_id,editTargetOccurrenceId:row.id,editTargetName:row.element,draftKind:'rename',baseCommit:firstState.commit,description:'Retained exact intent',fields:{'rename-name':'sensorArray'}});
@@ -92,6 +101,46 @@ try{
   await page.evaluate(()=>{for(const gate of __fontGates)gate.reject(Error('Superseded font refusal'));});await sleep(150);
   const after=await context(page);assert(after.ready&&after.view_status==='ready'&&after.guard.commit===first.guard.commit,'Stale font failure hid/replaced the newer saved view');
   assert(await page.locator('#view').evaluate(e=>getComputedStyle(e).visibility==='visible'),'New drawing hidden by stale font failure');assert(!errors.length,'Font race escaped page errors');await page.close();return{revision:after.guard.model_revision,superseded_font_loads:4,errors};
+ });
+ await fixture('exact-saved-artifact-binding',async connection=>{
+  const {page,errors}=await pageFor(connection,{proxy:true,artifact:true});
+  await page.waitForFunction(()=>providerTest.readStarted);
+  await page.evaluate(()=>providerTest.releaseRead());
+  await ready(page);
+  const saved=(await context(page)).guard;
+  const view=page.frameLocator('#view');
+  await view.getByRole('link',{name:'SVG',exact:true}).click();
+  await page.waitForFunction(()=>providerTest.artifacts.length===1);
+  const {artifacts:[artifact],artifactHash}=await page.evaluate(()=>providerTest);
+  assert(artifact.kind==='view.svg'&&artifact.commit===saved.commit&&artifact.revision===saved.model_revision,
+    'Artifact lost its saved revision identity');
+  assert(artifact.view_id===saved.view_id&&artifact.bundle_sha256===saved.bundle_sha256&&artifact.expected_sha256===artifactHash,
+    'Artifact lost its exact view, bundle or byte digest');
+  const exportView=args=>page.evaluate(args=>__tools.get('cse_export_saved_view').execute(args),args);
+  await page.locator('#rename-name').fill('Retained export draft');
+  const draft=await context(page);
+  assert(draft.has_form_draft,'Expected a pending form draft');
+  const old=await exportView({guard:{...draft.guard,commit:'0'.repeat(40)},kind:'view.svg'});
+  assert(old.outcome==='refused'&&old.error.code==='stale_context','Stale tool context allowed export');
+  const exported=await exportView({guard:draft.guard,kind:'view.svg'});
+  assert(exported.outcome==='transfer_requested','Agent export was refused');
+  const transfers=await page.evaluate(()=>providerTest.artifacts);
+  assert(transfers.length===2&&JSON.stringify(transfers[0])===JSON.stringify(transfers[1]),
+    'Diagram and site tool requested different saved artifacts');
+  assert(exported.context.has_form_draft&&await page.locator('#rename-name').inputValue()==='Retained export draft',
+    'Export changed the pending draft');
+  const missing=await exportView({guard:exported.context.guard,kind:'view.json'});
+  assert(missing.outcome==='refused'&&missing.error.code==='artifact_unavailable',
+    'Site tool transferred an artifact without a saved digest');
+  await page.evaluate(()=>providerTest.omitArtifactHash=true);
+  await page.locator('#refresh').click();
+  await page.waitForFunction(()=>!busy&&frameReady);
+  assert(await view.getByRole('link',{name:'SVG',exact:true}).count()===0
+    &&await view.locator('a[aria-disabled=true]').filter({hasText:/^SVG$/}).count()===1,
+    'An artifact without a saved digest stayed actionable');
+  assert(!errors.length,errors.join('; '));
+  await page.close();
+  return{artifact,missing_digest_refused:true,site_guard_refused:true,site_and_link_same_artifact:true};
  });
  await fixture('receipt-project-and-payload-binding',async connection=>{
   const{page,errors}=await pageFor(connection,{proxy:true});await page.waitForFunction(()=>providerTest.readStarted);await page.evaluate(()=>{providerTest.releaseRead();providerTest.releaseWrite()});await ready(page);

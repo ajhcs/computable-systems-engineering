@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT))
 from verifier.composition_edit import EditError
 from verifier.composition_project import CompositionProject
 from verifier.composition_session import CompositionHTTPServer, CompositionHandler
+from verifier.composition_view import render
 
 SOURCE = (ROOT/'examples/workbench/composition/diagram-model.sysml').read_text()
 SCOPE = {'version':'configuration-1.0',
@@ -158,6 +159,19 @@ class SessionTests(unittest.TestCase):
         status,data,_=self.call('GET','/view.json?commit='+result['receipt']['commit'])
         self.assertEqual(status,200)
         self.assertEqual(data['commit'],result['receipt']['commit'])
+        state = result['state']
+        artifact = {'kind': 'view.json', 'revision': state['revision'], 'commit': state['commit'],
+                    'bundle_sha256': state['projection']['bundle_sha256'],
+                    'expected_sha256': state['artifact_hashes']['view.json']}
+        status, exported, _ = self.call('POST', '/api/artifact', artifact)
+        self.assertEqual(status, 200, exported)
+        self.assertEqual(json.loads(exported['text']), data)
+        self.assertEqual(exported['view_id'], 'PC_USAGE')
+        for fields, expected_status, code in (
+                ({'commit': before['commit']}, 409, 'stale_revision'),
+                ({'expected_sha256': '0'*64}, 400, 'artifact_changed')):
+            status, refused, _ = self.call('POST', '/api/artifact', {**artifact, **fields})
+            self.assertEqual((status, refused['error']['code']), (expected_status, code))
         status,page,_=self.call('GET','/api/state')
         self.assertEqual(status,200)
         self.assertIn('data-native-name="DiagramComposition::current::detector"',page['view_html'])
@@ -251,7 +265,11 @@ class SessionTests(unittest.TestCase):
         route=layout['edges']['OwnLeft']['points']
         route[-1][0]+=20;route[-1][1]+=20;route[-2][1]+=20
         request={'operation':'set_layout','request_id':str(uuid4()),'expected_revision':1,'layout':layout}
-        self.assertEqual(self.call('POST','/api/preview',request)[0],200)
+        status, preview, _ = self.call('POST','/api/preview',request)
+        self.assertEqual(status, 200, preview)
+        candidate = preview['preview']
+        self.assertEqual(candidate['candidate_layout'], layout)
+        self.assertEqual(candidate['changed_model_files'], [])
         self.assertEqual(self.project.snapshot()['revision'],1)
         first=self.call('POST','/api/apply',request)
         second=self.call('POST','/api/apply',request)
@@ -261,11 +279,20 @@ class SessionTests(unittest.TestCase):
         self.assertEqual(reopened['document'].files,original['document'].files)
         self.assertEqual(reopened['document'].registry,original['document'].registry)
         self.assertEqual(self.server.session.state()['layout'],layout)
-        for expected,target in [(2,1),(3,2)]:
+        self.assertEqual(candidate['candidate_svg'], render(reopened['document'], layout['view'])['svg'])
+        for expected,target,snapshot in [(2,1,original),(3,2,reopened)]:
             restore={'operation':'restore','request_id':str(uuid4()),'expected_revision':expected,'target_revision':target}
-            self.assertEqual(self.call('POST','/api/preview',restore)[0],200)
+            status, response, _ = self.call('POST','/api/preview',restore)
+            self.assertEqual(status, 200, response)
+            restored = response['preview']
+            self.assertEqual(restored['restored_from_revision'], target)
+            self.assertIn(layout['view'], restored['candidate_available_views'])
+            self.assertEqual(restored['candidate_svg'], render(snapshot['document'], layout['view'])['svg'])
             self.assertEqual(self.project.snapshot()['revision'],expected)
-            self.assertEqual(self.call('POST','/api/apply',restore)[0],200)
+            status, saved, _ = self.call('POST','/api/apply',restore)
+            self.assertEqual(status, 200, saved)
+            self.assertEqual(saved['receipt']['restored_from_revision'], target)
+            self.assertEqual(saved['state']['artifact_hashes']['view.svg'], restored['candidate_svg_sha256'])
         self.assertEqual(self.project.snapshot()['revision'],4)
         self.assertEqual(self.server.session.state()['layout'],layout)
         self.assertEqual(self.call('POST','/api/apply',{**request,'request_id':str(uuid4())})[0],409)

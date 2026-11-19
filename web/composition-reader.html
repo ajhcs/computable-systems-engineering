@@ -4,9 +4,12 @@
 <style>
 *{box-sizing:border-box}body{margin:0;color:#111;background:#fff;font:16px system-ui,sans-serif}header{padding:16px 24px;border-bottom:1px solid #777}h1{font-size:20px;margin:0 0 8px}main{display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:85vh}.diagram{height:calc(100vh - 100px);min-height:340px;min-width:0;display:flex;flex-direction:column;border-right:1px solid #888}.diagram-navigation{flex:none;padding:12px 12px 0;border-bottom:1px solid #888;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px}.diagram-navigation button{margin-right:0}.diagram-navigation span{font-size:14px;margin-bottom:12px}#diagram-viewport{flex:1;min-height:0;overflow:auto;padding:12px}#diagram-viewport[data-mode=overview]{overflow:hidden}svg{display:block;max-width:none}aside{max-height:calc(100vh - 100px);overflow-y:auto;padding:20px;overflow-wrap:anywhere}h2{font-size:18px;margin:0 0 12px}h3{font-size:16px;margin:24px 0 8px}dl{margin:0}dt{font-weight:600;margin-top:12px}dd{margin:3px 0 0;white-space:pre-wrap}a{color:#111}button{font:inherit;color:inherit;background:#fff;border:1px solid #555;padding:8px 12px;margin:0 8px 12px 0}g[data-node-id]{cursor:pointer;scroll-margin:12px}g[data-node-id]:focus,g[data-node-id][aria-pressed=true]{outline:3px solid #777;outline-offset:4px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #888;padding:8px;text-align:left;vertical-align:top}details{margin-top:12px}#selection-context{white-space:pre-wrap;font-size:12px}#scroll-hint{margin:0 0 10px}@media(max-width:850px){main{grid-template-columns:minmax(0,1fr)}.diagram{border-right:0;border-bottom:1px solid #888;height:65vh}aside{max-height:none;overflow:visible;padding:20px}}
 .diagram-column{min-width:0}.diagram-column .diagram{height:min(65vh,620px)}.inspection-tables{padding:16px;border-top:1px solid #888}.inspection-tables h2{margin-top:16px}.table-scroll{overflow-x:auto;max-width:100%}.declaration-table{min-width:700px}.role-table{min-width:700px}button[data-inspection-id]{max-width:100%;overflow-wrap:anywhere}button[data-inspection-id][aria-pressed=true]{outline:3px solid #777;outline-offset:-4px}aside{position:sticky;top:0;align-self:start}@media(max-width:850px){aside{position:static}}
+g[data-branch-hidden]{display:none}
+.inspection-tables :is(th,td):first-child{min-width:20rem}
+#folded-branches{width:100%;margin:0 0 12px}#folded-branches ul{max-height:6rem;overflow:auto;margin:6px 0 0;padding-inline-start:20px;overflow-wrap:anywhere}
 </style>
 <header><h1>CSE physical composition</h1><span id="revision"></span> · read-only snapshot · <a href="view.svg">SVG</a> · <a href="view.json">source bindings</a></header>
-<main><div class="diagram-column"><section class="diagram" aria-label="Physical composition diagram"><nav class="diagram-navigation" aria-label="Diagram navigation"><button id="overview" type="button" aria-pressed="false">Overview</button><button id="readable" type="button" aria-pressed="true">Readable size</button><span id="view-mode" aria-live="polite">Readable size · 100%</span></nav><div id="diagram-viewport" tabindex="0" aria-label="Scrollable diagram at readable size"><!-- CSE_SVG --></div></section><section class="inspection-tables"><h2>Native declarations</h2><div id="declaration-rows"></div><h2>Retained configuration roles</h2><div id="role-rows"></div></section></div>
+<main><div class="diagram-column"><section class="diagram" aria-label="Physical composition diagram"><nav class="diagram-navigation" aria-label="Diagram navigation"><button id="overview" type="button" aria-pressed="false">Overview</button><button id="readable" type="button" aria-pressed="true">Readable size</button><button id="branch-visibility" type="button" disabled>Collapse branch</button><span id="view-mode" aria-live="polite">Readable size · 100%</span><details id="folded-branches" hidden><summary id="folded-state" aria-live="polite"></summary><ul id="folded-list"></ul></details></nav><div id="diagram-viewport" tabindex="0" aria-label="Scrollable diagram at readable size"><!-- CSE_SVG --></div></section><section class="inspection-tables"><h2>Native declarations</h2><div id="declaration-rows"></div><h2>Retained configuration roles</h2><div id="role-rows"></div></section></div>
 <aside aria-label="Selected model element"><h2>Properties</h2><button id="previous" type="button">Previous diagram frame</button><button id="next" type="button">Next diagram frame</button><dl id="properties"></dl><h3>Retained configuration reviews</h3><div id="reviews"></div><h3>Declarations outside this view</h3><div id="omissions"></div><details><summary>Selection identity</summary><pre id="selection-context"></pre></details></aside></main>
 <script id="cse-data" type="application/json"><!-- CSE_DATA --></script>
 <script>
@@ -18,7 +21,72 @@ let selected=0;
 const viewport=document.getElementById('diagram-viewport'),drawing=viewport.querySelector('svg');
 const naturalSize={width:drawing.viewBox.baseVal.width,height:drawing.viewBox.baseVal.height};
 let navigationMode='readable',navigationScale=1,navigationRevision=0,navigationLocked=false,navigationSignature=null;
-function navigationState(){return{mode:navigationMode,scale:navigationScale,revision:navigationRevision,
+const childFrames=new Map(nodes.map(([id])=>[id,[]]));
+for(const [id,node] of nodes)if(node.parent!==null)childFrames.get(node.parent).push(id);
+const frameGroups=new Map([...drawing.querySelectorAll('g[data-node-id]')].map(group=>[group.dataset.nodeId,group]));
+const edgeGroups=new Map([...drawing.querySelectorAll('g[data-edge-id]')].map(group=>[group.dataset.edgeId,group]));
+const gaps=[...drawing.querySelectorAll('g[id^="composition-crossing-"][id$="-gap"]')];
+const crossings=data.crossing_markers||{};
+const completeCrossings=gaps.length===Object.keys(crossings).length&&gaps.every(group=>{
+  const pair=crossings[group.id];return Array.isArray(pair)&&pair.length===2&&pair.every(id=>edgeGroups.has(id));
+});
+const branches=document.getElementById('branch-visibility');
+let collapsed=new Set(),hiddenFrames=new Set();
+
+function applyBranches(){
+  hiddenFrames=new Set();
+  if(navigationMode==='readable'){
+    const queue=[...collapsed].flatMap(id=>childFrames.get(id));
+    for(let i=0;i<queue.length;i++){
+      const id=queue[i];
+      if(hiddenFrames.has(id))continue;
+      hiddenFrames.add(id);queue.push(...childFrames.get(id));
+    }
+  }
+  for(const [id,group] of frameGroups)group.toggleAttribute('data-branch-hidden',hiddenFrames.has(id));
+  const hiddenEdges=new Set();
+  for(const [id,group] of edgeGroups){
+    const hidden=hiddenFrames.has(group.dataset.sourceNode)||hiddenFrames.has(group.dataset.targetNode);
+    if(hidden)hiddenEdges.add(id);
+    group.toggleAttribute('data-branch-hidden',hidden);
+  }
+  if(completeCrossings)for(const group of gaps)
+    group.toggleAttribute('data-branch-hidden',crossings[group.id].some(edge=>hiddenEdges.has(edge)));
+}
+
+function branchControls(){
+  const id=occurrences[selectedOccurrence].frame_id;
+  const readable=navigationMode==='readable';
+  const folded=readable&&collapsed.has(id);
+  branches.hidden=!readable||!completeCrossings||!childFrames.get(id)?.length;
+  branches.textContent=folded?'Expand branch':'Collapse branch';
+  branches.disabled=navigationLocked||branches.hidden;
+  branches.setAttribute('aria-expanded',String(!folded));
+  const info=document.getElementById('folded-branches'),summary=document.getElementById('folded-state');
+  info.hidden=collapsed.size===0;
+  const count=collapsed.size===1?'1 folded branch':collapsed.size+' folded branches';
+  summary.textContent=readable?count:'All branches shown · '+count+' at readable size';
+  document.getElementById('folded-list').replaceChildren(...[...collapsed].sort().map(frame=>{
+    const item=document.createElement('li');
+    item.textContent=projection.nodes[frame].element;
+    return item;
+  }));
+}
+
+function setBranch(id,expanded){
+  if(navigationLocked||navigationMode!=='readable'||!completeCrossings||!childFrames.get(id)?.length
+      ||hiddenFrames.has(id)||occurrences[selectedOccurrence].frame_id!==id||typeof expanded!=='boolean')
+    throw Error('Select a visible parent branch at readable size.');
+  if(expanded)collapsed.delete(id);else collapsed.add(id);
+  applyBranches();branchControls();navigationChanged();return navigationState();
+}
+
+function navigationState(){
+  const collapsedIds=[...collapsed].sort();
+  return{mode:navigationMode,scale:navigationScale,revision:navigationRevision,
+  project_id:projection.project_id,view_id:projection.id,collapsed_node_ids:collapsedIds,
+  collapsed_bindings:Object.fromEntries(collapsedIds.map(id=>[id,projection.nodes[id].element_id])),
+  hidden_node_ids:[...hiddenFrames].sort(),
   scroll_left:viewport.scrollLeft,scroll_top:viewport.scrollTop,
   viewport_width:viewport.clientWidth,viewport_height:viewport.clientHeight,
   drawing_width:naturalSize.width,drawing_height:naturalSize.height,locked:navigationLocked};}
@@ -43,12 +111,15 @@ function setViewMode(mode){
   if(!['overview','readable'].includes(mode))throw new Error('Choose overview or readable size.');
   if(navigationLocked)throw new Error('Finish the active gesture before navigating.');
   navigationMode=mode;fitDrawing();
+  applyBranches();branchControls();
   if(mode==='overview'){viewport.scrollLeft=0;viewport.scrollTop=0;}
   navigationChanged();return navigationState();
 }
 function revealOccurrence(id){
-  const target=[...drawing.querySelectorAll('g[data-node-id]')].find(node=>node.dataset.nodeId===id);
+  const target=frameGroups.get(id);
   if(!target)throw new Error('Occurrence is absent from this saved view.');
+  if(navigationLocked)throw new Error('Finish the active gesture before navigating.');
+  for(let owner=projection.nodes[id].parent;owner!==null;owner=projection.nodes[owner].parent)collapsed.delete(owner);
   setViewMode('readable');
   const a=viewport.getBoundingClientRect(),r=target.getBoundingClientRect(),padding=12;let dx=0,dy=0;
   if(r.width>a.width-2*padding)dx=(r.left+r.right-a.left-a.right)/2;else if(r.left<a.left+padding)dx=r.left-a.left-padding;else if(r.right>a.right-padding)dx=r.right-a.right+padding;
@@ -59,11 +130,28 @@ globalThis.cseDiagramNavigation=Object.freeze({
   state:navigationState,
   mode(mode){if(mode==='readable'&&occurrences[selectedOccurrence].frame_id)return revealOccurrence(occurrences[selectedOccurrence].frame_id);return setViewMode(mode);},
   reveal:revealOccurrence,
-  restore(saved){setViewMode(saved.mode);if(saved.mode==='readable'){viewport.scrollLeft=saved.scroll_left;viewport.scrollTop=saved.scroll_top;navigationChanged();}return navigationState();},
-  lock(value){if(navigationLocked===value)return;navigationLocked=value;for(const id of ['overview','readable','previous','next'])document.getElementById(id).disabled=value;drawing.querySelectorAll('g[data-node-id]').forEach(node=>node.setAttribute('aria-disabled',String(value)));document.querySelectorAll('.inspection-tables button').forEach(node=>node.disabled=value);if(!value){renderDeclarations();renderScopes();}navigationChanged();}
+  branch:setBranch,
+  restore(saved){
+    if(navigationLocked)throw Error('Finish the active gesture before navigating.');
+    if(completeCrossings&&saved.project_id===projection.project_id&&saved.view_id===projection.id&&Array.isArray(saved.collapsed_node_ids))
+      collapsed=new Set(saved.collapsed_node_ids.filter(id=>childFrames.get(id)?.length&&
+        saved.collapsed_bindings?.[id]===projection.nodes[id].element_id));
+    if(saved.mode==='readable'){
+      const selectedFrame=occurrences[selectedOccurrence].frame_id;
+      for(let parent=projection.nodes[selectedFrame]?.parent;parent!=null;parent=projection.nodes[parent].parent)collapsed.delete(parent);
+    }
+    setViewMode(saved.mode);
+    if(saved.mode==='readable'){viewport.scrollLeft=saved.scroll_left;viewport.scrollTop=saved.scroll_top;navigationChanged();}
+    return navigationState();
+  },
+  lock(value){if(navigationLocked===value)return;navigationLocked=value;for(const id of ['overview','readable','previous','next'])document.getElementById(id).disabled=value;branchControls();drawing.querySelectorAll('g[data-node-id]').forEach(node=>node.setAttribute('aria-disabled',String(value)));document.querySelectorAll('.inspection-tables button').forEach(node=>node.disabled=value);if(!value){renderDeclarations();renderScopes();}navigationChanged();}
 });
 document.getElementById('overview').addEventListener('click',()=>setViewMode('overview'));
 document.getElementById('readable').addEventListener('click',()=>revealOccurrence(nodes[selected][0]));
+branches.addEventListener('click',()=>{
+  const id=occurrences[selectedOccurrence].frame_id;
+  setBranch(id,collapsed.has(id));
+});
 viewport.addEventListener('scroll',navigationChanged);
 new ResizeObserver(()=>{fitDrawing();navigationChanged();}).observe(viewport);
 fitDrawing();
@@ -90,17 +178,24 @@ function revealInspection(id,focus=false){if(navigationLocked)throw Error('Finis
  if(row.origin==='declaration'){declarationOffset=Math.floor(inspection.declarations.indexOf(id)/pageSize)*pageSize;renderDeclarations()}
  else{const scope=inspection.scopes.find(s=>s.file===row.role.file);scopeOffsets.set(scope.file,Math.floor(scope.occurrences.indexOf(id)/pageSize)*pageSize);renderScopes()}
  const button=[...document.querySelectorAll('[data-inspection-id]')].find(e=>e.dataset.inspectionId===id);button?.scrollIntoView({block:'nearest',inline:'nearest'});if(focus)button?.focus({preventScroll:true});}
-function selectOccurrence(id,{reveal=false,focus=false}={}){if(navigationLocked)return false;const node=Object.hasOwn(occurrences,id)?occurrences[id]:null;if(!node)throw Error('Inspection occurrence is absent from this snapshot.');const fromOverview=navigationMode==='overview';selectedOccurrence=id;const frameIndex=nodes.findIndex(([key])=>key===node.frame_id);if(frameIndex>=0)selected=frameIndex;const n=node.native;document.getElementById('properties').replaceChildren();field('Inspecting',origins[node.origin]);
+function selectOccurrence(id,{reveal=false,focus=false}={}){if(navigationLocked)return false;const node=Object.hasOwn(occurrences,id)?occurrences[id]:null;if(!node)throw Error('Inspection occurrence is absent from this snapshot.');const fromOverview=navigationMode==='overview';selectedOccurrence=id;branchControls();const frameIndex=nodes.findIndex(([key])=>key===node.frame_id);if(frameIndex>=0)selected=frameIndex;const n=node.native;document.getElementById('properties').replaceChildren();field('Inspecting',origins[node.origin]);
  if(node.role){const role=node.role;field('Retained role',role.kind==='configuration_root'?'Design context':role.id);field('Selected parent',parentText(role));field('Requested native name',role.binding.native_name);field('Selected direct type',role.binding.type);field('Role review',role.checked?'Reconciled declaration':'Not reconciled');if(role.membership)field('Membership correspondence',({usage_owned:'Declaration owned by selected usage',type_owned:'Declaration owned by selected type',inherited:'Inherited declaration'}[role.membership]));for(const finding of role.findings)field(finding.rule,finding.status+' · '+finding.detail);field('Complete scope review',role.file+' · '+role.review_status)}
  if(n){field('Name',n.name||node.element);if(node.frame_id&&data.display_labels[id]!==n.name)field('Display label',data.display_labels[id]);field('Kind',node.kind==='PartDefinition'?'Part definition':'Part usage');field('Native name',node.element);field('Native owner',nativeOwnerText(n));if(n.id)field('Short ID',n.id);if(n.types?.length)field('Direct types',n.types.join('\n'));if(n.multiplicity){const m=n.multiplicity;field('Multiplicity',m.lower===undefined?m.status:(m.lower===m.upper?'['+m.lower+']':'['+m.lower+'..'+m.upper+']')+' · '+m.status);if(n.source_multiplicity&&!['literal','default'].includes(n.multiplicity.status))field('Declared bound',n.source_multiplicity)}if(n.is_composite!==undefined)field('Native composition',n.is_composite?'Composite':'Non-composite');for(const[key,label]of[['supertypes','Supertypes'],['redefines','Redefines'],['subsets','Subsets']])if(n[key]?.length)field(label,n[key].join('\n'));if(n.is_variation||n.is_variant)field('Variation','Unresolved');if(n.has_native_value)field('Native value','Inspect source');if(node.source_location)field('Source',node.source_location.file+' · line '+node.source_location.line)}
  else field('Native declaration','Missing. No native UUID or edit target is inferred.');
  document.querySelectorAll('g[data-node-id]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.nodeId===node.frame_id)));document.querySelectorAll('[data-inspection-id]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.inspectionId===id)));
- const context={project_id:projection.project_id,view_id:projection.id,ui_session_id:session,model_revision:data.revision,commit:data.commit,bundle_sha256:projection.bundle_sha256,selected_element_ids:node.element_id?[node.element_id]:[],selected_occurrence_ids:[id],selection_origin:node.origin,retained_role:node.role,scope:'saved_artifact_selection_only',navigation:navigationState()};document.getElementById('selection-context').textContent=JSON.stringify(context,null,2);globalThis.cseSelectionContext=context;if(reveal||fromOverview&&node.frame_id)revealInspection(id,focus);document.dispatchEvent(new CustomEvent('cse-selection-change'));return true;
+ const context={project_id:projection.project_id,view_id:projection.id,ui_session_id:session,model_revision:data.revision,commit:data.commit,bundle_sha256:projection.bundle_sha256,selected_element_ids:node.element_id?[node.element_id]:[],selected_occurrence_ids:[id],selection_origin:node.origin,retained_role:node.role,scope:'saved_artifact_selection_only',navigation:navigationState()};document.getElementById('selection-context').textContent=JSON.stringify(context,null,2);globalThis.cseSelectionContext=context;if(reveal||node.frame_id&&(fromOverview||hiddenFrames.has(node.frame_id)))revealInspection(id,focus);document.dispatchEvent(new CustomEvent('cse-selection-change'));return true;
 }
 function select(index,reveal=false){return selectOccurrence(nodes[(index+nodes.length)%nodes.length][0],{reveal})}
 globalThis.cseReaderSelection=Object.freeze({select:selectOccurrence,reveal:revealInspection,state:()=>({occurrence_id:selectedOccurrence,element_id:occurrences[selectedOccurrence].element_id,origin:occurrences[selectedOccurrence].origin})});
 document.querySelectorAll('g[data-node-id]').forEach(el=>{const id=el.dataset.nodeId;el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',projection.nodes[id].native.name||projection.nodes[id].element);el.addEventListener('click',()=>selectOccurrence(id));el.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();selectOccurrence(id)}})});
-document.getElementById('previous').addEventListener('click',()=>select(selected-1,true));document.getElementById('next').addEventListener('click',()=>select(selected+1,true));
+function step(direction){
+  for(let distance=1;distance<=nodes.length;distance++){
+    const index=(selected+direction*distance+nodes.length)%nodes.length;
+    if(!hiddenFrames.has(nodes[index][0]))return select(index,true);
+  }
+}
+document.getElementById('previous').addEventListener('click',()=>step(-1));
+document.getElementById('next').addEventListener('click',()=>step(1));
 if(!projection.configuration_reviews.length)document.getElementById('reviews').textContent='No retained configuration scope supplied.';
 for(const review of projection.configuration_reviews){const section=document.createElement('section'),heading=document.createElement('strong');heading.textContent=review.file+' · '+review.report.status;section.append(heading);const scope=review.retained_scope,bindings=[scope.root,...Object.values(scope.selected_roles),...Object.values(scope.external_roles||{})],retained=document.createElement('p');retained.textContent='Retained native bindings: '+bindings.map(binding=>binding.native_name).join('; ');section.append(retained);for(const finding of review.report.findings||[]){const p=document.createElement('p');p.textContent=finding.status+' · '+finding.id+' · '+finding.detail;section.append(p)}document.getElementById('reviews').append(section)}
 for(const omitted of projection.omitted_elements){const p=document.createElement('p');p.textContent=omitted.element+' · owner: '+nativeOwnerText(inspection.declarations.map(id=>occurrences[id]).find(row=>row.element===omitted.element)?.native);document.getElementById('omissions').append(p)}

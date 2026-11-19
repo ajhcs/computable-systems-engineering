@@ -27,11 +27,13 @@ operations keep their separate open obligations.
 | PC-VIEW-OVERVIEW | Complete saved SVG fits the available pane; fit percentage stays visible | Uniform CSS scale of that same SVG; no source/layout/Git transaction | Every frame and relationship remains present and within the viewport |
 | Select from overview | Native selection opens at readable size | Exact occurrence/engineering UUID; required-review scope and edit target retained | Pointer and keyboard selection; definitions/usages; draft/pending cases |
 | Previous/Next | Selected occurrence revealed at readable size, navigation focus retained | Existing native selection; independent inspection and editing identities | Navigate all occurrences without test-side diagram scrolling |
+| Collapse or expand a selected branch | Descendants, incident routes, and their crossing marks follow branch visibility | Selected frame occurrence in the current drawing | Keyboard control, guarded site tool, preserved original export and draft |
+| Reveal a hidden frame | Its ancestor branches open and the frame is revealed at readable size | Exact frame occurrence and native UUID | Other branches retain their visibility |
 | Refresh while in overview | New saved view stays in overview | Refit the new saved SVG; retain exact pending request and form values | Actual CLI/GUI state and context agree; no camera command becomes an engineering edit |
 | Active move/resize | View mode and native selection cannot change during that gesture | Existing fixed gesture target and SVG coordinate transform remain stable | Navigation/selection controls disabled; competing tool and keyboard selection refuse |
 
-The reader's `cseDiagramNavigation` provides mode, reveal, restore, lock and
-state methods. The controller and site tools call these same methods. Native
+The reader's `cseDiagramNavigation` provides mode, branch, reveal, restore,
+lock and state methods. The controller and site tools call these same methods. Native
 SVG attributes, viewBox, component/source bindings and exported `view.svg`
 remain unchanged. Screen scale affects browser inspection, not the stored
 layout or exported drawing. The initial screen mode is readable size.
@@ -43,7 +45,18 @@ reopening starts at reading size. Source, identity, layout and history still hav
 their independent durable persistence obligations.
 
 The site adapter exposes `cse_set_view_mode` and the same occurrence reveal
-through `cse_select_element`. Its context includes current navigation state.
+through `cse_select_element`. `cse_set_branch_visibility` acts on the selected
+visible parent at readable size. The overview shows the full drawing, and
+returning to readable size resumes the branch view. Refresh reuses a collapse
+only when the project, view, occurrence and native element match. Previous and
+Next traverse visible frames. Site-tool context includes current navigation state.
+The navigation controls list folded branches by qualified name. The overview
+indicates that it displays every branch while preserving the folds for reading
+size. The site and MCP Apps contexts report the folded parent bindings and the
+occurrence IDs hidden by folds. The overview reports every frame as visible
+while retaining the folds for readable size. The full saved inspection remains
+accessible through the occurrence tools. Declaration and retained-role tables keep a readable identification column
+and scroll horizontally in narrow panes.
 Guards include navigation revision, mode and scroll offsets, so an older command
 cannot silently undo intervening manual navigation. Navigation retains human
 drafts and checked/unknown requests. It cannot discard or save them. MCP and

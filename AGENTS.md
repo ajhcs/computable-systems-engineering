@@ -1,16 +1,11 @@
-# Working on this project
+# Computable Systems Engineering
 
-- The repository registers eleven independently invocable skills through `.agents/skills/`: coordination, concept, CONOPS, scenarios, architecture, measures, evidence planning, queues, failure analysis, controlled-English review and diagrams. Use `coordinate-engineering-work` for connected requests. Read the selected local `skills/<name>/SKILL.md`; accept natural skill names without exact identifiers. When multiple skills apply, use one shared model and run the relevant selected checks. Concept plus scenario work does not require a complete CONOPS. Handle model files and commands for the engineer.
-- Read `docs/first-version-brief.md` and the relevant skill's record contract before changing semantics. Use `python3 scripts/check.py` for the current regression suite.
-- Preserve engineer authority over accepted intent, obligations, applicability, units, thresholds, and selection. Routine implementation and draft repairs proceed within the requested scope. Surface consequential meaning changes as proposals.
-- Keep all eleven skills independently invocable. Reuse shared deterministic helpers; load method references only when needed. The engineering drafting skills' existing version-1 records are structural drafting formats; do not claim they already encode executable scenario logic.
-- Use explicit, bounded semantics for computable verdicts. Unsupported, incomplete, timed-out, and errored checks cannot produce an overall successful required review. Do not use an LLM to supply a deterministic verdict.
-- Keep runtime dependencies small. Add libraries only for a concrete capability with meaningful tests. Do not implement an unrestricted natural-language parser or execute code supplied inside a model record.
-- The CONOPS and scenario helpers are identical copies so each skill can run independently. Update and verify both when changing that shared implementation. Keep record contracts aligned.
-- Keep private annotations, course materials, credentials, user models, and raw source documents out of Git. Use synthetic tests and small attributed public-source derivatives. Do not claim third-party endorsement.
-- Keep implementation status honest. Hashes identify inputs; they do not authenticate an engineer decision or establish a protected runner. The trusted execution boundary requires independent enforcement and testing.
-- The kickoff prompt authorizes the first verifier increment, not an automatic complete engineering design. Preserve unrelated work and check repository state before commits or publication.
+Use the relevant skill and record contract. For connected work, use `coordinate-engineering-work`, share one model and check each affected view. A concept and scenario can be delivered on their own.
 
-- For relevant user-facing interactions and operational handoffs, follow [the interaction-walkthrough workflow](docs/interaction-walkthroughs.md): inspect professional/UI precedents, draft plain connected low-fidelity wireframes with adjacent engineering mappings, and iterate with user feedback before substantial expansion, polish or implementation. Preserve model authority, explicit unsupported behavior and existing authorization; tailor coverage to the selected scope.
+Preserve engineer-approved intent, applicability, obligations and quantitative limits. Propose changes to meaning for the engineer to decide. Start with [the verification brief](docs/first-version-brief.md) when changing semantics. Keep the skills independently runnable and update both CONOPS and scenario helper copies together.
 
-- For diagram generation or reference-library work, read `skills/generate-engineering-diagrams/SKILL.md`. Preserve existing accepted model meaning, source versions and explicit view labels; keep new engineering-model creation engineer-directed.
+Use bounded, deterministic checks on declarative records. A required review passes only when each required check passes. Report draft shape, qualified execution and engineering acceptance with their own evidence. Run `python3 scripts/check.py` for regressions.
+
+Follow the [diagram skill](skills/generate-engineering-diagrams/SKILL.md) for diagram or reference-library work. Preserve model meaning, source versions and explicit view labels. Keep private sources, annotations, course materials, user models and credentials out of Git. Use synthetic or attributed public fixtures.
+
+For user-facing flows and operational handoffs, follow the [interaction walkthrough](docs/interaction-walkthroughs.md). Use relevant precedents and review a low-fidelity flow and its model mapping with the user before substantial expansion or implementation.

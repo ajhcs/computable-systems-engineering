@@ -160,7 +160,7 @@ public final class SysmlBridge {
         return result;
     }
 
-    private static Map<String, Object> sourceFacts(Element element) {
+    private static Map<String, Object> sourceFacts(Element element, boolean removalSources) {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("encoding", "utf16");
         var node = NodeModelUtils.getNode(element);
@@ -189,6 +189,36 @@ public final class SysmlBridge {
                     if (membership.getMemberShortName() != null) names.add(membership.getMemberShortName());
                 }
                 result.put("member_names", new ArrayList<>(names));
+                if (removalSources && (element instanceof PartDefinition || element instanceof PartUsage)) {
+                    var sources = new ArrayList<Map<String, Object>>();
+                    for (var relationship : namespace.getOwnedRelationship()) {
+                        if (relationship.isImplied()) continue;
+                        var relationshipNode = NodeModelUtils.getNode(relationship);
+                        var details = new LinkedHashMap<String, Object>();
+                        details.put("relationship_kind", relationship.eClass().getName());
+                        if (relationshipNode != null) {
+                            details.put("encoding", "utf16");
+                            details.put("offset", relationshipNode.getOffset());
+                            details.put("length", relationshipNode.getLength());
+                        }
+                        var ownedElements = new ArrayList<Map<String, Object>>();
+                        for (var child : relationship.getOwnedRelatedElement()) {
+                            var childNode = NodeModelUtils.getNode(child);
+                            var info = new LinkedHashMap<String, Object>();
+                            info.put("kind", child.eClass().getName());
+                            info.put("identity", child.getQualifiedName());
+                            if (childNode != null) {
+                                info.put("encoding", "utf16");
+                                info.put("offset", childNode.getOffset());
+                                info.put("length", childNode.getLength());
+                            }
+                            ownedElements.add(info);
+                        }
+                        details.put("owned_elements", ownedElements);
+                        sources.add(details);
+                    }
+                    result.put("owned_relationship_sources", sources);
+                }
             }
             if (element instanceof org.omg.sysml.lang.sysml.Namespace && element.getQualifiedName() != null) {
                 // Canonical identities may contain quoted separators or source
@@ -505,7 +535,7 @@ public final class SysmlBridge {
         return item;
     }
 
-    private static Map<String, Object> extract(Element root) {
+    private static Map<String, Object> extract(Element root, boolean removalSources) {
         List<Map<String, Object>> attributes = new ArrayList<>();
         List<Map<String, Object>> events = new ArrayList<>();
         List<Map<String, Object>> eventAttributes = new ArrayList<>();
@@ -537,7 +567,7 @@ public final class SysmlBridge {
                 item.put("native_fragment", EcoreUtil.getURI(object).fragment());
                 item.put("owner", namespace.getOwner() == null ? null : namespace.getOwner().getQualifiedName());
                 item.put("owner_kind", namespace.getOwner() == null ? null : namespace.getOwner().eClass().getName());
-                item.put("source_span", sourceFacts(namespace));
+                item.put("source_span", sourceFacts(namespace, false));
                 var names = new java.util.LinkedHashSet<String>();
                 for (var membership : namespace.getOwnedMembership()) {
                     if (membership.getMemberName() != null) names.add(membership.getMemberName());
@@ -612,7 +642,7 @@ public final class SysmlBridge {
                 }
             } else if (object instanceof PartDefinition partDefinition) {
                 Map<String, Object> item = new LinkedHashMap<>();
-                item.put("source_span", sourceFacts(partDefinition));
+                item.put("source_span", sourceFacts(partDefinition, removalSources));
                 item.put("id", partDefinition.getDeclaredShortName());
                 var owner = partDefinition.getOwningNamespace();
                 item.put("owner", owner == null ? null : owner.getQualifiedName());
@@ -628,7 +658,7 @@ public final class SysmlBridge {
                 partDefinitions.add(item);
             } else if (object instanceof PartUsage part && !(object instanceof Connector)) {
                 Map<String, Object> item = new LinkedHashMap<>();
-                item.put("source_span", sourceFacts(part));
+                item.put("source_span", sourceFacts(part, removalSources));
                 item.put("id", part.getDeclaredShortName());
                 item.put("name", part.getName());
                 item.put("qualified_name", part.getQualifiedName());
@@ -742,7 +772,7 @@ public final class SysmlBridge {
                 ConstraintUsage constraint = parent(documentation, ConstraintUsage.class);
                 RequirementUsage requirement = parent(documentation, RequirementUsage.class);
                 Map<String, Object> item = new LinkedHashMap<>();
-                item.put("source_span", sourceFacts(documentation));
+                item.put("source_span", sourceFacts(documentation, false));
                 item.put("name", documentation.getName());
                 item.put("body", documentation.getBody());
                 item.put("constraint", constraint == null || constraint instanceof RequirementUsage
@@ -817,8 +847,9 @@ public final class SysmlBridge {
             serializeName(System.out);
             return;
         }
-        if (args.length != 2) {
-            System.err.println("usage: SysmlBridge LIBRARY_DIRECTORY MODEL.sysml");
+        boolean removalSources = args.length == 3 && args[2].equals("--removal-sources");
+        if (args.length != 2 && !removalSources) {
+            System.err.println("usage: SysmlBridge LIBRARY_DIRECTORY MODEL.sysml [--removal-sources]");
             System.exit(2);
         }
         PrintStream output = System.out;
@@ -844,7 +875,7 @@ public final class SysmlBridge {
             }
             response.put("issues", issues);
             response.put("error", parsed.getException() == null ? null : parsed.getException().toString());
-            if (parsed.getRootElement() != null) response.putAll(extract(parsed.getRootElement()));
+            if (parsed.getRootElement() != null) response.putAll(extract(parsed.getRootElement(), removalSources));
         } catch (Exception exc) {
             response.put("error", exc.toString());
         } finally {

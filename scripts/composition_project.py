@@ -20,7 +20,7 @@ from verifier.foundation import read_regular
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=('import', 'prepare-initial', 'initialize', 'inspect', 'inspect-view', 'apply', 'preview', 'receipt', 'history', 'render', 'check-render'))
+    parser.add_argument('command', choices=('import', 'prepare-initial', 'initialize', 'inspect', 'inspect-view', 'inspect-removal', 'inspect-review', 'apply', 'preview', 'receipt', 'history', 'render', 'check-render'))
     parser.add_argument('--project', required=True, help='trusted server-side bare Git directory')
     parser.add_argument('--bundle', help='explicit cse-composition-bundle-1 input')
     parser.add_argument('--project-id')
@@ -33,14 +33,23 @@ def main():
     parser.add_argument('--limit', type=int, default=25)
     parser.add_argument('--expected-bundle-sha256')
     parser.add_argument('--expected-revision', type=int)
+    parser.add_argument('--scope-file', help='exact retained configuration record name')
+    parser.add_argument('--scope-sha256', help='exact retained configuration scope digest')
     args = parser.parse_args()
     try:
         if args.command == 'inspect-view':
             if not args.view_id or any((args.output, args.bundle, args.project_id, args.request_id, args.request)):
                 raise EditError('input', 'View inspection requires a view ID and inspection page fields only')
+        elif args.command == 'inspect-review':
+            if not all((args.project_id, args.scope_file, args.scope_sha256, args.expected_bundle_sha256)) or args.expected_revision is None:
+                raise EditError('input', 'Review inspection requires the project UUID, saved revision, bundle digest, scope file and scope digest')
+            if any(value is not None for value in (args.origin, args.bundle, args.request, args.request_id)):
+                raise EditError('input', 'Review inspection accepts only saved revision, scope and page fields')
         elif any((args.origin is not None, args.offset != 0, args.limit != 25,
                   args.expected_bundle_sha256 is not None, args.expected_revision is not None)):
-            raise EditError('input', 'Inspection page fields apply only to inspect-view')
+            raise EditError('input', 'Inspection page fields apply only to inspect-view and inspect-review')
+        if args.command != 'inspect-review' and any(value is not None for value in (args.scope_file, args.scope_sha256)):
+            raise EditError('input', 'Scope fields apply only to inspect-review')
         if args.command in ('render', 'check-render'):
             if not args.view_id or not args.output or any((args.bundle, args.project_id, args.request_id, args.request)):
                 raise EditError('input', 'Rendering requires a view ID and output directory')
@@ -72,14 +81,22 @@ def main():
             _, receipt = CompositionProject.create(args.project, bundle['models'], linked_records=bundle['linked_records'],
                                                    project_id=args.project_id, request_id=args.request_id)
             report = {'receipt': receipt}
+        elif args.command == 'inspect-review':
+            from verifier.composition_data_tools import CompositionDataTools
+            reader = CompositionDataTools(lambda project_id: project if project_id == args.project_id else None)
+            report = {'retained_review': reader.retained_review(
+                args.project_id, args.expected_revision, args.expected_bundle_sha256,
+                args.scope_file, args.scope_sha256, offset=args.offset, limit=args.limit)}
         else:
             if args.bundle or args.project_id or args.request_id:
                 raise EditError('input', 'These import fields do not apply to this command')
-            if args.command in ('apply', 'preview', 'receipt'):
+            if args.command in ('apply', 'preview', 'receipt', 'inspect-removal'):
                 if not args.request:
-                    raise EditError('input', 'Apply/preview/receipt requires an operation JSON file')
+                    raise EditError('input', 'Supply the exact operation or removal context JSON file')
                 request = strict_json(read_regular(args.request, 1_000_000).decode('utf-8'))
-                if args.command == 'apply':
+                if args.command == 'inspect-removal':
+                    report = {'removal': project.removal_context(request)}
+                elif args.command == 'apply':
                     report = {'receipt': project.transact(request)}
                 elif args.command == 'receipt':
                     report = project.lookup_receipt(request)
@@ -91,7 +108,7 @@ def main():
                               'claim': 'unsaved_candidate_not_a_transaction_receipt'}
             else:
                 if args.request:
-                    raise EditError('input', 'Request JSON applies only to apply/preview/receipt')
+                    raise EditError('input', 'Request JSON applies to inspect-removal, apply, preview and receipt')
                 if args.command == 'inspect-view':
                     from verifier.composition_view import project as project_view
                     from verifier.composition_inspection import page

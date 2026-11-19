@@ -130,7 +130,9 @@ def _locate(line, line_ranges):
     return None, line
 
 
-def _parser_output(source, timeout):
+def _parser_output(source, timeout, *, removal_sources=False):
+    if removal_sources:
+        return _run_parser(source, timeout, removal_sources=True)
     from .sysml_batch_context import PARSE_SESSION
     session = PARSE_SESSION.get()
     return session(source, timeout) if session is not None else _run_parser(source, timeout)
@@ -161,12 +163,14 @@ def _native_name(name, timeout=10):
     return result
 
 
-def _run_parser(source, timeout):
+def _run_parser(source, timeout, *, removal_sources=False):
     _check_parser_install()
     if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout <= 0 or timeout > 600:
         raise ValueError("Parser timeout must be between 0 and 600 seconds")
     command = ["java", "-Xmx1200m", "-cp", f"{CLASSES}:{JAR}", "SysmlBridge",
                str(LIBRARY), "-"]
+    if removal_sources:
+        command.append("--removal-sources")
     CACHE.mkdir(parents=True, exist_ok=True)
     # The pilot may refresh a shared library index; serialize local parser runs.
     with (CACHE / "parser.lock").open("w") as lock:

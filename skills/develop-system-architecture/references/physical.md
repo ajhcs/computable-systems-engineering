@@ -95,3 +95,14 @@ retain declaration UUIDs, complete affected-view consequences and exact scope.
 A namespace source locator is valid only for its captured bundle. Reparenting
 never silently changes declaration form or accepts a failed configuration review.
 The ownership work remains unqualified while its parity cells are active.
+
+The local [removal commands](../../../docs/workbench/composition-removal.md) separate
+diagram occurrence removal from model deletion. Keep the captured revision,
+native UUID and view effects attached to the preview. Retain original scope and
+report any new findings. Use explicit source effects for each admitted incoming
+typing, and retain authored legend entries pending an explicit presentation edit.
+
+For wording on a saved frame, use the [display-alias operation](../../../docs/workbench/composition-catalog.md#edit-a-display-alias)
+with the captured view, frame and native UUID. Clearing the alias displays the
+declared name. Use the native rename operation when the engineer wants to change
+the declared name and its references.

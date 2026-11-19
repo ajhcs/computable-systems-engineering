@@ -6,6 +6,15 @@ intent storage and artifact transfer. It supplies no model or engineering
 verdict. Hosted persistence, the complete MCP data-tool contract and actual
 Codex/ChatGPT acceptance remain open in the [parity ledger](parity.json).
 
+The signed browser uses the current project's saved view in the address
+`/workbench/<project UUID>/<view ID>`. **Switch physical view** and the
+`cse_switch_saved_view` site tool use the same controller. Both retain the
+current address if the requested view cannot open and require resolution of
+any retained edit before switching. Opening another view updates the address
+after its native view state loads. The address resumes that exact project
+and view on a later visit. ChatGPT opens the same IDs through
+`cse_open_composition`.
+
 Before a saved model exists, [initial authoring](composition-initial-project.md)
 uses a separate prospective controller and `cse-initial-host-1` provider. It has
 no revision-zero engineering projection. Its checked first request and receipt
@@ -37,11 +46,23 @@ The operation names are `state`, `head`, `inspection`, `preview`, `apply` and
 refuses that local bootstrap operation. Existing schemas, expected revisions,
 source identities, configuration findings and receipts keep their meaning.
 
+`model_review` is a project-level read using a saved revision, bundle digest,
+retained review file, scope digest, finding offset and page limit. Loopback,
+the signed web request and the MCP Apps adapter call the same native reader
+used by `composition_project.py inspect-review`. The site tool verifies the
+response's project, commit, revision, bundle, review scope and offset against
+its captured request. A checked candidate remains accessible through preview.
+
 ## Exact intent and acknowledgement
 
 Initialization awaits the pending-intent read before assigning reader HTML or
 enabling edits. Recovered request IDs, payloads, raw form values, original target
-UUID/occurrence and base revision remain bound together.
+UUID/occurrence, originating physical view and base revision remain bound
+together. After reopening a different view, retry sends the exact request
+through the view in which it was checked and refreshes the view the engineer
+currently has open. Older entries recover the view from their view-scoped
+request. A provider restricted to one view asks the engineer to reopen the
+originating view before it sends the retry.
 
 Save awaits storage of that exact intent before dispatching apply. A preparation
 or storage failure returns `not_sent` for this attempt and retains any earlier
@@ -99,11 +120,14 @@ Completion is bound to document, srcdoc, view generation, commit and revision,
 so an old font failure cannot hide a newer view. Saved SVG, masters, metrics,
 textures and notation remain unchanged.
 
-Local SVG/source-binding links retain commit-bound downloads. A configured host
-uses its artifact handler or marks transfer unavailable. The MCP adapter
-currently has no transfer handler. Candidate/export font gates, full host
-frame/navigation compatibility and actual-host glyph coverage remain open;
-saved-reader checks cannot close them.
+The workbench links and site-tool export use the same transfer. The loopback
+server and native compute check the view's saved revision, commit, bundle
+digest and captured artifact digest. The loopback, direct browser and MCP Apps
+adapters use the same byte verifier before handing the file to their download
+APIs. Standalone reader links open the corresponding exported files. When the host
+or saved artifact digest is unavailable, the reader disables the transfer.
+The local reference bridge exercises this handoff. Actual Codex and ChatGPT
+download and glyph checks remain open.
 
 ## Qualification
 

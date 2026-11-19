@@ -40,7 +40,7 @@ def main():
         elif a.command=='contract':result=agent.contract()
         elif a.command=='catalog':result=agent.facets()
         elif a.command=='show':
-            result={'schema':agent.SCHEMA,'status':'pass','catalog_sha256':agent.revision(),'component':agent.resolve([a.id])[0]}
+            result=agent.describe(a.id)
         elif a.command=='selection':result=agent.selection(a.ids)
         elif a.command=='list':result=agent.search(a.query,a.sysml,a.family,a.limit,a.cursor)
         elif a.command=='preview':

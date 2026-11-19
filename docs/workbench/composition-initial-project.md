@@ -183,6 +183,22 @@ controller; close the initial controller and its context subscription during
 handoff. Actual Codex, ChatGPT and private remote authorization/durability need
 their own execution evidence.
 
+### Private browser invitation
+
+An invited engineer can open
+`/workbench/initial/<project UUID>/<root UUID>/<view ID>` in the preview browser.
+Sign-in returns to the exact invitation. The signed native call checks the
+account's project grant, and the controller binds the returned state to the
+invitation's project, root and view. The address itself carries no authority.
+The initial screen exposes the same preview, creation, receipt recovery and
+open operations to direct controls and to the browser's site tools.
+
+After creation, **Open saved model** verifies the first receipt and the current
+saved project. The browser retires the initial site tools and switches to
+`/workbench/<project UUID>/<view ID>` in the same signed session. The saved
+editor reads the current stored revision from the same project. Keep the saved
+address for reopening the model in a later Codex session.
+
 An initial lookup reporting absence does not cancel another identical attempt.
 If a dispatched checked bundle cannot be regenerated and no matching receipt is
 available, the conservative outcome remains unconfirmed. Preserve the original

@@ -106,8 +106,15 @@ informs this contract; it does not close a production interface or capability.
 The [shared application provider](composition-provider.md) now connects the
 controller to loopback or an explicitly supplied MCP client. Shared context,
 async exact-intent recovery, matching-receipt checks and saved-font readiness
-remain in that controller. Server authorization, hosted persistence, artifact
-transfer and actual application acceptance remain required completion gates.
+remain in that controller. The local MCP reference host checks
+revision-bound artifact delivery. The private deployment and actual Codex and
+ChatGPT acceptance remain required completion gates.
+
+The [diagram reader](composition-navigation.md) supports overview, readable
+size, branch folding and guarded reveal. The [configuration review](../configuration-review.md)
+shows saved and candidate findings with separate revision identities and the
+retained scope digest. The [parity matrix](parity.json) records the local test
+evidence and remaining physical composition gaps.
 
 For the explicit bundle transport, see [the bundle contract](composition-bundle.md).
 Bundle file names label supplied texts; they are never instructions to read or
@@ -144,6 +151,10 @@ registers selection, preview/save, refresh and receipt recovery around those
 same controls when `document.modelContext` is available. Synthetic host-API
 browser checks are distinct from actual host execution. Hosted authorization,
 full operation coverage, MCP/MCP Apps and actual application journeys remain open.
+
+The [component catalog panel](composition-catalog.md) uses the same catalog
+ranking and exact-ID records as the CLI. It displays the catalog's SVG bytes
+and provenance alongside the saved model.
 
 ## Next acceptance obligations
 

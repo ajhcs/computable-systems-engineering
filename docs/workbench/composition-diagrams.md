@@ -153,6 +153,13 @@ or a later model/layout revision fail correspondence. An existing export folder
 is never replaced. The artifact is not a project transaction acknowledgement or
 a lossless external-tool import claim.
 
+The source-bindings download (`view.json`) includes each complete saved
+configuration report in `projection.configuration_reviews`, and the original
+scope text in `retained_scope_sources`. Encode each source's decoded `text`
+as UTF-8 to reproduce its `scope_sha256`. Scope text retains its original
+line endings and formatting. The reports describe the exported saved revision
+even when the workbench has an unsaved candidate.
+
 The reader keeps readable scrolling on narrow screens. Its
 [overview/readable navigation](composition-navigation.md) uniformly scales the
 same complete SVG for orientation, then returns to native 100% scale for reading

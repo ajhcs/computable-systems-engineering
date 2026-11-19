@@ -5,7 +5,7 @@ import {assert,hash,digest,pins,unchanged,fixture,toolRegistration,context,tool,
 const {chromium}=createRequire(import.meta.url)(process.env.CSE_BROWSER_MODULE),out=path.resolve(process.argv[2]);fs.mkdirSync(out,{mode:0o700});
 const inputs=pins(['tests/browser/composition_initial.mjs']),browser=await chromium.launch({executablePath:process.env.CSE_BROWSER_EXECUTABLE,headless:true,args:['--no-sandbox','--disable-dev-shm-usage']}),observations=[],images=[],deliveries=[];
 const python=(...args)=>JSON.parse(execFileSync('python3',['-B',...args],{cwd:root,env:process.env,encoding:'utf8'}));
-const savedReady=page=>page.waitForFunction(()=>globalThis.cseWorkbench?.context().ready&&cseSiteTools.registered.length===20);
+const savedReady=page=>page.waitForFunction(()=>globalThis.cseWorkbench?.context().ready&&cseSiteTools.status==='registered');
 const savedContext=page=>page.evaluate(()=>cseWorkbench.context());
 const variants=[{id:'manual_definition',kind:'definition',name:'System',short:'SYS',namespace:null,manual:true},
  {id:'manual_usage',kind:'usage',name:'current',short:'CURRENT',namespace:'Project',manual:true},

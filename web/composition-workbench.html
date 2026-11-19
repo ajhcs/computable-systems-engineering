@@ -6,14 +6,23 @@
 *{box-sizing:border-box}body{margin:0;background:#fff;color:#111;font:16px system-ui,sans-serif}header,section{padding:12px 20px;border-bottom:1px solid #888}h1{font-size:20px;margin:0 0 6px}p{margin:8px 0;overflow-wrap:anywhere}fieldset{min-width:0;max-width:100%;border:0;padding:0;margin:0}form{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:end;margin:10px 0}label{min-width:0;max-width:100%;display:flex;flex-direction:column;gap:4px}input,button,select{font:inherit;color:inherit;background:#fff;border:1px solid #555;padding:7px}button{cursor:pointer}button:disabled{color:#666;cursor:default}input[type=number]{width:105px}#rename-name{width:220px}#notice{font-weight:600}#preview{border:1px solid #888;padding:12px;margin:12px 0}#summary{white-space:pre-wrap}iframe{width:100%;height:calc(100vh - 120px);min-height:680px;border:0;display:block}.actions{display:flex;flex-wrap:wrap;gap:10px}#pending-indicator{font-weight:600}@media(max-width:600px){header,section{padding:12px}form{align-items:start}#rename-name{max-width:100%}iframe{min-height:800px}button{min-height:42px}}
 textarea,select,input{max-width:100%}textarea{font:inherit}#candidate-diagram[hidden],#create-coordinates[hidden],#usage-coordinates[hidden],#usage-bounds[hidden]{display:none}
 .typing-row{margin:12px 0}.typing-row label{width:28rem}.typing-row button{margin-top:6px}
-#view{visibility:hidden}
+#view{visibility:hidden}[hidden]{display:none!important}
+.workspace-jump{display:none}
+main{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,440px);align-items:start}.saved-diagram{min-width:0;position:sticky;top:0}
+main:has(#view[hidden]){display:block}
+.saved-diagram:has(#view[hidden]),body:has(#view[hidden]) .workspace-jump a[href="#saved-diagram"]{display:none}#model-controls{border-left:1px solid #888}
+@media(max-width:950px){main{display:block}.saved-diagram{position:static}#model-controls{border-left:0}.workspace-jump{display:flex;gap:16px;flex-wrap:wrap}}
 </style>
-<header><h1>CSE physical composition · local development</h1><p id="saved">Connecting to the private project…</p><p id="notice" role="status" aria-live="polite"></p></header>
-<section aria-label="Edit the selected model element">
+<header><h1>CSE physical composition</h1><p id="saved">Connecting to the private project…</p><p id="notice" role="status" aria-live="polite"></p><nav class="workspace-jump" aria-label="Workbench navigation"><a href="#saved-diagram">Saved diagram</a> <a href="#model-controls">Model controls</a></nav></header>
+<main><div class="saved-diagram" id="saved-diagram"><iframe id="view" name="cse-saved-view" title="Saved physical composition and native properties" referrerpolicy="no-referrer"></iframe></div>
+<section id="model-controls" aria-label="Edit the selected model element">
+<div id="saved-view-controls" class="actions" hidden><label>Switch physical view<select id="saved-view-picker"></select></label><button id="open-saved-view" type="button">Open view</button></div><p id="closed-view-message" hidden></p>
+<details id="closed-retained-reviews" hidden><summary>Retained configuration reviews</summary><div id="closed-retained-findings"></div></details>
 <p id="selected">Select an element in the saved diagram.</p>
 <p id="edit-target"></p><div class="actions"><button id="return-target" type="button" hidden>Return to the edit target</button><button id="edit-selected" type="button" hidden>Start a new edit on the selection (discard draft)</button><button id="discard-draft" type="button" hidden>Discard form draft</button></div>
 <fieldset id="edits" disabled>
 <form id="rename-form"><label>Declared name<input id="rename-name" autocomplete="off" required></label><button id="preview-rename">Preview rename</button></form>
+<form id="display-alias-form" hidden><label>Display alias in this view<input id="display-alias" autocomplete="off" placeholder="Use declared name"></label><button id="preview-display-alias">Preview display alias</button></form>
 <form id="typing-form"><fieldset id="typing-fields"><legend>Explicit part-usage types</legend><p id="typing-saved"></p><p>These types belong to the captured native declaration. Editing a shared declaration can affect its consumers.</p><input id="typing-values" type="hidden" value="[]"><div id="typing-rows"></div><p id="typing-empty"></p><button id="typing-add" type="button">Add another definition</button><button id="preview-typing" type="submit">Preview explicit types</button></fieldset></form>
 <form id="create-definition-form"><fieldset id="create-definition-fields"><legend>Add an owned part definition</legend><p id="create-owner"></p><div class="actions"><label>New declared name<input id="create-name" autocomplete="off" required></label><label>Short ID (optional)<input id="create-short" autocomplete="off"></label><label>Placement<select id="create-placement"><option value="automatic">Automatic</option><option value="manual">Specify coordinates</option></select></label></div><fieldset id="create-coordinates" hidden><div class="actions"><label>X<input id="create-x" type="number" step="any"></label><label>Y<input id="create-y" type="number" step="any"></label><label>Width<input id="create-width" type="number" step="any"></label><label>Height<input id="create-height" type="number" step="any"></label><label>Ownership route (x,y per line)<textarea id="create-points" rows="4" cols="24"></textarea></label></div></fieldset><button id="preview-create-definition">Preview creation</button></fieldset></form>
 <form id="create-usage-form"><fieldset id="create-usage-fields"><legend>Add a part usage</legend><p id="usage-owner"></p><div class="actions"><label>New declared name<input id="usage-name" autocomplete="off" required></label><label>Short ID (optional)<input id="usage-short" autocomplete="off"></label><label style="width:28rem">Typing<select id="usage-type"><option value="">No explicit typing</option></select></label><label>Declaration kind<select id="usage-kind"><option value="composite">Composite part</option><option value="reference">Reference part</option></select></label><label>Multiplicity<select id="usage-multiplicity"><option value="default">Native default [1]</option><option value="finite">Specify finite bounds</option></select></label></div><fieldset id="usage-bounds" hidden><div class="actions"><label>Lower bound<input id="usage-lower" type="number" min="0" max="2147483647" step="1"></label><label>Upper bound<input id="usage-upper" type="number" min="0" max="2147483647" step="1"></label></div></fieldset><p id="usage-type-availability"></p><p id="usage-presentation"></p><label>Placement<select id="usage-placement"><option value="automatic">Automatic frame or declaration row</option><option value="manual">Specify frame and route</option></select></label><fieldset id="usage-coordinates" hidden><div class="actions"><label>X<input id="usage-x" type="number" step="any"></label><label>Y<input id="usage-y" type="number" step="any"></label><label>Width<input id="usage-width" type="number" step="any"></label><label>Height<input id="usage-height" type="number" step="any"></label><label>Ownership route (x,y per line)<textarea id="usage-points" rows="4" cols="24"></textarea></label></div></fieldset><button id="preview-create-usage">Preview usage creation</button></fieldset></form>
@@ -33,13 +42,80 @@ textarea,select,input{max-width:100%}textarea{font:inherit}#candidate-diagram[hi
 <div id="ownership-view-effects"></div><p>Only explicit view consequences are applied. Every retained box, style and unrelated route stays fixed. Preceding comments outside the native declaration stay at their original source site.</p>
 <button id="preview-ownership" type="submit">Preview native owner change</button>
 </fieldset></form></details>
-<form id="restore-form"><label>Saved revision<select id="restore-target" required></select></label><button>Preview restoration</button></form>
+<details id="removal-details"><summary>Remove selected part or occurrence</summary>
+<form id="removal-form"><fieldset id="removal-fields"><legend>Removal target</legend>
+<p id="removal-target"></p>
+<div class="actions"><button id="remove-diagram" type="button">Inspect removal from this view</button><button id="delete-native" type="button">Inspect deletion from model</button></div>
+<p id="removal-status" role="status"></p><div id="removal-consequences"></div>
+<input id="removal-values" type="hidden" value="{}">
+<button id="preview-removal" type="submit" disabled>Preview removal</button>
+</fieldset></form></details>
 </fieldset>
+<form id="restore-form"><label>Saved revision<select id="restore-target" required></select></label><button>Preview restoration</button></form>
+<details id="catalog-panel"><summary>Component catalog</summary>
+<form id="catalog-form">
+<label>Search artwork<input id="catalog-query" type="search" maxlength="256" autocomplete="off"></label>
+<details><summary>Catalog filters</summary>
+<label>Exact family<input id="catalog-family" maxlength="256" autocomplete="off"></label>
+<label>Exact SysML context<input id="catalog-sysml" maxlength="256" autocomplete="off"></label>
+</details>
+<button type="submit">Search catalog</button>
+</form>
+<p id="catalog-status" role="status"></p>
+<p id="saved-frame-master" hidden></p>
+<button id="edit-saved-frame-style" type="button" hidden>Edit saved frame style</button>
+<details id="catalog-selection-panel"><summary>Artwork selection</summary>
+<ul id="catalog-selected-ids"></ul>
+<div class="actions"><button id="catalog-selection-download" type="button" disabled>Download selection</button></div>
+<label>Open saved selection<input id="catalog-selection-open" type="file" accept=".json,application/json"></label>
+<p id="catalog-selection-status" role="status"></p>
+</details>
+<ul id="catalog-results"></ul>
+<button id="catalog-more" type="button" hidden>More components</button>
+<div id="catalog-inspection" hidden>
+<h2 id="catalog-title"></h2><img id="catalog-artwork" alt="" style="display:block;max-width:100%;max-height:18rem">
+<button id="catalog-selection-toggle" type="button">Add to artwork selection</button>
+<button id="begin-frame-master" type="button" hidden>Use as frame master</button>
+<dl id="catalog-metadata"></dl>
+</div>
+<form id="frame-master-form" hidden>
+<p id="frame-master-target"></p>
+<div id="frame-style-fields" class="actions" hidden>
+<div><label for="frame-style-fill">Fill swatch</label><select id="frame-style-fill"></select></div>
+<div><label for="frame-style-stroke">Boundary swatch</label><select id="frame-style-stroke"></select></div>
+<div><label for="frame-style-text">Text swatch</label><select id="frame-style-text"></select></div>
+<div><label for="frame-style-align">Text alignment</label><select id="frame-style-align"><option value="center">Center</option><option value="left">Left</option></select></div>
+</div>
+<label>Local key, one line per entry<textarea id="frame-master-legend" rows="3" maxlength="1284"></textarea></label>
+<p>Enter a key for the first appearance. Leave blank to retain an existing key.</p>
+<button id="preview-frame-master" type="submit">Preview frame artwork</button>
+</form>
+</details>
+<details id="connector-style-panel"><summary>Ownership connector appearance</summary>
+<div class="actions"><div><label for="connector-style-edge">Saved connector</label><select id="connector-style-edge"></select></div>
+<button id="edit-connector-style" type="button">Edit connector style</button></div>
+<p id="saved-connector-style" hidden></p>
+<form id="connector-style-form" hidden>
+<p id="connector-style-target"></p>
+<div><label for="connector-style-swatch">Connector swatch</label><select id="connector-style-swatch"></select></div>
+<label>Local key, one line per entry<textarea id="connector-style-legend" rows="3" maxlength="1284"></textarea></label>
+<p>Enter a key for the first appearance. Leave blank to retain an existing key.</p>
+<button id="preview-connector-style" type="submit">Preview connector style</button>
+</form>
+</details>
+<details id="view-key-panel"><summary>View local key</summary>
+<ol id="saved-view-key-lines"></ol>
+<button id="edit-view-key" type="button">Edit local key</button>
+<form id="view-key-form" hidden>
+<label for="view-key-legend">Key entries, one per line</label>
+<textarea id="view-key-legend" rows="5" maxlength="1284" required></textarea>
+<button id="preview-view-key" type="submit">Preview local key</button>
+</form>
+</details>
 <details id="source-panel"><summary>Inspect exact SysML source</summary><div class="actions"><label>Snapshot<select id="source-mode"><option value="saved">Saved source</option><option value="candidate">Checked candidate source</option></select></label><label>Model file<select id="source-file"></select></label><button id="source-read" type="button">Read source</button><button id="source-next" type="button" disabled>Read next source chunk</button></div><p id="source-status" role="status"></p><pre id="source-text" hidden style="white-space:pre-wrap;overflow-wrap:anywhere;max-height:600px;overflow:auto"></pre></details>
-<div id="preview" hidden><p id="pending-indicator">Unsaved change</p><p id="summary"></p><div id="ownership-candidate-controls" hidden><label>Affected candidate view<select id="ownership-candidate-view"></select></label><button id="ownership-show-candidate" type="button">Inspect this checked candidate view</button><p id="ownership-candidate-status" role="status"></p><label><input id="ownership-candidate-ack" type="checkbox">I reviewed the ownership change and all affected view consequences for this exact candidate.</label></div><div id="candidate-navigation" hidden><button id="candidate-overview" type="button">Candidate overview</button><button id="candidate-readable" type="button">Candidate readable size</button><span id="candidate-scale"></span></div><iframe id="candidate-diagram" title="Native change candidate; saved model is separate" sandbox="" hidden style="height:560px;min-height:400px"></iframe><div class="actions"><button id="save" type="button">Save change</button><button id="discard" type="button">Discard pending change</button></div></div>
+<div id="preview" hidden><p id="pending-indicator">Unsaved change</p><p id="summary"></p><details id="candidate-retained-reviews" hidden><summary>Checked candidate configuration reviews</summary><div id="candidate-retained-findings"></div></details><div id="ownership-candidate-controls" hidden><label>Affected candidate view<select id="ownership-candidate-view"></select></label><button id="ownership-show-candidate" type="button">Inspect this checked candidate view</button><p id="ownership-candidate-status" role="status"></p><label><input id="ownership-candidate-ack" type="checkbox"><span id="candidate-review-label">I reviewed the exact candidate and its affected views.</span></label></div><div id="candidate-navigation" hidden><button id="candidate-overview" type="button">Candidate overview</button><button id="candidate-readable" type="button">Candidate readable size</button><span id="candidate-scale"></span></div><iframe id="candidate-diagram" title="Native change candidate; saved model is separate" sandbox="allow-same-origin" hidden style="height:560px;min-height:400px"></iframe><div class="actions"><button id="save" type="button">Save change</button><button id="discard" type="button">Discard pending change</button></div></div>
 <button id="refresh" type="button">Refresh saved project</button>
-</section>
-<iframe id="view" name="cse-saved-view" title="Saved physical composition and native properties" referrerpolicy="no-referrer"></iframe>
+</section></main>
 <script src="/app.js"></script>
 <script src="/site-tools.js"></script>
 </html>

@@ -74,6 +74,14 @@ engineer-directed scope revision and new retained digest; the command never
 rewrites scope. Inputs changed during checking invalidate the result and its
 current view. Parser errors and unsupported requests cannot produce success.
 
+The physical composition workbench shows saved and checked candidate reviews in
+separate disclosures. Each identifies the evaluated revision or candidate bundle
+and the retained scope digest. The saved review remains available when the
+active drawing closes. Selecting a frame or declaration leaves both scopes
+intact. After saving or restoring a revision, the saved disclosure shows the
+new persisted result. A project without a retained scope has no configuration
+verdict.
+
 The default readable view names the current root, reconciled selected roles,
 parent chains, open library alternatives and findings. `--json` supplies the same
 facts for a derived current view. Native connection checks, architecture

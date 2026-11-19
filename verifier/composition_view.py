@@ -21,6 +21,7 @@ from .visual_style import contrast
 ROOT = Path(__file__).resolve().parents[1]
 ID = re.compile(r'[A-Za-z_][A-Za-z0-9_.-]{0,127}\Z')
 RECT = 'palette-rectangle-white-plain'
+DEFAULT_FRAME_STYLE = {'template': RECT, 'fill': 'N0', 'stroke': 'N100', 'text': 'N100', 'align': 'center'}
 ROUTE_STROKE = 2.5
 TOKENS = {
     'typography-spec.json': 'f637d78b0c1d2f83558724b57a7fceb94fc3e49370bed1e76dba727275fb7f76',
@@ -57,6 +58,13 @@ def tokens():
     colors = {row['id']: row['hex_srgb'] for row in values['color-swatches.json']['colors']}
     colors.update(N0='#FFFFFF', N10='#E6E6E6', N25='#BFBFBF', N50='#808080', N75='#404040', N100='#000000')
     return colors, values['typography-spec.json']
+
+
+def appearance_palette():
+    swatches = tokens()[0]
+    encoded = json.dumps(swatches, sort_keys=True, separators=(',', ':')).encode('utf-8')
+    return {'catalog_sha256': kit_templates.CATALOG_SHA256, 'swatches_sha256': sha256(encoded).hexdigest(),
+            'swatches': swatches}
 
 
 def validate_companion(record, kind):
@@ -456,7 +464,7 @@ def render(document, view_id, *, layout_override=None):
         usage['adaptations'].append({'role': 'nonconnecting crossing', **crossing})
     for key, node in projection['nodes'].items():
         box = layout['nodes'][key]
-        item = appearance['nodes'][key] if appearance else {'template': RECT, 'fill': 'N0', 'stroke': 'N100', 'text': 'N100', 'align': 'center'}
+        item = appearance['nodes'][key] if appearance else DEFAULT_FRAME_STYLE
         group = ET.SubElement(root, ns+'g', {'data-node-id': key, 'data-element-id': node['element_id'],
                                            'data-native-name': node['element'], 'data-native-owner': str(node['native'].get('owner') or '')})
         lines = node_lines(node, names[node['element']], box['width'])
@@ -529,6 +537,140 @@ def with_layout(document, layout):
     return type(document)(document.files, project_id=document.project_id, registry=document.registry, linked_records=records)
 
 
+def with_frame_master(document, *, view_id, node_id, element_id, component_id, catalog_sha256, svg_sha256, legend, style=None):
+    from .composition_edit import EditError
+
+    if component_id not in kit_templates.TEMPLATES or not component_id.startswith('palette-rectangle-'):
+        raise EditError('artwork_role', 'Choose a saved rectangle master for a physical frame')
+    master = kit_templates.source_record(component_id)
+    if (catalog_sha256, svg_sha256) != (master['catalog_sha256'], master['sha256']):
+        raise EditError('stale_catalog', 'Inspect the current master and use its exact catalog and SVG digests')
+
+    current = render(document, view_id)
+    nodes = current['projection']['nodes']
+    if node_id not in nodes or nodes[node_id]['element_id'] != element_id:
+        raise EditError('identity', 'The frame occurrence and native identity must match the saved view')
+    appearance_name, appearance = _appearance_for_edit(document, view_id, nodes, legend)
+    appearance['nodes'][node_id]['template'] = component_id
+    if style is not None:
+        exact(style, ('fill', 'stroke', 'text', 'align'))
+        appearance['nodes'][node_id].update(style)
+    return _save_appearance(document, current, appearance_name, appearance)
+
+
+def with_connector_style(document, *, view_id, edge_id, source_id, target_id, swatch, palette_sha256, legend):
+    from .composition_edit import EditError
+
+    if palette_sha256 != appearance_palette()['swatches_sha256']:
+        raise EditError('stale_palette', 'Read the current palette before choosing a connector swatch')
+    current = render(document, view_id)
+    nodes, edges = (current['projection'][key] for key in ('nodes', 'edges'))
+    edge = edges.get(edge_id)
+    if edge is None or (nodes[edge['source']]['element_id'], nodes[edge['target']]['element_id']) != (source_id, target_id):
+        raise EditError('identity', 'The connector and native endpoint identities must match the saved view')
+    appearance_name, appearance = _appearance_for_edit(document, view_id, nodes, legend)
+    appearance['edges'][edge_id] = swatch
+    return _save_appearance(document, current, appearance_name, appearance)
+
+
+def view_key_master_sha256():
+    return kit_templates.source_record(kit_templates.LEGEND)['sha256']
+
+
+def with_view_key(document, *, view_id, master_sha256, legend):
+    from .composition_edit import EditError
+
+    if master_sha256 != view_key_master_sha256():
+        raise EditError('stale_catalog', 'Read the current local key master before editing its text')
+    current = render(document, view_id)
+    appearance_name, appearance = _appearance_for_edit(document, view_id, current['projection']['nodes'], legend)
+    return _save_appearance(document, current, appearance_name, appearance)
+
+
+def with_display_alias(document, *, view_id, node_id, element_id, alias):
+    from .composition_edit import EditError
+
+    current = render(document, view_id)
+    node = current['projection']['nodes'].get(node_id)
+    if node is None or node['element_id'] != element_id:
+        raise EditError('identity', 'The frame occurrence and native identity must match the saved view')
+    name, record = companion(document, 'display_labels', view_id)
+    if record is None:
+        record = {'version': 1, 'view': view_id, 'title': current['display_title'], 'labels': []}
+    rows = record['labels']
+    previous = next((row for row in rows if row['element'] == node['element']), None)
+    if (previous['text'] if previous else None) == alias:
+        raise EditError('input', 'Change the saved display alias before previewing')
+    if previous and alias is None:
+        rows.remove(previous)
+    elif previous:
+        previous['text'] = alias
+    else:
+        rows.append({'element': node['element'], 'text': alias})
+
+    records = deepcopy(document.linked_records)
+    if name is None:
+        name = f'presentation/{view_id}.labels.json'
+        if name in records or name in document.files:
+            raise EditError('file_name', 'Display labels filename collides with an authoritative file')
+    records[name] = {'kind': 'display_labels', 'text': json.dumps(record, indent=2)+'\n'}
+    source = document.files if document.is_bundle else document.files['model.sysml']
+    result = type(document)(source, project_id=document.project_id, registry=document.registry, linked_records=records)
+    # Keep original frame and route geometry even when it was previously implicit.
+    layout_name, _ = companion(document, 'composition_layout', view_id)
+    if layout_name is None:
+        drawing = render(result, view_id, layout_override=current['layout'])
+        if default_layout(drawing['projection'], labels(result, drawing['projection']))['nodes'] != current['layout']['nodes']:
+            result = with_layout(result, current['layout'])
+    result.reconciliation = deepcopy(document.reconciliation)
+    return result
+
+
+def _appearance_for_edit(document, view_id, nodes, legend):
+    from .composition_edit import EditError
+
+    appearance_name, appearance = companion(document, 'composition_appearance', view_id)
+    if appearance is None:
+        if legend is None:
+            raise EditError('artwork_key', 'Supply the authored local key for the new appearance')
+        appearance = {'version': 'cse-diagram-appearance-2.0', 'kit': 'engineering-palette-complete-05',
+                      'view': view_id, 'nodes': {key: DEFAULT_FRAME_STYLE.copy() for key in nodes},
+                      'edges': {}, 'legend': legend}
+    elif legend is not None:
+        appearance['legend'] = legend
+    return appearance_name, appearance
+
+
+def _save_appearance(document, current, appearance_name, appearance):
+    from .composition_edit import EditError
+
+    validate_companion(appearance, 'composition_appearance')
+    view_id = appearance['view']
+    layout_name, saved_layout = companion(document, 'composition_layout', view_id)
+    layout = current['layout']
+    bottom = max([row['y']+row['height'] for row in layout['nodes'].values()] +
+                 [point[1] for route in layout['edges'].values() for point in route['points']])
+    minimum_height = math.floor(bottom + 48 + 44 + 24 + len(appearance['legend'])*34 + 32) + 1
+    layout['height'] = max(layout['height'], minimum_height)
+    records = deepcopy(document.linked_records)
+    companions = [(appearance_name, 'appearance', appearance)]
+    if saved_layout != layout:
+        companions.append((layout_name, 'layout', layout))
+    for name, role, value in companions:
+        kind = 'composition_' + role
+        if name is None:
+            name = f'presentation/{view_id}.{role}.json'
+            if name in records:
+                raise EditError('file_name', 'Presentation filename collides with another authoritative file')
+        if name in document.files:
+            raise EditError('file_name', 'Presentation filename collides with an authoritative file')
+        records[name] = {'kind': kind, 'text': json.dumps(value, indent=2, allow_nan=False)+'\n'}
+    source = document.files if document.is_bundle else document.files['model.sysml']
+    result = type(document)(source, project_id=document.project_id, registry=document.registry, linked_records=records)
+    result.reconciliation = deepcopy(document.reconciliation)
+    return result
+
+
 def validate_saved_presentations(document):
     selected = {strict_json(record['text'])['view'] for record in document.linked_records.values()
                 if record['kind'] in ('composition_layout', 'composition_appearance')}
@@ -557,11 +699,20 @@ def artifact_files(snapshot, view_id):
     rendered = render(document, view_id)
     data = {'revision': snapshot['revision'], 'commit': snapshot['commit'], 'projection': rendered['projection'],
             'display_title': rendered['display_title'], 'display_labels': rendered['display_labels']}
-    text = json.dumps(data, ensure_ascii=True, allow_nan=False).replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
+    crossed = [item for item in rendered['kit_usage']['adaptations'] if item.get('role') == 'nonconnecting crossing']
+    markers = {f'composition-crossing-{index}-gap': [item['under'], item['over']]
+               for index, item in enumerate(crossed)}
+    reader = {**data, 'crossing_markers': markers}
+    text = json.dumps(reader, ensure_ascii=True, allow_nan=False).replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
     template = (ROOT / 'web/composition-reader.html').read_text()
     html = template.replace('<!-- CSE_SVG -->', rendered['svg']).replace('<!-- CSE_DATA -->', text)
+    bindings = {**data, 'retained_scope_sources': [
+        {'file': review['file'], 'scope_sha256': review['scope_sha256'],
+         'text': document.linked_records[review['file']]['text']}
+        for review in document.configuration_reviews
+    ]}
     files = {'view.svg': rendered['svg'].encode('utf-8'), 'index.html': html.encode('utf-8'),
-             'view.json': json.dumps(data, indent=2, ensure_ascii=False).encode('utf-8'),
+             'view.json': json.dumps(bindings, indent=2, ensure_ascii=False).encode('utf-8'),
              'layout.json': json.dumps(rendered['layout'], indent=2).encode('utf-8'),
              'kit-usage.json': json.dumps(rendered['kit_usage'], indent=2).encode('utf-8'),
              'registry.json': json.dumps(document.registry, indent=2).encode('utf-8')}

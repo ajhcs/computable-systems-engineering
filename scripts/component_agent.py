@@ -71,6 +71,10 @@ def resolve(ids,root=library.LIBRARY,maximum=MAX_SELECTION):
     if missing:raise RequestError('unknown_component_id','Unknown IDs were refused; no files were written.',unknown_ids=missing,suggestions={id:difflib.get_close_matches(id,rows,n=3,cutoff=.65) for id in missing})
     return [rows[id] for id in ids]
 
+def describe(component_id, root=library.LIBRARY):
+    return {'schema': SCHEMA, 'status': 'pass', 'catalog_sha256': revision(root),
+            'component': resolve([component_id], root)[0]}
+
 def selection(ids,root=library.LIBRARY):
     resolve(ids,root)
     return {'schema':SELECTION,'catalog_sha256':revision(root),'component_ids':ids}
@@ -79,6 +83,9 @@ def read_selection(path,root=library.LIBRARY):
     if Path(path).stat().st_size>65536:raise RequestError('invalid_selection','Selection JSON exceeds 64 KiB.')
     try:data=json.loads(Path(path).read_text(encoding='utf-8'))
     except (ValueError,UnicodeError) as exc:raise RequestError('invalid_selection','Selection must be UTF-8 JSON.') from exc
+    return validate_selection(data,root)
+
+def validate_selection(data,root=library.LIBRARY):
     if not isinstance(data,dict) or set(data)!={'schema','catalog_sha256','component_ids'} or data['schema']!=SELECTION:
         raise RequestError('invalid_selection','Use the documented component-selection/1 record.')
     if data['catalog_sha256']!=revision(root):raise RequestError('stale_selection','The library changed; inspect the selected IDs and create a new selection record.')

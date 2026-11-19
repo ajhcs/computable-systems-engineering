@@ -66,7 +66,7 @@ def parse(source):
     if not isinstance(source, str) or len(source.encode('utf-8')) > 5_000_000:
         raise EditError('input', 'Source must be UTF-8 text at most 5 MB')
     try:
-        parsed = _parser_output(source, 60)
+        parsed = _parser_output(source, 60, removal_sources=True)
     except subprocess.TimeoutExpired as exc:
         raise EditError('parser_timeout', 'Native parsing exceeded its 60-second limit; no candidate was published') from exc
     except (RuntimeError, ValueError, OSError) as exc:

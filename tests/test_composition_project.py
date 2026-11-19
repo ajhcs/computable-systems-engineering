@@ -1,6 +1,7 @@
 """Real Git/process/race controls for the composition rename transaction."""
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, TimeoutError
 from copy import deepcopy
+from hashlib import sha256
 import json
 from pathlib import Path
 import subprocess
@@ -14,7 +15,7 @@ from uuid import uuid4, uuid5, UUID
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from verifier.composition_edit import EditError
-from verifier.composition_project import CompositionProject
+from verifier.composition_project import CompositionProject, REF
 
 
 PROJECT = '42d0daa7-6464-40cc-b5c8-10f2717f3495'
@@ -274,6 +275,27 @@ print(json.dumps({'revision':s['revision'],'files':s['document'].files,
         self.assertEqual(first, second)
         self.assertEqual(len(self.project.history()), 2)
 
+    def test_publish_waits_for_a_git_writer_holding_the_ref_lock(self):
+        head = self.project.head()
+        with subprocess.Popen(['git', '--git-dir', str(self.project.repository), 'update-ref', '--stdin'],
+                              stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE, text=True) as holder:
+            holder.stdin.write(f'start\nverify {REF} {head}\nprepare\n')
+            holder.stdin.flush()
+            self.assertEqual(holder.stdout.readline(), 'start: ok\n')
+            self.assertEqual(holder.stdout.readline(), 'prepare: ok\n')
+            self.assertTrue((self.project.repository / (REF + '.lock')).is_file())
+            with ThreadPoolExecutor(max_workers=1) as pool:
+                update = pool.submit(self.project._publish, head, head)
+                try:
+                    with self.assertRaises(TimeoutError):
+                        update.result(timeout=0.4)
+                finally:
+                    _, errors = holder.communicate('abort\n', timeout=5)
+                self.assertEqual(holder.returncode, 0, errors)
+                update.result(timeout=6)
+        self.assertEqual(self.project.head(), head)
+
     def test_real_git_bundle_restores_sources_ids_and_history_in_another_directory(self):
         self.project.transact(self.request())
         bundle = self.work / 'portable.bundle'
@@ -330,6 +352,52 @@ print(json.dumps({'revision':s['revision'],'files':s['document'].files,
             with self.subTest(request=request), self.assertRaises(EditError):
                 self.project.transact(request)
         self.assertEqual(self.project.head(), self.initial['commit'])
+
+    def test_cli_reads_revision_bound_retained_findings_without_changing_scope(self):
+        digest = sha256(LINKED['scope.json']['text'].encode('utf-8')).hexdigest()
+
+        def read(receipt, **overrides):
+            arguments = {'project-id': PROJECT, 'scope-file': 'scope.json', 'scope-sha256': digest,
+                         'expected-revision': receipt['revision'],
+                         'expected-bundle-sha256': receipt['bundle_sha256'], 'limit': 1}
+            arguments.update(overrides)
+            command = [sys.executable, '-B', str(ROOT / 'scripts/composition_project.py'),
+                       'inspect-review', '--project', str(self.project.repository)]
+            for field, value in arguments.items():
+                command.extend(['--' + field, str(value)])
+            result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
+            return result.returncode, json.loads(result.stdout)
+
+        code, result = read(self.initial)
+        self.assertEqual(code, 0, result)
+        self.assertEqual(result['retained_review']['status'], 'pass')
+        self.assertEqual(result['retained_review']['findings'], [])
+
+        saved = self.project.transact(self.request())
+        code, result = read(saved)
+        self.assertEqual(code, 0, result)
+        self.assertEqual(result['status'], 'pass')
+        review = result['retained_review']
+        self.assertEqual((review['project_id'], review['revision'], review['commit'], review['bundle_sha256']),
+                         (PROJECT, 2, saved['commit'], saved['bundle_sha256']))
+        self.assertEqual((review['status'], review['scope_sha256'], review['file']), ('fail', digest, 'scope.json'))
+        self.assertEqual([(row['rule'], row['id'], row['status']) for row in review['findings']],
+                         [('native_identity', 'SensorRole', 'fail')])
+
+        for receipt, overrides, error in (
+            (self.initial, {}, 'stale_revision'),
+            (saved, {'expected-bundle-sha256': '0' * 64}, 'stale_revision'),
+            (saved, {'scope-sha256': '0' * 64}, 'scope_unavailable'),
+            (saved, {'scope-file': 'view.labels.json'}, 'scope_unavailable'),
+            (saved, {'project-id': str(uuid4())}, 'project_grant'),
+            (saved, {'offset': review['total_findings'] + 1}, 'input'),
+        ):
+            with self.subTest(error=error, overrides=overrides):
+                code, result = read(receipt, **overrides)
+                self.assertEqual(code, 1, result)
+                self.assertEqual(result['error']['code'], error)
+        self.assertEqual(self.project.head(), saved['commit'])
+        self.assertEqual(self.project.snapshot()['document'].linked_records['scope.json'], LINKED['scope.json'])
 
     def test_cli_uses_the_same_committed_state_and_idempotent_receipts(self):
         def cli(command, *args):

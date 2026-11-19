@@ -15,12 +15,21 @@ class HostTests(unittest.TestCase):
         prelude="""
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const source=fs.readFileSync(SOURCE_PATH);
-const {createMcpCompositionHost,createMcpInitialCompositionHost,compositionModelContext,publishMcpCompositionContext}=await import('data:text/javascript;base64,'+source.toString('base64'));
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+async function importHost(filename) {
+  const source = fs.readFileSync(path.join(WEB_PATH, filename), 'utf8').replace(
+    './composition-artifact-bytes.mjs',
+    pathToFileURL(path.join(WEB_PATH, 'composition-artifact-bytes.mjs')).href,
+  );
+  return import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+}
+const {createMcpCompositionHost,createMcpInitialCompositionHost,compositionModelContext,publishMcpCompositionContext}=await importHost('composition-mcp-host.js');
+const {createWebArtifactTransfer,createWebCompositionHost}=await importHost('composition-web-host.js');
 const boot={project_id:'36c89b0c-a94b-4f3e-86e0-b2940d040928',view_id:'PC_CONTEXT',app_instance_id:'da4e6a7d-b229-4bd0-9be9-2263998d0f61'};
 const values=new Map(),storage={getItem:async key=>values.get(key)??null,setItem:async(key,value)=>{values.set(key,value)},removeItem:async key=>{values.delete(key)}};
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-""".replace('SOURCE_PATH',json.dumps(str(ROOT/'web/composition-mcp-host.js')))
+""".replace('WEB_PATH',json.dumps(str(ROOT/'web')))
         result=subprocess.run([NODE,'--input-type=module','-e',prelude+code],cwd=ROOT,text=True,capture_output=True,timeout=10)
         self.assertEqual(result.returncode,0,result.stdout+result.stderr)
 
@@ -31,6 +40,64 @@ assert.throws(()=>createMcpCompositionHost(app,{...boot,project_id:'../../privat
 assert.throws(()=>createMcpCompositionHost(app,{...boot,app_instance_id:null},storage));
 assert.throws(()=>createMcpCompositionHost(app,boot,{}));
 assert.equal(calls,0);assert.equal(values.size,0);
+""")
+
+    def test_both_artifact_transports_keep_the_saved_view_and_bytes_bound(self):
+        self.run_js("""
+const {createHash}=await import('node:crypto');
+const hash=value=>createHash('sha256').update(value).digest('hex');
+const text='<svg><text font-family="DejaVu Sans">Original</text></svg>';
+const binding={kind:'view.svg',commit:'2'.repeat(40),revision:3,view_id:boot.view_id,
+  bundle_sha256:'3'.repeat(64),expected_sha256:hash(text)};
+const calls=[], downloads=[], webDownloads=[];
+let altered=false, forgedDigest=false;
+function file() {
+  const bytes=altered?text.replace('DejaVu Sans','serif'):text;
+  return {
+    project_id:boot.project_id, view_id:binding.view_id, kind:binding.kind, commit:binding.commit,
+    revision:binding.revision, bundle_sha256:binding.bundle_sha256, media_type:'image/svg+xml',
+    text:bytes, bytes:Buffer.byteLength(bytes), sha256:forgedDigest?binding.expected_sha256:hash(bytes),
+  };
+}
+const app={
+  getHostCapabilities:()=>({downloadFile:{}}),
+  downloadFile:async payload=>{downloads.push(payload);return{isError:false};},
+  callServerTool:async payload=>{
+    calls.push(payload);
+    return {_meta:{cse_native:{http_status:200,body:file()}}};
+  },
+};
+assert.equal(createMcpCompositionHost(app,boot,storage).openArtifact,null);
+const host=createMcpCompositionHost(app,{...boot,allow_artifact_download:true},storage);
+await assert.rejects(host.openArtifact({...binding,view_id:'AnotherView'}),/exact saved physical view/);
+assert.equal(calls.length,0);
+await host.openArtifact(binding);
+assert.deepEqual(calls,[{
+  name:'cse_export_composition_artifact',arguments:{project_id:boot.project_id,...binding},
+}]);
+assert.equal(downloads[0].contents[0].resource.text,text);
+const web=createWebArtifactTransfer(boot,async()=>'synthetic-token',file=>webDownloads.push(file));
+let fetches=0;
+globalThis.fetch=async(url,options)=>{
+  fetches++;
+  assert.equal(url,'/api/composition/'+boot.project_id);
+  assert.equal(options.headers.Authorization,'Bearer synthetic-token');
+  const {view_id,...payload}=binding;
+  assert.deepEqual(JSON.parse(options.body),{operation:'artifact',view_id,payload});
+  return Response.json(file());
+};
+await assert.rejects(web({...binding,view_id:'AnotherView'}),/exact saved physical view/);
+assert.equal(fetches,0);
+assert.deepEqual(await web(binding),{isError:false});
+assert.deepEqual(webDownloads,[{name:'CSE-PC_CONTEXT-r3.svg',mediaType:'image/svg+xml',text}]);
+altered=true;
+await assert.rejects(host.openArtifact(binding),/does not match the selected saved revision/);
+await assert.rejects(web(binding),/does not match the selected saved revision/);
+forgedDigest=true;
+await assert.rejects(host.openArtifact(binding),/bytes failed verification/);
+await assert.rejects(web(binding),/bytes failed verification/);
+assert.equal(downloads.length,1);
+assert.equal(webDownloads.length,1);
 """)
 
     def test_instances_isolate_exact_pending_intent(self):
@@ -91,6 +158,27 @@ await assert.rejects(host.request({operation:'preview_view',payload:{request,vie
 assert.equal(calls.length,2);
 """)
 
+    def test_retained_review_reads_are_bound_to_the_project_without_a_view(self):
+        self.run_js("""
+const payload={revision:4,bundle_sha256:'1'.repeat(64),file:'saved.scope.json',scope_sha256:'2'.repeat(64),offset:1,limit:25};
+const calls=[],body={project_id:boot.project_id,...payload,findings:[],next_offset:null};
+const app={callServerTool:async args=>{calls.push(args);return{_meta:{cse_native:{http_status:200,body}}}}};
+const mcp=createMcpCompositionHost(app,{...boot,allow_project_views:true},storage);
+const command={operation:'model_review',viewId:'PC_OTHER',payload};
+assert.deepEqual(await mcp.request(command),{status:200,body});
+assert.deepEqual(calls,[{name:'cse_read_retained_composition_review',arguments:{project_id:boot.project_id,...payload}}]);
+await assert.rejects(mcp.request({...command,payload:{...payload,project_id:'other'}}));
+await assert.rejects(mcp.request({...command,payload:{...payload,view_id:'other'}}));
+assert.equal(calls.length,1);
+globalThis.fetch=async(url,options)=>{
+  assert.equal(url,'/api/composition/'+boot.project_id);
+  assert.deepEqual(JSON.parse(options.body),{operation:'model_review',view_id:null,payload});
+  return {status:200,json:async()=>body};
+};
+const web=createWebCompositionHost({...boot,allow_project_views:true},async()=>'signed.token',storage);
+assert.deepEqual(await web.request(command),{status:200,body});
+""")
+
     def test_source_chunks_cannot_replace_granted_project_or_view(self):
         self.run_js("""
 const calls=[],app={callServerTool:async args=>{calls.push(args);return{_meta:{cse_native:{http_status:200,body:{text:'exact',offset:0}}}}}};
@@ -104,6 +192,29 @@ assert.equal(result.body.text,'exact');
 await assert.rejects(host.request({operation:'source',payload:{...payload,project_id:'other'}}));
 await assert.rejects(host.request({operation:'source',payload:{...payload,view_id:'other'}}));
 assert.equal(calls.length,1);
+""")
+
+    def test_removal_uses_same_project_grant_and_keeps_exact_closed_view_receipt(self):
+        self.run_js("""
+const calls=[],receipt={revision:5,request_id:'exact-removal'};
+const result={receipt,state:null,view_closed:{view_id:'PC_CONTEXT',available_views:['PC_SECOND'],revision:5}};
+const app={callServerTool:async args=>{calls.push(args);return{_meta:{cse_native:{http_status:200,body:result}}}}};
+const fixed=createMcpCompositionHost(app,boot,storage);
+boot.allow_project_views=true;
+await assert.rejects(fixed.request({operation:'state',viewId:'PC_SECOND'}),/View selection/);
+const flexible=createMcpCompositionHost(app,boot,storage);
+const target={expected_revision:4,expected_bundle_sha256:'saved',view_id:'PC_SECOND',node_id:'Root'};
+await flexible.request({operation:'removal_context',payload:target,viewId:'PC_SECOND'});
+assert.equal(calls[0].name,'cse_read_composition_removal_context');
+assert.deepEqual(calls[0].arguments,{project_id:boot.project_id,view_id:'PC_SECOND',request:target});
+await assert.rejects(flexible.request({operation:'removal_context',payload:{...target,project_id:'elsewhere'}}));
+const request={operation:'remove_occurrence',request_id:receipt.request_id,checked_bundle_sha256:'checked'};
+assert.deepEqual((await flexible.request({operation:'apply',payload:request})).body,result);
+assert.deepEqual(calls[1].arguments.request,request);
+const context=compositionModelContext({pending_change:{request},available_views:['PC_SECOND'],view_available:false});
+assert.equal(context.pending_request.checked_bundle_sha256,'checked');
+assert.deepEqual(context.available_views,['PC_SECOND']);
+assert.equal(context.view_available,false);
 """)
 
     def test_missing_native_response_is_unknown_transport(self):
@@ -147,7 +258,11 @@ assert.equal(context.phase,'initial');assert.equal(context.initial_state.project
 
     def test_selected_context_never_becomes_complete_review(self):
         self.run_js("""
+const navigation={project_id:boot.project_id,view_id:boot.view_id,revision:3,mode:'readable',
+  collapsed_node_ids:['Parent'],collapsed_bindings:{Parent:'parent-uuid'},hidden_node_ids:['Child']};
 const context=compositionModelContext({ready:true,guard:{model_revision:4},selection:{element_id:'native-id',origin:'selected_role',native:{owner:'Base'}},creation_draft:{declared_name:'Human draft'},typing_draft:{rows:[{type_id:'retained-type',native_name:'Removed::Type',available:false}]},usage_creation_draft:{declared_name:'Retained usage',type_id:null,is_composite:false,lower:'0'},restoration_target_revision:2,pending_change:{request:{request_id:'retained',operation:'set_layout',expected_revision:4,layout:{large:'not copied'}}},configuration_reviews:[{file:'scope.json',scope_sha256:'scope-hash',report:{status:'unknown',checked:['A'],findings:[]}}]});
+assert.equal(context.navigation,null);
+assert.deepEqual(compositionModelContext({navigation}).navigation,navigation);
 assert.equal(context.scope,'selected_ui_context_never_replaces_complete_retained_review');assert.deepEqual(context.typing_draft,{rows:[{type_id:'retained-type',native_name:'Removed::Type',available:false}]});
 assert.equal(context.retained_review_identities[0].status,'unknown');assert.equal(context.pending_request.request_id,'retained');
 assert.equal(Object.hasOwn(context.pending_request,'layout'),false);assert.equal(Object.hasOwn(context,'configuration_reviews'),false);
