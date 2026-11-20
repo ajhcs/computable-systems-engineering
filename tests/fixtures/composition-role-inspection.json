@@ -1,0 +1,181 @@
+{
+  "version": "cse-physical-role-inspection-fixtures-1",
+  "purpose": "Synthetic CSE software and interaction fixtures; no real equipment, installed presence or engineering acceptance claim.",
+  "project_id": "f5f55031-9bc6-4451-b1fb-67f1eae009e1",
+  "cases": [
+    {
+      "id": "inherited",
+      "models": {
+        "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [2] : Sensor;\n    }\n    part def Assembly :> Base;\n    part current : Assembly;\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+      },
+      "retained_scope_text": "{\n  \"version\": \"configuration-1.0\",\n  \"root\": {\n    \"native_name\": \"Composition::current\",\n    \"type\": \"Composition::Assembly\"\n  },\n  \"selected_roles\": {\n    \"Sensor\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::Base::sensor\",\n      \"type\": \"Composition::Sensor\"\n    }\n  },\n  \"open_alternatives\": [],\n  \"connections\": []\n}\n",
+      "expected": {
+        "status": "pass",
+        "checked": [
+          "$root",
+          "Sensor"
+        ],
+        "findings": []
+      }
+    },
+    {
+      "id": "redefined",
+      "models": {
+        "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [2] : Sensor;\n    }\n    part def Assembly :> Base;\n    part def Replacement :> Sensor;\n    part current : Assembly { part sensor : Replacement [2] redefines Base::sensor; }\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+      },
+      "retained_scope_text": "{\n  \"version\": \"configuration-1.0\",\n  \"root\": {\n    \"native_name\": \"Composition::current\",\n    \"type\": \"Composition::Assembly\"\n  },\n  \"selected_roles\": {\n    \"Sensor\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::Base::sensor\",\n      \"type\": \"Composition::Sensor\"\n    }\n  },\n  \"open_alternatives\": [],\n  \"connections\": []\n}\n",
+      "expected": {
+        "status": "fail",
+        "checked": [
+          "$root"
+        ],
+        "findings": [
+          {
+            "id": "Sensor",
+            "rule": "role_redefined",
+            "status": "fail"
+          }
+        ]
+      }
+    },
+    {
+      "id": "explicit_override",
+      "models": {
+        "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [2] : Sensor;\n    }\n    part def Assembly :> Base;\n    part def Replacement :> Sensor;\n    part current : Assembly { part sensor : Replacement [2] redefines Base::sensor; }\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+      },
+      "retained_scope_text": "{\n  \"version\": \"configuration-1.0\",\n  \"root\": {\n    \"native_name\": \"Composition::current\",\n    \"type\": \"Composition::Assembly\"\n  },\n  \"selected_roles\": {\n    \"Sensor\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::current::sensor\",\n      \"type\": \"Composition::Replacement\"\n    }\n  },\n  \"open_alternatives\": [],\n  \"connections\": []\n}\n",
+      "expected": {
+        "status": "pass",
+        "checked": [
+          "$root",
+          "Sensor"
+        ],
+        "findings": []
+      }
+    },
+    {
+      "id": "optional",
+      "models": {
+        "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [0..1] : Sensor;\n    }\n    part def Assembly :> Base;\n    part current : Assembly;\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+      },
+      "retained_scope_text": "{\n  \"version\": \"configuration-1.0\",\n  \"root\": {\n    \"native_name\": \"Composition::current\",\n    \"type\": \"Composition::Assembly\"\n  },\n  \"selected_roles\": {\n    \"Sensor\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::Base::sensor\",\n      \"type\": \"Composition::Sensor\"\n    }\n  },\n  \"open_alternatives\": [],\n  \"connections\": []\n}\n",
+      "expected": {
+        "status": "unknown",
+        "checked": [
+          "$root"
+        ],
+        "findings": [
+          {
+            "id": "Sensor",
+            "rule": "selected_multiplicity",
+            "status": "unknown"
+          }
+        ]
+      }
+    },
+    {
+      "id": "suppressed",
+      "models": {
+        "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [0] : Sensor;\n    }\n    part def Assembly :> Base;\n    part current : Assembly;\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+      },
+      "retained_scope_text": "{\n  \"version\": \"configuration-1.0\",\n  \"root\": {\n    \"native_name\": \"Composition::current\",\n    \"type\": \"Composition::Assembly\"\n  },\n  \"selected_roles\": {\n    \"Sensor\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::Base::sensor\",\n      \"type\": \"Composition::Sensor\"\n    }\n  },\n  \"open_alternatives\": [],\n  \"connections\": []\n}\n",
+      "expected": {
+        "status": "fail",
+        "checked": [
+          "$root"
+        ],
+        "findings": [
+          {
+            "id": "Sensor",
+            "rule": "selected_multiplicity",
+            "status": "fail"
+          }
+        ]
+      }
+    },
+    {
+      "id": "unsupported",
+      "models": {
+        "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [1..*] : Sensor;\n    }\n    part def Assembly :> Base;\n    part current : Assembly;\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+      },
+      "retained_scope_text": "{\n  \"version\": \"configuration-1.0\",\n  \"root\": {\n    \"native_name\": \"Composition::current\",\n    \"type\": \"Composition::Assembly\"\n  },\n  \"selected_roles\": {\n    \"Sensor\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::Base::sensor\",\n      \"type\": \"Composition::Sensor\"\n    }\n  },\n  \"open_alternatives\": [],\n  \"connections\": []\n}\n",
+      "expected": {
+        "status": "unsupported",
+        "checked": [
+          "$root"
+        ],
+        "findings": [
+          {
+            "id": "Sensor",
+            "rule": "selected_multiplicity",
+            "status": "unsupported"
+          }
+        ]
+      }
+    },
+    {
+      "id": "missing",
+      "models": {
+        "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [2] : Sensor;\n    }\n    part def Assembly :> Base;\n    part current : Assembly;\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+      },
+      "retained_scope_text": "{\n  \"version\": \"configuration-1.0\",\n  \"root\": {\n    \"native_name\": \"Composition::current\",\n    \"type\": \"Composition::Assembly\"\n  },\n  \"selected_roles\": {\n    \"Sensor\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::Base::absent\",\n      \"type\": \"Composition::Sensor\"\n    }\n  },\n  \"open_alternatives\": [],\n  \"connections\": []\n}\n",
+      "expected": {
+        "status": "fail",
+        "checked": [
+          "$root"
+        ],
+        "findings": [
+          {
+            "id": "Sensor",
+            "rule": "native_identity",
+            "status": "fail"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mixed",
+      "models": {
+        "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [0..1] : Sensor; part <SPARE> spare [1] : Sensor;\n    }\n    part def Assembly :> Base;\n    part current : Assembly;\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+      },
+      "retained_scope_text": "{\n  \"version\": \"configuration-1.0\",\n  \"root\": {\n    \"native_name\": \"Composition::current\",\n    \"type\": \"Composition::Assembly\"\n  },\n  \"selected_roles\": {\n    \"Sensor\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::Base::sensor\",\n      \"type\": \"Composition::Sensor\"\n    },\n    \"Spare\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::Base::spare\",\n      \"type\": \"Composition::Sensor\"\n    }\n  },\n  \"open_alternatives\": [],\n  \"connections\": []\n}\n",
+      "expected": {
+        "status": "unknown",
+        "checked": [
+          "$root",
+          "Spare"
+        ],
+        "findings": [
+          {
+            "id": "Sensor",
+            "rule": "selected_multiplicity",
+            "status": "unknown"
+          }
+        ]
+      }
+    },
+    {
+      "id": "external",
+      "models": {
+        "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [2] : Sensor;\n    }\n    part def Assembly :> Base;\n    ref part peer : Sensor;\n    part current : Assembly;\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+      },
+      "retained_scope_text": "{\n  \"version\": \"configuration-1.1\",\n  \"root\": {\n    \"native_name\": \"Composition::current\",\n    \"type\": \"Composition::Assembly\"\n  },\n  \"selected_roles\": {\n    \"Sensor\": {\n      \"parent\": \"$root\",\n      \"native_name\": \"Composition::Base::sensor\",\n      \"type\": \"Composition::Sensor\"\n    }\n  },\n  \"open_alternatives\": [],\n  \"connections\": [],\n  \"external_roles\": {\n    \"Peer\": {\n      \"native_name\": \"Composition::peer\",\n      \"type\": \"Composition::Sensor\"\n    }\n  }\n}\n",
+      "expected": {
+        "status": "pass",
+        "checked": [
+          "$root",
+          "Peer",
+          "Sensor"
+        ],
+        "findings": []
+      }
+    }
+  ],
+  "ownership_negative_control": {
+    "models": {
+      "model.sysml": "// Synthetic composition interaction fixture. No real equipment claims.\npackage Composition {\n    part def Sensor;\n    part def Base {\n        part <SENSOR> sensor [2] : Sensor;\n    }\n    part def Assembly :> Base;\n    part current : Assembly;\n    doc cseViews /* CSE-VIEWS/1.1\n{\n  \"views\": [\n    {\n      \"id\": \"PC_CONTEXT\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"usages\",\n      \"nodes\": [\n        {\n          \"id\": \"Current\",\n          \"element\": \"Composition::current\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        },\n        {\n          \"id\": \"WrongChild\",\n          \"element\": \"Composition::Base::sensor\",\n          \"parent\": \"Current\",\n          \"level\": 1,\n          \"edge\": \"WrongOwner\"\n        }\n      ]\n    },\n    {\n      \"id\": \"PC_DECLARATION\",\n      \"kind\": \"physical_composition\",\n      \"mode\": \"definitions\",\n      \"nodes\": [\n        {\n          \"id\": \"Base\",\n          \"element\": \"Composition::Base\",\n          \"parent\": null,\n          \"level\": 0,\n          \"edge\": null\n        }\n      ]\n    }\n  ]\n}\n    */\n}\n"
+    },
+    "view_id": "PC_CONTEXT",
+    "expected_refusal": "View parent must be the exact native declaring owner"
+  }
+}

@@ -1,22 +1,70 @@
 # Readable engineering presentations
 
-Use this guidance when choosing visual encodings, organizing text or revising a diagram after review. Choose fonts, colors, panel layouts and texture mappings for the selected view rather than treating any one set as a universal default.
+Use this guidance when choosing visual encodings, organizing text or revising a diagram after review. For a new view, start with the [design kit](design-kit.md): choose its typography roles, exact swatches, suitable components and texture treatments for the selected view. A supplied project standard and required formal notation take precedence.
 
 ## Give each visual channel a job
 
-Declare what color, shape and texture mean in the selected view. Preserve formal glyph meaning before adding styling. If texture carries engineering information, assign it a supported property that color or shape does not already encode. Do not mechanically pair every color with its own pattern. A view without a supported third property can remain untextured; subtle shading can separate surfaces without pretending to be another data category.
+Declare the local role of color, shape and texture in the selected view. Preserve formal glyph meaning before adding styling. Texture can be decorative separation or emphasis; it need not encode a third engineering property. If it encodes engineering information, bind it to an explicitly supported property and provide a key. Do not mechanically pair every color with its own pattern or imply material meaning.
 
 For example, color may identify a responsibility group while shape retains element kind and a pattern marks an explicitly supported scope boundary. Derive entry and exit classifications from supported relations, not from node position or the absence of an outgoing arrow. Keys are view-specific; do not silently transfer one view's texture meaning to another.
 
-Keep patterned areas legible beneath labels, and check the actual text/background combinations, including shading. Distinguish decorative surface treatment from semantic texture in the record.
+Use a contrasting label backing over patterned areas where needed, and check actual text/background combinations, including shading. Distinguish decorative surface treatment from semantic texture in the record.
 
 ## Make text belong to something
 
-Give metadata, counts, units, annotations and keys an identifiable owner. Use alignment, proximity, a field label, a panel header or a distinct leader as appropriate; enclosing every label in a box is not required. A maintenance description belongs with equipment details, a layer count with that layer's heading, and an allocation-direction key with its matrix. Do not leave them looking like unrelated subtitles or floating instructions.
+Give metadata, counts, units, annotations and keys an identifiable owner. Use the kit’s suitable text box, boxed label or annotation treatment by default where it provides one, with content-fit padding and clear association to the owning element or route. Required formal notation can call for open labels; use alignment, proximity or a distinct leader where appropriate. A maintenance description belongs with equipment details, a layer count with that layer's heading, and an allocation-direction key with its matrix. Do not leave them looking like unrelated subtitles or floating instructions.
 
 Rank text by its usefulness to the reader's task. Separate title, section/axis labels, element names, identifiers and supporting evidence. Use a small, deliberate set of sizes, weights and repeated insets. Inspect the longest labels with the actual rendered fonts. Font readiness alone does not prove the selected font supplied the glyphs.
 
+Place connector labels near the specific segment they describe. Keep a consistent
+frame-to-route gap for comparable horizontal and vertical labels; check the whole
+label frame against both its own route and nearby unrelated routes. At a branch,
+associate the label with its branch rather than a shared trunk. A boxed annotation
+is not a model node. Preserve its distinct annotation typography and source-bound
+relationship. Fix ambiguous placement by moving the label and, where needed, its
+checked route; do not add an apparent engineering connection as a leader.
+
 Keep long provenance, implementation notes and migration discussions beside the clean figure. Preserve source links and readable text alternatives. A caveat that materially changes how to read the depicted scope should remain visible or clearly attached; moving notes must not hide a source gap.
+
+For standalone review drawings, include a compact visible identification block:
+view or drawing ID, presentation revision, source publication and figure/page,
+selected scope and established status. Distinguish a reconstruction's revision
+from the historical source date. Keep full citations and source hashes in bound
+companions. Multiple sheets need their own sheet numbers and a consistent drawing
+identity. Never fill an approval or review field with an inferred authority.
+
+Use the kit's document tables for that block: labeled cells for identifiers,
+revision and source fields, with compact rows for selected scope. Keep the
+figure heading fitted to its title and group the key and identification into
+separate aligned tables where space permits. Preserve the kit's outer rules,
+finer internal rules and repeated cell insets. Check the longest cell content
+with the actual fonts; wrap within the cell rather than enlarging every field
+into a full-width banner. Repeat only the identification needed to read a
+detached detail sheet.
+
+## Design for the delivered reading size
+
+Select the intended screen scale or printed page before accepting the layout.
+Measure the smallest required labels after the actual export scale is applied;
+native SVG font size alone is insufficient. Also inspect arrowheads, gaps,
+textures and line separation at that scale. Use the kit's role sizes and stroke
+relationships consistently rather than stretching text or shrinking a crowded
+diagram to meet a page count.
+
+Retain a full-view overview for context. If an overview or original/reconstruction
+comparison cannot carry readable detail, supply separate reading sheets and
+overlapping detail views made from the same native SVG. Identify each viewport
+and its position in the overview, indicate cropped continuations, and link back
+to the complete drawing. Verify that every required label and relationship can
+be inspected; a crop must not silently hide an endpoint or imply a new boundary.
+Record paper dimensions, viewport transforms, projected text sizes and coverage
+with the outputs. Such thresholds are declared drafting targets, not a claim of
+an external standard or reader acceptance.
+
+For native-scale browser views, provide readable scrolling and an explicit
+overview control. A thumbnail may support navigation but should not be the only
+reading view. Preserve the original-versus-reconstruction comparison alongside
+the detailed sheets when source fidelity is the review question.
 
 ## Prefer readable names with traceable identifiers
 

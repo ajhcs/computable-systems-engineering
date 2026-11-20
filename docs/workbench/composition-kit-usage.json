@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "kit": "engineering-palette-complete-05",
+  "components": [
+    {
+      "id": "palette-rectangle-white-plain",
+      "path": "assets/engineering-library/components/palette-rectangle-white-plain.svg",
+      "sha256": "c17ecc3fbd7b9bb7271ca710517c651de4a2db485d54fb0015b2bdcec7673398",
+      "adaptations": [
+        "Clone saved shape-rectangle; content-fit bounds and unique occurrence IDs",
+        "Remove specimen text; native-bound independently editable labels",
+        "N0 fill; N100 boundary/text; no inferred category",
+        "Unarrowed route from preserved hierarchy contract; no invented diamond"
+      ]
+    }
+  ],
+  "font_manifest": "assets/engineering-library/fonts/manifest.json",
+  "font_manifest_sha256": "43c8d4dba54124f29d4c07718bfcefbf171fa3658558130b13d8b4f95d3b92e5",
+  "swatches": [
+    "N0",
+    "N100"
+  ],
+  "typography_reference": "assets/engineering-library/tokens/typography-spec.json",
+  "glyphs": [
+    "plain rectangle"
+  ],
+  "model": "examples/workbench/composition/model.sysml",
+  "model_sha256": "428cb72b0a54959749dc3b65146976d82ba4c5afcdd323c01a5ec7ea0c1fe6c1",
+  "scope": "Proposed mixed declaration/usage ownership projection; not a complete formal diagram editor",
+  "design_kit_workflow": "skills/generate-engineering-diagrams/references/design-kit.md",
+  "design_kit_workflow_sha256": "c1ad7696f5c3c969c40723b55f6a8d036261851f0c4e48d0a7f3b1cb60e7b3ea"
+}

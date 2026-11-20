@@ -10,7 +10,23 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.RuleCall;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.scoping.IScopeProvider;
+import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NamespaceUtil;
+import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter;
+import org.omg.sysml.xtext.parser.antlr.internal.InternalSysMLLexer;
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.Token;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
@@ -62,11 +78,340 @@ public final class SysmlBridge {
         return node == null ? -1 : node.getStartLine();
     }
 
+    // Offsets use the Java/Xtext UTF-16 coordinate system, not UTF-8 bytes or
+    // Python code-point indices. Consumers must convert explicitly.
+    private static List<Map<String, Object>> expressionTokens(EObject expression) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        var node = expression == null ? null : NodeModelUtils.getNode(expression);
+        if (node != null) for (var leaf : node.getLeafNodes()) {
+            if (!leaf.isHidden() && leaf.getLength() > 0) {
+                Map<String, Object> token = new LinkedHashMap<>();
+                token.put("encoding", "utf16");
+                token.put("offset", leaf.getOffset());
+                token.put("length", leaf.getLength());
+                result.add(token);
+            }
+        }
+        return result;
+    }
+
+    private static List<Map<String, Object>> sourceTokens(INode node) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        if (node != null) for (var leaf : node.getLeafNodes()) {
+            if (!leaf.isHidden() && leaf.getLength() > 0) {
+                Map<String, Object> token = new LinkedHashMap<>();
+                token.put("encoding", "utf16");
+                token.put("offset", leaf.getOffset());
+                token.put("length", leaf.getLength());
+                token.put("text", leaf.getText());
+                result.add(token);
+            }
+        }
+        return result;
+    }
+
+    // Native FeatureTyping nodes own references, while their TypedBy/Typings
+    // grammar nodes own ':' / 'defined by' / ',' delimiters. Hidden leaves are
+    // deliberately absent so source editors can preserve every comment.
+    private static List<Map<String, Object>> typingSourceFacts(PartUsage usage) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (var typing : usage.getOwnedTyping()) {
+            Map<String, Object> item = new LinkedHashMap<>();
+            item.put("target", typing.getType() == null ? null : typing.getType().getQualifiedName());
+            item.put("status", "unsupported");
+            item.put("reason", "Typing has no direct native reference/delimiter binding");
+            result.add(item);
+            var references = NodeModelUtils.findNodesForFeature(typing, SysMLPackage.eINSTANCE.getFeatureTyping_Type());
+            var node = NodeModelUtils.getNode(typing);
+            if (typing.isImplied() || typing.getTypedFeature() != usage || node == null || references.size() != 1) continue;
+            var reference = references.get(0);
+            INode group = node.getParent();
+            while (group != null && !(group.getGrammarElement() instanceof RuleCall call
+                    && (call.getRule().getName().equals("TypedBy") || call.getRule().getName().equals("Typings"))))
+                group = group.getParent();
+            if (group == null) continue;
+            var before = new ArrayList<org.eclipse.xtext.nodemodel.ILeafNode>();
+            for (var leaf : group.getLeafNodes())
+                if (!leaf.isHidden() && leaf.getLength() > 0 && leaf.getEndOffset() <= node.getOffset()) before.add(leaf);
+            if (before.isEmpty()) continue;
+            var last = before.get(before.size() - 1);
+            if (!(last.getGrammarElement() instanceof Keyword)) continue;
+            var prefix = new ArrayList<org.eclipse.xtext.nodemodel.ILeafNode>();
+            String rule = ((RuleCall) group.getGrammarElement()).getRule().getName();
+            if (rule.equals("TypedBy") && last.getText().equals(":")) prefix.add(last);
+            else if (rule.equals("Typings") && last.getText().equals(",")) prefix.add(last);
+            else if (rule.equals("TypedBy") && last.getText().equals("by") && before.size() >= 2) {
+                var first = before.get(before.size() - 2);
+                if (first.getGrammarElement() instanceof Keyword && first.getText().equals("defined")) {
+                    prefix.add(first); prefix.add(last);
+                }
+            }
+            if (prefix.isEmpty()) continue;
+            var delimiters = new ArrayList<Map<String,Object>>();
+            for (var leaf : prefix) delimiters.addAll(sourceTokens(leaf));
+            item.put("reference_tokens", sourceTokens(reference));
+            item.put("prefix_tokens", delimiters);
+            item.put("encoding", "utf16");
+            item.put("offset", reference.getOffset());
+            item.put("length", reference.getLength());
+            item.put("status", "direct_reference");
+            item.remove("reason");
+        }
+        return result;
+    }
+
+    private static Map<String, Object> sourceFacts(Element element, boolean removalSources) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("encoding", "utf16");
+        var node = NodeModelUtils.getNode(element);
+        if (element instanceof org.omg.sysml.lang.sysml.Namespace) {
+            var definition = parent(element, PartDefinition.class);
+            result.put("enclosing_part_definition", definition == null ? null : definition.getQualifiedName());
+            result.put("has_part_usage_ancestor", parent(element, PartUsage.class) != null);
+        }
+        if (node != null) {
+            result.put("offset", node.getOffset());
+            result.put("length", node.getLength());
+            if ((element instanceof PartDefinition || element instanceof PartUsage
+                    || element instanceof org.omg.sysml.lang.sysml.Package)
+                    && element instanceof org.omg.sysml.lang.sysml.Namespace namespace) {
+                INode last = null;
+                for (var leaf : node.getLeafNodes()) if (!leaf.isHidden() && leaf.getLength() > 0) last = leaf;
+                if (last != null && last.getGrammarElement() instanceof Keyword
+                        && (last.getText().equals("}") || last.getText().equals(";"))) {
+                    result.put("namespace_end_offset", last.getOffset());
+                    result.put("namespace_end_length", last.getLength());
+                    result.put("namespace_end_text", last.getText());
+                }
+                var names = new java.util.LinkedHashSet<String>();
+                for (var membership : namespace.getOwnedMembership()) {
+                    if (membership.getMemberName() != null) names.add(membership.getMemberName());
+                    if (membership.getMemberShortName() != null) names.add(membership.getMemberShortName());
+                }
+                result.put("member_names", new ArrayList<>(names));
+                if (removalSources && (element instanceof PartDefinition || element instanceof PartUsage)) {
+                    var sources = new ArrayList<Map<String, Object>>();
+                    for (var relationship : namespace.getOwnedRelationship()) {
+                        if (relationship.isImplied()) continue;
+                        var relationshipNode = NodeModelUtils.getNode(relationship);
+                        var details = new LinkedHashMap<String, Object>();
+                        details.put("relationship_kind", relationship.eClass().getName());
+                        if (relationshipNode != null) {
+                            details.put("encoding", "utf16");
+                            details.put("offset", relationshipNode.getOffset());
+                            details.put("length", relationshipNode.getLength());
+                        }
+                        var ownedElements = new ArrayList<Map<String, Object>>();
+                        for (var child : relationship.getOwnedRelatedElement()) {
+                            var childNode = NodeModelUtils.getNode(child);
+                            var info = new LinkedHashMap<String, Object>();
+                            info.put("kind", child.eClass().getName());
+                            info.put("identity", child.getQualifiedName());
+                            if (childNode != null) {
+                                info.put("encoding", "utf16");
+                                info.put("offset", childNode.getOffset());
+                                info.put("length", childNode.getLength());
+                            }
+                            ownedElements.add(info);
+                        }
+                        details.put("owned_elements", ownedElements);
+                        sources.add(details);
+                    }
+                    result.put("owned_relationship_sources", sources);
+                }
+            }
+            if (element instanceof org.omg.sysml.lang.sysml.Namespace && element.getQualifiedName() != null) {
+                // Canonical identities may contain quoted separators or source
+                // keywords. Let the native converter recover their segments;
+                // never split a qualified identity on a textual delimiter.
+                result.put("qualified_reference", sourceReference(element.getQualifiedName()));
+                var qualified = new SysMLQualifiedNameConverter().toQualifiedName(element.getQualifiedName());
+                result.put("local_reference", sourceName(qualified.getLastSegment()));
+                result.put("local_identity", ElementUtil.escapeName(qualified.getLastSegment()));
+            }
+        }
+        if (element instanceof PartUsage part) {
+            result.put("typing_sources", typingSourceFacts(part));
+            boolean authoredReference = false;
+            if (node != null) for (var leaf : node.getLeafNodes()) {
+                if (leaf.isHidden() || !(leaf.getGrammarElement() instanceof Keyword)) continue;
+                if (leaf.getText().equals("part")) break;
+                if (leaf.getText().equals("ref")) authoredReference = true;
+            }
+            result.put("authored_reference", authoredReference);
+        }
+        var feature = element.eClass().getEStructuralFeature("declaredName");
+        if (feature != null) {
+            var names = NodeModelUtils.findNodesForFeature(element, feature);
+            if (names.size() == 1) {
+                result.put("name_offset", names.get(0).getOffset());
+                result.put("name_length", names.get(0).getLength());
+                if (element instanceof PartUsage)
+                    result.put("multiplicity_insert_offset", names.get(0).getEndOffset());
+            }
+        }
+        var bodyFeature = element.eClass().getEStructuralFeature("body");
+        if (bodyFeature != null) {
+            var bodies = NodeModelUtils.findNodesForFeature(element, bodyFeature);
+            if (bodies.size() == 1) {
+                result.put("body_offset", bodies.get(0).getOffset());
+                result.put("body_length", bodies.get(0).getLength());
+            }
+        }
+        if (element instanceof Usage usage && usage.getMultiplicity() != null) {
+            var rangeNode = NodeModelUtils.getNode(usage.getMultiplicity());
+            if (rangeNode != null && node != null && rangeNode.getLength() > 0
+                    && usage.getMultiplicity().eResource() == usage.eResource()
+                    && rangeNode.getOffset() >= node.getOffset()
+                    && rangeNode.getOffset() + rangeNode.getLength() <= node.getOffset() + node.getLength()) {
+                result.put("multiplicity_offset", rangeNode.getOffset());
+                result.put("multiplicity_length", rangeNode.getLength());
+                if (element instanceof PartUsage && usage.getMultiplicity() instanceof org.omg.sysml.lang.sysml.MultiplicityRange range) {
+                    result.put("multiplicity_lower_tokens", expressionTokens(range.getLowerBound()));
+                    result.put("multiplicity_upper_tokens", expressionTokens(range.getUpperBound()));
+                }
+            }
+        }
+        if (element instanceof PartUsage && node != null && !result.containsKey("multiplicity_insert_offset")) {
+            var shortFeature = element.eClass().getEStructuralFeature("declaredShortName");
+            var shortNames = NodeModelUtils.findNodesForFeature(element, shortFeature);
+            int shortEnd = shortNames.size() == 1 ? shortNames.get(0).getEndOffset() : -1;
+            for (var leaf : node.getLeafNodes()) {
+                if (leaf.isHidden() || !(leaf.getGrammarElement() instanceof Keyword keyword)) continue;
+                if ((shortEnd >= 0 && leaf.getOffset() >= shortEnd && keyword.getValue().equals(">")) ||
+                        (shortEnd < 0 && keyword.getValue().equals("part"))) {
+                    result.put("multiplicity_insert_offset", leaf.getEndOffset());
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
     private static String typedBy(Feature feature) {
         if (feature.getOwnedTyping().size() != 1) return null;
         FeatureTyping typing = feature.getOwnedTyping().get(0);
         Type type = typing.getType();
         return type == null ? null : type.getQualifiedName();
+    }
+
+    private static Map<String, Object> referenceNames(EObject object, EReference reference, INode node, Element target) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        List<Map<String, Object>> segments = new ArrayList<>();
+        result.put("status", "unsupported");
+        result.put("segments", segments);
+        result.put("reason", "Native qualified-name binding unavailable");
+        try {
+            if (!(object.eResource() instanceof XtextResource resource)) return result;
+            var provider = resource.getResourceServiceProvider().get(IScopeProvider.class);
+            var membershipReference = SysMLPackage.eINSTANCE.getNamespace_Membership();
+            var scope = provider.getScope(object, membershipReference);
+            if (reference == SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature()
+                    && provider instanceof KerMLScopeProvider nativeProvider
+                    && object.eContainer() instanceof Element owner && object instanceof Element skip) {
+                // The pinned provider selects this context for redefinedFeature.
+                // Keep its redefinition/skip flags while asking it for Membership
+                // results, so aliases remain distinct from their member element.
+                var namespace = NamespaceUtil.getParentNamespaceOf(owner);
+                if (namespace != null)
+                    scope = nativeProvider.scopeFor(namespace, membershipReference, owner, true, true, true, skip);
+            }
+            var converter = new SysMLQualifiedNameConverter();
+            StringBuilder prefix = new StringBuilder();
+            Element last = null;
+            for (var leaf : node.getLeafNodes()) {
+                if (leaf.isHidden()) continue;
+                prefix.append(leaf.getText());
+                if (leaf.getGrammarElement() instanceof Keyword keyword
+                        && (keyword.getValue().equals("::") || keyword.getValue().equals("$"))) continue;
+                if (!(leaf.getGrammarElement() instanceof RuleCall call)
+                        || !(call.getRule().getName().equals("ID") || call.getRule().getName().equals("UNRESTRICTED_NAME")))
+                    return result;
+                var decoded = converter.toQualifiedName(leaf.getText());
+                if (decoded.getSegmentCount() != 1) return result;
+                String name = decoded.getFirstSegment();
+                var description = scope.getSingleElement(converter.toQualifiedName(prefix.toString()));
+                if (description == null) return result;
+                var found = EcoreUtil.resolve(description.getEObjectOrProxy(), object);
+                if (!(found instanceof Membership membership)) return result;
+                Element element = membership.getMemberElement();
+                if (element == null || element.eIsProxy() || element.getQualifiedName() == null) return result;
+                String kind;
+                if (name.equals(membership.getMemberShortName()) && !NodeModelUtils.findNodesForFeature(membership,
+                        membership.eClass().getEStructuralFeature("memberShortName")).isEmpty()) kind = "alias_short_name";
+                else if (name.equals(membership.getMemberName()) && !NodeModelUtils.findNodesForFeature(membership,
+                        membership.eClass().getEStructuralFeature("memberName")).isEmpty()) kind = "alias_name";
+                else if (name.equals(element.getShortName())) kind = "short_name";
+                else if (name.equals(element.getName())) kind = "name";
+                else return result;
+                Map<String, Object> segment = new LinkedHashMap<>();
+                segment.put("encoding", "utf16");
+                segment.put("offset", leaf.getOffset());
+                segment.put("length", leaf.getLength());
+                segment.put("text", leaf.getText());
+                segment.put("name", name);
+                segment.put("kind", kind);
+                segment.put("target", element.getQualifiedName());
+                if (kind.equals("alias_name") || kind.equals("alias_short_name")) {
+                    var alias = NodeModelUtils.getNode(membership);
+                    boolean external = membership.eResource() != object.eResource();
+                    segment.put("alias_is_external", external);
+                    var aliasOwner = membership.getMembershipOwningNamespace();
+                    if (aliasOwner != null && aliasOwner.getQualifiedName() != null) {
+                        segment.put("alias_owner", aliasOwner.getQualifiedName());
+                        segment.put("alias_owner_reference", sourceReference(aliasOwner.getQualifiedName()));
+                        segment.put("alias_local_reference", sourceName(name));
+                    }
+                    if (!external && alias != null) segment.put("alias_source_span", Map.of(
+                            "encoding", "utf16", "offset", alias.getOffset(), "length", alias.getLength()));
+                }
+                segments.add(segment);
+                last = element;
+            }
+            if (segments.isEmpty() || last != target) return result;
+            result.put("status", "resolved");
+            result.remove("reason");
+        } catch (RuntimeException exc) {
+            result.put("status", "error");
+            result.put("reason", "Native name-binding extraction: " + exc.getClass().getSimpleName());
+        }
+        return result;
+    }
+
+    private static List<Map<String, Object>> referenceSpans(List<EObject> all) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        var seen = new java.util.HashSet<String>();
+        for (EObject object : all) {
+            for (var reference : object.eClass().getEAllReferences()) {
+                if (reference.isContainment() || reference.isContainer()) continue;
+                var nodes = NodeModelUtils.findNodesForFeature(object, reference);
+                if (nodes.isEmpty()) continue;
+                Object value = object.eGet(reference, true);
+                List<?> targets = value instanceof List<?> list ? list : java.util.Collections.singletonList(value);
+                for (int i = 0; i < nodes.size(); i++) {
+                    var node = nodes.get(i);
+                    String key = node.getOffset() + ":" + node.getLength();
+                    if (!seen.add(key)) continue;
+                    Map<String, Object> row = new LinkedHashMap<>();
+                    row.put("encoding", "utf16");
+                    row.put("offset", node.getOffset());
+                    row.put("length", node.getLength());
+                    row.put("text", node.getText());
+                    row.put("source_tokens", sourceTokens(node));
+                    row.put("feature", reference.getName());
+                    row.put("resolved", false);
+                    if (targets.size() == nodes.size() && targets.get(i) instanceof Element target && !target.eIsProxy()) {
+                        row.put("target", target.getQualifiedName());
+                        row.put("resolved", target.getQualifiedName() != null);
+                        if (target.getQualifiedName() != null)
+                            row.put("target_reference", sourceReference(target.getQualifiedName()));
+                        row.put("name_binding", referenceNames(object, reference, node, target));
+                    }
+                    result.add(row);
+                }
+            }
+        }
+        return result;
     }
 
     private static String referenceTarget(Feature reference) {
@@ -190,7 +535,7 @@ public final class SysmlBridge {
         return item;
     }
 
-    private static Map<String, Object> extract(Element root) {
+    private static Map<String, Object> extract(Element root, boolean removalSources) {
         List<Map<String, Object>> attributes = new ArrayList<>();
         List<Map<String, Object>> events = new ArrayList<>();
         List<Map<String, Object>> eventAttributes = new ArrayList<>();
@@ -206,10 +551,31 @@ public final class SysmlBridge {
         List<Map<String, Object>> ports = new ArrayList<>();
         List<Map<String, Object>> portDefinitions = new ArrayList<>();
         List<Map<String, Object>> connections = new ArrayList<>();
+        List<Map<String, Object>> namespaceSources = new ArrayList<>();
         List<EObject> all = new ArrayList<>();
         all.add(root);
         for (var iterator = root.eAllContents(); iterator.hasNext();) all.add(iterator.next());
         for (EObject object : all) {
+            // Revision-bound source locators, not persisted engineering IDs.
+            // The implicit root is not a package and has no closing brace.
+            if (object instanceof org.omg.sysml.lang.sysml.Namespace namespace
+                    && (object == root || object instanceof org.omg.sysml.lang.sysml.Package)) {
+                Map<String, Object> item = new LinkedHashMap<>();
+                item.put("kind", object.eClass().getName());
+                item.put("is_root", object == root);
+                item.put("qualified_name", namespace.getQualifiedName());
+                item.put("native_fragment", EcoreUtil.getURI(object).fragment());
+                item.put("owner", namespace.getOwner() == null ? null : namespace.getOwner().getQualifiedName());
+                item.put("owner_kind", namespace.getOwner() == null ? null : namespace.getOwner().eClass().getName());
+                item.put("source_span", sourceFacts(namespace, false));
+                var names = new java.util.LinkedHashSet<String>();
+                for (var membership : namespace.getOwnedMembership()) {
+                    if (membership.getMemberName() != null) names.add(membership.getMemberName());
+                    if (membership.getMemberShortName() != null) names.add(membership.getMemberShortName());
+                }
+                item.put("member_names", new ArrayList<>(names));
+                namespaceSources.add(item);
+            }
             if (object instanceof PortUsage port) ports.add(portFacts(port));
             if (object instanceof PortDefinition portDefinition) {
                 Map<String, Object> item = new LinkedHashMap<>();
@@ -276,6 +642,11 @@ public final class SysmlBridge {
                 }
             } else if (object instanceof PartDefinition partDefinition) {
                 Map<String, Object> item = new LinkedHashMap<>();
+                item.put("source_span", sourceFacts(partDefinition, removalSources));
+                item.put("id", partDefinition.getDeclaredShortName());
+                var owner = partDefinition.getOwningNamespace();
+                item.put("owner", owner == null ? null : owner.getQualifiedName());
+                item.put("owner_kind", owner == null ? null : owner.eClass().getName());
                 item.put("name", partDefinition.getName());
                 item.put("qualified_name", partDefinition.getQualifiedName());
                 item.put("has_specialization", !partDefinition.getOwnedSpecialization().isEmpty());
@@ -287,6 +658,8 @@ public final class SysmlBridge {
                 partDefinitions.add(item);
             } else if (object instanceof PartUsage part && !(object instanceof Connector)) {
                 Map<String, Object> item = new LinkedHashMap<>();
+                item.put("source_span", sourceFacts(part, removalSources));
+                item.put("id", part.getDeclaredShortName());
                 item.put("name", part.getName());
                 item.put("qualified_name", part.getQualifiedName());
                 item.put("type", typedBy(part));
@@ -399,6 +772,7 @@ public final class SysmlBridge {
                 ConstraintUsage constraint = parent(documentation, ConstraintUsage.class);
                 RequirementUsage requirement = parent(documentation, RequirementUsage.class);
                 Map<String, Object> item = new LinkedHashMap<>();
+                item.put("source_span", sourceFacts(documentation, false));
                 item.put("name", documentation.getName());
                 item.put("body", documentation.getBody());
                 item.put("constraint", constraint == null || constraint instanceof RequirementUsage
@@ -411,9 +785,13 @@ public final class SysmlBridge {
             }
         }
         Map<String, Object> result = new LinkedHashMap<>();
+        // Keep location/traversal metadata inside the existing source boundary.
+        // It must not become an engineering fact in semantic fingerprints.
+        result.put("source_span", Map.of("namespace_sources", namespaceSources));
         result.put("attributes", attributes);
         result.put("events", events);
         result.put("event_attributes", eventAttributes);
+        result.put("reference_spans", referenceSpans(all));
         result.put("parts", parts);
         result.put("part_definitions", partDefinitions);
         result.put("concerns", concerns);
@@ -429,9 +807,49 @@ public final class SysmlBridge {
         return result;
     }
 
+    private static String sourceReference(String qualifiedName) {
+        var qualified = new SysMLQualifiedNameConverter().toQualifiedName(qualifiedName);
+        return qualified.getSegments().stream().map(SysmlBridge::sourceName)
+                .collect(java.util.stream.Collectors.joining("::"));
+    }
+
+    private static String sourceName(String name) {
+        String sourceToken = "'" + ElementUtil.escapeString(name) + "'";
+        if (ElementUtil.isIdentifier(name)) {
+            var lexer = new InternalSysMLLexer(new ANTLRStringStream(name));
+            var token = lexer.nextToken();
+            if (token.getType() == InternalSysMLLexer.RULE_ID
+                    && name.equals(token.getText()) && lexer.nextToken().getType() == Token.EOF)
+                sourceToken = name;
+        }
+        return sourceToken;
+    }
+
+    private static void serializeName(PrintStream output) {
+        Map<String, Object> response = new LinkedHashMap<>();
+        try {
+            String name = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);
+            // The native canonical segment is not necessarily a source token:
+            // keywords have ordinary identities but require quotes in source.
+            String sourceToken = sourceName(name);
+            response.put("name", name);
+            response.put("source_token", sourceToken);
+            response.put("qualified_segment", ElementUtil.escapeName(name));
+        } catch (Exception exc) {
+            response.put("error", exc.toString());
+        }
+        output.println(JSON.toJson(response));
+    }
+
     public static void main(String[] args) {
-        if (args.length != 2) {
-            System.err.println("usage: SysmlBridge LIBRARY_DIRECTORY MODEL.sysml");
+        if (args.length == 1 && args[0].equals("--name")) {
+            // Pure native spelling conversion: no library or model is loaded.
+            serializeName(System.out);
+            return;
+        }
+        boolean removalSources = args.length == 3 && args[2].equals("--removal-sources");
+        if (args.length != 2 && !removalSources) {
+            System.err.println("usage: SysmlBridge LIBRARY_DIRECTORY MODEL.sysml [--removal-sources]");
             System.exit(2);
         }
         PrintStream output = System.out;
@@ -457,7 +875,7 @@ public final class SysmlBridge {
             }
             response.put("issues", issues);
             response.put("error", parsed.getException() == null ? null : parsed.getException().toString());
-            if (parsed.getRootElement() != null) response.putAll(extract(parsed.getRootElement()));
+            if (parsed.getRootElement() != null) response.putAll(extract(parsed.getRootElement(), removalSources));
         } catch (Exception exc) {
             response.put("error", exc.toString());
         } finally {

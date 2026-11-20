@@ -35,7 +35,74 @@ or the diagram skill. Reconciled ordinary connections establish scoped undirecte
 adjacency. Direction, payload compatibility, delivery, installation and physical
 fit require their own representation and evidence.
 
+The development [saved physical diagram path](../../../docs/workbench/composition-diagrams.md)
+uses the same native declarations and separately retained scopes in a local Git
+project. Its [loopback interaction](../../../docs/workbench/composition-interaction.md)
+uses those same native transactions. Its [site adapter](../../../docs/workbench/composition-site-tools.md)
+can expose the same selection and checked edits when the host API is available.
+Read current context, preserve a human draft's fixed target, and treat a preview
+separately from a durable save receipt. An unconfirmed save retains its exact
+request ID and values; neither selection nor a rename replaces retained scope.
+Registration does not establish actual Codex/ChatGPT execution or complete
+physical-capability parity.
+
+The selected usage's [finite multiplicity edit](../../../docs/workbench/composition-multiplicity.md)
+authors explicit native lower/upper bounds through the same candidate, diagram,
+local transaction and site controller. Retain the configuration scope: optional
+bounds return unknown selected presence, and suppression fails it. Neither the
+count nor a durable edit receipt establishes installed equipment. Part definitions
+have no usage multiplicity.
+
+[Owned definition creation](../../../docs/workbench/composition-creation.md)
+uses an explicit selected native owner, decoded name, optional short ID and
+prospective UUID. Preview the model and original-kit occurrence together before
+saving the exact request. Retain the scope and captured owner through inspection,
+conflict or lost acknowledgement. This path does not infer an installed part or
+silently create a usage, package root, type or new view.
+
+For definition-owned or inherited/redefined role inspection, follow the
+[role-inspection contract](../../../docs/workbench/composition-role-inspection.md).
+Keep native declaration ownership, retained selected parent/context and each
+inspection occurrence distinct. Inspection cannot accept new scope or retarget
+a shared declaration draft. The local reader/controller, inspection CLI and
+site callbacks share the source-bound projection; MCP, private hosted persistence
+and actual application parity remain open. A missing binding has no native edit
+target. Preserve its logical occurrence and complete findings; whole-project
+restoration remains distinct from accepting or repairing that selection.
+
 Method basis: Buede and Miller, *The Engineering Design of Systems: Models and
 Methods*, fourth edition, Chapter 8, pp. 210–211. The native selection and
 reconciliation rules are CSE implementation choices, not a complete physical
 design method.
+
+For local workbench drafting, [part-usage creation](../../../docs/workbench/composition-usage-creation.md)
+and [explicit usage typing](../../../docs/workbench/composition-typing.md) retain
+native declaration ownership and the independently retained configuration scope.
+These development operations do not establish actual-host acceptance or complete
+physical-composition parity.
+
+For the first physical root in a new project, use
+[initial authoring](../../../docs/workbench/composition-initial-project.md).
+The engineer chooses definition versus usage and unnamed versus named package;
+do not infer those choices from a diagram frame. Preview and retain the exact
+checked request before creating the project, then continue in the same saved
+editor. The default namespace/package-owned usage is noncomposite, has no explicit
+typing and has native `1..1`; neither declaration nor storage receipt proves installation.
+Later package/root/view editing and complete actual-host parity remain open.
+
+For the active [native ownership increment](../../../docs/workbench/composition-ownership.md),
+retain declaration UUIDs, complete affected-view consequences and exact scope.
+A namespace source locator is valid only for its captured bundle. Reparenting
+never silently changes declaration form or accepts a failed configuration review.
+The ownership work remains unqualified while its parity cells are active.
+
+The local [removal commands](../../../docs/workbench/composition-removal.md) separate
+diagram occurrence removal from model deletion. Keep the captured revision,
+native UUID and view effects attached to the preview. Retain original scope and
+report any new findings. Use explicit source effects for each admitted incoming
+typing, and retain authored legend entries pending an explicit presentation edit.
+
+For wording on a saved frame, use the [display-alias operation](../../../docs/workbench/composition-catalog.md#edit-a-display-alias)
+with the captured view, frame and native UUID. Clearing the alias displays the
+declared name. Use the native rename operation when the engineer wants to change
+the declared name and its references.

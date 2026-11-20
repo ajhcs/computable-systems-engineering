@@ -30,6 +30,8 @@ class PluginPackageTests(unittest.TestCase):
         self.write('docs/guide.md', 'Committed wording.\n')
         self.write('assets/master.svg', '<svg/>\n')
         self.write('prototypes/repair_reuse.py', 'def retained_helper(): return 42\n')
+        self.write('web/composition-reader.html', '<!doctype html><title>Saved native reader</title>\n')
+        self.write('web/composition-workbench.js', "'use strict';\n")
         self.write('.agents/skills/fixture-alias', 'Repository-only alias')
         self.write('.github/workflows/check.yml', 'Source-only CI')
         self.write('.gitignore', 'private/\n')
@@ -70,6 +72,15 @@ class PluginPackageTests(unittest.TestCase):
         self.assertEqual(first, second)
         self.assertEqual((self.base / 'one/source-receipt.json').read_bytes(),
                          (self.base / 'two/source-receipt.json').read_bytes())
+
+    def test_saved_reader_and_connected_interface_assets_ship_from_the_same_commit(self):
+        commit=self.command('rev-parse','HEAD')
+        self.write('web/composition-workbench.js','Uncommitted interface edit.\n')
+        build(self.repo,commit,self.base/'with-web')
+        payload=self.base/'with-web/plugins/computable-systems-engineering/web'
+        self.assertEqual((payload/'composition-reader.html').read_text(),
+                         '<!doctype html><title>Saved native reader</title>\n')
+        self.assertEqual((payload/'composition-workbench.js').read_text(),"'use strict';\n")
 
     def test_existing_output_and_output_inside_source_are_refused(self):
         existing = self.base / 'existing'

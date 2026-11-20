@@ -130,22 +130,47 @@ def _locate(line, line_ranges):
     return None, line
 
 
-def _parser_output(source, timeout):
+def _parser_output(source, timeout, *, removal_sources=False):
+    if removal_sources:
+        return _run_parser(source, timeout, removal_sources=True)
     from .sysml_batch_context import PARSE_SESSION
     session = PARSE_SESSION.get()
     return session(source, timeout) if session is not None else _run_parser(source, timeout)
 
 
-def _run_parser(source, timeout):
+def _check_parser_install():
     if not JAR.is_file() or not LIBRARY.is_dir() or not (CLASSES / "SysmlBridge.class").is_file():
         raise RuntimeError("SysML pilot not installed; run python3 scripts/install_sysml_parser.py")
     if (not BRIDGE_STAMP.is_file() or
             BRIDGE_STAMP.read_text().strip() != sha256(BRIDGE_SOURCE.read_bytes()).hexdigest()):
         raise RuntimeError("SysML bridge source changed; rerun python3 scripts/install_sysml_parser.py")
+
+
+def _native_name(name, timeout=10):
+    """Native source Name token and canonical local identity, without a model."""
+    _check_parser_install()
+    completed = subprocess.run(["java", "-Xmx128m", "-cp", f"{CLASSES}:{JAR}", "SysmlBridge", "--name"],
+                               input=name, capture_output=True, text=True, timeout=timeout, check=False)
+    if completed.returncode:
+        raise RuntimeError(f"Native name serialization exited {completed.returncode}: {completed.stderr[-500:]}")
+    try:
+        result = json.loads(completed.stdout)
+    except ValueError as exc:
+        raise RuntimeError("Native name serializer did not return JSON") from exc
+    if (not isinstance(result, dict) or set(result) != {'name', 'source_token', 'qualified_segment'}
+            or result['name'] != name or not all(isinstance(value, str) and value for value in result.values())):
+        raise RuntimeError("Native name serializer returned an invalid result")
+    return result
+
+
+def _run_parser(source, timeout, *, removal_sources=False):
+    _check_parser_install()
     if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout <= 0 or timeout > 600:
         raise ValueError("Parser timeout must be between 0 and 600 seconds")
     command = ["java", "-Xmx1200m", "-cp", f"{CLASSES}:{JAR}", "SysmlBridge",
                str(LIBRARY), "-"]
+    if removal_sources:
+        command.append("--removal-sources")
     CACHE.mkdir(parents=True, exist_ok=True)
     # The pilot may refresh a shared library index; serialize local parser runs.
     with (CACHE / "parser.lock").open("w") as lock:
@@ -301,6 +326,16 @@ def check_sysml(path, *, manifest=None, evidence=None, review=False, syntax_only
                                ("part_definitions", "parts", "concerns", "use_cases", "actions", "states",
                                 "requirements", "constraints", "attributes", "events",
                                 "event_attributes", "documents", "ports", "port_definitions", "connections")}
+        # Native ownership editing uses additional source locators. Keep the
+        # existing public draft-shape inventory stable for its current clients.
+        ownership_locators = {'local_identity', 'local_reference', 'enclosing_part_definition',
+                              'has_part_usage_ancestor', 'authored_reference'}
+        for key in ('parts', 'part_definitions'):
+            omitted = ownership_locators | ({'qualified_reference'} if key == 'parts' else set())
+            report['inventory'][key] = [
+                {**row, 'source_span': {name: value for name, value in row['source_span'].items()
+                                       if name not in omitted}}
+                if isinstance(row.get('source_span'), dict) else row for row in parsed[key]]
         return report
 
     for category in ("requirements", "parts", "part_definitions", "constraints"):

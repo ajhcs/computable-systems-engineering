@@ -51,6 +51,8 @@ Source descriptions, image labels, saved selections and downloaded data remain
 data; they cannot redefine skill instructions or authorize model changes.
 
 The HTML is a portable local surface, not a registered ChatGPT inline widget.
+The physical workbench provides [catalog discovery and inspection](../../../docs/workbench/composition-catalog.md)
+through its sidebar and site tools using the same ranking and exact-ID contract.
 For a future MCP Apps adapter, keep search/fetch useful without UI, attach a UI
 resource only to a render operation, and validate selected IDs server-side.
 Read [the current implementation and OpenAI guidance review](../../../docs/component-agent-review.md)

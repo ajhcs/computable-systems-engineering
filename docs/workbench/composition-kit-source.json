@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "source": "Preserved unpublished historical-alpha6 revision G implementation",
+  "baseline_head": "df0f8cc5bcb705396bdefd502963df1713e9ddc2",
+  "claim": "Per-file hashes identify dirty-worktree source content; the baseline commit alone does not contain these changes.",
+  "files": {
+    "verifier/kit_fonts.py": "52590242f4404ab48c931ff4a8bd0bdc8f92f4d3759a5e4a0db5428939f57838",
+    "verifier/kit_templates.py": "631c7fb3f8f426773b633e541b670d379a67250d0700ff15b7a048d4be2fa151",
+    "tests/test_kit_fonts.py": "f612038fa35358ad529de449d9b98dc08018b94522befd20857cd6ceee57f5f2",
+    "skills/generate-engineering-diagrams/references/design-kit.md": "c1ad7696f5c3c969c40723b55f6a8d036261851f0c4e48d0a7f3b1cb60e7b3ea",
+    "skills/generate-engineering-diagrams/references/readable-presentation.md": "c53022fcf77fd8d30248e5b3b60d37450977277f10743fea02a0ff998b624053"
+  }
+}
