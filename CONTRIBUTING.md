@@ -4,7 +4,7 @@ Start with a small reproducible engineering defect or a valid case the tool inco
 
 Run `python3 scripts/check.py`. This exercises the legacy helpers, bounded finite verifier, SysML adapter, synthetic gallery and source-safe reference checks. It does not establish engineering acceptance, original-source authenticity or general SysML behavioral execution. Add meaningful tests for new behavior, including valid exceptions and unsupported cases. A shortened record or a narrower review scope is not evidence of a more efficient method unless the same obligations remain covered.
 
-Keep skill instructions short. Put infrequently needed detail in references and execute scripts without loading their source into the drafting model's context. Preserve the engineer's role in elicitation and consequential decisions.
+Give each skill a clear trigger, requested result and observable review criteria. Keep fixed procedures for record contracts and checks that need them. Link specialized methods from the entrypoint and keep the skill's starter prompt and both plugin manifests consistent. Preserve the engineer's authority over consequential decisions. See the [GPT-6.2 Codex prompting guide](https://learn.chatgpt.com/guides/prompting-gpt-6-2-astra).
 
 Before adding upstream code, record its source, revision, and applicable license notices. Public availability of a document does not automatically authorize redistributing all its contents. Reference documents by link and use original, attributed formalizations with explicit assumptions.
 

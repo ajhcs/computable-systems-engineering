@@ -1,37 +1,16 @@
 ---
 name: define-engineering-measures
-description: Define or revise an engineering measure, its collection conditions and baseline meaning. Use for measurement dictionaries or changed metric definitions; use evidence planning for a broader evaluation plan.
+description: Define or revise an engineering measure and its collection conditions. Use for measurement dictionaries, changed metric definitions or baseline comparability.
 ---
 
-Define the quantity needed for the engineer's question. Reuse existing measure
-IDs, sources and accepted definitions. Ask only for consequential missing intent;
-keep other gaps explicit. Do not supply targets, acceptance thresholds or modality.
+Define the quantity the engineer needs for the current decision. Reuse existing measure IDs, sources and accepted definitions. Keep unestablished targets or acceptance thresholds open for the engineer.
 
-For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
-before drafting and when reviewing the actual output.
+Use the [record contract](references/record-contract.md) to put the formula, scale type, units, population, boundary, aggregation, exclusions, window, sampling, conditions and uncertainty in a versioned record. Keep a readable definition beside it. Review both against the project's [defined meaning](../../docs/meaning-context.md).
 
-Read the [record contract](references/record-contract.md) when creating or checking
-a definition. Keep formula, units, population, boundary, aggregation, exclusions,
-window, sampling, conditions and uncertainty together in one versioned record.
-Preserve nominal, ordinal, interval and ratio distinctions. Provide a concise human
-view beside the typed record; a prose definition alone has no computed verdict.
+Run `python3 <skill-dir>/scripts/measures.py check RECORD.json` for typed syntax and unit checks. Repair draft defects within accepted meaning and rerun. Unknown or unsupported fields leave a required check unresolved.
 
-Run `python3 <skill-dir>/scripts/measures.py check RECORD.json`. Repair reported
-draft defects within accepted meaning and rerun. Unknown or unsupported fields
-cannot pass a required definition check. The helper reuses bounded arithmetic
-syntax and unit checks; it does not evaluate measurements or infer prose meaning.
+For changed definitions, use [baseline and feedback](references/baseline-and-feedback.md). Retain both revisions and run `python3 <skill-dir>/scripts/measures.py compare BEFORE.json AFTER.json`. Explain changed measurement meaning and how it affects the baseline. Keep observed comparability open where the collection evidence does not establish it. The engineer decides whether to adopt changed meaning.
 
-For a revision, read [baseline and feedback](references/baseline-and-feedback.md).
-Retain old and proposed files. Run `python3 <skill-dir>/scripts/measures.py compare BEFORE.json AFTER.json`.
-Report changed meaning separately from labels and provenance metadata. Exact
-definition equality does not establish statistical comparability of observations.
-Present changed accepted meaning for engineer judgment before adoption.
+For aligned observations, use the [observation computation](references/observation-validation.md) for supported interval scores, weighted summaries or conditional binomial checks. Use [evidence planning](../plan-engineering-evidence/SKILL.md) for new collection and [engineering analysis](../../docs/engineering-analysis.md) for calculations. Link discrepancies to the design question, proposed action and follow-up measure without inferring causation.
 
-When a discrepancy motivates a design change, link its question, corrective
-action and follow-up measure without claiming causation. Use
-[evidence planning](../plan-engineering-evidence/SKILL.md) for collection and
-evaluation evidence, or the existing calculations helper for numeric evaluation.
-For collected aligned data, read [observation computation](references/observation-validation.md)
-to select interval scores, weighted summaries or conditional binomial checks.
-Keep sources and private annotations outside public artifacts. Do not claim
-physical validity, source truth or acceptance from a well-formed definition.
+Deliver a definition another person can apply to the same work and identify exclusions and unknowns. Include the check result and, for revisions, the baseline consequence. A definition check covers the supplied formula and declared units. Collection validity and acceptance need their own evidence. Keep source observations and annotations private.

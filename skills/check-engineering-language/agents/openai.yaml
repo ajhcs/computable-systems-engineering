@@ -1,0 +1,4 @@
+interface:
+  display_name: "Check Engineering Language"
+  short_description: "Review terminology and controlled English"
+  default_prompt: "Use $check-engineering-language to revise this text. Show the remaining findings and preserve each obligation, condition, quantity and unit."

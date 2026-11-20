@@ -1,71 +1,26 @@
 ---
 name: generate-engineering-diagrams
-description: Create or review source-linked engineering diagrams; find, compare and export engineering symbols and icons by ID; or select reusable SVG graphics and fonts for engineering documents.
+description: Create or review a source-linked engineering diagram, or find and export reusable engineering components. Use for editable model views, formal notation, engineering SVGs and document artwork.
 ---
 
-Use this skill to produce or critique a diagram from supplied or existing accepted engineering meaning. New system-model design, requirements, assumptions, thresholds, allocations and engineering acceptance remain with the engineer. Do not invent a new system merely to fill a diagram family.
+Produce the requested editable view from the supplied model and selected source revision. Identify what the reader needs to see, the model IDs, the intended display or print size and any expected interactions. For changes to system meaning, use [architecture](../develop-system-architecture/SKILL.md) and keep the engineer's decision explicit.
 
-For the saved engineering SVG and iconography kit, follow the
-[engineering design-kit workflow](references/design-kit.md) before layout.
-Reuse exact masters, fonts, swatches and notation; record source hashes and
-content-fit adaptations.
+### Choose the applicable source and method
 
-For the development physical-composition path over a saved local Git project,
-use the [saved native diagram contract](../../docs/workbench/composition-diagrams.md).
-It renders definition hierarchies or declared usage composition with this kit
-and supports source-bound inspection. The [local interaction adapter](../../docs/workbench/composition-interaction.md)
-embeds that same reader for rename, finite multiplicity, layout and restoration.
-[Owned definition creation](../../docs/workbench/composition-creation.md) adds
-native source and a checked occurrence together, retaining the original kit and
-old geometry. Later package/root/view authoring and other creation routes remain open. Full operation and host
-parity remain open; do not advertise it as a completed workbench capability.
-[Part-usage creation](../../docs/workbench/composition-usage-creation.md) preserves
-composite ownership frames versus definition-owned/reference declaration rows,
-optional native typing and retained configuration scope.
-[Explicit usage typing](../../docs/workbench/composition-typing.md) edits its
-complete authored type list through the same native preview/save path, retaining
-shared declaration ownership, original-kit geometry and separately checked scope.
-[Native ownership changes](../../docs/workbench/composition-ownership.md) are under
-development: move a captured declaration/subtree and supply explicit consequences
-for every affected physical view. Preserve original reference spelling, geometry,
-masters and scope; inspect the exact candidate before saving. This active work
-is not assembled or actual-host qualification.
-[Initial project authoring](../../docs/workbench/composition-initial-project.md)
-creates the first native root and view through the same original-kit renderer.
-Preview exact sources before first save; retain the prospective UUID and checked
-request across recovery. A global root remains in its unnamed namespace. A
-namespace/package-owned root usage is noncomposite and defaults to untyped
-`1..1`; it does not assert installation. Local and SDK checks do not close actual
-application or private hosted acceptance.
+- For a project look, use the supplied reference or repository specimens and the [visual reference guidance](../../docs/technical-documents.md#select-the-visual-reference). Use the [engineering design kit](references/design-kit.md) for its exact masters, fonts, swatches and notation. Record source identities and content-fit adaptations. Use a [visual profile](../../docs/visual-profiles.md) for a repeatable project identity.
+- For reusable graphics, use [component workflows](references/component-agents.md) and the [catalog](../../docs/component-library.md). Search a bounded set, inspect exact IDs and source contexts, and keep model bindings explicit. Export the requested SVG, Draw.io library or Kernspan adapter.
+- For the saved native physical-composition editor, use the [workbench operation guide](../../docs/workbench/README.md#choose-a-physical-composition-operation). Keep candidate and saved revisions distinct and inspect the exact preview before any authorized save.
+- For typography, labels, legends, tables or density, use [readable presentation](references/readable-presentation.md). For HTML/PDF and actual asset or font checks, use [document rendering](../../docs/document-rendering.md).
+- For professional precedent or an example, see the [reference library](../../docs/reference-library.md) and the [synthetic station walkthrough](../../examples/engineering-gallery/water-sampling/README.md).
 
-For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
-before drafting and when reviewing the actual output.
+### Render, check and refine
 
-When project branding, custom fonts, SVGs or imagery are requested, use the
-[visual-reference guidance](../../docs/technical-documents.md#select-the-visual-reference)
-before layout. Identify the applicable assets early; preserve accepted model
-meaning and formal glyphs when applying their presentation. Editorial artwork
-and formal graph content have separate roles.
-For a reusable project identity, use [visual profiles](../../docs/visual-profiles.md).
-For local HTML/PDF exports and actual font/asset checks, use
-[document rendering](../../docs/document-rendering.md).
+Record the semantic ledger before drawing. Carry governing IDs and applicable ownership, direction, visibility, multiplicity, port kind, control/object flow, guards, events, effects, state transitions and units. Preserve the distinction between definition and usage, and between a default and a binding. Use [meaning and context](../../docs/meaning-context.md). Label the source version and the view type, including original and derived versions when both are shown. Build formal graph content from model records and notation. SVG and Draw.io exports are presentation views with source links. Keep the SysML model as the editable authority. Image generation can supply editorial artwork where requested.
 
-For changes with several dependent outputs, difficult check failures, or review handoffs, read [planning, diagnosis and review](references/work-review.md) and apply the relevant section. Keep small edits and discussion direct. The user's explicit instructions take precedence over skill guidance. Preserve failed findings during repair and reconcile delivered artifacts and current check evidence with the requested scope before claiming completion.
+Render a representative view early. Compare it with the selected reference and source at the actual reading size. Refine visible failures and re-render. Check labels, glyphs, contrast, clipping, routes and endpoints in the final pixels. Match keys to the quantities and units shown. Look for renderer error images even when a file exists. Compare the same model IDs across baseline and changed views. Retain a readable zoom or scroll mode when the intended viewport is narrow.
 
-1. Read the actual project model, source version and applicable repository guidance. Establish the engineering question, selected IDs and boundaries. Inspect the original model, supporting explanation and existing view when supplied. For an appropriate professional precedent, consult the [source-grounded reference library](../../docs/reference-library.md). If the source does not establish a relation, expose the gap. Keep raw/private notes and figures in ignored work paths.
-2. Freeze a semantic ledger before drawing: ownership/containment, endpoint direction, multiplicity, visibility, port kind, event/guard/effect, initial/final/fork/join types and numerical units/default/binding distinctions. Use source IDs across text/model/geometry. Clearly label original v1, derived v2, actual native-tool view, simplified model-derived presentation and generic explanatory graph. A generic graph is not a formal SysML diagram.
-3. Derive the view from the selected meaning. For an engineering document or drawing set, follow [technical document guidance](../../docs/technical-documents.md). For typography, visual channels, labels, legends or tables, read [readable presentation](references/readable-presentation.md). Change styling only after meaning is locked. Preserve formal glyphs and distinguish control/object flow, definition/usage and composite/substate exits. Do not use image generation for formal graph content. SVG and draw.io are presentation artifacts; draw.io is not lossless SysML interchange.
-4. Validate with available native tooling and meaningful source-fidelity checks. Run the pinned parser on v2 text and checks applicable to the selected source/view. Run the full repository suite when changing the shared runtime or reference library. Parse/linking acceptance is not behavioral correctness. Inspect actual rendered pixels, including error-placeholder detection, clipping, endpoints and annotations; renderer APIs can return SVG even when it is an error image. Record any omitted semantics in tool-generated views. Native editor edit/save/reopen is a distinct unrun gate unless actually performed. Only claim computation/simulation for a named engine, defined supported semantics, supplied inputs and independently expected results.
-5. Deliver the requested diagram or document and editable source first. Keep detailed receipts in linked evidence; include the scope and unresolved facts needed to read the artifact correctly. Compare source/baseline and changed renderings using the same selected IDs. For style reviews use matched views and structured text alternatives; narrow screens should allow readable scrolling rather than shrinking formal labels. Do not declare faster comprehension or a winning style without review.
+Run the pinned parser for v2 model changes and the relevant source-fidelity checks for the view. For interactive delivery, exercise the requested actions and inspect the resulting state. If edit/save/reopen is in scope, exercise that route in the intended editor and check the reopened source and view. For numerical or behavior claims, use [bounded analysis](../../docs/engineering-analysis.md) with the named engine, supported semantics, supplied inputs and independently expected results. A legible drawing and a native parse establish different facts.
 
-Resolve this skill directory's real path (follow symlinks), then take its `skills/` directory's parent as `<runtime>`; invoke shared scripts through absolute `<runtime>/scripts/...` paths. For shared runtime changes, use `python3 <runtime>/scripts/check.py --require-sysml` when the pinned parser is installed; do not upgrade it silently. Keep user outputs in the selected project's private work directory. The shared parser requires local execution on a qualified Linux/Python/Java host; native Windows SysML is unsupported. For installed copies, retain a private writable `CSE_SYSML_CACHE` outside the plugin. If execution/rendering tools are unavailable, provide useful source review and identify the unrun gates. A numerical constraint evaluation is not a state-machine simulation.
+Resolve the real skill path through symlinks, then use the parent of `skills/` as the runtime root for shared scripts. For native setup, use the [SysML runtime guide](../develop-system-concept/references/sysml.md). Keep user artifacts and the writable parser cache outside the installed plugin. Run `python3 <runtime>/scripts/check.py --require-sysml` for shared runtime or library changes when the pinned parser is available.
 
-This skill runs in the complete repository/plugin checkout and links shared tools. Copying this folder alone does not install the parser. The [synthetic station walkthrough](../../examples/engineering-gallery/water-sampling/README.md) illustrates source-linked presentations and their limits. No publication or source-rights grants are implied.
-
-For changes to functions, parts, allocations or interfaces, use [system architecture](../develop-system-architecture/SKILL.md). For explicit function/flow contracts, use [bounded engineering analysis](../../docs/engineering-analysis.md); arrows alone establish no executed behavior.
-
-For a generated document set, use [artifact freshness](../../docs/artifact-freshness.md) to reject changed sources and stale exports before delivery. Match each legend category to the actual quantity and unit on its connectors.
-
-For reusable illustrations, schematic artwork, connectors, ports and annotations, use the [component library](../../docs/component-library.md). Select stable IDs with `python3 <runtime>/scripts/icons.py list`, inspect each entry’s treatment and engineering context, and bind it to explicit model IDs. Export standalone SVGs, Draw.io libraries or the Kernspan presentation adapter. A component’s context does not create accepted model semantics.
-
-When finding, comparing or exporting reusable components, load [component workflows for agents](references/component-agents.md). Start with bounded search and fetch only relevant records by exact ID. Use the optional shortlist view when visual comparison helps.
+Deliver the view and editable source first. Give the source revision, material omissions and actual visual, native and interaction check outcomes. Use [artifact freshness](../../docs/artifact-freshness.md) for generated sets and [work review](references/work-review.md) for dependent changes or difficult failures. Report unavailable checks as unrun and preserve useful source findings.

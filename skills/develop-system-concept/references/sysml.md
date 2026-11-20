@@ -1,94 +1,26 @@
-# SysML v2 default record
+# SysML v2 record and checks
 
-For new recorded work, keep an authoritative `.sysml` model. Begin from
-`templates/default.sysml` when useful, but replace its synthetic content with
-the current system's actual known facts and clearly labeled proposals. Keep a
-stable package namespace and short IDs for reviewed elements. Reuse/import an
-existing system model instead of creating a competing definition.
-When multiple skills are requested, share definitions and short IDs across their
-views; one file or an explicitly imported bundle is fine. Run the draft-shape
-check for each requested kind. Concept plus scenario development needs
-`--kind concept` and `--kind scenario`, without a complete CONOPS.
-Keep supplied raw files and private annotations out of Git. Record concise
-derived content and source references instead of copying source documents into
-SysML or generated reports. Keep user-specific models and reports in the selected project's ignored/private
-work directory, outside the installed plugin (this repository: `work/` on
-`/workspace`); inspect Git status before committing. Tracked examples use only
-synthetic material or small attributed public-source derivatives.
+For new recorded work, maintain one authoritative `.sysml` model with a stable package namespace and short IDs. Reuse explicit imports when the model spans files. The skill's `templates/default.sysml` is a synthetic starting point. Replace its content with known project facts and labeled proposals. Keep raw sources and private annotations in the project workspace and retain concise source references in the model and reports. If raw material is already tracked, surface it before committing or publishing.
 
-Use ordinary SysML elements for the information they actually represent:
-parts and interfaces for the boundary and architecture, `concern` for a
-stakeholder need, actions and use cases for behavior, and `requirement` for an
-actual obligation. Documentation may hold the problem, alternatives, rationale,
-assumptions, unanswered questions, and narrative steps; that text does not
-become executable merely because SysML contains it. Never invent a guard,
-threshold, effect, actor allocation, or accepted decision to make a checker
-pass. The engineer resolves consequential meaning.
+Use native parts and interfaces for architecture, concerns for stakeholder needs, actions and use cases for behavior, and requirements for actual obligations. Keep narrative steps, assumptions, questions and rationale documentary unless an explicit supported representation exists. The engineer decides proposed guards, allocations, effects, applicability and thresholds. Use the [terminology and standards basis](../../../docs/engineering-terminology.md) for engineering claims and preserve project terminology, quotations and literal labels.
 
-Use `python3 <skill-dir>/scripts/cse.py` as the installed entry point; it follows
-the real skill path to the shared repository or complete plugin runtime. Its
-`runtime` command prints the runtime root, profile and parser-cache locations. Copying only a
-skill folder preserves its legacy helper, but cannot install the shared engine.
+## Run the applicable checks
 
-For installed copies, set `CSE_SYSML_CACHE` to a private writable directory on
-the user's workspace and retain it for installation and every subsequent check.
-It defaults to `<runtime>/.cache/sysml` for source checkouts; do not store user
-models inside the installed plugin. The shared SysML runtime is qualified on
-Linux and requires local Python 3.10+ and Java/javac 21+. Native Windows SysML
-is unsupported. Without local execution, keep the model a draft and report
-checks as not run.
+Use `python3 <skill-dir>/scripts/cse.py` from the full checkout or plugin. The launcher follows the real skill path. Its `runtime` command prints the runtime, profile and parser-cache paths. A copied skill folder retains its legacy helper. The native launcher needs the shared engine.
 
-Install the pinned parser once with
-`python3 <skill-dir>/scripts/cse.py install-parser`, then run
-`python3 <skill-dir>/scripts/cse.py check PATH.sysml --syntax-only --kind KIND` after edits,
-with `KIND` set to `concept`, `conops`, or `scenario` for the current skill. A successful
-syntax-only result means parser/validator acceptance for that file, not a
-behavioral verdict. For an explicitly selected checkable requirement, read
-`docs/sysml-v2-profile.md` under the runtime root and use its `cseClock`,
-`cseSource`, and controlled text conventions. Compile designated clauses with
-`cse.py check PATH.sysml` before generating tests. With independent scope and
-supplied evidence, run `cse.py check PATH.sysml --manifest MANIFEST.json
---evidence EVIDENCE.json --review`. A required trace review needs independent manifest and
-evidence files. If the shared checker is unavailable after copying this skill
-folder alone, keep the model a draft and state that parser validation was not
-run. Do not substitute a hand-written syntax guess for a parser result.
-The assistant runs these local commands and installs the pinned parser when
-needed; the engineer need not manage a terminal for an ordinary skill request.
+Native checking is qualified on Linux with Python 3.10+ and Java/javac 21+. Use a private writable `CSE_SYSML_CACHE` outside the installed plugin. Keep it consistent across setup and checks. A source checkout defaults to `<runtime>/.cache/sysml`. Install the pinned parser with `cse.py install-parser` when needed within the task's authority. Help with model files and commands. If the runtime is unavailable, report which checks are unrun and continue useful draft work.
 
-When the system model spans files, pass every required `.sysml` file to the
-shared checker; imports are resolved across the supplied set. Keep stable short
-IDs unique across that set. The alpha checker supports bounded Boolean and
-quantity observations and correlated event deadlines, but a successful shape
-or syntax check alone does not verify an operational claim.
+- **Native draft shape.** Run `cse.py check MODEL.sysml --syntax-only --kind KIND` after edits. Supply every required native file and keep short IDs unique across that set. Use the kind for each requested drafting artifact (`concept`, `conops` or `scenario`). Architecture uses `--syntax-only` without a kind. Concept plus scenario checks can run on one model. A separately scoped verification harness uses its own compilation and review without added drafting content.
+- **Supported clauses.** Use the [native profile](../../../docs/sysml-v2-profile.md) for `cseClock`, `cseSource`, and the supported sampled, quantity and correlated event semantics. Compile designated clauses with `cse.py check MODEL.sysml`. Apply the project’s sibling `.english.json` profile when supplied.
+- **Synthetic test generation.** For a supported sampled requirement, run `cse.py testgen MODEL.sysml --output TESTS.json` and retain the pass/fail variable-influence pairs with the evidence. Show the pairs when test analysis is requested. Inspect each clause result and retain supported pairs when another clause makes the overall result unsupported. Report uncovered variables and search limits. Add `--manifest MANIFEST.json` only when independently retained scope exists. If no supported sampled requirement exists, describe the remaining qualitative or unsupported work without supplying a threshold. The [generation contract](../../../docs/variable-influence-tests.md) defines its coverage. Pairs are synthetic and do not establish observed behavior or FLIP coverage.
+- **Required review of supplied evidence.** Run `cse.py check MODEL.sysml --manifest MANIFEST.json --evidence EVIDENCE.json --review` with independent scope and evidence. Keep that scope intact across draft changes. Use [behavior review](../../../docs/behavior-review.md) to select the check for the actual claim. For an already authored [finite verifier model](../../../docs/verifier-v2.md) with supported typed predicates and effects, run `cse.py finite MODEL.json --manifest RETAINED_SCOPE.json --review` when an independent manifest exists. For draft exploration without one, run the selected finite check and describe its candidate-local scope. Use `--scenario ID` for a focused draft check when it covers the selected question. Preserve the full retained scope for a required review. Finite inputs are authored separately from documentary prose.
+- **Legacy records.** For explicit version-1 work, use the skill's [record contract](record.md) and its original helper. Keep legacy prose documentary. Review any migration with the engineer and record lost or unsupported meaning.
 
-For a supported sampled requirement, run `python3 <skill-dir>/scripts/cse.py testgen
-PATH.sysml --output TESTS.json` to inspect synthetic variable-influence
-pass/fail pairs. Add `--manifest MANIFEST.json` only when an independent scope
-file already exists; do not manufacture one from the draft to claim required
-review. The test report is not observed evidence, does not satisfy `--review`,
-and does not implement NASA FLIP coverage. Keep an uncovered variable as an
-unresolved test-generation result, never as permission to remove the variable
-or its requirement. See
-`docs/variable-influence-tests.md` for the exact criterion and limits.
+Use `cse.py view MODEL.sysml --id ID` for parsed context, or [assemble governing definitions and evidence](../../../docs/meaning-context.md#retrieve-an-assembled-view) for a focused question. Use `cse.py diff --before OLD.sysml --after NEW.sysml` for structural and documentary changes. Review consequential changes with the engineer.
 
-Use `python3 <skill-dir>/scripts/cse.py view PATH.sysml --id ID` for a parsed context
-slice and `python3 <skill-dir>/scripts/cse.py diff --before OLD.sysml --after NEW.sysml`
-to inspect structural and documentation changes. The diff reports conservative
-directly affected elements; review consequential changes with the engineer.
+For recorded concept work, also apply the [project-tailored coverage review](../../../docs/concept-review.md) to the separately retained scope. Independent scenario and CONOPS drafting can run their own checks.
 
-Return the requested engineering view from the shared model and revision. For documents, follow [technical document guidance](../../../docs/technical-documents.md). Keep detailed computation and test receipts in linked evidence; retain the scope and unresolved facts needed to read the document correctly.
-
-For recorded concept work, also follow the system-concept skill's
-[project-tailored coverage review](../../../docs/concept-review.md). Its
-`cse.py concept-review check` command uses a separately retained project scope
-to detect omitted elements, responsibilities, interfaces and evaluation plans.
-It supplements these native/behavior checks; it does not make independent
-scenario or CONOPS work require a concept scope.
-
-For an existing version-1 JSON record or an explicit legacy request, read
-`references/record.md` and use its original helper. Do not silently translate
-its prose into executable SysML constraints. Reconcile any migration with the
-engineer and record unsupported or lost meaning.
+Return the requested view with its model revision and IDs. Link detailed findings and test pairs. State which evidence supports draft form, compiled clauses, synthetic examples, supplied observations and acceptance. A failed, unsupported or unrun required check remains unresolved. See [technical document guidance](../../../docs/technical-documents.md) for documents and drawings.
 
 ## Requested function hierarchies and sequences
 

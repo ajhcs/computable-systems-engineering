@@ -17,6 +17,8 @@ also works headlessly. Resolve `<runtime>` from this skill's real path.
 4. When comparison benefits from a visual, run `preview --ids <id> ... --out
    <project-work>/shortlist.html` with at most eight exact IDs. Deliver the
    editable local HTML and keep the full details available through `show`.
+   For placement in a diagram or document, review the chosen artwork in context
+   at the delivered size. Check the detail and labels that the reader needs.
    Text/structured results alone are sufficient for a simple lookup.
 5. Create `selection --ids <id> ...` or use the UI's Download selection action.
    `export --format svg|drawio --selection <selection.json> --out <new-directory>`

@@ -78,8 +78,10 @@ existing assets and create missing artwork as needed. Tables, ruled fields and
 formal diagrams alone do not establish an illustrated composition. Keep the
 page count and any existing content the user asked to preserve.
 
-Render a representative page or figure early, then inspect the completed
-exports at reading size. Compare the selected font families and weights with
+Render a representative page or figure early and compare it with the supplied
+visual reference. Check the hierarchy and density at the intended print or
+screen size. Refine the layout and inspect the completed exports at that size.
+Compare the selected font families and weights with
 the fonts that actually render or are embedded, and check the selected artwork,
 palette and treatments against their source. Font loading, embedding, contrast
 and bounds checks do not establish that the intended visual identity was used.

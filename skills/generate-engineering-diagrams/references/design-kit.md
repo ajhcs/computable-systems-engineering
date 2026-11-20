@@ -1,6 +1,7 @@
 # Engineering design kit workflow
 
-For a new diagram, start from the
+Identify the selected visual reference and final reading size. For a new
+diagram using this kit, start from the
 bundled [palette PDF](../../../assets/engineering-library/palette.pdf) and
 [editable overview](../../../assets/engineering-library/palette.svg). Inspect
 the pages relevant to the selected view before composing it: pages 1–4 show
@@ -51,9 +52,10 @@ semantics. A user-supplied standard or required formal notation takes priority.
    matching revision table, compact heading and key. Fit their fields to the
    actual content, retain the source rules and record adaptations. Do not stretch
    a plain paragraph box across the canvas as a substitute for these tables.
-5. Inspect rendered pixels at the intended size: actual fonts, clipping,
-   contrast, text/route collisions, annotation ownership, endpoints and
-   crossings. Compare the same source IDs and relationships, and retain
+5. Render a representative view, compare it with the chosen specimen and
+   refine before exporting the whole set. Inspect final pixels at the intended
+   size for font identity, clipping, contrast, text/route collisions, annotation
+   ownership, endpoints and crossings. Compare the same source IDs and relationships, and retain
    editable sources and asset/selection records. Report unsupported styling or
    renderer capabilities; choosing an asset does not itself make it supported
    by a particular native renderer. Native editor round-trip and engineering
