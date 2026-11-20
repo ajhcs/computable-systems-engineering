@@ -1,4 +1,4 @@
 interface:
   display_name: "Define Engineering Measures"
   short_description: "Define measures and preserve baseline meaning"
-  default_prompt: "Use $define-engineering-measures to define or revise this engineering measure, preserve unknowns and check changes to its baseline meaning."
+  default_prompt: "Use $define-engineering-measures to revise this measure. Show how the formula, population and collection conditions affect comparison with the baseline."

@@ -118,18 +118,17 @@ explicit [project visual profile](visual-profiles.md) and use shared
 [visual-guidance cases](visual-guidance-evaluation.md) distinguish deterministic
 resource checks from observed decisions in a fresh chat.
 
-Example requests:
+Start with the decision and say how you will review the result.
 
-- “Use the system-concept and CONOPS skills on the material below. Keep my raw materials out of Git.” In this repository, the assistant uses both skills on one model, runs both draft-shape checks, and inspects supported sampled requirements with synthetic test pairs. It reads raw source in place and keeps the source and user-specific model in ignored private workspace paths; the engineer supplies material and reviews consequential interpretations, not commands or SysML syntax.
-- “Use develop-system-concept to help compare these two approaches. Keep the current constraints and show unresolved evidence.”
-- “Use develop-conops to investigate who operates and maintains this service.”
-- “Use develop-operational-scenarios to develop the communications-loss scenario only.”
+- “Compare these two approaches using my accepted constraints. Show how each meets the need, and which unresolved evidence would change the choice.”
+- “Review who operates and maintains this service during the selected modes. Point to each responsibility in the model or mark it open.”
+- “Develop the communications-loss scenario only. Show what triggers recovery, who responds and what observation closes the scenario.”
 
-For your first combined concept/scenario trial, use “Use the system-concept and operational-scenarios skills on the material below. Keep my raw materials out of Git.” The assistant creates one shared model, returns readable concept and scenario views, runs both relevant draft checks, and reports supported computations separately from unresolved content. User-specific work stays in ignored `work/`. No command or SysML knowledge is required from the engineer. See the [end-user test guide](end-user-test.md), [pre-test review](pre-test-review.md), and [synthetic shared example](../examples/sysml/joint-concept-scenario.sysml).
+For a combined concept and scenario trial, ask for both views from the [synthetic shared model](../examples/sysml/joint-concept-scenario.sysml). Ask Codex to retain the same model IDs across views, run both relevant draft checks and show the synthetic pairs for any supported sampled requirement. The engineer can then review the views, the actual checks and the remaining uncertainties. Codex handles the SysML and commands in the project's private working area. See the [end-user test guide](end-user-test.md) and [pre-test review](pre-test-review.md) for the original trial procedures.
 
 ## Build the next version
 
-Start with [the first-version brief](first-version-brief.md), [the model and verification design](model-and-verification.md), and [the implementation prompt](kickoff-prompt.md). The brief separates agreed objectives from implementation defaults and defines evidence required for completion.
+Start with [the verification brief](first-version-brief.md) and [the model and verification design](model-and-verification.md) when changing checker semantics. The [original implementation prompt](kickoff-prompt.md) records the first increment's scope.
 
 The [SysML-first plan](sysml-v2-model-first-plan.md) and [implemented alpha profile](sysml-v2-profile.md) describe the current migration and its limits. The [public-source evaluation](public-sysml-evaluation.md) shows FHWA and NASA candidate slices with synthetic traces. The [controlled language profile](requirements-language-v1.md) parses a narrow FRET-inspired subset and checks supplied sampled behavior using explicit clock and unit semantics. [Variable-influence tests](variable-influence-tests.md) are a bounded precursor to formal FLIP generation. The parsed context view and structural diff support review, but general state/mode computation, FRET-backed test generation, and richer generated views remain future work.
 

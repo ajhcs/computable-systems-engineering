@@ -1,7 +1,7 @@
 {
   "name": "computable-systems-engineering",
-  "version": "0.2.0-alpha.8",
-  "description": "AI-assisted systems engineering with connected models, inspectable checks, and reusable engineering components for SVG, Draw.io and Kernspan.",
+  "version": "0.2.0-alpha.9",
+  "description": "Develop a system concept, operations or architecture from one model. Check supported claims and deliver editable, source-linked views.",
   "author": {
     "name": "ajhcs",
     "url": "https://github.com/ajhcs"
@@ -22,15 +22,15 @@
   ],
   "interface": {
     "displayName": "Computable Systems Engineering",
-    "shortDescription": "Model systems. Check the work.",
-    "longDescription": "Explore how people, software, equipment, and services work together. Eleven focused skills connect concepts, architecture, scenarios, measures and evidence. Deterministic checks cover declared calculations, flows, queues, failures, observations, changes and artifact freshness. Consequential decisions stay with you. A searchable engineering library supplies individually labeled SVG components, explicit SysML/SysE contexts, Draw.io libraries and a Kernspan presentation adapter. Agent workflows use bounded discovery, exact IDs and revision-bound component selections.",
+    "shortDescription": "Develop systems and inspect the evidence.",
+    "longDescription": "Use eleven skills to explore concepts, connect operations and architecture, define measures and plan evidence from the same project model. Local deterministic tools check supported flows, calculations, queues, failure models and observations against supplied inputs and scope. Deliver editable diagrams and choose reusable SVG components with explicit SysML and SysE contexts, Draw.io libraries and a Kernspan adapter. You decide consequential changes to the model and accepted obligations.",
     "developerName": "ajhcs and contributors",
     "category": "Productivity",
     "capabilities": [],
     "defaultPrompt": [
-      "Help me explore this system idea. Identify functions, people, alternatives, and the evidence we still need.",
-      "Walk through normal operation and recovery with the operational-scenarios skill.",
-      "Check the selected connected system against retained scope and generate a source-linked current-system view."
+      "Compare these system approaches against my accepted outcomes and constraints. Show which evidence could change the decision.",
+      "Walk through the normal handoff and this recovery case. Show who acts, what moves, and how we would recognize completion.",
+      "Create an editable view of these model elements. Use the supplied visual reference, check labels at the delivered size, and report which model checks ran."
     ],
     "composerIcon": "./assets/icon.svg",
     "logo": "./assets/icon.svg"

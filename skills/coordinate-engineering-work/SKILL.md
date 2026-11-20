@@ -1,62 +1,32 @@
 ---
 name: coordinate-engineering-work
-description: Coordinate connected CSE work across concepts, architecture, scenarios, measures, evidence, language and diagrams. Use for a shared engineering workflow or an unclear entry point; a request for one named activity can use that skill directly.
+description: Coordinate a systems engineering question that crosses activities or has an unclear entry point. Connect model edits, checks and deliverables across the relevant CSE skills.
 ---
 
-Identify the engineer's current question, requested result and existing model.
-Enter at the activity that can answer that question; a complete lifecycle or
-document set is unnecessary. Preserve accepted intent and unresolved facts.
+Identify the current engineering question, requested result, source revision and how the engineer will review it. Use the existing model and begin with the activity that can answer the question. A single activity may be enough.
 
-For engineering claims and implementation, use [meaning and context](../../docs/meaning-context.md)
-before drafting and when reviewing the actual output.
-
-Select the relevant skill below and read its instructions when starting that
-activity. Do not load the whole pack or traverse every route by default.
-
-| Requested work | Skill |
+| When the question concerns | Read |
 |---|---|
-| Investigate a problem, functions, alternatives or a concept decision | [Develop system concept](../develop-system-concept/SKILL.md) |
-| Connect the overall operating concept, responsibilities and lifecycle context | [Develop CONOPS](../develop-conops/SKILL.md) |
-| Develop functional or physical structure, allocations or interfaces | [Develop system architecture](../develop-system-architecture/SKILL.md) |
-| Explore a particular sequence, exception or operational scenario | [Develop operational scenarios](../develop-operational-scenarios/SKILL.md) |
-| Define a measure or compare revised measurement definitions | [Define engineering measures](../define-engineering-measures/SKILL.md) |
-| Plan verification or validation, including observation and test needs | [Plan engineering evidence](../plan-engineering-evidence/SKILL.md) |
-| Analyze waiting and utilization for a supplied workload or queue model | [Analyze queues](../analyze-queues/SKILL.md) |
-| Analyze an explicit fault tree or linked FMEA record | [Analyze system failures](../analyze-system-failures/SKILL.md) |
-| Define or repair controlled English and terminology, or investigate a language finding | [Check engineering language](../check-engineering-language/SKILL.md) |
-| Render or revise a view of existing engineering meaning | [Generate engineering diagrams](../generate-engineering-diagrams/SKILL.md) |
+| Problem framing, desired outcomes or alternatives | [System concept](../develop-system-concept/SKILL.md) |
+| Operating concept, lifecycle or responsibilities across scenarios | [CONOPS](../develop-conops/SKILL.md) |
+| One operational sequence, exception or recovery | [Operational scenarios](../develop-operational-scenarios/SKILL.md) |
+| Functions, parts, allocations or interfaces | [System architecture](../develop-system-architecture/SKILL.md) |
+| Quantity, collection conditions or baseline meaning | [Engineering measures](../define-engineering-measures/SKILL.md) |
+| Verification, intended use or testability | [Evidence planning](../plan-engineering-evidence/SKILL.md) |
+| Waiting and utilization | [Queue analysis](../analyze-queues/SKILL.md) |
+| Fault tree or FMEA record | [Failure analysis](../analyze-system-failures/SKILL.md) |
+| Project terminology and controlled English | [Engineering language](../check-engineering-language/SKILL.md) |
+| A source-linked view or reusable graphic | [Diagrams and components](../generate-engineering-diagrams/SKILL.md) |
 
-Use one authoritative model or explicitly connected files with stable IDs. Carry
-the relevant question, revision, IDs, assumptions, findings and decisions between
-activities. Preserve selected English terminology rules throughout drafting.
+Carry the same model revisions, stable IDs, governing conditions, unknowns and engineer decisions through each activity. Apply [meaning and context](../../docs/meaning-context.md) to the actual outputs. Keep project inputs and reports in the project's private workspace.
 
-For an engineering proposal, report, manual or drawing set, use
-[technical document guidance](../../docs/technical-documents.md). When project
-branding, custom fonts, SVGs or imagery are requested, resolve the applicable
-visual reference before layout and carry it into the document and its figures.
-Deliver the technical artifact first; keep detailed evidence and the assessment
-against user notes in supporting files.
+For connected changes, use the relevant part of [work review](../develop-system-concept/references/work-review.md). Use subagents as needed, where authorized, for independent investigations or artifact reviews with distinct inputs and outputs. Keep one owner for changes to shared definitions and reconcile findings against the same source revision.
 
-Run the selected activity's checks. Load a computation contract when choosing or
-repairing that computation. A compact context view must not narrow the independent
-scope supplied to a required checker.
+Load additional methods when needed:
 
-For function/flow contracts or exact calculations, read the selected mode in
-[engineering analysis](../../docs/engineering-analysis.md). Run its program and
-carry the affected model IDs and findings into the relevant drafting activity.
+- For exact calculations or function/flow correspondence, select a mode in [engineering analysis](../../docs/engineering-analysis.md).
+- After a model or evidence change, identify affected outputs through [change review](../../docs/engineering-change-review.md). Use [impact analysis](references/impact-analysis.md) for declared propagation and widen rechecks when native dependency coverage is incomplete.
+- For implementation increments, goal-seeking or decision rationale, use the [CONOPS method](../develop-conops/references/iteration-and-rationale.md).
+- For a proposal, report, manual or drawing set, use [technical document guidance](../../docs/technical-documents.md) and resolve any requested visual reference before layout.
 
-For a changed design or evidence revision, use
-[change review](../../docs/engineering-change-review.md) to identify affected
-records and supported rechecks. Retain uncertainty about untracked dependencies.
-For computable dependency propagation and retained check selection, load
-[impact analysis](references/impact-analysis.md). Incomplete native coverage
-requires broad rechecks; a selected check list is not an executed result.
-For goal-seeking work, implementation increments or decision rationale, read the
-selected [CONOPS method](../develop-conops/references/iteration-and-rationale.md).
-
-Return new evidence to the affected explanation, function, scenario or decision.
-Reopen an accepted choice only as a proposal with its reason. Reuse completed
-findings while their inputs and scope remain applicable. Stop at the requested
-result; report useful changes, actual check outcomes and the next decision.
-Keep private sources in the project's private workspace. The engineer owns
-consequential interpretations and acceptance.
+Finish when the requested artifacts agree with the authoritative model and the applicable checks have been examined against independently retained scope. A compact drafting view leaves check scope intact. Deliver the primary artifact first, with material findings, unresolved evidence and decisions that remain with the engineer. Carry new evidence back to each affected view or proposal.

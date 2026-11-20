@@ -1,4 +1,4 @@
 interface:
   display_name: "Develop a CONOPS"
-  short_description: "Investigate operations with the systems engineer"
-  default_prompt: "Use $develop-conops to help me investigate or develop the requested part of my CONOPS, preserving my decisions and running the available program checks."
+  short_description: "Connect operating modes, roles and scenarios"
+  default_prompt: "Use $develop-conops to explain how this service operates during the selected modes. Make each external responsibility, handoff and unresolved evaluation question easy to review."

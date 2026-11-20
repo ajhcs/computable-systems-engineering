@@ -1,4 +1,4 @@
 interface:
   display_name: "Develop System Concept"
-  short_description: "Investigate concepts with the systems engineer"
-  default_prompt: "Use $develop-system-concept to help me investigate or develop the requested part of my concept, preserving my decisions and running the available program checks."
+  short_description: "Compare engineering concepts and evidence"
+  default_prompt: "Use $develop-system-concept to compare these approaches against the accepted outcomes and constraints. Show which evidence could change the decision."

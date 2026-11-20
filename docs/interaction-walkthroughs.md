@@ -38,7 +38,7 @@ Maintain the trace from need → selected user action → requirement/behavior �
 
 ## Review before polish or implementation
 
-Inspect actual rendered pixels and basic navigation at the requested viewing sizes. Check legibility, clipping, endpoints/labels, important error states and editable source links. Ask an independent reviewer when the task calls for independent review. Record assumptions, findings and dispositions against stable IDs. Preserve requested prototype fidelity.
+Inspect the rendered walkthrough at the requested viewing sizes. Follow the selected routes, exercise the actions it supports and check their visible outcomes and recovery states. For a static walkthrough, follow its linked frames and compare their before and after states. Check legibility, clipping, endpoints, labels and editable source links. Refine and re-render within the requested fidelity. Record assumptions, findings and dispositions against stable IDs. Use an independent reviewer when the task calls for independent review.
 
 Before moving to polish or UI implementation, the engineer must have had a concrete trace-linked low-fidelity walkthrough to review, and material semantic/interaction assumptions must have a recorded disposition or remain explicit open proposals. Existing user authorization and already completed review carry forward; do not repeatedly ask for permission to do routine sketches, repairs or checks within that scope. A request for a rough walkthrough does not authorize product implementation, publication or deployment. A request explicitly authorizing the next stage governs that stage without a newly invented approval flow.
 

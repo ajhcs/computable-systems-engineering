@@ -34,6 +34,35 @@ support, including literal multiplicity and supported inherited/redefined
 selection. The older five-family renderer's narrower exclusions are interface
 gaps to close, not permission to remove existing engineering support.
 
+### Choose a physical composition operation
+
+Use the contract for the requested operation. Inspect the exact candidate against
+the current source and retained scope before an authorized save. Review the
+resulting revision at reading size and exercise the requested action in its
+intended host when available.
+
+| Requested work | Contract |
+|---|---|
+| Read, render or navigate a saved definition or usage view | [Saved native diagrams](composition-diagrams.md) and [diagram navigation](composition-navigation.md) |
+| Preview/save rename, layout or restoration | [Local interaction](composition-interaction.md) and [Git persistence](composition-persistence.md) |
+| Set finite bounds | [Multiplicity](composition-multiplicity.md) |
+| Create an owned definition with its view occurrence | [Owned definition creation](composition-creation.md) |
+| Create a usage | [Part-usage creation](composition-usage-creation.md) |
+| Set explicit usage types | [Usage typing](composition-typing.md) |
+| Move a declaration or subtree | [Ownership changes](composition-ownership.md) |
+| Remove a declaration | [Removal](composition-removal.md) |
+| Create the first native root and view | [Initial project authoring](composition-initial-project.md) |
+| Inspect source ownership and retained roles | [Role inspection](composition-role-inspection.md) |
+
+For changed ownership, include the effects on each affected view. Preserve
+reference spelling, original masters, existing geometry outside the change and
+independently retained scope. For a first save, retain the prospective UUID and
+exact checked request for recovery. See the operation contracts for native
+identity, persistence and refusal cases, and the
+[qualification evidence](qualification-evidence.md) for which host journeys ran.
+
+### Implementation and evidence
+
 The implementation exposes Pilot-resolved declaration/name/reference/document
 ranges, explicitly in UTF-16 coordinates. `scripts/composition_edit.py` inspects
 one source or an explicit text bundle and prepares a rename using those ranges.

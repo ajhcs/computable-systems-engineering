@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coordinate Engineering Work"
+  short_description: "Connect model, analysis and deliverables"
+  default_prompt: "Use $coordinate-engineering-work to review this interface and its recovery scenario on the same model revision. Show which retained obligations were checked and what evidence is still missing."

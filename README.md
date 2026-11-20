@@ -8,7 +8,7 @@ Computable Systems Engineering (CSE) is an alpha toolkit for AI-assisted model-b
 
 CSE is useful for a service involving people and software, a piece of equipment, a laboratory operation, or another system with interacting parts. The assistant can organize work, prepare model changes, invoke local tools, and explain findings. **The engineer decides** accepted intent, scope, applicability, units, thresholds, obligations, selection, and acceptance. Inferred requirements or consequential changes are proposals for review.
 
-**Version 0.2.0-alpha.6 · Local execution · [MIT project license](LICENSE)**
+**Alpha · Local execution · [MIT project license](LICENSE)**
 
 [Start with a question](#start-with-the-question-that-matters-to-you) · [Set up the checkout](#get-started) · [Choose a skill](#choose-a-skill) · [Explore the examples](#examples-you-can-open-and-inspect) · [Understand results](#what-a-result-tells-you)
 
@@ -31,28 +31,38 @@ Open the checkout as a Codex project and start a new conversation. The repositor
 **Explore an idea**
 
 ```text
-Help me develop a concept for a shared equipment service. Identify the people,
-functions, alternatives, and evidence we need. Keep assumptions visible and
-leave consequential choices for me to review.
+Compare a staffed desk and a self-service locker for this shared equipment
+service. Keep the access and inspection constraints from my notes. Show who
+would do the work in each approach and which evidence could change the choice.
 ```
 
 **Investigate an exception**
 
 ```text
-Use the operational-scenarios skill with the water-sampling station example.
-Show the normal handoff and the missing-label recovery. Explain who does what,
-what information moves, and what still needs evidence.
+Walk through the water-sampling station's normal handoff and missing-label
+recovery. For each exchange, show the sender, recipient and item or information.
+Show how the operator knows the recovery is complete, or flag an unknown.
 ```
 
 **Work across an existing project**
 
 ```text
-Use coordinate-engineering-work on my project material. Preserve the current
-model and decisions. Review the selected interface and its recovery scenario,
-identify missing evidence, and run the checks that apply.
+Review this interface and its recovery scenario together on the supplied model
+revision. Preserve the accepted conditions. Run the checks against my retained
+scope and show the evidence still needed for the decision.
 ```
 
-For your own work, provide the question, relevant material, and any accepted decisions or constraints. Say which sources and model revision govern if there are competing versions. Keep private materials, project-specific models, and reports in private project storage and out of Git; ignored directories help prevent ordinary staging but are not an access-control boundary. The assistant should report unavailable tools or evidence rather than presenting an unrun check as a result.
+**Deliver a diagram**
+
+```text
+Create an editable SVG of these model elements for a printed A4 report. Use this
+reference for line and label treatment. Check the labels and endpoints at print
+size and link each displayed part to its model ID.
+```
+
+Give Codex the question, governing model or sources, accepted decisions and what you will inspect in the result. For a visual, supply a reference and intended reading size. For an interactive artifact, name the actions and outcomes to exercise. Keep project-specific inputs and reports in private project storage and out of Git.
+
+Match reasoning effort to the investigation. Medium can suit a quick survey. High can suit tracing one suspected cause across systems, and Extra High can suit several interacting causes. Define the point at which the evidence is sufficient for the requested decision. Where independent parts can proceed in parallel, you can ask Codex to use subagents as needed and review the integrated result against the same model and scope. [GPT-6.2 Codex prompting guide](https://learn.chatgpt.com/guides/prompting-gpt-6-2-astra)
 
 ## Get started
 
